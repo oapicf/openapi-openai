@@ -6,9 +6,7 @@
 OpenAPI OpenAI
 --------------
 
-OpenAPI openai is an OpenAPI v3 specification and a set of generated API clients for [openai](https://www.openai.org/)
-
-The API clients are generated using [OpenAPI Generator](https://openapi-generator.tech/).
+OpenAPI openai is a set of API client libraries for [OpenAI service](https://beta.openai.com/docs/api-reference/introduction) generated using [OpenAPI Generator](https://openapi-generator.tech/).
 
 Published packages
 ------------------

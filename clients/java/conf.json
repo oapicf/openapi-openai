@@ -1,0 +1,22 @@
+{
+  "artifactId": "openapiopenai",
+  "artifactVersion": "1.0.0-pre.0",
+  "artifactUrl": "https://github.com/cliffano/openapi-openai",
+  "artifactDescription": "OpenAI API client generated from Swagger / Open API specification",
+  "groupId": "com.cliffano",
+  "invokerPackage": "com.cliffano.openapiopenai",
+  "apiPackage": "com.cliffano.openapiopenai.api",
+  "modelPackage": "com.cliffano.openapiopenai.model",
+  "licenseName": "MIT",
+  "licenseUrl": "https://github.com/cliffano/openapi-openai/blob/master/LICENSE",
+  "developerName": "Cliffano Subagio",
+  "developerEmail": "blah@cliffano.com",
+  "developerOrganization": "Studio Cliffano",
+  "developerOrganizationUrl": "http://cliffano.com",
+  "scmConnection": "scm:git:git@github.com:cliffano/openapi-openai.git",
+  "scmDeveloperConnection": "scm:git:git@github.com:cliffano/openapi-openai.git",
+  "scmUrl": "https://github.com/cliffano/openapi-openai",
+  "distributionManagementRepositoryId": "sonatype-release",
+  "distributionManagementRepositoryName": "Sonatype Release",
+  "distributionManagementRepositoryUrl": "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+}

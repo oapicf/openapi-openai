@@ -1,0 +1,10 @@
+---
+spec_uri: https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml
+version: 0.0.1-pre.0
+contact:
+  name: Cliffano Subagio
+  url: https://github.com/cliffano/openapi-openai
+  email: blah@cliffano.com
+base_dir:
+  github_actions: /home/runner/work/openapi-openai/openapi-openai
+  local: /Users/cliffano/dev/workspace-studio/openapi-openai

@@ -1,0 +1,10 @@
+{
+  "gemName": "openapi_openai",
+  "moduleName": "OpenApiOpenAIClient",
+  "gemVersion": "1.0.0-pre.0",
+  "gemAuthor": "Cliffano Subagio",
+  "gemAuthorEmail": "blah@cliffano.com",
+  "gemHomepage": "https://github.com/cliffano/openapi-openai",
+  "gemLicense": "MIT",
+  "gemRequiredRubyVersion": ">= 2.0"
+}

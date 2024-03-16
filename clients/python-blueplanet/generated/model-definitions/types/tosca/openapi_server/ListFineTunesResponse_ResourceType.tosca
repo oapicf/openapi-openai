@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ListFineTunesResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ListFineTunesResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FineTune = openapi_server.resourceTypes.FineTune
+}
+resourceTypes {
+
+  ListFineTunesResponse {
+    title = ListFineTunesResponse
+    description = ListFineTunesResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
+        data {
+          type = array
+          items.type = FineTune
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ListFineTunesResponse {
+    title = ListFineTunesResponse
+    description = ListFineTunesResponse
+    implements = openapi_server.resourceTypes.ListFineTunesResponse
+
+  }
+}

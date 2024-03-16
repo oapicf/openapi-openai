@@ -1,0 +1,36 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ChatCompletionStreamResponseDelta",
+  "fields": [
+    {
+      "name": "role",
+      "type": ["null", {
+        "type": "enum",
+        "name": "ChatCompletionStreamResponseDelta_role",
+        "symbols": [
+          "system",
+          "user",
+          "assistant",
+          "function"
+        ]
+      }],
+      "doc": "The role of the author of this message.",
+      "default": null
+    },
+    {
+      "name": "content",
+      "type": ["null", "string"],
+      "doc": "The contents of the chunk message.",
+      "default": null
+    },
+    {
+      "name": "function_call",
+      "type": ["null", "model.ChatCompletionRequestMessageFunctionCall"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

@@ -1,0 +1,51 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "OpenAIFile",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "object",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "bytes",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "filename",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "purpose",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "status",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "status_details",
+      "type": ["null", "model.object"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

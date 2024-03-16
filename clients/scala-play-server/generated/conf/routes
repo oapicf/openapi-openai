@@ -1,0 +1,37 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+# Routes for OpenAI API
+
+POST /v1/chat/completions                 api.OpenAIApiController.createChatCompletion()
+POST /v1/completions                      api.OpenAIApiController.createCompletion()
+POST /v1/edits                            api.OpenAIApiController.createEdit()
+POST /v1/embeddings                       api.OpenAIApiController.createEmbedding()
+POST /v1/files                            api.OpenAIApiController.createFile()
+POST /v1/fine-tunes                       api.OpenAIApiController.createFineTune()
+POST /v1/images/generations               api.OpenAIApiController.createImage()
+POST /v1/images/edits                     api.OpenAIApiController.createImageEdit()
+POST /v1/images/variations                api.OpenAIApiController.createImageVariation()
+POST /v1/moderations                      api.OpenAIApiController.createModeration()
+POST /v1/audio/transcriptions             api.OpenAIApiController.createTranscription()
+POST /v1/audio/translations               api.OpenAIApiController.createTranslation()
+GET /v1/files                             api.OpenAIApiController.listFiles()
+GET /v1/fine-tunes                        api.OpenAIApiController.listFineTunes()
+GET /v1/models                            api.OpenAIApiController.listModels()
+POST /v1/fine-tunes/:fineTuneId/cancel    api.OpenAIApiController.cancelFineTune(fineTuneId: String)
+DELETE /v1/files/:fileId                  api.OpenAIApiController.deleteFile(fileId: String)
+DELETE /v1/models/:model                  api.OpenAIApiController.deleteModel(model: String)
+GET /v1/files/:fileId/content             api.OpenAIApiController.downloadFile(fileId: String)
+GET /v1/fine-tunes/:fineTuneId/events     api.OpenAIApiController.listFineTuneEvents(fineTuneId: String)
+GET /v1/files/:fileId                     api.OpenAIApiController.retrieveFile(fileId: String)
+GET /v1/fine-tunes/:fineTuneId            api.OpenAIApiController.retrieveFineTune(fineTuneId: String)
+GET /v1/models/:model                     api.OpenAIApiController.retrieveModel(model: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET /assets/*file           controllers.Assets.at(file)
+GET /versionedAssets/*file  controllers.Assets.versioned(file)
+
+# Swagger UI
+GET /api                    api.ApiDocController.api

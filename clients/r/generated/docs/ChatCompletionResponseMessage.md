@@ -1,0 +1,11 @@
+# openapi::ChatCompletionResponseMessage
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**role** | **character** | The role of the author of this message. | [Enum: [system, user, assistant, function]] 
+**content** | **character** | The contents of the message. | [optional] 
+**function_call** | [**ChatCompletionRequestMessageFunctionCall**](ChatCompletionRequestMessage_function_call.md) |  | [optional] 
+
+

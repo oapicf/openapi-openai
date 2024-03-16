@@ -1,0 +1,147 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "create_embedding_request.h"
+
+
+
+create_embedding_request_t *create_embedding_request_create(
+    create_embedding_request_model_t *model,
+    create_embedding_request_input_t *input,
+    char *user
+    ) {
+    create_embedding_request_t *create_embedding_request_local_var = malloc(sizeof(create_embedding_request_t));
+    if (!create_embedding_request_local_var) {
+        return NULL;
+    }
+    create_embedding_request_local_var->model = model;
+    create_embedding_request_local_var->input = input;
+    create_embedding_request_local_var->user = user;
+
+    return create_embedding_request_local_var;
+}
+
+
+void create_embedding_request_free(create_embedding_request_t *create_embedding_request) {
+    if(NULL == create_embedding_request){
+        return ;
+    }
+    listEntry_t *listEntry;
+    if (create_embedding_request->model) {
+        create_embedding_request_model_free(create_embedding_request->model);
+        create_embedding_request->model = NULL;
+    }
+    if (create_embedding_request->input) {
+        create_embedding_request_input_free(create_embedding_request->input);
+        create_embedding_request->input = NULL;
+    }
+    if (create_embedding_request->user) {
+        free(create_embedding_request->user);
+        create_embedding_request->user = NULL;
+    }
+    free(create_embedding_request);
+}
+
+cJSON *create_embedding_request_convertToJSON(create_embedding_request_t *create_embedding_request) {
+    cJSON *item = cJSON_CreateObject();
+
+    // create_embedding_request->model
+    if (!create_embedding_request->model) {
+        goto fail;
+    }
+    cJSON *model_local_JSON = create_embedding_request_model_convertToJSON(create_embedding_request->model);
+    if(model_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "model", model_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
+    // create_embedding_request->input
+    if (!create_embedding_request->input) {
+        goto fail;
+    }
+    cJSON *input_local_JSON = create_embedding_request_input_convertToJSON(create_embedding_request->input);
+    if(input_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "input", input_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
+    // create_embedding_request->user
+    if(create_embedding_request->user) {
+    if(cJSON_AddStringToObject(item, "user", create_embedding_request->user) == NULL) {
+    goto fail; //String
+    }
+    }
+
+    return item;
+fail:
+    if (item) {
+        cJSON_Delete(item);
+    }
+    return NULL;
+}
+
+create_embedding_request_t *create_embedding_request_parseFromJSON(cJSON *create_embedding_requestJSON){
+
+    create_embedding_request_t *create_embedding_request_local_var = NULL;
+
+    // define the local variable for create_embedding_request->model
+    create_embedding_request_model_t *model_local_nonprim = NULL;
+
+    // define the local variable for create_embedding_request->input
+    create_embedding_request_input_t *input_local_nonprim = NULL;
+
+    // create_embedding_request->model
+    cJSON *model = cJSON_GetObjectItemCaseSensitive(create_embedding_requestJSON, "model");
+    if (!model) {
+        goto end;
+    }
+
+    
+    model_local_nonprim = create_embedding_request_model_parseFromJSON(model); //nonprimitive
+
+    // create_embedding_request->input
+    cJSON *input = cJSON_GetObjectItemCaseSensitive(create_embedding_requestJSON, "input");
+    if (!input) {
+        goto end;
+    }
+
+    
+    input_local_nonprim = create_embedding_request_input_parseFromJSON(input); //nonprimitive
+
+    // create_embedding_request->user
+    cJSON *user = cJSON_GetObjectItemCaseSensitive(create_embedding_requestJSON, "user");
+    if (user) { 
+    if(!cJSON_IsString(user) && !cJSON_IsNull(user))
+    {
+    goto end; //String
+    }
+    }
+
+
+    create_embedding_request_local_var = create_embedding_request_create (
+        model_local_nonprim,
+        input_local_nonprim,
+        user && !cJSON_IsNull(user) ? strdup(user->valuestring) : NULL
+        );
+
+    return create_embedding_request_local_var;
+end:
+    if (model_local_nonprim) {
+        create_embedding_request_model_free(model_local_nonprim);
+        model_local_nonprim = NULL;
+    }
+    if (input_local_nonprim) {
+        create_embedding_request_input_free(input_local_nonprim);
+        input_local_nonprim = NULL;
+    }
+    return NULL;
+
+}

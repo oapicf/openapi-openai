@@ -1,0 +1,27 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateModerationResponse",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "model",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "results",
+      "type": {
+        "type": "array",
+        "items": "model.CreateModerationResponseResultsInner"
+      },
+      "doc": ""
+    }
+  ]
+
+}

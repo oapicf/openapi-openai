@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateChatCompletionStreamResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateChatCompletionStreamResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CreateChatCompletionStreamResponseChoicesInner = openapi_server.resourceTypes.CreateChatCompletionStreamResponseChoicesInner
+}
+resourceTypes {
+
+  CreateChatCompletionStreamResponse {
+    title = CreateChatCompletionStreamResponse
+    description = CreateChatCompletionStreamResponse
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
+        created {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        model {
+          type =  string
+          description = ""
+          optional = true
+        }
+        choices {
+          type = array
+          items.type = CreateChatCompletionStreamResponseChoicesInner
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateChatCompletionStreamResponse {
+    title = CreateChatCompletionStreamResponse
+    description = CreateChatCompletionStreamResponse
+    implements = openapi_server.resourceTypes.CreateChatCompletionStreamResponse
+
+  }
+}

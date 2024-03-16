@@ -1,0 +1,53 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateImageRequest",
+  "fields": [
+    {
+      "name": "prompt",
+      "type": "string",
+      "doc": "A text description of the desired image(s). The maximum length is 1000 characters."
+    },
+    {
+      "name": "n",
+      "type": ["null", "int"],
+      "doc": "The number of images to generate. Must be between 1 and 10.",
+      "default": null
+    },
+    {
+      "name": "size",
+      "type": ["null", {
+        "type": "enum",
+        "name": "CreateImageRequest_size",
+        "symbols": [
+          "256x256",
+          "512x512",
+          "1024x1024"
+        ]
+      }],
+      "doc": "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.",
+      "default": null
+    },
+    {
+      "name": "response_format",
+      "type": ["null", {
+        "type": "enum",
+        "name": "CreateImageRequest_responseUnderscoreformat",
+        "symbols": [
+          "url",
+          "b64_json"
+        ]
+      }],
+      "doc": "The format in which the generated images are returned. Must be one of `url` or `b64_json`.",
+      "default": null
+    },
+    {
+      "name": "user",
+      "type": ["null", "string"],
+      "doc": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ",
+      "default": null
+    }
+  ]
+
+}

@@ -1,0 +1,15 @@
+Package: openapi
+Title: R Package Client for OpenAI API
+Version: 1.0.0
+Author: person("Cliffano Subagio", email = "blah+oapicf@cliffano.com", role = c("aut", "cre"))
+Maintainer: Cliffano Subagio <blah+oapicf@cliffano.com>
+Description: APIs for sampling from and fine-tuning language models
+URL: https://github.com/oapicf/openapi-openai
+BugReports: https://github.com/oapicf/openapi-openai/issues
+Depends: R (>= 3.3)
+Encoding: UTF-8
+License: Unlicense
+LazyData: true
+Suggests: testthat
+Imports: jsonlite, httr, R6, base64enc, stringr
+RoxygenNote: 7.2.1

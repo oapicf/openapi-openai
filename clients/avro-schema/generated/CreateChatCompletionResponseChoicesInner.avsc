@@ -1,0 +1,35 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateChatCompletionResponseChoicesInner",
+  "fields": [
+    {
+      "name": "index",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "message",
+      "type": ["null", "model.ChatCompletionResponseMessage"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "finish_reason",
+      "type": ["null", {
+        "type": "enum",
+        "name": "CreateChatCompletionResponseChoicesInner_finishUnderscorereason",
+        "symbols": [
+          "stop",
+          "length",
+          "function_call"
+        ]
+      }],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

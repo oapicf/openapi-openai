@@ -1,0 +1,45 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateCompletionResponseChoicesInnerLogprobs",
+  "fields": [
+    {
+      "name": "tokens",
+      "type": ["null", {
+        "type": "array",
+        "items": "string"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "token_logprobs",
+      "type": ["null", {
+        "type": "array",
+        "items": "double"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "top_logprobs",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.object"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "text_offset",
+      "type": ["null", {
+        "type": "array",
+        "items": "int"
+      }],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

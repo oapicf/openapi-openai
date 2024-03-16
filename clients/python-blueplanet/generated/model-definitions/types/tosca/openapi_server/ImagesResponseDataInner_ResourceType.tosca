@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ImagesResponseDataInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ImagesResponseDataInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ImagesResponseDataInner {
+    title = ImagesResponseDataInner
+    description = ImagesResponseDataInner
+    derivedFrom = Root
+    properties {
+        url {
+          type =  string
+          description = ""
+          optional = false
+        }
+        b64_json {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ImagesResponseDataInner {
+    title = ImagesResponseDataInner
+    description = ImagesResponseDataInner
+    implements = openapi_server.resourceTypes.ImagesResponseDataInner
+
+  }
+}

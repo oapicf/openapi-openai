@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateChatCompletionRequestFunctionCallOneOf"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateChatCompletionRequestFunctionCallOneOf"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateChatCompletionRequestFunctionCallOneOf {
+    title = CreateChatCompletionRequestFunctionCallOneOf
+    description = CreateChatCompletionRequestFunctionCallOneOf
+    derivedFrom = Root
+    properties {
+        name {
+          type =  string
+          description = "The name of the function to call."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateChatCompletionRequestFunctionCallOneOf {
+    title = CreateChatCompletionRequestFunctionCallOneOf
+    description = CreateChatCompletionRequestFunctionCallOneOf
+    implements = openapi_server.resourceTypes.CreateChatCompletionRequestFunctionCallOneOf
+
+  }
+}

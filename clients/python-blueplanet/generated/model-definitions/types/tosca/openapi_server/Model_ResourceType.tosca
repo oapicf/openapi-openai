@@ -1,0 +1,50 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server Model"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a Model"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  Model {
+    title = Model
+    description = Model
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
+        created {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        owned_by {
+          type =  string
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  Model {
+    title = Model
+    description = Model
+    implements = openapi_server.resourceTypes.Model
+
+  }
+}

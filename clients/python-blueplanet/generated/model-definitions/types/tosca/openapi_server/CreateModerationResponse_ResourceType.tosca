@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateModerationResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateModerationResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CreateModerationResponseResultsInner = openapi_server.resourceTypes.CreateModerationResponseResultsInner
+}
+resourceTypes {
+
+  CreateModerationResponse {
+    title = CreateModerationResponse
+    description = CreateModerationResponse
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        model {
+          type =  string
+          description = ""
+          optional = true
+        }
+        results {
+          type = array
+          items.type = CreateModerationResponseResultsInner
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateModerationResponse {
+    title = CreateModerationResponse
+    description = CreateModerationResponse
+    implements = openapi_server.resourceTypes.CreateModerationResponse
+
+  }
+}

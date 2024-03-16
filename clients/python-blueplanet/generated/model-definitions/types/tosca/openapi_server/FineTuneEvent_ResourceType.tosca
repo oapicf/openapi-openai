@@ -1,0 +1,50 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTuneEvent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTuneEvent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  FineTuneEvent {
+    title = FineTuneEvent
+    description = FineTuneEvent
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        level {
+          type =  string
+          description = ""
+          optional = true
+        }
+        message {
+          type =  string
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTuneEvent {
+    title = FineTuneEvent
+    description = FineTuneEvent
+    implements = openapi_server.resourceTypes.FineTuneEvent
+
+  }
+}

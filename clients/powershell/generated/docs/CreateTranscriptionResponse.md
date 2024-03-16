@@ -1,0 +1,21 @@
+# CreateTranscriptionResponse
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Text** | **String** |  | 
+
+## Examples
+
+- Prepare the resource
+```powershell
+$CreateTranscriptionResponse = Initialize-PSOpenAPIToolsCreateTranscriptionResponse  -Text null
+```
+
+- Convert the resource to JSON
+```powershell
+$CreateTranscriptionResponse | ConvertTo-JSON
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

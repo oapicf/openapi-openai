@@ -1,0 +1,22 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ListFineTunesResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.FineTune"
+      },
+      "doc": ""
+    }
+  ]
+
+}

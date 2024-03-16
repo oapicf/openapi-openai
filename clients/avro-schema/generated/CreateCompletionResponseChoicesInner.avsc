@@ -1,0 +1,36 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateCompletionResponseChoicesInner",
+  "fields": [
+    {
+      "name": "text",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "index",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "logprobs",
+      "type": "model.CreateCompletionResponseChoicesInnerLogprobs",
+      "doc": ""
+    },
+    {
+      "name": "finish_reason",
+      "type": {
+        "type": "enum",
+        "name": "CreateCompletionResponseChoicesInner_finishUnderscorereason",
+        "symbols": [
+          "stop",
+          "length"
+        ]
+      },
+      "doc": ""
+    }
+  ]
+
+}

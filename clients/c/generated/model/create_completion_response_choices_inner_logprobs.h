@@ -1,0 +1,44 @@
+/*
+ * create_completion_response_choices_inner_logprobs.h
+ *
+ * 
+ */
+
+#ifndef _create_completion_response_choices_inner_logprobs_H_
+#define _create_completion_response_choices_inner_logprobs_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct create_completion_response_choices_inner_logprobs_t create_completion_response_choices_inner_logprobs_t;
+
+#include "object.h"
+
+
+
+typedef struct create_completion_response_choices_inner_logprobs_t {
+    list_t *tokens; //primitive container
+    list_t *token_logprobs; //primitive container
+    list_t *top_logprobs; //nonprimitive container
+    list_t *text_offset; //primitive container
+
+} create_completion_response_choices_inner_logprobs_t;
+
+create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs_create(
+    list_t *tokens,
+    list_t *token_logprobs,
+    list_t *top_logprobs,
+    list_t *text_offset
+);
+
+void create_completion_response_choices_inner_logprobs_free(create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs);
+
+create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs_parseFromJSON(cJSON *create_completion_response_choices_inner_logprobsJSON);
+
+cJSON *create_completion_response_choices_inner_logprobs_convertToJSON(create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs);
+
+#endif /* _create_completion_response_choices_inner_logprobs_H_ */
+

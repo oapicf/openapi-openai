@@ -1,0 +1,22 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ImagesResponse",
+  "fields": [
+    {
+      "name": "created",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.ImagesResponseDataInner"
+      },
+      "doc": ""
+    }
+  ]
+
+}

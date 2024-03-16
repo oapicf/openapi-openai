@@ -1,0 +1,29 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "Model",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "object",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "created",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "owned_by",
+      "type": "string",
+      "doc": ""
+    }
+  ]
+
+}

@@ -1,0 +1,427 @@
+@startuml
+
+title OpenAI API Schemas Diagram
+
+entity ChatCompletionFunctions {
+    * name: String
+    description: String
+    parameters: Map
+}
+
+entity ChatCompletionRequestMessage {
+    * role: String
+    content: String
+    name: String
+    function_call: ChatCompletionRequestMessageFunctionCall
+}
+
+entity ChatCompletionRequestMessageFunctionCall {
+    name: String
+    arguments: String
+}
+
+entity ChatCompletionResponseMessage {
+    * role: String
+    content: String
+    function_call: ChatCompletionRequestMessageFunctionCall
+}
+
+entity ChatCompletionStreamResponseDelta {
+    role: String
+    content: String
+    function_call: ChatCompletionRequestMessageFunctionCall
+}
+
+entity CreateChatCompletionRequest {
+    * model: CreateChatCompletionRequestModel
+    * messages: List<ChatCompletionRequestMessage>
+    functions: List<ChatCompletionFunctions>
+    function_call: CreateChatCompletionRequestFunctionCall
+    temperature: BigDecimal
+    top_p: BigDecimal
+    n: Integer
+    stream: Boolean
+    stop: CreateChatCompletionRequestStop
+    max_tokens: Integer
+    presence_penalty: BigDecimal
+    frequency_penalty: BigDecimal
+    logit_bias: Object
+    user: String
+}
+
+entity CreateChatCompletionRequestFunctionCall {
+    * name: String
+}
+
+entity CreateChatCompletionRequestFunctionCallOneOf {
+    * name: String
+}
+
+entity CreateChatCompletionRequestModel {
+}
+
+entity CreateChatCompletionRequestStop {
+}
+
+entity CreateChatCompletionResponse {
+    * id: String
+    * object: String
+    * created: Integer
+    * model: String
+    * choices: List<CreateChatCompletionResponseChoicesInner>
+    usage: CreateCompletionResponseUsage
+}
+
+entity CreateChatCompletionResponseChoicesInner {
+    index: Integer
+    message: ChatCompletionResponseMessage
+    finish_reason: String
+}
+
+entity CreateChatCompletionStreamResponse {
+    * id: String
+    * object: String
+    * created: Integer
+    * model: String
+    * choices: List<CreateChatCompletionStreamResponseChoicesInner>
+}
+
+entity CreateChatCompletionStreamResponseChoicesInner {
+    index: Integer
+    delta: ChatCompletionStreamResponseDelta
+    finish_reason: String
+}
+
+entity CreateCompletionRequest {
+    * model: CreateCompletionRequestModel
+    * prompt: CreateCompletionRequestPrompt
+    suffix: String
+    max_tokens: Integer
+    temperature: BigDecimal
+    top_p: BigDecimal
+    n: Integer
+    stream: Boolean
+    logprobs: Integer
+    echo: Boolean
+    stop: CreateCompletionRequestStop
+    presence_penalty: BigDecimal
+    frequency_penalty: BigDecimal
+    best_of: Integer
+    logit_bias: Object
+    user: String
+}
+
+entity CreateCompletionRequestModel {
+}
+
+entity CreateCompletionRequestPrompt {
+}
+
+entity CreateCompletionRequestStop {
+}
+
+entity CreateCompletionResponse {
+    * id: String
+    * object: String
+    * created: Integer
+    * model: String
+    * choices: List<CreateCompletionResponseChoicesInner>
+    usage: CreateCompletionResponseUsage
+}
+
+entity CreateCompletionResponseChoicesInner {
+    * text: String
+    * index: Integer
+    * logprobs: CreateCompletionResponseChoicesInnerLogprobs
+    * finish_reason: String
+}
+
+entity CreateCompletionResponseChoicesInnerLogprobs {
+    tokens: List<String>
+    token_logprobs: List<BigDecimal>
+    top_logprobs: List<Object>
+    text_offset: List<Integer>
+}
+
+entity CreateCompletionResponseUsage {
+    * prompt_tokens: Integer
+    * completion_tokens: Integer
+    * total_tokens: Integer
+}
+
+entity CreateEditRequest {
+    * model: CreateEditRequestModel
+    input: String
+    * instruction: String
+    n: Integer
+    temperature: BigDecimal
+    top_p: BigDecimal
+}
+
+entity CreateEditRequestModel {
+}
+
+entity CreateEditResponse {
+    * object: String
+    * created: Integer
+    * choices: List<CreateEditResponseChoicesInner>
+    * usage: CreateCompletionResponseUsage
+}
+
+entity CreateEditResponseChoicesInner {
+    text: String
+    index: Integer
+    logprobs: CreateCompletionResponseChoicesInnerLogprobs
+    finish_reason: String
+}
+
+entity CreateEmbeddingRequest {
+    * model: CreateEmbeddingRequestModel
+    * input: CreateEmbeddingRequestInput
+    user: String
+}
+
+entity CreateEmbeddingRequestInput {
+}
+
+entity CreateEmbeddingRequestModel {
+}
+
+entity CreateEmbeddingResponse {
+    * object: String
+    * model: String
+    * data: List<CreateEmbeddingResponseDataInner>
+    * usage: CreateEmbeddingResponseUsage
+}
+
+entity CreateEmbeddingResponseDataInner {
+    * index: Integer
+    * object: String
+    * embedding: List<BigDecimal>
+}
+
+entity CreateEmbeddingResponseUsage {
+    * prompt_tokens: Integer
+    * total_tokens: Integer
+}
+
+entity CreateFineTuneRequest {
+    * training_file: String
+    validation_file: String
+    model: CreateFineTuneRequestModel
+    n_epochs: Integer
+    batch_size: Integer
+    learning_rate_multiplier: BigDecimal
+    prompt_loss_weight: BigDecimal
+    compute_classification_metrics: Boolean
+    classification_n_classes: Integer
+    classification_positive_class: String
+    classification_betas: List<BigDecimal>
+    suffix: String
+}
+
+entity CreateFineTuneRequestModel {
+}
+
+entity CreateImageRequest {
+    * prompt: String
+    n: Integer
+    size: String
+    response_format: String
+    user: String
+}
+
+entity CreateModerationRequest {
+    * input: CreateModerationRequestInput
+    model: CreateModerationRequestModel
+}
+
+entity CreateModerationRequestInput {
+}
+
+entity CreateModerationRequestModel {
+}
+
+entity CreateModerationResponse {
+    * id: String
+    * model: String
+    * results: List<CreateModerationResponseResultsInner>
+}
+
+entity CreateModerationResponseResultsInner {
+    * flagged: Boolean
+    * categories: CreateModerationResponseResultsInnerCategories
+    * category_scores: CreateModerationResponseResultsInnerCategoryScores
+}
+
+entity CreateModerationResponseResultsInnerCategories {
+    * hate: Boolean
+    * hate/threatening: Boolean
+    * self-harm: Boolean
+    * sexual: Boolean
+    * sexual/minors: Boolean
+    * violence: Boolean
+    * violence/graphic: Boolean
+}
+
+entity CreateModerationResponseResultsInnerCategoryScores {
+    * hate: BigDecimal
+    * hate/threatening: BigDecimal
+    * self-harm: BigDecimal
+    * sexual: BigDecimal
+    * sexual/minors: BigDecimal
+    * violence: BigDecimal
+    * violence/graphic: BigDecimal
+}
+
+entity CreateTranscriptionRequestModel {
+}
+
+entity CreateTranscriptionResponse {
+    * text: String
+}
+
+entity CreateTranslationResponse {
+    * text: String
+}
+
+entity DeleteFileResponse {
+    * id: String
+    * object: String
+    * deleted: Boolean
+}
+
+entity DeleteModelResponse {
+    * id: String
+    * object: String
+    * deleted: Boolean
+}
+
+entity Error {
+    * type: String
+    * message: String
+    * param: String
+    * code: String
+}
+
+entity ErrorResponse {
+    * error: Error
+}
+
+entity FineTune {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * updated_at: Integer
+    * model: String
+    * fine_tuned_model: String
+    * organization_id: String
+    * status: String
+    * hyperparams: Object
+    * training_files: List<OpenAIFile>
+    * validation_files: List<OpenAIFile>
+    * result_files: List<OpenAIFile>
+    events: List<FineTuneEvent>
+}
+
+entity FineTuneEvent {
+    * object: String
+    * created_at: Integer
+    * level: String
+    * message: String
+}
+
+entity ImagesResponse {
+    * created: Integer
+    * data: List<ImagesResponseDataInner>
+}
+
+entity ImagesResponseDataInner {
+    url: String
+    b64_json: String
+}
+
+entity ListFilesResponse {
+    * object: String
+    * data: List<OpenAIFile>
+}
+
+entity ListFineTuneEventsResponse {
+    * object: String
+    * data: List<FineTuneEvent>
+}
+
+entity ListFineTunesResponse {
+    * object: String
+    * data: List<FineTune>
+}
+
+entity ListModelsResponse {
+    * object: String
+    * data: List<Model>
+}
+
+entity Model {
+    * id: String
+    * object: String
+    * created: Integer
+    * owned_by: String
+}
+
+entity OpenAIFile {
+    * id: String
+    * object: String
+    * bytes: Integer
+    * created_at: Integer
+    * filename: String
+    * purpose: String
+    status: String
+    status_details: Object
+}
+
+
+CreateEditRequest -- CreateEditRequestModel : model
+CreateChatCompletionResponseChoicesInner -- ChatCompletionResponseMessage : message
+ChatCompletionRequestMessage -- ChatCompletionRequestMessageFunctionCall : function_call
+CreateModerationResponse -- "0..*" CreateModerationResponseResultsInner : results
+ListFineTunesResponse -- "0..*" FineTune : data
+CreateEmbeddingResponse -- "0..*" CreateEmbeddingResponseDataInner : data
+CreateEmbeddingResponse -- CreateEmbeddingResponseUsage : usage
+FineTune -- "0..*" OpenAIFile : training_files
+FineTune -- "0..*" OpenAIFile : validation_files
+FineTune -- "0..*" OpenAIFile : result_files
+FineTune -- "0..*" FineTuneEvent : events
+ListFineTuneEventsResponse -- "0..*" FineTuneEvent : data
+CreateEmbeddingRequest -- CreateEmbeddingRequestModel : model
+CreateEmbeddingRequest -- CreateEmbeddingRequestInput : input
+CreateEditResponseChoicesInner -- CreateCompletionResponseChoicesInnerLogprobs : logprobs
+CreateModerationRequest -- CreateModerationRequestInput : input
+CreateModerationRequest -- CreateModerationRequestModel : model
+ChatCompletionStreamResponseDelta -- ChatCompletionRequestMessageFunctionCall : function_call
+CreateEditResponse -- "0..*" CreateEditResponseChoicesInner : choices
+CreateEditResponse -- CreateCompletionResponseUsage : usage
+CreateChatCompletionStreamResponseChoicesInner -- ChatCompletionStreamResponseDelta : delta
+CreateChatCompletionRequest -- CreateChatCompletionRequestModel : model
+CreateChatCompletionRequest -- "0..*" ChatCompletionRequestMessage : messages
+CreateChatCompletionRequest -- "0..*" ChatCompletionFunctions : functions
+CreateChatCompletionRequest -- CreateChatCompletionRequestFunctionCall : function_call
+CreateChatCompletionRequest -- CreateChatCompletionRequestStop : stop
+CreateCompletionResponseChoicesInner -- CreateCompletionResponseChoicesInnerLogprobs : logprobs
+ImagesResponse -- "0..*" ImagesResponseDataInner : data
+CreateCompletionRequest -- CreateCompletionRequestModel : model
+CreateCompletionRequest -- CreateCompletionRequestPrompt : prompt
+CreateCompletionRequest -- CreateCompletionRequestStop : stop
+CreateChatCompletionResponse -- "0..*" CreateChatCompletionResponseChoicesInner : choices
+CreateChatCompletionResponse -- CreateCompletionResponseUsage : usage
+CreateChatCompletionStreamResponse -- "0..*" CreateChatCompletionStreamResponseChoicesInner : choices
+CreateCompletionResponse -- "0..*" CreateCompletionResponseChoicesInner : choices
+CreateCompletionResponse -- CreateCompletionResponseUsage : usage
+CreateModerationResponseResultsInner -- CreateModerationResponseResultsInnerCategories : categories
+CreateModerationResponseResultsInner -- CreateModerationResponseResultsInnerCategoryScores : category_scores
+ErrorResponse -- Error : error
+ChatCompletionResponseMessage -- ChatCompletionRequestMessageFunctionCall : function_call
+ListModelsResponse -- "0..*" Model : data
+CreateFineTuneRequest -- CreateFineTuneRequestModel : model
+ListFilesResponse -- "0..*" OpenAIFile : data
+
+@enduml

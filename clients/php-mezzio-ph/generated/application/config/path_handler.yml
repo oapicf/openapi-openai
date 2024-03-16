@@ -1,0 +1,68 @@
+dependencies:
+  factories:
+    Mezzio\Router\RouterInterface: Articus\PathHandler\RouteInjectionFactory
+    Articus\PathHandler\MetadataProviderInterface: Articus\PathHandler\MetadataProvider\Factory\Annotation
+    Articus\PathHandler\Handler\PluginManager: Articus\PathHandler\Handler\Factory\PluginManager
+    Articus\PathHandler\Consumer\PluginManager: Articus\PathHandler\Consumer\Factory\PluginManager
+    Articus\PathHandler\Attribute\PluginManager: Articus\PathHandler\Attribute\Factory\PluginManager
+    Articus\PathHandler\Producer\PluginManager: Articus\PathHandler\Producer\Factory\PluginManager
+
+Articus\PathHandler\RouteInjectionFactory:
+  paths:
+    '/v1':
+    - App\Handler\AudioTranscriptions
+    - App\Handler\AudioTranslations
+    - App\Handler\ChatCompletions
+    - App\Handler\Completions
+    - App\Handler\Edits
+    - App\Handler\Embeddings
+    - App\Handler\Files
+    - App\Handler\FilesFileId
+    - App\Handler\FilesFileIdContent
+    - App\Handler\FineTunes
+    - App\Handler\FineTunesFineTuneId
+    - App\Handler\FineTunesFineTuneIdCancel
+    - App\Handler\FineTunesFineTuneIdEvents
+    - App\Handler\ImagesEdits
+    - App\Handler\ImagesGenerations
+    - App\Handler\ImagesVariations
+    - App\Handler\Models
+    - App\Handler\ModelsModel
+    - App\Handler\Moderations
+
+Articus\PathHandler\Handler\PluginManager:
+  abstract_factories:
+  - Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory
+
+#Articus\PathHandler\Consumer\PluginManager:
+#  factories:
+#  invokables:
+
+#Articus\PathHandler\Attribute\PluginManager:
+#  factories:
+#  invokables:
+
+#Articus\PathHandler\Producer\PluginManager:
+#  factories:
+#  invokables:
+
+Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory:
+  App\Handler\AudioTranscriptions: []
+  App\Handler\AudioTranslations: []
+  App\Handler\ChatCompletions: []
+  App\Handler\Completions: []
+  App\Handler\Edits: []
+  App\Handler\Embeddings: []
+  App\Handler\Files: []
+  App\Handler\FilesFileId: []
+  App\Handler\FilesFileIdContent: []
+  App\Handler\FineTunes: []
+  App\Handler\FineTunesFineTuneId: []
+  App\Handler\FineTunesFineTuneIdCancel: []
+  App\Handler\FineTunesFineTuneIdEvents: []
+  App\Handler\ImagesEdits: []
+  App\Handler\ImagesGenerations: []
+  App\Handler\ImagesVariations: []
+  App\Handler\Models: []
+  App\Handler\ModelsModel: []
+  App\Handler\Moderations: []

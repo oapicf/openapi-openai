@@ -1,0 +1,2054 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:schemas="http://localhost/soap/ServiceV1/model" xmlns:wsdl="http://localhost/soap/ServiceV1/service" targetNamespace="http://localhost/soap/ServiceV1/service" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:tns="http://localhost/soap/ServiceV1/model" targetNamespace="http://localhost/soap/ServiceV1/model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="PostFine-tunesCancelByFine_tune_id_RequestMessage" type="schemas:PostFine-tunesCancelByFine_tune_id_RequestMessage" />
+      <xs:element name="PostFine-tunesCancelByFine_tune_id_ResponseMessage" type="schemas:PostFine-tunesCancelByFine_tune_id_ResponseMessage" />
+      <xs:element name="PostChatCompletions_RequestMessage" type="schemas:PostChatCompletions_RequestMessage" />
+      <xs:element name="PostChatCompletions_ResponseMessage" type="schemas:PostChatCompletions_ResponseMessage" />
+      <xs:element name="PostCompletions_RequestMessage" type="schemas:PostCompletions_RequestMessage" />
+      <xs:element name="PostCompletions_ResponseMessage" type="schemas:PostCompletions_ResponseMessage" />
+      <xs:element name="PostEdits_RequestMessage" type="schemas:PostEdits_RequestMessage" />
+      <xs:element name="PostEdits_ResponseMessage" type="schemas:PostEdits_ResponseMessage" />
+      <xs:element name="PostEmbeddings_RequestMessage" type="schemas:PostEmbeddings_RequestMessage" />
+      <xs:element name="PostEmbeddings_ResponseMessage" type="schemas:PostEmbeddings_ResponseMessage" />
+      <xs:element name="PostFiles_RequestMessage" type="schemas:PostFiles_RequestMessage" />
+      <xs:element name="PostFiles_ResponseMessage" type="schemas:PostFiles_ResponseMessage" />
+      <xs:element name="PostFine-tunes_RequestMessage" type="schemas:PostFine-tunes_RequestMessage" />
+      <xs:element name="PostFine-tunes_ResponseMessage" type="schemas:PostFine-tunes_ResponseMessage" />
+      <xs:element name="PostImagesGenerations_RequestMessage" type="schemas:PostImagesGenerations_RequestMessage" />
+      <xs:element name="PostImagesGenerations_ResponseMessage" type="schemas:PostImagesGenerations_ResponseMessage" />
+      <xs:element name="PostImagesEdits_RequestMessage" type="schemas:PostImagesEdits_RequestMessage" />
+      <xs:element name="PostImagesEdits_ResponseMessage" type="schemas:PostImagesEdits_ResponseMessage" />
+      <xs:element name="PostImagesVariations_RequestMessage" type="schemas:PostImagesVariations_RequestMessage" />
+      <xs:element name="PostImagesVariations_ResponseMessage" type="schemas:PostImagesVariations_ResponseMessage" />
+      <xs:element name="PostModerations_RequestMessage" type="schemas:PostModerations_RequestMessage" />
+      <xs:element name="PostModerations_ResponseMessage" type="schemas:PostModerations_ResponseMessage" />
+      <xs:element name="PostAudioTranscriptions_RequestMessage" type="schemas:PostAudioTranscriptions_RequestMessage" />
+      <xs:element name="PostAudioTranscriptions_ResponseMessage" type="schemas:PostAudioTranscriptions_ResponseMessage" />
+      <xs:element name="PostAudioTranslations_RequestMessage" type="schemas:PostAudioTranslations_RequestMessage" />
+      <xs:element name="PostAudioTranslations_ResponseMessage" type="schemas:PostAudioTranslations_ResponseMessage" />
+      <xs:element name="DeleteFilesByFile_id_RequestMessage" type="schemas:DeleteFilesByFile_id_RequestMessage" />
+      <xs:element name="DeleteFilesByFile_id_ResponseMessage" type="schemas:DeleteFilesByFile_id_ResponseMessage" />
+      <xs:element name="DeleteModelsByModel_RequestMessage" type="schemas:DeleteModelsByModel_RequestMessage" />
+      <xs:element name="DeleteModelsByModel_ResponseMessage" type="schemas:DeleteModelsByModel_ResponseMessage" />
+      <xs:element name="GetFilesContentByFile_id_RequestMessage" type="schemas:GetFilesContentByFile_id_RequestMessage" />
+      <xs:element name="GetFilesContentByFile_id_ResponseMessage" type="schemas:GetFilesContentByFile_id_ResponseMessage" />
+      <xs:element name="GetFiles_RequestMessage" type="schemas:GetFiles_RequestMessage" />
+      <xs:element name="GetFiles_ResponseMessage" type="schemas:GetFiles_ResponseMessage" />
+      <xs:element name="GetFine-tunesEventsByFine_tune_id_RequestMessage" type="schemas:GetFine-tunesEventsByFine_tune_id_RequestMessage" />
+      <xs:element name="GetFine-tunesEventsByFine_tune_id_ResponseMessage" type="schemas:GetFine-tunesEventsByFine_tune_id_ResponseMessage" />
+      <xs:element name="GetFine-tunes_RequestMessage" type="schemas:GetFine-tunes_RequestMessage" />
+      <xs:element name="GetFine-tunes_ResponseMessage" type="schemas:GetFine-tunes_ResponseMessage" />
+      <xs:element name="GetModels_RequestMessage" type="schemas:GetModels_RequestMessage" />
+      <xs:element name="GetModels_ResponseMessage" type="schemas:GetModels_ResponseMessage" />
+      <xs:element name="GetFilesByFile_id_RequestMessage" type="schemas:GetFilesByFile_id_RequestMessage" />
+      <xs:element name="GetFilesByFile_id_ResponseMessage" type="schemas:GetFilesByFile_id_ResponseMessage" />
+      <xs:element name="GetFine-tunesByFine_tune_id_RequestMessage" type="schemas:GetFine-tunesByFine_tune_id_RequestMessage" />
+      <xs:element name="GetFine-tunesByFine_tune_id_ResponseMessage" type="schemas:GetFine-tunesByFine_tune_id_ResponseMessage" />
+      <xs:element name="GetModelsByModel_RequestMessage" type="schemas:GetModelsByModel_RequestMessage" />
+      <xs:element name="GetModelsByModel_ResponseMessage" type="schemas:GetModelsByModel_ResponseMessage" />
+      <xs:complexType name="ChatCompletionFunctions">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="name" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="description" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The description of what the function does.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="parameters" type="schemas:">
+            <xs:annotation>
+              <xs:documentation>The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ChatCompletionRequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="role" type="schemas:Role">
+            <xs:annotation>
+              <xs:documentation>The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="content" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="name" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="function_call" type="schemas:ChatCompletionRequestMessage_function_call" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ChatCompletionRequestMessageFunctionCall">
+        <xs:annotation>
+          <xs:documentation>The name and arguments of a function that should be called, as generated by the model.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the function to call.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="arguments" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ChatCompletionResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="role" type="schemas:Role">
+            <xs:annotation>
+              <xs:documentation>The role of the author of this message.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="content" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The contents of the message.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="function_call" type="schemas:ChatCompletionRequestMessage_function_call" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ChatCompletionStreamResponseDelta">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="role" type="schemas:Role">
+            <xs:annotation>
+              <xs:documentation>The role of the author of this message.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="content" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The contents of the chunk message.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="function_call" type="schemas:ChatCompletionRequestMessage_function_call" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateChatCompletionRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="model" type="schemas:CreateChatCompletionRequest_model" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="messages" type="schemas:ChatCompletionRequestMessage">
+            <xs:annotation>
+              <xs:documentation>A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="functions" type="schemas:ChatCompletionFunctions">
+            <xs:annotation>
+              <xs:documentation>A list of functions the model may generate JSON inputs for.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="function_call" type="schemas:CreateChatCompletionRequest_function_call" />
+          <xs:element minOccurs="0" default="1" name="temperature">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or &#x60;top_p&#x60; but not both. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="2" />
+                <xs:minInclusive value="0" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="top_p">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or &#x60;temperature&#x60; but not both. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="1" />
+                <xs:minInclusive value="0" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="n">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>How many chat completion choices to generate for each input message.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer">
+                <xs:maxInclusive value="128" />
+                <xs:minInclusive value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" name="stream" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="stop" type="schemas:CreateChatCompletionRequest_stop" />
+          <xs:element minOccurs="0" name="max_tokens" type="xs:integer">
+            <xs:annotation>
+              <xs:documentation>The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model&#39;s context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" name="presence_penalty">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="2" />
+                <xs:minInclusive value="-2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" name="frequency_penalty">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="2" />
+                <xs:minInclusive value="-2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" name="logit_bias" type="xs:anyType">
+            <xs:annotation>
+              <xs:documentation>Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="user" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateChatCompletionRequestFunctionCall">
+        <xs:annotation>
+          <xs:documentation>Controls how the model responds to function calls. \&quot;none\&quot; means the model does not call a function, and responds to the end-user. \&quot;auto\&quot; means the model can pick between an end-user or calling a function.  Specifying a particular function via &#x60;{\&quot;name\&quot;:\\ \&quot;my_function\&quot;}&#x60; forces the model to call that function. \&quot;none\&quot; is the default when no functions are present. \&quot;auto\&quot; is the default if functions are present.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="1" name="name" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the function to call.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateChatCompletionRequestFunctionCallOneOf">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="name" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the function to call.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateChatCompletionRequestModel">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateChatCompletionRequestStop">
+        <xs:annotation>
+          <xs:documentation>Up to 4 sequences where the API will stop generating further tokens. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateChatCompletionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="created" type="xs:integer" />
+          <xs:element minOccurs="1" name="model" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="choices" type="schemas:CreateChatCompletionResponse_choices_inner" />
+          <xs:element minOccurs="0" name="usage" type="schemas:CreateCompletionResponse_usage" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateChatCompletionResponseChoicesInner">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="index" type="xs:integer" />
+          <xs:element minOccurs="0" name="message" type="schemas:ChatCompletionResponseMessage" />
+          <xs:element minOccurs="0" name="finish_reason" type="schemas:FinishUnderscorereason" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateChatCompletionStreamResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="created" type="xs:integer" />
+          <xs:element minOccurs="1" name="model" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="choices" type="schemas:CreateChatCompletionStreamResponse_choices_inner" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateChatCompletionStreamResponseChoicesInner">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="index" type="xs:integer" />
+          <xs:element minOccurs="0" name="delta" type="schemas:ChatCompletionStreamResponseDelta" />
+          <xs:element minOccurs="0" name="finish_reason" type="schemas:FinishUnderscorereason" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCompletionRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="model" type="schemas:CreateCompletionRequest_model" />
+          <xs:element minOccurs="1" name="prompt" type="schemas:CreateCompletionRequest_prompt" />
+          <xs:element minOccurs="0" name="suffix" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The suffix that comes after a completion of inserted text.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="16" name="max_tokens">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>The maximum number of [tokens](/tokenizer) to generate in the completion.  The token count of your prompt plus &#x60;max_tokens&#x60; cannot exceed the model&#39;s context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="temperature">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or &#x60;top_p&#x60; but not both. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="2" />
+                <xs:minInclusive value="0" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="top_p">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or &#x60;temperature&#x60; but not both. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="1" />
+                <xs:minInclusive value="0" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="n">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for &#x60;max_tokens&#x60; and &#x60;stop&#x60;. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer">
+                <xs:maxInclusive value="128" />
+                <xs:minInclusive value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" name="stream" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="logprobs">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>Include the log probabilities on the &#x60;logprobs&#x60; most likely tokens, as well the chosen tokens. For example, if &#x60;logprobs&#x60; is 5, the API will return a list of the 5 most likely tokens. The API will always return the &#x60;logprob&#x60; of the sampled token, so there may be up to &#x60;logprobs+1&#x60; elements in the response.  The maximum value for &#x60;logprobs&#x60; is 5. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer">
+                <xs:maxInclusive value="5" />
+                <xs:minInclusive value="0" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" name="echo" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>Echo back the prompt in addition to the completion </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="stop" type="schemas:CreateCompletionRequest_stop" />
+          <xs:element minOccurs="0" default="0" name="presence_penalty">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="2" />
+                <xs:minInclusive value="-2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" name="frequency_penalty">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="2" />
+                <xs:minInclusive value="-2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="best_of">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>Generates &#x60;best_of&#x60; completions server-side and returns the \&quot;best\&quot; (the one with the highest log probability per token). Results cannot be streamed.  When used with &#x60;n&#x60;, &#x60;best_of&#x60; controls the number of candidate completions and &#x60;n&#x60; specifies how many to return – &#x60;best_of&#x60; must be greater than &#x60;n&#x60;.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for &#x60;max_tokens&#x60; and &#x60;stop&#x60;. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer">
+                <xs:maxInclusive value="20" />
+                <xs:minInclusive value="0" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" name="logit_bias" type="xs:anyType">
+            <xs:annotation>
+              <xs:documentation>Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](/tokenizer?view&#x3D;bpe) (which works for both GPT-2 and GPT-3) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.  As an example, you can pass &#x60;{\&quot;50256\&quot;: -100}&#x60; to prevent the &lt;|endoftext|&gt; token from being generated. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="user" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCompletionRequestModel">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCompletionRequestPrompt">
+        <xs:annotation>
+          <xs:documentation>The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.  Note that &lt;|endoftext|&gt; is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCompletionRequestStop">
+        <xs:annotation>
+          <xs:documentation>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCompletionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="created" type="xs:integer" />
+          <xs:element minOccurs="1" name="model" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="choices" type="schemas:CreateCompletionResponse_choices_inner" />
+          <xs:element minOccurs="0" name="usage" type="schemas:CreateCompletionResponse_usage" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCompletionResponseChoicesInner">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="text" type="xs:string" />
+          <xs:element minOccurs="1" name="index" type="xs:integer" />
+          <xs:element minOccurs="1" name="logprobs" type="schemas:CreateCompletionResponse_choices_inner_logprobs" />
+          <xs:element minOccurs="1" name="finish_reason" type="schemas:FinishUnderscorereason" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCompletionResponseChoicesInnerLogprobs">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="tokens" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="token_logprobs" type="xs:number" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="top_logprobs" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="text_offset" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCompletionResponseUsage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="prompt_tokens" type="xs:integer" />
+          <xs:element minOccurs="1" name="completion_tokens" type="xs:integer" />
+          <xs:element minOccurs="1" name="total_tokens" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEditRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="model" type="schemas:CreateEditRequest_model" />
+          <xs:element minOccurs="0" default="" name="input" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The input text to use as a starting point for the edit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" name="instruction" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The instruction that tells the model how to edit the prompt.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="n">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>How many edits to generate for the input and instruction.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer">
+                <xs:maxInclusive value="20" />
+                <xs:minInclusive value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="temperature">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or &#x60;top_p&#x60; but not both. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="2" />
+                <xs:minInclusive value="0" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="top_p">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or &#x60;temperature&#x60; but not both. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="1" />
+                <xs:minInclusive value="0" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEditRequestModel">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. You can use the &#x60;text-davinci-edit-001&#x60; or &#x60;code-davinci-edit-001&#x60; model with this endpoint.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEditResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="created" type="xs:integer" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="choices" type="schemas:CreateEditResponse_choices_inner" />
+          <xs:element minOccurs="1" name="usage" type="schemas:CreateCompletionResponse_usage" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEditResponseChoicesInner">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="text" type="xs:string" />
+          <xs:element minOccurs="0" name="index" type="xs:integer" />
+          <xs:element minOccurs="0" name="logprobs" type="schemas:CreateCompletionResponse_choices_inner_logprobs" />
+          <xs:element minOccurs="0" name="finish_reason" type="schemas:FinishUnderscorereason" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEmbeddingRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="model" type="schemas:CreateEmbeddingRequest_model" />
+          <xs:element minOccurs="1" name="input" type="schemas:CreateEmbeddingRequest_input" />
+          <xs:element minOccurs="0" name="user" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEmbeddingRequestInput">
+        <xs:annotation>
+          <xs:documentation>Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. Each input must not exceed the max input tokens for the model (8191 tokens for &#x60;text-embedding-ada-002&#x60;). [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEmbeddingRequestModel">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEmbeddingResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="model" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="data" type="schemas:CreateEmbeddingResponse_data_inner" />
+          <xs:element minOccurs="1" name="usage" type="schemas:CreateEmbeddingResponse_usage" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEmbeddingResponseDataInner">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="index" type="xs:integer" />
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="embedding" type="xs:number" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateEmbeddingResponseUsage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="prompt_tokens" type="xs:integer" />
+          <xs:element minOccurs="1" name="total_tokens" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateFineTuneRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="training_file" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file, where each training example is a JSON object with the keys \&quot;prompt\&quot; and \&quot;completion\&quot;. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  See the [fine-tuning guide](/docs/guides/fine-tuning/creating-training-data) for more details. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="validation_file" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the [fine-tuning results file](/docs/guides/fine-tuning/analyzing-your-fine-tuned-model). Your train and validation data should be mutually exclusive.  Your dataset must be formatted as a JSONL file, where each validation example is a JSON object with the keys \&quot;prompt\&quot; and \&quot;completion\&quot;. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  See the [fine-tuning guide](/docs/guides/fine-tuning/creating-training-data) for more details. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="model" type="schemas:CreateFineTuneRequest_model" />
+          <xs:element minOccurs="0" default="4" name="n_epochs" type="xs:integer">
+            <xs:annotation>
+              <xs:documentation>The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="batch_size" type="xs:integer">
+            <xs:annotation>
+              <xs:documentation>The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass.  By default, the batch size will be dynamically configured to be ~0.2% of the number of examples in the training set, capped at 256 - in general, we&#39;ve found that larger batch sizes tend to work better for larger datasets. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="learning_rate_multiplier" type="xs:double">
+            <xs:annotation>
+              <xs:documentation>The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pretraining multiplied by this value.  By default, the learning rate multiplier is the 0.05, 0.1, or 0.2 depending on final &#x60;batch_size&#x60; (larger learning rates tend to perform better with larger batch sizes). We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="0.01" name="prompt_loss_weight" type="xs:double">
+            <xs:annotation>
+              <xs:documentation>The weight to use for loss on the prompt tokens. This controls how much the model tries to learn to generate the prompt (as compared to the completion which always has a weight of 1.0), and can add a stabilizing effect to training when completions are short.  If prompts are extremely long (relative to completions), it may make sense to reduce this weight so as to avoid over-prioritizing learning the prompt. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" name="compute_classification_metrics" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>If set, we calculate classification-specific metrics such as accuracy and F-1 score using the validation set at the end of every epoch. These metrics can be viewed in the [results file](/docs/guides/fine-tuning/analyzing-your-fine-tuned-model).  In order to compute classification metrics, you must provide a &#x60;validation_file&#x60;. Additionally, you must specify &#x60;classification_n_classes&#x60; for multiclass classification or &#x60;classification_positive_class&#x60; for binary classification. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="classification_n_classes" type="xs:integer">
+            <xs:annotation>
+              <xs:documentation>The number of classes in a classification task.  This parameter is required for multiclass classification. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="classification_positive_class" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The positive class in binary classification.  This parameter is needed to generate precision, recall, and F1 metrics when doing binary classification. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="classification_betas" type="xs:number">
+            <xs:annotation>
+              <xs:documentation>If this is provided, we calculate F-beta scores at the specified beta values. The F-beta score is a generalization of F-1 score. This is only used for binary classification.  With a beta of 1 (i.e. the F-1 score), precision and recall are given the same weight. A larger beta score puts more weight on recall and less on precision. A smaller beta score puts more weight on precision and less on recall. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="suffix">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>A string of up to 40 characters that will be added to your fine-tuned model name.  For example, a &#x60;suffix&#x60; of \&quot;custom-model-name\&quot; would produce a model name like &#x60;ada:ft-your-org:custom-model-name-2022-02-15-04-21-04&#x60;. </xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="40" />
+                <xs:minLength value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateFineTuneRequestModel">
+        <xs:annotation>
+          <xs:documentation>The name of the base model to fine-tune. You can select one of \&quot;ada\&quot;, \&quot;babbage\&quot;, \&quot;curie\&quot;, \&quot;davinci\&quot;, or a fine-tuned model created after 2022-04-21. To learn more about these models, see the [Models](https://platform.openai.com/docs/models) documentation. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateImageRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="prompt" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>A text description of the desired image(s). The maximum length is 1000 characters.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="n">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>The number of images to generate. Must be between 1 and 10.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer">
+                <xs:maxInclusive value="10" />
+                <xs:minInclusive value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="SizeEnum._1024X1024" name="size" type="schemas:Size">
+            <xs:annotation>
+              <xs:documentation>The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="ResponseUnderscoreformatEnum.URL" name="response_format" type="schemas:ResponseUnderscoreformat">
+            <xs:annotation>
+              <xs:documentation>The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="user" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateModerationRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="input" type="schemas:CreateModerationRequest_input" />
+          <xs:element minOccurs="0" name="model" type="schemas:CreateModerationRequest_model" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateModerationRequestInput">
+        <xs:annotation>
+          <xs:documentation>The input text to classify</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateModerationRequestModel">
+        <xs:annotation>
+          <xs:documentation>Two content moderations models are available: &#x60;text-moderation-stable&#x60; and &#x60;text-moderation-latest&#x60;.  The default is &#x60;text-moderation-latest&#x60; which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use &#x60;text-moderation-stable&#x60;, we will provide advanced notice before updating the model. Accuracy of &#x60;text-moderation-stable&#x60; may be slightly lower than for &#x60;text-moderation-latest&#x60;. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateModerationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="model" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="results" type="schemas:CreateModerationResponse_results_inner" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateModerationResponseResultsInner">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="flagged" type="xs:boolean" />
+          <xs:element minOccurs="1" name="categories" type="schemas:CreateModerationResponse_results_inner_categories" />
+          <xs:element minOccurs="1" name="category_scores" type="schemas:CreateModerationResponse_results_inner_category_scores" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateModerationResponseResultsInnerCategories">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="hate" type="xs:boolean" />
+          <xs:element minOccurs="1" name="hate/threatening" type="xs:boolean" />
+          <xs:element minOccurs="1" name="self-harm" type="xs:boolean" />
+          <xs:element minOccurs="1" name="sexual" type="xs:boolean" />
+          <xs:element minOccurs="1" name="sexual/minors" type="xs:boolean" />
+          <xs:element minOccurs="1" name="violence" type="xs:boolean" />
+          <xs:element minOccurs="1" name="violence/graphic" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateModerationResponseResultsInnerCategoryScores">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="hate" type="xs:double" />
+          <xs:element minOccurs="1" name="hate/threatening" type="xs:double" />
+          <xs:element minOccurs="1" name="self-harm" type="xs:double" />
+          <xs:element minOccurs="1" name="sexual" type="xs:double" />
+          <xs:element minOccurs="1" name="sexual/minors" type="xs:double" />
+          <xs:element minOccurs="1" name="violence" type="xs:double" />
+          <xs:element minOccurs="1" name="violence/graphic" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateTranscriptionRequestModel">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. Only &#x60;whisper-1&#x60; is currently available. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateTranscriptionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="text" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateTranslationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="text" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteFileResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="deleted" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteModelResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="deleted" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Error">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="type" type="xs:string" />
+          <xs:element minOccurs="1" name="message" type="xs:string" />
+          <xs:element minOccurs="1" name="param" type="xs:string" />
+          <xs:element minOccurs="1" name="code" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="error" type="schemas:Error" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FineTune">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="created_at" type="xs:integer" />
+          <xs:element minOccurs="1" name="updated_at" type="xs:integer" />
+          <xs:element minOccurs="1" name="model" type="xs:string" />
+          <xs:element minOccurs="1" name="fine_tuned_model" type="xs:string" />
+          <xs:element minOccurs="1" name="organization_id" type="xs:string" />
+          <xs:element minOccurs="1" name="status" type="xs:string" />
+          <xs:element minOccurs="1" name="hyperparams" type="xs:anyType" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="training_files" type="schemas:OpenAIFile" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="validation_files" type="schemas:OpenAIFile" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="result_files" type="schemas:OpenAIFile" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="events" type="schemas:FineTuneEvent" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FineTuneEvent">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="created_at" type="xs:integer" />
+          <xs:element minOccurs="1" name="level" type="xs:string" />
+          <xs:element minOccurs="1" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ImagesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="created" type="xs:integer" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="data" type="schemas:ImagesResponse_data_inner" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ImagesResponseDataInner">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="url" type="xs:string" />
+          <xs:element minOccurs="0" name="b64_json" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ListFilesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="data" type="schemas:OpenAIFile" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ListFineTuneEventsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="data" type="schemas:FineTuneEvent" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ListFineTunesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="data" type="schemas:FineTune" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ListModelsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="data" type="schemas:Model" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Model">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="created" type="xs:integer" />
+          <xs:element minOccurs="1" name="owned_by" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OpenAIFile">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="object" type="xs:string" />
+          <xs:element minOccurs="1" name="bytes" type="xs:integer" />
+          <xs:element minOccurs="1" name="created_at" type="xs:integer" />
+          <xs:element minOccurs="1" name="filename" type="xs:string" />
+          <xs:element minOccurs="1" name="purpose" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="status_details" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="Role">
+        <xs:annotation>
+          <xs:documentation>The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="system" />
+          <xs:enumeration value="user" />
+          <xs:enumeration value="assistant" />
+          <xs:enumeration value="function" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="Role">
+        <xs:annotation>
+          <xs:documentation>The role of the author of this message.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="system" />
+          <xs:enumeration value="user" />
+          <xs:enumeration value="assistant" />
+          <xs:enumeration value="function" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="Role">
+        <xs:annotation>
+          <xs:documentation>The role of the author of this message.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="system" />
+          <xs:enumeration value="user" />
+          <xs:enumeration value="assistant" />
+          <xs:enumeration value="function" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="FinishUnderscorereason">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="stop" />
+          <xs:enumeration value="length" />
+          <xs:enumeration value="function_call" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="FinishUnderscorereason">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="stop" />
+          <xs:enumeration value="length" />
+          <xs:enumeration value="function_call" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="FinishUnderscorereason">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="stop" />
+          <xs:enumeration value="length" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="FinishUnderscorereason">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="stop" />
+          <xs:enumeration value="length" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="Size">
+        <xs:annotation>
+          <xs:documentation>The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="256x256" />
+          <xs:enumeration value="512x512" />
+          <xs:enumeration value="1024x1024" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ResponseUnderscoreformat">
+        <xs:annotation>
+          <xs:documentation>The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="url" />
+          <xs:enumeration value="b64_json" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateChatCompletionRequest_model">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,string&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateChatCompletionRequest_stop">
+        <xs:annotation>
+          <xs:documentation>Up to 4 sequences where the API will stop generating further tokens. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,array&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateCompletionRequest_model">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,string&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateCompletionRequest_prompt">
+        <xs:annotation>
+          <xs:documentation>The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.  Note that &lt;|endoftext|&gt; is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,array,array,array&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateCompletionRequest_stop">
+        <xs:annotation>
+          <xs:documentation>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,array&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateEditRequest_model">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. You can use the &#x60;text-davinci-edit-001&#x60; or &#x60;code-davinci-edit-001&#x60; model with this endpoint.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,string&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateEmbeddingRequest_input">
+        <xs:annotation>
+          <xs:documentation>Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. Each input must not exceed the max input tokens for the model (8191 tokens for &#x60;text-embedding-ada-002&#x60;). [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,array,array,array&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateEmbeddingRequest_model">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,string&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateFineTuneRequest_model">
+        <xs:annotation>
+          <xs:documentation>The name of the base model to fine-tune. You can select one of \&quot;ada\&quot;, \&quot;babbage\&quot;, \&quot;curie\&quot;, \&quot;davinci\&quot;, or a fine-tuned model created after 2022-04-21. To learn more about these models, see the [Models](https://platform.openai.com/docs/models) documentation. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,string&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateModerationRequest_input">
+        <xs:annotation>
+          <xs:documentation>The input text to classify</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,array&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateModerationRequest_model">
+        <xs:annotation>
+          <xs:documentation>Two content moderations models are available: &#x60;text-moderation-stable&#x60; and &#x60;text-moderation-latest&#x60;.  The default is &#x60;text-moderation-latest&#x60; which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use &#x60;text-moderation-stable&#x60;, we will provide advanced notice before updating the model. Accuracy of &#x60;text-moderation-stable&#x60; may be slightly lower than for &#x60;text-moderation-latest&#x60;. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,string&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="CreateTranscriptionRequest_model">
+        <xs:annotation>
+          <xs:documentation>ID of the model to use. Only &#x60;whisper-1&#x60; is currently available. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:oneOf&lt;string,string&gt;">
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="Size">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="_256X256" />
+          <xs:enumeration value="_512X512" />
+          <xs:enumeration value="_1024X1024" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="Response_format">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="URL" />
+          <xs:enumeration value="B64_JSON" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="Size">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="_256X256" />
+          <xs:enumeration value="_512X512" />
+          <xs:enumeration value="_1024X1024" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="Response_format">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="URL" />
+          <xs:enumeration value="B64_JSON" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="PostFine-tunesCancelByFine_tune_id_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="fineTuneId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The ID of the fine-tune job to cancel </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostFine-tunesCancelByFine_tune_id_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="FineTune" type="schemas:FineTune">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostChatCompletions_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:CreateChatCompletionRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostChatCompletions_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="CreateChatCompletionResponse" type="schemas:CreateChatCompletionResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostCompletions_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:CreateCompletionRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostCompletions_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="CreateCompletionResponse" type="schemas:CreateCompletionResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostEdits_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:CreateEditRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostEdits_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="CreateEditResponse" type="schemas:CreateEditResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostEmbeddings_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:CreateEmbeddingRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostEmbeddings_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="CreateEmbeddingResponse" type="schemas:CreateEmbeddingResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostFiles_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="file" type="xs:hexBinary">
+            <xs:annotation>
+              <xs:documentation>Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.  If the &#x60;purpose&#x60; is set to \\\&quot;fine-tune\\\&quot;, each line is a JSON record with \\\&quot;prompt\\\&quot; and \\\&quot;completion\\\&quot; fields representing your [training examples](/docs/guides/fine-tuning/prepare-training-data). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" name="purpose" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The intended purpose of the uploaded documents.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tunes). This allows us to validate the format of the uploaded file. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostFiles_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="OpenAIFile" type="schemas:OpenAIFile">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostFine-tunes_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:CreateFineTuneRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostFine-tunes_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="FineTune" type="schemas:FineTune">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostImagesGenerations_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:CreateImageRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostImagesGenerations_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="ImagesResponse" type="schemas:ImagesResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostImagesEdits_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="image" type="xs:hexBinary">
+            <xs:annotation>
+              <xs:documentation>The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" name="prompt" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>A text description of the desired image(s). The maximum length is 1000 characters.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="mask" type="xs:hexBinary">
+            <xs:annotation>
+              <xs:documentation>An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="n">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>The number of images to generate. Must be between 1 and 10.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer">
+                <xs:maxInclusive value="10" />
+                <xs:minInclusive value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1024x1024" name="size" type="schemas:Size">
+            <xs:annotation>
+              <xs:documentation>The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="url" name="responseFormat" type="schemas:Response_format">
+            <xs:annotation>
+              <xs:documentation>The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="user" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostImagesEdits_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="ImagesResponse" type="schemas:ImagesResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostImagesVariations_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="image" type="xs:hexBinary">
+            <xs:annotation>
+              <xs:documentation>The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="1" name="n">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>The number of images to generate. Must be between 1 and 10.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer">
+                <xs:maxInclusive value="10" />
+                <xs:minInclusive value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="1024x1024" name="size" type="schemas:Size">
+            <xs:annotation>
+              <xs:documentation>The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="url" name="responseFormat" type="schemas:Response_format">
+            <xs:annotation>
+              <xs:documentation>The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="user" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostImagesVariations_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="ImagesResponse" type="schemas:ImagesResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostModerations_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:CreateModerationRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostModerations_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="CreateModerationResponse" type="schemas:CreateModerationResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostAudioTranscriptions_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="file" type="xs:hexBinary">
+            <xs:annotation>
+              <xs:documentation>The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" name="model" type="schemas:CreateTranscriptionRequest_model" />
+          <xs:element minOccurs="0" name="prompt" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="json" name="responseFormat" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" name="temperature" type="xs:bigdecimal">
+            <xs:annotation>
+              <xs:documentation>The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="language" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostAudioTranscriptions_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="CreateTranscriptionResponse" type="schemas:CreateTranscriptionResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostAudioTranslations_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="file" type="xs:hexBinary">
+            <xs:annotation>
+              <xs:documentation>The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" name="model" type="schemas:CreateTranscriptionRequest_model" />
+          <xs:element minOccurs="0" name="prompt" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="json" name="responseFormat" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" name="temperature" type="xs:bigdecimal">
+            <xs:annotation>
+              <xs:documentation>The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostAudioTranslations_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="CreateTranslationResponse" type="schemas:CreateTranslationResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteFilesByFile_id_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="fileId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The ID of the file to use for this request</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteFilesByFile_id_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="DeleteFileResponse" type="schemas:DeleteFileResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteModelsByModel_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="model" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The model to delete</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteModelsByModel_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="DeleteModelResponse" type="schemas:DeleteModelResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFilesContentByFile_id_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="fileId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The ID of the file to use for this request</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFilesContentByFile_id_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="String" type="schemas:String">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFiles_RequestMessage" />
+      <xs:complexType name="GetFiles_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="ListFilesResponse" type="schemas:ListFilesResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFine-tunesEventsByFine_tune_id_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="fineTuneId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The ID of the fine-tune job to get events for. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" name="stream" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>Whether to stream events for the fine-tune job. If set to true, events will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available. The stream will terminate with a &#x60;data: [DONE]&#x60; message when the job is finished (succeeded, cancelled, or failed).  If set to false, only events generated so far will be returned. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFine-tunesEventsByFine_tune_id_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="ListFineTuneEventsResponse" type="schemas:ListFineTuneEventsResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFine-tunes_RequestMessage" />
+      <xs:complexType name="GetFine-tunes_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="ListFineTunesResponse" type="schemas:ListFineTunesResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetModels_RequestMessage" />
+      <xs:complexType name="GetModels_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="ListModelsResponse" type="schemas:ListModelsResponse">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFilesByFile_id_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="fileId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The ID of the file to use for this request</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFilesByFile_id_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="OpenAIFile" type="schemas:OpenAIFile">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFine-tunesByFine_tune_id_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="fineTuneId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The ID of the fine-tune job </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetFine-tunesByFine_tune_id_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="FineTune" type="schemas:FineTune">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetModelsByModel_RequestMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="model" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The ID of the model to use for this request</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetModelsByModel_ResponseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="Model" type="schemas:Model">
+            <xs:annotation>
+              <xs:documentation>OK</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="PostFine-tunesCancelByFine_tune_id_RequestMessage">
+    <part name="PostFine-tunesCancelByFine_tune_id_RequestMessage" element="schemas:PostFine-tunesCancelByFine_tune_id_RequestMessage" />
+  </message>
+  <message name="PostFine-tunesCancelByFine_tune_id_ResponseMessage">
+    <part name="PostFine-tunesCancelByFine_tune_id_ResponseMessage" element="schemas:PostFine-tunesCancelByFine_tune_id_ResponseMessage" />
+  </message>
+  <message name="PostChatCompletions_RequestMessage">
+    <part name="PostChatCompletions_RequestMessage" element="schemas:PostChatCompletions_RequestMessage" />
+  </message>
+  <message name="PostChatCompletions_ResponseMessage">
+    <part name="PostChatCompletions_ResponseMessage" element="schemas:PostChatCompletions_ResponseMessage" />
+  </message>
+  <message name="PostCompletions_RequestMessage">
+    <part name="PostCompletions_RequestMessage" element="schemas:PostCompletions_RequestMessage" />
+  </message>
+  <message name="PostCompletions_ResponseMessage">
+    <part name="PostCompletions_ResponseMessage" element="schemas:PostCompletions_ResponseMessage" />
+  </message>
+  <message name="PostEdits_RequestMessage">
+    <part name="PostEdits_RequestMessage" element="schemas:PostEdits_RequestMessage" />
+  </message>
+  <message name="PostEdits_ResponseMessage">
+    <part name="PostEdits_ResponseMessage" element="schemas:PostEdits_ResponseMessage" />
+  </message>
+  <message name="PostEmbeddings_RequestMessage">
+    <part name="PostEmbeddings_RequestMessage" element="schemas:PostEmbeddings_RequestMessage" />
+  </message>
+  <message name="PostEmbeddings_ResponseMessage">
+    <part name="PostEmbeddings_ResponseMessage" element="schemas:PostEmbeddings_ResponseMessage" />
+  </message>
+  <message name="PostFiles_RequestMessage">
+    <part name="PostFiles_RequestMessage" element="schemas:PostFiles_RequestMessage" />
+  </message>
+  <message name="PostFiles_ResponseMessage">
+    <part name="PostFiles_ResponseMessage" element="schemas:PostFiles_ResponseMessage" />
+  </message>
+  <message name="PostFine-tunes_RequestMessage">
+    <part name="PostFine-tunes_RequestMessage" element="schemas:PostFine-tunes_RequestMessage" />
+  </message>
+  <message name="PostFine-tunes_ResponseMessage">
+    <part name="PostFine-tunes_ResponseMessage" element="schemas:PostFine-tunes_ResponseMessage" />
+  </message>
+  <message name="PostImagesGenerations_RequestMessage">
+    <part name="PostImagesGenerations_RequestMessage" element="schemas:PostImagesGenerations_RequestMessage" />
+  </message>
+  <message name="PostImagesGenerations_ResponseMessage">
+    <part name="PostImagesGenerations_ResponseMessage" element="schemas:PostImagesGenerations_ResponseMessage" />
+  </message>
+  <message name="PostImagesEdits_RequestMessage">
+    <part name="PostImagesEdits_RequestMessage" element="schemas:PostImagesEdits_RequestMessage" />
+  </message>
+  <message name="PostImagesEdits_ResponseMessage">
+    <part name="PostImagesEdits_ResponseMessage" element="schemas:PostImagesEdits_ResponseMessage" />
+  </message>
+  <message name="PostImagesVariations_RequestMessage">
+    <part name="PostImagesVariations_RequestMessage" element="schemas:PostImagesVariations_RequestMessage" />
+  </message>
+  <message name="PostImagesVariations_ResponseMessage">
+    <part name="PostImagesVariations_ResponseMessage" element="schemas:PostImagesVariations_ResponseMessage" />
+  </message>
+  <message name="PostModerations_RequestMessage">
+    <part name="PostModerations_RequestMessage" element="schemas:PostModerations_RequestMessage" />
+  </message>
+  <message name="PostModerations_ResponseMessage">
+    <part name="PostModerations_ResponseMessage" element="schemas:PostModerations_ResponseMessage" />
+  </message>
+  <message name="PostAudioTranscriptions_RequestMessage">
+    <part name="PostAudioTranscriptions_RequestMessage" element="schemas:PostAudioTranscriptions_RequestMessage" />
+  </message>
+  <message name="PostAudioTranscriptions_ResponseMessage">
+    <part name="PostAudioTranscriptions_ResponseMessage" element="schemas:PostAudioTranscriptions_ResponseMessage" />
+  </message>
+  <message name="PostAudioTranslations_RequestMessage">
+    <part name="PostAudioTranslations_RequestMessage" element="schemas:PostAudioTranslations_RequestMessage" />
+  </message>
+  <message name="PostAudioTranslations_ResponseMessage">
+    <part name="PostAudioTranslations_ResponseMessage" element="schemas:PostAudioTranslations_ResponseMessage" />
+  </message>
+  <message name="DeleteFilesByFile_id_RequestMessage">
+    <part name="DeleteFilesByFile_id_RequestMessage" element="schemas:DeleteFilesByFile_id_RequestMessage" />
+  </message>
+  <message name="DeleteFilesByFile_id_ResponseMessage">
+    <part name="DeleteFilesByFile_id_ResponseMessage" element="schemas:DeleteFilesByFile_id_ResponseMessage" />
+  </message>
+  <message name="DeleteModelsByModel_RequestMessage">
+    <part name="DeleteModelsByModel_RequestMessage" element="schemas:DeleteModelsByModel_RequestMessage" />
+  </message>
+  <message name="DeleteModelsByModel_ResponseMessage">
+    <part name="DeleteModelsByModel_ResponseMessage" element="schemas:DeleteModelsByModel_ResponseMessage" />
+  </message>
+  <message name="GetFilesContentByFile_id_RequestMessage">
+    <part name="GetFilesContentByFile_id_RequestMessage" element="schemas:GetFilesContentByFile_id_RequestMessage" />
+  </message>
+  <message name="GetFilesContentByFile_id_ResponseMessage">
+    <part name="GetFilesContentByFile_id_ResponseMessage" element="schemas:GetFilesContentByFile_id_ResponseMessage" />
+  </message>
+  <message name="GetFiles_RequestMessage">
+    <part name="GetFiles_RequestMessage" element="schemas:GetFiles_RequestMessage" />
+  </message>
+  <message name="GetFiles_ResponseMessage">
+    <part name="GetFiles_ResponseMessage" element="schemas:GetFiles_ResponseMessage" />
+  </message>
+  <message name="GetFine-tunesEventsByFine_tune_id_RequestMessage">
+    <part name="GetFine-tunesEventsByFine_tune_id_RequestMessage" element="schemas:GetFine-tunesEventsByFine_tune_id_RequestMessage" />
+  </message>
+  <message name="GetFine-tunesEventsByFine_tune_id_ResponseMessage">
+    <part name="GetFine-tunesEventsByFine_tune_id_ResponseMessage" element="schemas:GetFine-tunesEventsByFine_tune_id_ResponseMessage" />
+  </message>
+  <message name="GetFine-tunes_RequestMessage">
+    <part name="GetFine-tunes_RequestMessage" element="schemas:GetFine-tunes_RequestMessage" />
+  </message>
+  <message name="GetFine-tunes_ResponseMessage">
+    <part name="GetFine-tunes_ResponseMessage" element="schemas:GetFine-tunes_ResponseMessage" />
+  </message>
+  <message name="GetModels_RequestMessage">
+    <part name="GetModels_RequestMessage" element="schemas:GetModels_RequestMessage" />
+  </message>
+  <message name="GetModels_ResponseMessage">
+    <part name="GetModels_ResponseMessage" element="schemas:GetModels_ResponseMessage" />
+  </message>
+  <message name="GetFilesByFile_id_RequestMessage">
+    <part name="GetFilesByFile_id_RequestMessage" element="schemas:GetFilesByFile_id_RequestMessage" />
+  </message>
+  <message name="GetFilesByFile_id_ResponseMessage">
+    <part name="GetFilesByFile_id_ResponseMessage" element="schemas:GetFilesByFile_id_ResponseMessage" />
+  </message>
+  <message name="GetFine-tunesByFine_tune_id_RequestMessage">
+    <part name="GetFine-tunesByFine_tune_id_RequestMessage" element="schemas:GetFine-tunesByFine_tune_id_RequestMessage" />
+  </message>
+  <message name="GetFine-tunesByFine_tune_id_ResponseMessage">
+    <part name="GetFine-tunesByFine_tune_id_ResponseMessage" element="schemas:GetFine-tunesByFine_tune_id_ResponseMessage" />
+  </message>
+  <message name="GetModelsByModel_RequestMessage">
+    <part name="GetModelsByModel_RequestMessage" element="schemas:GetModelsByModel_RequestMessage" />
+  </message>
+  <message name="GetModelsByModel_ResponseMessage">
+    <part name="GetModelsByModel_ResponseMessage" element="schemas:GetModelsByModel_ResponseMessage" />
+  </message>
+  <portType name="ServiceV1_PortType">
+    <operation name="PostFine-tunesCancelByFine_tune_id">
+      <documentation>Immediately cancel a fine-tune job. </documentation>
+      <input message="wsdl:PostFine-tunesCancelByFine_tune_id_RequestMessage" />
+      <output message="wsdl:PostFine-tunesCancelByFine_tune_id_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostChatCompletions">
+      <documentation>Creates a model response for the given chat conversation.</documentation>
+      <input message="wsdl:PostChatCompletions_RequestMessage" />
+      <output message="wsdl:PostChatCompletions_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostCompletions">
+      <documentation>Creates a completion for the provided prompt and parameters.</documentation>
+      <input message="wsdl:PostCompletions_RequestMessage" />
+      <output message="wsdl:PostCompletions_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostEdits">
+      <documentation>Creates a new edit for the provided input, instruction, and parameters.</documentation>
+      <input message="wsdl:PostEdits_RequestMessage" />
+      <output message="wsdl:PostEdits_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostEmbeddings">
+      <documentation>Creates an embedding vector representing the input text.</documentation>
+      <input message="wsdl:PostEmbeddings_RequestMessage" />
+      <output message="wsdl:PostEmbeddings_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostFiles">
+      <documentation>Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. </documentation>
+      <input message="wsdl:PostFiles_RequestMessage" />
+      <output message="wsdl:PostFiles_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostFine-tunes">
+      <documentation>Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) </documentation>
+      <input message="wsdl:PostFine-tunes_RequestMessage" />
+      <output message="wsdl:PostFine-tunes_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostImagesGenerations">
+      <documentation>Creates an image given a prompt.</documentation>
+      <input message="wsdl:PostImagesGenerations_RequestMessage" />
+      <output message="wsdl:PostImagesGenerations_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostImagesEdits">
+      <documentation>Creates an edited or extended image given an original image and a prompt.</documentation>
+      <input message="wsdl:PostImagesEdits_RequestMessage" />
+      <output message="wsdl:PostImagesEdits_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostImagesVariations">
+      <documentation>Creates a variation of a given image.</documentation>
+      <input message="wsdl:PostImagesVariations_RequestMessage" />
+      <output message="wsdl:PostImagesVariations_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostModerations">
+      <documentation>Classifies if text violates OpenAI&#39;s Content Policy</documentation>
+      <input message="wsdl:PostModerations_RequestMessage" />
+      <output message="wsdl:PostModerations_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostAudioTranscriptions">
+      <documentation>Transcribes audio into the input language.</documentation>
+      <input message="wsdl:PostAudioTranscriptions_RequestMessage" />
+      <output message="wsdl:PostAudioTranscriptions_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="PostAudioTranslations">
+      <documentation>Translates audio into English.</documentation>
+      <input message="wsdl:PostAudioTranslations_RequestMessage" />
+      <output message="wsdl:PostAudioTranslations_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="DeleteFilesByFile_id">
+      <documentation>Delete a file.</documentation>
+      <input message="wsdl:DeleteFilesByFile_id_RequestMessage" />
+      <output message="wsdl:DeleteFilesByFile_id_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="DeleteModelsByModel">
+      <documentation>Delete a fine-tuned model. You must have the Owner role in your organization.</documentation>
+      <input message="wsdl:DeleteModelsByModel_RequestMessage" />
+      <output message="wsdl:DeleteModelsByModel_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="GetFilesContentByFile_id">
+      <documentation>Returns the contents of the specified file</documentation>
+      <input message="wsdl:GetFilesContentByFile_id_RequestMessage" />
+      <output message="wsdl:GetFilesContentByFile_id_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="GetFiles">
+      <documentation>Returns a list of files that belong to the user&#39;s organization.</documentation>
+      <input message="wsdl:GetFiles_RequestMessage" />
+      <output message="wsdl:GetFiles_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="GetFine-tunesEventsByFine_tune_id">
+      <documentation>Get fine-grained status updates for a fine-tune job. </documentation>
+      <input message="wsdl:GetFine-tunesEventsByFine_tune_id_RequestMessage" />
+      <output message="wsdl:GetFine-tunesEventsByFine_tune_id_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="GetFine-tunes">
+      <documentation>List your organization&#39;s fine-tuning jobs </documentation>
+      <input message="wsdl:GetFine-tunes_RequestMessage" />
+      <output message="wsdl:GetFine-tunes_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="GetModels">
+      <documentation>Lists the currently available models, and provides basic information about each one such as the owner and availability.</documentation>
+      <input message="wsdl:GetModels_RequestMessage" />
+      <output message="wsdl:GetModels_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="GetFilesByFile_id">
+      <documentation>Returns information about a specific file.</documentation>
+      <input message="wsdl:GetFilesByFile_id_RequestMessage" />
+      <output message="wsdl:GetFilesByFile_id_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="GetFine-tunesByFine_tune_id">
+      <documentation>Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) </documentation>
+      <input message="wsdl:GetFine-tunesByFine_tune_id_RequestMessage" />
+      <output message="wsdl:GetFine-tunesByFine_tune_id_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+    <operation name="GetModelsByModel">
+      <documentation>Retrieves a model instance, providing basic information about the model such as the owner and permissioning.</documentation>
+      <input message="wsdl:GetModelsByModel_RequestMessage" />
+      <output message="wsdl:GetModelsByModel_ResponseMessage">
+        <documentation>OK</documentation>
+      </output>
+    </operation>
+  </portType>
+  <binding name="ServiceV1_Binding" type="wsdl:ServiceV1_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="PostFine-tunesCancelByFine_tune_id">
+      <soap:operation soapAction="PostFine-tunesCancelByFine_tune_id" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostChatCompletions">
+      <soap:operation soapAction="PostChatCompletions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostCompletions">
+      <soap:operation soapAction="PostCompletions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostEdits">
+      <soap:operation soapAction="PostEdits" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostEmbeddings">
+      <soap:operation soapAction="PostEmbeddings" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostFiles">
+      <soap:operation soapAction="PostFiles" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostFine-tunes">
+      <soap:operation soapAction="PostFine-tunes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostImagesGenerations">
+      <soap:operation soapAction="PostImagesGenerations" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostImagesEdits">
+      <soap:operation soapAction="PostImagesEdits" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostImagesVariations">
+      <soap:operation soapAction="PostImagesVariations" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostModerations">
+      <soap:operation soapAction="PostModerations" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostAudioTranscriptions">
+      <soap:operation soapAction="PostAudioTranscriptions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostAudioTranslations">
+      <soap:operation soapAction="PostAudioTranslations" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DeleteFilesByFile_id">
+      <soap:operation soapAction="DeleteFilesByFile_id" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DeleteModelsByModel">
+      <soap:operation soapAction="DeleteModelsByModel" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetFilesContentByFile_id">
+      <soap:operation soapAction="GetFilesContentByFile_id" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetFiles">
+      <soap:operation soapAction="GetFiles" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetFine-tunesEventsByFine_tune_id">
+      <soap:operation soapAction="GetFine-tunesEventsByFine_tune_id" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetFine-tunes">
+      <soap:operation soapAction="GetFine-tunes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetModels">
+      <soap:operation soapAction="GetModels" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetFilesByFile_id">
+      <soap:operation soapAction="GetFilesByFile_id" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetFine-tunesByFine_tune_id">
+      <soap:operation soapAction="GetFine-tunesByFine_tune_id" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetModelsByModel">
+      <soap:operation soapAction="GetModelsByModel" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ServiceV1">
+    <documentation>APIs for sampling from and fine-tuning language models</documentation>
+    <port name="default_Port" binding="wsdl:ServiceV1_Binding">
+      <soap:address location="http://localhost/soap/ServiceV1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

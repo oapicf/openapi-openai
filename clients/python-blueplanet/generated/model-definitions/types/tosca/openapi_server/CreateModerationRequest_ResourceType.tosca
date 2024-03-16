@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateModerationRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateModerationRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CreateModerationRequestInput = openapi_server.resourceTypes.CreateModerationRequestInput
+  CreateModerationRequestModel = openapi_server.resourceTypes.CreateModerationRequestModel
+}
+resourceTypes {
+
+  CreateModerationRequest {
+    title = CreateModerationRequest
+    description = CreateModerationRequest
+    derivedFrom = Root
+    properties {
+        input {
+          type = CreateModerationRequestInput
+          description = ""
+          optional = true
+        }
+        model {
+          type = CreateModerationRequestModel
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateModerationRequest {
+    title = CreateModerationRequest
+    description = CreateModerationRequest
+    implements = openapi_server.resourceTypes.CreateModerationRequest
+
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateCompletionResponseUsage",
+  "fields": [
+    {
+      "name": "prompt_tokens",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "completion_tokens",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "total_tokens",
+      "type": "int",
+      "doc": ""
+    }
+  ]
+
+}

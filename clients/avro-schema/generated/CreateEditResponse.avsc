@@ -1,0 +1,32 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateEditResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "created",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "choices",
+      "type": {
+        "type": "array",
+        "items": "model.CreateEditResponseChoicesInner"
+      },
+      "doc": ""
+    },
+    {
+      "name": "usage",
+      "type": "model.CreateCompletionResponseUsage",
+      "doc": ""
+    }
+  ]
+
+}

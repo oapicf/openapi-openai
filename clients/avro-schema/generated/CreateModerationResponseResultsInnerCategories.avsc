@@ -1,0 +1,44 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateModerationResponseResultsInnerCategories",
+  "fields": [
+    {
+      "name": "hate",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "hate/threatening",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "self-harm",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "sexual",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "sexual/minors",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "violence",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "violence/graphic",
+      "type": "boolean",
+      "doc": ""
+    }
+  ]
+
+}

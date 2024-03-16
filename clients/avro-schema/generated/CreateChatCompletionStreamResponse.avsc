@@ -1,0 +1,37 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateChatCompletionStreamResponse",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "object",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "created",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "model",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "choices",
+      "type": {
+        "type": "array",
+        "items": "model.CreateChatCompletionStreamResponseChoicesInner"
+      },
+      "doc": ""
+    }
+  ]
+
+}

@@ -1,0 +1,2741 @@
+<!doctype html>
+<html>
+  <head>
+    <title>OpenAI API</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>OpenAI API</h1>
+    <div class="app-desc">APIs for sampling from and fine-tuning language models</div>
+    <div class="app-desc">More information: <a href="https://github.com/oapicf/openapi-openai">https://github.com/oapicf/openapi-openai</a></div>
+    <div class="app-desc">Contact Info: <a href="blah+oapicf@cliffano.com">blah+oapicf@cliffano.com</a></div>
+    <div class="app-desc">Version: 2.0.0</div>
+    <div class="app-desc">BasePath:/v1</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#OpenAI">OpenAI</a></h4>
+  <ul>
+  <li><a href="#cancelFineTune"><code><span class="http-method">post</span> /fine-tunes/{fine_tune_id}/cancel</code></a></li>
+  <li><a href="#createChatCompletion"><code><span class="http-method">post</span> /chat/completions</code></a></li>
+  <li><a href="#createCompletion"><code><span class="http-method">post</span> /completions</code></a></li>
+  <li><a href="#createEdit"><code><span class="http-method">post</span> /edits</code></a></li>
+  <li><a href="#createEmbedding"><code><span class="http-method">post</span> /embeddings</code></a></li>
+  <li><a href="#createFile"><code><span class="http-method">post</span> /files</code></a></li>
+  <li><a href="#createFineTune"><code><span class="http-method">post</span> /fine-tunes</code></a></li>
+  <li><a href="#createImage"><code><span class="http-method">post</span> /images/generations</code></a></li>
+  <li><a href="#createImageEdit"><code><span class="http-method">post</span> /images/edits</code></a></li>
+  <li><a href="#createImageVariation"><code><span class="http-method">post</span> /images/variations</code></a></li>
+  <li><a href="#createModeration"><code><span class="http-method">post</span> /moderations</code></a></li>
+  <li><a href="#createTranscription"><code><span class="http-method">post</span> /audio/transcriptions</code></a></li>
+  <li><a href="#createTranslation"><code><span class="http-method">post</span> /audio/translations</code></a></li>
+  <li><a href="#deleteFile"><code><span class="http-method">delete</span> /files/{file_id}</code></a></li>
+  <li><a href="#deleteModel"><code><span class="http-method">delete</span> /models/{model}</code></a></li>
+  <li><a href="#downloadFile"><code><span class="http-method">get</span> /files/{file_id}/content</code></a></li>
+  <li><a href="#listFiles"><code><span class="http-method">get</span> /files</code></a></li>
+  <li><a href="#listFineTuneEvents"><code><span class="http-method">get</span> /fine-tunes/{fine_tune_id}/events</code></a></li>
+  <li><a href="#listFineTunes"><code><span class="http-method">get</span> /fine-tunes</code></a></li>
+  <li><a href="#listModels"><code><span class="http-method">get</span> /models</code></a></li>
+  <li><a href="#retrieveFile"><code><span class="http-method">get</span> /files/{file_id}</code></a></li>
+  <li><a href="#retrieveFineTune"><code><span class="http-method">get</span> /fine-tunes/{fine_tune_id}</code></a></li>
+  <li><a href="#retrieveModel"><code><span class="http-method">get</span> /models/{model}</code></a></li>
+  </ul>
+
+  <h1><a name="OpenAI">OpenAI</a></h1>
+  <div class="method"><a name="cancelFineTune"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /fine-tunes/{fine_tune_id}/cancel</code></pre></div>
+    <div class="method-summary">Immediately cancel a fine-tune job. (<span class="nickname">cancelFineTune</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fine_tune_id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the fine-tune job to cancel default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#FineTune">FineTune</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "result_files" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ],
+  "hyperparams" : "{}",
+  "fine_tuned_model" : "fine_tuned_model",
+  "created_at" : 0,
+  "training_files" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ],
+  "updated_at" : 6,
+  "organization_id" : "organization_id",
+  "model" : "model",
+  "id" : "id",
+  "events" : [ {
+    "level" : "level",
+    "created_at" : 1,
+    "message" : "message",
+    "object" : "object"
+  }, {
+    "level" : "level",
+    "created_at" : 1,
+    "message" : "message",
+    "object" : "object"
+  } ],
+  "object" : "object",
+  "status" : "status",
+  "validation_files" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#FineTune">FineTune</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createChatCompletion"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /chat/completions</code></pre></div>
+    <div class="method-summary">Creates a model response for the given chat conversation. (<span class="nickname">createChatCompletion</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">CreateChatCompletionRequest <a href="#CreateChatCompletionRequest">CreateChatCompletionRequest</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CreateChatCompletionResponse">CreateChatCompletionResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "created" : 0,
+  "usage" : {
+    "completion_tokens" : 5,
+    "prompt_tokens" : 1,
+    "total_tokens" : 5
+  },
+  "model" : "model",
+  "id" : "id",
+  "choices" : [ {
+    "finish_reason" : "stop",
+    "index" : 6,
+    "message" : {
+      "role" : "system",
+      "function_call" : {
+        "name" : "name",
+        "arguments" : "arguments"
+      },
+      "content" : "content"
+    }
+  }, {
+    "finish_reason" : "stop",
+    "index" : 6,
+    "message" : {
+      "role" : "system",
+      "function_call" : {
+        "name" : "name",
+        "arguments" : "arguments"
+      },
+      "content" : "content"
+    }
+  } ],
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CreateChatCompletionResponse">CreateChatCompletionResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createCompletion"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /completions</code></pre></div>
+    <div class="method-summary">Creates a completion for the provided prompt and parameters. (<span class="nickname">createCompletion</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">CreateCompletionRequest <a href="#CreateCompletionRequest">CreateCompletionRequest</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CreateCompletionResponse">CreateCompletionResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "created" : 0,
+  "usage" : {
+    "completion_tokens" : 5,
+    "prompt_tokens" : 1,
+    "total_tokens" : 5
+  },
+  "model" : "model",
+  "id" : "id",
+  "choices" : [ {
+    "finish_reason" : "stop",
+    "index" : 6,
+    "text" : "text",
+    "logprobs" : {
+      "top_logprobs" : [ "{}", "{}" ],
+      "token_logprobs" : [ 1.4658129805029452, 1.4658129805029452 ],
+      "tokens" : [ "tokens", "tokens" ],
+      "text_offset" : [ 5, 5 ]
+    }
+  }, {
+    "finish_reason" : "stop",
+    "index" : 6,
+    "text" : "text",
+    "logprobs" : {
+      "top_logprobs" : [ "{}", "{}" ],
+      "token_logprobs" : [ 1.4658129805029452, 1.4658129805029452 ],
+      "tokens" : [ "tokens", "tokens" ],
+      "text_offset" : [ 5, 5 ]
+    }
+  } ],
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CreateCompletionResponse">CreateCompletionResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createEdit"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /edits</code></pre></div>
+    <div class="method-summary">Creates a new edit for the provided input, instruction, and parameters. (<span class="nickname">createEdit</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">CreateEditRequest <a href="#CreateEditRequest">CreateEditRequest</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CreateEditResponse">CreateEditResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "created" : 0,
+  "usage" : {
+    "completion_tokens" : 5,
+    "prompt_tokens" : 1,
+    "total_tokens" : 5
+  },
+  "choices" : [ {
+    "finish_reason" : "stop",
+    "index" : 6,
+    "text" : "text",
+    "logprobs" : {
+      "top_logprobs" : [ "{}", "{}" ],
+      "token_logprobs" : [ 1.4658129805029452, 1.4658129805029452 ],
+      "tokens" : [ "tokens", "tokens" ],
+      "text_offset" : [ 5, 5 ]
+    }
+  }, {
+    "finish_reason" : "stop",
+    "index" : 6,
+    "text" : "text",
+    "logprobs" : {
+      "top_logprobs" : [ "{}", "{}" ],
+      "token_logprobs" : [ 1.4658129805029452, 1.4658129805029452 ],
+      "tokens" : [ "tokens", "tokens" ],
+      "text_offset" : [ 5, 5 ]
+    }
+  } ],
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CreateEditResponse">CreateEditResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createEmbedding"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /embeddings</code></pre></div>
+    <div class="method-summary">Creates an embedding vector representing the input text. (<span class="nickname">createEmbedding</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">CreateEmbeddingRequest <a href="#CreateEmbeddingRequest">CreateEmbeddingRequest</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CreateEmbeddingResponse">CreateEmbeddingResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : [ {
+    "index" : 0,
+    "embedding" : [ 6.027456183070403, 6.027456183070403 ],
+    "object" : "object"
+  }, {
+    "index" : 0,
+    "embedding" : [ 6.027456183070403, 6.027456183070403 ],
+    "object" : "object"
+  } ],
+  "usage" : {
+    "prompt_tokens" : 1,
+    "total_tokens" : 5
+  },
+  "model" : "model",
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CreateEmbeddingResponse">CreateEmbeddingResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createFile"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /files</code></pre></div>
+    <div class="method-summary">Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. (<span class="nickname">createFile</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>multipart/form-data</code></li>
+    </ul>
+
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">file (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; <p>Name of the <a href="https://jsonlines.readthedocs.io/en/latest/">JSON Lines</a> file to be uploaded.</p>
+<p>If the <code>purpose</code> is set to &quot;fine-tune&quot;, each line is a JSON record with &quot;prompt&quot; and &quot;completion&quot; fields representing your <a href="/docs/guides/fine-tuning/prepare-training-data">training examples</a>.</p>
+ default: null format: binary</div><div class="param">purpose (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; <p>The intended purpose of the uploaded documents.</p>
+<p>Use &quot;fine-tune&quot; for <a href="/docs/api-reference/fine-tunes">Fine-tuning</a>. This allows us to validate the format of the uploaded file.</p>
+ default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#OpenAIFile">OpenAIFile</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "filename" : "filename",
+  "purpose" : "purpose",
+  "bytes" : 0,
+  "created_at" : 6,
+  "id" : "id",
+  "status_details" : "{}",
+  "object" : "object",
+  "status" : "status"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#OpenAIFile">OpenAIFile</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createFineTune"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /fine-tunes</code></pre></div>
+    <div class="method-summary"><p>Creates a job that fine-tunes a specified model from a given dataset.</p>
+<p>Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.</p>
+<p><a href="/docs/guides/fine-tuning">Learn more about Fine-tuning</a></p>
+ (<span class="nickname">createFineTune</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">CreateFineTuneRequest <a href="#CreateFineTuneRequest">CreateFineTuneRequest</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#FineTune">FineTune</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "result_files" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ],
+  "hyperparams" : "{}",
+  "fine_tuned_model" : "fine_tuned_model",
+  "created_at" : 0,
+  "training_files" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ],
+  "updated_at" : 6,
+  "organization_id" : "organization_id",
+  "model" : "model",
+  "id" : "id",
+  "events" : [ {
+    "level" : "level",
+    "created_at" : 1,
+    "message" : "message",
+    "object" : "object"
+  }, {
+    "level" : "level",
+    "created_at" : 1,
+    "message" : "message",
+    "object" : "object"
+  } ],
+  "object" : "object",
+  "status" : "status",
+  "validation_files" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#FineTune">FineTune</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createImage"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /images/generations</code></pre></div>
+    <div class="method-summary">Creates an image given a prompt. (<span class="nickname">createImage</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">CreateImageRequest <a href="#CreateImageRequest">CreateImageRequest</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ImagesResponse">ImagesResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : [ {
+    "b64_json" : "b64_json",
+    "url" : "url"
+  }, {
+    "b64_json" : "b64_json",
+    "url" : "url"
+  } ],
+  "created" : 0
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ImagesResponse">ImagesResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createImageEdit"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /images/edits</code></pre></div>
+    <div class="method-summary">Creates an edited or extended image given an original image and a prompt. (<span class="nickname">createImageEdit</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>multipart/form-data</code></li>
+    </ul>
+
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">image (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. default: null format: binary</div><div class="param">mask (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where <code>image</code> should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as <code>image</code>. default: null format: binary</div><div class="param">prompt (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; A text description of the desired image(s). The maximum length is 1000 characters. default: null </div><div class="param">n (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The number of images to generate. Must be between 1 and 10. default: 1 </div><div class="param">size (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The size of the generated images. Must be one of <code>256x256</code>, <code>512x512</code>, or <code>1024x1024</code>. default: 1024x1024 </div><div class="param">response_format (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The format in which the generated images are returned. Must be one of <code>url</code> or <code>b64_json</code>. default: url </div><div class="param">user (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. <a href="/docs/guides/safety-best-practices/end-user-ids">Learn more</a>. default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ImagesResponse">ImagesResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : [ {
+    "b64_json" : "b64_json",
+    "url" : "url"
+  }, {
+    "b64_json" : "b64_json",
+    "url" : "url"
+  } ],
+  "created" : 0
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ImagesResponse">ImagesResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createImageVariation"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /images/variations</code></pre></div>
+    <div class="method-summary">Creates a variation of a given image. (<span class="nickname">createImageVariation</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>multipart/form-data</code></li>
+    </ul>
+
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">image (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. default: null format: binary</div><div class="param">n (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The number of images to generate. Must be between 1 and 10. default: 1 </div><div class="param">size (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The size of the generated images. Must be one of <code>256x256</code>, <code>512x512</code>, or <code>1024x1024</code>. default: 1024x1024 </div><div class="param">response_format (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The format in which the generated images are returned. Must be one of <code>url</code> or <code>b64_json</code>. default: url </div><div class="param">user (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. <a href="/docs/guides/safety-best-practices/end-user-ids">Learn more</a>. default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ImagesResponse">ImagesResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : [ {
+    "b64_json" : "b64_json",
+    "url" : "url"
+  }, {
+    "b64_json" : "b64_json",
+    "url" : "url"
+  } ],
+  "created" : 0
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ImagesResponse">ImagesResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createModeration"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /moderations</code></pre></div>
+    <div class="method-summary">Classifies if text violates OpenAI's Content Policy (<span class="nickname">createModeration</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">CreateModerationRequest <a href="#CreateModerationRequest">CreateModerationRequest</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CreateModerationResponse">CreateModerationResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "model" : "model",
+  "id" : "id",
+  "results" : [ {
+    "category_scores" : {
+      "hate/threatening" : 6.027456183070403,
+      "sexual/minors" : 5.637376656633329,
+      "hate" : 0.8008281904610115,
+      "self-harm" : 1.4658129805029452,
+      "sexual" : 5.962133916683182,
+      "violence/graphic" : 7.061401241503109,
+      "violence" : 2.3021358869347655
+    },
+    "flagged" : true,
+    "categories" : {
+      "hate/threatening" : true,
+      "sexual/minors" : true,
+      "hate" : true,
+      "self-harm" : true,
+      "sexual" : true,
+      "violence/graphic" : true,
+      "violence" : true
+    }
+  }, {
+    "category_scores" : {
+      "hate/threatening" : 6.027456183070403,
+      "sexual/minors" : 5.637376656633329,
+      "hate" : 0.8008281904610115,
+      "self-harm" : 1.4658129805029452,
+      "sexual" : 5.962133916683182,
+      "violence/graphic" : 7.061401241503109,
+      "violence" : 2.3021358869347655
+    },
+    "flagged" : true,
+    "categories" : {
+      "hate/threatening" : true,
+      "sexual/minors" : true,
+      "hate" : true,
+      "self-harm" : true,
+      "sexual" : true,
+      "violence/graphic" : true,
+      "violence" : true
+    }
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CreateModerationResponse">CreateModerationResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createTranscription"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /audio/transcriptions</code></pre></div>
+    <div class="method-summary">Transcribes audio into the input language. (<span class="nickname">createTranscription</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>multipart/form-data</code></li>
+    </ul>
+
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">file (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. default: null format: binary</div><div class="param">model (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  default: null </div><div class="param">prompt (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; An optional text to guide the model's style or continue a previous audio segment. The <a href="/docs/guides/speech-to-text/prompting">prompt</a> should match the audio language. default: null </div><div class="param">response_format (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. default: json </div><div class="param">temperature (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use <a href="https://en.wikipedia.org/wiki/Log_probability">log probability</a> to automatically increase the temperature until certain thresholds are hit. default: 0 </div><div class="param">language (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The language of the input audio. Supplying the input language in <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO-639-1</a> format will improve accuracy and latency. default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CreateTranscriptionResponse">CreateTranscriptionResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "text" : "text"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CreateTranscriptionResponse">CreateTranscriptionResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createTranslation"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /audio/translations</code></pre></div>
+    <div class="method-summary">Translates audio into English. (<span class="nickname">createTranslation</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>multipart/form-data</code></li>
+    </ul>
+
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">file (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. default: null format: binary</div><div class="param">model (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  default: null </div><div class="param">prompt (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; An optional text to guide the model's style or continue a previous audio segment. The <a href="/docs/guides/speech-to-text/prompting">prompt</a> should be in English. default: null </div><div class="param">response_format (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. default: json </div><div class="param">temperature (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use <a href="https://en.wikipedia.org/wiki/Log_probability">log probability</a> to automatically increase the temperature until certain thresholds are hit. default: 0 </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CreateTranslationResponse">CreateTranslationResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "text" : "text"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CreateTranslationResponse">CreateTranslationResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteFile"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /files/{file_id}</code></pre></div>
+    <div class="method-summary">Delete a file. (<span class="nickname">deleteFile</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">file_id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the file to use for this request default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#DeleteFileResponse">DeleteFileResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "deleted" : true,
+  "id" : "id",
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#DeleteFileResponse">DeleteFileResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteModel"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /models/{model}</code></pre></div>
+    <div class="method-summary">Delete a fine-tuned model. You must have the Owner role in your organization. (<span class="nickname">deleteModel</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">model (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The model to delete default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#DeleteModelResponse">DeleteModelResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "deleted" : true,
+  "id" : "id",
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#DeleteModelResponse">DeleteModelResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="downloadFile"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /files/{file_id}/content</code></pre></div>
+    <div class="method-summary">Returns the contents of the specified file (<span class="nickname">downloadFile</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">file_id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the file to use for this request default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="listFiles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /files</code></pre></div>
+    <div class="method-summary">Returns a list of files that belong to the user's organization. (<span class="nickname">listFiles</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ListFilesResponse">ListFilesResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ],
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ListFilesResponse">ListFilesResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="listFineTuneEvents"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /fine-tunes/{fine_tune_id}/events</code></pre></div>
+    <div class="method-summary">Get fine-grained status updates for a fine-tune job. (<span class="nickname">listFineTuneEvents</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fine_tune_id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the fine-tune job to get events for. default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">stream (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Whether to stream events for the fine-tune job. If set to true,
+events will be sent as data-only
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format">server-sent events</a>
+as they become available. The stream will terminate with a
+<code>data: [DONE]</code> message when the job is finished (succeeded, cancelled,
+or failed).</p>
+<p>If set to false, only events generated so far will be returned.</p>
+ default: false </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ListFineTuneEventsResponse">ListFineTuneEventsResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : [ {
+    "level" : "level",
+    "created_at" : 1,
+    "message" : "message",
+    "object" : "object"
+  }, {
+    "level" : "level",
+    "created_at" : 1,
+    "message" : "message",
+    "object" : "object"
+  } ],
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ListFineTuneEventsResponse">ListFineTuneEventsResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="listFineTunes"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /fine-tunes</code></pre></div>
+    <div class="method-summary">List your organization's fine-tuning jobs (<span class="nickname">listFineTunes</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ListFineTunesResponse">ListFineTunesResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : [ {
+    "result_files" : [ {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    }, {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    } ],
+    "hyperparams" : "{}",
+    "fine_tuned_model" : "fine_tuned_model",
+    "created_at" : 0,
+    "training_files" : [ {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    }, {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    } ],
+    "updated_at" : 6,
+    "organization_id" : "organization_id",
+    "model" : "model",
+    "id" : "id",
+    "events" : [ {
+      "level" : "level",
+      "created_at" : 1,
+      "message" : "message",
+      "object" : "object"
+    }, {
+      "level" : "level",
+      "created_at" : 1,
+      "message" : "message",
+      "object" : "object"
+    } ],
+    "object" : "object",
+    "status" : "status",
+    "validation_files" : [ {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    }, {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    } ]
+  }, {
+    "result_files" : [ {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    }, {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    } ],
+    "hyperparams" : "{}",
+    "fine_tuned_model" : "fine_tuned_model",
+    "created_at" : 0,
+    "training_files" : [ {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    }, {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    } ],
+    "updated_at" : 6,
+    "organization_id" : "organization_id",
+    "model" : "model",
+    "id" : "id",
+    "events" : [ {
+      "level" : "level",
+      "created_at" : 1,
+      "message" : "message",
+      "object" : "object"
+    }, {
+      "level" : "level",
+      "created_at" : 1,
+      "message" : "message",
+      "object" : "object"
+    } ],
+    "object" : "object",
+    "status" : "status",
+    "validation_files" : [ {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    }, {
+      "filename" : "filename",
+      "purpose" : "purpose",
+      "bytes" : 0,
+      "created_at" : 6,
+      "id" : "id",
+      "status_details" : "{}",
+      "object" : "object",
+      "status" : "status"
+    } ]
+  } ],
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ListFineTunesResponse">ListFineTunesResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="listModels"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /models</code></pre></div>
+    <div class="method-summary">Lists the currently available models, and provides basic information about each one such as the owner and availability. (<span class="nickname">listModels</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ListModelsResponse">ListModelsResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : [ {
+    "created" : 0,
+    "owned_by" : "owned_by",
+    "id" : "id",
+    "object" : "object"
+  }, {
+    "created" : 0,
+    "owned_by" : "owned_by",
+    "id" : "id",
+    "object" : "object"
+  } ],
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ListModelsResponse">ListModelsResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="retrieveFile"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /files/{file_id}</code></pre></div>
+    <div class="method-summary">Returns information about a specific file. (<span class="nickname">retrieveFile</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">file_id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the file to use for this request default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#OpenAIFile">OpenAIFile</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "filename" : "filename",
+  "purpose" : "purpose",
+  "bytes" : 0,
+  "created_at" : 6,
+  "id" : "id",
+  "status_details" : "{}",
+  "object" : "object",
+  "status" : "status"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#OpenAIFile">OpenAIFile</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="retrieveFineTune"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /fine-tunes/{fine_tune_id}</code></pre></div>
+    <div class="method-summary"><p>Gets info about the fine-tune job.</p>
+<p><a href="/docs/guides/fine-tuning">Learn more about Fine-tuning</a></p>
+ (<span class="nickname">retrieveFineTune</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fine_tune_id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the fine-tune job default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#FineTune">FineTune</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "result_files" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ],
+  "hyperparams" : "{}",
+  "fine_tuned_model" : "fine_tuned_model",
+  "created_at" : 0,
+  "training_files" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ],
+  "updated_at" : 6,
+  "organization_id" : "organization_id",
+  "model" : "model",
+  "id" : "id",
+  "events" : [ {
+    "level" : "level",
+    "created_at" : 1,
+    "message" : "message",
+    "object" : "object"
+  }, {
+    "level" : "level",
+    "created_at" : 1,
+    "message" : "message",
+    "object" : "object"
+  } ],
+  "object" : "object",
+  "status" : "status",
+  "validation_files" : [ {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  }, {
+    "filename" : "filename",
+    "purpose" : "purpose",
+    "bytes" : 0,
+    "created_at" : 6,
+    "id" : "id",
+    "status_details" : "{}",
+    "object" : "object",
+    "status" : "status"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#FineTune">FineTune</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="retrieveModel"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /models/{model}</code></pre></div>
+    <div class="method-summary">Retrieves a model instance, providing basic information about the model such as the owner and permissioning. (<span class="nickname">retrieveModel</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">model (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the model to use for this request default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Model">Model</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "created" : 0,
+  "owned_by" : "owned_by",
+  "id" : "id",
+  "object" : "object"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Model">Model</a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#ChatCompletionFunctions"><code>ChatCompletionFunctions</code> - </a></li>
+    <li><a href="#ChatCompletionRequestMessage"><code>ChatCompletionRequestMessage</code> - </a></li>
+    <li><a href="#ChatCompletionRequestMessage_function_call"><code>ChatCompletionRequestMessage_function_call</code> - </a></li>
+    <li><a href="#ChatCompletionResponseMessage"><code>ChatCompletionResponseMessage</code> - </a></li>
+    <li><a href="#ChatCompletionStreamResponseDelta"><code>ChatCompletionStreamResponseDelta</code> - </a></li>
+    <li><a href="#CreateChatCompletionRequest"><code>CreateChatCompletionRequest</code> - </a></li>
+    <li><a href="#CreateChatCompletionRequest_function_call"><code>CreateChatCompletionRequest_function_call</code> - </a></li>
+    <li><a href="#CreateChatCompletionRequest_function_call_oneOf"><code>CreateChatCompletionRequest_function_call_oneOf</code> - </a></li>
+    <li><a href="#CreateChatCompletionRequest_model"><code>CreateChatCompletionRequest_model</code> - </a></li>
+    <li><a href="#CreateChatCompletionRequest_stop"><code>CreateChatCompletionRequest_stop</code> - </a></li>
+    <li><a href="#CreateChatCompletionResponse"><code>CreateChatCompletionResponse</code> - </a></li>
+    <li><a href="#CreateChatCompletionResponse_choices_inner"><code>CreateChatCompletionResponse_choices_inner</code> - </a></li>
+    <li><a href="#CreateChatCompletionStreamResponse"><code>CreateChatCompletionStreamResponse</code> - </a></li>
+    <li><a href="#CreateChatCompletionStreamResponse_choices_inner"><code>CreateChatCompletionStreamResponse_choices_inner</code> - </a></li>
+    <li><a href="#CreateCompletionRequest"><code>CreateCompletionRequest</code> - </a></li>
+    <li><a href="#CreateCompletionRequest_model"><code>CreateCompletionRequest_model</code> - </a></li>
+    <li><a href="#CreateCompletionRequest_prompt"><code>CreateCompletionRequest_prompt</code> - </a></li>
+    <li><a href="#CreateCompletionRequest_stop"><code>CreateCompletionRequest_stop</code> - </a></li>
+    <li><a href="#CreateCompletionResponse"><code>CreateCompletionResponse</code> - </a></li>
+    <li><a href="#CreateCompletionResponse_choices_inner"><code>CreateCompletionResponse_choices_inner</code> - </a></li>
+    <li><a href="#CreateCompletionResponse_choices_inner_logprobs"><code>CreateCompletionResponse_choices_inner_logprobs</code> - </a></li>
+    <li><a href="#CreateCompletionResponse_usage"><code>CreateCompletionResponse_usage</code> - </a></li>
+    <li><a href="#CreateEditRequest"><code>CreateEditRequest</code> - </a></li>
+    <li><a href="#CreateEditRequest_model"><code>CreateEditRequest_model</code> - </a></li>
+    <li><a href="#CreateEditResponse"><code>CreateEditResponse</code> - </a></li>
+    <li><a href="#CreateEditResponse_choices_inner"><code>CreateEditResponse_choices_inner</code> - </a></li>
+    <li><a href="#CreateEmbeddingRequest"><code>CreateEmbeddingRequest</code> - </a></li>
+    <li><a href="#CreateEmbeddingRequest_input"><code>CreateEmbeddingRequest_input</code> - </a></li>
+    <li><a href="#CreateEmbeddingRequest_model"><code>CreateEmbeddingRequest_model</code> - </a></li>
+    <li><a href="#CreateEmbeddingResponse"><code>CreateEmbeddingResponse</code> - </a></li>
+    <li><a href="#CreateEmbeddingResponse_data_inner"><code>CreateEmbeddingResponse_data_inner</code> - </a></li>
+    <li><a href="#CreateEmbeddingResponse_usage"><code>CreateEmbeddingResponse_usage</code> - </a></li>
+    <li><a href="#CreateFineTuneRequest"><code>CreateFineTuneRequest</code> - </a></li>
+    <li><a href="#CreateFineTuneRequest_model"><code>CreateFineTuneRequest_model</code> - </a></li>
+    <li><a href="#CreateImageRequest"><code>CreateImageRequest</code> - </a></li>
+    <li><a href="#CreateModerationRequest"><code>CreateModerationRequest</code> - </a></li>
+    <li><a href="#CreateModerationRequest_input"><code>CreateModerationRequest_input</code> - </a></li>
+    <li><a href="#CreateModerationRequest_model"><code>CreateModerationRequest_model</code> - </a></li>
+    <li><a href="#CreateModerationResponse"><code>CreateModerationResponse</code> - </a></li>
+    <li><a href="#CreateModerationResponse_results_inner"><code>CreateModerationResponse_results_inner</code> - </a></li>
+    <li><a href="#CreateModerationResponse_results_inner_categories"><code>CreateModerationResponse_results_inner_categories</code> - </a></li>
+    <li><a href="#CreateModerationResponse_results_inner_category_scores"><code>CreateModerationResponse_results_inner_category_scores</code> - </a></li>
+    <li><a href="#CreateTranscriptionRequest_model"><code>CreateTranscriptionRequest_model</code> - </a></li>
+    <li><a href="#CreateTranscriptionResponse"><code>CreateTranscriptionResponse</code> - </a></li>
+    <li><a href="#CreateTranslationResponse"><code>CreateTranslationResponse</code> - </a></li>
+    <li><a href="#DeleteFileResponse"><code>DeleteFileResponse</code> - </a></li>
+    <li><a href="#DeleteModelResponse"><code>DeleteModelResponse</code> - </a></li>
+    <li><a href="#Error"><code>Error</code> - </a></li>
+    <li><a href="#ErrorResponse"><code>ErrorResponse</code> - </a></li>
+    <li><a href="#FineTune"><code>FineTune</code> - FineTune</a></li>
+    <li><a href="#FineTuneEvent"><code>FineTuneEvent</code> - FineTuneEvent</a></li>
+    <li><a href="#ImagesResponse"><code>ImagesResponse</code> - </a></li>
+    <li><a href="#ImagesResponse_data_inner"><code>ImagesResponse_data_inner</code> - </a></li>
+    <li><a href="#ListFilesResponse"><code>ListFilesResponse</code> - </a></li>
+    <li><a href="#ListFineTuneEventsResponse"><code>ListFineTuneEventsResponse</code> - </a></li>
+    <li><a href="#ListFineTunesResponse"><code>ListFineTunesResponse</code> - </a></li>
+    <li><a href="#ListModelsResponse"><code>ListModelsResponse</code> - </a></li>
+    <li><a href="#Model"><code>Model</code> - Model</a></li>
+    <li><a href="#OpenAIFile"><code>OpenAIFile</code> - OpenAIFile</a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="ChatCompletionFunctions"><code>ChatCompletionFunctions</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The description of what the function does. </div>
+<div class="param">parameters (optional)</div><div class="param-desc"><span class="param-type"><a href="#AnyType">map[String, oas_any_type_not_mapped]</a></span> The parameters the functions accepts, described as a JSON Schema object. See the <a href="/docs/guides/gpt/function-calling">guide</a> for examples, and the <a href="https://json-schema.org/understanding-json-schema/">JSON Schema reference</a> for documentation about the format. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ChatCompletionRequestMessage"><code>ChatCompletionRequestMessage</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">role </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The role of the messages author. One of <code>system</code>, <code>user</code>, <code>assistant</code>, or <code>function</code>. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">system</div><div class="param-enum">user</div><div class="param-enum">assistant</div><div class="param-enum">function</div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The contents of the message. <code>content</code> is required for all messages except assistant messages with function calls. </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the author of this message. <code>name</code> is required if role is <code>function</code>, and it should be the name of the function whose response is in the <code>content</code>. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters. </div>
+<div class="param">function_call (optional)</div><div class="param-desc"><span class="param-type"><a href="#ChatCompletionRequestMessage_function_call">ChatCompletionRequestMessage_function_call</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ChatCompletionRequestMessage_function_call"><code>ChatCompletionRequestMessage_function_call</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The name and arguments of a function that should be called, as generated by the model.</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the function to call. </div>
+<div class="param">arguments (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ChatCompletionResponseMessage"><code>ChatCompletionResponseMessage</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">role </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The role of the author of this message. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">system</div><div class="param-enum">user</div><div class="param-enum">assistant</div><div class="param-enum">function</div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The contents of the message. </div>
+<div class="param">function_call (optional)</div><div class="param-desc"><span class="param-type"><a href="#ChatCompletionRequestMessage_function_call">ChatCompletionRequestMessage_function_call</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ChatCompletionStreamResponseDelta"><code>ChatCompletionStreamResponseDelta</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">role (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The role of the author of this message. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">system</div><div class="param-enum">user</div><div class="param-enum">assistant</div><div class="param-enum">function</div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The contents of the chunk message. </div>
+<div class="param">function_call (optional)</div><div class="param-desc"><span class="param-type"><a href="#ChatCompletionRequestMessage_function_call">ChatCompletionRequestMessage_function_call</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateChatCompletionRequest"><code>CreateChatCompletionRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#CreateChatCompletionRequest_model">CreateChatCompletionRequest_model</a></span>  </div>
+<div class="param">messages </div><div class="param-desc"><span class="param-type"><a href="#ChatCompletionRequestMessage">array[ChatCompletionRequestMessage]</a></span> A list of messages comprising the conversation so far. <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb">Example Python code</a>. </div>
+<div class="param">functions (optional)</div><div class="param-desc"><span class="param-type"><a href="#ChatCompletionFunctions">array[ChatCompletionFunctions]</a></span> A list of functions the model may generate JSON inputs for. </div>
+<div class="param">function_call (optional)</div><div class="param-desc"><span class="param-type"><a href="#CreateChatCompletionRequest_function_call">CreateChatCompletionRequest_function_call</a></span>  </div>
+<div class="param">temperature (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.</p>
+<p>We generally recommend altering this or <code>top_p</code> but not both.</p>
+ </div>
+<div class="param">top_p (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.</p>
+<p>We generally recommend altering this or <code>temperature</code> but not both.</p>
+ </div>
+<div class="param">n (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> How many chat completion choices to generate for each input message. </div>
+<div class="param">stream (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format">server-sent events</a> as they become available, with the stream terminated by a <code>data: [DONE]</code> message. <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb">Example Python code</a>. </div>
+<div class="param">stop (optional)</div><div class="param-desc"><span class="param-type"><a href="#CreateChatCompletionRequest_stop">CreateChatCompletionRequest_stop</a></span>  </div>
+<div class="param">max_tokens (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> <p>The maximum number of <a href="/tokenizer">tokens</a> to generate in the chat completion.</p>
+<p>The total length of input tokens and generated tokens is limited by the model's context length. <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb">Example Python code</a> for counting tokens.</p>
+ </div>
+<div class="param">presence_penalty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.</p>
+<p><a href="/docs/api-reference/parameter-details">See more information about frequency and presence penalties.</a></p>
+ </div>
+<div class="param">frequency_penalty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.</p>
+<p><a href="/docs/api-reference/parameter-details">See more information about frequency and presence penalties.</a></p>
+ </div>
+<div class="param">logit_bias (optional)</div><div class="param-desc"><span class="param-type"><a href="#">Object</a></span> <p>Modify the likelihood of specified tokens appearing in the completion.</p>
+<p>Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.</p>
+ </div>
+<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. <a href="/docs/guides/safety-best-practices/end-user-ids">Learn more</a>. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateChatCompletionRequest_function_call"><code>CreateChatCompletionRequest_function_call</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Controls how the model responds to function calls. &quot;none&quot; means the model does not call a function, and responds to the end-user. &quot;auto&quot; means the model can pick between an end-user or calling a function.  Specifying a particular function via <code>{&quot;name&quot;:\ &quot;my_function&quot;}</code> forces the model to call that function. &quot;none&quot; is the default when no functions are present. &quot;auto&quot; is the default if functions are present.</div>
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the function to call. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateChatCompletionRequest_function_call_oneOf"><code>CreateChatCompletionRequest_function_call_oneOf</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the function to call. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateChatCompletionRequest_model"><code>CreateChatCompletionRequest_model</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>ID of the model to use. See the <a href="/docs/models/model-endpoint-compatibility">model endpoint compatibility</a> table for details on which models work with the Chat API.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateChatCompletionRequest_stop"><code>CreateChatCompletionRequest_stop</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Up to 4 sequences where the API will stop generating further tokens.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateChatCompletionResponse"><code>CreateChatCompletionResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">choices </div><div class="param-desc"><span class="param-type"><a href="#CreateChatCompletionResponse_choices_inner">array[CreateChatCompletionResponse_choices_inner]</a></span>  </div>
+<div class="param">usage (optional)</div><div class="param-desc"><span class="param-type"><a href="#CreateCompletionResponse_usage">CreateCompletionResponse_usage</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateChatCompletionResponse_choices_inner"><code>CreateChatCompletionResponse_choices_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">index (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#ChatCompletionResponseMessage">ChatCompletionResponseMessage</a></span>  </div>
+<div class="param">finish_reason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">stop</div><div class="param-enum">length</div><div class="param-enum">function_call</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateChatCompletionStreamResponse"><code>CreateChatCompletionStreamResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">choices </div><div class="param-desc"><span class="param-type"><a href="#CreateChatCompletionStreamResponse_choices_inner">array[CreateChatCompletionStreamResponse_choices_inner]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateChatCompletionStreamResponse_choices_inner"><code>CreateChatCompletionStreamResponse_choices_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">index (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">delta (optional)</div><div class="param-desc"><span class="param-type"><a href="#ChatCompletionStreamResponseDelta">ChatCompletionStreamResponseDelta</a></span>  </div>
+<div class="param">finish_reason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">stop</div><div class="param-enum">length</div><div class="param-enum">function_call</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateCompletionRequest"><code>CreateCompletionRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#CreateCompletionRequest_model">CreateCompletionRequest_model</a></span>  </div>
+<div class="param">prompt </div><div class="param-desc"><span class="param-type"><a href="#CreateCompletionRequest_prompt">CreateCompletionRequest_prompt</a></span>  </div>
+<div class="param">suffix (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The suffix that comes after a completion of inserted text. </div>
+<div class="param">max_tokens (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> <p>The maximum number of <a href="/tokenizer">tokens</a> to generate in the completion.</p>
+<p>The token count of your prompt plus <code>max_tokens</code> cannot exceed the model's context length. <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb">Example Python code</a> for counting tokens.</p>
+ </div>
+<div class="param">temperature (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.</p>
+<p>We generally recommend altering this or <code>top_p</code> but not both.</p>
+ </div>
+<div class="param">top_p (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.</p>
+<p>We generally recommend altering this or <code>temperature</code> but not both.</p>
+ </div>
+<div class="param">n (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> <p>How many completions to generate for each prompt.</p>
+<p><strong>Note:</strong> Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for <code>max_tokens</code> and <code>stop</code>.</p>
+ </div>
+<div class="param">stream (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Whether to stream back partial progress. If set, tokens will be sent as data-only <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format">server-sent events</a> as they become available, with the stream terminated by a <code>data: [DONE]</code> message. <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb">Example Python code</a>. </div>
+<div class="param">logprobs (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> <p>Include the log probabilities on the <code>logprobs</code> most likely tokens, as well the chosen tokens. For example, if <code>logprobs</code> is 5, the API will return a list of the 5 most likely tokens. The API will always return the <code>logprob</code> of the sampled token, so there may be up to <code>logprobs+1</code> elements in the response.</p>
+<p>The maximum value for <code>logprobs</code> is 5.</p>
+ </div>
+<div class="param">echo (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Echo back the prompt in addition to the completion </div>
+<div class="param">stop (optional)</div><div class="param-desc"><span class="param-type"><a href="#CreateCompletionRequest_stop">CreateCompletionRequest_stop</a></span>  </div>
+<div class="param">presence_penalty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.</p>
+<p><a href="/docs/api-reference/parameter-details">See more information about frequency and presence penalties.</a></p>
+ </div>
+<div class="param">frequency_penalty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.</p>
+<p><a href="/docs/api-reference/parameter-details">See more information about frequency and presence penalties.</a></p>
+ </div>
+<div class="param">best_of (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> <p>Generates <code>best_of</code> completions server-side and returns the &quot;best&quot; (the one with the highest log probability per token). Results cannot be streamed.</p>
+<p>When used with <code>n</code>, <code>best_of</code> controls the number of candidate completions and <code>n</code> specifies how many to return – <code>best_of</code> must be greater than <code>n</code>.</p>
+<p><strong>Note:</strong> Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for <code>max_tokens</code> and <code>stop</code>.</p>
+ </div>
+<div class="param">logit_bias (optional)</div><div class="param-desc"><span class="param-type"><a href="#">Object</a></span> <p>Modify the likelihood of specified tokens appearing in the completion.</p>
+<p>Accepts a json object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this <a href="/tokenizer?view=bpe">tokenizer tool</a> (which works for both GPT-2 and GPT-3) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.</p>
+<p>As an example, you can pass <code>{&quot;50256&quot;: -100}</code> to prevent the &lt;|endoftext|&gt; token from being generated.</p>
+ </div>
+<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. <a href="/docs/guides/safety-best-practices/end-user-ids">Learn more</a>. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateCompletionRequest_model"><code>CreateCompletionRequest_model</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>ID of the model to use. You can use the <a href="/docs/api-reference/models/list">List models</a> API to see all of your available models, or see our <a href="/docs/models/overview">Model overview</a> for descriptions of them.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateCompletionRequest_prompt"><code>CreateCompletionRequest_prompt</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'><p>The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.</p>
+<p>Note that &lt;|endoftext|&gt; is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document.</p>
+</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateCompletionRequest_stop"><code>CreateCompletionRequest_stop</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateCompletionResponse"><code>CreateCompletionResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">choices </div><div class="param-desc"><span class="param-type"><a href="#CreateCompletionResponse_choices_inner">array[CreateCompletionResponse_choices_inner]</a></span>  </div>
+<div class="param">usage (optional)</div><div class="param-desc"><span class="param-type"><a href="#CreateCompletionResponse_usage">CreateCompletionResponse_usage</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateCompletionResponse_choices_inner"><code>CreateCompletionResponse_choices_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">text </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">index </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">logprobs </div><div class="param-desc"><span class="param-type"><a href="#CreateCompletionResponse_choices_inner_logprobs">CreateCompletionResponse_choices_inner_logprobs</a></span>  </div>
+<div class="param">finish_reason </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">stop</div><div class="param-enum">length</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateCompletionResponse_choices_inner_logprobs"><code>CreateCompletionResponse_choices_inner_logprobs</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">tokens (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">token_logprobs (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">array[BigDecimal]</a></span>  </div>
+<div class="param">top_logprobs (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">array[Object]</a></span>  </div>
+<div class="param">text_offset (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateCompletionResponse_usage"><code>CreateCompletionResponse_usage</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">prompt_tokens </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">completion_tokens </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">total_tokens </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEditRequest"><code>CreateEditRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#CreateEditRequest_model">CreateEditRequest_model</a></span>  </div>
+<div class="param">input (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The input text to use as a starting point for the edit. </div>
+<div class="param">instruction </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The instruction that tells the model how to edit the prompt. </div>
+<div class="param">n (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> How many edits to generate for the input and instruction. </div>
+<div class="param">temperature (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.</p>
+<p>We generally recommend altering this or <code>top_p</code> but not both.</p>
+ </div>
+<div class="param">top_p (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.</p>
+<p>We generally recommend altering this or <code>temperature</code> but not both.</p>
+ </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEditRequest_model"><code>CreateEditRequest_model</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>ID of the model to use. You can use the <code>text-davinci-edit-001</code> or <code>code-davinci-edit-001</code> model with this endpoint.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEditResponse"><code>CreateEditResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">choices </div><div class="param-desc"><span class="param-type"><a href="#CreateEditResponse_choices_inner">array[CreateEditResponse_choices_inner]</a></span>  </div>
+<div class="param">usage </div><div class="param-desc"><span class="param-type"><a href="#CreateCompletionResponse_usage">CreateCompletionResponse_usage</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEditResponse_choices_inner"><code>CreateEditResponse_choices_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">index (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">logprobs (optional)</div><div class="param-desc"><span class="param-type"><a href="#CreateCompletionResponse_choices_inner_logprobs">CreateCompletionResponse_choices_inner_logprobs</a></span>  </div>
+<div class="param">finish_reason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">stop</div><div class="param-enum">length</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEmbeddingRequest"><code>CreateEmbeddingRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#CreateEmbeddingRequest_model">CreateEmbeddingRequest_model</a></span>  </div>
+<div class="param">input </div><div class="param-desc"><span class="param-type"><a href="#CreateEmbeddingRequest_input">CreateEmbeddingRequest_input</a></span>  </div>
+<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. <a href="/docs/guides/safety-best-practices/end-user-ids">Learn more</a>. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEmbeddingRequest_input"><code>CreateEmbeddingRequest_input</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. Each input must not exceed the max input tokens for the model (8191 tokens for <code>text-embedding-ada-002</code>). <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb">Example Python code</a> for counting tokens.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEmbeddingRequest_model"><code>CreateEmbeddingRequest_model</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>ID of the model to use. You can use the <a href="/docs/api-reference/models/list">List models</a> API to see all of your available models, or see our <a href="/docs/models/overview">Model overview</a> for descriptions of them.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEmbeddingResponse"><code>CreateEmbeddingResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#CreateEmbeddingResponse_data_inner">array[CreateEmbeddingResponse_data_inner]</a></span>  </div>
+<div class="param">usage </div><div class="param-desc"><span class="param-type"><a href="#CreateEmbeddingResponse_usage">CreateEmbeddingResponse_usage</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEmbeddingResponse_data_inner"><code>CreateEmbeddingResponse_data_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">index </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">embedding </div><div class="param-desc"><span class="param-type"><a href="#number">array[BigDecimal]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateEmbeddingResponse_usage"><code>CreateEmbeddingResponse_usage</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">prompt_tokens </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">total_tokens </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateFineTuneRequest"><code>CreateFineTuneRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">training_file </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> <p>The ID of an uploaded file that contains training data.</p>
+<p>See <a href="/docs/api-reference/files/upload">upload file</a> for how to upload a file.</p>
+<p>Your dataset must be formatted as a JSONL file, where each training
+example is a JSON object with the keys &quot;prompt&quot; and &quot;completion&quot;.
+Additionally, you must upload your file with the purpose <code>fine-tune</code>.</p>
+<p>See the <a href="/docs/guides/fine-tuning/creating-training-data">fine-tuning guide</a> for more details.</p>
+ </div>
+<div class="param">validation_file (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> <p>The ID of an uploaded file that contains validation data.</p>
+<p>If you provide this file, the data is used to generate validation
+metrics periodically during fine-tuning. These metrics can be viewed in
+the <a href="/docs/guides/fine-tuning/analyzing-your-fine-tuned-model">fine-tuning results file</a>.
+Your train and validation data should be mutually exclusive.</p>
+<p>Your dataset must be formatted as a JSONL file, where each validation
+example is a JSON object with the keys &quot;prompt&quot; and &quot;completion&quot;.
+Additionally, you must upload your file with the purpose <code>fine-tune</code>.</p>
+<p>See the <a href="/docs/guides/fine-tuning/creating-training-data">fine-tuning guide</a> for more details.</p>
+ </div>
+<div class="param">model (optional)</div><div class="param-desc"><span class="param-type"><a href="#CreateFineTuneRequest_model">CreateFineTuneRequest_model</a></span>  </div>
+<div class="param">n_epochs (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The number of epochs to train the model for. An epoch refers to one
+full cycle through the training dataset. </div>
+<div class="param">batch_size (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> <p>The batch size to use for training. The batch size is the number of
+training examples used to train a single forward and backward pass.</p>
+<p>By default, the batch size will be dynamically configured to be
+~0.2% of the number of examples in the training set, capped at 256 -
+in general, we've found that larger batch sizes tend to work better
+for larger datasets.</p>
+ </div>
+<div class="param">learning_rate_multiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>The learning rate multiplier to use for training.
+The fine-tuning learning rate is the original learning rate used for
+pretraining multiplied by this value.</p>
+<p>By default, the learning rate multiplier is the 0.05, 0.1, or 0.2
+depending on final <code>batch_size</code> (larger learning rates tend to
+perform better with larger batch sizes). We recommend experimenting
+with values in the range 0.02 to 0.2 to see what produces the best
+results.</p>
+ </div>
+<div class="param">prompt_loss_weight (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> <p>The weight to use for loss on the prompt tokens. This controls how
+much the model tries to learn to generate the prompt (as compared
+to the completion which always has a weight of 1.0), and can add
+a stabilizing effect to training when completions are short.</p>
+<p>If prompts are extremely long (relative to completions), it may make
+sense to reduce this weight so as to avoid over-prioritizing
+learning the prompt.</p>
+ </div>
+<div class="param">compute_classification_metrics (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> <p>If set, we calculate classification-specific metrics such as accuracy
+and F-1 score using the validation set at the end of every epoch.
+These metrics can be viewed in the <a href="/docs/guides/fine-tuning/analyzing-your-fine-tuned-model">results file</a>.</p>
+<p>In order to compute classification metrics, you must provide a
+<code>validation_file</code>. Additionally, you must
+specify <code>classification_n_classes</code> for multiclass classification or
+<code>classification_positive_class</code> for binary classification.</p>
+ </div>
+<div class="param">classification_n_classes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> <p>The number of classes in a classification task.</p>
+<p>This parameter is required for multiclass classification.</p>
+ </div>
+<div class="param">classification_positive_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> <p>The positive class in binary classification.</p>
+<p>This parameter is needed to generate precision, recall, and F1
+metrics when doing binary classification.</p>
+ </div>
+<div class="param">classification_betas (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">array[BigDecimal]</a></span> <p>If this is provided, we calculate F-beta scores at the specified
+beta values. The F-beta score is a generalization of F-1 score.
+This is only used for binary classification.</p>
+<p>With a beta of 1 (i.e. the F-1 score), precision and recall are
+given the same weight. A larger beta score puts more weight on
+recall and less on precision. A smaller beta score puts more weight
+on precision and less on recall.</p>
+ </div>
+<div class="param">suffix (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> <p>A string of up to 40 characters that will be added to your fine-tuned model name.</p>
+<p>For example, a <code>suffix</code> of &quot;custom-model-name&quot; would produce a model name like <code>ada:ft-your-org:custom-model-name-2022-02-15-04-21-04</code>.</p>
+ </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateFineTuneRequest_model"><code>CreateFineTuneRequest_model</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The name of the base model to fine-tune. You can select one of &quot;ada&quot;,
+&quot;babbage&quot;, &quot;curie&quot;, &quot;davinci&quot;, or a fine-tuned model created after 2022-04-21.
+To learn more about these models, see the
+<a href="https://platform.openai.com/docs/models">Models</a> documentation.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateImageRequest"><code>CreateImageRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">prompt </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A text description of the desired image(s). The maximum length is 1000 characters. </div>
+<div class="param">n (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The number of images to generate. Must be between 1 and 10. </div>
+<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The size of the generated images. Must be one of <code>256x256</code>, <code>512x512</code>, or <code>1024x1024</code>. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">256x256</div><div class="param-enum">512x512</div><div class="param-enum">1024x1024</div>
+<div class="param">response_format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The format in which the generated images are returned. Must be one of <code>url</code> or <code>b64_json</code>. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">url</div><div class="param-enum">b64_json</div>
+<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. <a href="/docs/guides/safety-best-practices/end-user-ids">Learn more</a>. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateModerationRequest"><code>CreateModerationRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">input </div><div class="param-desc"><span class="param-type"><a href="#CreateModerationRequest_input">CreateModerationRequest_input</a></span>  </div>
+<div class="param">model (optional)</div><div class="param-desc"><span class="param-type"><a href="#CreateModerationRequest_model">CreateModerationRequest_model</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateModerationRequest_input"><code>CreateModerationRequest_input</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The input text to classify</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateModerationRequest_model"><code>CreateModerationRequest_model</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'><p>Two content moderations models are available: <code>text-moderation-stable</code> and <code>text-moderation-latest</code>.</p>
+<p>The default is <code>text-moderation-latest</code> which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use <code>text-moderation-stable</code>, we will provide advanced notice before updating the model. Accuracy of <code>text-moderation-stable</code> may be slightly lower than for <code>text-moderation-latest</code>.</p>
+</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateModerationResponse"><code>CreateModerationResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">results </div><div class="param-desc"><span class="param-type"><a href="#CreateModerationResponse_results_inner">array[CreateModerationResponse_results_inner]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateModerationResponse_results_inner"><code>CreateModerationResponse_results_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">flagged </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">categories </div><div class="param-desc"><span class="param-type"><a href="#CreateModerationResponse_results_inner_categories">CreateModerationResponse_results_inner_categories</a></span>  </div>
+<div class="param">category_scores </div><div class="param-desc"><span class="param-type"><a href="#CreateModerationResponse_results_inner_category_scores">CreateModerationResponse_results_inner_category_scores</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateModerationResponse_results_inner_categories"><code>CreateModerationResponse_results_inner_categories</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">hate </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">hateSlashthreatening </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">selfMinusharm </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">sexual </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">sexualSlashminors </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">violence </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">violenceSlashgraphic </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateModerationResponse_results_inner_category_scores"><code>CreateModerationResponse_results_inner_category_scores</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">hate </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">hateSlashthreatening </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">selfMinusharm </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">sexual </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">sexualSlashminors </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">violence </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">violenceSlashgraphic </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateTranscriptionRequest_model"><code>CreateTranscriptionRequest_model</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>ID of the model to use. Only <code>whisper-1</code> is currently available.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateTranscriptionResponse"><code>CreateTranscriptionResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">text </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateTranslationResponse"><code>CreateTranslationResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">text </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DeleteFileResponse"><code>DeleteFileResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deleted </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DeleteModelResponse"><code>DeleteModelResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deleted </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Error"><code>Error</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">param </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ErrorResponse"><code>ErrorResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">error </div><div class="param-desc"><span class="param-type"><a href="#Error">Error</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FineTune"><code>FineTune</code> - FineTune</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">created_at </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">updated_at </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">model </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fine_tuned_model </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">organization_id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">hyperparams </div><div class="param-desc"><span class="param-type"><a href="#">Object</a></span>  </div>
+<div class="param">training_files </div><div class="param-desc"><span class="param-type"><a href="#OpenAIFile">array[OpenAIFile]</a></span>  </div>
+<div class="param">validation_files </div><div class="param-desc"><span class="param-type"><a href="#OpenAIFile">array[OpenAIFile]</a></span>  </div>
+<div class="param">result_files </div><div class="param-desc"><span class="param-type"><a href="#OpenAIFile">array[OpenAIFile]</a></span>  </div>
+<div class="param">events (optional)</div><div class="param-desc"><span class="param-type"><a href="#FineTuneEvent">array[FineTuneEvent]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FineTuneEvent"><code>FineTuneEvent</code> - FineTuneEvent</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">created_at </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">level </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ImagesResponse"><code>ImagesResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#ImagesResponse_data_inner">array[ImagesResponse_data_inner]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ImagesResponse_data_inner"><code>ImagesResponse_data_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">b64_json (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ListFilesResponse"><code>ListFilesResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#OpenAIFile">array[OpenAIFile]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ListFineTuneEventsResponse"><code>ListFineTuneEventsResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#FineTuneEvent">array[FineTuneEvent]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ListFineTunesResponse"><code>ListFineTunesResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#FineTune">array[FineTune]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ListModelsResponse"><code>ListModelsResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#Model">array[Model]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Model"><code>Model</code> - Model</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">owned_by </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="OpenAIFile"><code>OpenAIFile</code> - OpenAIFile</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">object </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">bytes </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">created_at </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">filename </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">purpose </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status_details (optional)</div><div class="param-desc"><span class="param-type"><a href="#">Object</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

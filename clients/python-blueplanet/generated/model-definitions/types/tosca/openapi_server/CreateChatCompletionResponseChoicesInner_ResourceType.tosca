@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateChatCompletionResponseChoicesInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateChatCompletionResponseChoicesInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionResponseMessage = openapi_server.resourceTypes.ChatCompletionResponseMessage
+}
+resourceTypes {
+
+  CreateChatCompletionResponseChoicesInner {
+    title = CreateChatCompletionResponseChoicesInner
+    description = CreateChatCompletionResponseChoicesInner
+    derivedFrom = Root
+    properties {
+        index {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        message {
+          type = ChatCompletionResponseMessage
+          description = ""
+          optional = false
+        }
+        finish_reason {
+          type =  string
+          description = ""
+          enum = ["stop", "length", "function_call"]
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateChatCompletionResponseChoicesInner {
+    title = CreateChatCompletionResponseChoicesInner
+    description = CreateChatCompletionResponseChoicesInner
+    implements = openapi_server.resourceTypes.CreateChatCompletionResponseChoicesInner
+
+  }
+}

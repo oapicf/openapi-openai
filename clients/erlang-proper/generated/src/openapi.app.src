@@ -1,0 +1,21 @@
+{ application, openapi
+, [ {description, "APIs for sampling from and fine-tuning language models"}
+  , {vsn, "0.1.0"}
+  , {registered, []}
+  , { applications
+    , [ kernel
+      , stdlib
+      , ssl
+      , jsx
+      ]
+    }
+  , { env
+    , [ {host, "http://api.openai.com"}
+      , {basic_auth, {"admin", "admin"}}
+      ]
+    }
+  , {modules, []}
+  , {maintainers, []}
+  , {licenses, []}
+  , {links, ["https://github.com/oapicf/openapi-openai"]}
+]}.

@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateEmbeddingRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateEmbeddingRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CreateEmbeddingRequestInput = openapi_server.resourceTypes.CreateEmbeddingRequestInput
+  CreateEmbeddingRequestModel = openapi_server.resourceTypes.CreateEmbeddingRequestModel
+}
+resourceTypes {
+
+  CreateEmbeddingRequest {
+    title = CreateEmbeddingRequest
+    description = CreateEmbeddingRequest
+    derivedFrom = Root
+    properties {
+        model {
+          type = CreateEmbeddingRequestModel
+          description = ""
+          optional = true
+        }
+        input {
+          type = CreateEmbeddingRequestInput
+          description = ""
+          optional = true
+        }
+        user {
+          type =  string
+          description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateEmbeddingRequest {
+    title = CreateEmbeddingRequest
+    description = CreateEmbeddingRequest
+    implements = openapi_server.resourceTypes.CreateEmbeddingRequest
+
+  }
+}

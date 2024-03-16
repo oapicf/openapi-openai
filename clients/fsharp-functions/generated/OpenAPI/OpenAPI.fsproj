@@ -1,0 +1,89 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <Description>OpenAPI</Description>
+    <Copyright>OpenAPI</Copyright>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AzureFunctionsVersion>v2</AzureFunctionsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="src/model/OpenAIFile.fs" />
+    <Compile Include="src/model/Model.fs" />
+    <Compile Include="src/model/ListModelsResponse.fs" />
+    <Compile Include="src/model/FineTuneEvent.fs" />
+    <Compile Include="src/model/FineTune.fs" />
+    <Compile Include="src/model/ListFilesResponse.fs" />
+    <Compile Include="src/model/ImagesResponseDataInner.fs" />
+    <Compile Include="src/model/ImagesResponse.fs" />
+    <Compile Include="src/model/ListFineTuneEventsResponse.fs" />
+    <Compile Include="src/model/ListFineTunesResponse.fs" />
+    <Compile Include="src/model/Error.fs" />
+    <Compile Include="src/model/ErrorResponse.fs" />
+    <Compile Include="src/model/DeleteModelResponse.fs" />
+    <Compile Include="src/model/DeleteFileResponse.fs" />
+    <Compile Include="src/model/CreateTranslationResponse.fs" />
+    <Compile Include="src/model/CreateTranscriptionResponse.fs" />
+    <Compile Include="src/model/CreateTranscriptionRequestModel.fs" />
+    <Compile Include="src/model/CreateModerationResponseResultsInnerCategoryScores.fs" />
+    <Compile Include="src/model/CreateModerationResponseResultsInnerCategories.fs" />
+    <Compile Include="src/model/CreateModerationResponseResultsInner.fs" />
+    <Compile Include="src/model/CreateModerationResponse.fs" />
+    <Compile Include="src/model/CreateModerationRequestModel.fs" />
+    <Compile Include="src/model/CreateModerationRequestInput.fs" />
+    <Compile Include="src/model/CreateModerationRequest.fs" />
+    <Compile Include="src/model/CreateImageRequest.fs" />
+    <Compile Include="src/model/CreateFineTuneRequestModel.fs" />
+    <Compile Include="src/model/CreateFineTuneRequest.fs" />
+    <Compile Include="src/model/CreateEmbeddingResponseUsage.fs" />
+    <Compile Include="src/model/CreateEmbeddingResponseDataInner.fs" />
+    <Compile Include="src/model/CreateEmbeddingResponse.fs" />
+    <Compile Include="src/model/CreateEmbeddingRequestModel.fs" />
+    <Compile Include="src/model/CreateEmbeddingRequestInput.fs" />
+    <Compile Include="src/model/CreateEmbeddingRequest.fs" />
+    <Compile Include="src/model/CreateCompletionResponseChoicesInnerLogprobs.fs" />
+    <Compile Include="src/model/CreateEditResponseChoicesInner.fs" />
+    <Compile Include="src/model/CreateEditRequestModel.fs" />
+    <Compile Include="src/model/CreateEditRequest.fs" />
+    <Compile Include="src/model/CreateCompletionResponseUsage.fs" />
+    <Compile Include="src/model/CreateEditResponse.fs" />
+    <Compile Include="src/model/CreateCompletionResponseChoicesInner.fs" />
+    <Compile Include="src/model/CreateCompletionResponse.fs" />
+    <Compile Include="src/model/CreateCompletionRequestStop.fs" />
+    <Compile Include="src/model/CreateCompletionRequestPrompt.fs" />
+    <Compile Include="src/model/CreateCompletionRequestModel.fs" />
+    <Compile Include="src/model/CreateCompletionRequest.fs" />
+    <Compile Include="src/model/ChatCompletionRequestMessageFunctionCall.fs" />
+    <Compile Include="src/model/ChatCompletionStreamResponseDelta.fs" />
+    <Compile Include="src/model/CreateChatCompletionStreamResponseChoicesInner.fs" />
+    <Compile Include="src/model/ChatCompletionResponseMessage.fs" />
+    <Compile Include="src/model/CreateChatCompletionRequestStop.fs" />
+    <Compile Include="src/model/CreateChatCompletionRequestModel.fs" />
+    <Compile Include="src/model/CreateChatCompletionRequestFunctionCallOneOf.fs" />
+    <Compile Include="src/model/CreateChatCompletionRequestFunctionCall.fs" />
+    <Compile Include="src/model/ChatCompletionFunctions.fs" />
+    <Compile Include="src/model/CreateChatCompletionResponseChoicesInner.fs" />
+    <Compile Include="src/model/CreateChatCompletionStreamResponse.fs" />
+    <Compile Include="src/model/CreateChatCompletionResponse.fs" />
+    <Compile Include="src/model/ChatCompletionRequestMessage.fs" />
+    <Compile Include="src/model/CreateChatCompletionRequest.fs" />
+    <Compile Include="src/api/OpenAIApiHandlerParams.fs" />
+    <Compile Include="src/api/OpenAIApiServiceInterface.fs" />
+    <Compile Include="src/impl/OpenAIApiService.fs" />
+    <Compile Include="src/api/OpenAIApiHandler.fs" />
+  </ItemGroup>
+
+</Project>

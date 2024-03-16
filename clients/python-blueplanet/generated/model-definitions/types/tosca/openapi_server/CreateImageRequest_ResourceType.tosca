@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateImageRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateImageRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateImageRequest {
+    title = CreateImageRequest
+    description = CreateImageRequest
+    derivedFrom = Root
+    properties {
+        prompt {
+          type =  string
+          description = "A text description of the desired image(s). The maximum length is 1000 characters."
+          optional = true
+        }
+        n {
+          type =  integer
+          description = "The number of images to generate. Must be between 1 and 10."
+          optional = false
+        }
+        size {
+          type =  string
+          description = "The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;."
+          enum = ["256x256", "512x512", "1024x1024"]
+          optional = false
+        }
+        response_format {
+          type =  string
+          description = "The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;."
+          enum = ["url", "b64_json"]
+          optional = false
+        }
+        user {
+          type =  string
+          description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateImageRequest {
+    title = CreateImageRequest
+    description = CreateImageRequest
+    implements = openapi_server.resourceTypes.CreateImageRequest
+
+  }
+}

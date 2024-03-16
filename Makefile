@@ -126,6 +126,7 @@ generate-all:
 		  --rm \
 		  -v $(APP_BASE_DIR):/local openapitools/openapi-generator-cli:v$(OPENAPI_GENERATOR_VERSION) \
 		  generate \
+			--skip-validate-spec \
 		  --input-spec /local/$(LOCAL_SPEC_PATH) \
 		  --config /local/clients/$$lang/conf.json \
 		  --generator-name $$lang \
@@ -141,6 +142,7 @@ generate-primary:
 		  --rm \
 		  -v $(APP_BASE_DIR):/local openapitools/openapi-generator-cli:v$(OPENAPI_GENERATOR_VERSION) \
 		  generate \
+			--skip-validate-spec \
 		  --input-spec /local/$(LOCAL_SPEC_PATH) \
 		  --config /local/clients/$$lang/conf.json \
 		  --generator-name $$lang \

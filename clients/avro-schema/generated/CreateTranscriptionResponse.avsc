@@ -1,0 +1,14 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateTranscriptionResponse",
+  "fields": [
+    {
+      "name": "text",
+      "type": "string",
+      "doc": ""
+    }
+  ]
+
+}

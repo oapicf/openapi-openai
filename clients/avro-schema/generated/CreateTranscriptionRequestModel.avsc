@@ -1,0 +1,9 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "ID of the model to use. Only `whisper-1` is currently available. ",
+  "name": "CreateTranscriptionRequestModel",
+  "fields": [
+  ]
+
+}

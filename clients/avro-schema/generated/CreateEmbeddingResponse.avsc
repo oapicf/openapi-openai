@@ -1,0 +1,32 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateEmbeddingResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "model",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.CreateEmbeddingResponseDataInner"
+      },
+      "doc": ""
+    },
+    {
+      "name": "usage",
+      "type": "model.CreateEmbeddingResponseUsage",
+      "doc": ""
+    }
+  ]
+
+}

@@ -1,0 +1,70 @@
+controllerPackage: org.openapitools.controllers
+modelPackage:  org.openapitools.model
+swaggerUrl: ./src/main/openapi/openapi.yaml
+modelMappings:
+  # to enable explicit mappings, use this syntax:
+  DefinitionFromSwaggerSpecification: fully.qualified.path.to.Model
+  ChatCompletionFunctions : org.openapitools.model.ChatCompletionFunctions
+ChatCompletionRequestMessage : org.openapitools.model.ChatCompletionRequestMessage
+ChatCompletionRequestMessageFunctionCall : org.openapitools.model.ChatCompletionRequestMessageFunctionCall
+ChatCompletionResponseMessage : org.openapitools.model.ChatCompletionResponseMessage
+ChatCompletionStreamResponseDelta : org.openapitools.model.ChatCompletionStreamResponseDelta
+CreateChatCompletionRequest : org.openapitools.model.CreateChatCompletionRequest
+CreateChatCompletionRequestFunctionCall : org.openapitools.model.CreateChatCompletionRequestFunctionCall
+CreateChatCompletionRequestFunctionCallOneOf : org.openapitools.model.CreateChatCompletionRequestFunctionCallOneOf
+CreateChatCompletionRequestModel : org.openapitools.model.CreateChatCompletionRequestModel
+CreateChatCompletionRequestStop : org.openapitools.model.CreateChatCompletionRequestStop
+CreateChatCompletionResponse : org.openapitools.model.CreateChatCompletionResponse
+CreateChatCompletionResponseChoicesInner : org.openapitools.model.CreateChatCompletionResponseChoicesInner
+CreateChatCompletionStreamResponse : org.openapitools.model.CreateChatCompletionStreamResponse
+CreateChatCompletionStreamResponseChoicesInner : org.openapitools.model.CreateChatCompletionStreamResponseChoicesInner
+CreateCompletionRequest : org.openapitools.model.CreateCompletionRequest
+CreateCompletionRequestModel : org.openapitools.model.CreateCompletionRequestModel
+CreateCompletionRequestPrompt : org.openapitools.model.CreateCompletionRequestPrompt
+CreateCompletionRequestStop : org.openapitools.model.CreateCompletionRequestStop
+CreateCompletionResponse : org.openapitools.model.CreateCompletionResponse
+CreateCompletionResponseChoicesInner : org.openapitools.model.CreateCompletionResponseChoicesInner
+CreateCompletionResponseChoicesInnerLogprobs : org.openapitools.model.CreateCompletionResponseChoicesInnerLogprobs
+CreateCompletionResponseUsage : org.openapitools.model.CreateCompletionResponseUsage
+CreateEditRequest : org.openapitools.model.CreateEditRequest
+CreateEditRequestModel : org.openapitools.model.CreateEditRequestModel
+CreateEditResponse : org.openapitools.model.CreateEditResponse
+CreateEditResponseChoicesInner : org.openapitools.model.CreateEditResponseChoicesInner
+CreateEmbeddingRequest : org.openapitools.model.CreateEmbeddingRequest
+CreateEmbeddingRequestInput : org.openapitools.model.CreateEmbeddingRequestInput
+CreateEmbeddingRequestModel : org.openapitools.model.CreateEmbeddingRequestModel
+CreateEmbeddingResponse : org.openapitools.model.CreateEmbeddingResponse
+CreateEmbeddingResponseDataInner : org.openapitools.model.CreateEmbeddingResponseDataInner
+CreateEmbeddingResponseUsage : org.openapitools.model.CreateEmbeddingResponseUsage
+CreateFineTuneRequest : org.openapitools.model.CreateFineTuneRequest
+CreateFineTuneRequestModel : org.openapitools.model.CreateFineTuneRequestModel
+CreateImageRequest : org.openapitools.model.CreateImageRequest
+CreateModerationRequest : org.openapitools.model.CreateModerationRequest
+CreateModerationRequestInput : org.openapitools.model.CreateModerationRequestInput
+CreateModerationRequestModel : org.openapitools.model.CreateModerationRequestModel
+CreateModerationResponse : org.openapitools.model.CreateModerationResponse
+CreateModerationResponseResultsInner : org.openapitools.model.CreateModerationResponseResultsInner
+CreateModerationResponseResultsInnerCategories : org.openapitools.model.CreateModerationResponseResultsInnerCategories
+CreateModerationResponseResultsInnerCategoryScores : org.openapitools.model.CreateModerationResponseResultsInnerCategoryScores
+CreateTranscriptionRequestModel : org.openapitools.model.CreateTranscriptionRequestModel
+CreateTranscriptionResponse : org.openapitools.model.CreateTranscriptionResponse
+CreateTranslationResponse : org.openapitools.model.CreateTranslationResponse
+DeleteFileResponse : org.openapitools.model.DeleteFileResponse
+DeleteModelResponse : org.openapitools.model.DeleteModelResponse
+Error : org.openapitools.model.Error
+ErrorResponse : org.openapitools.model.ErrorResponse
+FineTune : org.openapitools.model.FineTune
+FineTuneEvent : org.openapitools.model.FineTuneEvent
+ImagesResponse : org.openapitools.model.ImagesResponse
+ImagesResponseDataInner : org.openapitools.model.ImagesResponseDataInner
+ListFilesResponse : org.openapitools.model.ListFilesResponse
+ListFineTuneEventsResponse : org.openapitools.model.ListFineTuneEventsResponse
+ListFineTunesResponse : org.openapitools.model.ListFineTunesResponse
+ListModelsResponse : org.openapitools.model.ListModelsResponse
+Model : org.openapitools.model.Model
+OpenAIFile : org.openapitools.model.OpenAIFile
+
+entityProcessors:
+  - json
+  - xml
+  - yaml

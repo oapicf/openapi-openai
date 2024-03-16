@@ -1,0 +1,19 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateEmbeddingResponseUsage",
+  "fields": [
+    {
+      "name": "prompt_tokens",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "total_tokens",
+      "type": "int",
+      "doc": ""
+    }
+  ]
+
+}

@@ -1,0 +1,23 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "hate" },
+      {"model": "hate_threatening" },
+      {"model": "self_harm" },
+      {"model": "sexual" },
+      {"model": "sexual_minors" },
+      {"model": "violence" },
+      {"model": "violence_graphic" },
+    ]
+  }]
+}

@@ -1,0 +1,52 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionRequestMessage"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionRequestMessage"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionRequestMessageFunctionCall = openapi_server.resourceTypes.ChatCompletionRequestMessageFunctionCall
+}
+resourceTypes {
+
+  ChatCompletionRequestMessage {
+    title = ChatCompletionRequestMessage
+    description = ChatCompletionRequestMessage
+    derivedFrom = Root
+    properties {
+        role {
+          type =  string
+          description = "The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;."
+          enum = ["system", "user", "assistant", "function"]
+          optional = true
+        }
+        content {
+          type =  string
+          description = "The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls."
+          optional = false
+        }
+        name {
+          type =  string
+          description = "The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters."
+          optional = false
+        }
+        function_call {
+          type = ChatCompletionRequestMessageFunctionCall
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionRequestMessage {
+    title = ChatCompletionRequestMessage
+    description = ChatCompletionRequestMessage
+    implements = openapi_server.resourceTypes.ChatCompletionRequestMessage
+
+  }
+}

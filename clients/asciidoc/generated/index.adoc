@@ -1,0 +1,4316 @@
+= OpenAI API
+blah+oapicf@cliffano.com
+2.0.0
+:toc: left
+:numbered:
+:toclevels: 4
+:source-highlighter: highlightjs
+:keywords: openapi, rest, OpenAI API
+:specDir: 
+:snippetDir: 
+:generator-template: v1 2019-12-20
+:info-url: https://github.com/oapicf/openapi-openai
+:app-name: OpenAI API
+
+[abstract]
+.Abstract
+APIs for sampling from and fine-tuning language models
+
+
+// markup not found, no include::{specDir}intro.adoc[opts=optional]
+
+
+
+== Endpoints
+
+
+[.OpenAI]
+=== OpenAI
+
+
+[.cancelFineTune]
+==== cancelFineTune
+
+`POST /fine-tunes/{fine_tune_id}/cancel`
+
+Immediately cancel a fine-tune job. 
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}fine-tunes/\{fine_tune_id\}/cancel/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| fine_tune_id
+| The ID of the fine-tune job to cancel  
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+<<FineTune>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<FineTune>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}fine-tunes/\{fine_tune_id\}/cancel/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}fine-tunes/\{fine_tune_id\}/cancel/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :fine-tunes/{fine_tune_id}/cancel/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}fine-tunes/\{fine_tune_id\}/cancel/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createChatCompletion]
+==== createChatCompletion
+
+`POST /chat/completions`
+
+Creates a model response for the given chat conversation.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}chat/completions/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| CreateChatCompletionRequest
+|  <<CreateChatCompletionRequest>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+<<CreateChatCompletionResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<CreateChatCompletionResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}chat/completions/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}chat/completions/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :chat/completions/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}chat/completions/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createCompletion]
+==== createCompletion
+
+`POST /completions`
+
+Creates a completion for the provided prompt and parameters.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}completions/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| CreateCompletionRequest
+|  <<CreateCompletionRequest>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+<<CreateCompletionResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<CreateCompletionResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}completions/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}completions/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :completions/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}completions/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createEdit]
+==== createEdit
+
+`POST /edits`
+
+Creates a new edit for the provided input, instruction, and parameters.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}edits/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| CreateEditRequest
+|  <<CreateEditRequest>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+<<CreateEditResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<CreateEditResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}edits/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}edits/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :edits/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}edits/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createEmbedding]
+==== createEmbedding
+
+`POST /embeddings`
+
+Creates an embedding vector representing the input text.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}embeddings/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| CreateEmbeddingRequest
+|  <<CreateEmbeddingRequest>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+<<CreateEmbeddingResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<CreateEmbeddingResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}embeddings/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}embeddings/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :embeddings/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}embeddings/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createFile]
+==== createFile
+
+`POST /files`
+
+Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}files/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file
+| Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.  If the &#x60;purpose&#x60; is set to \\\&quot;fine-tune\\\&quot;, each line is a JSON record with \\\&quot;prompt\\\&quot; and \\\&quot;completion\\\&quot; fields representing your [training examples](/docs/guides/fine-tuning/prepare-training-data).  <<file>>
+| X
+| null
+| 
+
+| purpose
+| The intended purpose of the uploaded documents.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tunes). This allows us to validate the format of the uploaded file.  <<string>>
+| X
+| null
+| 
+
+|===
+
+
+
+
+===== Return Type
+
+<<OpenAIFile>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<OpenAIFile>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}files/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}files/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :files/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}files/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createFineTune]
+==== createFineTune
+
+`POST /fine-tunes`
+
+Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}fine-tunes/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| CreateFineTuneRequest
+|  <<CreateFineTuneRequest>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+<<FineTune>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<FineTune>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}fine-tunes/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}fine-tunes/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :fine-tunes/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}fine-tunes/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createImage]
+==== createImage
+
+`POST /images/generations`
+
+Creates an image given a prompt.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}images/generations/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| CreateImageRequest
+|  <<CreateImageRequest>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+<<ImagesResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<ImagesResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}images/generations/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}images/generations/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :images/generations/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}images/generations/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createImageEdit]
+==== createImageEdit
+
+`POST /images/edits`
+
+Creates an edited or extended image given an original image and a prompt.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}images/edits/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| image
+| The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. <<file>>
+| X
+| null
+| 
+
+| mask
+| An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;. <<file>>
+| -
+| null
+| 
+
+| prompt
+| A text description of the desired image(s). The maximum length is 1000 characters. <<string>>
+| X
+| null
+| 
+
+| n
+| The number of images to generate. Must be between 1 and 10. <<integer>>
+| -
+| 1
+| 
+
+| size
+| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. <<string>>
+| -
+| 1024x1024
+| 
+
+| response_format
+| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. <<string>>
+| -
+| url
+| 
+
+| user
+| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  <<string>>
+| -
+| null
+| 
+
+|===
+
+
+
+
+===== Return Type
+
+<<ImagesResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<ImagesResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}images/edits/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}images/edits/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :images/edits/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}images/edits/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createImageVariation]
+==== createImageVariation
+
+`POST /images/variations`
+
+Creates a variation of a given image.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}images/variations/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| image
+| The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. <<file>>
+| X
+| null
+| 
+
+| n
+| The number of images to generate. Must be between 1 and 10. <<integer>>
+| -
+| 1
+| 
+
+| size
+| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. <<string>>
+| -
+| 1024x1024
+| 
+
+| response_format
+| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. <<string>>
+| -
+| url
+| 
+
+| user
+| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  <<string>>
+| -
+| null
+| 
+
+|===
+
+
+
+
+===== Return Type
+
+<<ImagesResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<ImagesResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}images/variations/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}images/variations/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :images/variations/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}images/variations/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createModeration]
+==== createModeration
+
+`POST /moderations`
+
+Classifies if text violates OpenAI's Content Policy
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}moderations/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| CreateModerationRequest
+|  <<CreateModerationRequest>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+<<CreateModerationResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<CreateModerationResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}moderations/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}moderations/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :moderations/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}moderations/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createTranscription]
+==== createTranscription
+
+`POST /audio/transcriptions`
+
+Transcribes audio into the input language.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}audio/transcriptions/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file
+| The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.  <<file>>
+| X
+| null
+| 
+
+| model
+|  <<CreateTranscriptionRequest_model>>
+| X
+| null
+| 
+
+| prompt
+| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  <<string>>
+| -
+| null
+| 
+
+| response_format
+| The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.  <<string>>
+| -
+| json
+| 
+
+| temperature
+| The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  <<number>>
+| -
+| 0
+| 
+
+| language
+| The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  <<string>>
+| -
+| null
+| 
+
+|===
+
+
+
+
+===== Return Type
+
+<<CreateTranscriptionResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<CreateTranscriptionResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}audio/transcriptions/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}audio/transcriptions/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :audio/transcriptions/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}audio/transcriptions/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createTranslation]
+==== createTranslation
+
+`POST /audio/translations`
+
+Translates audio into English.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}audio/translations/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file
+| The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.  <<file>>
+| X
+| null
+| 
+
+| model
+|  <<CreateTranscriptionRequest_model>>
+| X
+| null
+| 
+
+| prompt
+| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  <<string>>
+| -
+| null
+| 
+
+| response_format
+| The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.  <<string>>
+| -
+| json
+| 
+
+| temperature
+| The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  <<number>>
+| -
+| 0
+| 
+
+|===
+
+
+
+
+===== Return Type
+
+<<CreateTranslationResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<CreateTranslationResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}audio/translations/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}audio/translations/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :audio/translations/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}audio/translations/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.deleteFile]
+==== deleteFile
+
+`DELETE /files/{file_id}`
+
+Delete a file.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}files/\{file_id\}/DELETE/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file_id
+| The ID of the file to use for this request 
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+<<DeleteFileResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<DeleteFileResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}files/\{file_id\}/DELETE/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}files/\{file_id\}/DELETE/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :files/{file_id}/DELETE/DELETE.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}files/\{file_id\}/DELETE/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.deleteModel]
+==== deleteModel
+
+`DELETE /models/{model}`
+
+Delete a fine-tuned model. You must have the Owner role in your organization.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}models/\{model\}/DELETE/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| model
+| The model to delete 
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+<<DeleteModelResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<DeleteModelResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}models/\{model\}/DELETE/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}models/\{model\}/DELETE/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :models/{model}/DELETE/DELETE.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}models/\{model\}/DELETE/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.downloadFile]
+==== downloadFile
+
+`GET /files/{file_id}/content`
+
+Returns the contents of the specified file
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}files/\{file_id\}/content/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file_id
+| The ID of the file to use for this request 
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+
+<<String>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<String>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}files/\{file_id\}/content/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}files/\{file_id\}/content/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :files/{file_id}/content/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}files/\{file_id\}/content/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.listFiles]
+==== listFiles
+
+`GET /files`
+
+Returns a list of files that belong to the user's organization.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}files/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+<<ListFilesResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<ListFilesResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}files/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}files/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :files/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}files/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.listFineTuneEvents]
+==== listFineTuneEvents
+
+`GET /fine-tunes/{fine_tune_id}/events`
+
+Get fine-grained status updates for a fine-tune job. 
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}fine-tunes/\{fine_tune_id\}/events/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| fine_tune_id
+| The ID of the fine-tune job to get events for.  
+| X
+| null
+| 
+
+|===
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| stream
+| Whether to stream events for the fine-tune job. If set to true, events will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available. The stream will terminate with a &#x60;data: [DONE]&#x60; message when the job is finished (succeeded, cancelled, or failed).  If set to false, only events generated so far will be returned.  
+| -
+| false
+| 
+
+|===
+
+
+===== Return Type
+
+<<ListFineTuneEventsResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<ListFineTuneEventsResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}fine-tunes/\{fine_tune_id\}/events/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}fine-tunes/\{fine_tune_id\}/events/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :fine-tunes/{fine_tune_id}/events/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}fine-tunes/\{fine_tune_id\}/events/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.listFineTunes]
+==== listFineTunes
+
+`GET /fine-tunes`
+
+List your organization's fine-tuning jobs 
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}fine-tunes/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+<<ListFineTunesResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<ListFineTunesResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}fine-tunes/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}fine-tunes/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :fine-tunes/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}fine-tunes/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.listModels]
+==== listModels
+
+`GET /models`
+
+Lists the currently available models, and provides basic information about each one such as the owner and availability.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}models/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+<<ListModelsResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<ListModelsResponse>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}models/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}models/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :models/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}models/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.retrieveFile]
+==== retrieveFile
+
+`GET /files/{file_id}`
+
+Returns information about a specific file.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}files/\{file_id\}/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file_id
+| The ID of the file to use for this request 
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+<<OpenAIFile>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<OpenAIFile>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}files/\{file_id\}/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}files/\{file_id\}/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :files/{file_id}/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}files/\{file_id\}/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.retrieveFineTune]
+==== retrieveFineTune
+
+`GET /fine-tunes/{fine_tune_id}`
+
+Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}fine-tunes/\{fine_tune_id\}/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| fine_tune_id
+| The ID of the fine-tune job  
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+<<FineTune>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<FineTune>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}fine-tunes/\{fine_tune_id\}/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}fine-tunes/\{fine_tune_id\}/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :fine-tunes/{fine_tune_id}/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}fine-tunes/\{fine_tune_id\}/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.retrieveModel]
+==== retrieveModel
+
+`GET /models/{model}`
+
+Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}models/\{model\}/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| model
+| The ID of the model to use for this request 
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+<<Model>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<Model>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}models/\{model\}/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}models/\{model\}/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :models/{model}/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}models/\{model\}/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[#models]
+== Models
+
+
+[#ChatCompletionFunctions]
+=== _ChatCompletionFunctions_ 
+
+
+
+
+[.fields-ChatCompletionFunctions]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| name
+| X
+| 
+|   String  
+| The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
+|     
+
+| description
+| 
+| 
+|   String  
+| The description of what the function does.
+|     
+
+| parameters
+| 
+| 
+|   Map   of <<AnyType>>
+| The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+|     
+
+|===
+
+
+
+[#ChatCompletionRequestMessage]
+=== _ChatCompletionRequestMessage_ 
+
+
+
+
+[.fields-ChatCompletionRequestMessage]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| role
+| X
+| 
+|  <<String>>  
+| The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.
+|  _Enum:_ system, user, assistant, function,  
+
+| content
+| 
+| 
+|   String  
+| The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls.
+|     
+
+| name
+| 
+| 
+|   String  
+| The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
+|     
+
+| function_call
+| 
+| 
+| <<ChatCompletionRequestMessage_function_call>>    
+| 
+|     
+
+|===
+
+
+
+[#ChatCompletionRequestMessageFunctionCall]
+=== _ChatCompletionRequestMessageFunctionCall_ 
+
+The name and arguments of a function that should be called, as generated by the model.
+
+
+[.fields-ChatCompletionRequestMessageFunctionCall]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| name
+| 
+| 
+|   String  
+| The name of the function to call.
+|     
+
+| arguments
+| 
+| 
+|   String  
+| The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.
+|     
+
+|===
+
+
+
+[#ChatCompletionResponseMessage]
+=== _ChatCompletionResponseMessage_ 
+
+
+
+
+[.fields-ChatCompletionResponseMessage]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| role
+| X
+| 
+|  <<String>>  
+| The role of the author of this message.
+|  _Enum:_ system, user, assistant, function,  
+
+| content
+| 
+| X
+|   String  
+| The contents of the message.
+|     
+
+| function_call
+| 
+| 
+| <<ChatCompletionRequestMessage_function_call>>    
+| 
+|     
+
+|===
+
+
+
+[#ChatCompletionStreamResponseDelta]
+=== _ChatCompletionStreamResponseDelta_ 
+
+
+
+
+[.fields-ChatCompletionStreamResponseDelta]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| role
+| 
+| 
+|  <<String>>  
+| The role of the author of this message.
+|  _Enum:_ system, user, assistant, function,  
+
+| content
+| 
+| X
+|   String  
+| The contents of the chunk message.
+|     
+
+| function_call
+| 
+| 
+| <<ChatCompletionRequestMessage_function_call>>    
+| 
+|     
+
+|===
+
+
+
+[#CreateChatCompletionRequest]
+=== _CreateChatCompletionRequest_ 
+
+
+
+
+[.fields-CreateChatCompletionRequest]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| model
+| X
+| 
+| <<CreateChatCompletionRequest_model>>    
+| 
+|     
+
+| messages
+| X
+| 
+|   List   of <<ChatCompletionRequestMessage>>
+| A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
+|     
+
+| functions
+| 
+| 
+|   List   of <<ChatCompletionFunctions>>
+| A list of functions the model may generate JSON inputs for.
+|     
+
+| function_call
+| 
+| 
+| <<CreateChatCompletionRequest_function_call>>    
+| 
+|     
+
+| temperature
+| 
+| X
+|   BigDecimal  
+| What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or &#x60;top_p&#x60; but not both. 
+|     
+
+| top_p
+| 
+| X
+|   BigDecimal  
+| An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or &#x60;temperature&#x60; but not both. 
+|     
+
+| n
+| 
+| X
+|   Integer  
+| How many chat completion choices to generate for each input message.
+|     
+
+| stream
+| 
+| X
+|   Boolean  
+| If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). 
+|     
+
+| stop
+| 
+| 
+| <<CreateChatCompletionRequest_stop>>    
+| 
+|     
+
+| max_tokens
+| 
+| 
+|   Integer  
+| The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model&#39;s context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
+|     
+
+| presence_penalty
+| 
+| X
+|   BigDecimal  
+| Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
+|     
+
+| frequency_penalty
+| 
+| X
+|   BigDecimal  
+| Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
+|     
+
+| logit_bias
+| 
+| X
+|   Object  
+| Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
+|     
+
+| user
+| 
+| 
+|   String  
+| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+|     
+
+|===
+
+
+
+[#CreateChatCompletionRequestFunctionCall]
+=== _CreateChatCompletionRequestFunctionCall_ 
+
+Controls how the model responds to function calls. &quot;none&quot; means the model does not call a function, and responds to the end-user. &quot;auto&quot; means the model can pick between an end-user or calling a function.  Specifying a particular function via &#x60;{&quot;name&quot;:\ &quot;my_function&quot;}&#x60; forces the model to call that function. &quot;none&quot; is the default when no functions are present. &quot;auto&quot; is the default if functions are present.
+
+
+[.fields-CreateChatCompletionRequestFunctionCall]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| name
+| X
+| 
+|   String  
+| The name of the function to call.
+|     
+
+|===
+
+
+
+[#CreateChatCompletionRequestFunctionCallOneOf]
+=== _CreateChatCompletionRequestFunctionCallOneOf_ 
+
+
+
+
+[.fields-CreateChatCompletionRequestFunctionCallOneOf]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| name
+| X
+| 
+|   String  
+| The name of the function to call.
+|     
+
+|===
+
+
+
+[#CreateChatCompletionRequestModel]
+=== _CreateChatCompletionRequestModel_ 
+
+ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.
+
+
+[.fields-CreateChatCompletionRequestModel]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateChatCompletionRequestStop]
+=== _CreateChatCompletionRequestStop_ 
+
+Up to 4 sequences where the API will stop generating further tokens.
+
+
+
+[.fields-CreateChatCompletionRequestStop]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateChatCompletionResponse]
+=== _CreateChatCompletionResponse_ 
+
+
+
+
+[.fields-CreateChatCompletionResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   String  
+| 
+|     
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| created
+| X
+| 
+|   Integer  
+| 
+|     
+
+| model
+| X
+| 
+|   String  
+| 
+|     
+
+| choices
+| X
+| 
+|   List   of <<CreateChatCompletionResponse_choices_inner>>
+| 
+|     
+
+| usage
+| 
+| 
+| <<CreateCompletionResponse_usage>>    
+| 
+|     
+
+|===
+
+
+
+[#CreateChatCompletionResponseChoicesInner]
+=== _CreateChatCompletionResponseChoicesInner_ 
+
+
+
+
+[.fields-CreateChatCompletionResponseChoicesInner]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| index
+| 
+| 
+|   Integer  
+| 
+|     
+
+| message
+| 
+| 
+| <<ChatCompletionResponseMessage>>    
+| 
+|     
+
+| finish_reason
+| 
+| 
+|  <<String>>  
+| 
+|  _Enum:_ stop, length, function_call,  
+
+|===
+
+
+
+[#CreateChatCompletionStreamResponse]
+=== _CreateChatCompletionStreamResponse_ 
+
+
+
+
+[.fields-CreateChatCompletionStreamResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   String  
+| 
+|     
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| created
+| X
+| 
+|   Integer  
+| 
+|     
+
+| model
+| X
+| 
+|   String  
+| 
+|     
+
+| choices
+| X
+| 
+|   List   of <<CreateChatCompletionStreamResponse_choices_inner>>
+| 
+|     
+
+|===
+
+
+
+[#CreateChatCompletionStreamResponseChoicesInner]
+=== _CreateChatCompletionStreamResponseChoicesInner_ 
+
+
+
+
+[.fields-CreateChatCompletionStreamResponseChoicesInner]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| index
+| 
+| 
+|   Integer  
+| 
+|     
+
+| delta
+| 
+| 
+| <<ChatCompletionStreamResponseDelta>>    
+| 
+|     
+
+| finish_reason
+| 
+| 
+|  <<String>>  
+| 
+|  _Enum:_ stop, length, function_call,  
+
+|===
+
+
+
+[#CreateCompletionRequest]
+=== _CreateCompletionRequest_ 
+
+
+
+
+[.fields-CreateCompletionRequest]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| model
+| X
+| 
+| <<CreateCompletionRequest_model>>    
+| 
+|     
+
+| prompt
+| X
+| X
+| <<CreateCompletionRequest_prompt>>    
+| 
+|     
+
+| suffix
+| 
+| X
+|   String  
+| The suffix that comes after a completion of inserted text.
+|     
+
+| max_tokens
+| 
+| X
+|   Integer  
+| The maximum number of [tokens](/tokenizer) to generate in the completion.  The token count of your prompt plus &#x60;max_tokens&#x60; cannot exceed the model&#39;s context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
+|     
+
+| temperature
+| 
+| X
+|   BigDecimal  
+| What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or &#x60;top_p&#x60; but not both. 
+|     
+
+| top_p
+| 
+| X
+|   BigDecimal  
+| An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or &#x60;temperature&#x60; but not both. 
+|     
+
+| n
+| 
+| X
+|   Integer  
+| How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for &#x60;max_tokens&#x60; and &#x60;stop&#x60;. 
+|     
+
+| stream
+| 
+| X
+|   Boolean  
+| Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). 
+|     
+
+| logprobs
+| 
+| X
+|   Integer  
+| Include the log probabilities on the &#x60;logprobs&#x60; most likely tokens, as well the chosen tokens. For example, if &#x60;logprobs&#x60; is 5, the API will return a list of the 5 most likely tokens. The API will always return the &#x60;logprob&#x60; of the sampled token, so there may be up to &#x60;logprobs+1&#x60; elements in the response.  The maximum value for &#x60;logprobs&#x60; is 5. 
+|     
+
+| echo
+| 
+| X
+|   Boolean  
+| Echo back the prompt in addition to the completion 
+|     
+
+| stop
+| 
+| X
+| <<CreateCompletionRequest_stop>>    
+| 
+|     
+
+| presence_penalty
+| 
+| X
+|   BigDecimal  
+| Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
+|     
+
+| frequency_penalty
+| 
+| X
+|   BigDecimal  
+| Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
+|     
+
+| best_of
+| 
+| X
+|   Integer  
+| Generates &#x60;best_of&#x60; completions server-side and returns the \&quot;best\&quot; (the one with the highest log probability per token). Results cannot be streamed.  When used with &#x60;n&#x60;, &#x60;best_of&#x60; controls the number of candidate completions and &#x60;n&#x60; specifies how many to return – &#x60;best_of&#x60; must be greater than &#x60;n&#x60;.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for &#x60;max_tokens&#x60; and &#x60;stop&#x60;. 
+|     
+
+| logit_bias
+| 
+| X
+|   Object  
+| Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](/tokenizer?view&#x3D;bpe) (which works for both GPT-2 and GPT-3) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.  As an example, you can pass &#x60;{\&quot;50256\&quot;: -100}&#x60; to prevent the &lt;|endoftext|&gt; token from being generated. 
+|     
+
+| user
+| 
+| 
+|   String  
+| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+|     
+
+|===
+
+
+
+[#CreateCompletionRequestModel]
+=== _CreateCompletionRequestModel_ 
+
+ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.
+
+
+
+[.fields-CreateCompletionRequestModel]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateCompletionRequestPrompt]
+=== _CreateCompletionRequestPrompt_ 
+
+The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.
+
+Note that &lt;|endoftext|&gt; is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document.
+
+
+
+[.fields-CreateCompletionRequestPrompt]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateCompletionRequestStop]
+=== _CreateCompletionRequestStop_ 
+
+Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence.
+
+
+
+[.fields-CreateCompletionRequestStop]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateCompletionResponse]
+=== _CreateCompletionResponse_ 
+
+
+
+
+[.fields-CreateCompletionResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   String  
+| 
+|     
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| created
+| X
+| 
+|   Integer  
+| 
+|     
+
+| model
+| X
+| 
+|   String  
+| 
+|     
+
+| choices
+| X
+| 
+|   List   of <<CreateCompletionResponse_choices_inner>>
+| 
+|     
+
+| usage
+| 
+| 
+| <<CreateCompletionResponse_usage>>    
+| 
+|     
+
+|===
+
+
+
+[#CreateCompletionResponseChoicesInner]
+=== _CreateCompletionResponseChoicesInner_ 
+
+
+
+
+[.fields-CreateCompletionResponseChoicesInner]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| text
+| X
+| 
+|   String  
+| 
+|     
+
+| index
+| X
+| 
+|   Integer  
+| 
+|     
+
+| logprobs
+| X
+| X
+| <<CreateCompletionResponse_choices_inner_logprobs>>    
+| 
+|     
+
+| finish_reason
+| X
+| 
+|  <<String>>  
+| 
+|  _Enum:_ stop, length,  
+
+|===
+
+
+
+[#CreateCompletionResponseChoicesInnerLogprobs]
+=== _CreateCompletionResponseChoicesInnerLogprobs_ 
+
+
+
+
+[.fields-CreateCompletionResponseChoicesInnerLogprobs]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| tokens
+| 
+| 
+|   List   of <<string>>
+| 
+|     
+
+| token_logprobs
+| 
+| 
+|   List   of <<number>>
+| 
+|     
+
+| top_logprobs
+| 
+| 
+|   List   of <<object>>
+| 
+|     
+
+| text_offset
+| 
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#CreateCompletionResponseUsage]
+=== _CreateCompletionResponseUsage_ 
+
+
+
+
+[.fields-CreateCompletionResponseUsage]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| prompt_tokens
+| X
+| 
+|   Integer  
+| 
+|     
+
+| completion_tokens
+| X
+| 
+|   Integer  
+| 
+|     
+
+| total_tokens
+| X
+| 
+|   Integer  
+| 
+|     
+
+|===
+
+
+
+[#CreateEditRequest]
+=== _CreateEditRequest_ 
+
+
+
+
+[.fields-CreateEditRequest]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| model
+| X
+| 
+| <<CreateEditRequest_model>>    
+| 
+|     
+
+| input
+| 
+| X
+|   String  
+| The input text to use as a starting point for the edit.
+|     
+
+| instruction
+| X
+| 
+|   String  
+| The instruction that tells the model how to edit the prompt.
+|     
+
+| n
+| 
+| X
+|   Integer  
+| How many edits to generate for the input and instruction.
+|     
+
+| temperature
+| 
+| X
+|   BigDecimal  
+| What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or &#x60;top_p&#x60; but not both. 
+|     
+
+| top_p
+| 
+| X
+|   BigDecimal  
+| An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or &#x60;temperature&#x60; but not both. 
+|     
+
+|===
+
+
+
+[#CreateEditRequestModel]
+=== _CreateEditRequestModel_ 
+
+ID of the model to use. You can use the &#x60;text-davinci-edit-001&#x60; or &#x60;code-davinci-edit-001&#x60; model with this endpoint.
+
+
+[.fields-CreateEditRequestModel]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateEditResponse]
+=== _CreateEditResponse_ 
+
+
+
+
+[.fields-CreateEditResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| created
+| X
+| 
+|   Integer  
+| 
+|     
+
+| choices
+| X
+| 
+|   List   of <<CreateEditResponse_choices_inner>>
+| 
+|     
+
+| usage
+| X
+| 
+| <<CreateCompletionResponse_usage>>    
+| 
+|     
+
+|===
+
+
+
+[#CreateEditResponseChoicesInner]
+=== _CreateEditResponseChoicesInner_ 
+
+
+
+
+[.fields-CreateEditResponseChoicesInner]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| text
+| 
+| 
+|   String  
+| 
+|     
+
+| index
+| 
+| 
+|   Integer  
+| 
+|     
+
+| logprobs
+| 
+| X
+| <<CreateCompletionResponse_choices_inner_logprobs>>    
+| 
+|     
+
+| finish_reason
+| 
+| 
+|  <<String>>  
+| 
+|  _Enum:_ stop, length,  
+
+|===
+
+
+
+[#CreateEmbeddingRequest]
+=== _CreateEmbeddingRequest_ 
+
+
+
+
+[.fields-CreateEmbeddingRequest]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| model
+| X
+| 
+| <<CreateEmbeddingRequest_model>>    
+| 
+|     
+
+| input
+| X
+| 
+| <<CreateEmbeddingRequest_input>>    
+| 
+|     
+
+| user
+| 
+| 
+|   String  
+| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+|     
+
+|===
+
+
+
+[#CreateEmbeddingRequestInput]
+=== _CreateEmbeddingRequestInput_ 
+
+Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. Each input must not exceed the max input tokens for the model (8191 tokens for &#x60;text-embedding-ada-002&#x60;). [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens.
+
+
+
+[.fields-CreateEmbeddingRequestInput]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateEmbeddingRequestModel]
+=== _CreateEmbeddingRequestModel_ 
+
+ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.
+
+
+
+[.fields-CreateEmbeddingRequestModel]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateEmbeddingResponse]
+=== _CreateEmbeddingResponse_ 
+
+
+
+
+[.fields-CreateEmbeddingResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| model
+| X
+| 
+|   String  
+| 
+|     
+
+| data
+| X
+| 
+|   List   of <<CreateEmbeddingResponse_data_inner>>
+| 
+|     
+
+| usage
+| X
+| 
+| <<CreateEmbeddingResponse_usage>>    
+| 
+|     
+
+|===
+
+
+
+[#CreateEmbeddingResponseDataInner]
+=== _CreateEmbeddingResponseDataInner_ 
+
+
+
+
+[.fields-CreateEmbeddingResponseDataInner]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| index
+| X
+| 
+|   Integer  
+| 
+|     
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| embedding
+| X
+| 
+|   List   of <<number>>
+| 
+|     
+
+|===
+
+
+
+[#CreateEmbeddingResponseUsage]
+=== _CreateEmbeddingResponseUsage_ 
+
+
+
+
+[.fields-CreateEmbeddingResponseUsage]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| prompt_tokens
+| X
+| 
+|   Integer  
+| 
+|     
+
+| total_tokens
+| X
+| 
+|   Integer  
+| 
+|     
+
+|===
+
+
+
+[#CreateFineTuneRequest]
+=== _CreateFineTuneRequest_ 
+
+
+
+
+[.fields-CreateFineTuneRequest]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| training_file
+| X
+| 
+|   String  
+| The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file, where each training example is a JSON object with the keys \&quot;prompt\&quot; and \&quot;completion\&quot;. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  See the [fine-tuning guide](/docs/guides/fine-tuning/creating-training-data) for more details. 
+|     
+
+| validation_file
+| 
+| X
+|   String  
+| The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the [fine-tuning results file](/docs/guides/fine-tuning/analyzing-your-fine-tuned-model). Your train and validation data should be mutually exclusive.  Your dataset must be formatted as a JSONL file, where each validation example is a JSON object with the keys \&quot;prompt\&quot; and \&quot;completion\&quot;. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  See the [fine-tuning guide](/docs/guides/fine-tuning/creating-training-data) for more details. 
+|     
+
+| model
+| 
+| X
+| <<CreateFineTuneRequest_model>>    
+| 
+|     
+
+| n_epochs
+| 
+| X
+|   Integer  
+| The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. 
+|     
+
+| batch_size
+| 
+| X
+|   Integer  
+| The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass.  By default, the batch size will be dynamically configured to be ~0.2% of the number of examples in the training set, capped at 256 - in general, we&#39;ve found that larger batch sizes tend to work better for larger datasets. 
+|     
+
+| learning_rate_multiplier
+| 
+| X
+|   BigDecimal  
+| The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pretraining multiplied by this value.  By default, the learning rate multiplier is the 0.05, 0.1, or 0.2 depending on final &#x60;batch_size&#x60; (larger learning rates tend to perform better with larger batch sizes). We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. 
+|     
+
+| prompt_loss_weight
+| 
+| X
+|   BigDecimal  
+| The weight to use for loss on the prompt tokens. This controls how much the model tries to learn to generate the prompt (as compared to the completion which always has a weight of 1.0), and can add a stabilizing effect to training when completions are short.  If prompts are extremely long (relative to completions), it may make sense to reduce this weight so as to avoid over-prioritizing learning the prompt. 
+|     
+
+| compute_classification_metrics
+| 
+| X
+|   Boolean  
+| If set, we calculate classification-specific metrics such as accuracy and F-1 score using the validation set at the end of every epoch. These metrics can be viewed in the [results file](/docs/guides/fine-tuning/analyzing-your-fine-tuned-model).  In order to compute classification metrics, you must provide a &#x60;validation_file&#x60;. Additionally, you must specify &#x60;classification_n_classes&#x60; for multiclass classification or &#x60;classification_positive_class&#x60; for binary classification. 
+|     
+
+| classification_n_classes
+| 
+| X
+|   Integer  
+| The number of classes in a classification task.  This parameter is required for multiclass classification. 
+|     
+
+| classification_positive_class
+| 
+| X
+|   String  
+| The positive class in binary classification.  This parameter is needed to generate precision, recall, and F1 metrics when doing binary classification. 
+|     
+
+| classification_betas
+| 
+| X
+|   List   of <<number>>
+| If this is provided, we calculate F-beta scores at the specified beta values. The F-beta score is a generalization of F-1 score. This is only used for binary classification.  With a beta of 1 (i.e. the F-1 score), precision and recall are given the same weight. A larger beta score puts more weight on recall and less on precision. A smaller beta score puts more weight on precision and less on recall. 
+|     
+
+| suffix
+| 
+| X
+|   String  
+| A string of up to 40 characters that will be added to your fine-tuned model name.  For example, a &#x60;suffix&#x60; of \&quot;custom-model-name\&quot; would produce a model name like &#x60;ada:ft-your-org:custom-model-name-2022-02-15-04-21-04&#x60;. 
+|     
+
+|===
+
+
+
+[#CreateFineTuneRequestModel]
+=== _CreateFineTuneRequestModel_ 
+
+The name of the base model to fine-tune. You can select one of &quot;ada&quot;,
+&quot;babbage&quot;, &quot;curie&quot;, &quot;davinci&quot;, or a fine-tuned model created after 2022-04-21.
+To learn more about these models, see the
+[Models](https://platform.openai.com/docs/models) documentation.
+
+
+
+[.fields-CreateFineTuneRequestModel]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateImageRequest]
+=== _CreateImageRequest_ 
+
+
+
+
+[.fields-CreateImageRequest]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| prompt
+| X
+| 
+|   String  
+| A text description of the desired image(s). The maximum length is 1000 characters.
+|     
+
+| n
+| 
+| X
+|   Integer  
+| The number of images to generate. Must be between 1 and 10.
+|     
+
+| size
+| 
+| X
+|  <<String>>  
+| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
+|  _Enum:_ 256x256, 512x512, 1024x1024,  
+
+| response_format
+| 
+| X
+|  <<String>>  
+| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
+|  _Enum:_ url, b64_json,  
+
+| user
+| 
+| 
+|   String  
+| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+|     
+
+|===
+
+
+
+[#CreateModerationRequest]
+=== _CreateModerationRequest_ 
+
+
+
+
+[.fields-CreateModerationRequest]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| input
+| X
+| 
+| <<CreateModerationRequest_input>>    
+| 
+|     
+
+| model
+| 
+| 
+| <<CreateModerationRequest_model>>    
+| 
+|     
+
+|===
+
+
+
+[#CreateModerationRequestInput]
+=== _CreateModerationRequestInput_ 
+
+The input text to classify
+
+
+[.fields-CreateModerationRequestInput]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateModerationRequestModel]
+=== _CreateModerationRequestModel_ 
+
+Two content moderations models are available: &#x60;text-moderation-stable&#x60; and &#x60;text-moderation-latest&#x60;.
+
+The default is &#x60;text-moderation-latest&#x60; which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use &#x60;text-moderation-stable&#x60;, we will provide advanced notice before updating the model. Accuracy of &#x60;text-moderation-stable&#x60; may be slightly lower than for &#x60;text-moderation-latest&#x60;.
+
+
+
+[.fields-CreateModerationRequestModel]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateModerationResponse]
+=== _CreateModerationResponse_ 
+
+
+
+
+[.fields-CreateModerationResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   String  
+| 
+|     
+
+| model
+| X
+| 
+|   String  
+| 
+|     
+
+| results
+| X
+| 
+|   List   of <<CreateModerationResponse_results_inner>>
+| 
+|     
+
+|===
+
+
+
+[#CreateModerationResponseResultsInner]
+=== _CreateModerationResponseResultsInner_ 
+
+
+
+
+[.fields-CreateModerationResponseResultsInner]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| flagged
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| categories
+| X
+| 
+| <<CreateModerationResponse_results_inner_categories>>    
+| 
+|     
+
+| category_scores
+| X
+| 
+| <<CreateModerationResponse_results_inner_category_scores>>    
+| 
+|     
+
+|===
+
+
+
+[#CreateModerationResponseResultsInnerCategories]
+=== _CreateModerationResponseResultsInnerCategories_ 
+
+
+
+
+[.fields-CreateModerationResponseResultsInnerCategories]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| hate
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| hate/threatening
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| self-harm
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| sexual
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| sexual/minors
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| violence
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| violence/graphic
+| X
+| 
+|   Boolean  
+| 
+|     
+
+|===
+
+
+
+[#CreateModerationResponseResultsInnerCategoryScores]
+=== _CreateModerationResponseResultsInnerCategoryScores_ 
+
+
+
+
+[.fields-CreateModerationResponseResultsInnerCategoryScores]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| hate
+| X
+| 
+|   BigDecimal  
+| 
+|     
+
+| hate/threatening
+| X
+| 
+|   BigDecimal  
+| 
+|     
+
+| self-harm
+| X
+| 
+|   BigDecimal  
+| 
+|     
+
+| sexual
+| X
+| 
+|   BigDecimal  
+| 
+|     
+
+| sexual/minors
+| X
+| 
+|   BigDecimal  
+| 
+|     
+
+| violence
+| X
+| 
+|   BigDecimal  
+| 
+|     
+
+| violence/graphic
+| X
+| 
+|   BigDecimal  
+| 
+|     
+
+|===
+
+
+
+[#CreateTranscriptionRequestModel]
+=== _CreateTranscriptionRequestModel_ 
+
+ID of the model to use. Only &#x60;whisper-1&#x60; is currently available.
+
+
+
+[.fields-CreateTranscriptionRequestModel]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
+
+
+[#CreateTranscriptionResponse]
+=== _CreateTranscriptionResponse_ 
+
+
+
+
+[.fields-CreateTranscriptionResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| text
+| X
+| 
+|   String  
+| 
+|     
+
+|===
+
+
+
+[#CreateTranslationResponse]
+=== _CreateTranslationResponse_ 
+
+
+
+
+[.fields-CreateTranslationResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| text
+| X
+| 
+|   String  
+| 
+|     
+
+|===
+
+
+
+[#DeleteFileResponse]
+=== _DeleteFileResponse_ 
+
+
+
+
+[.fields-DeleteFileResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   String  
+| 
+|     
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| deleted
+| X
+| 
+|   Boolean  
+| 
+|     
+
+|===
+
+
+
+[#DeleteModelResponse]
+=== _DeleteModelResponse_ 
+
+
+
+
+[.fields-DeleteModelResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   String  
+| 
+|     
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| deleted
+| X
+| 
+|   Boolean  
+| 
+|     
+
+|===
+
+
+
+[#Error]
+=== _Error_ 
+
+
+
+
+[.fields-Error]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| type
+| X
+| 
+|   String  
+| 
+|     
+
+| message
+| X
+| 
+|   String  
+| 
+|     
+
+| param
+| X
+| X
+|   String  
+| 
+|     
+
+| code
+| X
+| X
+|   String  
+| 
+|     
+
+|===
+
+
+
+[#ErrorResponse]
+=== _ErrorResponse_ 
+
+
+
+
+[.fields-ErrorResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| error
+| X
+| 
+| <<Error>>    
+| 
+|     
+
+|===
+
+
+
+[#FineTune]
+=== _FineTune_ FineTune
+
+
+
+
+[.fields-FineTune]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   String  
+| 
+|     
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| created_at
+| X
+| 
+|   Integer  
+| 
+|     
+
+| updated_at
+| X
+| 
+|   Integer  
+| 
+|     
+
+| model
+| X
+| 
+|   String  
+| 
+|     
+
+| fine_tuned_model
+| X
+| X
+|   String  
+| 
+|     
+
+| organization_id
+| X
+| 
+|   String  
+| 
+|     
+
+| status
+| X
+| 
+|   String  
+| 
+|     
+
+| hyperparams
+| X
+| 
+|   Object  
+| 
+|     
+
+| training_files
+| X
+| 
+|   List   of <<OpenAIFile>>
+| 
+|     
+
+| validation_files
+| X
+| 
+|   List   of <<OpenAIFile>>
+| 
+|     
+
+| result_files
+| X
+| 
+|   List   of <<OpenAIFile>>
+| 
+|     
+
+| events
+| 
+| 
+|   List   of <<FineTuneEvent>>
+| 
+|     
+
+|===
+
+
+
+[#FineTuneEvent]
+=== _FineTuneEvent_ FineTuneEvent
+
+
+
+
+[.fields-FineTuneEvent]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| created_at
+| X
+| 
+|   Integer  
+| 
+|     
+
+| level
+| X
+| 
+|   String  
+| 
+|     
+
+| message
+| X
+| 
+|   String  
+| 
+|     
+
+|===
+
+
+
+[#ImagesResponse]
+=== _ImagesResponse_ 
+
+
+
+
+[.fields-ImagesResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| created
+| X
+| 
+|   Integer  
+| 
+|     
+
+| data
+| X
+| 
+|   List   of <<ImagesResponse_data_inner>>
+| 
+|     
+
+|===
+
+
+
+[#ImagesResponseDataInner]
+=== _ImagesResponseDataInner_ 
+
+
+
+
+[.fields-ImagesResponseDataInner]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| url
+| 
+| 
+|   String  
+| 
+|     
+
+| b64_json
+| 
+| 
+|   String  
+| 
+|     
+
+|===
+
+
+
+[#ListFilesResponse]
+=== _ListFilesResponse_ 
+
+
+
+
+[.fields-ListFilesResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| data
+| X
+| 
+|   List   of <<OpenAIFile>>
+| 
+|     
+
+|===
+
+
+
+[#ListFineTuneEventsResponse]
+=== _ListFineTuneEventsResponse_ 
+
+
+
+
+[.fields-ListFineTuneEventsResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| data
+| X
+| 
+|   List   of <<FineTuneEvent>>
+| 
+|     
+
+|===
+
+
+
+[#ListFineTunesResponse]
+=== _ListFineTunesResponse_ 
+
+
+
+
+[.fields-ListFineTunesResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| data
+| X
+| 
+|   List   of <<FineTune>>
+| 
+|     
+
+|===
+
+
+
+[#ListModelsResponse]
+=== _ListModelsResponse_ 
+
+
+
+
+[.fields-ListModelsResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| data
+| X
+| 
+|   List   of <<Model>>
+| 
+|     
+
+|===
+
+
+
+[#Model]
+=== _Model_ Model
+
+
+
+
+[.fields-Model]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   String  
+| 
+|     
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| created
+| X
+| 
+|   Integer  
+| 
+|     
+
+| owned_by
+| X
+| 
+|   String  
+| 
+|     
+
+|===
+
+
+
+[#OpenAIFile]
+=== _OpenAIFile_ OpenAIFile
+
+
+
+
+[.fields-OpenAIFile]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   String  
+| 
+|     
+
+| object
+| X
+| 
+|   String  
+| 
+|     
+
+| bytes
+| X
+| 
+|   Integer  
+| 
+|     
+
+| created_at
+| X
+| 
+|   Integer  
+| 
+|     
+
+| filename
+| X
+| 
+|   String  
+| 
+|     
+
+| purpose
+| X
+| 
+|   String  
+| 
+|     
+
+| status
+| 
+| 
+|   String  
+| 
+|     
+
+| status_details
+| 
+| X
+|   Object  
+| 
+|     
+
+|===
+
+
+

@@ -1,0 +1,9 @@
+.openapi-generator-ignore
+Dockerfile
+Gemfile
+README.md
+api/open_ai_api.rb
+config.ru
+lib/openapiing.rb
+my_app.rb
+openapi.yaml

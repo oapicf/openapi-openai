@@ -1,0 +1,70 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server OpenAIFile"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a OpenAIFile"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  OpenAIFile {
+    title = OpenAIFile
+    description = OpenAIFile
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
+        bytes {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        filename {
+          type =  string
+          description = ""
+          optional = true
+        }
+        purpose {
+          type =  string
+          description = ""
+          optional = true
+        }
+        status {
+          type =  string
+          description = ""
+          optional = false
+        }
+        status_details {
+          type =  
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  OpenAIFile {
+    title = OpenAIFile
+    description = OpenAIFile
+    implements = openapi_server.resourceTypes.OpenAIFile
+
+  }
+}

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxws:bindings
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.1"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  wsdlLocation="service.wsdl">
+
+    <enableWrapperStyle>true</enableWrapperStyle>
+    <enableAsyncMapping>false</enableAsyncMapping>
+
+    <jaxws:bindings node="xsd:simpleType[@name='Role']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="system" name="SYSTEM" />
+	        <jaxb:typesafeEnumMember value="user" name="USER" />
+	        <jaxb:typesafeEnumMember value="assistant" name="ASSISTANT" />
+	        <jaxb:typesafeEnumMember value="function" name="FUNCTION" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='Role']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="system" name="SYSTEM" />
+	        <jaxb:typesafeEnumMember value="user" name="USER" />
+	        <jaxb:typesafeEnumMember value="assistant" name="ASSISTANT" />
+	        <jaxb:typesafeEnumMember value="function" name="FUNCTION" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='Role']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="system" name="SYSTEM" />
+	        <jaxb:typesafeEnumMember value="user" name="USER" />
+	        <jaxb:typesafeEnumMember value="assistant" name="ASSISTANT" />
+	        <jaxb:typesafeEnumMember value="function" name="FUNCTION" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='FinishUnderscorereason']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="stop" name="STOP" />
+	        <jaxb:typesafeEnumMember value="length" name="LENGTH" />
+	        <jaxb:typesafeEnumMember value="function_call" name="FUNCTION_CALL" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='FinishUnderscorereason']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="stop" name="STOP" />
+	        <jaxb:typesafeEnumMember value="length" name="LENGTH" />
+	        <jaxb:typesafeEnumMember value="function_call" name="FUNCTION_CALL" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='FinishUnderscorereason']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="stop" name="STOP" />
+	        <jaxb:typesafeEnumMember value="length" name="LENGTH" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='FinishUnderscorereason']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="stop" name="STOP" />
+	        <jaxb:typesafeEnumMember value="length" name="LENGTH" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='Size']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="256x256" name="_256X256" />
+	        <jaxb:typesafeEnumMember value="512x512" name="_512X512" />
+	        <jaxb:typesafeEnumMember value="1024x1024" name="_1024X1024" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='ResponseUnderscoreformat']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="url" name="URL" />
+	        <jaxb:typesafeEnumMember value="b64_json" name="B64_JSON" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+
+    <jaxws:bindings node="xsd:simpleType[@name='CreateChatCompletionRequest_model']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateChatCompletionRequest_stop']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateCompletionRequest_model']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateCompletionRequest_prompt']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateCompletionRequest_stop']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateEditRequest_model']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateEmbeddingRequest_input']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateEmbeddingRequest_model']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateFineTuneRequest_model']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateModerationRequest_input']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateModerationRequest_model']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='CreateTranscriptionRequest_model']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+
+</jaxws:bindings>

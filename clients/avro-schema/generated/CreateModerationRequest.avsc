@@ -1,0 +1,20 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateModerationRequest",
+  "fields": [
+    {
+      "name": "input",
+      "type": "model.CreateModerationRequestInput",
+      "doc": ""
+    },
+    {
+      "name": "model",
+      "type": ["null", "model.CreateModerationRequestModel"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

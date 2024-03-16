@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.github.com/cliffano/openapi-openai/master/avatar.jpg" alt="Avatar"/>
+<img align="right" src="https://raw.github.com/oapicf/openapi-openai/master/avatar.jpg" alt="Avatar"/>
 
-[![Build Status](https://github.com/cliffano/openapi-openai/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/cliffano/openapi-openai/actions/workflows/ci-workflow.yaml)
+[![Build Status](https://github.com/oapicf/openapi-openai/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/oapicf/openapi-openai/actions/workflows/ci-workflow.yaml)
 <br/>
 
 OpenAPI OpenAI
@@ -20,9 +20,9 @@ Published packages
 Version matrix
 --------------
 
-| OpenAPI OpenAI Version | OpenAPI Version | OpenAPI Generator Version |
-|-----------------------|-----------------|---------------------------|
-| 1.0.0 | 3.0.0 | 6.0.1 |
+| OpenAPI OpenAI Version | OpenAI OpenAPI Spec Version | OpenAPI Version | OpenAPI Generator Version |
+|------------------------|-----------------------------|-----------------|---------------------------|
+| 1.0.0 | 2.0.0 | 3.0.0 | 7.4.0 |
 
 Installation
 ------------

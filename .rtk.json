@@ -1,20 +1,6 @@
 {
   "resources": [
     {
-      "path": "swaggy-c.yml",
-      "type": "yaml",
-      "params": {
-        "property": "version"
-      }
-    },
-    {
-      "path": "clients/java/conf.json",
-      "type": "json",
-      "params": {
-        "property": "artifactVersion"
-      }
-    },
-    {
       "path": "clients/javascript/conf.json",
       "type": "json",
       "params": {
@@ -36,6 +22,13 @@
       }
     },
     {
+      "path": "swaggy-c.yml",
+      "type": "yaml",
+      "params": {
+        "property": "version"
+      }
+    },
+    {
       "path": "CHANGELOG.md",
       "type": "keep-a-changelog"
     },
@@ -43,7 +36,7 @@
       "path": ".github/workflows/publish-doc-workflow.yaml",
       "type": "yaml",
       "params": {
-        "property": "jobs.build.steps.0.with.ref",
+        "property": "jobs.build.steps[0].with.ref",
         "post_release_value": "main"
       }
     },
@@ -51,7 +44,7 @@
       "path": ".github/workflows/publish-javascript-workflow.yaml",
       "type": "yaml",
       "params": {
-        "property": "jobs.build.steps.0.with.ref",
+        "property": "jobs.build.steps[0].with.ref",
         "post_release_value": "main"
       }
     },
@@ -59,7 +52,7 @@
       "path": ".github/workflows/publish-python-workflow.yaml",
       "type": "yaml",
       "params": {
-        "property": "jobs.build.steps.0.with.ref",
+        "property": "jobs.build.steps[0].with.ref",
         "post_release_value": "main"
       }
     },
@@ -67,7 +60,7 @@
       "path": ".github/workflows/publish-ruby-workflow.yaml",
       "type": "yaml",
       "params": {
-        "property": "jobs.build.steps.0.with.ref",
+        "property": "jobs.build.steps[0].with.ref",
         "post_release_value": "main"
       }
     }

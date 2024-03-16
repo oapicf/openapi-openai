@@ -7,10 +7,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
-      - uses: actions/setup-node@v1
+          token: ${{ secrets.OAPICF_GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20'
       - uses: ./.github/actions/ci-action
       - run: npm install -g gh-pages
-      - run: CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot <blah+pakkun@cliffano.com>" --repo "https://${{ secrets.STUDIO_GITHUB_TOKEN }}@github.com/cliffano/openapi-openai.git"
+      - run: CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot <blah+pakkun@cliffano.com>" --repo "https://${{ secrets.OAPICF_GITHUB_TOKEN }}@github.com/oapicf/openapi-openai.git"

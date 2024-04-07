@@ -11,11 +11,11 @@ OpenAPI openai is a set of API client libraries for [OpenAI service](https://bet
 Published packages
 ------------------
 
-| Language | Package | Status |
-|----------|---------|--------|
-| JavaScript | [openapi_openai]((http://www.npmjs.com/package/openapi_openai)) | [![Published Version](https://img.shields.io/npm/v/openapi_openai.svg)](http://www.npmjs.com/package/openapi_openai) |
-| Python | [openapiopenai]((https://pypi.python.org/pypi/openapiopenai)) | [![Published Version](https://img.shields.io/pypi/v/openapiopenai.svg)](https://pypi.python.org/pypi/openapiopenai) |
-| Ruby | [openapi_openai]((https://rubygems.org/gems/openapi_openai)) | [![Published Version](https://img.shields.io/gem/v/openapi_openai.svg)](https://rubygems.org/gems/openapi_openai) |
+| Language | Package | Status | Documentation |
+|----------|---------|--------|---------------|
+| JavaScript | [openapi_openai]((http://www.npmjs.com/package/openapi_openai)) | [![Published Version](https://img.shields.io/npm/v/openapi_openai.svg)](http://www.npmjs.com/package/openapi_openai) | [README](https://github.com/oapicf/openapi-openai/blob/main/clients/javascript/generated/README.md) |
+| Python | [openapiopenai]((https://pypi.python.org/pypi/openapiopenai)) | [![Published Version](https://img.shields.io/pypi/v/openapiopenai.svg)](https://pypi.python.org/pypi/openapiopenai) | [README](https://github.com/oapicf/openapi-openai/blob/main/clients/python/generated/README.md) |
+| Ruby | [openapi_openai]((https://rubygems.org/gems/openapi_openai)) | [![Published Version](https://img.shields.io/gem/v/openapi_openai.svg)](https://rubygems.org/gems/openapi_openai) | [README](https://github.com/oapicf/openapi-openai/blob/main/clients/ruby/generated/README.md) |
 
 Version matrix
 --------------

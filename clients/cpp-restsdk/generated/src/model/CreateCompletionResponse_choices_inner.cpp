@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,13 +23,13 @@ namespace model {
 
 CreateCompletionResponse_choices_inner::CreateCompletionResponse_choices_inner()
 {
-    m_Text = utility::conversions::to_string_t("");
-    m_TextIsSet = false;
+    m_Finish_reason = utility::conversions::to_string_t("");
+    m_Finish_reasonIsSet = false;
     m_Index = 0;
     m_IndexIsSet = false;
     m_LogprobsIsSet = false;
-    m_Finish_reason = utility::conversions::to_string_t("");
-    m_Finish_reasonIsSet = false;
+    m_Text = utility::conversions::to_string_t("");
+    m_TextIsSet = false;
 }
 
 CreateCompletionResponse_choices_inner::~CreateCompletionResponse_choices_inner()
@@ -46,9 +46,9 @@ web::json::value CreateCompletionResponse_choices_inner::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_TextIsSet)
+    if(m_Finish_reasonIsSet)
     {
-        val[utility::conversions::to_string_t(U("text"))] = ModelBase::toJson(m_Text);
+        val[utility::conversions::to_string_t(U("finish_reason"))] = ModelBase::toJson(m_Finish_reason);
     }
     if(m_IndexIsSet)
     {
@@ -58,9 +58,9 @@ web::json::value CreateCompletionResponse_choices_inner::toJson() const
     {
         val[utility::conversions::to_string_t(U("logprobs"))] = ModelBase::toJson(m_Logprobs);
     }
-    if(m_Finish_reasonIsSet)
+    if(m_TextIsSet)
     {
-        val[utility::conversions::to_string_t(U("finish_reason"))] = ModelBase::toJson(m_Finish_reason);
+        val[utility::conversions::to_string_t(U("text"))] = ModelBase::toJson(m_Text);
     }
 
     return val;
@@ -70,14 +70,14 @@ bool CreateCompletionResponse_choices_inner::fromJson(const web::json::value& va
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("text"))))
+    if(val.has_field(utility::conversions::to_string_t(U("finish_reason"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("text")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("finish_reason")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setText;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setText);
-            setText(refVal_setText);
+            utility::string_t refVal_setFinishReason;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFinishReason);
+            setFinishReason(refVal_setFinishReason);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("index"))))
@@ -100,14 +100,14 @@ bool CreateCompletionResponse_choices_inner::fromJson(const web::json::value& va
             setLogprobs(refVal_setLogprobs);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("finish_reason"))))
+    if(val.has_field(utility::conversions::to_string_t(U("text"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("finish_reason")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("text")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setFinishReason;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFinishReason);
-            setFinishReason(refVal_setFinishReason);
+            utility::string_t refVal_setText;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setText);
+            setText(refVal_setText);
         }
     }
     return ok;
@@ -120,9 +120,9 @@ void CreateCompletionResponse_choices_inner::toMultipart(std::shared_ptr<Multipa
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_TextIsSet)
+    if(m_Finish_reasonIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("text")), m_Text));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("finish_reason")), m_Finish_reason));
     }
     if(m_IndexIsSet)
     {
@@ -132,9 +132,9 @@ void CreateCompletionResponse_choices_inner::toMultipart(std::shared_ptr<Multipa
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logprobs")), m_Logprobs));
     }
-    if(m_Finish_reasonIsSet)
+    if(m_TextIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("finish_reason")), m_Finish_reason));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("text")), m_Text));
     }
 }
 
@@ -147,11 +147,11 @@ bool CreateCompletionResponse_choices_inner::fromMultiPart(std::shared_ptr<Multi
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("text"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("finish_reason"))))
     {
-        utility::string_t refVal_setText;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("text"))), refVal_setText );
-        setText(refVal_setText);
+        utility::string_t refVal_setFinishReason;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("finish_reason"))), refVal_setFinishReason );
+        setFinishReason(refVal_setFinishReason);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("index"))))
     {
@@ -165,34 +165,34 @@ bool CreateCompletionResponse_choices_inner::fromMultiPart(std::shared_ptr<Multi
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logprobs"))), refVal_setLogprobs );
         setLogprobs(refVal_setLogprobs);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("finish_reason"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("text"))))
     {
-        utility::string_t refVal_setFinishReason;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("finish_reason"))), refVal_setFinishReason );
-        setFinishReason(refVal_setFinishReason);
+        utility::string_t refVal_setText;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("text"))), refVal_setText );
+        setText(refVal_setText);
     }
     return ok;
 }
 
-utility::string_t CreateCompletionResponse_choices_inner::getText() const
+utility::string_t CreateCompletionResponse_choices_inner::getFinishReason() const
 {
-    return m_Text;
+    return m_Finish_reason;
 }
 
-void CreateCompletionResponse_choices_inner::setText(const utility::string_t& value)
+void CreateCompletionResponse_choices_inner::setFinishReason(const utility::string_t& value)
 {
-    m_Text = value;
-    m_TextIsSet = true;
+    m_Finish_reason = value;
+    m_Finish_reasonIsSet = true;
 }
 
-bool CreateCompletionResponse_choices_inner::textIsSet() const
+bool CreateCompletionResponse_choices_inner::finishReasonIsSet() const
 {
-    return m_TextIsSet;
+    return m_Finish_reasonIsSet;
 }
 
-void CreateCompletionResponse_choices_inner::unsetText()
+void CreateCompletionResponse_choices_inner::unsetFinish_reason()
 {
-    m_TextIsSet = false;
+    m_Finish_reasonIsSet = false;
 }
 int32_t CreateCompletionResponse_choices_inner::getIndex() const
 {
@@ -234,25 +234,25 @@ void CreateCompletionResponse_choices_inner::unsetLogprobs()
 {
     m_LogprobsIsSet = false;
 }
-utility::string_t CreateCompletionResponse_choices_inner::getFinishReason() const
+utility::string_t CreateCompletionResponse_choices_inner::getText() const
 {
-    return m_Finish_reason;
+    return m_Text;
 }
 
-void CreateCompletionResponse_choices_inner::setFinishReason(const utility::string_t& value)
+void CreateCompletionResponse_choices_inner::setText(const utility::string_t& value)
 {
-    m_Finish_reason = value;
-    m_Finish_reasonIsSet = true;
+    m_Text = value;
+    m_TextIsSet = true;
 }
 
-bool CreateCompletionResponse_choices_inner::finishReasonIsSet() const
+bool CreateCompletionResponse_choices_inner::textIsSet() const
 {
-    return m_Finish_reasonIsSet;
+    return m_TextIsSet;
 }
 
-void CreateCompletionResponse_choices_inner::unsetFinish_reason()
+void CreateCompletionResponse_choices_inner::unsetText()
 {
-    m_Finish_reasonIsSet = false;
+    m_TextIsSet = false;
 }
 }
 }

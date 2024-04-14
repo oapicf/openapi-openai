@@ -14,41 +14,46 @@ class CreateChatCompletionStreamResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id=None, object=None, created=None, model=None, choices=None):  # noqa: E501
+    def __init__(self, id=None, choices=None, created=None, model=None, system_fingerprint=None, object=None):  # noqa: E501
         """CreateChatCompletionStreamResponse - a model defined in OpenAPI
 
         :param id: The id of this CreateChatCompletionStreamResponse.  # noqa: E501
         :type id: str
-        :param object: The object of this CreateChatCompletionStreamResponse.  # noqa: E501
-        :type object: str
+        :param choices: The choices of this CreateChatCompletionStreamResponse.  # noqa: E501
+        :type choices: List[CreateChatCompletionStreamResponseChoicesInner]
         :param created: The created of this CreateChatCompletionStreamResponse.  # noqa: E501
         :type created: int
         :param model: The model of this CreateChatCompletionStreamResponse.  # noqa: E501
         :type model: str
-        :param choices: The choices of this CreateChatCompletionStreamResponse.  # noqa: E501
-        :type choices: List[CreateChatCompletionStreamResponseChoicesInner]
+        :param system_fingerprint: The system_fingerprint of this CreateChatCompletionStreamResponse.  # noqa: E501
+        :type system_fingerprint: str
+        :param object: The object of this CreateChatCompletionStreamResponse.  # noqa: E501
+        :type object: str
         """
         self.openapi_types = {
             'id': str,
-            'object': str,
+            'choices': List[CreateChatCompletionStreamResponseChoicesInner],
             'created': int,
             'model': str,
-            'choices': List[CreateChatCompletionStreamResponseChoicesInner]
+            'system_fingerprint': str,
+            'object': str
         }
 
         self.attribute_map = {
             'id': 'id',
-            'object': 'object',
+            'choices': 'choices',
             'created': 'created',
             'model': 'model',
-            'choices': 'choices'
+            'system_fingerprint': 'system_fingerprint',
+            'object': 'object'
         }
 
         self._id = id
-        self._object = object
+        self._choices = choices
         self._created = created
         self._model = model
-        self._choices = choices
+        self._system_fingerprint = system_fingerprint
+        self._object = object
 
     @classmethod
     def from_dict(cls, dikt) -> 'CreateChatCompletionStreamResponse':
@@ -65,6 +70,7 @@ class CreateChatCompletionStreamResponse(Model):
     def id(self) -> str:
         """Gets the id of this CreateChatCompletionStreamResponse.
 
+        A unique identifier for the chat completion. Each chunk has the same ID.  # noqa: E501
 
         :return: The id of this CreateChatCompletionStreamResponse.
         :rtype: str
@@ -75,6 +81,7 @@ class CreateChatCompletionStreamResponse(Model):
     def id(self, id: str):
         """Sets the id of this CreateChatCompletionStreamResponse.
 
+        A unique identifier for the chat completion. Each chunk has the same ID.  # noqa: E501
 
         :param id: The id of this CreateChatCompletionStreamResponse.
         :type id: str
@@ -85,32 +92,35 @@ class CreateChatCompletionStreamResponse(Model):
         self._id = id
 
     @property
-    def object(self) -> str:
-        """Gets the object of this CreateChatCompletionStreamResponse.
+    def choices(self) -> List[CreateChatCompletionStreamResponseChoicesInner]:
+        """Gets the choices of this CreateChatCompletionStreamResponse.
 
+        A list of chat completion choices. Can be more than one if `n` is greater than 1.  # noqa: E501
 
-        :return: The object of this CreateChatCompletionStreamResponse.
-        :rtype: str
+        :return: The choices of this CreateChatCompletionStreamResponse.
+        :rtype: List[CreateChatCompletionStreamResponseChoicesInner]
         """
-        return self._object
+        return self._choices
 
-    @object.setter
-    def object(self, object: str):
-        """Sets the object of this CreateChatCompletionStreamResponse.
+    @choices.setter
+    def choices(self, choices: List[CreateChatCompletionStreamResponseChoicesInner]):
+        """Sets the choices of this CreateChatCompletionStreamResponse.
 
+        A list of chat completion choices. Can be more than one if `n` is greater than 1.  # noqa: E501
 
-        :param object: The object of this CreateChatCompletionStreamResponse.
-        :type object: str
+        :param choices: The choices of this CreateChatCompletionStreamResponse.
+        :type choices: List[CreateChatCompletionStreamResponseChoicesInner]
         """
-        if object is None:
-            raise ValueError("Invalid value for `object`, must not be `None`")  # noqa: E501
+        if choices is None:
+            raise ValueError("Invalid value for `choices`, must not be `None`")  # noqa: E501
 
-        self._object = object
+        self._choices = choices
 
     @property
     def created(self) -> int:
         """Gets the created of this CreateChatCompletionStreamResponse.
 
+        The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.  # noqa: E501
 
         :return: The created of this CreateChatCompletionStreamResponse.
         :rtype: int
@@ -121,6 +131,7 @@ class CreateChatCompletionStreamResponse(Model):
     def created(self, created: int):
         """Sets the created of this CreateChatCompletionStreamResponse.
 
+        The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.  # noqa: E501
 
         :param created: The created of this CreateChatCompletionStreamResponse.
         :type created: int
@@ -134,6 +145,7 @@ class CreateChatCompletionStreamResponse(Model):
     def model(self) -> str:
         """Gets the model of this CreateChatCompletionStreamResponse.
 
+        The model to generate the completion.  # noqa: E501
 
         :return: The model of this CreateChatCompletionStreamResponse.
         :rtype: str
@@ -144,6 +156,7 @@ class CreateChatCompletionStreamResponse(Model):
     def model(self, model: str):
         """Sets the model of this CreateChatCompletionStreamResponse.
 
+        The model to generate the completion.  # noqa: E501
 
         :param model: The model of this CreateChatCompletionStreamResponse.
         :type model: str
@@ -154,24 +167,53 @@ class CreateChatCompletionStreamResponse(Model):
         self._model = model
 
     @property
-    def choices(self) -> List[CreateChatCompletionStreamResponseChoicesInner]:
-        """Gets the choices of this CreateChatCompletionStreamResponse.
+    def system_fingerprint(self) -> str:
+        """Gets the system_fingerprint of this CreateChatCompletionStreamResponse.
 
+        This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.   # noqa: E501
 
-        :return: The choices of this CreateChatCompletionStreamResponse.
-        :rtype: List[CreateChatCompletionStreamResponseChoicesInner]
+        :return: The system_fingerprint of this CreateChatCompletionStreamResponse.
+        :rtype: str
         """
-        return self._choices
+        return self._system_fingerprint
 
-    @choices.setter
-    def choices(self, choices: List[CreateChatCompletionStreamResponseChoicesInner]):
-        """Sets the choices of this CreateChatCompletionStreamResponse.
+    @system_fingerprint.setter
+    def system_fingerprint(self, system_fingerprint: str):
+        """Sets the system_fingerprint of this CreateChatCompletionStreamResponse.
 
+        This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.   # noqa: E501
 
-        :param choices: The choices of this CreateChatCompletionStreamResponse.
-        :type choices: List[CreateChatCompletionStreamResponseChoicesInner]
+        :param system_fingerprint: The system_fingerprint of this CreateChatCompletionStreamResponse.
+        :type system_fingerprint: str
         """
-        if choices is None:
-            raise ValueError("Invalid value for `choices`, must not be `None`")  # noqa: E501
 
-        self._choices = choices
+        self._system_fingerprint = system_fingerprint
+
+    @property
+    def object(self) -> str:
+        """Gets the object of this CreateChatCompletionStreamResponse.
+
+        The object type, which is always `chat.completion.chunk`.  # noqa: E501
+
+        :return: The object of this CreateChatCompletionStreamResponse.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object: str):
+        """Sets the object of this CreateChatCompletionStreamResponse.
+
+        The object type, which is always `chat.completion.chunk`.  # noqa: E501
+
+        :param object: The object of this CreateChatCompletionStreamResponse.
+        :type object: str
+        """
+        allowed_values = ["chat.completion.chunk"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
+
+        self._object = object

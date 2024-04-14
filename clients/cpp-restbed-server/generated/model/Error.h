@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -60,8 +60,8 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::string getType() const;
-    void setType(std::string value);
+    std::string getCode() const;
+    void setCode(std::string value);
 
     /// <summary>
     /// 
@@ -78,14 +78,14 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::string getCode() const;
-    void setCode(std::string value);
+    std::string getType() const;
+    void setType(std::string value);
 
 protected:
-    std::string m_Type = "";
+    std::string m_Code = "";
     std::string m_Message = "";
     std::string m_Param = "";
-    std::string m_Code = "";
+    std::string m_Type = "";
 };
 
 std::vector<Error> createErrorVectorFromJsonString(const std::string& json);

@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,56 +21,95 @@ using Org.OpenAPITools.Converters;
 namespace Org.OpenAPITools.Models
 { 
     /// <summary>
-    /// 
+    /// A list of the categories along with their scores as predicted by model.
     /// </summary>
     [DataContract]
     public partial class CreateModerationResponseResultsInnerCategoryScores : IEquatable<CreateModerationResponseResultsInnerCategoryScores>
     {
         /// <summary>
-        /// Gets or Sets Hate
+        /// The score for the category &#39;hate&#39;.
         /// </summary>
+        /// <value>The score for the category &#39;hate&#39;.</value>
         [Required]
         [DataMember(Name="hate", EmitDefaultValue=true)]
         public decimal Hate { get; set; }
 
         /// <summary>
-        /// Gets or Sets HateThreatening
+        /// The score for the category &#39;hate/threatening&#39;.
         /// </summary>
+        /// <value>The score for the category &#39;hate/threatening&#39;.</value>
         [Required]
         [DataMember(Name="hate/threatening", EmitDefaultValue=true)]
         public decimal HateThreatening { get; set; }
 
         /// <summary>
-        /// Gets or Sets SelfHarm
+        /// The score for the category &#39;harassment&#39;.
         /// </summary>
+        /// <value>The score for the category &#39;harassment&#39;.</value>
+        [Required]
+        [DataMember(Name="harassment", EmitDefaultValue=true)]
+        public decimal Harassment { get; set; }
+
+        /// <summary>
+        /// The score for the category &#39;harassment/threatening&#39;.
+        /// </summary>
+        /// <value>The score for the category &#39;harassment/threatening&#39;.</value>
+        [Required]
+        [DataMember(Name="harassment/threatening", EmitDefaultValue=true)]
+        public decimal HarassmentThreatening { get; set; }
+
+        /// <summary>
+        /// The score for the category &#39;self-harm&#39;.
+        /// </summary>
+        /// <value>The score for the category &#39;self-harm&#39;.</value>
         [Required]
         [DataMember(Name="self-harm", EmitDefaultValue=true)]
         public decimal SelfHarm { get; set; }
 
         /// <summary>
-        /// Gets or Sets Sexual
+        /// The score for the category &#39;self-harm/intent&#39;.
         /// </summary>
+        /// <value>The score for the category &#39;self-harm/intent&#39;.</value>
+        [Required]
+        [DataMember(Name="self-harm/intent", EmitDefaultValue=true)]
+        public decimal SelfHarmIntent { get; set; }
+
+        /// <summary>
+        /// The score for the category &#39;self-harm/instructions&#39;.
+        /// </summary>
+        /// <value>The score for the category &#39;self-harm/instructions&#39;.</value>
+        [Required]
+        [DataMember(Name="self-harm/instructions", EmitDefaultValue=true)]
+        public decimal SelfHarmInstructions { get; set; }
+
+        /// <summary>
+        /// The score for the category &#39;sexual&#39;.
+        /// </summary>
+        /// <value>The score for the category &#39;sexual&#39;.</value>
         [Required]
         [DataMember(Name="sexual", EmitDefaultValue=true)]
         public decimal Sexual { get; set; }
 
         /// <summary>
-        /// Gets or Sets SexualMinors
+        /// The score for the category &#39;sexual/minors&#39;.
         /// </summary>
+        /// <value>The score for the category &#39;sexual/minors&#39;.</value>
         [Required]
         [DataMember(Name="sexual/minors", EmitDefaultValue=true)]
         public decimal SexualMinors { get; set; }
 
         /// <summary>
-        /// Gets or Sets Violence
+        /// The score for the category &#39;violence&#39;.
         /// </summary>
+        /// <value>The score for the category &#39;violence&#39;.</value>
         [Required]
         [DataMember(Name="violence", EmitDefaultValue=true)]
         public decimal Violence { get; set; }
 
         /// <summary>
-        /// Gets or Sets ViolenceGraphic
+        /// The score for the category &#39;violence/graphic&#39;.
         /// </summary>
+        /// <value>The score for the category &#39;violence/graphic&#39;.</value>
         [Required]
         [DataMember(Name="violence/graphic", EmitDefaultValue=true)]
         public decimal ViolenceGraphic { get; set; }
@@ -85,7 +124,11 @@ namespace Org.OpenAPITools.Models
             sb.Append("class CreateModerationResponseResultsInnerCategoryScores {\n");
             sb.Append("  Hate: ").Append(Hate).Append("\n");
             sb.Append("  HateThreatening: ").Append(HateThreatening).Append("\n");
+            sb.Append("  Harassment: ").Append(Harassment).Append("\n");
+            sb.Append("  HarassmentThreatening: ").Append(HarassmentThreatening).Append("\n");
             sb.Append("  SelfHarm: ").Append(SelfHarm).Append("\n");
+            sb.Append("  SelfHarmIntent: ").Append(SelfHarmIntent).Append("\n");
+            sb.Append("  SelfHarmInstructions: ").Append(SelfHarmInstructions).Append("\n");
             sb.Append("  Sexual: ").Append(Sexual).Append("\n");
             sb.Append("  SexualMinors: ").Append(SexualMinors).Append("\n");
             sb.Append("  Violence: ").Append(Violence).Append("\n");
@@ -137,9 +180,29 @@ namespace Org.OpenAPITools.Models
                     HateThreatening.Equals(other.HateThreatening)
                 ) && 
                 (
+                    Harassment == other.Harassment ||
+                    
+                    Harassment.Equals(other.Harassment)
+                ) && 
+                (
+                    HarassmentThreatening == other.HarassmentThreatening ||
+                    
+                    HarassmentThreatening.Equals(other.HarassmentThreatening)
+                ) && 
+                (
                     SelfHarm == other.SelfHarm ||
                     
                     SelfHarm.Equals(other.SelfHarm)
+                ) && 
+                (
+                    SelfHarmIntent == other.SelfHarmIntent ||
+                    
+                    SelfHarmIntent.Equals(other.SelfHarmIntent)
+                ) && 
+                (
+                    SelfHarmInstructions == other.SelfHarmInstructions ||
+                    
+                    SelfHarmInstructions.Equals(other.SelfHarmInstructions)
                 ) && 
                 (
                     Sexual == other.Sexual ||
@@ -178,7 +241,15 @@ namespace Org.OpenAPITools.Models
                     
                     hashCode = hashCode * 59 + HateThreatening.GetHashCode();
                     
+                    hashCode = hashCode * 59 + Harassment.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + HarassmentThreatening.GetHashCode();
+                    
                     hashCode = hashCode * 59 + SelfHarm.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + SelfHarmIntent.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + SelfHarmInstructions.GetHashCode();
                     
                     hashCode = hashCode * 59 + Sexual.GetHashCode();
                     

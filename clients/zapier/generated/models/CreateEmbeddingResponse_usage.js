@@ -6,13 +6,13 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}prompt_tokens`,
-                label: `[${labelPrefix}prompt_tokens]`,
+                label: `The number of tokens used by the prompt. - [${labelPrefix}prompt_tokens]`,
                 required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}total_tokens`,
-                label: `[${labelPrefix}total_tokens]`,
+                label: `The total number of tokens used by the request. - [${labelPrefix}total_tokens]`,
                 required: true,
                 type: 'integer',
             },

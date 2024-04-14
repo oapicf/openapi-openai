@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -20,21 +20,22 @@ import .*
 /**
  * 
  * @param name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
- * @param description The description of what the function does.
- * @param parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+ * @param description A description of what the function does, used by the model to choose when and how to call the function.
+ * @param parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
  */
+@Deprecated(message = "This schema is deprecated.")
 object ChatCompletionFunctionss : BaseTable<ChatCompletionFunctions>("ChatCompletionFunctions") {
     val name = text("name") /* The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. */
-    val description = text("description") /* null */ /* The description of what the function does. */
-    val parameters = blob("parameters") /* null */ /* The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. */
+    val description = text("description") /* null */ /* A description of what the function does, used by the model to choose when and how to call the function. */
+    val parameters = blob("parameters") /* null */ /* The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. */
 
     /**
      * Create an entity of type ChatCompletionFunctions from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = ChatCompletionFunctions(
         name = row[name] ?: "" /* kotlin.String */ /* The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. */,
-        description = row[description]  /* kotlin.String? */ /* The description of what the function does. */,
-        parameters = row[parameters]  /* kotlin.collections.Map<kotlin.String, kotlin.Any>? */ /* The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. */
+        description = row[description]  /* kotlin.String? */ /* A description of what the function does, used by the model to choose when and how to call the function. */,
+        parameters = row[parameters]  /* kotlin.collections.Map<kotlin.String, kotlin.Any>? */ /* The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. */
     )
 
     /**

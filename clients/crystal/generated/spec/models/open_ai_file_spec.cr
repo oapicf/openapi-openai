@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -29,12 +29,6 @@ describe OpenAPIClient::OpenAIFile do
     end
   end
 
-  describe "test attribute 'object'" do
-    it "should work" do
-      # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
-    end
-  end
-
   describe "test attribute 'bytes'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
@@ -53,15 +47,33 @@ describe OpenAPIClient::OpenAIFile do
     end
   end
 
+  describe "test attribute 'object'" do
+    it "should work" do
+      # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new("String", ["file"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.object = value }.not_to raise_error
+      # end
+    end
+  end
+
   describe "test attribute 'purpose'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new("String", ["fine-tune", "fine-tune-results", "assistants", "assistants_output"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.purpose = value }.not_to raise_error
+      # end
     end
   end
 
   describe "test attribute 'status'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new("String", ["uploaded", "processed", "error"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.status = value }.not_to raise_error
+      # end
     end
   end
 

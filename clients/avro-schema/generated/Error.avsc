@@ -5,7 +5,7 @@
   "name": "Error",
   "fields": [
     {
-      "name": "type",
+      "name": "code",
       "type": "string",
       "doc": ""
     },
@@ -20,7 +20,7 @@
       "doc": ""
     },
     {
-      "name": "code",
+      "name": "type",
       "type": "string",
       "doc": ""
     }

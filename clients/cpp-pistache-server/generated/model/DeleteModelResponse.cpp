@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -22,8 +22,8 @@ namespace org::openapitools::server::model
 DeleteModelResponse::DeleteModelResponse()
 {
     m_Id = "";
-    m_object = "";
     m_Deleted = false;
+    m_object = "";
     
 }
 
@@ -58,10 +58,10 @@ bool DeleteModelResponse::operator==(const DeleteModelResponse& rhs) const
     (getId() == rhs.getId())
      &&
     
-    (getObject() == rhs.getObject())
+    (isDeleted() == rhs.isDeleted())
      &&
     
-    (isDeleted() == rhs.isDeleted())
+    (getObject() == rhs.getObject())
     
     
     ;
@@ -76,16 +76,16 @@ void to_json(nlohmann::json& j, const DeleteModelResponse& o)
 {
     j = nlohmann::json::object();
     j["id"] = o.m_Id;
-    j["object"] = o.m_object;
     j["deleted"] = o.m_Deleted;
+    j["object"] = o.m_object;
     
 }
 
 void from_json(const nlohmann::json& j, DeleteModelResponse& o)
 {
     j.at("id").get_to(o.m_Id);
-    j.at("object").get_to(o.m_object);
     j.at("deleted").get_to(o.m_Deleted);
+    j.at("object").get_to(o.m_object);
     
 }
 
@@ -97,14 +97,6 @@ void DeleteModelResponse::setId(std::string const& value)
 {
     m_Id = value;
 }
-std::string DeleteModelResponse::getObject() const
-{
-    return m_object;
-}
-void DeleteModelResponse::setObject(std::string const& value)
-{
-    m_object = value;
-}
 bool DeleteModelResponse::isDeleted() const
 {
     return m_Deleted;
@@ -112,6 +104,14 @@ bool DeleteModelResponse::isDeleted() const
 void DeleteModelResponse::setDeleted(bool const value)
 {
     m_Deleted = value;
+}
+std::string DeleteModelResponse::getObject() const
+{
+    return m_object;
+}
+void DeleteModelResponse::setObject(std::string const& value)
+{
+    m_object = value;
 }
 
 

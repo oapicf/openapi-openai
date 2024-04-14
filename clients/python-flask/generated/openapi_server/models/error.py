@@ -12,36 +12,36 @@ class Error(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type=None, message=None, param=None, code=None):  # noqa: E501
+    def __init__(self, code=None, message=None, param=None, type=None):  # noqa: E501
         """Error - a model defined in OpenAPI
 
-        :param type: The type of this Error.  # noqa: E501
-        :type type: str
+        :param code: The code of this Error.  # noqa: E501
+        :type code: str
         :param message: The message of this Error.  # noqa: E501
         :type message: str
         :param param: The param of this Error.  # noqa: E501
         :type param: str
-        :param code: The code of this Error.  # noqa: E501
-        :type code: str
+        :param type: The type of this Error.  # noqa: E501
+        :type type: str
         """
         self.openapi_types = {
-            'type': str,
+            'code': str,
             'message': str,
             'param': str,
-            'code': str
+            'type': str
         }
 
         self.attribute_map = {
-            'type': 'type',
+            'code': 'code',
             'message': 'message',
             'param': 'param',
-            'code': 'code'
+            'type': 'type'
         }
 
-        self._type = type
+        self._code = code
         self._message = message
         self._param = param
-        self._code = code
+        self._type = type
 
     @classmethod
     def from_dict(cls, dikt) -> 'Error':
@@ -55,27 +55,27 @@ class Error(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def type(self) -> str:
-        """Gets the type of this Error.
+    def code(self) -> str:
+        """Gets the code of this Error.
 
 
-        :return: The type of this Error.
+        :return: The code of this Error.
         :rtype: str
         """
-        return self._type
+        return self._code
 
-    @type.setter
-    def type(self, type: str):
-        """Sets the type of this Error.
+    @code.setter
+    def code(self, code: str):
+        """Sets the code of this Error.
 
 
-        :param type: The type of this Error.
-        :type type: str
+        :param code: The code of this Error.
+        :type code: str
         """
-        if type is None:
-            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
+        if code is None:
+            raise ValueError("Invalid value for `code`, must not be `None`")  # noqa: E501
 
-        self._type = type
+        self._code = code
 
     @property
     def message(self) -> str:
@@ -124,24 +124,24 @@ class Error(Model):
         self._param = param
 
     @property
-    def code(self) -> str:
-        """Gets the code of this Error.
+    def type(self) -> str:
+        """Gets the type of this Error.
 
 
-        :return: The code of this Error.
+        :return: The type of this Error.
         :rtype: str
         """
-        return self._code
+        return self._type
 
-    @code.setter
-    def code(self, code: str):
-        """Sets the code of this Error.
+    @type.setter
+    def type(self, type: str):
+        """Sets the type of this Error.
 
 
-        :param code: The code of this Error.
-        :type code: str
+        :param type: The type of this Error.
+        :type type: str
         """
-        if code is None:
-            raise ValueError("Invalid value for `code`, must not be `None`")  # noqa: E501
+        if type is None:
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
 
-        self._code = code
+        self._type = type

@@ -31,16 +31,16 @@ class DeleteModelResponseTest : ShouldSpec() {
             //modelInstance.id shouldBe ("TODO")
         }
 
-        // to test the property ``object``
-        should("test `object`") {
-            // uncomment below to test the property
-            //modelInstance.`object` shouldBe ("TODO")
-        }
-
         // to test the property `deleted`
         should("test deleted") {
             // uncomment below to test the property
             //modelInstance.deleted shouldBe ("TODO")
+        }
+
+        // to test the property ``object``
+        should("test `object`") {
+            // uncomment below to test the property
+            //modelInstance.`object` shouldBe ("TODO")
         }
 
     }

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,6 +13,7 @@
 #pragma once
 
 #include "OpenAPIBaseModel.h"
+#include "OpenAPICreateImageRequestModel.h"
 
 namespace OpenAPI
 {
@@ -29,21 +30,21 @@ public:
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 	void WriteJson(JsonWriter& Writer) const final;
 
-	/* A text description of the desired image(s). The maximum length is 1000 characters. */
+	/* A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. */
 	FString Prompt;
-	/* The number of images to generate. Must be between 1 and 10. */
+	TOptional<OpenAPICreateImageRequestModel> Model;
+	/* The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. */
 	TOptional<int32> N;
-	enum class SizeEnum
+	enum class QualityEnum
 	{
-		_256x256,
-		_512x512,
-		_1024x1024,
+		Standard,
+		Hd,
   	};
 
-	static FString EnumToString(const SizeEnum& EnumValue);
-	static bool EnumFromString(const FString& EnumAsString, SizeEnum& EnumValue);
-	/* The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
-	TOptional<SizeEnum> Size;
+	static FString EnumToString(const QualityEnum& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, QualityEnum& EnumValue);
+	/* The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`. */
+	TOptional<QualityEnum> Quality;
 	enum class ResponseFormatEnum
 	{
 		Url,
@@ -52,8 +53,31 @@ public:
 
 	static FString EnumToString(const ResponseFormatEnum& EnumValue);
 	static bool EnumFromString(const FString& EnumAsString, ResponseFormatEnum& EnumValue);
-	/* The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
+	/* The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. */
 	TOptional<ResponseFormatEnum> ResponseFormat;
+	enum class SizeEnum
+	{
+		_256x256,
+		_512x512,
+		_1024x1024,
+		_1792x1024,
+		_1024x1792,
+  	};
+
+	static FString EnumToString(const SizeEnum& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, SizeEnum& EnumValue);
+	/* The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models. */
+	TOptional<SizeEnum> Size;
+	enum class StyleEnum
+	{
+		Vivid,
+		Natural,
+  	};
+
+	static FString EnumToString(const StyleEnum& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, StyleEnum& EnumValue);
+	/* The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`. */
+	TOptional<StyleEnum> Style;
 	/* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
 	TOptional<FString> User;
 };

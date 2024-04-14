@@ -3,6 +3,7 @@ package org.openapitools.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -14,30 +15,42 @@ import org.openapitools.model.OpenAIFile;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-03-16T01:12:27.532392463Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-04-14T13:37:33.081471369Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ListFilesResponse   {
-  @JsonProperty("object")
-  private String _object;
-
   @JsonProperty("data")
   private List<OpenAIFile> data = new ArrayList<>();
 
   /**
-   **/
-  public ListFilesResponse _object(String _object) {
-    this._object = _object;
-    return this;
+   * Gets or Sets _object
+   */
+  public enum ObjectEnum {
+    LIST("list");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String text) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+    }
   }
 
-  
-  @ApiModelProperty(required = true, value = "")
   @JsonProperty("object")
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
+  private ObjectEnum _object;
 
   /**
    **/
@@ -56,6 +69,23 @@ public class ListFilesResponse   {
     this.data = data;
   }
 
+  /**
+   **/
+  public ListFilesResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("object")
+  public ObjectEnum getObject() {
+    return _object;
+  }
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -66,13 +96,13 @@ public class ListFilesResponse   {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(_object, listFilesResponse._object) &&
-        Objects.equals(data, listFilesResponse.data);
+    return Objects.equals(data, listFilesResponse.data) &&
+        Objects.equals(_object, listFilesResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_object, data);
+    return Objects.hash(data, _object);
   }
 
   @Override
@@ -80,8 +110,8 @@ public class ListFilesResponse   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

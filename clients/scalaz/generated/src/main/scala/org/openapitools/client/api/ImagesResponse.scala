@@ -13,7 +13,7 @@ import ImagesResponse._
 
 case class ImagesResponse (
   created: Integer,
-data: List[ImagesResponseDataInner])
+data: List[Image])
 
 object ImagesResponse {
   import DateTimeCodecs._

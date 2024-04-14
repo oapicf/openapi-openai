@@ -1,7 +1,7 @@
 /*
  * CreateEmbeddingResponse_usage.h
  *
- * 
+ * The usage information for the request.
  */
 
 #ifndef _CreateEmbeddingResponse_usage_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief The usage information for the request.
  *
  *  \ingroup Models
  *
@@ -45,18 +45,18 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get The number of tokens used by the prompt.
 	 */
 	int getPromptTokens();
 
-	/*! \brief Set 
+	/*! \brief Set The number of tokens used by the prompt.
 	 */
 	void setPromptTokens(int  prompt_tokens);
-	/*! \brief Get 
+	/*! \brief Get The total number of tokens used by the request.
 	 */
 	int getTotalTokens();
 
-	/*! \brief Set 
+	/*! \brief Set The total number of tokens used by the request.
 	 */
 	void setTotalTokens(int  total_tokens);
 

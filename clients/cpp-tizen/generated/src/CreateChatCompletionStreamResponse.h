@@ -1,7 +1,7 @@
 /*
  * CreateChatCompletionStreamResponse.h
  *
- * 
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
  */
 
 #ifndef _CreateChatCompletionStreamResponse_H_
@@ -22,7 +22,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
  *
  *  \ingroup Models
  *
@@ -47,48 +47,56 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get A unique identifier for the chat completion. Each chunk has the same ID.
 	 */
 	std::string getId();
 
-	/*! \brief Set 
+	/*! \brief Set A unique identifier for the chat completion. Each chunk has the same ID.
 	 */
 	void setId(std::string  id);
-	/*! \brief Get 
-	 */
-	std::string getObject();
-
-	/*! \brief Set 
-	 */
-	void setObject(std::string  object);
-	/*! \brief Get 
-	 */
-	int getCreated();
-
-	/*! \brief Set 
-	 */
-	void setCreated(int  created);
-	/*! \brief Get 
-	 */
-	std::string getModel();
-
-	/*! \brief Set 
-	 */
-	void setModel(std::string  model);
-	/*! \brief Get 
+	/*! \brief Get A list of chat completion choices. Can be more than one if `n` is greater than 1.
 	 */
 	std::list<CreateChatCompletionStreamResponse_choices_inner> getChoices();
 
-	/*! \brief Set 
+	/*! \brief Set A list of chat completion choices. Can be more than one if `n` is greater than 1.
 	 */
 	void setChoices(std::list <CreateChatCompletionStreamResponse_choices_inner> choices);
+	/*! \brief Get The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+	 */
+	int getCreated();
+
+	/*! \brief Set The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+	 */
+	void setCreated(int  created);
+	/*! \brief Get The model to generate the completion.
+	 */
+	std::string getModel();
+
+	/*! \brief Set The model to generate the completion.
+	 */
+	void setModel(std::string  model);
+	/*! \brief Get This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+	 */
+	std::string getSystemFingerprint();
+
+	/*! \brief Set This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+	 */
+	void setSystemFingerprint(std::string  system_fingerprint);
+	/*! \brief Get The object type, which is always `chat.completion.chunk`.
+	 */
+	std::string getObject();
+
+	/*! \brief Set The object type, which is always `chat.completion.chunk`.
+	 */
+	void setObject(std::string  object);
 
 private:
 	std::string id;
-	std::string object;
+	std::list <CreateChatCompletionStreamResponse_choices_inner>choices;
 	int created;
 	std::string model;
-	std::list <CreateChatCompletionStreamResponse_choices_inner>choices;
+	std::string system_fingerprint;
+	std::string object;
 	void __init();
 	void __cleanup();
 

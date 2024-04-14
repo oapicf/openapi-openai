@@ -5,8 +5,8 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.completion_usage import CompletionUsage
 from openapi_server.models.create_completion_response_choices_inner import CreateCompletionResponseChoicesInner
-from openapi_server.models.create_completion_response_usage import CreateCompletionResponseUsage
 from openapi_server import util
 
 
@@ -16,39 +16,43 @@ class CreateCompletionResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, object: str=None, created: int=None, model: str=None, choices: List[CreateCompletionResponseChoicesInner]=None, usage: CreateCompletionResponseUsage=None):
+    def __init__(self, id: str=None, choices: List[CreateCompletionResponseChoicesInner]=None, created: int=None, model: str=None, system_fingerprint: str=None, object: str=None, usage: CompletionUsage=None):
         """CreateCompletionResponse - a model defined in OpenAPI
 
         :param id: The id of this CreateCompletionResponse.
-        :param object: The object of this CreateCompletionResponse.
+        :param choices: The choices of this CreateCompletionResponse.
         :param created: The created of this CreateCompletionResponse.
         :param model: The model of this CreateCompletionResponse.
-        :param choices: The choices of this CreateCompletionResponse.
+        :param system_fingerprint: The system_fingerprint of this CreateCompletionResponse.
+        :param object: The object of this CreateCompletionResponse.
         :param usage: The usage of this CreateCompletionResponse.
         """
         self.openapi_types = {
             'id': str,
-            'object': str,
+            'choices': List[CreateCompletionResponseChoicesInner],
             'created': int,
             'model': str,
-            'choices': List[CreateCompletionResponseChoicesInner],
-            'usage': CreateCompletionResponseUsage
+            'system_fingerprint': str,
+            'object': str,
+            'usage': CompletionUsage
         }
 
         self.attribute_map = {
             'id': 'id',
-            'object': 'object',
+            'choices': 'choices',
             'created': 'created',
             'model': 'model',
-            'choices': 'choices',
+            'system_fingerprint': 'system_fingerprint',
+            'object': 'object',
             'usage': 'usage'
         }
 
         self._id = id
-        self._object = object
+        self._choices = choices
         self._created = created
         self._model = model
-        self._choices = choices
+        self._system_fingerprint = system_fingerprint
+        self._object = object
         self._usage = usage
 
     @classmethod
@@ -64,6 +68,7 @@ class CreateCompletionResponse(Model):
     def id(self):
         """Gets the id of this CreateCompletionResponse.
 
+        A unique identifier for the completion.
 
         :return: The id of this CreateCompletionResponse.
         :rtype: str
@@ -74,6 +79,7 @@ class CreateCompletionResponse(Model):
     def id(self, id):
         """Sets the id of this CreateCompletionResponse.
 
+        A unique identifier for the completion.
 
         :param id: The id of this CreateCompletionResponse.
         :type id: str
@@ -84,32 +90,35 @@ class CreateCompletionResponse(Model):
         self._id = id
 
     @property
-    def object(self):
-        """Gets the object of this CreateCompletionResponse.
+    def choices(self):
+        """Gets the choices of this CreateCompletionResponse.
 
+        The list of completion choices the model generated for the input prompt.
 
-        :return: The object of this CreateCompletionResponse.
-        :rtype: str
+        :return: The choices of this CreateCompletionResponse.
+        :rtype: List[CreateCompletionResponseChoicesInner]
         """
-        return self._object
+        return self._choices
 
-    @object.setter
-    def object(self, object):
-        """Sets the object of this CreateCompletionResponse.
+    @choices.setter
+    def choices(self, choices):
+        """Sets the choices of this CreateCompletionResponse.
 
+        The list of completion choices the model generated for the input prompt.
 
-        :param object: The object of this CreateCompletionResponse.
-        :type object: str
+        :param choices: The choices of this CreateCompletionResponse.
+        :type choices: List[CreateCompletionResponseChoicesInner]
         """
-        if object is None:
-            raise ValueError("Invalid value for `object`, must not be `None`")
+        if choices is None:
+            raise ValueError("Invalid value for `choices`, must not be `None`")
 
-        self._object = object
+        self._choices = choices
 
     @property
     def created(self):
         """Gets the created of this CreateCompletionResponse.
 
+        The Unix timestamp (in seconds) of when the completion was created.
 
         :return: The created of this CreateCompletionResponse.
         :rtype: int
@@ -120,6 +129,7 @@ class CreateCompletionResponse(Model):
     def created(self, created):
         """Sets the created of this CreateCompletionResponse.
 
+        The Unix timestamp (in seconds) of when the completion was created.
 
         :param created: The created of this CreateCompletionResponse.
         :type created: int
@@ -133,6 +143,7 @@ class CreateCompletionResponse(Model):
     def model(self):
         """Gets the model of this CreateCompletionResponse.
 
+        The model used for completion.
 
         :return: The model of this CreateCompletionResponse.
         :rtype: str
@@ -143,6 +154,7 @@ class CreateCompletionResponse(Model):
     def model(self, model):
         """Sets the model of this CreateCompletionResponse.
 
+        The model used for completion.
 
         :param model: The model of this CreateCompletionResponse.
         :type model: str
@@ -153,27 +165,56 @@ class CreateCompletionResponse(Model):
         self._model = model
 
     @property
-    def choices(self):
-        """Gets the choices of this CreateCompletionResponse.
+    def system_fingerprint(self):
+        """Gets the system_fingerprint of this CreateCompletionResponse.
 
+        This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
 
-        :return: The choices of this CreateCompletionResponse.
-        :rtype: List[CreateCompletionResponseChoicesInner]
+        :return: The system_fingerprint of this CreateCompletionResponse.
+        :rtype: str
         """
-        return self._choices
+        return self._system_fingerprint
 
-    @choices.setter
-    def choices(self, choices):
-        """Sets the choices of this CreateCompletionResponse.
+    @system_fingerprint.setter
+    def system_fingerprint(self, system_fingerprint):
+        """Sets the system_fingerprint of this CreateCompletionResponse.
 
+        This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
 
-        :param choices: The choices of this CreateCompletionResponse.
-        :type choices: List[CreateCompletionResponseChoicesInner]
+        :param system_fingerprint: The system_fingerprint of this CreateCompletionResponse.
+        :type system_fingerprint: str
         """
-        if choices is None:
-            raise ValueError("Invalid value for `choices`, must not be `None`")
 
-        self._choices = choices
+        self._system_fingerprint = system_fingerprint
+
+    @property
+    def object(self):
+        """Gets the object of this CreateCompletionResponse.
+
+        The object type, which is always \"text_completion\"
+
+        :return: The object of this CreateCompletionResponse.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object):
+        """Sets the object of this CreateCompletionResponse.
+
+        The object type, which is always \"text_completion\"
+
+        :param object: The object of this CreateCompletionResponse.
+        :type object: str
+        """
+        allowed_values = ["text_completion"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
+
+        self._object = object
 
     @property
     def usage(self):
@@ -181,7 +222,7 @@ class CreateCompletionResponse(Model):
 
 
         :return: The usage of this CreateCompletionResponse.
-        :rtype: CreateCompletionResponseUsage
+        :rtype: CompletionUsage
         """
         return self._usage
 
@@ -191,7 +232,7 @@ class CreateCompletionResponse(Model):
 
 
         :param usage: The usage of this CreateCompletionResponse.
-        :type usage: CreateCompletionResponseUsage
+        :type usage: CompletionUsage
         """
 
         self._usage = usage

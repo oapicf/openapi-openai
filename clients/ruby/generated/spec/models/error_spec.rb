@@ -1,7 +1,7 @@
 =begin
 #OpenAI API
 
-#APIs for sampling from and fine-tuning language models
+#The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 The version of the OpenAPI document: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -27,7 +27,7 @@ describe OpenApiOpenAIClient::Error do
     end
   end
 
-  describe 'test attribute "type"' do
+  describe 'test attribute "code"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end
@@ -45,7 +45,7 @@ describe OpenApiOpenAIClient::Error do
     end
   end
 
-  describe 'test attribute "code"' do
+  describe 'test attribute "type"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end

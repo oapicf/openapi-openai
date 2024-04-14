@@ -1,7 +1,7 @@
 /*
  * create_moderation_response_results_inner_category_scores.h
  *
- * 
+ * A list of the categories along with their scores as predicted by model.
  */
 
 #ifndef _create_moderation_response_results_inner_category_scores_H_
@@ -21,7 +21,11 @@ typedef struct create_moderation_response_results_inner_category_scores_t create
 typedef struct create_moderation_response_results_inner_category_scores_t {
     double hate; //numeric
     double hate_threatening; //numeric
+    double harassment; //numeric
+    double harassment_threatening; //numeric
     double self_harm; //numeric
+    double self_harm_intent; //numeric
+    double self_harm_instructions; //numeric
     double sexual; //numeric
     double sexual_minors; //numeric
     double violence; //numeric
@@ -32,7 +36,11 @@ typedef struct create_moderation_response_results_inner_category_scores_t {
 create_moderation_response_results_inner_category_scores_t *create_moderation_response_results_inner_category_scores_create(
     double hate,
     double hate_threatening,
+    double harassment,
+    double harassment_threatening,
     double self_harm,
+    double self_harm_intent,
+    double self_harm_instructions,
     double sexual,
     double sexual_minors,
     double violence,

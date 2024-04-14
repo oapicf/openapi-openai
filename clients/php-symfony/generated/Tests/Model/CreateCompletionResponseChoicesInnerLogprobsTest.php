@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -87,14 +87,14 @@ class CreateCompletionResponseChoicesInnerLogprobsTest extends TestCase
     }
 
     /**
-     * Test attribute "tokens"
+     * Test attribute "textOffset"
      *
      * @group unit
      * @small
      */
-    public function testPropertyTokens(): void
+    public function testPropertyTextOffset(): void
     {
-        $this->markTestSkipped('Test for property tokens not implemented');
+        $this->markTestSkipped('Test for property textOffset not implemented');
     }
 
     /**
@@ -109,6 +109,17 @@ class CreateCompletionResponseChoicesInnerLogprobsTest extends TestCase
     }
 
     /**
+     * Test attribute "tokens"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyTokens(): void
+    {
+        $this->markTestSkipped('Test for property tokens not implemented');
+    }
+
+    /**
      * Test attribute "topLogprobs"
      *
      * @group unit
@@ -117,16 +128,5 @@ class CreateCompletionResponseChoicesInnerLogprobsTest extends TestCase
     public function testPropertyTopLogprobs(): void
     {
         $this->markTestSkipped('Test for property topLogprobs not implemented');
-    }
-
-    /**
-     * Test attribute "textOffset"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyTextOffset(): void
-    {
-        $this->markTestSkipped('Test for property textOffset not implemented');
     }
 }

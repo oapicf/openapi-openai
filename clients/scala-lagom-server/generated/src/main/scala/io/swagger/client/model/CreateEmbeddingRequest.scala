@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,8 +14,11 @@ package io.swagger.client.model
 import play.api.libs.json._
 
 case class CreateEmbeddingRequest (
-                  model: CreateEmbeddingRequestModel,
                   input: CreateEmbeddingRequestInput,
+                  model: CreateEmbeddingRequestModel,
+                  encodingFormat:  Option[CreateEmbeddingRequestEncodingFormatEnum.CreateEmbeddingRequestEncodingFormatEnum],
+            /* The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */
+                  dimensions: Option[Int],
             /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
                   user: Option[String]
 )
@@ -24,3 +27,8 @@ object CreateEmbeddingRequest {
 implicit val format: Format[CreateEmbeddingRequest] = Json.format
 }
 
+object CreateEmbeddingRequestEncodingFormatEnum extends Enumeration {
+  val   float, base64 = Value
+  type CreateEmbeddingRequestEncodingFormatEnum = Value
+  implicit val format: Format[Value] = Format(Reads.enumNameReads(this), Writes.enumNameWrites[CreateEmbeddingRequestEncodingFormatEnum.type])
+}

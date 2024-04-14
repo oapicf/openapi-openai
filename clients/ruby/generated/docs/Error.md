@@ -4,10 +4,10 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **type** | **String** |  |  |
+| **code** | **String** |  |  |
 | **message** | **String** |  |  |
 | **param** | **String** |  |  |
-| **code** | **String** |  |  |
+| **type** | **String** |  |  |
 
 ## Example
 
@@ -15,10 +15,10 @@
 require 'openapi_openai'
 
 instance = OpenApiOpenAIClient::Error.new(
-  type: null,
+  code: null,
   message: null,
   param: null,
-  code: null
+  type: null
 )
 ```
 

@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -44,14 +44,14 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateCompletionResponseChoicesInnerLogprobs 
 {
         /**
-     * @var string[]|null
-     * @SerializedName("tokens")
+     * @var int[]|null
+     * @SerializedName("text_offset")
      * @Assert\All({
-     *   @Assert\Type("string")
+     *   @Assert\Type("int")
      * })
-     * @Type("array<string>")
+     * @Type("array<int>")
      */
-    protected ?array $tokens = null;
+    protected ?array $textOffset = null;
 
     /**
      * @var float[]|null
@@ -64,24 +64,24 @@ class CreateCompletionResponseChoicesInnerLogprobs
     protected ?array $tokenLogprobs = null;
 
     /**
-     * @var array[]|null
-     * @SerializedName("top_logprobs")
+     * @var string[]|null
+     * @SerializedName("tokens")
      * @Assert\All({
-     *   @Assert\Type("array")
+     *   @Assert\Type("string")
      * })
-     * @Type("array<array>")
+     * @Type("array<string>")
      */
-    protected ?array $topLogprobs = null;
+    protected ?array $tokens = null;
 
     /**
-     * @var int[]|null
-     * @SerializedName("text_offset")
+     * @var float[]|null
+     * @SerializedName("top_logprobs")
      * @Assert\All({
-     *   @Assert\Type("int")
+     *   @Assert\Type("float")
      * })
-     * @Type("array<int>")
+     * @Type("array<float>")
      */
-    protected ?array $textOffset = null;
+    protected ?array $topLogprobs = null;
 
     /**
      * Constructor
@@ -90,35 +90,35 @@ class CreateCompletionResponseChoicesInnerLogprobs
     public function __construct(array $data = null)
     {
         if (is_array($data)) {
-            $this->tokens = array_key_exists('tokens', $data) ? $data['tokens'] : $this->tokens;
-            $this->tokenLogprobs = array_key_exists('tokenLogprobs', $data) ? $data['tokenLogprobs'] : $this->tokenLogprobs;
-            $this->topLogprobs = array_key_exists('topLogprobs', $data) ? $data['topLogprobs'] : $this->topLogprobs;
             $this->textOffset = array_key_exists('textOffset', $data) ? $data['textOffset'] : $this->textOffset;
+            $this->tokenLogprobs = array_key_exists('tokenLogprobs', $data) ? $data['tokenLogprobs'] : $this->tokenLogprobs;
+            $this->tokens = array_key_exists('tokens', $data) ? $data['tokens'] : $this->tokens;
+            $this->topLogprobs = array_key_exists('topLogprobs', $data) ? $data['topLogprobs'] : $this->topLogprobs;
         }
     }
 
     /**
-     * Gets tokens.
+     * Gets textOffset.
      *
-     * @return string[]|null
+     * @return int[]|null
      */
-    public function getTokens(): ?array
+    public function getTextOffset(): ?array
     {
-        return $this->tokens;
+        return $this->textOffset;
     }
 
 
 
     /**
-     * Sets tokens.
+     * Sets textOffset.
      *
-     * @param string[]|null $tokens
+     * @param int[]|null $textOffset
      *
      * @return $this
      */
-    public function setTokens(?array $tokens = null): self
+    public function setTextOffset(?array $textOffset = null): self
     {
-        $this->tokens = $tokens;
+        $this->textOffset = $textOffset;
 
         return $this;
     }
@@ -150,9 +150,35 @@ class CreateCompletionResponseChoicesInnerLogprobs
     }
 
     /**
+     * Gets tokens.
+     *
+     * @return string[]|null
+     */
+    public function getTokens(): ?array
+    {
+        return $this->tokens;
+    }
+
+
+
+    /**
+     * Sets tokens.
+     *
+     * @param string[]|null $tokens
+     *
+     * @return $this
+     */
+    public function setTokens(?array $tokens = null): self
+    {
+        $this->tokens = $tokens;
+
+        return $this;
+    }
+
+    /**
      * Gets topLogprobs.
      *
-     * @return array[]|null
+     * @return float[]|null
      */
     public function getTopLogprobs(): ?array
     {
@@ -164,39 +190,13 @@ class CreateCompletionResponseChoicesInnerLogprobs
     /**
      * Sets topLogprobs.
      *
-     * @param array[]|null $topLogprobs
+     * @param float[]|null $topLogprobs
      *
      * @return $this
      */
     public function setTopLogprobs(?array $topLogprobs = null): self
     {
         $this->topLogprobs = $topLogprobs;
-
-        return $this;
-    }
-
-    /**
-     * Gets textOffset.
-     *
-     * @return int[]|null
-     */
-    public function getTextOffset(): ?array
-    {
-        return $this->textOffset;
-    }
-
-
-
-    /**
-     * Sets textOffset.
-     *
-     * @param int[]|null $textOffset
-     *
-     * @return $this
-     */
-    public function setTextOffset(?array $textOffset = null): self
-    {
-        $this->textOffset = $textOffset;
 
         return $this;
     }

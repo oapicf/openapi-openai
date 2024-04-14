@@ -28,6 +28,9 @@ ListModelsResponse <- R6::R6Class(
     #' @export
     initialize = function(`object`, `data`, ...) {
       if (!missing(`object`)) {
+        if (!(`object` %in% c("list"))) {
+          stop(paste("Error! \"", `object`, "\" cannot be assigned to `object`. Must be \"list\".", sep = ""))
+        }
         if (!(is.character(`object`) && length(`object`) == 1)) {
           stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
         }
@@ -69,6 +72,9 @@ ListModelsResponse <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`object`)) {
+        if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("list"))) {
+          stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"list\".", sep = ""))
+        }
         self$`object` <- this_object$`object`
       }
       if (!is.null(this_object$`data`)) {
@@ -115,6 +121,9 @@ ListModelsResponse <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("list"))) {
+        stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"list\".", sep = ""))
+      }
       self$`object` <- this_object$`object`
       self$`data` <- ApiClient$new()$deserializeObj(this_object$`data`, "array[Model]", loadNamespace("openapi"))
       self

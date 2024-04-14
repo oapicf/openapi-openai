@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,46 +11,69 @@
  */
 
 /**
- * OASCreateCompletionResponse
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint).\n
  */
 public class OASCreateCompletionResponse implements OAS.MappedProperties {
     /**
-     * Get id
+     * A unique identifier for the completion.
      * @return id
      */
     public String id { get; set; }
 
     /**
-     * Get r_object
-     * @return r_object
-     */
-    public String r_object { get; set; }
-
-    /**
-     * Get created
-     * @return created
-     */
-    public Integer created { get; set; }
-
-    /**
-     * Get model
-     * @return model
-     */
-    public String model { get; set; }
-
-    /**
-     * Get choices
+     * The list of completion choices the model generated for the input prompt.
      * @return choices
      */
     public List<OASCreateCompletionResponseChoicesIn> choices { get; set; }
 
     /**
+     * The Unix timestamp (in seconds) of when the completion was created.
+     * @return created
+     */
+    public Integer created { get; set; }
+
+    /**
+     * The model used for completion.
+     * @return model
+     */
+    public String model { get; set; }
+
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.\n\nCan be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.\n
+     * @return systemFingerprint
+     */
+    public String systemFingerprint { get; set; }
+
+    /**
+     * The object type, which is always "text_completion"
+     */
+    public enum RObjectEnum {
+        TEXT_COMPLETION
+    }
+
+    /**
+     * The object type, which is always "text_completion"
+     * @return r_object
+     */
+    public RObjectEnum r_object { get; set; }
+
+    /**
      * Get usage
      * @return usage
      */
-    public OASCreateCompletionResponseUsage usage { get; set; }
+    public OASCompletionUsage usage { get; set; }
 
     private static final Map<String, String> propertyMappings = new Map<String, String>{
+        'system_fingerprint' => 'systemFingerprint',
+        'object' => 'r_object'
+    };
+
+    public Map<String, String> getPropertyMappings() {
+        return propertyMappings;
+    }
+
+    private static final Map<String, String> propertyMappings = new Map<String, String>{
+        'system_fingerprint' => 'systemFingerprint',
         'object' => 'r_object'
     };
 
@@ -65,11 +88,12 @@ public class OASCreateCompletionResponse implements OAS.MappedProperties {
     public static OASCreateCompletionResponse getExample() {
         OASCreateCompletionResponse createCompletionResponse = new OASCreateCompletionResponse();
           createCompletionResponse.id = '';
-          createCompletionResponse.r_object = '';
+          createCompletionResponse.choices = new List<OASCreateCompletionResponseChoicesIn>{OASCreateCompletionResponseChoicesIn.getExample()};
           createCompletionResponse.created = 0;
           createCompletionResponse.model = '';
-          createCompletionResponse.choices = new List<OASCreateCompletionResponseChoicesIn>{OASCreateCompletionResponseChoicesIn.getExample()};
-          createCompletionResponse.usage = OASCreateCompletionResponseUsage.getExample();
+          createCompletionResponse.systemFingerprint = '';
+          createCompletionResponse.r_object = RObjectEnum.TEXT_COMPLETION;
+          createCompletionResponse.usage = OASCompletionUsage.getExample();
         return createCompletionResponse;
     }
 
@@ -77,10 +101,11 @@ public class OASCreateCompletionResponse implements OAS.MappedProperties {
         if (obj instanceof OASCreateCompletionResponse) {           
             OASCreateCompletionResponse createCompletionResponse = (OASCreateCompletionResponse) obj;
             return this.id == createCompletionResponse.id
-                && this.r_object == createCompletionResponse.r_object
+                && this.choices == createCompletionResponse.choices
                 && this.created == createCompletionResponse.created
                 && this.model == createCompletionResponse.model
-                && this.choices == createCompletionResponse.choices
+                && this.systemFingerprint == createCompletionResponse.systemFingerprint
+                && this.r_object == createCompletionResponse.r_object
                 && this.usage == createCompletionResponse.usage;
         }
         return false;
@@ -89,10 +114,11 @@ public class OASCreateCompletionResponse implements OAS.MappedProperties {
     public Integer hashCode() {
         Integer hashCode = 43;
         hashCode = (17 * hashCode) + (id == null ? 0 : System.hashCode(id));
-        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
+        hashCode = (17 * hashCode) + (choices == null ? 0 : System.hashCode(choices));
         hashCode = (17 * hashCode) + (created == null ? 0 : System.hashCode(created));
         hashCode = (17 * hashCode) + (model == null ? 0 : System.hashCode(model));
-        hashCode = (17 * hashCode) + (choices == null ? 0 : System.hashCode(choices));
+        hashCode = (17 * hashCode) + (systemFingerprint == null ? 0 : System.hashCode(systemFingerprint));
+        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
         hashCode = (17 * hashCode) + (usage == null ? 0 : System.hashCode(usage));
         return hashCode;
     }

@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Text output from the Code Interpreter tool call as part of a run step.",
+  "name": "RunStepDetailsToolCallsCodeOutputLogsObject",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RunStepDetailsToolCallsCodeOutputLogsObject_type",
+        "symbols": [
+          "logs"
+        ]
+      },
+      "doc": "Always `logs`."
+    },
+    {
+      "name": "logs",
+      "type": "string",
+      "doc": "The text output from the Code Interpreter tool call."
+    }
+  ]
+
+}

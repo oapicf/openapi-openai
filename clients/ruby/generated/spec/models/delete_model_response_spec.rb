@@ -1,7 +1,7 @@
 =begin
 #OpenAI API
 
-#APIs for sampling from and fine-tuning language models
+#The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 The version of the OpenAPI document: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -33,13 +33,13 @@ describe OpenApiOpenAIClient::DeleteModelResponse do
     end
   end
 
-  describe 'test attribute "object"' do
+  describe 'test attribute "deleted"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end
   end
 
-  describe 'test attribute "deleted"' do
+  describe 'test attribute "object"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end

@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,22 +20,58 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * CreateChatCompletionStreamResponse
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Schema(name = "CreateChatCompletionStreamResponse", description = "Represents a streamed chunk of a chat completion response returned by model, based on the provided input.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionStreamResponse {
 
   private String id;
 
-  private String _object;
+  @Valid
+  private List<@Valid CreateChatCompletionStreamResponseChoicesInner> choices = new ArrayList<>();
 
   private Integer created;
 
   private String model;
 
-  @Valid
-  private List<@Valid CreateChatCompletionStreamResponseChoicesInner> choices = new ArrayList<>();
+  private String systemFingerprint;
+
+  /**
+   * The object type, which is always `chat.completion.chunk`.
+   */
+  public enum ObjectEnum {
+    CHAT_COMPLETION_CHUNK("chat.completion.chunk");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  private ObjectEnum _object;
 
   public CreateChatCompletionStreamResponse() {
     super();
@@ -43,12 +80,12 @@ public class CreateChatCompletionStreamResponse {
   /**
    * Constructor with only required parameters
    */
-  public CreateChatCompletionStreamResponse(String id, String _object, Integer created, String model, List<@Valid CreateChatCompletionStreamResponseChoicesInner> choices) {
+  public CreateChatCompletionStreamResponse(String id, List<@Valid CreateChatCompletionStreamResponseChoicesInner> choices, Integer created, String model, ObjectEnum _object) {
     this.id = id;
-    this._object = _object;
+    this.choices = choices;
     this.created = created;
     this.model = model;
-    this.choices = choices;
+    this._object = _object;
   }
 
   public CreateChatCompletionStreamResponse id(String id) {
@@ -57,11 +94,11 @@ public class CreateChatCompletionStreamResponse {
   }
 
   /**
-   * Get id
+   * A unique identifier for the chat completion. Each chunk has the same ID.
    * @return id
   */
   @NotNull 
-  @Schema(name = "id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "id", description = "A unique identifier for the chat completion. Each chunk has the same ID.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("id")
   public String getId() {
     return id;
@@ -69,66 +106,6 @@ public class CreateChatCompletionStreamResponse {
 
   public void setId(String id) {
     this.id = id;
-  }
-
-  public CreateChatCompletionStreamResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-  /**
-   * Get _object
-   * @return _object
-  */
-  @NotNull 
-  @Schema(name = "object", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("object")
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-  public CreateChatCompletionStreamResponse created(Integer created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Get created
-   * @return created
-  */
-  @NotNull 
-  @Schema(name = "created", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("created")
-  public Integer getCreated() {
-    return created;
-  }
-
-  public void setCreated(Integer created) {
-    this.created = created;
-  }
-
-  public CreateChatCompletionStreamResponse model(String model) {
-    this.model = model;
-    return this;
-  }
-
-  /**
-   * Get model
-   * @return model
-  */
-  @NotNull 
-  @Schema(name = "model", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("model")
-  public String getModel() {
-    return model;
-  }
-
-  public void setModel(String model) {
-    this.model = model;
   }
 
   public CreateChatCompletionStreamResponse choices(List<@Valid CreateChatCompletionStreamResponseChoicesInner> choices) {
@@ -145,11 +122,11 @@ public class CreateChatCompletionStreamResponse {
   }
 
   /**
-   * Get choices
+   * A list of chat completion choices. Can be more than one if `n` is greater than 1.
    * @return choices
   */
   @NotNull @Valid 
-  @Schema(name = "choices", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "choices", description = "A list of chat completion choices. Can be more than one if `n` is greater than 1.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("choices")
   public List<@Valid CreateChatCompletionStreamResponseChoicesInner> getChoices() {
     return choices;
@@ -157,6 +134,86 @@ public class CreateChatCompletionStreamResponse {
 
   public void setChoices(List<@Valid CreateChatCompletionStreamResponseChoicesInner> choices) {
     this.choices = choices;
+  }
+
+  public CreateChatCompletionStreamResponse created(Integer created) {
+    this.created = created;
+    return this;
+  }
+
+  /**
+   * The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+   * @return created
+  */
+  @NotNull 
+  @Schema(name = "created", description = "The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("created")
+  public Integer getCreated() {
+    return created;
+  }
+
+  public void setCreated(Integer created) {
+    this.created = created;
+  }
+
+  public CreateChatCompletionStreamResponse model(String model) {
+    this.model = model;
+    return this;
+  }
+
+  /**
+   * The model to generate the completion.
+   * @return model
+  */
+  @NotNull 
+  @Schema(name = "model", description = "The model to generate the completion.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("model")
+  public String getModel() {
+    return model;
+  }
+
+  public void setModel(String model) {
+    this.model = model;
+  }
+
+  public CreateChatCompletionStreamResponse systemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+    return this;
+  }
+
+  /**
+   * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+   * @return systemFingerprint
+  */
+  
+  @Schema(name = "system_fingerprint", description = "This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("system_fingerprint")
+  public String getSystemFingerprint() {
+    return systemFingerprint;
+  }
+
+  public void setSystemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+  }
+
+  public CreateChatCompletionStreamResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  /**
+   * The object type, which is always `chat.completion.chunk`.
+   * @return _object
+  */
+  @NotNull 
+  @Schema(name = "object", description = "The object type, which is always `chat.completion.chunk`.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("object")
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
   }
 
   @Override
@@ -169,15 +226,16 @@ public class CreateChatCompletionStreamResponse {
     }
     CreateChatCompletionStreamResponse createChatCompletionStreamResponse = (CreateChatCompletionStreamResponse) o;
     return Objects.equals(this.id, createChatCompletionStreamResponse.id) &&
-        Objects.equals(this._object, createChatCompletionStreamResponse._object) &&
+        Objects.equals(this.choices, createChatCompletionStreamResponse.choices) &&
         Objects.equals(this.created, createChatCompletionStreamResponse.created) &&
         Objects.equals(this.model, createChatCompletionStreamResponse.model) &&
-        Objects.equals(this.choices, createChatCompletionStreamResponse.choices);
+        Objects.equals(this.systemFingerprint, createChatCompletionStreamResponse.systemFingerprint) &&
+        Objects.equals(this._object, createChatCompletionStreamResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, model, choices);
+    return Objects.hash(id, choices, created, model, systemFingerprint, _object);
   }
 
   @Override
@@ -185,10 +243,11 @@ public class CreateChatCompletionStreamResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionStreamResponse {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
-    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
+    sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

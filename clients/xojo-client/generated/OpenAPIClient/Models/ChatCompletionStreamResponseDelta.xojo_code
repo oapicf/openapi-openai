@@ -3,14 +3,6 @@ Protected Class ChatCompletionStreamResponseDelta
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The role of the author of this message.
-		#tag EndNote
-		role As Xoson.O.OptionalString
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
-		#tag Note
 			The contents of the chunk message.
 		#tag EndNote
 		content As Xoson.O.OptionalString
@@ -18,7 +10,20 @@ Protected Class ChatCompletionStreamResponseDelta
 
 
 	#tag Property, Flags = &h0
-		function_call As OpenAPIClient.Models.ChatCompletionRequestMessageFunctionCall
+		Attributes( Deprecated ) function_call As OpenAPIClient.Models.ChatCompletionStreamResponseDeltaFunctionCall
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		tool_calls() As OpenAPIClient.Models.ChatCompletionMessageToolCallChunk
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The role of the author of this message.
+		#tag EndNote
+		role As Xoson.O.OptionalString
 	#tag EndProperty
 
 
@@ -27,7 +32,7 @@ Protected Class ChatCompletionStreamResponseDelta
         System
         User
         Assistant
-        Escapedfunction
+        Tool
         
     #tag EndEnum
 
@@ -42,8 +47,8 @@ Protected Class ChatCompletionStreamResponseDelta
 		      Return "user"
 		    Case RoleEnum.Assistant
 		      Return "assistant"
-		    Case RoleEnum.Escapedfunction
-		      Return "function"
+		    Case RoleEnum.Tool
+		      Return "tool"
 		    
 		  End Select
 		  Return ""
@@ -97,7 +102,15 @@ Protected Class ChatCompletionStreamResponseDelta
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="ChatCompletionRequestMessageFunctionCall"
+			Type="ChatCompletionStreamResponseDeltaFunctionCall"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="tool_calls"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="ChatCompletionMessageToolCallChunk"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

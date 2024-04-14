@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,19 +15,19 @@
  */
 public class OASChatCompletionFunctions {
     /**
+     * A description of what the function does, used by the model to choose when and how to call the function.
+     * @return description
+     */
+    public String description { get; set; }
+
+    /**
      * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
      * @return name
      */
     public String name { get; set; }
 
     /**
-     * The description of what the function does.
-     * @return description
-     */
-    public String description { get; set; }
-
-    /**
-     * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+     * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. \n\nOmitting `parameters` defines a function with an empty parameter list.
      * @return parameters
      */
     public Map<String, oas_any_type_not_mapped> parameters { get; set; }
@@ -38,8 +38,8 @@ public class OASChatCompletionFunctions {
 
     public static OASChatCompletionFunctions getExample() {
         OASChatCompletionFunctions chatCompletionFunctions = new OASChatCompletionFunctions();
-          chatCompletionFunctions.name = '';
           chatCompletionFunctions.description = '';
+          chatCompletionFunctions.name = '';
           chatCompletionFunctions.parameters = new Map<String, oas_any_type_not_mapped>{'key'=>oas_any_type_not_mapped.getExample()};
         return chatCompletionFunctions;
     }
@@ -47,8 +47,8 @@ public class OASChatCompletionFunctions {
     public Boolean equals(Object obj) {
         if (obj instanceof OASChatCompletionFunctions) {           
             OASChatCompletionFunctions chatCompletionFunctions = (OASChatCompletionFunctions) obj;
-            return this.name == chatCompletionFunctions.name
-                && this.description == chatCompletionFunctions.description
+            return this.description == chatCompletionFunctions.description
+                && this.name == chatCompletionFunctions.name
                 && this.parameters == chatCompletionFunctions.parameters;
         }
         return false;
@@ -56,8 +56,8 @@ public class OASChatCompletionFunctions {
 
     public Integer hashCode() {
         Integer hashCode = 43;
-        hashCode = (17 * hashCode) + (name == null ? 0 : System.hashCode(name));
         hashCode = (17 * hashCode) + (description == null ? 0 : System.hashCode(description));
+        hashCode = (17 * hashCode) + (name == null ? 0 : System.hashCode(name));
         hashCode = (17 * hashCode) + (parameters == null ? 0 : System.hashCode(parameters));
         return hashCode;
     }

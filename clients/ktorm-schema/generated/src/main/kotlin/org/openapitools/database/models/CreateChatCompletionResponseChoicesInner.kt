@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -19,23 +19,25 @@ import .*
 
 /**
  * 
- * @param index 
+ * @param finishReason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+ * @param index The index of the choice in the list of choices.
  * @param message 
- * @param finishReason 
+ * @param logprobs 
  */
 object CreateChatCompletionResponseChoicesInners : BaseTable<CreateChatCompletionResponseChoicesInner>("CreateChatCompletionResponse_choices_inner") {
-    val index = int("index") /* null */
-    val message = long("message") /* null */
-    val finishReason = text("finish_reason").transform({ CreateChatCompletionResponseChoicesInner.FinishReason.valueOf(it ?: "stop") }, { it.value }) /* null */
-
+    val finishReason = text("finish_reason").transform({ CreateChatCompletionResponseChoicesInner.FinishReason.valueOf(it) }, { it.value }) /* The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.  */
+    val index = int("index") /* The index of the choice in the list of choices. */
+    val message = long("message")
+    val logprobs = long("logprobs")
 
     /**
      * Create an entity of type CreateChatCompletionResponseChoicesInner from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = CreateChatCompletionResponseChoicesInner(
-        index = row[index]  /* kotlin.Int? */,
-        message = ChatCompletionResponseMessages.createEntity(row, withReferences) /* ChatCompletionResponseMessage? */,
-        finishReason = row[finishReason]  /* kotlin.String? */
+        finishReason = row[finishReason] ?: CreateChatCompletionResponseChoicesInner.FinishReason.valueOf("") /* kotlin.String */ /* The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.  */,
+        index = row[index] ?: 0 /* kotlin.Int */ /* The index of the choice in the list of choices. */,
+        message = ChatCompletionResponseMessages.createEntity(row, withReferences) /* ChatCompletionResponseMessage */,
+        logprobs = CreateChatCompletionResponseChoicesInnerLogprobss.createEntity(row, withReferences) /* CreateChatCompletionResponseChoicesInnerLogprobs */
     )
 
     /**
@@ -53,9 +55,10 @@ object CreateChatCompletionResponseChoicesInners : BaseTable<CreateChatCompletio
     */
     fun AssignmentsBuilder.assignFrom(entity: CreateChatCompletionResponseChoicesInner) {
         this.apply {
+            set(CreateChatCompletionResponseChoicesInners.finishReason, entity.finishReason)
             set(CreateChatCompletionResponseChoicesInners.index, entity.index)
             set(CreateChatCompletionResponseChoicesInners.message, entity.message)
-            set(CreateChatCompletionResponseChoicesInners.finishReason, entity.finishReason)
+            set(CreateChatCompletionResponseChoicesInners.logprobs, entity.logprobs)
         }
     }
 

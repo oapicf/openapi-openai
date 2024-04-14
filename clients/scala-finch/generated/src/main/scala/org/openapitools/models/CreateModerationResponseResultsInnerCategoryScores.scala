@@ -8,18 +8,26 @@ import org.openapitools._
 import org.openapitools.models.BigDecimal
 
 /**
- * 
- * @param hate 
- * @param hateSlashthreatening 
- * @param selfMinusharm 
- * @param sexual 
- * @param sexualSlashminors 
- * @param violence 
- * @param violenceSlashgraphic 
+ * A list of the categories along with their scores as predicted by model.
+ * @param hate The score for the category 'hate'.
+ * @param hateSlashthreatening The score for the category 'hate/threatening'.
+ * @param harassment The score for the category 'harassment'.
+ * @param harassmentSlashthreatening The score for the category 'harassment/threatening'.
+ * @param selfMinusharm The score for the category 'self-harm'.
+ * @param selfMinusharmSlashintent The score for the category 'self-harm/intent'.
+ * @param selfMinusharmSlashinstructions The score for the category 'self-harm/instructions'.
+ * @param sexual The score for the category 'sexual'.
+ * @param sexualSlashminors The score for the category 'sexual/minors'.
+ * @param violence The score for the category 'violence'.
+ * @param violenceSlashgraphic The score for the category 'violence/graphic'.
  */
 case class CreateModerationResponseResultsInnerCategoryScores(hate: BigDecimal,
                 hateSlashthreatening: BigDecimal,
+                harassment: BigDecimal,
+                harassmentSlashthreatening: BigDecimal,
                 selfMinusharm: BigDecimal,
+                selfMinusharmSlashintent: BigDecimal,
+                selfMinusharmSlashinstructions: BigDecimal,
                 sexual: BigDecimal,
                 sexualSlashminors: BigDecimal,
                 violence: BigDecimal,

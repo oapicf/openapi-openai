@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,14 +12,22 @@
 package org.openapitools.server.model
 
 case class CreateChatCompletionStreamResponse(
+  /* A unique identifier for the chat completion. Each chunk has the same ID. */
   id: String,
 
-  `object`: String,
+  /* A list of chat completion choices. Can be more than one if `n` is greater than 1. */
+  choices: List[CreateChatCompletionStreamResponseChoicesInner],
 
+  /* The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. */
   created: Int,
 
+  /* The model to generate the completion. */
   model: String,
 
-  choices: List[CreateChatCompletionStreamResponseChoicesInner]
+  /* This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
+  systemFingerprint: Option[String],
+
+  /* The object type, which is always `chat.completion.chunk`. */
+  `object`: String
 
  )

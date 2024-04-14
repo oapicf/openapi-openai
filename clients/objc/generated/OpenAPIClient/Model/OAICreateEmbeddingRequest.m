@@ -6,6 +6,7 @@
   self = [super init];
   if (self) {
     // initialize property's default value, if any
+    self.encodingFormat = @"float";
     
   }
   return self;
@@ -17,7 +18,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"model": @"model", @"input": @"input", @"user": @"user" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"input": @"input", @"model": @"model", @"encodingFormat": @"encoding_format", @"dimensions": @"dimensions", @"user": @"user" }];
 }
 
 /**
@@ -27,7 +28,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"user"];
+  NSArray *optionalProperties = @[@"encodingFormat", @"dimensions", @"user"];
   return [optionalProperties containsObject:propertyName];
 }
 

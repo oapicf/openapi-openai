@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -13,220 +13,95 @@ require "json"
 require "time"
 
 module OpenAPIClient
-  class ChatCompletionRequestMessage
-    include JSON::Serializable
+  module ChatCompletionRequestMessage
+    class << self
+      # List of class defined in oneOf (OpenAPI v3)
+      def openapi_one_of
+        [
+          :'ChatCompletionRequestAssistantMessage',
+          :'ChatCompletionRequestFunctionMessage',
+          :'ChatCompletionRequestSystemMessage',
+          :'ChatCompletionRequestToolMessage',
+          :'ChatCompletionRequestUserMessage'
+        ]
+      end
 
-    # Required properties
-    # The role of the messages author. One of `system`, `user`, `assistant`, or `function`.
-    @[JSON::Field(key: "role", type: String, nillable: false, emit_null: false)]
-    property role : String
-
-    # Optional properties
-    # The contents of the message. `content` is required for all messages except assistant messages with function calls.
-    @[JSON::Field(key: "content", type: String?, nillable: true, emit_null: false)]
-    property content : String?
-
-    # The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
-    @[JSON::Field(key: "name", type: String?, nillable: true, emit_null: false)]
-    property name : String?
-
-    @[JSON::Field(key: "function_call", type: ChatCompletionRequestMessageFunctionCall?, nillable: true, emit_null: false)]
-    property function_call : ChatCompletionRequestMessageFunctionCall?
-
-    class EnumAttributeValidator
-      getter datatype : String
-      getter allowable_values : Array(String)
-
-      def initialize(datatype, allowable_values)
-        @datatype = datatype
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
+      # Builds the object
+      # @param [Mixed] Data to be matched against the list of oneOf items
+      # @return [Object] Returns the model or the data itself
+      def build(data)
+        # Go through the list of oneOf items and attempt to identify the appropriate one.
+        # Note:
+        # - We do not attempt to check whether exactly one item matches.
+        # - No advanced validation of types in some cases (e.g. "x: { type: string }" will happily match { x: 123 })
+        #   due to the way the deserialization is made in the base_object template (it just casts without verifying).
+        # - TODO: scalar values are de facto behaving as if they were nullable.
+        # - TODO: logging when debugging is set.
+        openapi_one_of.each do |klass|
+          begin
+            next if klass == :AnyType # "nullable: true"
+            typed_data = find_and_cast_into_type(klass, data)
+            return typed_data if typed_data
+          rescue # rescue all errors so we keep iterating even if the current item lookup raises
           end
         end
+
+        openapi_one_of.includes?(:AnyType) ? data : nil
       end
 
-      def valid?(value)
-        !value || allowable_values.includes?(value)
-      end
-    end
+      private
 
-    # Initializes the object
-    # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@role : String, @content : String?, @name : String?, @function_call : ChatCompletionRequestMessageFunctionCall?)
-    end
+      SchemaMismatchError = Class.new(StandardError)
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      invalid_properties = Array(String).new
-      invalid_properties
-    end
+      # Note: 'File' is missing here because in the regular case we get the data _after_ a call to JSON.parse.
+      def find_and_cast_into_type(klass, data)
+        return if data.nil?
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      role_validator = EnumAttributeValidator.new("String", ["system", "user", "assistant", "function"])
-      return false unless role_validator.valid?(@role)
-      true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] role Object to be assigned
-    def role=(role)
-      validator = EnumAttributeValidator.new("String", ["system", "user", "assistant", "function"])
-      unless validator.valid?(role)
-        raise ArgumentError.new("invalid value for \"role\", must be one of #{validator.allowable_values}.")
-      end
-      @role = role
-    end
-
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.same?(o)
-      self.class == o.class &&
-          role == o.role &&
-          content == o.content &&
-          name == o.name &&
-          function_call == o.function_call
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Integer] Hash code
-    def hash
-      [role, content, name, function_call].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def self.build_from_hash(attributes)
-      new.build_from_hash(attributes)
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.openapi_types.each_pair do |key, type|
-        if !attributes[self.class.attribute_map[key]]? && self.class.openapi_nullable.includes?(key)
-          self.send("#{key}=", nil)
-        elsif type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+        case klass.to_s
+        when 'Boolean'
+          return data if data.instance_of?(TrueClass) || data.instance_of?(FalseClass)
+        when 'Float'
+          return data if data.instance_of?(Float)
+        when 'Integer'
+          return data if data.instance_of?(Integer)
+        when 'Time'
+          return Time.parse(data)
+        when 'Date'
+          return Date.parse(data)
+        when 'String'
+          return data if data.instance_of?(String)
+        when 'Object' # "type: object"
+          return data if data.instance_of?(Hash)
+        when /\AArray<(?<sub_type>.+)>\z/ # "type: array"
+          if data.instance_of?(Array)
+            sub_type = Regexp.last_match[:sub_type]
+            return data.map { |item| find_and_cast_into_type(sub_type, item) }
           end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :Time
-        Time.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :Boolean
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        ({} of Symbol => String).tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
+        when /\AHash<String, (?<sub_type>.+)>\z/ # "type: object" with "additionalProperties: { ... }"
+          if data.instance_of?(Hash) && data.keys.all? { |k| k.instance_of?(Symbol) || k.instance_of?(String) }
+            sub_type = Regexp.last_match[:sub_type]
+            return data.each_with_object({}) { |(k, v), hsh| hsh[k] = find_and_cast_into_type(sub_type, v) }
+          end
+        else # model
+          const = OpenAPIClient.const_get(klass)
+          if const
+            if const.respond_to?(:openapi_one_of) # nested oneOf model
+              model = const.build(data)
+              return model if model
+            else
+              # raise if data contains keys that are not known to the model
+              raise unless (data.keys - const.acceptable_attributes).empty?
+              model = const.build_from_hash(data)
+              return model if model && model.valid?
+            end
           end
         end
-      else # model
-        # models (e.g. Pet) or oneOf
-        klass = OpenAPIClient.const_get(type)
-        klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
+
+        raise # if no match by now, raise
+      rescue
+        raise SchemaMismatchError, "#{data} doesn't match the #{klass} type"
       end
     end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
-    def to_hash
-      hash = {} of Symbol => String
-      self.class.attribute_map.each_pair do |attr, param|
-        value = self.send(attr)
-        if value.nil?
-          is_nullable = self.class.openapi_nullable.includes?(attr)
-          next if !is_nullable || (is_nullable && !instance_variable_defined?(:"@#{attr}"))
-        end
-
-        hash[param] = _to_hash(value)
-      end
-      hash
-    end
-
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map { |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        ({} of Symbol => String).tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
-    end
-
   end
 
 end

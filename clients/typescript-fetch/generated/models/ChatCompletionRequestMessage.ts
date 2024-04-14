@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,66 +12,48 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { ChatCompletionRequestMessageFunctionCall } from './ChatCompletionRequestMessageFunctionCall';
+import type { ChatCompletionRequestAssistantMessage } from './ChatCompletionRequestAssistantMessage';
 import {
-    ChatCompletionRequestMessageFunctionCallFromJSON,
-    ChatCompletionRequestMessageFunctionCallFromJSONTyped,
-    ChatCompletionRequestMessageFunctionCallToJSON,
-} from './ChatCompletionRequestMessageFunctionCall';
+    instanceOfChatCompletionRequestAssistantMessage,
+    ChatCompletionRequestAssistantMessageFromJSON,
+    ChatCompletionRequestAssistantMessageFromJSONTyped,
+    ChatCompletionRequestAssistantMessageToJSON,
+} from './ChatCompletionRequestAssistantMessage';
+import type { ChatCompletionRequestFunctionMessage } from './ChatCompletionRequestFunctionMessage';
+import {
+    instanceOfChatCompletionRequestFunctionMessage,
+    ChatCompletionRequestFunctionMessageFromJSON,
+    ChatCompletionRequestFunctionMessageFromJSONTyped,
+    ChatCompletionRequestFunctionMessageToJSON,
+} from './ChatCompletionRequestFunctionMessage';
+import type { ChatCompletionRequestSystemMessage } from './ChatCompletionRequestSystemMessage';
+import {
+    instanceOfChatCompletionRequestSystemMessage,
+    ChatCompletionRequestSystemMessageFromJSON,
+    ChatCompletionRequestSystemMessageFromJSONTyped,
+    ChatCompletionRequestSystemMessageToJSON,
+} from './ChatCompletionRequestSystemMessage';
+import type { ChatCompletionRequestToolMessage } from './ChatCompletionRequestToolMessage';
+import {
+    instanceOfChatCompletionRequestToolMessage,
+    ChatCompletionRequestToolMessageFromJSON,
+    ChatCompletionRequestToolMessageFromJSONTyped,
+    ChatCompletionRequestToolMessageToJSON,
+} from './ChatCompletionRequestToolMessage';
+import type { ChatCompletionRequestUserMessage } from './ChatCompletionRequestUserMessage';
+import {
+    instanceOfChatCompletionRequestUserMessage,
+    ChatCompletionRequestUserMessageFromJSON,
+    ChatCompletionRequestUserMessageFromJSONTyped,
+    ChatCompletionRequestUserMessageToJSON,
+} from './ChatCompletionRequestUserMessage';
 
 /**
+ * @type ChatCompletionRequestMessage
  * 
  * @export
- * @interface ChatCompletionRequestMessage
  */
-export interface ChatCompletionRequestMessage {
-    /**
-     * The role of the messages author. One of `system`, `user`, `assistant`, or `function`.
-     * @type {string}
-     * @memberof ChatCompletionRequestMessage
-     */
-    role: ChatCompletionRequestMessageRoleEnum;
-    /**
-     * The contents of the message. `content` is required for all messages except assistant messages with function calls.
-     * @type {string}
-     * @memberof ChatCompletionRequestMessage
-     */
-    content?: string;
-    /**
-     * The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
-     * @type {string}
-     * @memberof ChatCompletionRequestMessage
-     */
-    name?: string;
-    /**
-     * 
-     * @type {ChatCompletionRequestMessageFunctionCall}
-     * @memberof ChatCompletionRequestMessage
-     */
-    functionCall?: ChatCompletionRequestMessageFunctionCall;
-}
-
-
-/**
- * @export
- */
-export const ChatCompletionRequestMessageRoleEnum = {
-    System: 'system',
-    User: 'user',
-    Assistant: 'assistant',
-    Function: 'function'
-} as const;
-export type ChatCompletionRequestMessageRoleEnum = typeof ChatCompletionRequestMessageRoleEnum[keyof typeof ChatCompletionRequestMessageRoleEnum];
-
-
-/**
- * Check if a given object implements the ChatCompletionRequestMessage interface.
- */
-export function instanceOfChatCompletionRequestMessage(value: object): boolean {
-    if (!('role' in value)) return false;
-    return true;
-}
+export type ChatCompletionRequestMessage = ChatCompletionRequestAssistantMessage | ChatCompletionRequestFunctionMessage | ChatCompletionRequestSystemMessage | ChatCompletionRequestToolMessage | ChatCompletionRequestUserMessage;
 
 export function ChatCompletionRequestMessageFromJSON(json: any): ChatCompletionRequestMessage {
     return ChatCompletionRequestMessageFromJSONTyped(json, false);
@@ -81,25 +63,30 @@ export function ChatCompletionRequestMessageFromJSONTyped(json: any, ignoreDiscr
     if (json == null) {
         return json;
     }
-    return {
-        
-        'role': json['role'],
-        'content': json['content'] == null ? undefined : json['content'],
-        'name': json['name'] == null ? undefined : json['name'],
-        'functionCall': json['function_call'] == null ? undefined : ChatCompletionRequestMessageFunctionCallFromJSON(json['function_call']),
-    };
+    return { ...ChatCompletionRequestAssistantMessageFromJSONTyped(json, true), ...ChatCompletionRequestFunctionMessageFromJSONTyped(json, true), ...ChatCompletionRequestSystemMessageFromJSONTyped(json, true), ...ChatCompletionRequestToolMessageFromJSONTyped(json, true), ...ChatCompletionRequestUserMessageFromJSONTyped(json, true) };
 }
 
 export function ChatCompletionRequestMessageToJSON(value?: ChatCompletionRequestMessage | null): any {
     if (value == null) {
         return value;
     }
-    return {
-        
-        'role': value['role'],
-        'content': value['content'],
-        'name': value['name'],
-        'function_call': ChatCompletionRequestMessageFunctionCallToJSON(value['functionCall']),
-    };
+
+    if (instanceOfChatCompletionRequestAssistantMessage(value)) {
+        return ChatCompletionRequestAssistantMessageToJSON(value as ChatCompletionRequestAssistantMessage);
+    }
+    if (instanceOfChatCompletionRequestFunctionMessage(value)) {
+        return ChatCompletionRequestFunctionMessageToJSON(value as ChatCompletionRequestFunctionMessage);
+    }
+    if (instanceOfChatCompletionRequestSystemMessage(value)) {
+        return ChatCompletionRequestSystemMessageToJSON(value as ChatCompletionRequestSystemMessage);
+    }
+    if (instanceOfChatCompletionRequestToolMessage(value)) {
+        return ChatCompletionRequestToolMessageToJSON(value as ChatCompletionRequestToolMessage);
+    }
+    if (instanceOfChatCompletionRequestUserMessage(value)) {
+        return ChatCompletionRequestUserMessageToJSON(value as ChatCompletionRequestUserMessage);
+    }
+
+    return {};
 }
 

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,10 +23,10 @@ namespace model {
 
 CreateCompletionResponse_choices_inner_logprobs::CreateCompletionResponse_choices_inner_logprobs()
 {
-    m_TokensIsSet = false;
-    m_Token_logprobsIsSet = false;
-    m_Top_logprobsIsSet = false;
     m_Text_offsetIsSet = false;
+    m_Token_logprobsIsSet = false;
+    m_TokensIsSet = false;
+    m_Top_logprobsIsSet = false;
 }
 
 CreateCompletionResponse_choices_inner_logprobs::~CreateCompletionResponse_choices_inner_logprobs()
@@ -43,21 +43,21 @@ web::json::value CreateCompletionResponse_choices_inner_logprobs::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_TokensIsSet)
+    if(m_Text_offsetIsSet)
     {
-        val[utility::conversions::to_string_t(U("tokens"))] = ModelBase::toJson(m_Tokens);
+        val[utility::conversions::to_string_t(U("text_offset"))] = ModelBase::toJson(m_Text_offset);
     }
     if(m_Token_logprobsIsSet)
     {
         val[utility::conversions::to_string_t(U("token_logprobs"))] = ModelBase::toJson(m_Token_logprobs);
     }
+    if(m_TokensIsSet)
+    {
+        val[utility::conversions::to_string_t(U("tokens"))] = ModelBase::toJson(m_Tokens);
+    }
     if(m_Top_logprobsIsSet)
     {
         val[utility::conversions::to_string_t(U("top_logprobs"))] = ModelBase::toJson(m_Top_logprobs);
-    }
-    if(m_Text_offsetIsSet)
-    {
-        val[utility::conversions::to_string_t(U("text_offset"))] = ModelBase::toJson(m_Text_offset);
     }
 
     return val;
@@ -67,14 +67,14 @@ bool CreateCompletionResponse_choices_inner_logprobs::fromJson(const web::json::
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("tokens"))))
+    if(val.has_field(utility::conversions::to_string_t(U("text_offset"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tokens")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("text_offset")));
         if(!fieldValue.is_null())
         {
-            std::vector<utility::string_t> refVal_setTokens;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
-            setTokens(refVal_setTokens);
+            std::vector<int32_t> refVal_setTextOffset;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTextOffset);
+            setTextOffset(refVal_setTextOffset);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("token_logprobs"))))
@@ -87,24 +87,24 @@ bool CreateCompletionResponse_choices_inner_logprobs::fromJson(const web::json::
             setTokenLogprobs(refVal_setTokenLogprobs);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("tokens"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tokens")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<utility::string_t> refVal_setTokens;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
+            setTokens(refVal_setTokens);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("top_logprobs"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("top_logprobs")));
         if(!fieldValue.is_null())
         {
-            std::vector<std::shared_ptr<Object>> refVal_setTopLogprobs;
+            std::vector<std::map<utility::string_t, double>> refVal_setTopLogprobs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTopLogprobs);
             setTopLogprobs(refVal_setTopLogprobs);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("text_offset"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("text_offset")));
-        if(!fieldValue.is_null())
-        {
-            std::vector<int32_t> refVal_setTextOffset;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTextOffset);
-            setTextOffset(refVal_setTextOffset);
         }
     }
     return ok;
@@ -117,21 +117,21 @@ void CreateCompletionResponse_choices_inner_logprobs::toMultipart(std::shared_pt
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_TokensIsSet)
+    if(m_Text_offsetIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tokens")), m_Tokens));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("text_offset")), m_Text_offset));
     }
     if(m_Token_logprobsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("token_logprobs")), m_Token_logprobs));
     }
+    if(m_TokensIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tokens")), m_Tokens));
+    }
     if(m_Top_logprobsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("top_logprobs")), m_Top_logprobs));
-    }
-    if(m_Text_offsetIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("text_offset")), m_Text_offset));
     }
 }
 
@@ -144,11 +144,11 @@ bool CreateCompletionResponse_choices_inner_logprobs::fromMultiPart(std::shared_
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tokens"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("text_offset"))))
     {
-        std::vector<utility::string_t> refVal_setTokens;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tokens"))), refVal_setTokens );
-        setTokens(refVal_setTokens);
+        std::vector<int32_t> refVal_setTextOffset;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("text_offset"))), refVal_setTextOffset );
+        setTextOffset(refVal_setTextOffset);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("token_logprobs"))))
     {
@@ -156,40 +156,40 @@ bool CreateCompletionResponse_choices_inner_logprobs::fromMultiPart(std::shared_
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("token_logprobs"))), refVal_setTokenLogprobs );
         setTokenLogprobs(refVal_setTokenLogprobs);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("tokens"))))
+    {
+        std::vector<utility::string_t> refVal_setTokens;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tokens"))), refVal_setTokens );
+        setTokens(refVal_setTokens);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("top_logprobs"))))
     {
-        std::vector<std::shared_ptr<Object>> refVal_setTopLogprobs;
+        std::vector<std::map<utility::string_t, double>> refVal_setTopLogprobs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("top_logprobs"))), refVal_setTopLogprobs );
         setTopLogprobs(refVal_setTopLogprobs);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("text_offset"))))
-    {
-        std::vector<int32_t> refVal_setTextOffset;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("text_offset"))), refVal_setTextOffset );
-        setTextOffset(refVal_setTextOffset);
     }
     return ok;
 }
 
-std::vector<utility::string_t>& CreateCompletionResponse_choices_inner_logprobs::getTokens()
+std::vector<int32_t>& CreateCompletionResponse_choices_inner_logprobs::getTextOffset()
 {
-    return m_Tokens;
+    return m_Text_offset;
 }
 
-void CreateCompletionResponse_choices_inner_logprobs::setTokens(const std::vector<utility::string_t>& value)
+void CreateCompletionResponse_choices_inner_logprobs::setTextOffset(std::vector<int32_t> value)
 {
-    m_Tokens = value;
-    m_TokensIsSet = true;
+    m_Text_offset = value;
+    m_Text_offsetIsSet = true;
 }
 
-bool CreateCompletionResponse_choices_inner_logprobs::tokensIsSet() const
+bool CreateCompletionResponse_choices_inner_logprobs::textOffsetIsSet() const
 {
-    return m_TokensIsSet;
+    return m_Text_offsetIsSet;
 }
 
-void CreateCompletionResponse_choices_inner_logprobs::unsetTokens()
+void CreateCompletionResponse_choices_inner_logprobs::unsetText_offset()
 {
-    m_TokensIsSet = false;
+    m_Text_offsetIsSet = false;
 }
 std::vector<double>& CreateCompletionResponse_choices_inner_logprobs::getTokenLogprobs()
 {
@@ -211,12 +211,32 @@ void CreateCompletionResponse_choices_inner_logprobs::unsetToken_logprobs()
 {
     m_Token_logprobsIsSet = false;
 }
-std::vector<std::shared_ptr<Object>>& CreateCompletionResponse_choices_inner_logprobs::getTopLogprobs()
+std::vector<utility::string_t>& CreateCompletionResponse_choices_inner_logprobs::getTokens()
+{
+    return m_Tokens;
+}
+
+void CreateCompletionResponse_choices_inner_logprobs::setTokens(const std::vector<utility::string_t>& value)
+{
+    m_Tokens = value;
+    m_TokensIsSet = true;
+}
+
+bool CreateCompletionResponse_choices_inner_logprobs::tokensIsSet() const
+{
+    return m_TokensIsSet;
+}
+
+void CreateCompletionResponse_choices_inner_logprobs::unsetTokens()
+{
+    m_TokensIsSet = false;
+}
+std::vector<std::map<utility::string_t, double>>& CreateCompletionResponse_choices_inner_logprobs::getTopLogprobs()
 {
     return m_Top_logprobs;
 }
 
-void CreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(const std::vector<std::shared_ptr<Object>>& value)
+void CreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(const std::vector<std::map<utility::string_t, double>>& value)
 {
     m_Top_logprobs = value;
     m_Top_logprobsIsSet = true;
@@ -230,26 +250,6 @@ bool CreateCompletionResponse_choices_inner_logprobs::topLogprobsIsSet() const
 void CreateCompletionResponse_choices_inner_logprobs::unsetTop_logprobs()
 {
     m_Top_logprobsIsSet = false;
-}
-std::vector<int32_t>& CreateCompletionResponse_choices_inner_logprobs::getTextOffset()
-{
-    return m_Text_offset;
-}
-
-void CreateCompletionResponse_choices_inner_logprobs::setTextOffset(std::vector<int32_t> value)
-{
-    m_Text_offset = value;
-    m_Text_offsetIsSet = true;
-}
-
-bool CreateCompletionResponse_choices_inner_logprobs::textOffsetIsSet() const
-{
-    return m_Text_offsetIsSet;
-}
-
-void CreateCompletionResponse_choices_inner_logprobs::unsetText_offset()
-{
-    m_Text_offsetIsSet = false;
 }
 }
 }

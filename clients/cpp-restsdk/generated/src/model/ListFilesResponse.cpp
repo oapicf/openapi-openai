@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,9 +23,9 @@ namespace model {
 
 ListFilesResponse::ListFilesResponse()
 {
+    m_DataIsSet = false;
     m_object = utility::conversions::to_string_t("");
     m_objectIsSet = false;
-    m_DataIsSet = false;
 }
 
 ListFilesResponse::~ListFilesResponse()
@@ -42,13 +42,13 @@ web::json::value ListFilesResponse::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_objectIsSet)
-    {
-        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
-    }
     if(m_DataIsSet)
     {
         val[utility::conversions::to_string_t(U("data"))] = ModelBase::toJson(m_Data);
+    }
+    if(m_objectIsSet)
+    {
+        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
     }
 
     return val;
@@ -58,16 +58,6 @@ bool ListFilesResponse::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("object"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setObject;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
-            setObject(refVal_setObject);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("data"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("data")));
@@ -76,6 +66,16 @@ bool ListFilesResponse::fromJson(const web::json::value& val)
             std::vector<std::shared_ptr<OpenAIFile>> refVal_setData;
             ok &= ModelBase::fromJson(fieldValue, refVal_setData);
             setData(refVal_setData);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("object"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setObject;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
+            setObject(refVal_setObject);
         }
     }
     return ok;
@@ -88,13 +88,13 @@ void ListFilesResponse::toMultipart(std::shared_ptr<MultipartFormData> multipart
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_objectIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
-    }
     if(m_DataIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("data")), m_Data));
+    }
+    if(m_objectIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
     }
 }
 
@@ -107,41 +107,21 @@ bool ListFilesResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
-    {
-        utility::string_t refVal_setObject;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
-        setObject(refVal_setObject);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("data"))))
     {
         std::vector<std::shared_ptr<OpenAIFile>> refVal_setData;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("data"))), refVal_setData );
         setData(refVal_setData);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
+    {
+        utility::string_t refVal_setObject;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
+        setObject(refVal_setObject);
+    }
     return ok;
 }
 
-utility::string_t ListFilesResponse::getObject() const
-{
-    return m_object;
-}
-
-void ListFilesResponse::setObject(const utility::string_t& value)
-{
-    m_object = value;
-    m_objectIsSet = true;
-}
-
-bool ListFilesResponse::objectIsSet() const
-{
-    return m_objectIsSet;
-}
-
-void ListFilesResponse::unsetobject()
-{
-    m_objectIsSet = false;
-}
 std::vector<std::shared_ptr<OpenAIFile>>& ListFilesResponse::getData()
 {
     return m_Data;
@@ -161,6 +141,26 @@ bool ListFilesResponse::dataIsSet() const
 void ListFilesResponse::unsetData()
 {
     m_DataIsSet = false;
+}
+utility::string_t ListFilesResponse::getObject() const
+{
+    return m_object;
+}
+
+void ListFilesResponse::setObject(const utility::string_t& value)
+{
+    m_object = value;
+    m_objectIsSet = true;
+}
+
+bool ListFilesResponse::objectIsSet() const
+{
+    return m_objectIsSet;
+}
+
+void ListFilesResponse::unsetobject()
+{
+    m_objectIsSet = false;
 }
 }
 }

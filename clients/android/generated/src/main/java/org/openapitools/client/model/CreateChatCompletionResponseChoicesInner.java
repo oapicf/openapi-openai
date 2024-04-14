@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,25 +13,40 @@
 package org.openapitools.client.model;
 
 import org.openapitools.client.model.ChatCompletionResponseMessage;
+import org.openapitools.client.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
 @ApiModel(description = "")
 public class CreateChatCompletionResponseChoicesInner {
   
+  public enum FinishReasonEnum {
+     stop,  length,  tool_calls,  content_filter,  function_call, 
+  };
+  @SerializedName("finish_reason")
+  private FinishReasonEnum finishReason = null;
   @SerializedName("index")
   private Integer index = null;
   @SerializedName("message")
   private ChatCompletionResponseMessage message = null;
-  public enum FinishReasonEnum {
-     stop,  length,  function_call, 
-  };
-  @SerializedName("finish_reason")
-  private FinishReasonEnum finishReason = null;
+  @SerializedName("logprobs")
+  private CreateChatCompletionResponseChoicesInnerLogprobs logprobs = null;
 
   /**
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ")
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
+  }
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
+  }
+
+  /**
+   * The index of the choice in the list of choices.
+   **/
+  @ApiModelProperty(required = true, value = "The index of the choice in the list of choices.")
   public Integer getIndex() {
     return index;
   }
@@ -41,7 +56,7 @@ public class CreateChatCompletionResponseChoicesInner {
 
   /**
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public ChatCompletionResponseMessage getMessage() {
     return message;
   }
@@ -51,12 +66,12 @@ public class CreateChatCompletionResponseChoicesInner {
 
   /**
    **/
-  @ApiModelProperty(value = "")
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  @ApiModelProperty(required = true, value = "")
+  public CreateChatCompletionResponseChoicesInnerLogprobs getLogprobs() {
+    return logprobs;
   }
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setLogprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
   }
 
 
@@ -69,17 +84,19 @@ public class CreateChatCompletionResponseChoicesInner {
       return false;
     }
     CreateChatCompletionResponseChoicesInner createChatCompletionResponseChoicesInner = (CreateChatCompletionResponseChoicesInner) o;
-    return (this.index == null ? createChatCompletionResponseChoicesInner.index == null : this.index.equals(createChatCompletionResponseChoicesInner.index)) &&
+    return (this.finishReason == null ? createChatCompletionResponseChoicesInner.finishReason == null : this.finishReason.equals(createChatCompletionResponseChoicesInner.finishReason)) &&
+        (this.index == null ? createChatCompletionResponseChoicesInner.index == null : this.index.equals(createChatCompletionResponseChoicesInner.index)) &&
         (this.message == null ? createChatCompletionResponseChoicesInner.message == null : this.message.equals(createChatCompletionResponseChoicesInner.message)) &&
-        (this.finishReason == null ? createChatCompletionResponseChoicesInner.finishReason == null : this.finishReason.equals(createChatCompletionResponseChoicesInner.finishReason));
+        (this.logprobs == null ? createChatCompletionResponseChoicesInner.logprobs == null : this.logprobs.equals(createChatCompletionResponseChoicesInner.logprobs));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
+    result = 31 * result + (this.finishReason == null ? 0: this.finishReason.hashCode());
     result = 31 * result + (this.index == null ? 0: this.index.hashCode());
     result = 31 * result + (this.message == null ? 0: this.message.hashCode());
-    result = 31 * result + (this.finishReason == null ? 0: this.finishReason.hashCode());
+    result = 31 * result + (this.logprobs == null ? 0: this.logprobs.hashCode());
     return result;
   }
 
@@ -88,9 +105,10 @@ public class CreateChatCompletionResponseChoicesInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionResponseChoicesInner {\n");
     
+    sb.append("  finishReason: ").append(finishReason).append("\n");
     sb.append("  index: ").append(index).append("\n");
     sb.append("  message: ").append(message).append("\n");
-    sb.append("  finishReason: ").append(finishReason).append("\n");
+    sb.append("  logprobs: ").append(logprobs).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

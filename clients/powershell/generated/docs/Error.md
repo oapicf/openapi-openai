@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
+**Code** | **String** |  | 
 **Message** | **String** |  | 
 **VarParam** | **String** |  | 
-**Code** | **String** |  | 
+**Type** | **String** |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ModelError = Initialize-PSOpenAPIToolsModelError  -Type null `
+$ModelError = Initialize-PSOpenAPIToolsModelError  -Code null `
  -Message null `
  -VarParam null `
- -Code null
+ -Type null
 ```
 
 - Convert the resource to JSON

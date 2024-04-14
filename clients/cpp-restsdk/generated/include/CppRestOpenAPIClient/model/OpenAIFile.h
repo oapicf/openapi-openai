@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * OpenAIFile.h
  *
- * 
+ * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
 
 #ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_OpenAIFile_H_
@@ -23,7 +23,6 @@
 #include "CppRestOpenAPIClient/ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
-#include "CppRestOpenAPIClient/Object.h"
 
 namespace org {
 namespace openapitools {
@@ -32,7 +31,7 @@ namespace model {
 
 
 /// <summary>
-/// 
+/// The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
 /// </summary>
 class  OpenAIFile
     : public ModelBase
@@ -56,7 +55,7 @@ public:
     /// OpenAIFile members
 
     /// <summary>
-    /// 
+    /// The file identifier, which can be referenced in the API endpoints.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -65,16 +64,7 @@ public:
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getObject() const;
-    bool objectIsSet() const;
-    void unsetobject();
-
-    void setObject(const utility::string_t& value);
-
-    /// <summary>
-    /// 
+    /// The size of the file, in bytes.
     /// </summary>
     int32_t getBytes() const;
     bool bytesIsSet() const;
@@ -83,7 +73,7 @@ public:
     void setBytes(int32_t value);
 
     /// <summary>
-    /// 
+    /// The Unix timestamp (in seconds) for when the file was created.
     /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
@@ -92,7 +82,7 @@ public:
     void setCreatedAt(int32_t value);
 
     /// <summary>
-    /// 
+    /// The name of the file.
     /// </summary>
     utility::string_t getFilename() const;
     bool filenameIsSet() const;
@@ -101,7 +91,16 @@ public:
     void setFilename(const utility::string_t& value);
 
     /// <summary>
-    /// 
+    /// The object type, which is always &#x60;file&#x60;.
+    /// </summary>
+    utility::string_t getObject() const;
+    bool objectIsSet() const;
+    void unsetobject();
+
+    void setObject(const utility::string_t& value);
+
+    /// <summary>
+    /// The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
     /// </summary>
     utility::string_t getPurpose() const;
     bool purposeIsSet() const;
@@ -110,7 +109,7 @@ public:
     void setPurpose(const utility::string_t& value);
 
     /// <summary>
-    /// 
+    /// Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.
     /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
@@ -119,31 +118,31 @@ public:
     void setStatus(const utility::string_t& value);
 
     /// <summary>
-    /// 
+    /// Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;.
     /// </summary>
-    std::shared_ptr<Object> getStatusDetails() const;
+    utility::string_t getStatusDetails() const;
     bool statusDetailsIsSet() const;
     void unsetStatus_details();
 
-    void setStatusDetails(const std::shared_ptr<Object>& value);
+    void setStatusDetails(const utility::string_t& value);
 
 
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
-    utility::string_t m_object;
-    bool m_objectIsSet;
     int32_t m_Bytes;
     bool m_BytesIsSet;
     int32_t m_Created_at;
     bool m_Created_atIsSet;
     utility::string_t m_Filename;
     bool m_FilenameIsSet;
+    utility::string_t m_object;
+    bool m_objectIsSet;
     utility::string_t m_Purpose;
     bool m_PurposeIsSet;
     utility::string_t m_Status;
     bool m_StatusIsSet;
-    std::shared_ptr<Object> m_Status_details;
+    utility::string_t m_Status_details;
     bool m_Status_detailsIsSet;
 };
 

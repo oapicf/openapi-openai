@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * CreateCompletionResponse.h
  *
- * 
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
  */
 
 #ifndef CreateCompletionResponse_H_
@@ -23,10 +23,11 @@
 
 #include <string>
 #include "CreateCompletionResponse_choices_inner.h"
-#include "CreateCompletionResponse_usage.h"
+#include "CompletionUsage.h"
 #include <vector>
 #include <memory>
 #include <vector>
+#include <array>
 #include <boost/property_tree/ptree.hpp>
 #include "helpers.h"
 
@@ -36,7 +37,7 @@ namespace server {
 namespace model {
 
 /// <summary>
-/// 
+/// Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
 /// </summary>
 class  CreateCompletionResponse 
 {
@@ -61,13 +62,37 @@ public:
     /// CreateCompletionResponse members
 
     /// <summary>
-    /// 
+    /// A unique identifier for the completion.
     /// </summary>
     std::string getId() const;
     void setId(std::string value);
 
     /// <summary>
-    /// 
+    /// The list of completion choices the model generated for the input prompt.
+    /// </summary>
+    std::vector<CreateCompletionResponse_choices_inner> getChoices() const;
+    void setChoices(std::vector<CreateCompletionResponse_choices_inner> value);
+
+    /// <summary>
+    /// The Unix timestamp (in seconds) of when the completion was created.
+    /// </summary>
+    int32_t getCreated() const;
+    void setCreated(int32_t value);
+
+    /// <summary>
+    /// The model used for completion.
+    /// </summary>
+    std::string getModel() const;
+    void setModel(std::string value);
+
+    /// <summary>
+    /// This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
+    /// </summary>
+    std::string getSystemFingerprint() const;
+    void setSystemFingerprint(std::string value);
+
+    /// <summary>
+    /// The object type, which is always \&quot;text_completion\&quot;
     /// </summary>
     std::string getObject() const;
     void setObject(std::string value);
@@ -75,34 +100,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int32_t getCreated() const;
-    void setCreated(int32_t value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::string getModel() const;
-    void setModel(std::string value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::vector<CreateCompletionResponse_choices_inner> getChoices() const;
-    void setChoices(std::vector<CreateCompletionResponse_choices_inner> value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    CreateCompletionResponse_usage getUsage() const;
-    void setUsage(CreateCompletionResponse_usage value);
+    CompletionUsage getUsage() const;
+    void setUsage(CompletionUsage value);
 
 protected:
     std::string m_Id = "";
-    std::string m_object = "";
+    std::vector<CreateCompletionResponse_choices_inner> m_Choices;
     int32_t m_Created = 0;
     std::string m_Model = "";
-    std::vector<CreateCompletionResponse_choices_inner> m_Choices;
-    CreateCompletionResponse_usage m_Usage;
+    std::string m_System_fingerprint = "";
+    std::string m_object = "";
+    CompletionUsage m_Usage;
 };
 
 std::vector<CreateCompletionResponse> createCreateCompletionResponseVectorFromJsonString(const std::string& json);

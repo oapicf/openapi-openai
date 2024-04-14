@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -11,24 +11,41 @@
 */
 package org.openapitools.server.models
 
+import org.openapitools.server.models.CompletionUsage
 import org.openapitools.server.models.CreateCompletionResponseChoicesInner
-import org.openapitools.server.models.CreateCompletionResponseUsage
 
 /**
- * 
- * @param id 
- * @param `object` 
- * @param created 
- * @param model 
- * @param choices 
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
+ * @param id A unique identifier for the completion.
+ * @param choices The list of completion choices the model generated for the input prompt.
+ * @param created The Unix timestamp (in seconds) of when the completion was created.
+ * @param model The model used for completion.
+ * @param `object` The object type, which is always \"text_completion\"
+ * @param systemFingerprint This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  * @param usage 
  */
 data class CreateCompletionResponse(
+    /* A unique identifier for the completion. */
     val id: kotlin.String,
-    val `object`: kotlin.String,
-    val created: kotlin.Int,
-    val model: kotlin.String,
+    /* The list of completion choices the model generated for the input prompt. */
     val choices: kotlin.collections.List<CreateCompletionResponseChoicesInner>,
-    val usage: CreateCompletionResponseUsage? = null
+    /* The Unix timestamp (in seconds) of when the completion was created. */
+    val created: kotlin.Int,
+    /* The model used for completion. */
+    val model: kotlin.String,
+    /* The object type, which is always \"text_completion\" */
+    val `object`: CreateCompletionResponse.`Object`,
+    /* This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
+    val systemFingerprint: kotlin.String? = null,
+    val usage: CompletionUsage? = null
 ) 
+{
+    /**
+    * The object type, which is always \"text_completion\"
+    * Values: text_completion
+    */
+    enum class `Object`(val value: kotlin.String){
+        text_completion("text_completion");
+    }
+}
 

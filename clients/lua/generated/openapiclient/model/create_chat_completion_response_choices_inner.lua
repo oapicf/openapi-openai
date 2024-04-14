@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,11 +19,12 @@ local function cast_create_chat_completion_response_choices_inner(t)
 	return setmetatable(t, create_chat_completion_response_choices_inner_mt)
 end
 
-local function new_create_chat_completion_response_choices_inner(index, message, finish_reason)
+local function new_create_chat_completion_response_choices_inner(finish_reason, index, message, logprobs)
 	return cast_create_chat_completion_response_choices_inner({
+		["finish_reason"] = finish_reason;
 		["index"] = index;
 		["message"] = message;
-		["finish_reason"] = finish_reason;
+		["logprobs"] = logprobs;
 	})
 end
 

@@ -15,31 +15,31 @@ class DeleteModelResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, object: str=None, deleted: bool=None):  # noqa: E501
+    def __init__(self, id: str=None, deleted: bool=None, object: str=None):  # noqa: E501
         """DeleteModelResponse - a model defined in Swagger
 
         :param id: The id of this DeleteModelResponse.  # noqa: E501
         :type id: str
-        :param object: The object of this DeleteModelResponse.  # noqa: E501
-        :type object: str
         :param deleted: The deleted of this DeleteModelResponse.  # noqa: E501
         :type deleted: bool
+        :param object: The object of this DeleteModelResponse.  # noqa: E501
+        :type object: str
         """
         self.swagger_types = {
             'id': str,
-            'object': str,
-            'deleted': bool
+            'deleted': bool,
+            'object': str
         }
 
         self.attribute_map = {
             'id': 'id',
-            'object': 'object',
-            'deleted': 'deleted'
+            'deleted': 'deleted',
+            'object': 'object'
         }
 
         self._id = id
-        self._object = object
         self._deleted = deleted
+        self._object = object
 
     @classmethod
     def from_dict(cls, dikt) -> 'DeleteModelResponse':
@@ -76,29 +76,6 @@ class DeleteModelResponse(Model):
         self._id = id
 
     @property
-    def object(self) -> str:
-        """Gets the object of this DeleteModelResponse.
-
-
-        :return: The object of this DeleteModelResponse.
-        :rtype: str
-        """
-        return self._object
-
-    @object.setter
-    def object(self, object: str):
-        """Sets the object of this DeleteModelResponse.
-
-
-        :param object: The object of this DeleteModelResponse.
-        :type object: str
-        """
-        if object is None:
-            raise ValueError("Invalid value for `object`, must not be `None`")  # noqa: E501
-
-        self._object = object
-
-    @property
     def deleted(self) -> bool:
         """Gets the deleted of this DeleteModelResponse.
 
@@ -120,3 +97,26 @@ class DeleteModelResponse(Model):
             raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
+
+    @property
+    def object(self) -> str:
+        """Gets the object of this DeleteModelResponse.
+
+
+        :return: The object of this DeleteModelResponse.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object: str):
+        """Sets the object of this DeleteModelResponse.
+
+
+        :param object: The object of this DeleteModelResponse.
+        :type object: str
+        """
+        if object is None:
+            raise ValueError("Invalid value for `object`, must not be `None`")  # noqa: E501
+
+        self._object = object

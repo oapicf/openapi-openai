@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -81,18 +81,18 @@ class ChatCompletionRequestMessageTest extends TestCase
     }
 
     /**
-     * Test attribute "role"
+     * Test attribute "content"
      */
-    public function testPropertyRole()
+    public function testPropertyContent()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "content"
+     * Test attribute "role"
      */
-    public function testPropertyContent()
+    public function testPropertyRole()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -108,9 +108,27 @@ class ChatCompletionRequestMessageTest extends TestCase
     }
 
     /**
+     * Test attribute "tool_calls"
+     */
+    public function testPropertyToolCalls()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "function_call"
      */
     public function testPropertyFunctionCall()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tool_call_id"
+     */
+    public function testPropertyToolCallId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

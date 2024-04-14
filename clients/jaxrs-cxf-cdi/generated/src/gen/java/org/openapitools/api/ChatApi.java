@@ -28,7 +28,7 @@ import javax.validation.Valid;
 @Api(description = "the chat API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-03-16T01:13:26.699737416Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-04-14T13:41:22.441879330Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 
 public class ChatApi  {
 
@@ -41,7 +41,10 @@ public class ChatApi  {
     
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Creates a model response for the given chat conversation.", notes = "", response = CreateChatCompletionResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Creates a model response for the given chat conversation.", notes = "", response = CreateChatCompletionResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Chat" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateChatCompletionResponse.class) })
     public Response createChatCompletion(@ApiParam(value = "" ,required=true) CreateChatCompletionRequest createChatCompletionRequest) {

@@ -20,11 +20,11 @@ public class ErrorTest {
     }
 
     /**
-     * Test the property 'type'
+     * Test the property 'code'
      */
     @Test
-    public void typeTest() {
-        // TODO: test type
+    public void codeTest() {
+        // TODO: test code
     }
 
     /**
@@ -44,11 +44,11 @@ public class ErrorTest {
     }
 
     /**
-     * Test the property 'code'
+     * Test the property 'type'
      */
     @Test
-    public void codeTest() {
-        // TODO: test code
+    public void typeTest() {
+        // TODO: test type
     }
 
 }

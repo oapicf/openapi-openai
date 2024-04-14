@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,11 +14,16 @@ package io.swagger.client.model
 import play.api.libs.json._
 
 case class ListFilesResponse (
-                  `object`: String,
-                  data: Seq[OpenAIFile]
+                  data: Seq[OpenAIFile],
+                  `object`:  Option[ListFilesResponse&#x60;object&#x60;Enum.ListFilesResponse&#x60;object&#x60;Enum]
 )
 
 object ListFilesResponse {
 implicit val format: Format[ListFilesResponse] = Json.format
 }
 
+object ListFilesResponse&#x60;object&#x60;Enum extends Enumeration {
+  val   list = Value
+  type ListFilesResponse&#x60;object&#x60;Enum = Value
+  implicit val format: Format[Value] = Format(Reads.enumNameReads(this), Writes.enumNameWrites[ListFilesResponse&#x60;object&#x60;Enum.type])
+}

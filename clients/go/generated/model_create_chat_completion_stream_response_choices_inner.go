@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the CreateChatCompletionStreamResponseChoicesInner type satisfies the MappedNullable interface at compile time
@@ -20,17 +22,25 @@ var _ MappedNullable = &CreateChatCompletionStreamResponseChoicesInner{}
 
 // CreateChatCompletionStreamResponseChoicesInner struct for CreateChatCompletionStreamResponseChoicesInner
 type CreateChatCompletionStreamResponseChoicesInner struct {
-	Index *int32 `json:"index,omitempty"`
-	Delta *ChatCompletionStreamResponseDelta `json:"delta,omitempty"`
-	FinishReason *string `json:"finish_reason,omitempty"`
+	Delta ChatCompletionStreamResponseDelta `json:"delta"`
+	Logprobs NullableCreateChatCompletionResponseChoicesInnerLogprobs `json:"logprobs,omitempty"`
+	// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+	FinishReason NullableString `json:"finish_reason"`
+	// The index of the choice in the list of choices.
+	Index int32 `json:"index"`
 }
+
+type _CreateChatCompletionStreamResponseChoicesInner CreateChatCompletionStreamResponseChoicesInner
 
 // NewCreateChatCompletionStreamResponseChoicesInner instantiates a new CreateChatCompletionStreamResponseChoicesInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateChatCompletionStreamResponseChoicesInner() *CreateChatCompletionStreamResponseChoicesInner {
+func NewCreateChatCompletionStreamResponseChoicesInner(delta ChatCompletionStreamResponseDelta, finishReason NullableString, index int32) *CreateChatCompletionStreamResponseChoicesInner {
 	this := CreateChatCompletionStreamResponseChoicesInner{}
+	this.Delta = delta
+	this.FinishReason = finishReason
+	this.Index = index
 	return &this
 }
 
@@ -42,100 +52,120 @@ func NewCreateChatCompletionStreamResponseChoicesInnerWithDefaults() *CreateChat
 	return &this
 }
 
-// GetIndex returns the Index field value if set, zero value otherwise.
-func (o *CreateChatCompletionStreamResponseChoicesInner) GetIndex() int32 {
-	if o == nil || IsNil(o.Index) {
-		var ret int32
-		return ret
-	}
-	return *o.Index
-}
-
-// GetIndexOk returns a tuple with the Index field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateChatCompletionStreamResponseChoicesInner) GetIndexOk() (*int32, bool) {
-	if o == nil || IsNil(o.Index) {
-		return nil, false
-	}
-	return o.Index, true
-}
-
-// HasIndex returns a boolean if a field has been set.
-func (o *CreateChatCompletionStreamResponseChoicesInner) HasIndex() bool {
-	if o != nil && !IsNil(o.Index) {
-		return true
-	}
-
-	return false
-}
-
-// SetIndex gets a reference to the given int32 and assigns it to the Index field.
-func (o *CreateChatCompletionStreamResponseChoicesInner) SetIndex(v int32) {
-	o.Index = &v
-}
-
-// GetDelta returns the Delta field value if set, zero value otherwise.
+// GetDelta returns the Delta field value
 func (o *CreateChatCompletionStreamResponseChoicesInner) GetDelta() ChatCompletionStreamResponseDelta {
-	if o == nil || IsNil(o.Delta) {
+	if o == nil {
 		var ret ChatCompletionStreamResponseDelta
 		return ret
 	}
-	return *o.Delta
+
+	return o.Delta
 }
 
-// GetDeltaOk returns a tuple with the Delta field value if set, nil otherwise
+// GetDeltaOk returns a tuple with the Delta field value
 // and a boolean to check if the value has been set.
 func (o *CreateChatCompletionStreamResponseChoicesInner) GetDeltaOk() (*ChatCompletionStreamResponseDelta, bool) {
-	if o == nil || IsNil(o.Delta) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Delta, true
+	return &o.Delta, true
 }
 
-// HasDelta returns a boolean if a field has been set.
-func (o *CreateChatCompletionStreamResponseChoicesInner) HasDelta() bool {
-	if o != nil && !IsNil(o.Delta) {
+// SetDelta sets field value
+func (o *CreateChatCompletionStreamResponseChoicesInner) SetDelta(v ChatCompletionStreamResponseDelta) {
+	o.Delta = v
+}
+
+// GetLogprobs returns the Logprobs field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateChatCompletionStreamResponseChoicesInner) GetLogprobs() CreateChatCompletionResponseChoicesInnerLogprobs {
+	if o == nil || IsNil(o.Logprobs.Get()) {
+		var ret CreateChatCompletionResponseChoicesInnerLogprobs
+		return ret
+	}
+	return *o.Logprobs.Get()
+}
+
+// GetLogprobsOk returns a tuple with the Logprobs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateChatCompletionStreamResponseChoicesInner) GetLogprobsOk() (*CreateChatCompletionResponseChoicesInnerLogprobs, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Logprobs.Get(), o.Logprobs.IsSet()
+}
+
+// HasLogprobs returns a boolean if a field has been set.
+func (o *CreateChatCompletionStreamResponseChoicesInner) HasLogprobs() bool {
+	if o != nil && o.Logprobs.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDelta gets a reference to the given ChatCompletionStreamResponseDelta and assigns it to the Delta field.
-func (o *CreateChatCompletionStreamResponseChoicesInner) SetDelta(v ChatCompletionStreamResponseDelta) {
-	o.Delta = &v
+// SetLogprobs gets a reference to the given NullableCreateChatCompletionResponseChoicesInnerLogprobs and assigns it to the Logprobs field.
+func (o *CreateChatCompletionStreamResponseChoicesInner) SetLogprobs(v CreateChatCompletionResponseChoicesInnerLogprobs) {
+	o.Logprobs.Set(&v)
+}
+// SetLogprobsNil sets the value for Logprobs to be an explicit nil
+func (o *CreateChatCompletionStreamResponseChoicesInner) SetLogprobsNil() {
+	o.Logprobs.Set(nil)
 }
 
-// GetFinishReason returns the FinishReason field value if set, zero value otherwise.
+// UnsetLogprobs ensures that no value is present for Logprobs, not even an explicit nil
+func (o *CreateChatCompletionStreamResponseChoicesInner) UnsetLogprobs() {
+	o.Logprobs.Unset()
+}
+
+// GetFinishReason returns the FinishReason field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CreateChatCompletionStreamResponseChoicesInner) GetFinishReason() string {
-	if o == nil || IsNil(o.FinishReason) {
+	if o == nil || o.FinishReason.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.FinishReason
+
+	return *o.FinishReason.Get()
 }
 
-// GetFinishReasonOk returns a tuple with the FinishReason field value if set, nil otherwise
+// GetFinishReasonOk returns a tuple with the FinishReason field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateChatCompletionStreamResponseChoicesInner) GetFinishReasonOk() (*string, bool) {
-	if o == nil || IsNil(o.FinishReason) {
+	if o == nil {
 		return nil, false
 	}
-	return o.FinishReason, true
+	return o.FinishReason.Get(), o.FinishReason.IsSet()
 }
 
-// HasFinishReason returns a boolean if a field has been set.
-func (o *CreateChatCompletionStreamResponseChoicesInner) HasFinishReason() bool {
-	if o != nil && !IsNil(o.FinishReason) {
-		return true
+// SetFinishReason sets field value
+func (o *CreateChatCompletionStreamResponseChoicesInner) SetFinishReason(v string) {
+	o.FinishReason.Set(&v)
+}
+
+// GetIndex returns the Index field value
+func (o *CreateChatCompletionStreamResponseChoicesInner) GetIndex() int32 {
+	if o == nil {
+		var ret int32
+		return ret
 	}
 
-	return false
+	return o.Index
 }
 
-// SetFinishReason gets a reference to the given string and assigns it to the FinishReason field.
-func (o *CreateChatCompletionStreamResponseChoicesInner) SetFinishReason(v string) {
-	o.FinishReason = &v
+// GetIndexOk returns a tuple with the Index field value
+// and a boolean to check if the value has been set.
+func (o *CreateChatCompletionStreamResponseChoicesInner) GetIndexOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Index, true
+}
+
+// SetIndex sets field value
+func (o *CreateChatCompletionStreamResponseChoicesInner) SetIndex(v int32) {
+	o.Index = v
 }
 
 func (o CreateChatCompletionStreamResponseChoicesInner) MarshalJSON() ([]byte, error) {
@@ -148,16 +178,52 @@ func (o CreateChatCompletionStreamResponseChoicesInner) MarshalJSON() ([]byte, e
 
 func (o CreateChatCompletionStreamResponseChoicesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Index) {
-		toSerialize["index"] = o.Index
+	toSerialize["delta"] = o.Delta
+	if o.Logprobs.IsSet() {
+		toSerialize["logprobs"] = o.Logprobs.Get()
 	}
-	if !IsNil(o.Delta) {
-		toSerialize["delta"] = o.Delta
-	}
-	if !IsNil(o.FinishReason) {
-		toSerialize["finish_reason"] = o.FinishReason
-	}
+	toSerialize["finish_reason"] = o.FinishReason.Get()
+	toSerialize["index"] = o.Index
 	return toSerialize, nil
+}
+
+func (o *CreateChatCompletionStreamResponseChoicesInner) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"delta",
+		"finish_reason",
+		"index",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateChatCompletionStreamResponseChoicesInner := _CreateChatCompletionStreamResponseChoicesInner{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateChatCompletionStreamResponseChoicesInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateChatCompletionStreamResponseChoicesInner(varCreateChatCompletionStreamResponseChoicesInner)
+
+	return err
 }
 
 type NullableCreateChatCompletionStreamResponseChoicesInner struct {

@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -42,7 +42,7 @@ namespace Org.OpenAPITools.Model
         public CreateEmbeddingRequestModel(string actualInstance)
         {
             this.IsNullable = false;
-            this.SchemaType= "oneOf";
+            this.SchemaType= "anyOf";
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
@@ -116,22 +116,12 @@ namespace Org.OpenAPITools.Model
             {
                 return newCreateEmbeddingRequestModel;
             }
-            int match = 0;
-            List<string> matchedTypes = new List<string>();
 
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(string).GetProperty("AdditionalProperties") == null)
-                {
-                    newCreateEmbeddingRequestModel = new CreateEmbeddingRequestModel(JsonConvert.DeserializeObject<string>(jsonString, CreateEmbeddingRequestModel.SerializerSettings));
-                }
-                else
-                {
-                    newCreateEmbeddingRequestModel = new CreateEmbeddingRequestModel(JsonConvert.DeserializeObject<string>(jsonString, CreateEmbeddingRequestModel.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("string");
-                match++;
+                newCreateEmbeddingRequestModel = new CreateEmbeddingRequestModel(JsonConvert.DeserializeObject<string>(jsonString, CreateEmbeddingRequestModel.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newCreateEmbeddingRequestModel;
             }
             catch (Exception exception)
             {
@@ -139,19 +129,9 @@ namespace Org.OpenAPITools.Model
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into string: {1}", jsonString, exception.ToString()));
             }
 
-            if (match == 0)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
-            }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
-            }
-
-            // deserialization is considered successful at this point if no exception has been thrown.
-            return newCreateEmbeddingRequestModel;
+            // no match found, throw an exception
+            throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
         }
-
 
         /// <summary>
         /// To validate all properties of the instance

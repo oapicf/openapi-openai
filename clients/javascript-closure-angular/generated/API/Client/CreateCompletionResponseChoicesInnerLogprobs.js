@@ -6,10 +6,10 @@ goog.provide('API.Client.CreateCompletionResponse_choices_inner_logprobs');
 API.Client.CreateCompletionResponseChoicesInnerLogprobs = function() {}
 
 /**
- * @type {!Array<!string>}
+ * @type {!Array<!number>}
  * @export
  */
-API.Client.CreateCompletionResponseChoicesInnerLogprobs.prototype.tokens;
+API.Client.CreateCompletionResponseChoicesInnerLogprobs.prototype.textOffset;
 
 /**
  * @type {!Array<!number>}
@@ -18,14 +18,14 @@ API.Client.CreateCompletionResponseChoicesInnerLogprobs.prototype.tokens;
 API.Client.CreateCompletionResponseChoicesInnerLogprobs.prototype.tokenLogprobs;
 
 /**
- * @type {!Array<!API.Client.Object>}
+ * @type {!Array<!string>}
+ * @export
+ */
+API.Client.CreateCompletionResponseChoicesInnerLogprobs.prototype.tokens;
+
+/**
+ * @type {!Array<!Object<!string, number>>}
  * @export
  */
 API.Client.CreateCompletionResponseChoicesInnerLogprobs.prototype.topLogprobs;
-
-/**
- * @type {!Array<!number>}
- * @export
- */
-API.Client.CreateCompletionResponseChoicesInnerLogprobs.prototype.textOffset;
 

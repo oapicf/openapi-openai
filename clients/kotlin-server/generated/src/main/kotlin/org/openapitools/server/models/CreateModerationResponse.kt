@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -14,14 +14,17 @@ package org.openapitools.server.models
 import org.openapitools.server.models.CreateModerationResponseResultsInner
 
 /**
- * 
- * @param id 
- * @param model 
- * @param results 
+ * Represents if a given text input is potentially harmful.
+ * @param id The unique identifier for the moderation request.
+ * @param model The model used to generate the moderation results.
+ * @param results A list of moderation objects.
  */
 data class CreateModerationResponse(
+    /* The unique identifier for the moderation request. */
     val id: kotlin.String,
+    /* The model used to generate the moderation results. */
     val model: kotlin.String,
+    /* A list of moderation objects. */
     val results: kotlin.collections.List<CreateModerationResponseResultsInner>
 ) 
 

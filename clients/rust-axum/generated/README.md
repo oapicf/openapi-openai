@@ -1,6 +1,6 @@
 # Rust API for openapi
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 ## Overview
 
@@ -12,7 +12,7 @@ server, you can easily generate a server stub.
 To see how to make this your own, look here: [README]((https://openapi-generator.tech))
 
 - API version: 2.0.0
-- Build date: 2024-03-16T01:19:08.054991992Z[Etc/UTC]
+- Build date: 2024-04-14T14:00:03.378796922Z[Etc/UTC]
 - Generator version: 7.4.0
 
 For more information, please visit [https://github.com/oapicf/openapi-openai](https://github.com/oapicf/openapi-openai)

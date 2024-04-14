@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -63,42 +63,36 @@ ptree ChatCompletionRequestMessage::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.put("role", m_Role);
 	pt.put("content", m_Content);
+	pt.put("role", m_Role);
 	pt.put("name", m_Name);
+	// generate tree for Tool_calls
+    tmp_node.clear();
+	if (!m_Tool_calls.empty()) {
+        tmp_node = toPt(m_Tool_calls);
+		pt.add_child("tool_calls", tmp_node);
+		tmp_node.clear();
+	}
 	pt.add_child("function_call", m_Function_call.toPropertyTree());
+	pt.put("tool_call_id", m_Tool_call_id);
 	return pt;
 }
 
 void ChatCompletionRequestMessage::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	setRole(pt.get("role", ""));
 	m_Content = pt.get("content", "");
+	setRole(pt.get("role", ""));
 	m_Name = pt.get("name", "");
+	// push all items of Tool_calls into member
+	if (pt.get_child_optional("tool_calls")) {
+        m_Tool_calls = fromPt<std::vector<ChatCompletionMessageToolCall>>(pt.get_child("tool_calls"));
+	}
 	if (pt.get_child_optional("function_call")) {
-        m_Function_call = fromPt<ChatCompletionRequestMessage_function_call>(pt.get_child("function_call"));
+        m_Function_call = fromPt<ChatCompletionRequestAssistantMessage_function_call>(pt.get_child("function_call"));
 	}
+	m_Tool_call_id = pt.get("tool_call_id", "");
 }
-
-std::string ChatCompletionRequestMessage::getRole() const
-{
-    return m_Role;
-}
-
-void ChatCompletionRequestMessage::setRole(std::string value)
-{
-    static const std::array<std::string, 4> allowedValues = {
-        "system", "user", "assistant", "function"
-    };
-
-    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
-		m_Role = value;
-	} else {
-		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
-	}
-}
-
 
 std::string ChatCompletionRequestMessage::getContent() const
 {
@@ -108,6 +102,25 @@ std::string ChatCompletionRequestMessage::getContent() const
 void ChatCompletionRequestMessage::setContent(std::string value)
 {
     m_Content = value;
+}
+
+
+std::string ChatCompletionRequestMessage::getRole() const
+{
+    return m_Role;
+}
+
+void ChatCompletionRequestMessage::setRole(std::string value)
+{
+    static const std::array<std::string, 1> allowedValues = {
+        "function"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Role = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 
@@ -122,14 +135,36 @@ void ChatCompletionRequestMessage::setName(std::string value)
 }
 
 
-ChatCompletionRequestMessage_function_call ChatCompletionRequestMessage::getFunctionCall() const
+std::vector<ChatCompletionMessageToolCall> ChatCompletionRequestMessage::getToolCalls() const
+{
+    return m_Tool_calls;
+}
+
+void ChatCompletionRequestMessage::setToolCalls(std::vector<ChatCompletionMessageToolCall> value)
+{
+    m_Tool_calls = value;
+}
+
+
+ChatCompletionRequestAssistantMessage_function_call ChatCompletionRequestMessage::getFunctionCall() const
 {
     return m_Function_call;
 }
 
-void ChatCompletionRequestMessage::setFunctionCall(ChatCompletionRequestMessage_function_call value)
+void ChatCompletionRequestMessage::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call value)
 {
     m_Function_call = value;
+}
+
+
+std::string ChatCompletionRequestMessage::getToolCallId() const
+{
+    return m_Tool_call_id;
+}
+
+void ChatCompletionRequestMessage::setToolCallId(std::string value)
+{
+    m_Tool_call_id = value;
 }
 
 

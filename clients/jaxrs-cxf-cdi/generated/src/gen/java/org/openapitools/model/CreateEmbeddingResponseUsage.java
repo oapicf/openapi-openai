@@ -8,12 +8,15 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+/**
+ * The usage information for the request.
+ **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-
+@ApiModel(description = "The usage information for the request.")
 public class CreateEmbeddingResponseUsage   {
   
   private Integer promptTokens;
@@ -21,6 +24,7 @@ public class CreateEmbeddingResponseUsage   {
   private Integer totalTokens;
 
   /**
+   * The number of tokens used by the prompt.
    **/
   public CreateEmbeddingResponseUsage promptTokens(Integer promptTokens) {
     this.promptTokens = promptTokens;
@@ -28,7 +32,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The number of tokens used by the prompt.")
   @JsonProperty("prompt_tokens")
   @NotNull
   public Integer getPromptTokens() {
@@ -40,6 +44,7 @@ public class CreateEmbeddingResponseUsage   {
 
 
   /**
+   * The total number of tokens used by the request.
    **/
   public CreateEmbeddingResponseUsage totalTokens(Integer totalTokens) {
     this.totalTokens = totalTokens;
@@ -47,7 +52,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The total number of tokens used by the request.")
   @JsonProperty("total_tokens")
   @NotNull
   public Integer getTotalTokens() {

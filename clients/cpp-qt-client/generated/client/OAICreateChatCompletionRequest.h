@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,11 +23,14 @@
 
 #include "OAIChatCompletionFunctions.h"
 #include "OAIChatCompletionRequestMessage.h"
+#include "OAIChatCompletionTool.h"
+#include "OAIChatCompletionToolChoiceOption.h"
 #include "OAICreateChatCompletionRequest_function_call.h"
 #include "OAICreateChatCompletionRequest_model.h"
+#include "OAICreateChatCompletionRequest_response_format.h"
 #include "OAICreateChatCompletionRequest_stop.h"
-#include "OAIObject.h"
 #include <QList>
+#include <QMap>
 #include <QString>
 
 #include "OAIEnum.h"
@@ -35,8 +38,11 @@
 
 namespace OpenAPI {
 class OAIChatCompletionRequestMessage;
-class OAIChatCompletionFunctions;
+class OAICreateChatCompletionRequest_response_format;
+class OAIChatCompletionTool;
+class OAIChatCompletionToolChoiceOption;
 class OAICreateChatCompletionRequest_function_call;
+class OAIChatCompletionFunctions;
 
 class OAICreateChatCompletionRequest : public OAIObject {
 public:
@@ -49,25 +55,70 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    OAICreateChatCompletionRequest_model getModel() const;
-    void setModel(const OAICreateChatCompletionRequest_model &model);
-    bool is_model_Set() const;
-    bool is_model_Valid() const;
-
     QList<OAIChatCompletionRequestMessage> getMessages() const;
     void setMessages(const QList<OAIChatCompletionRequestMessage> &messages);
     bool is_messages_Set() const;
     bool is_messages_Valid() const;
 
-    QList<OAIChatCompletionFunctions> getFunctions() const;
-    void setFunctions(const QList<OAIChatCompletionFunctions> &functions);
-    bool is_functions_Set() const;
-    bool is_functions_Valid() const;
+    OAICreateChatCompletionRequest_model getModel() const;
+    void setModel(const OAICreateChatCompletionRequest_model &model);
+    bool is_model_Set() const;
+    bool is_model_Valid() const;
 
-    OAICreateChatCompletionRequest_function_call getFunctionCall() const;
-    void setFunctionCall(const OAICreateChatCompletionRequest_function_call &function_call);
-    bool is_function_call_Set() const;
-    bool is_function_call_Valid() const;
+    double getFrequencyPenalty() const;
+    void setFrequencyPenalty(const double &frequency_penalty);
+    bool is_frequency_penalty_Set() const;
+    bool is_frequency_penalty_Valid() const;
+
+    QMap<QString, qint32> getLogitBias() const;
+    void setLogitBias(const QMap<QString, qint32> &logit_bias);
+    bool is_logit_bias_Set() const;
+    bool is_logit_bias_Valid() const;
+
+    bool isLogprobs() const;
+    void setLogprobs(const bool &logprobs);
+    bool is_logprobs_Set() const;
+    bool is_logprobs_Valid() const;
+
+    qint32 getTopLogprobs() const;
+    void setTopLogprobs(const qint32 &top_logprobs);
+    bool is_top_logprobs_Set() const;
+    bool is_top_logprobs_Valid() const;
+
+    qint32 getMaxTokens() const;
+    void setMaxTokens(const qint32 &max_tokens);
+    bool is_max_tokens_Set() const;
+    bool is_max_tokens_Valid() const;
+
+    qint32 getN() const;
+    void setN(const qint32 &n);
+    bool is_n_Set() const;
+    bool is_n_Valid() const;
+
+    double getPresencePenalty() const;
+    void setPresencePenalty(const double &presence_penalty);
+    bool is_presence_penalty_Set() const;
+    bool is_presence_penalty_Valid() const;
+
+    OAICreateChatCompletionRequest_response_format getResponseFormat() const;
+    void setResponseFormat(const OAICreateChatCompletionRequest_response_format &response_format);
+    bool is_response_format_Set() const;
+    bool is_response_format_Valid() const;
+
+    qint32 getSeed() const;
+    void setSeed(const qint32 &seed);
+    bool is_seed_Set() const;
+    bool is_seed_Valid() const;
+
+    OAICreateChatCompletionRequest_stop getStop() const;
+    void setStop(const OAICreateChatCompletionRequest_stop &stop);
+    bool is_stop_Set() const;
+    bool is_stop_Valid() const;
+
+    bool isStream() const;
+    void setStream(const bool &stream);
+    bool is_stream_Set() const;
+    bool is_stream_Valid() const;
 
     double getTemperature() const;
     void setTemperature(const double &temperature);
@@ -79,45 +130,30 @@ public:
     bool is_top_p_Set() const;
     bool is_top_p_Valid() const;
 
-    qint32 getN() const;
-    void setN(const qint32 &n);
-    bool is_n_Set() const;
-    bool is_n_Valid() const;
+    QList<OAIChatCompletionTool> getTools() const;
+    void setTools(const QList<OAIChatCompletionTool> &tools);
+    bool is_tools_Set() const;
+    bool is_tools_Valid() const;
 
-    bool isStream() const;
-    void setStream(const bool &stream);
-    bool is_stream_Set() const;
-    bool is_stream_Valid() const;
-
-    OAICreateChatCompletionRequest_stop getStop() const;
-    void setStop(const OAICreateChatCompletionRequest_stop &stop);
-    bool is_stop_Set() const;
-    bool is_stop_Valid() const;
-
-    qint32 getMaxTokens() const;
-    void setMaxTokens(const qint32 &max_tokens);
-    bool is_max_tokens_Set() const;
-    bool is_max_tokens_Valid() const;
-
-    double getPresencePenalty() const;
-    void setPresencePenalty(const double &presence_penalty);
-    bool is_presence_penalty_Set() const;
-    bool is_presence_penalty_Valid() const;
-
-    double getFrequencyPenalty() const;
-    void setFrequencyPenalty(const double &frequency_penalty);
-    bool is_frequency_penalty_Set() const;
-    bool is_frequency_penalty_Valid() const;
-
-    OAIObject getLogitBias() const;
-    void setLogitBias(const OAIObject &logit_bias);
-    bool is_logit_bias_Set() const;
-    bool is_logit_bias_Valid() const;
+    OAIChatCompletionToolChoiceOption getToolChoice() const;
+    void setToolChoice(const OAIChatCompletionToolChoiceOption &tool_choice);
+    bool is_tool_choice_Set() const;
+    bool is_tool_choice_Valid() const;
 
     QString getUser() const;
     void setUser(const QString &user);
     bool is_user_Set() const;
     bool is_user_Valid() const;
+
+    Q_DECL_DEPRECATED OAICreateChatCompletionRequest_function_call getFunctionCall() const;
+    Q_DECL_DEPRECATED void setFunctionCall(const OAICreateChatCompletionRequest_function_call &function_call);
+    Q_DECL_DEPRECATED bool is_function_call_Set() const;
+    Q_DECL_DEPRECATED bool is_function_call_Valid() const;
+
+    Q_DECL_DEPRECATED QList<OAIChatCompletionFunctions> getFunctions() const;
+    Q_DECL_DEPRECATED void setFunctions(const QList<OAIChatCompletionFunctions> &functions);
+    Q_DECL_DEPRECATED bool is_functions_Set() const;
+    Q_DECL_DEPRECATED bool is_functions_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -125,21 +161,57 @@ public:
 private:
     void initializeModel();
 
-    OAICreateChatCompletionRequest_model m_model;
-    bool m_model_isSet;
-    bool m_model_isValid;
-
     QList<OAIChatCompletionRequestMessage> m_messages;
     bool m_messages_isSet;
     bool m_messages_isValid;
 
-    QList<OAIChatCompletionFunctions> m_functions;
-    bool m_functions_isSet;
-    bool m_functions_isValid;
+    OAICreateChatCompletionRequest_model m_model;
+    bool m_model_isSet;
+    bool m_model_isValid;
 
-    OAICreateChatCompletionRequest_function_call m_function_call;
-    bool m_function_call_isSet;
-    bool m_function_call_isValid;
+    double m_frequency_penalty;
+    bool m_frequency_penalty_isSet;
+    bool m_frequency_penalty_isValid;
+
+    QMap<QString, qint32> m_logit_bias;
+    bool m_logit_bias_isSet;
+    bool m_logit_bias_isValid;
+
+    bool m_logprobs;
+    bool m_logprobs_isSet;
+    bool m_logprobs_isValid;
+
+    qint32 m_top_logprobs;
+    bool m_top_logprobs_isSet;
+    bool m_top_logprobs_isValid;
+
+    qint32 m_max_tokens;
+    bool m_max_tokens_isSet;
+    bool m_max_tokens_isValid;
+
+    qint32 m_n;
+    bool m_n_isSet;
+    bool m_n_isValid;
+
+    double m_presence_penalty;
+    bool m_presence_penalty_isSet;
+    bool m_presence_penalty_isValid;
+
+    OAICreateChatCompletionRequest_response_format m_response_format;
+    bool m_response_format_isSet;
+    bool m_response_format_isValid;
+
+    qint32 m_seed;
+    bool m_seed_isSet;
+    bool m_seed_isValid;
+
+    OAICreateChatCompletionRequest_stop m_stop;
+    bool m_stop_isSet;
+    bool m_stop_isValid;
+
+    bool m_stream;
+    bool m_stream_isSet;
+    bool m_stream_isValid;
 
     double m_temperature;
     bool m_temperature_isSet;
@@ -149,37 +221,25 @@ private:
     bool m_top_p_isSet;
     bool m_top_p_isValid;
 
-    qint32 m_n;
-    bool m_n_isSet;
-    bool m_n_isValid;
+    QList<OAIChatCompletionTool> m_tools;
+    bool m_tools_isSet;
+    bool m_tools_isValid;
 
-    bool m_stream;
-    bool m_stream_isSet;
-    bool m_stream_isValid;
-
-    OAICreateChatCompletionRequest_stop m_stop;
-    bool m_stop_isSet;
-    bool m_stop_isValid;
-
-    qint32 m_max_tokens;
-    bool m_max_tokens_isSet;
-    bool m_max_tokens_isValid;
-
-    double m_presence_penalty;
-    bool m_presence_penalty_isSet;
-    bool m_presence_penalty_isValid;
-
-    double m_frequency_penalty;
-    bool m_frequency_penalty_isSet;
-    bool m_frequency_penalty_isValid;
-
-    OAIObject m_logit_bias;
-    bool m_logit_bias_isSet;
-    bool m_logit_bias_isValid;
+    OAIChatCompletionToolChoiceOption m_tool_choice;
+    bool m_tool_choice_isSet;
+    bool m_tool_choice_isValid;
 
     QString m_user;
     bool m_user_isSet;
     bool m_user_isValid;
+
+    OAICreateChatCompletionRequest_function_call m_function_call;
+    bool m_function_call_isSet;
+    bool m_function_call_isValid;
+
+    QList<OAIChatCompletionFunctions> m_functions;
+    bool m_functions_isSet;
+    bool m_functions_isValid;
 };
 
 } // namespace OpenAPI

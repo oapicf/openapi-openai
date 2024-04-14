@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,10 +14,11 @@ package io.swagger.client.model
 import play.api.libs.json._
 
 case class ChatCompletionStreamResponseDelta (
-                  role:  Option[ChatCompletionStreamResponseDeltaRoleEnum.ChatCompletionStreamResponseDeltaRoleEnum],
             /* The contents of the chunk message. */
                   content: Option[String],
-                  functionCall: Option[ChatCompletionRequestMessageFunctionCall]
+                  functionCall: Option[ChatCompletionStreamResponseDeltaFunctionCall],
+                  toolCalls: Option[Seq[ChatCompletionMessageToolCallChunk]],
+                  role:  Option[ChatCompletionStreamResponseDeltaRoleEnum.ChatCompletionStreamResponseDeltaRoleEnum]
 )
 
 object ChatCompletionStreamResponseDelta {
@@ -25,7 +26,7 @@ implicit val format: Format[ChatCompletionStreamResponseDelta] = Json.format
 }
 
 object ChatCompletionStreamResponseDeltaRoleEnum extends Enumeration {
-  val   system, user, assistant, function = Value
+  val   system, user, assistant, tool = Value
   type ChatCompletionStreamResponseDeltaRoleEnum = Value
   implicit val format: Format[Value] = Format(Reads.enumNameReads(this), Writes.enumNameWrites[ChatCompletionStreamResponseDeltaRoleEnum.type])
 }

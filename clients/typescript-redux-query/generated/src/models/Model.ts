@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,31 +13,31 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * Describes an OpenAI model offering that can be used with the API.
  * @export
  * @interface Model
  */
 export interface Model  {
     /**
-     * 
+     * The model identifier, which can be referenced in the API endpoints.
      * @type {string}
      * @memberof Model
      */
     id: string;
     /**
-     * 
-     * @type {string}
-     * @memberof Model
-     */
-    object: string;
-    /**
-     * 
+     * The Unix timestamp (in seconds) when the model was created.
      * @type {number}
      * @memberof Model
      */
     created: number;
     /**
-     * 
+     * The object type, which is always \"model\".
+     * @type {string}
+     * @memberof Model
+     */
+    object: ModelObjectEnum;
+    /**
+     * The organization that owns the model.
      * @type {string}
      * @memberof Model
      */
@@ -47,8 +47,8 @@ export interface Model  {
 export function ModelFromJSON(json: any): Model {
     return {
         'id': json['id'],
-        'object': json['object'],
         'created': json['created'],
+        'object': json['object'],
         'ownedBy': json['owned_by'],
     };
 }
@@ -59,10 +59,18 @@ export function ModelToJSON(value?: Model): any {
     }
     return {
         'id': value.id,
-        'object': value.object,
         'created': value.created,
+        'object': value.object,
         'owned_by': value.ownedBy,
     };
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ModelObjectEnum {
+    Model = 'model'
 }
 
 

@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 try:
     from typing import Self
@@ -36,6 +36,13 @@ class DeleteFileResponse(BaseModel):
     object: StrictStr
     deleted: StrictBool
     __properties: ClassVar[List[str]] = ["id", "object", "deleted"]
+
+    @field_validator('object')
+    def object_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('file'):
+            raise ValueError("must be one of enum values ('file')")
+        return value
 
     model_config = {
         "populate_by_name": True,

@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -23,19 +23,25 @@ describe OpenAPIClient::ChatCompletionResponseMessage do
       #expect(instance).to be_instance_of(OpenAPIClient::ChatCompletionResponseMessage)
     end
   end
-  describe "test attribute 'role'" do
-    it "should work" do
-      # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new("String", ["system", "user", "assistant", "function"])
-      # validator.allowable_values.each do |value|
-      #   expect { instance.role = value }.not_to raise_error
-      # end
-    end
-  end
-
   describe "test attribute 'content'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
+    end
+  end
+
+  describe "test attribute 'tool_calls'" do
+    it "should work" do
+      # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
+    end
+  end
+
+  describe "test attribute 'role'" do
+    it "should work" do
+      # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new("String", ["assistant"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.role = value }.not_to raise_error
+      # end
     end
   end
 

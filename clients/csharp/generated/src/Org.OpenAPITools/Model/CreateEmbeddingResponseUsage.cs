@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// CreateEmbeddingResponseUsage
+    /// The usage information for the request.
     /// </summary>
     [DataContract(Name = "CreateEmbeddingResponse_usage")]
     public partial class CreateEmbeddingResponseUsage : IValidatableObject
@@ -40,8 +40,8 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateEmbeddingResponseUsage" /> class.
         /// </summary>
-        /// <param name="promptTokens">promptTokens (required).</param>
-        /// <param name="totalTokens">totalTokens (required).</param>
+        /// <param name="promptTokens">The number of tokens used by the prompt. (required).</param>
+        /// <param name="totalTokens">The total number of tokens used by the request. (required).</param>
         public CreateEmbeddingResponseUsage(int promptTokens = default(int), int totalTokens = default(int))
         {
             this.PromptTokens = promptTokens;
@@ -49,14 +49,16 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// Gets or Sets PromptTokens
+        /// The number of tokens used by the prompt.
         /// </summary>
+        /// <value>The number of tokens used by the prompt.</value>
         [DataMember(Name = "prompt_tokens", IsRequired = true, EmitDefaultValue = true)]
         public int PromptTokens { get; set; }
 
         /// <summary>
-        /// Gets or Sets TotalTokens
+        /// The total number of tokens used by the request.
         /// </summary>
+        /// <value>The total number of tokens used by the request.</value>
         [DataMember(Name = "total_tokens", IsRequired = true, EmitDefaultValue = true)]
         public int TotalTokens { get; set; }
 

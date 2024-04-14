@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -52,37 +52,68 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * ListFilesResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ListFilesResponse {
-  public static final String SERIALIZED_NAME_OBJECT = "object";
-  @SerializedName(SERIALIZED_NAME_OBJECT)
-  private String _object;
-
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
   private List<OpenAIFile> data = new ArrayList<>();
 
+  /**
+   * Gets or Sets _object
+   */
+  @JsonAdapter(ObjectEnum.Adapter.class)
+  public enum ObjectEnum {
+    LIST("list");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ObjectEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ObjectEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ObjectEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ObjectEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ObjectEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_OBJECT = "object";
+  @SerializedName(SERIALIZED_NAME_OBJECT)
+  private ObjectEnum _object;
+
   public ListFilesResponse() {
   }
-
-  public ListFilesResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  @javax.annotation.Nonnull
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
 
   public ListFilesResponse data(List<OpenAIFile> data) {
     this.data = data;
@@ -111,6 +142,25 @@ public class ListFilesResponse {
   }
 
 
+  public ListFilesResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * Get _object
+   * @return _object
+  **/
+  @javax.annotation.Nonnull
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -121,21 +171,21 @@ public class ListFilesResponse {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(this._object, listFilesResponse._object) &&
-        Objects.equals(this.data, listFilesResponse.data);
+    return Objects.equals(this.data, listFilesResponse.data) &&
+        Objects.equals(this._object, listFilesResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_object, data);
+    return Objects.hash(data, _object);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -158,13 +208,13 @@ public class ListFilesResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("object");
     openapiFields.add("data");
+    openapiFields.add("object");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("object");
     openapiRequiredFields.add("data");
+    openapiRequiredFields.add("object");
   }
 
  /**
@@ -195,9 +245,6 @@ public class ListFilesResponse {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("object").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `object` to be a primitive type in the JSON string but got `%s`", jsonObj.get("object").toString()));
-      }
       // ensure the json data is an array
       if (!jsonObj.get("data").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
@@ -208,6 +255,11 @@ public class ListFilesResponse {
       for (int i = 0; i < jsonArraydata.size(); i++) {
         OpenAIFile.validateJsonElement(jsonArraydata.get(i));
       };
+      if (!jsonObj.get("object").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `object` to be a primitive type in the JSON string but got `%s`", jsonObj.get("object").toString()));
+      }
+      // validate the required field `object`
+      ObjectEnum.validateJsonElement(jsonObj.get("object"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

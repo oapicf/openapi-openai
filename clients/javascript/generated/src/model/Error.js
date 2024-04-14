@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,20 +16,20 @@ import ApiClient from '../ApiClient';
 /**
  * The Error model module.
  * @module model/Error
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class Error {
     /**
      * Constructs a new <code>Error</code>.
      * @alias module:model/Error
-     * @param type {String} 
+     * @param code {String} 
      * @param message {String} 
      * @param param {String} 
-     * @param code {String} 
+     * @param type {String} 
      */
-    constructor(type, message, param, code) { 
+    constructor(code, message, param, type) { 
         
-        Error.initialize(this, type, message, param, code);
+        Error.initialize(this, code, message, param, type);
     }
 
     /**
@@ -37,11 +37,11 @@ class Error {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, type, message, param, code) { 
-        obj['type'] = type;
+    static initialize(obj, code, message, param, type) { 
+        obj['code'] = code;
         obj['message'] = message;
         obj['param'] = param;
-        obj['code'] = code;
+        obj['type'] = type;
     }
 
     /**
@@ -55,8 +55,8 @@ class Error {
         if (data) {
             obj = obj || new Error();
 
-            if (data.hasOwnProperty('type')) {
-                obj['type'] = ApiClient.convertToType(data['type'], 'String');
+            if (data.hasOwnProperty('code')) {
+                obj['code'] = ApiClient.convertToType(data['code'], 'String');
             }
             if (data.hasOwnProperty('message')) {
                 obj['message'] = ApiClient.convertToType(data['message'], 'String');
@@ -64,8 +64,8 @@ class Error {
             if (data.hasOwnProperty('param')) {
                 obj['param'] = ApiClient.convertToType(data['param'], 'String');
             }
-            if (data.hasOwnProperty('code')) {
-                obj['code'] = ApiClient.convertToType(data['code'], 'String');
+            if (data.hasOwnProperty('type')) {
+                obj['type'] = ApiClient.convertToType(data['type'], 'String');
             }
         }
         return obj;
@@ -84,8 +84,8 @@ class Error {
             }
         }
         // ensure the json data is a string
-        if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
-            throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
+        if (data['code'] && !(typeof data['code'] === 'string' || data['code'] instanceof String)) {
+            throw new Error("Expected the field `code` to be a primitive type in the JSON string but got " + data['code']);
         }
         // ensure the json data is a string
         if (data['message'] && !(typeof data['message'] === 'string' || data['message'] instanceof String)) {
@@ -96,8 +96,8 @@ class Error {
             throw new Error("Expected the field `param` to be a primitive type in the JSON string but got " + data['param']);
         }
         // ensure the json data is a string
-        if (data['code'] && !(typeof data['code'] === 'string' || data['code'] instanceof String)) {
-            throw new Error("Expected the field `code` to be a primitive type in the JSON string but got " + data['code']);
+        if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
+            throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
         }
 
         return true;
@@ -106,12 +106,12 @@ class Error {
 
 }
 
-Error.RequiredProperties = ["type", "message", "param", "code"];
+Error.RequiredProperties = ["code", "message", "param", "type"];
 
 /**
- * @member {String} type
+ * @member {String} code
  */
-Error.prototype['type'] = undefined;
+Error.prototype['code'] = undefined;
 
 /**
  * @member {String} message
@@ -124,9 +124,9 @@ Error.prototype['message'] = undefined;
 Error.prototype['param'] = undefined;
 
 /**
- * @member {String} code
+ * @member {String} type
  */
-Error.prototype['code'] = undefined;
+Error.prototype['type'] = undefined;
 
 
 

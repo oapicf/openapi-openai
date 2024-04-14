@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,6 +37,8 @@ use JMS\Serializer\Annotation\SerializedName;
 /**
  * Class representing the CreateModerationResponse model.
  *
+ * Represents if a given text input is potentially harmful.
+ *
  * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
@@ -44,6 +46,8 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateModerationResponse 
 {
         /**
+     * The unique identifier for the moderation request.
+     *
      * @var string|null
      * @SerializedName("id")
      * @Assert\NotNull()
@@ -53,6 +57,8 @@ class CreateModerationResponse
     protected ?string $id = null;
 
     /**
+     * The model used to generate the moderation results.
+     *
      * @var string|null
      * @SerializedName("model")
      * @Assert\NotNull()
@@ -62,6 +68,8 @@ class CreateModerationResponse
     protected ?string $model = null;
 
     /**
+     * A list of moderation objects.
+     *
      * @var CreateModerationResponseResultsInner[]|null
      * @SerializedName("results")
      * @Assert\NotNull()
@@ -101,7 +109,7 @@ class CreateModerationResponse
     /**
      * Sets id.
      *
-     * @param string|null $id
+     * @param string|null $id  The unique identifier for the moderation request.
      *
      * @return $this
      */
@@ -127,7 +135,7 @@ class CreateModerationResponse
     /**
      * Sets model.
      *
-     * @param string|null $model
+     * @param string|null $model  The model used to generate the moderation results.
      *
      * @return $this
      */
@@ -153,7 +161,7 @@ class CreateModerationResponse
     /**
      * Sets results.
      *
-     * @param CreateModerationResponseResultsInner[]|null $results
+     * @param CreateModerationResponseResultsInner[]|null $results  A list of moderation objects.
      *
      * @return $this
      */

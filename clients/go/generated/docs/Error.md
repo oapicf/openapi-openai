@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Code** | **NullableString** |  | 
 **Message** | **string** |  | 
 **Param** | **NullableString** |  | 
-**Code** | **NullableString** |  | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewError
 
-`func NewError(type_ string, message string, param NullableString, code NullableString, ) *Error`
+`func NewError(code NullableString, message string, param NullableString, type_ string, ) *Error`
 
 NewError instantiates a new Error object
 This constructor will assign default values to properties that have it defined,
@@ -28,26 +28,36 @@ NewErrorWithDefaults instantiates a new Error object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
+### GetCode
 
-`func (o *Error) GetType() string`
+`func (o *Error) GetCode() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetCode returns the Code field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetCodeOk
 
-`func (o *Error) GetTypeOk() (*string, bool)`
+`func (o *Error) GetCodeOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetCode
 
-`func (o *Error) SetType(v string)`
+`func (o *Error) SetCode(v string)`
 
-SetType sets Type field to given value.
+SetCode sets Code field to given value.
 
 
+### SetCodeNil
+
+`func (o *Error) SetCodeNil(b bool)`
+
+ SetCodeNil sets the value for Code to be an explicit nil
+
+### UnsetCode
+`func (o *Error) UnsetCode()`
+
+UnsetCode ensures that no value is present for Code, not even an explicit nil
 ### GetMessage
 
 `func (o *Error) GetMessage() string`
@@ -98,36 +108,26 @@ SetParam sets Param field to given value.
 `func (o *Error) UnsetParam()`
 
 UnsetParam ensures that no value is present for Param, not even an explicit nil
-### GetCode
+### GetType
 
-`func (o *Error) GetCode() string`
+`func (o *Error) GetType() string`
 
-GetCode returns the Code field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetCodeOk
+### GetTypeOk
 
-`func (o *Error) GetCodeOk() (*string, bool)`
+`func (o *Error) GetTypeOk() (*string, bool)`
 
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCode
+### SetType
 
-`func (o *Error) SetCode(v string)`
+`func (o *Error) SetType(v string)`
 
-SetCode sets Code field to given value.
+SetType sets Type field to given value.
 
 
-### SetCodeNil
-
-`func (o *Error) SetCodeNil(b bool)`
-
- SetCodeNil sets the value for Code to be an explicit nil
-
-### UnsetCode
-`func (o *Error) UnsetCode()`
-
-UnsetCode ensures that no value is present for Code, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -35,11 +35,12 @@ import kotlin.collections.Map
 class ModerationsApiController() {
 
     @Operation(
-        summary = "Classifies if text violates OpenAI's Content Policy",
+        summary = "Classifies if text is potentially harmful.",
         operationId = "createModeration",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = CreateModerationResponse::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = CreateModerationResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.POST],

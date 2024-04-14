@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **created** | **Integer** |  |  |
-| **data** | [**Array&lt;ImagesResponseDataInner&gt;**](ImagesResponseDataInner.md) |  |  |
+| **data** | [**Array&lt;Image&gt;**](Image.md) |  |  |
 
 ## Example
 

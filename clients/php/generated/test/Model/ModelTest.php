@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  * ModelTest Class Doc Comment
  *
  * @category    Class
- * @description Model
+ * @description Describes an OpenAI model offering that can be used with the API.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -90,18 +90,18 @@ class ModelTest extends TestCase
     }
 
     /**
-     * Test attribute "object"
+     * Test attribute "created"
      */
-    public function testPropertyObject()
+    public function testPropertyCreated()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created"
+     * Test attribute "object"
      */
-    public function testPropertyCreated()
+    public function testPropertyObject()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

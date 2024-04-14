@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,10 +14,10 @@ package io.swagger.client.model
 import play.api.libs.json._
 
 case class CreateCompletionResponseChoicesInnerLogprobs (
-                  tokens: Option[Seq[String]],
+                  textOffset: Option[Seq[Int]],
                   tokenLogprobs: Option[Seq[Number]],
-                  topLogprobs: Option[Seq[Any]],
-                  textOffset: Option[Seq[Int]]
+                  tokens: Option[Seq[String]],
+                  topLogprobs: Option[Seq[Map[String, Number]]]
 )
 
 object CreateCompletionResponseChoicesInnerLogprobs {

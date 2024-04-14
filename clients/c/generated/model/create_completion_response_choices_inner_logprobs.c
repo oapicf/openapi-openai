@@ -6,19 +6,19 @@
 
 
 create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs_create(
-    list_t *tokens,
+    list_t *text_offset,
     list_t *token_logprobs,
-    list_t *top_logprobs,
-    list_t *text_offset
+    list_t *tokens,
+    list_t *top_logprobs
     ) {
     create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs_local_var = malloc(sizeof(create_completion_response_choices_inner_logprobs_t));
     if (!create_completion_response_choices_inner_logprobs_local_var) {
         return NULL;
     }
-    create_completion_response_choices_inner_logprobs_local_var->tokens = tokens;
-    create_completion_response_choices_inner_logprobs_local_var->token_logprobs = token_logprobs;
-    create_completion_response_choices_inner_logprobs_local_var->top_logprobs = top_logprobs;
     create_completion_response_choices_inner_logprobs_local_var->text_offset = text_offset;
+    create_completion_response_choices_inner_logprobs_local_var->token_logprobs = token_logprobs;
+    create_completion_response_choices_inner_logprobs_local_var->tokens = tokens;
+    create_completion_response_choices_inner_logprobs_local_var->top_logprobs = top_logprobs;
 
     return create_completion_response_choices_inner_logprobs_local_var;
 }
@@ -29,12 +29,12 @@ void create_completion_response_choices_inner_logprobs_free(create_completion_re
         return ;
     }
     listEntry_t *listEntry;
-    if (create_completion_response_choices_inner_logprobs->tokens) {
-        list_ForEach(listEntry, create_completion_response_choices_inner_logprobs->tokens) {
+    if (create_completion_response_choices_inner_logprobs->text_offset) {
+        list_ForEach(listEntry, create_completion_response_choices_inner_logprobs->text_offset) {
             free(listEntry->data);
         }
-        list_freeList(create_completion_response_choices_inner_logprobs->tokens);
-        create_completion_response_choices_inner_logprobs->tokens = NULL;
+        list_freeList(create_completion_response_choices_inner_logprobs->text_offset);
+        create_completion_response_choices_inner_logprobs->text_offset = NULL;
     }
     if (create_completion_response_choices_inner_logprobs->token_logprobs) {
         list_ForEach(listEntry, create_completion_response_choices_inner_logprobs->token_logprobs) {
@@ -43,19 +43,19 @@ void create_completion_response_choices_inner_logprobs_free(create_completion_re
         list_freeList(create_completion_response_choices_inner_logprobs->token_logprobs);
         create_completion_response_choices_inner_logprobs->token_logprobs = NULL;
     }
+    if (create_completion_response_choices_inner_logprobs->tokens) {
+        list_ForEach(listEntry, create_completion_response_choices_inner_logprobs->tokens) {
+            free(listEntry->data);
+        }
+        list_freeList(create_completion_response_choices_inner_logprobs->tokens);
+        create_completion_response_choices_inner_logprobs->tokens = NULL;
+    }
     if (create_completion_response_choices_inner_logprobs->top_logprobs) {
         list_ForEach(listEntry, create_completion_response_choices_inner_logprobs->top_logprobs) {
-            object_free(listEntry->data);
+            free(listEntry->data);
         }
         list_freeList(create_completion_response_choices_inner_logprobs->top_logprobs);
         create_completion_response_choices_inner_logprobs->top_logprobs = NULL;
-    }
-    if (create_completion_response_choices_inner_logprobs->text_offset) {
-        list_ForEach(listEntry, create_completion_response_choices_inner_logprobs->text_offset) {
-            free(listEntry->data);
-        }
-        list_freeList(create_completion_response_choices_inner_logprobs->text_offset);
-        create_completion_response_choices_inner_logprobs->text_offset = NULL;
     }
     free(create_completion_response_choices_inner_logprobs);
 }
@@ -63,16 +63,16 @@ void create_completion_response_choices_inner_logprobs_free(create_completion_re
 cJSON *create_completion_response_choices_inner_logprobs_convertToJSON(create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs) {
     cJSON *item = cJSON_CreateObject();
 
-    // create_completion_response_choices_inner_logprobs->tokens
-    if(create_completion_response_choices_inner_logprobs->tokens) {
-    cJSON *tokens = cJSON_AddArrayToObject(item, "tokens");
-    if(tokens == NULL) {
+    // create_completion_response_choices_inner_logprobs->text_offset
+    if(create_completion_response_choices_inner_logprobs->text_offset) {
+    cJSON *text_offset = cJSON_AddArrayToObject(item, "text_offset");
+    if(text_offset == NULL) {
         goto fail; //primitive container
     }
 
-    listEntry_t *tokensListEntry;
-    list_ForEach(tokensListEntry, create_completion_response_choices_inner_logprobs->tokens) {
-    if(cJSON_AddStringToObject(tokens, "", (char*)tokensListEntry->data) == NULL)
+    listEntry_t *text_offsetListEntry;
+    list_ForEach(text_offsetListEntry, create_completion_response_choices_inner_logprobs->text_offset) {
+    if(cJSON_AddNumberToObject(text_offset, "", *(double *)text_offsetListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -97,39 +97,32 @@ cJSON *create_completion_response_choices_inner_logprobs_convertToJSON(create_co
     }
 
 
+    // create_completion_response_choices_inner_logprobs->tokens
+    if(create_completion_response_choices_inner_logprobs->tokens) {
+    cJSON *tokens = cJSON_AddArrayToObject(item, "tokens");
+    if(tokens == NULL) {
+        goto fail; //primitive container
+    }
+
+    listEntry_t *tokensListEntry;
+    list_ForEach(tokensListEntry, create_completion_response_choices_inner_logprobs->tokens) {
+    if(cJSON_AddStringToObject(tokens, "", (char*)tokensListEntry->data) == NULL)
+    {
+        goto fail;
+    }
+    }
+    }
+
+
     // create_completion_response_choices_inner_logprobs->top_logprobs
     if(create_completion_response_choices_inner_logprobs->top_logprobs) {
     cJSON *top_logprobs = cJSON_AddArrayToObject(item, "top_logprobs");
     if(top_logprobs == NULL) {
-    goto fail; //nonprimitive container
-    }
-
-    listEntry_t *top_logprobsListEntry;
-    if (create_completion_response_choices_inner_logprobs->top_logprobs) {
-    list_ForEach(top_logprobsListEntry, create_completion_response_choices_inner_logprobs->top_logprobs) {
-    cJSON *itemLocal = object_convertToJSON(top_logprobsListEntry->data);
-    if(itemLocal == NULL) {
-    goto fail;
-    }
-    cJSON_AddItemToArray(top_logprobs, itemLocal);
-    }
-    }
-    }
-
-
-    // create_completion_response_choices_inner_logprobs->text_offset
-    if(create_completion_response_choices_inner_logprobs->text_offset) {
-    cJSON *text_offset = cJSON_AddArrayToObject(item, "text_offset");
-    if(text_offset == NULL) {
         goto fail; //primitive container
     }
 
-    listEntry_t *text_offsetListEntry;
-    list_ForEach(text_offsetListEntry, create_completion_response_choices_inner_logprobs->text_offset) {
-    if(cJSON_AddNumberToObject(text_offset, "", *(double *)text_offsetListEntry->data) == NULL)
-    {
-        goto fail;
-    }
+    listEntry_t *top_logprobsListEntry;
+    list_ForEach(top_logprobsListEntry, create_completion_response_choices_inner_logprobs->top_logprobs) {
     }
     }
 
@@ -145,34 +138,40 @@ create_completion_response_choices_inner_logprobs_t *create_completion_response_
 
     create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs_local_var = NULL;
 
-    // define the local list for create_completion_response_choices_inner_logprobs->tokens
-    list_t *tokensList = NULL;
+    // define the local list for create_completion_response_choices_inner_logprobs->text_offset
+    list_t *text_offsetList = NULL;
 
     // define the local list for create_completion_response_choices_inner_logprobs->token_logprobs
     list_t *token_logprobsList = NULL;
 
+    // define the local list for create_completion_response_choices_inner_logprobs->tokens
+    list_t *tokensList = NULL;
+
     // define the local list for create_completion_response_choices_inner_logprobs->top_logprobs
     list_t *top_logprobsList = NULL;
 
-    // define the local list for create_completion_response_choices_inner_logprobs->text_offset
-    list_t *text_offsetList = NULL;
-
-    // create_completion_response_choices_inner_logprobs->tokens
-    cJSON *tokens = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_inner_logprobsJSON, "tokens");
-    if (tokens) { 
-    cJSON *tokens_local = NULL;
-    if(!cJSON_IsArray(tokens)) {
+    // create_completion_response_choices_inner_logprobs->text_offset
+    cJSON *text_offset = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_inner_logprobsJSON, "text_offset");
+    if (text_offset) { 
+    cJSON *text_offset_local = NULL;
+    if(!cJSON_IsArray(text_offset)) {
         goto end;//primitive container
     }
-    tokensList = list_createList();
+    text_offsetList = list_createList();
 
-    cJSON_ArrayForEach(tokens_local, tokens)
+    cJSON_ArrayForEach(text_offset_local, text_offset)
     {
-        if(!cJSON_IsString(tokens_local))
+        if(!cJSON_IsNumber(text_offset_local))
         {
             goto end;
         }
-        list_addElement(tokensList , strdup(tokens_local->valuestring));
+        double *text_offset_local_value = (double *)calloc(1, sizeof(double));
+        if(!text_offset_local_value)
+        {
+            goto end;
+        }
+        *text_offset_local_value = text_offset_local->valuedouble;
+        list_addElement(text_offsetList , text_offset_local_value);
     }
     }
 
@@ -201,70 +200,57 @@ create_completion_response_choices_inner_logprobs_t *create_completion_response_
     }
     }
 
+    // create_completion_response_choices_inner_logprobs->tokens
+    cJSON *tokens = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_inner_logprobsJSON, "tokens");
+    if (tokens) { 
+    cJSON *tokens_local = NULL;
+    if(!cJSON_IsArray(tokens)) {
+        goto end;//primitive container
+    }
+    tokensList = list_createList();
+
+    cJSON_ArrayForEach(tokens_local, tokens)
+    {
+        if(!cJSON_IsString(tokens_local))
+        {
+            goto end;
+        }
+        list_addElement(tokensList , strdup(tokens_local->valuestring));
+    }
+    }
+
     // create_completion_response_choices_inner_logprobs->top_logprobs
     cJSON *top_logprobs = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_inner_logprobsJSON, "top_logprobs");
     if (top_logprobs) { 
-    cJSON *top_logprobs_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(top_logprobs)){
-        goto end; //nonprimitive container
-    }
-
-    top_logprobsList = list_createList();
-
-    cJSON_ArrayForEach(top_logprobs_local_nonprimitive,top_logprobs )
-    {
-        if(!cJSON_IsObject(top_logprobs_local_nonprimitive)){
-            goto end;
-        }
-        object_t *top_logprobsItem = object_parseFromJSON(top_logprobs_local_nonprimitive);
-
-        list_addElement(top_logprobsList, top_logprobsItem);
-    }
-    }
-
-    // create_completion_response_choices_inner_logprobs->text_offset
-    cJSON *text_offset = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_inner_logprobsJSON, "text_offset");
-    if (text_offset) { 
-    cJSON *text_offset_local = NULL;
-    if(!cJSON_IsArray(text_offset)) {
+    cJSON *top_logprobs_local = NULL;
+    if(!cJSON_IsArray(top_logprobs)) {
         goto end;//primitive container
     }
-    text_offsetList = list_createList();
+    top_logprobsList = list_createList();
 
-    cJSON_ArrayForEach(text_offset_local, text_offset)
+    cJSON_ArrayForEach(top_logprobs_local, top_logprobs)
     {
-        if(!cJSON_IsNumber(text_offset_local))
-        {
-            goto end;
-        }
-        double *text_offset_local_value = (double *)calloc(1, sizeof(double));
-        if(!text_offset_local_value)
-        {
-            goto end;
-        }
-        *text_offset_local_value = text_offset_local->valuedouble;
-        list_addElement(text_offsetList , text_offset_local_value);
     }
     }
 
 
     create_completion_response_choices_inner_logprobs_local_var = create_completion_response_choices_inner_logprobs_create (
-        tokens ? tokensList : NULL,
+        text_offset ? text_offsetList : NULL,
         token_logprobs ? token_logprobsList : NULL,
-        top_logprobs ? top_logprobsList : NULL,
-        text_offset ? text_offsetList : NULL
+        tokens ? tokensList : NULL,
+        top_logprobs ? top_logprobsList : NULL
         );
 
     return create_completion_response_choices_inner_logprobs_local_var;
 end:
-    if (tokensList) {
+    if (text_offsetList) {
         listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, tokensList) {
+        list_ForEach(listEntry, text_offsetList) {
             free(listEntry->data);
             listEntry->data = NULL;
         }
-        list_freeList(tokensList);
-        tokensList = NULL;
+        list_freeList(text_offsetList);
+        text_offsetList = NULL;
     }
     if (token_logprobsList) {
         listEntry_t *listEntry = NULL;
@@ -275,23 +261,18 @@ end:
         list_freeList(token_logprobsList);
         token_logprobsList = NULL;
     }
-    if (top_logprobsList) {
+    if (tokensList) {
         listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, top_logprobsList) {
-            object_free(listEntry->data);
-            listEntry->data = NULL;
-        }
-        list_freeList(top_logprobsList);
-        top_logprobsList = NULL;
-    }
-    if (text_offsetList) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, text_offsetList) {
+        list_ForEach(listEntry, tokensList) {
             free(listEntry->data);
             listEntry->data = NULL;
         }
-        list_freeList(text_offsetList);
-        text_offsetList = NULL;
+        list_freeList(tokensList);
+        tokensList = NULL;
+    }
+    if (top_logprobsList) {
+        list_freeList(top_logprobsList);
+        top_logprobsList = NULL;
     }
     return NULL;
 

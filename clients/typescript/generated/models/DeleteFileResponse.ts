@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,7 +14,7 @@ import { HttpFile } from '../http/http';
 
 export class DeleteFileResponse {
     'id': string;
-    'object': string;
+    'object': DeleteFileResponseObjectEnum;
     'deleted': boolean;
 
     static readonly discriminator: string | undefined = undefined;
@@ -29,7 +29,7 @@ export class DeleteFileResponse {
         {
             "name": "object",
             "baseName": "object",
-            "type": "string",
+            "type": "DeleteFileResponseObjectEnum",
             "format": ""
         },
         {
@@ -45,5 +45,10 @@ export class DeleteFileResponse {
 
     public constructor() {
     }
+}
+
+
+export enum DeleteFileResponseObjectEnum {
+    File = 'file'
 }
 

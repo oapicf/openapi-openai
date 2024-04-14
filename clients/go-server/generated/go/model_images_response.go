@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,7 +17,7 @@ type ImagesResponse struct {
 
 	Created int32 `json:"created"`
 
-	Data []ImagesResponseDataInner `json:"data"`
+	Data []Image `json:"data"`
 }
 
 // AssertImagesResponseRequired checks if the required fields are not zero-ed
@@ -33,7 +33,7 @@ func AssertImagesResponseRequired(obj ImagesResponse) error {
 	}
 
 	for _, el := range obj.Data {
-		if err := AssertImagesResponseDataInnerRequired(el); err != nil {
+		if err := AssertImageRequired(el); err != nil {
 			return err
 		}
 	}

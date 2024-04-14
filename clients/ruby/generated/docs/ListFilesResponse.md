@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **object** | **String** |  |  |
 | **data** | [**Array&lt;OpenAIFile&gt;**](OpenAIFile.md) |  |  |
+| **object** | **String** |  |  |
 
 ## Example
 
@@ -13,8 +13,8 @@
 require 'openapi_openai'
 
 instance = OpenApiOpenAIClient::ListFilesResponse.new(
-  object: null,
-  data: null
+  data: null,
+  object: null
 )
 ```
 

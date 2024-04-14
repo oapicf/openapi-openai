@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -63,32 +63,25 @@ ptree CreateChatCompletionStreamResponse_choices_inner::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.put("index", m_Index);
 	pt.add_child("delta", m_Delta.toPropertyTree());
+	pt.add_child("logprobs", m_Logprobs.toPropertyTree());
 	pt.put("finish_reason", m_Finish_reason);
+	pt.put("index", m_Index);
 	return pt;
 }
 
 void CreateChatCompletionStreamResponse_choices_inner::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	m_Index = pt.get("index", 0);
 	if (pt.get_child_optional("delta")) {
         m_Delta = fromPt<ChatCompletionStreamResponseDelta>(pt.get_child("delta"));
 	}
+	if (pt.get_child_optional("logprobs")) {
+        m_Logprobs = fromPt<CreateChatCompletionResponse_choices_inner_logprobs>(pt.get_child("logprobs"));
+	}
 	setFinishReason(pt.get("finish_reason", ""));
+	m_Index = pt.get("index", 0);
 }
-
-int32_t CreateChatCompletionStreamResponse_choices_inner::getIndex() const
-{
-    return m_Index;
-}
-
-void CreateChatCompletionStreamResponse_choices_inner::setIndex(int32_t value)
-{
-    m_Index = value;
-}
-
 
 ChatCompletionStreamResponseDelta CreateChatCompletionStreamResponse_choices_inner::getDelta() const
 {
@@ -101,6 +94,17 @@ void CreateChatCompletionStreamResponse_choices_inner::setDelta(ChatCompletionSt
 }
 
 
+CreateChatCompletionResponse_choices_inner_logprobs CreateChatCompletionStreamResponse_choices_inner::getLogprobs() const
+{
+    return m_Logprobs;
+}
+
+void CreateChatCompletionStreamResponse_choices_inner::setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs value)
+{
+    m_Logprobs = value;
+}
+
+
 std::string CreateChatCompletionStreamResponse_choices_inner::getFinishReason() const
 {
     return m_Finish_reason;
@@ -108,8 +112,8 @@ std::string CreateChatCompletionStreamResponse_choices_inner::getFinishReason() 
 
 void CreateChatCompletionStreamResponse_choices_inner::setFinishReason(std::string value)
 {
-    static const std::array<std::string, 3> allowedValues = {
-        "stop", "length", "function_call"
+    static const std::array<std::string, 5> allowedValues = {
+        "stop", "length", "tool_calls", "content_filter", "function_call"
     };
 
     if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
@@ -117,6 +121,17 @@ void CreateChatCompletionStreamResponse_choices_inner::setFinishReason(std::stri
 	} else {
 		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
 	}
+}
+
+
+int32_t CreateChatCompletionStreamResponse_choices_inner::getIndex() const
+{
+    return m_Index;
+}
+
+void CreateChatCompletionStreamResponse_choices_inner::setIndex(int32_t value)
+{
+    m_Index = value;
 }
 
 

@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ChatCompletionRequestToolMessage",
+  "fields": [
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "ChatCompletionRequestToolMessage_role",
+        "symbols": [
+          "tool"
+        ]
+      },
+      "doc": "The role of the messages author, in this case `tool`."
+    },
+    {
+      "name": "content",
+      "type": "string",
+      "doc": "The contents of the tool message."
+    },
+    {
+      "name": "tool_call_id",
+      "type": "string",
+      "doc": "Tool call that this message is responding to."
+    }
+  ]
+
+}

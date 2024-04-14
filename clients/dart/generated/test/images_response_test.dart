@@ -21,7 +21,7 @@ void main() {
       // TODO
     });
 
-    // List<ImagesResponseDataInner> data (default value: const [])
+    // List<Image> data (default value: const [])
     test('to test the property `data`', () async {
       // TODO
     });

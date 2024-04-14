@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,11 +19,11 @@ local function cast_delete_model_response(t)
 	return setmetatable(t, delete_model_response_mt)
 end
 
-local function new_delete_model_response(id, object, deleted)
+local function new_delete_model_response(id, deleted, object)
 	return cast_delete_model_response({
 		["id"] = id;
-		["object"] = object;
 		["deleted"] = deleted;
+		["object"] = object;
 	})
 end
 

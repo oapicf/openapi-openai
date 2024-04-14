@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -31,121 +32,28 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * CreateCompletionResponseChoicesInnerLogprobs
  */
 @JsonPropertyOrder({
-  CreateCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_TOKENS,
+  CreateCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_TEXT_OFFSET,
   CreateCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_TOKEN_LOGPROBS,
-  CreateCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_TOP_LOGPROBS,
-  CreateCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_TEXT_OFFSET
+  CreateCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_TOKENS,
+  CreateCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_TOP_LOGPROBS
 })
 @JsonTypeName("CreateCompletionResponse_choices_inner_logprobs")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-03-16T01:12:38.762786439Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-04-14T13:38:24.957235058Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateCompletionResponseChoicesInnerLogprobs {
-    public static final String JSON_PROPERTY_TOKENS = "tokens";
-    private List<String> tokens = null;
+    public static final String JSON_PROPERTY_TEXT_OFFSET = "text_offset";
+    private List<Integer> textOffset = null;
 
     public static final String JSON_PROPERTY_TOKEN_LOGPROBS = "token_logprobs";
     private List<BigDecimal> tokenLogprobs = null;
 
-    public static final String JSON_PROPERTY_TOP_LOGPROBS = "top_logprobs";
-    private List<Object> topLogprobs = null;
+    public static final String JSON_PROPERTY_TOKENS = "tokens";
+    private List<String> tokens = null;
 
-    public static final String JSON_PROPERTY_TEXT_OFFSET = "text_offset";
-    private List<Integer> textOffset = null;
+    public static final String JSON_PROPERTY_TOP_LOGPROBS = "top_logprobs";
+    private List<Map<String, BigDecimal>> topLogprobs = null;
 
     public CreateCompletionResponseChoicesInnerLogprobs() {
-    }
-
-    public CreateCompletionResponseChoicesInnerLogprobs tokens(List<String> tokens) {
-        this.tokens = tokens;
-        return this;
-    }
-
-    public CreateCompletionResponseChoicesInnerLogprobs addTokensItem(String tokensItem) {
-        if (this.tokens == null) {
-            this.tokens = new ArrayList<>();
-        }
-        this.tokens.add(tokensItem);
-        return this;
-    }
-
-    /**
-     * Get tokens
-     * @return tokens
-     **/
-    @Nullable
-    @Schema(name = "tokens", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_TOKENS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<String> getTokens() {
-        return tokens;
-    }
-
-    @JsonProperty(JSON_PROPERTY_TOKENS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTokens(List<String> tokens) {
-        this.tokens = tokens;
-    }
-
-    public CreateCompletionResponseChoicesInnerLogprobs tokenLogprobs(List<BigDecimal> tokenLogprobs) {
-        this.tokenLogprobs = tokenLogprobs;
-        return this;
-    }
-
-    public CreateCompletionResponseChoicesInnerLogprobs addTokenLogprobsItem(BigDecimal tokenLogprobsItem) {
-        if (this.tokenLogprobs == null) {
-            this.tokenLogprobs = new ArrayList<>();
-        }
-        this.tokenLogprobs.add(tokenLogprobsItem);
-        return this;
-    }
-
-    /**
-     * Get tokenLogprobs
-     * @return tokenLogprobs
-     **/
-    @Nullable
-    @Schema(name = "token_logprobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_TOKEN_LOGPROBS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<BigDecimal> getTokenLogprobs() {
-        return tokenLogprobs;
-    }
-
-    @JsonProperty(JSON_PROPERTY_TOKEN_LOGPROBS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTokenLogprobs(List<BigDecimal> tokenLogprobs) {
-        this.tokenLogprobs = tokenLogprobs;
-    }
-
-    public CreateCompletionResponseChoicesInnerLogprobs topLogprobs(List<Object> topLogprobs) {
-        this.topLogprobs = topLogprobs;
-        return this;
-    }
-
-    public CreateCompletionResponseChoicesInnerLogprobs addTopLogprobsItem(Object topLogprobsItem) {
-        if (this.topLogprobs == null) {
-            this.topLogprobs = new ArrayList<>();
-        }
-        this.topLogprobs.add(topLogprobsItem);
-        return this;
-    }
-
-    /**
-     * Get topLogprobs
-     * @return topLogprobs
-     **/
-    @Nullable
-    @Schema(name = "top_logprobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_TOP_LOGPROBS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<Object> getTopLogprobs() {
-        return topLogprobs;
-    }
-
-    @JsonProperty(JSON_PROPERTY_TOP_LOGPROBS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTopLogprobs(List<Object> topLogprobs) {
-        this.topLogprobs = topLogprobs;
     }
 
     public CreateCompletionResponseChoicesInnerLogprobs textOffset(List<Integer> textOffset) {
@@ -179,6 +87,99 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
         this.textOffset = textOffset;
     }
 
+    public CreateCompletionResponseChoicesInnerLogprobs tokenLogprobs(List<BigDecimal> tokenLogprobs) {
+        this.tokenLogprobs = tokenLogprobs;
+        return this;
+    }
+
+    public CreateCompletionResponseChoicesInnerLogprobs addTokenLogprobsItem(BigDecimal tokenLogprobsItem) {
+        if (this.tokenLogprobs == null) {
+            this.tokenLogprobs = new ArrayList<>();
+        }
+        this.tokenLogprobs.add(tokenLogprobsItem);
+        return this;
+    }
+
+    /**
+     * Get tokenLogprobs
+     * @return tokenLogprobs
+     **/
+    @Nullable
+    @Schema(name = "token_logprobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_TOKEN_LOGPROBS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public List<BigDecimal> getTokenLogprobs() {
+        return tokenLogprobs;
+    }
+
+    @JsonProperty(JSON_PROPERTY_TOKEN_LOGPROBS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setTokenLogprobs(List<BigDecimal> tokenLogprobs) {
+        this.tokenLogprobs = tokenLogprobs;
+    }
+
+    public CreateCompletionResponseChoicesInnerLogprobs tokens(List<String> tokens) {
+        this.tokens = tokens;
+        return this;
+    }
+
+    public CreateCompletionResponseChoicesInnerLogprobs addTokensItem(String tokensItem) {
+        if (this.tokens == null) {
+            this.tokens = new ArrayList<>();
+        }
+        this.tokens.add(tokensItem);
+        return this;
+    }
+
+    /**
+     * Get tokens
+     * @return tokens
+     **/
+    @Nullable
+    @Schema(name = "tokens", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_TOKENS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public List<String> getTokens() {
+        return tokens;
+    }
+
+    @JsonProperty(JSON_PROPERTY_TOKENS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setTokens(List<String> tokens) {
+        this.tokens = tokens;
+    }
+
+    public CreateCompletionResponseChoicesInnerLogprobs topLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
+        this.topLogprobs = topLogprobs;
+        return this;
+    }
+
+    public CreateCompletionResponseChoicesInnerLogprobs addTopLogprobsItem(Map<String, BigDecimal> topLogprobsItem) {
+        if (this.topLogprobs == null) {
+            this.topLogprobs = new ArrayList<>();
+        }
+        this.topLogprobs.add(topLogprobsItem);
+        return this;
+    }
+
+    /**
+     * Get topLogprobs
+     * @return topLogprobs
+     **/
+    @Nullable
+    @Schema(name = "top_logprobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_TOP_LOGPROBS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public List<Map<String, BigDecimal>> getTopLogprobs() {
+        return topLogprobs;
+    }
+
+    @JsonProperty(JSON_PROPERTY_TOP_LOGPROBS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setTopLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
+        this.topLogprobs = topLogprobs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -188,25 +189,25 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
             return false;
         }
         CreateCompletionResponseChoicesInnerLogprobs createCompletionResponseChoicesInnerLogprobs = (CreateCompletionResponseChoicesInnerLogprobs) o;
-        return Objects.equals(this.tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+        return Objects.equals(this.textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset) &&
             Objects.equals(this.tokenLogprobs, createCompletionResponseChoicesInnerLogprobs.tokenLogprobs) &&
-            Objects.equals(this.topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs) &&
-            Objects.equals(this.textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset);
+            Objects.equals(this.tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+            Objects.equals(this.topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tokens, tokenLogprobs, topLogprobs, textOffset);
+        return Objects.hash(textOffset, tokenLogprobs, tokens, topLogprobs);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class CreateCompletionResponseChoicesInnerLogprobs {\n");
-        sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
-        sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
-        sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
         sb.append("    textOffset: ").append(toIndentedString(textOffset)).append("\n");
+        sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
+        sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
+        sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
         sb.append("}");
         return sb.toString();
     }

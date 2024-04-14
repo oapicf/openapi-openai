@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,8 +20,11 @@ public class DeleteFileResponse {
   
   @SerializedName("id")
   private String id = null;
+  public enum _objectEnum {
+     file, 
+  };
   @SerializedName("object")
-  private String _object = null;
+  private _objectEnum _object = null;
   @SerializedName("deleted")
   private Boolean deleted = null;
 
@@ -38,10 +41,10 @@ public class DeleteFileResponse {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public String getObject() {
+  public _objectEnum getObject() {
     return _object;
   }
-  public void setObject(String _object) {
+  public void setObject(_objectEnum _object) {
     this._object = _object;
   }
 

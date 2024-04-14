@@ -17,17 +17,25 @@ typedef struct list_files_response_t list_files_response_t;
 
 #include "open_ai_file.h"
 
+// Enum OBJECT for list_files_response
+
+typedef enum  { openai_api_list_files_response_OBJECT_NULL = 0, openai_api_list_files_response_OBJECT_list } openai_api_list_files_response_OBJECT_e;
+
+char* list_files_response_object_ToString(openai_api_list_files_response_OBJECT_e object);
+
+openai_api_list_files_response_OBJECT_e list_files_response_object_FromString(char* object);
+
 
 
 typedef struct list_files_response_t {
-    char *object; // string
     list_t *data; //nonprimitive container
+    openai_api_list_files_response_OBJECT_e object; //enum
 
 } list_files_response_t;
 
 list_files_response_t *list_files_response_create(
-    char *object,
-    list_t *data
+    list_t *data,
+    openai_api_list_files_response_OBJECT_e object
 );
 
 void list_files_response_free(list_files_response_t *list_files_response);

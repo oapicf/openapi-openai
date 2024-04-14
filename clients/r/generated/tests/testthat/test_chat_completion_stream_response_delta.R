@@ -5,14 +5,6 @@ context("Test ChatCompletionStreamResponseDelta")
 
 model_instance <- ChatCompletionStreamResponseDelta$new()
 
-test_that("role", {
-  # tests for the property `role` (character)
-  # The role of the author of this message.
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`role`, "EXPECTED_RESULT")
-})
-
 test_that("content", {
   # tests for the property `content` (character)
   # The contents of the chunk message.
@@ -22,8 +14,23 @@ test_that("content", {
 })
 
 test_that("function_call", {
-  # tests for the property `function_call` (ChatCompletionRequestMessageFunctionCall)
+  # tests for the property `function_call` (ChatCompletionStreamResponseDeltaFunctionCall)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`function_call`, "EXPECTED_RESULT")
+})
+
+test_that("tool_calls", {
+  # tests for the property `tool_calls` (array[ChatCompletionMessageToolCallChunk])
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`tool_calls`, "EXPECTED_RESULT")
+})
+
+test_that("role", {
+  # tests for the property `role` (character)
+  # The role of the author of this message.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`role`, "EXPECTED_RESULT")
 })

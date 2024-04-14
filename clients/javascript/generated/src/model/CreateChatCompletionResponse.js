@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,27 +12,28 @@
  */
 
 import ApiClient from '../ApiClient';
+import CompletionUsage from './CompletionUsage';
 import CreateChatCompletionResponseChoicesInner from './CreateChatCompletionResponseChoicesInner';
-import CreateCompletionResponseUsage from './CreateCompletionResponseUsage';
 
 /**
  * The CreateChatCompletionResponse model module.
  * @module model/CreateChatCompletionResponse
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateChatCompletionResponse {
     /**
      * Constructs a new <code>CreateChatCompletionResponse</code>.
+     * Represents a chat completion response returned by model, based on the provided input.
      * @alias module:model/CreateChatCompletionResponse
-     * @param id {String} 
-     * @param object {String} 
-     * @param created {Number} 
-     * @param model {String} 
-     * @param choices {Array.<module:model/CreateChatCompletionResponseChoicesInner>} 
+     * @param id {String} A unique identifier for the chat completion.
+     * @param choices {Array.<module:model/CreateChatCompletionResponseChoicesInner>} A list of chat completion choices. Can be more than one if `n` is greater than 1.
+     * @param created {Number} The Unix timestamp (in seconds) of when the chat completion was created.
+     * @param model {String} The model used for the chat completion.
+     * @param object {module:model/CreateChatCompletionResponse.ObjectEnum} The object type, which is always `chat.completion`.
      */
-    constructor(id, object, created, model, choices) { 
+    constructor(id, choices, created, model, object) { 
         
-        CreateChatCompletionResponse.initialize(this, id, object, created, model, choices);
+        CreateChatCompletionResponse.initialize(this, id, choices, created, model, object);
     }
 
     /**
@@ -40,12 +41,12 @@ class CreateChatCompletionResponse {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, object, created, model, choices) { 
+    static initialize(obj, id, choices, created, model, object) { 
         obj['id'] = id;
-        obj['object'] = object;
+        obj['choices'] = choices;
         obj['created'] = created;
         obj['model'] = model;
-        obj['choices'] = choices;
+        obj['object'] = object;
     }
 
     /**
@@ -62,8 +63,8 @@ class CreateChatCompletionResponse {
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
-            if (data.hasOwnProperty('object')) {
-                obj['object'] = ApiClient.convertToType(data['object'], 'String');
+            if (data.hasOwnProperty('choices')) {
+                obj['choices'] = ApiClient.convertToType(data['choices'], [CreateChatCompletionResponseChoicesInner]);
             }
             if (data.hasOwnProperty('created')) {
                 obj['created'] = ApiClient.convertToType(data['created'], 'Number');
@@ -71,11 +72,14 @@ class CreateChatCompletionResponse {
             if (data.hasOwnProperty('model')) {
                 obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
-            if (data.hasOwnProperty('choices')) {
-                obj['choices'] = ApiClient.convertToType(data['choices'], [CreateChatCompletionResponseChoicesInner]);
+            if (data.hasOwnProperty('system_fingerprint')) {
+                obj['system_fingerprint'] = ApiClient.convertToType(data['system_fingerprint'], 'String');
+            }
+            if (data.hasOwnProperty('object')) {
+                obj['object'] = ApiClient.convertToType(data['object'], 'String');
             }
             if (data.hasOwnProperty('usage')) {
-                obj['usage'] = CreateCompletionResponseUsage.constructFromObject(data['usage']);
+                obj['usage'] = CompletionUsage.constructFromObject(data['usage']);
             }
         }
         return obj;
@@ -97,14 +101,6 @@ class CreateChatCompletionResponse {
         if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
             throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
         }
-        // ensure the json data is a string
-        if (data['object'] && !(typeof data['object'] === 'string' || data['object'] instanceof String)) {
-            throw new Error("Expected the field `object` to be a primitive type in the JSON string but got " + data['object']);
-        }
-        // ensure the json data is a string
-        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
-            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
-        }
         if (data['choices']) { // data not null
             // ensure the json data is an array
             if (!Array.isArray(data['choices'])) {
@@ -115,9 +111,21 @@ class CreateChatCompletionResponse {
                 CreateChatCompletionResponseChoicesInner.validateJSON(item);
             };
         }
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
+        }
+        // ensure the json data is a string
+        if (data['system_fingerprint'] && !(typeof data['system_fingerprint'] === 'string' || data['system_fingerprint'] instanceof String)) {
+            throw new Error("Expected the field `system_fingerprint` to be a primitive type in the JSON string but got " + data['system_fingerprint']);
+        }
+        // ensure the json data is a string
+        if (data['object'] && !(typeof data['object'] === 'string' || data['object'] instanceof String)) {
+            throw new Error("Expected the field `object` to be a primitive type in the JSON string but got " + data['object']);
+        }
         // validate the optional field `usage`
         if (data['usage']) { // data not null
-          CreateCompletionResponseUsage.validateJSON(data['usage']);
+          CompletionUsage.validateJSON(data['usage']);
         }
 
         return true;
@@ -126,40 +134,66 @@ class CreateChatCompletionResponse {
 
 }
 
-CreateChatCompletionResponse.RequiredProperties = ["id", "object", "created", "model", "choices"];
+CreateChatCompletionResponse.RequiredProperties = ["id", "choices", "created", "model", "object"];
 
 /**
+ * A unique identifier for the chat completion.
  * @member {String} id
  */
 CreateChatCompletionResponse.prototype['id'] = undefined;
 
 /**
- * @member {String} object
- */
-CreateChatCompletionResponse.prototype['object'] = undefined;
-
-/**
- * @member {Number} created
- */
-CreateChatCompletionResponse.prototype['created'] = undefined;
-
-/**
- * @member {String} model
- */
-CreateChatCompletionResponse.prototype['model'] = undefined;
-
-/**
+ * A list of chat completion choices. Can be more than one if `n` is greater than 1.
  * @member {Array.<module:model/CreateChatCompletionResponseChoicesInner>} choices
  */
 CreateChatCompletionResponse.prototype['choices'] = undefined;
 
 /**
- * @member {module:model/CreateCompletionResponseUsage} usage
+ * The Unix timestamp (in seconds) of when the chat completion was created.
+ * @member {Number} created
+ */
+CreateChatCompletionResponse.prototype['created'] = undefined;
+
+/**
+ * The model used for the chat completion.
+ * @member {String} model
+ */
+CreateChatCompletionResponse.prototype['model'] = undefined;
+
+/**
+ * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+ * @member {String} system_fingerprint
+ */
+CreateChatCompletionResponse.prototype['system_fingerprint'] = undefined;
+
+/**
+ * The object type, which is always `chat.completion`.
+ * @member {module:model/CreateChatCompletionResponse.ObjectEnum} object
+ */
+CreateChatCompletionResponse.prototype['object'] = undefined;
+
+/**
+ * @member {module:model/CompletionUsage} usage
  */
 CreateChatCompletionResponse.prototype['usage'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>object</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateChatCompletionResponse['ObjectEnum'] = {
+
+    /**
+     * value: "chat.completion"
+     * @const
+     */
+    "chat.completion": "chat.completion"
+};
 
 
 

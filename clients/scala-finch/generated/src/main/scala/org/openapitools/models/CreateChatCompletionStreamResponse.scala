@@ -9,18 +9,20 @@ import org.openapitools.models.CreateChatCompletionStreamResponseChoicesInner
 import scala.collection.immutable.Seq
 
 /**
- * 
- * @param id 
- * @param _object 
- * @param created 
- * @param model 
- * @param choices 
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+ * @param id A unique identifier for the chat completion. Each chunk has the same ID.
+ * @param choices A list of chat completion choices. Can be more than one if `n` is greater than 1.
+ * @param created The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+ * @param model The model to generate the completion.
+ * @param systemUnderscorefingerprint This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+ * @param _object The object type, which is always `chat.completion.chunk`.
  */
 case class CreateChatCompletionStreamResponse(id: String,
-                _object: String,
+                choices: Seq[CreateChatCompletionStreamResponseChoicesInner],
                 created: Int,
                 model: String,
-                choices: Seq[CreateChatCompletionStreamResponseChoicesInner]
+                systemUnderscorefingerprint: Option[String],
+                _object: String
                 )
 
 object CreateChatCompletionStreamResponse {

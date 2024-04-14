@@ -11,9 +11,10 @@ import java.util.List;
 import org.openapitools.model.CreateModerationResponseResultsInner;
 
 /**
- * CreateModerationResponse
+ * Represents if a given text input is potentially harmful.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-16T01:12:44.741883350Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@ApiModel(description = "Represents if a given text input is potentially harmful.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-04-14T13:38:52.193957698Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponse   {
   @JsonProperty("id")
   private String id;
@@ -30,10 +31,10 @@ public class CreateModerationResponse   {
   }
 
    /**
-   * Get id
+   * The unique identifier for the moderation request.
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier for the moderation request.")
   public String getId() {
     return id;
   }
@@ -48,10 +49,10 @@ public class CreateModerationResponse   {
   }
 
    /**
-   * Get model
+   * The model used to generate the moderation results.
    * @return model
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model used to generate the moderation results.")
   public String getModel() {
     return model;
   }
@@ -71,10 +72,10 @@ public class CreateModerationResponse   {
   }
 
    /**
-   * Get results
+   * A list of moderation objects.
    * @return results
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A list of moderation objects.")
   public List<@Valid CreateModerationResponseResultsInner> getResults() {
     return results;
   }

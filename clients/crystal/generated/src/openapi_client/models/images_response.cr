@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -20,12 +20,12 @@ module OpenAPIClient
     @[JSON::Field(key: "created", type: Int32, nillable: false, emit_null: false)]
     property created : Int32
 
-    @[JSON::Field(key: "data", type: Array(ImagesResponseDataInner), nillable: false, emit_null: false)]
-    property data : Array(ImagesResponseDataInner)
+    @[JSON::Field(key: "data", type: Array(Image), nillable: false, emit_null: false)]
+    property data : Array(Image)
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@created : Int32, @data : Array(ImagesResponseDataInner))
+    def initialize(@created : Int32, @data : Array(Image))
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?

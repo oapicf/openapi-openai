@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,9 +12,15 @@
 package org.openapitools.server.model
 
 case class CreateEmbeddingRequest(
+  input: CreateEmbeddingRequestInput,
+
   model: CreateEmbeddingRequestModel,
 
-  input: CreateEmbeddingRequestInput,
+  /* The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/). */
+  encodingFormat: Option[String],
+
+  /* The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */
+  dimensions: Option[Int],
 
   /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
   user: Option[String]

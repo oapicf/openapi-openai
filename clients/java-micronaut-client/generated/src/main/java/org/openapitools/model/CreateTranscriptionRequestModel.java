@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,12 +23,12 @@ import io.micronaut.core.annotation.*;
 import javax.annotation.Generated;
 
 /**
- * ID of the model to use. Only &#x60;whisper-1&#x60; is currently available. 
+ * ID of the model to use. Only &#x60;whisper-1&#x60; (which is powered by our open source Whisper V2 model) is currently available. 
  */
 @JsonPropertyOrder({
 })
 @JsonTypeName("CreateTranscriptionRequest_model")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-03-16T01:12:32.706318857Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-14T13:37:52.123317469Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateTranscriptionRequestModel {
     public CreateTranscriptionRequestModel() {

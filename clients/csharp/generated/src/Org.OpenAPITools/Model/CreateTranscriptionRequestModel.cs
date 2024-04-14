@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -28,7 +28,7 @@ using System.Reflection;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// ID of the model to use. Only &#x60;whisper-1&#x60; is currently available. 
+    /// ID of the model to use. Only &#x60;whisper-1&#x60; (which is powered by our open source Whisper V2 model) is currently available. 
     /// </summary>
     [JsonConverter(typeof(CreateTranscriptionRequestModelJsonConverter))]
     [DataContract(Name = "CreateTranscriptionRequest_model")]
@@ -42,7 +42,7 @@ namespace Org.OpenAPITools.Model
         public CreateTranscriptionRequestModel(string actualInstance)
         {
             this.IsNullable = false;
-            this.SchemaType= "oneOf";
+            this.SchemaType= "anyOf";
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
@@ -116,22 +116,12 @@ namespace Org.OpenAPITools.Model
             {
                 return newCreateTranscriptionRequestModel;
             }
-            int match = 0;
-            List<string> matchedTypes = new List<string>();
 
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(string).GetProperty("AdditionalProperties") == null)
-                {
-                    newCreateTranscriptionRequestModel = new CreateTranscriptionRequestModel(JsonConvert.DeserializeObject<string>(jsonString, CreateTranscriptionRequestModel.SerializerSettings));
-                }
-                else
-                {
-                    newCreateTranscriptionRequestModel = new CreateTranscriptionRequestModel(JsonConvert.DeserializeObject<string>(jsonString, CreateTranscriptionRequestModel.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("string");
-                match++;
+                newCreateTranscriptionRequestModel = new CreateTranscriptionRequestModel(JsonConvert.DeserializeObject<string>(jsonString, CreateTranscriptionRequestModel.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newCreateTranscriptionRequestModel;
             }
             catch (Exception exception)
             {
@@ -139,19 +129,9 @@ namespace Org.OpenAPITools.Model
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into string: {1}", jsonString, exception.ToString()));
             }
 
-            if (match == 0)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
-            }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
-            }
-
-            // deserialization is considered successful at this point if no exception has been thrown.
-            return newCreateTranscriptionRequestModel;
+            // no match found, throw an exception
+            throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
         }
-
 
         /// <summary>
         /// To validate all properties of the instance

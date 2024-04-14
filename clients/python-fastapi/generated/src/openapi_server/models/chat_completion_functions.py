@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -32,10 +32,10 @@ class ChatCompletionFunctions(BaseModel):
     """
     ChatCompletionFunctions
     """ # noqa: E501
+    description: Optional[StrictStr] = Field(default=None, description="A description of what the function does, used by the model to choose when and how to call the function.")
     name: StrictStr = Field(description="The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.")
-    description: Optional[StrictStr] = Field(default=None, description="The description of what the function does.")
-    parameters: Optional[Dict[str, Any]] = Field(default=None, description="The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.")
-    __properties: ClassVar[List[str]] = ["name", "description", "parameters"]
+    parameters: Optional[Dict[str, Any]] = Field(default=None, description="The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.")
+    __properties: ClassVar[List[str]] = ["description", "name", "parameters"]
 
     model_config = {
         "populate_by_name": True,
@@ -86,8 +86,8 @@ class ChatCompletionFunctions(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "description": obj.get("description"),
+            "name": obj.get("name"),
             "parameters": obj.get("parameters")
         })
         return _obj

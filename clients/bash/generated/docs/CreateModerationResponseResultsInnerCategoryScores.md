@@ -5,7 +5,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hate** | **integer** |  | [default to null]
 **hateSlashthreatening** | **integer** |  | [default to null]
+**harassment** | **integer** |  | [default to null]
+**harassmentSlashthreatening** | **integer** |  | [default to null]
 **selfMinusharm** | **integer** |  | [default to null]
+**selfMinusharmSlashintent** | **integer** |  | [default to null]
+**selfMinusharmSlashinstructions** | **integer** |  | [default to null]
 **sexual** | **integer** |  | [default to null]
 **sexualSlashminors** | **integer** |  | [default to null]
 **violence** | **integer** |  | [default to null]

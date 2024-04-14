@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -16,15 +16,21 @@ module OpenAPIClient
   class CreateChatCompletionStreamResponseChoicesInner
     include JSON::Serializable
 
+    # Required properties
+    @[JSON::Field(key: "delta", type: ChatCompletionStreamResponseDelta, nillable: false, emit_null: false)]
+    property delta : ChatCompletionStreamResponseDelta
+
+    # The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+    @[JSON::Field(key: "finish_reason", type: String, nillable: false, emit_null: false)]
+    property finish_reason : String
+
+    # The index of the choice in the list of choices.
+    @[JSON::Field(key: "index", type: Int32, nillable: false, emit_null: false)]
+    property index : Int32
+
     # Optional properties
-    @[JSON::Field(key: "index", type: Int32?, nillable: true, emit_null: false)]
-    property index : Int32?
-
-    @[JSON::Field(key: "delta", type: ChatCompletionStreamResponseDelta?, nillable: true, emit_null: false)]
-    property delta : ChatCompletionStreamResponseDelta?
-
-    @[JSON::Field(key: "finish_reason", type: String?, nillable: true, emit_null: false)]
-    property finish_reason : String?
+    @[JSON::Field(key: "logprobs", type: CreateChatCompletionResponseChoicesInnerLogprobs?, nillable: true, emit_null: false)]
+    property logprobs : CreateChatCompletionResponseChoicesInnerLogprobs?
 
     class EnumAttributeValidator
       getter datatype : String
@@ -51,7 +57,7 @@ module OpenAPIClient
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@index : Int32?, @delta : ChatCompletionStreamResponseDelta?, @finish_reason : String?)
+    def initialize(@delta : ChatCompletionStreamResponseDelta, @finish_reason : String, @index : Int32, @logprobs : CreateChatCompletionResponseChoicesInnerLogprobs?)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -64,7 +70,7 @@ module OpenAPIClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      finish_reason_validator = EnumAttributeValidator.new("String", ["stop", "length", "function_call"])
+      finish_reason_validator = EnumAttributeValidator.new("String", ["stop", "length", "tool_calls", "content_filter", "function_call"])
       return false unless finish_reason_validator.valid?(@finish_reason)
       true
     end
@@ -72,7 +78,7 @@ module OpenAPIClient
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] finish_reason Object to be assigned
     def finish_reason=(finish_reason)
-      validator = EnumAttributeValidator.new("String", ["stop", "length", "function_call"])
+      validator = EnumAttributeValidator.new("String", ["stop", "length", "tool_calls", "content_filter", "function_call"])
       unless validator.valid?(finish_reason)
         raise ArgumentError.new("invalid value for \"finish_reason\", must be one of #{validator.allowable_values}.")
       end
@@ -84,9 +90,10 @@ module OpenAPIClient
     def ==(o)
       return true if self.same?(o)
       self.class == o.class &&
-          index == o.index &&
           delta == o.delta &&
-          finish_reason == o.finish_reason
+          logprobs == o.logprobs &&
+          finish_reason == o.finish_reason &&
+          index == o.index
     end
 
     # @see the `==` method
@@ -98,7 +105,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [index, delta, finish_reason].hash
+      [delta, logprobs, finish_reason, index].hash
     end
 
     # Builds the object from hash

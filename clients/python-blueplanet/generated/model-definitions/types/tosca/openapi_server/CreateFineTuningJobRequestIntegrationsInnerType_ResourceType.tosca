@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateFineTuningJobRequestIntegrationsInnerType"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateFineTuningJobRequestIntegrationsInnerType"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateFineTuningJobRequestIntegrationsInnerType {
+    title = CreateFineTuningJobRequestIntegrationsInnerType
+    description = CreateFineTuningJobRequestIntegrationsInnerType
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateFineTuningJobRequestIntegrationsInnerType {
+    title = CreateFineTuningJobRequestIntegrationsInnerType
+    description = CreateFineTuningJobRequestIntegrationsInnerType
+    implements = openapi_server.resourceTypes.CreateFineTuningJobRequestIntegrationsInnerType
+
+  }
+}

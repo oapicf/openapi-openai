@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -34,8 +34,8 @@ OAIError::~OAIError() {}
 
 void OAIError::initializeModel() {
 
-    m_type_isSet = false;
-    m_type_isValid = false;
+    m_code_isSet = false;
+    m_code_isValid = false;
 
     m_message_isSet = false;
     m_message_isValid = false;
@@ -43,8 +43,8 @@ void OAIError::initializeModel() {
     m_param_isSet = false;
     m_param_isValid = false;
 
-    m_code_isSet = false;
-    m_code_isValid = false;
+    m_type_isSet = false;
+    m_type_isValid = false;
 }
 
 void OAIError::fromJson(QString jsonString) {
@@ -56,8 +56,8 @@ void OAIError::fromJson(QString jsonString) {
 
 void OAIError::fromJsonObject(QJsonObject json) {
 
-    m_type_isValid = ::OpenAPI::fromJsonValue(m_type, json[QString("type")]);
-    m_type_isSet = !json[QString("type")].isNull() && m_type_isValid;
+    m_code_isValid = ::OpenAPI::fromJsonValue(m_code, json[QString("code")]);
+    m_code_isSet = !json[QString("code")].isNull() && m_code_isValid;
 
     m_message_isValid = ::OpenAPI::fromJsonValue(m_message, json[QString("message")]);
     m_message_isSet = !json[QString("message")].isNull() && m_message_isValid;
@@ -65,8 +65,8 @@ void OAIError::fromJsonObject(QJsonObject json) {
     m_param_isValid = ::OpenAPI::fromJsonValue(m_param, json[QString("param")]);
     m_param_isSet = !json[QString("param")].isNull() && m_param_isValid;
 
-    m_code_isValid = ::OpenAPI::fromJsonValue(m_code, json[QString("code")]);
-    m_code_isSet = !json[QString("code")].isNull() && m_code_isValid;
+    m_type_isValid = ::OpenAPI::fromJsonValue(m_type, json[QString("type")]);
+    m_type_isSet = !json[QString("type")].isNull() && m_type_isValid;
 }
 
 QString OAIError::asJson() const {
@@ -78,8 +78,8 @@ QString OAIError::asJson() const {
 
 QJsonObject OAIError::asJsonObject() const {
     QJsonObject obj;
-    if (m_type_isSet) {
-        obj.insert(QString("type"), ::OpenAPI::toJsonValue(m_type));
+    if (m_code_isSet) {
+        obj.insert(QString("code"), ::OpenAPI::toJsonValue(m_code));
     }
     if (m_message_isSet) {
         obj.insert(QString("message"), ::OpenAPI::toJsonValue(m_message));
@@ -87,26 +87,26 @@ QJsonObject OAIError::asJsonObject() const {
     if (m_param_isSet) {
         obj.insert(QString("param"), ::OpenAPI::toJsonValue(m_param));
     }
-    if (m_code_isSet) {
-        obj.insert(QString("code"), ::OpenAPI::toJsonValue(m_code));
+    if (m_type_isSet) {
+        obj.insert(QString("type"), ::OpenAPI::toJsonValue(m_type));
     }
     return obj;
 }
 
-QString OAIError::getType() const {
-    return m_type;
+QString OAIError::getCode() const {
+    return m_code;
 }
-void OAIError::setType(const QString &type) {
-    m_type = type;
-    m_type_isSet = true;
-}
-
-bool OAIError::is_type_Set() const{
-    return m_type_isSet;
+void OAIError::setCode(const QString &code) {
+    m_code = code;
+    m_code_isSet = true;
 }
 
-bool OAIError::is_type_Valid() const{
-    return m_type_isValid;
+bool OAIError::is_code_Set() const{
+    return m_code_isSet;
+}
+
+bool OAIError::is_code_Valid() const{
+    return m_code_isValid;
 }
 
 QString OAIError::getMessage() const {
@@ -141,26 +141,26 @@ bool OAIError::is_param_Valid() const{
     return m_param_isValid;
 }
 
-QString OAIError::getCode() const {
-    return m_code;
+QString OAIError::getType() const {
+    return m_type;
 }
-void OAIError::setCode(const QString &code) {
-    m_code = code;
-    m_code_isSet = true;
-}
-
-bool OAIError::is_code_Set() const{
-    return m_code_isSet;
+void OAIError::setType(const QString &type) {
+    m_type = type;
+    m_type_isSet = true;
 }
 
-bool OAIError::is_code_Valid() const{
-    return m_code_isValid;
+bool OAIError::is_type_Set() const{
+    return m_type_isSet;
+}
+
+bool OAIError::is_type_Valid() const{
+    return m_type_isValid;
 }
 
 bool OAIError::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_type_isSet) {
+        if (m_code_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -175,7 +175,7 @@ bool OAIError::isSet() const {
             break;
         }
 
-        if (m_code_isSet) {
+        if (m_type_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -185,7 +185,7 @@ bool OAIError::isSet() const {
 
 bool OAIError::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_type_isValid && m_message_isValid && m_param_isValid && m_code_isValid && true;
+    return m_code_isValid && m_message_isValid && m_param_isValid && m_type_isValid && true;
 }
 
 } // namespace OpenAPI

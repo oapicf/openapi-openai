@@ -7,6 +7,7 @@ from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.chat_completion_stream_response_delta import ChatCompletionStreamResponseDelta  # noqa: F401,E501
+from app.openapi_server.models.create_chat_completion_response_choices_inner_logprobs import CreateChatCompletionResponseChoicesInnerLogprobs  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -16,31 +17,36 @@ class CreateChatCompletionStreamResponseChoicesInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, index: int=None, delta: ChatCompletionStreamResponseDelta=None, finish_reason: str=None):  # noqa: E501
+    def __init__(self, delta: ChatCompletionStreamResponseDelta=None, logprobs: CreateChatCompletionResponseChoicesInnerLogprobs=None, finish_reason: str=None, index: int=None):  # noqa: E501
         """CreateChatCompletionStreamResponseChoicesInner - a model defined in Swagger
 
-        :param index: The index of this CreateChatCompletionStreamResponseChoicesInner.  # noqa: E501
-        :type index: int
         :param delta: The delta of this CreateChatCompletionStreamResponseChoicesInner.  # noqa: E501
         :type delta: ChatCompletionStreamResponseDelta
+        :param logprobs: The logprobs of this CreateChatCompletionStreamResponseChoicesInner.  # noqa: E501
+        :type logprobs: CreateChatCompletionResponseChoicesInnerLogprobs
         :param finish_reason: The finish_reason of this CreateChatCompletionStreamResponseChoicesInner.  # noqa: E501
         :type finish_reason: str
+        :param index: The index of this CreateChatCompletionStreamResponseChoicesInner.  # noqa: E501
+        :type index: int
         """
         self.swagger_types = {
-            'index': int,
             'delta': ChatCompletionStreamResponseDelta,
-            'finish_reason': str
+            'logprobs': CreateChatCompletionResponseChoicesInnerLogprobs,
+            'finish_reason': str,
+            'index': int
         }
 
         self.attribute_map = {
-            'index': 'index',
             'delta': 'delta',
-            'finish_reason': 'finish_reason'
+            'logprobs': 'logprobs',
+            'finish_reason': 'finish_reason',
+            'index': 'index'
         }
 
-        self._index = index
         self._delta = delta
+        self._logprobs = logprobs
         self._finish_reason = finish_reason
+        self._index = index
 
     @classmethod
     def from_dict(cls, dikt) -> 'CreateChatCompletionStreamResponseChoicesInner':
@@ -52,27 +58,6 @@ class CreateChatCompletionStreamResponseChoicesInner(Model):
         :rtype: CreateChatCompletionStreamResponseChoicesInner
         """
         return util.deserialize_model(dikt, cls)
-
-    @property
-    def index(self) -> int:
-        """Gets the index of this CreateChatCompletionStreamResponseChoicesInner.
-
-
-        :return: The index of this CreateChatCompletionStreamResponseChoicesInner.
-        :rtype: int
-        """
-        return self._index
-
-    @index.setter
-    def index(self, index: int):
-        """Sets the index of this CreateChatCompletionStreamResponseChoicesInner.
-
-
-        :param index: The index of this CreateChatCompletionStreamResponseChoicesInner.
-        :type index: int
-        """
-
-        self._index = index
 
     @property
     def delta(self) -> ChatCompletionStreamResponseDelta:
@@ -92,13 +77,37 @@ class CreateChatCompletionStreamResponseChoicesInner(Model):
         :param delta: The delta of this CreateChatCompletionStreamResponseChoicesInner.
         :type delta: ChatCompletionStreamResponseDelta
         """
+        if delta is None:
+            raise ValueError("Invalid value for `delta`, must not be `None`")  # noqa: E501
 
         self._delta = delta
+
+    @property
+    def logprobs(self) -> CreateChatCompletionResponseChoicesInnerLogprobs:
+        """Gets the logprobs of this CreateChatCompletionStreamResponseChoicesInner.
+
+
+        :return: The logprobs of this CreateChatCompletionStreamResponseChoicesInner.
+        :rtype: CreateChatCompletionResponseChoicesInnerLogprobs
+        """
+        return self._logprobs
+
+    @logprobs.setter
+    def logprobs(self, logprobs: CreateChatCompletionResponseChoicesInnerLogprobs):
+        """Sets the logprobs of this CreateChatCompletionStreamResponseChoicesInner.
+
+
+        :param logprobs: The logprobs of this CreateChatCompletionStreamResponseChoicesInner.
+        :type logprobs: CreateChatCompletionResponseChoicesInnerLogprobs
+        """
+
+        self._logprobs = logprobs
 
     @property
     def finish_reason(self) -> str:
         """Gets the finish_reason of this CreateChatCompletionStreamResponseChoicesInner.
 
+        The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.   # noqa: E501
 
         :return: The finish_reason of this CreateChatCompletionStreamResponseChoicesInner.
         :rtype: str
@@ -109,11 +118,12 @@ class CreateChatCompletionStreamResponseChoicesInner(Model):
     def finish_reason(self, finish_reason: str):
         """Sets the finish_reason of this CreateChatCompletionStreamResponseChoicesInner.
 
+        The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.   # noqa: E501
 
         :param finish_reason: The finish_reason of this CreateChatCompletionStreamResponseChoicesInner.
         :type finish_reason: str
         """
-        allowed_values = ["stop", "length", "function_call"]  # noqa: E501
+        allowed_values = ["stop", "length", "tool_calls", "content_filter", "function_call"]  # noqa: E501
         if finish_reason not in allowed_values:
             raise ValueError(
                 "Invalid value for `finish_reason` ({0}), must be one of {1}"
@@ -121,3 +131,28 @@ class CreateChatCompletionStreamResponseChoicesInner(Model):
             )
 
         self._finish_reason = finish_reason
+
+    @property
+    def index(self) -> int:
+        """Gets the index of this CreateChatCompletionStreamResponseChoicesInner.
+
+        The index of the choice in the list of choices.  # noqa: E501
+
+        :return: The index of this CreateChatCompletionStreamResponseChoicesInner.
+        :rtype: int
+        """
+        return self._index
+
+    @index.setter
+    def index(self, index: int):
+        """Sets the index of this CreateChatCompletionStreamResponseChoicesInner.
+
+        The index of the choice in the list of choices.  # noqa: E501
+
+        :param index: The index of this CreateChatCompletionStreamResponseChoicesInner.
+        :type index: int
+        """
+        if index is None:
+            raise ValueError("Invalid value for `index`, must not be `None`")  # noqa: E501
+
+        self._index = index

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -18,18 +18,18 @@ import CreateEmbeddingRequestModel from './CreateEmbeddingRequestModel';
 /**
  * The CreateEmbeddingRequest model module.
  * @module model/CreateEmbeddingRequest
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateEmbeddingRequest {
     /**
      * Constructs a new <code>CreateEmbeddingRequest</code>.
      * @alias module:model/CreateEmbeddingRequest
-     * @param model {module:model/CreateEmbeddingRequestModel} 
      * @param input {module:model/CreateEmbeddingRequestInput} 
+     * @param model {module:model/CreateEmbeddingRequestModel} 
      */
-    constructor(model, input) { 
+    constructor(input, model) { 
         
-        CreateEmbeddingRequest.initialize(this, model, input);
+        CreateEmbeddingRequest.initialize(this, input, model);
     }
 
     /**
@@ -37,9 +37,9 @@ class CreateEmbeddingRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, model, input) { 
-        obj['model'] = model;
+    static initialize(obj, input, model) { 
         obj['input'] = input;
+        obj['model'] = model;
     }
 
     /**
@@ -53,11 +53,17 @@ class CreateEmbeddingRequest {
         if (data) {
             obj = obj || new CreateEmbeddingRequest();
 
+            if (data.hasOwnProperty('input')) {
+                obj['input'] = CreateEmbeddingRequestInput.constructFromObject(data['input']);
+            }
             if (data.hasOwnProperty('model')) {
                 obj['model'] = CreateEmbeddingRequestModel.constructFromObject(data['model']);
             }
-            if (data.hasOwnProperty('input')) {
-                obj['input'] = CreateEmbeddingRequestInput.constructFromObject(data['input']);
+            if (data.hasOwnProperty('encoding_format')) {
+                obj['encoding_format'] = ApiClient.convertToType(data['encoding_format'], 'String');
+            }
+            if (data.hasOwnProperty('dimensions')) {
+                obj['dimensions'] = ApiClient.convertToType(data['dimensions'], 'Number');
             }
             if (data.hasOwnProperty('user')) {
                 obj['user'] = ApiClient.convertToType(data['user'], 'String');
@@ -78,13 +84,17 @@ class CreateEmbeddingRequest {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
+        // validate the optional field `input`
+        if (data['input']) { // data not null
+          CreateEmbeddingRequestInput.validateJSON(data['input']);
+        }
         // validate the optional field `model`
         if (data['model']) { // data not null
           CreateEmbeddingRequestModel.validateJSON(data['model']);
         }
-        // validate the optional field `input`
-        if (data['input']) { // data not null
-          CreateEmbeddingRequestInput.validateJSON(data['input']);
+        // ensure the json data is a string
+        if (data['encoding_format'] && !(typeof data['encoding_format'] === 'string' || data['encoding_format'] instanceof String)) {
+            throw new Error("Expected the field `encoding_format` to be a primitive type in the JSON string but got " + data['encoding_format']);
         }
         // ensure the json data is a string
         if (data['user'] && !(typeof data['user'] === 'string' || data['user'] instanceof String)) {
@@ -97,7 +107,12 @@ class CreateEmbeddingRequest {
 
 }
 
-CreateEmbeddingRequest.RequiredProperties = ["model", "input"];
+CreateEmbeddingRequest.RequiredProperties = ["input", "model"];
+
+/**
+ * @member {module:model/CreateEmbeddingRequestInput} input
+ */
+CreateEmbeddingRequest.prototype['input'] = undefined;
 
 /**
  * @member {module:model/CreateEmbeddingRequestModel} model
@@ -105,9 +120,17 @@ CreateEmbeddingRequest.RequiredProperties = ["model", "input"];
 CreateEmbeddingRequest.prototype['model'] = undefined;
 
 /**
- * @member {module:model/CreateEmbeddingRequestInput} input
+ * The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+ * @member {module:model/CreateEmbeddingRequest.EncodingFormatEnum} encoding_format
+ * @default 'float'
  */
-CreateEmbeddingRequest.prototype['input'] = undefined;
+CreateEmbeddingRequest.prototype['encoding_format'] = 'float';
+
+/**
+ * The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+ * @member {Number} dimensions
+ */
+CreateEmbeddingRequest.prototype['dimensions'] = undefined;
 
 /**
  * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
@@ -117,6 +140,27 @@ CreateEmbeddingRequest.prototype['user'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>encoding_format</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateEmbeddingRequest['EncodingFormatEnum'] = {
+
+    /**
+     * value: "float"
+     * @const
+     */
+    "float": "float",
+
+    /**
+     * value: "base64"
+     * @const
+     */
+    "base64": "base64"
+};
 
 
 

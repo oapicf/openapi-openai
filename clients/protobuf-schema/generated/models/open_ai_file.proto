@@ -1,7 +1,7 @@
 /*
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
 
@@ -14,24 +14,48 @@ syntax = "proto3";
 
 package openapitools;
 
-import public "models/todo_object_mapping.proto";
 
 message OpenAIFile {
 
+  // The file identifier, which can be referenced in the API endpoints.
   string id = 3355;
 
-  string object = 486497474;
-
+  // The size of the file, in bytes.
   int32 bytes = 94224491;
 
+  // The Unix timestamp (in seconds) for when the file was created.
   int32 created_at = 295938284;
 
+  // The name of the file.
   string filename = 197897722;
 
-  string purpose = 220463842;
+  // The object type, which is always `file`.
+  enum ObjectEnum {
+    ObjectEnum_FILE = 0;
+  }
 
-  string status = 355610639;
+  ObjectEnum object = 486497474;
 
-  TODO_OBJECT_MAPPING status_details = 363353845;
+  // The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+  enum PurposeEnum {
+    PurposeEnum_FINE_TUNE = 0;
+    PurposeEnum_FINE_TUNE_RESULTS = 1;
+    PurposeEnum_ASSISTANTS = 2;
+    PurposeEnum_ASSISTANTS_OUTPUT = 3;
+  }
+
+  PurposeEnum purpose = 220463842;
+
+  // Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+  enum StatusEnum {
+    StatusEnum_UPLOADED = 0;
+    StatusEnum_PROCESSED = 1;
+    StatusEnum_ERROR = 2;
+  }
+
+  StatusEnum status = 355610639;
+
+  // Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
+  string status_details = 363353845;
 
 }

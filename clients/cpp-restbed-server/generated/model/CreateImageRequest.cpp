@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -64,9 +64,12 @@ ptree CreateImageRequest::toPropertyTree() const
 	ptree pt;
 	ptree tmp_node;
 	pt.put("prompt", m_Prompt);
+	pt.add_child("model", m_Model.toPropertyTree());
 	pt.put("n", m_n);
-	pt.put("size", m_Size);
+	pt.put("quality", m_Quality);
 	pt.put("response_format", m_Response_format);
+	pt.put("size", m_Size);
+	pt.put("style", m_Style);
 	pt.put("user", m_User);
 	return pt;
 }
@@ -75,9 +78,14 @@ void CreateImageRequest::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
 	m_Prompt = pt.get("prompt", "");
+	if (pt.get_child_optional("model")) {
+        m_Model = fromPt<CreateImageRequest_model>(pt.get_child("model"));
+	}
 	m_n = pt.get("n", 1);
-	setSize(pt.get("size", "1024x1024"));
+	setQuality(pt.get("quality", "standard"));
 	setResponseFormat(pt.get("response_format", "url"));
+	setSize(pt.get("size", "1024x1024"));
+	setStyle(pt.get("style", "vivid"));
 	m_User = pt.get("user", "");
 }
 
@@ -92,6 +100,17 @@ void CreateImageRequest::setPrompt(std::string value)
 }
 
 
+CreateImageRequest_model CreateImageRequest::getModel() const
+{
+    return m_Model;
+}
+
+void CreateImageRequest::setModel(CreateImageRequest_model value)
+{
+    m_Model = value;
+}
+
+
 int32_t CreateImageRequest::getN() const
 {
     return m_n;
@@ -103,19 +122,19 @@ void CreateImageRequest::setN(int32_t value)
 }
 
 
-std::string CreateImageRequest::getSize() const
+std::string CreateImageRequest::getQuality() const
 {
-    return m_Size;
+    return m_Quality;
 }
 
-void CreateImageRequest::setSize(std::string value)
+void CreateImageRequest::setQuality(std::string value)
 {
-    static const std::array<std::string, 3> allowedValues = {
-        "256x256", "512x512", "1024x1024"
+    static const std::array<std::string, 2> allowedValues = {
+        "standard", "hd"
     };
 
     if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
-		m_Size = value;
+		m_Quality = value;
 	} else {
 		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
 	}
@@ -135,6 +154,44 @@ void CreateImageRequest::setResponseFormat(std::string value)
 
     if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
 		m_Response_format = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
+}
+
+
+std::string CreateImageRequest::getSize() const
+{
+    return m_Size;
+}
+
+void CreateImageRequest::setSize(std::string value)
+{
+    static const std::array<std::string, 5> allowedValues = {
+        "256x256", "512x512", "1024x1024", "1792x1024", "1024x1792"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Size = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
+}
+
+
+std::string CreateImageRequest::getStyle() const
+{
+    return m_Style;
+}
+
+void CreateImageRequest::setStyle(std::string value)
+{
+    static const std::array<std::string, 2> allowedValues = {
+        "vivid", "natural"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Style = value;
 	} else {
 		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
 	}

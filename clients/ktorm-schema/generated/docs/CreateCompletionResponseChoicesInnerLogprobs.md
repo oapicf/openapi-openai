@@ -5,20 +5,20 @@
 ## Properties
 Name | Mapping | SQL Type | Default | Type | Description | Notes
 ---- | ------- | -------- | ------- | ---- | ----------- | -----
-**tokens** | `One-To-Many` | `----` | `----`  | **kotlin.Array&lt;kotlin.String&gt;** |  |  [optional]
-**tokenLogprobs** | `One-To-Many` | `----` | `----`  | [**kotlin.Array&lt;java.math.BigDecimal&gt;**](java.math.BigDecimal.md) |  |  [optional]
-**topLogprobs** | `One-To-Many` | `----` | `----`  | [**kotlin.Array&lt;kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **textOffset** | `One-To-Many` | `----` | `----`  | **kotlin.Array&lt;kotlin.Int&gt;** |  |  [optional]
+**tokenLogprobs** | `One-To-Many` | `----` | `----`  | [**kotlin.Array&lt;java.math.BigDecimal&gt;**](java.math.BigDecimal.md) |  |  [optional]
+**tokens** | `One-To-Many` | `----` | `----`  | **kotlin.Array&lt;kotlin.String&gt;** |  |  [optional]
+**topLogprobs** | `One-To-Many` | `----` | `----`  | **kotlin.Array&lt;kotlin.collections.Map&lt;kotlin.String, java.math.BigDecimal&gt;&gt;** |  |  [optional]
 
 
-# **Table `CreateCompletionResponseChoicesInnerLogprobsTokens`**
-(mapped from: CreateCompletionResponseChoicesInnerLogprobsTokens)
+# **Table `CreateCompletionResponseChoicesInnerLogprobsTextOffset`**
+(mapped from: CreateCompletionResponseChoicesInnerLogprobsTextOffset)
 
 ## Properties
 Name | Mapping | SQL Type | Default | Type | Description | Notes
 ---- | ------- | -------- | ------- | ---- | ----------- | -----
 createCompletionResponseChoicesInnerLogprobs | createCompletionResponseChoicesInnerLogprobs | long | | kotlin.Long | Primary Key | *one*
-tokens | tokens | text | | kotlin.String | Foreign Key | *many*
+textOffset | textOffset | int | | kotlin.Int | Foreign Key | *many*
 
 
 
@@ -33,6 +33,17 @@ tokenLogprobs | tokenLogprobs | decimal | | java.math.BigDecimal | Foreign Key |
 
 
 
+# **Table `CreateCompletionResponseChoicesInnerLogprobsTokens`**
+(mapped from: CreateCompletionResponseChoicesInnerLogprobsTokens)
+
+## Properties
+Name | Mapping | SQL Type | Default | Type | Description | Notes
+---- | ------- | -------- | ------- | ---- | ----------- | -----
+createCompletionResponseChoicesInnerLogprobs | createCompletionResponseChoicesInnerLogprobs | long | | kotlin.Long | Primary Key | *one*
+tokens | tokens | text | | kotlin.String | Foreign Key | *many*
+
+
+
 # **Table `CreateCompletionResponseChoicesInnerLogprobsTopLogprobs`**
 (mapped from: CreateCompletionResponseChoicesInnerLogprobsTopLogprobs)
 
@@ -40,18 +51,7 @@ tokenLogprobs | tokenLogprobs | decimal | | java.math.BigDecimal | Foreign Key |
 Name | Mapping | SQL Type | Default | Type | Description | Notes
 ---- | ------- | -------- | ------- | ---- | ----------- | -----
 createCompletionResponseChoicesInnerLogprobs | createCompletionResponseChoicesInnerLogprobs | long | | kotlin.Long | Primary Key | *one*
-topLogprobs | topLogprobs | blob | | kotlin.Any | Foreign Key | *many*
-
-
-
-# **Table `CreateCompletionResponseChoicesInnerLogprobsTextOffset`**
-(mapped from: CreateCompletionResponseChoicesInnerLogprobsTextOffset)
-
-## Properties
-Name | Mapping | SQL Type | Default | Type | Description | Notes
----- | ------- | -------- | ------- | ---- | ----------- | -----
-createCompletionResponseChoicesInnerLogprobs | createCompletionResponseChoicesInnerLogprobs | long | | kotlin.Long | Primary Key | *one*
-textOffset | textOffset | int | | kotlin.Int | Foreign Key | *many*
+topLogprobs | topLogprobs | blob | | kotlin.collections.Map<kotlin.String, java.math.BigDecimal> | Foreign Key | *many*
 
 
 

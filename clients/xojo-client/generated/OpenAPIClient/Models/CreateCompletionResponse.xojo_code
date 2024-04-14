@@ -2,36 +2,76 @@
 Protected Class CreateCompletionResponse
 
 	#tag Property, Flags = &h0
+		#tag Note
+			A unique identifier for the completion.
+		#tag EndNote
 		id As String
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		object As String
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
-		created As Integer
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
-		model As String
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
+		#tag Note
+			The list of completion choices the model generated for the input prompt.
+		#tag EndNote
 		choices() As OpenAPIClient.Models.CreateCompletionResponseChoicesInner
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		usage As OpenAPIClient.Models.CreateCompletionResponseUsage
+		#tag Note
+			The Unix timestamp (in seconds) of when the completion was created.
+		#tag EndNote
+		created As Integer
 	#tag EndProperty
 
 
+	#tag Property, Flags = &h0
+		#tag Note
+			The model used for completion.
+		#tag EndNote
+		model As String
+	#tag EndProperty
 
+
+	#tag Property, Flags = &h0
+		#tag Note
+			This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+		#tag EndNote
+		system_fingerprint As Xoson.O.OptionalString
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The object type, which is always "text_completion"
+		#tag EndNote
+		object As String
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		usage As OpenAPIClient.Models.CompletionUsage
+	#tag EndProperty
+
+
+    #tag Enum, Name = ObjectEnum, Type = Integer, Flags = &h0
+        
+        TextCompletion
+        
+    #tag EndEnum
+
+
+	#tag Method, Flags = &h0
+		Shared Function ObjectEnumToString(value As ObjectEnum) As String
+		  Select Case value
+		    
+		    Case ObjectEnum.TextCompletion
+		      Return "text_completion"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 
 	#tag ViewBehavior
@@ -76,11 +116,11 @@ Protected Class CreateCompletionResponse
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="object"
+			Name="choices"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="String"
+			Type="CreateCompletionResponseChoicesInner"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -100,11 +140,11 @@ Protected Class CreateCompletionResponse
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="choices"
+			Name="system_fingerprint"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="CreateCompletionResponseChoicesInner"
+			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -112,7 +152,7 @@ Protected Class CreateCompletionResponse
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="CreateCompletionResponseUsage"
+			Type="CompletionUsage"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

@@ -9,16 +9,16 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * DeleteModelResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-16T01:12:44.741883350Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-04-14T13:38:52.193957698Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DeleteModelResponse   {
   @JsonProperty("id")
   private String id;
 
-  @JsonProperty("object")
-  private String _object;
-
   @JsonProperty("deleted")
   private Boolean deleted;
+
+  @JsonProperty("object")
+  private String _object;
 
   public DeleteModelResponse id(String id) {
     this.id = id;
@@ -36,24 +36,6 @@ public class DeleteModelResponse   {
 
   public void setId(String id) {
     this.id = id;
-  }
-
-  public DeleteModelResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
   }
 
   public DeleteModelResponse deleted(Boolean deleted) {
@@ -74,6 +56,24 @@ public class DeleteModelResponse   {
     this.deleted = deleted;
   }
 
+  public DeleteModelResponse _object(String _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * Get _object
+   * @return _object
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public String getObject() {
+    return _object;
+  }
+
+  public void setObject(String _object) {
+    this._object = _object;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -85,13 +85,13 @@ public class DeleteModelResponse   {
     }
     DeleteModelResponse deleteModelResponse = (DeleteModelResponse) o;
     return Objects.equals(this.id, deleteModelResponse.id) &&
-        Objects.equals(this._object, deleteModelResponse._object) &&
-        Objects.equals(this.deleted, deleteModelResponse.deleted);
+        Objects.equals(this.deleted, deleteModelResponse.deleted) &&
+        Objects.equals(this._object, deleteModelResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, deleted);
+    return Objects.hash(id, deleted, _object);
   }
 
   @Override
@@ -100,8 +100,8 @@ public class DeleteModelResponse   {
     sb.append("class DeleteModelResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

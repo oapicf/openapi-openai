@@ -1,0 +1,40 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \"retrieval\" tool to search files.",
+  "name": "MessageContentTextAnnotationsFileCitationObject",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "MessageContentTextAnnotationsFileCitationObject_type",
+        "symbols": [
+          "file_citation"
+        ]
+      },
+      "doc": "Always `file_citation`."
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "doc": "The text in the message content that needs to be replaced."
+    },
+    {
+      "name": "file_citation",
+      "type": "model.MessageContentTextAnnotationsFileCitationObjectFileCitation",
+      "doc": ""
+    },
+    {
+      "name": "start_index",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "end_index",
+      "type": "int",
+      "doc": ""
+    }
+  ]
+
+}

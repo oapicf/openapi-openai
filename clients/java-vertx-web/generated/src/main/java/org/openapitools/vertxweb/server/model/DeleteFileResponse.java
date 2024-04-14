@@ -3,19 +3,38 @@ package org.openapitools.vertxweb.server.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DeleteFileResponse   {
   
   private String id;
-  private String _object;
+
+
+  public enum ObjectEnum {
+    FILE("file");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private ObjectEnum _object;
   private Boolean deleted;
 
   public DeleteFileResponse () {
 
   }
 
-  public DeleteFileResponse (String id, String _object, Boolean deleted) {
+  public DeleteFileResponse (String id, ObjectEnum _object, Boolean deleted) {
     this.id = id;
     this._object = _object;
     this.deleted = deleted;
@@ -32,10 +51,10 @@ public class DeleteFileResponse   {
 
     
   @JsonProperty("object")
-  public String getObject() {
+  public ObjectEnum getObject() {
     return _object;
   }
-  public void setObject(String _object) {
+  public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 

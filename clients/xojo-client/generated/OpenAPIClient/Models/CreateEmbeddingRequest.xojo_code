@@ -2,12 +2,28 @@
 Protected Class CreateEmbeddingRequest
 
 	#tag Property, Flags = &h0
+		input As OpenAPIClient.Models.CreateEmbeddingRequestInput
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		model As OpenAPIClient.Models.CreateEmbeddingRequestModel
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		input As OpenAPIClient.Models.CreateEmbeddingRequestInput
+		#tag Note
+			The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+		#tag EndNote
+		encoding_format As Xoson.O.OptionalString
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+		#tag EndNote
+		dimensions As Xoson.O.OptionalInteger
 	#tag EndProperty
 
 
@@ -19,7 +35,27 @@ Protected Class CreateEmbeddingRequest
 	#tag EndProperty
 
 
+    #tag Enum, Name = Encoding_formatEnum, Type = Integer, Flags = &h0
+        
+        Float
+        Base64
+        
+    #tag EndEnum
 
+
+	#tag Method, Flags = &h0
+		Shared Function Encoding_formatEnumToString(value As Encoding_formatEnum) As String
+		  Select Case value
+		    
+		    Case Encoding_formatEnum.Float
+		      Return "float"
+		    Case Encoding_formatEnum.Base64
+		      Return "base64"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 
 	#tag ViewBehavior
@@ -56,6 +92,14 @@ Protected Class CreateEmbeddingRequest
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="input"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="CreateEmbeddingRequestInput"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="model"
 			Visible=false
 			Group="Behavior"
@@ -64,11 +108,11 @@ Protected Class CreateEmbeddingRequest
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="input"
+			Name="dimensions"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="CreateEmbeddingRequestInput"
+			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

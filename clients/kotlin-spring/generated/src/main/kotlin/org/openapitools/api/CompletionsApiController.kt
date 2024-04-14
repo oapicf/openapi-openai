@@ -39,7 +39,8 @@ class CompletionsApiController() {
         operationId = "createCompletion",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = CreateCompletionResponse::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = CreateCompletionResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.POST],

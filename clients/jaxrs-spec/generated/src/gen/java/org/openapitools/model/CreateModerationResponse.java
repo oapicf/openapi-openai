@@ -16,16 +16,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-
-
+/**
+ * Represents if a given text input is potentially harmful.
+ **/
+@ApiModel(description = "Represents if a given text input is potentially harmful.")
 @JsonTypeName("CreateModerationResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponse   {
   private @Valid String id;
   private @Valid String model;
   private @Valid List<@Valid CreateModerationResponseResultsInner> results = new ArrayList<>();
 
   /**
+   * The unique identifier for the moderation request.
    **/
   public CreateModerationResponse id(String id) {
     this.id = id;
@@ -33,7 +36,7 @@ public class CreateModerationResponse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier for the moderation request.")
   @JsonProperty("id")
   @NotNull
   public String getId() {
@@ -46,6 +49,7 @@ public class CreateModerationResponse   {
   }
 
   /**
+   * The model used to generate the moderation results.
    **/
   public CreateModerationResponse model(String model) {
     this.model = model;
@@ -53,7 +57,7 @@ public class CreateModerationResponse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model used to generate the moderation results.")
   @JsonProperty("model")
   @NotNull
   public String getModel() {
@@ -66,6 +70,7 @@ public class CreateModerationResponse   {
   }
 
   /**
+   * A list of moderation objects.
    **/
   public CreateModerationResponse results(List<@Valid CreateModerationResponseResultsInner> results) {
     this.results = results;
@@ -73,7 +78,7 @@ public class CreateModerationResponse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A list of moderation objects.")
   @JsonProperty("results")
   @NotNull
   public List<CreateModerationResponseResultsInner> getResults() {

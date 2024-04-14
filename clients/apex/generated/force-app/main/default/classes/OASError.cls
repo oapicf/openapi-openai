@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,10 +15,10 @@
  */
 public class OASError {
     /**
-     * Get type
-     * @return type
+     * Get code
+     * @return code
      */
-    public String type { get; set; }
+    public String code { get; set; }
 
     /**
      * Get message
@@ -33,37 +33,37 @@ public class OASError {
     public String param { get; set; }
 
     /**
-     * Get code
-     * @return code
+     * Get type
+     * @return type
      */
-    public String code { get; set; }
+    public String type { get; set; }
 
     public static OASError getExample() {
         OASError error = new OASError();
-          error.type = '';
+          error.code = '';
           error.message = '';
           error.param = '';
-          error.code = '';
+          error.type = '';
         return error;
     }
 
     public Boolean equals(Object obj) {
         if (obj instanceof OASError) {           
             OASError error = (OASError) obj;
-            return this.type == error.type
+            return this.code == error.code
                 && this.message == error.message
                 && this.param == error.param
-                && this.code == error.code;
+                && this.type == error.type;
         }
         return false;
     }
 
     public Integer hashCode() {
         Integer hashCode = 43;
-        hashCode = (17 * hashCode) + (type == null ? 0 : System.hashCode(type));
+        hashCode = (17 * hashCode) + (code == null ? 0 : System.hashCode(code));
         hashCode = (17 * hashCode) + (message == null ? 0 : System.hashCode(message));
         hashCode = (17 * hashCode) + (param == null ? 0 : System.hashCode(param));
-        hashCode = (17 * hashCode) + (code == null ? 0 : System.hashCode(code));
+        hashCode = (17 * hashCode) + (type == null ? 0 : System.hashCode(type));
         return hashCode;
     }
 }

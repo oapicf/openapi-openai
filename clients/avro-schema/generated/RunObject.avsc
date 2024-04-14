@@ -1,0 +1,165 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Represents an execution run on a [thread](/docs/api-reference/threads).",
+  "name": "RunObject",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The identifier, which can be referenced in API endpoints."
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "RunObject_object",
+        "symbols": [
+          "thread.run"
+        ]
+      },
+      "doc": "The object type, which is always `thread.run`."
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the run was created."
+    },
+    {
+      "name": "thread_id",
+      "type": "string",
+      "doc": "The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run."
+    },
+    {
+      "name": "assistant_id",
+      "type": "string",
+      "doc": "The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run."
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "RunObject_status",
+        "symbols": [
+          "queued",
+          "in_progress",
+          "requires_action",
+          "cancelling",
+          "cancelled",
+          "failed",
+          "completed",
+          "expired"
+        ]
+      },
+      "doc": "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`."
+    },
+    {
+      "name": "required_action",
+      "type": "model.RunObjectRequiredAction",
+      "doc": ""
+    },
+    {
+      "name": "last_error",
+      "type": "model.RunObjectLastError",
+      "doc": ""
+    },
+    {
+      "name": "expires_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the run will expire."
+    },
+    {
+      "name": "started_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the run was started."
+    },
+    {
+      "name": "cancelled_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the run was cancelled."
+    },
+    {
+      "name": "failed_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the run failed."
+    },
+    {
+      "name": "completed_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the run was completed."
+    },
+    {
+      "name": "incomplete_details",
+      "type": "model.RunObjectIncompleteDetails",
+      "doc": ""
+    },
+    {
+      "name": "model",
+      "type": "string",
+      "doc": "The model that the [assistant](/docs/api-reference/assistants) used for this run."
+    },
+    {
+      "name": "instructions",
+      "type": "string",
+      "doc": "The instructions that the [assistant](/docs/api-reference/assistants) used for this run."
+    },
+    {
+      "name": "tools",
+      "type": {
+        "type": "array",
+        "items": "model.AssistantObjectToolsInner"
+      },
+      "doc": "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run."
+    },
+    {
+      "name": "file_ids",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run."
+    },
+    {
+      "name": "metadata",
+      "type": "model.object",
+      "doc": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. "
+    },
+    {
+      "name": "usage",
+      "type": "model.RunCompletionUsage",
+      "doc": ""
+    },
+    {
+      "name": "temperature",
+      "type": ["null", "double"],
+      "doc": "The sampling temperature used for this run. If not set, defaults to 1.",
+      "default": null
+    },
+    {
+      "name": "max_prompt_tokens",
+      "type": "int",
+      "doc": "The maximum number of prompt tokens specified to have been used over the course of the run. "
+    },
+    {
+      "name": "max_completion_tokens",
+      "type": "int",
+      "doc": "The maximum number of completion tokens specified to have been used over the course of the run. "
+    },
+    {
+      "name": "truncation_strategy",
+      "type": "model.TruncationObject",
+      "doc": ""
+    },
+    {
+      "name": "tool_choice",
+      "type": "model.AssistantsApiToolChoiceOption",
+      "doc": ""
+    },
+    {
+      "name": "response_format",
+      "type": "model.AssistantsApiResponseFormatOption",
+      "doc": ""
+    }
+  ]
+
+}

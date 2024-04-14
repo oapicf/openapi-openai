@@ -8,9 +8,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * CreateEmbeddingResponseUsage
+ * The usage information for the request.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-16T01:12:44.741883350Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@ApiModel(description = "The usage information for the request.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-04-14T13:38:52.193957698Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateEmbeddingResponseUsage   {
   @JsonProperty("prompt_tokens")
   private Integer promptTokens;
@@ -24,10 +25,10 @@ public class CreateEmbeddingResponseUsage   {
   }
 
    /**
-   * Get promptTokens
+   * The number of tokens used by the prompt.
    * @return promptTokens
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The number of tokens used by the prompt.")
   public Integer getPromptTokens() {
     return promptTokens;
   }
@@ -42,10 +43,10 @@ public class CreateEmbeddingResponseUsage   {
   }
 
    /**
-   * Get totalTokens
+   * The total number of tokens used by the request.
    * @return totalTokens
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The total number of tokens used by the request.")
   public Integer getTotalTokens() {
     return totalTokens;
   }

@@ -7,6 +7,7 @@ model_instance <- CreateEmbeddingResponseUsage$new()
 
 test_that("prompt_tokens", {
   # tests for the property `prompt_tokens` (integer)
+  # The number of tokens used by the prompt.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`prompt_tokens`, "EXPECTED_RESULT")
@@ -14,6 +15,7 @@ test_that("prompt_tokens", {
 
 test_that("total_tokens", {
   # tests for the property `total_tokens` (integer)
+  # The total number of tokens used by the request.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`total_tokens`, "EXPECTED_RESULT")

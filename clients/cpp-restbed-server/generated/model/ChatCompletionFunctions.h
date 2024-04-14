@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -60,26 +60,26 @@ public:
     /// ChatCompletionFunctions members
 
     /// <summary>
+    /// A description of what the function does, used by the model to choose when and how to call the function.
+    /// </summary>
+    std::string getDescription() const;
+    void setDescription(std::string value);
+
+    /// <summary>
     /// The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
     /// </summary>
     std::string getName() const;
     void setName(std::string value);
 
     /// <summary>
-    /// The description of what the function does.
-    /// </summary>
-    std::string getDescription() const;
-    void setDescription(std::string value);
-
-    /// <summary>
-    /// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+    /// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
     /// </summary>
     std::map<std::string, AnyType> getParameters() const;
     void setParameters(std::map<std::string, AnyType> value);
 
 protected:
-    std::string m_Name = "";
     std::string m_Description = "";
+    std::string m_Name = "";
     std::map<std::string, AnyType> m_Parameters;
 };
 

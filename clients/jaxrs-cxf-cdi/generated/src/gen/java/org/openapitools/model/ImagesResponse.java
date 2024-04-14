@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -21,7 +21,7 @@ public class ImagesResponse   {
   
   private Integer created;
 
-  private List<@Valid ImagesResponseDataInner> data = new ArrayList<>();
+  private List<@Valid Image> data = new ArrayList<>();
 
   /**
    **/
@@ -44,7 +44,7 @@ public class ImagesResponse   {
 
   /**
    **/
-  public ImagesResponse data(List<@Valid ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<@Valid Image> data) {
     this.data = data;
     return this;
   }
@@ -53,14 +53,14 @@ public class ImagesResponse   {
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("data")
   @NotNull
-  public List<@Valid ImagesResponseDataInner> getData() {
+  public List<@Valid Image> getData() {
     return data;
   }
-  public void setData(List<@Valid ImagesResponseDataInner> data) {
+  public void setData(List<@Valid Image> data) {
     this.data = data;
   }
 
-  public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse addDataItem(Image dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }

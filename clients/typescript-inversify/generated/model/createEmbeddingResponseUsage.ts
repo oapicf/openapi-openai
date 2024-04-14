@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,7 +11,16 @@
  */
 
 
+/**
+ * The usage information for the request.
+ */
 export interface CreateEmbeddingResponseUsage { 
+    /**
+     * The number of tokens used by the prompt.
+     */
     prompt_tokens: number;
+    /**
+     * The total number of tokens used by the request.
+     */
     total_tokens: number;
 }

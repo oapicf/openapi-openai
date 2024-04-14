@@ -5,7 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
-from openapi_server.models.images_response_data_inner import ImagesResponseDataInner
+from openapi_server.models.image import Image
 from openapi_server import util
 
 
@@ -15,7 +15,7 @@ class ImagesResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, created: int=None, data: List[ImagesResponseDataInner]=None):
+    def __init__(self, created: int=None, data: List[Image]=None):
         """ImagesResponse - a model defined in OpenAPI
 
         :param created: The created of this ImagesResponse.
@@ -23,7 +23,7 @@ class ImagesResponse(Model):
         """
         self.openapi_types = {
             'created': int,
-            'data': List[ImagesResponseDataInner]
+            'data': List[Image]
         }
 
         self.attribute_map = {
@@ -72,7 +72,7 @@ class ImagesResponse(Model):
 
 
         :return: The data of this ImagesResponse.
-        :rtype: List[ImagesResponseDataInner]
+        :rtype: List[Image]
         """
         return self._data
 
@@ -82,7 +82,7 @@ class ImagesResponse(Model):
 
 
         :param data: The data of this ImagesResponse.
-        :type data: List[ImagesResponseDataInner]
+        :type data: List[Image]
         """
         if data is None:
             raise ValueError("Invalid value for `data`, must not be `None`")

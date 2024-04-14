@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,18 +20,21 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class ListModelsResponse {
   
+  public enum _objectEnum {
+     list, 
+  };
   @SerializedName("object")
-  private String _object = null;
+  private _objectEnum _object = null;
   @SerializedName("data")
   private List<Model> data = null;
 
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public String getObject() {
+  public _objectEnum getObject() {
     return _object;
   }
-  public void setObject(String _object) {
+  public void setObject(_objectEnum _object) {
     this._object = _object;
   }
 

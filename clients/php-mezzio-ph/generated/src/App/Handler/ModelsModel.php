@@ -16,7 +16,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class ModelsModel
 {
     /**
-     * Delete a fine-tuned model. You must have the Owner role in your organization.
+     * Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
      * @PHA\Delete()
      * TODO check if producer is valid, if it has correct priority and if it can be moved to class annotation
      * @PHA\Producer(name=PHProducer\Transfer::class, mediaType="application/json")

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <regex>
+#include <algorithm>
 #include <boost/lexical_cast.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -63,12 +64,13 @@ ptree OpenAIFile::toPropertyTree() const
 	ptree pt;
 	ptree tmp_node;
 	pt.put("id", m_Id);
-	pt.put("object", m_object);
 	pt.put("bytes", m_Bytes);
 	pt.put("created_at", m_Created_at);
 	pt.put("filename", m_Filename);
+	pt.put("object", m_object);
 	pt.put("purpose", m_Purpose);
 	pt.put("status", m_Status);
+	pt.put("status_details", m_Status_details);
 	return pt;
 }
 
@@ -76,12 +78,13 @@ void OpenAIFile::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
 	m_Id = pt.get("id", "");
-	m_object = pt.get("object", "");
 	m_Bytes = pt.get("bytes", 0);
 	m_Created_at = pt.get("created_at", 0);
 	m_Filename = pt.get("filename", "");
-	m_Purpose = pt.get("purpose", "");
-	m_Status = pt.get("status", "");
+	setObject(pt.get("object", ""));
+	setPurpose(pt.get("purpose", ""));
+	setStatus(pt.get("status", ""));
+	m_Status_details = pt.get("status_details", "");
 }
 
 std::string OpenAIFile::getId() const
@@ -92,17 +95,6 @@ std::string OpenAIFile::getId() const
 void OpenAIFile::setId(std::string value)
 {
     m_Id = value;
-}
-
-
-std::string OpenAIFile::getObject() const
-{
-    return m_object;
-}
-
-void OpenAIFile::setObject(std::string value)
-{
-    m_object = value;
 }
 
 
@@ -139,6 +131,25 @@ void OpenAIFile::setFilename(std::string value)
 }
 
 
+std::string OpenAIFile::getObject() const
+{
+    return m_object;
+}
+
+void OpenAIFile::setObject(std::string value)
+{
+    static const std::array<std::string, 1> allowedValues = {
+        "file"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_object = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
+}
+
+
 std::string OpenAIFile::getPurpose() const
 {
     return m_Purpose;
@@ -146,7 +157,15 @@ std::string OpenAIFile::getPurpose() const
 
 void OpenAIFile::setPurpose(std::string value)
 {
-    m_Purpose = value;
+    static const std::array<std::string, 4> allowedValues = {
+        "fine-tune", "fine-tune-results", "assistants", "assistants_output"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Purpose = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 
@@ -157,7 +176,15 @@ std::string OpenAIFile::getStatus() const
 
 void OpenAIFile::setStatus(std::string value)
 {
-    m_Status = value;
+    static const std::array<std::string, 3> allowedValues = {
+        "uploaded", "processed", "error"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Status = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 

@@ -5,11 +5,12 @@ context("Test CreateCompletionResponseChoicesInner")
 
 model_instance <- CreateCompletionResponseChoicesInner$new()
 
-test_that("text", {
-  # tests for the property `text` (character)
+test_that("finish_reason", {
+  # tests for the property `finish_reason` (character)
+  # The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`text`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`finish_reason`, "EXPECTED_RESULT")
 })
 
 test_that("index", {
@@ -26,9 +27,9 @@ test_that("logprobs", {
   #expect_equal(model.instance$`logprobs`, "EXPECTED_RESULT")
 })
 
-test_that("finish_reason", {
-  # tests for the property `finish_reason` (character)
+test_that("text", {
+  # tests for the property `text` (character)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`finish_reason`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`text`, "EXPECTED_RESULT")
 })

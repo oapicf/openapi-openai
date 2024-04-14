@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,21 +23,21 @@ namespace OpenAPI
 void OpenAPICreateCompletionResponseChoicesInnerLogprobs::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	if (Tokens.IsSet())
+	if (TextOffset.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("tokens")); WriteJsonValue(Writer, Tokens.GetValue());
+		Writer->WriteIdentifierPrefix(TEXT("text_offset")); WriteJsonValue(Writer, TextOffset.GetValue());
 	}
 	if (TokenLogprobs.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("token_logprobs")); WriteJsonValue(Writer, TokenLogprobs.GetValue());
 	}
+	if (Tokens.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("tokens")); WriteJsonValue(Writer, Tokens.GetValue());
+	}
 	if (TopLogprobs.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("top_logprobs")); WriteJsonValue(Writer, TopLogprobs.GetValue());
-	}
-	if (TextOffset.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("text_offset")); WriteJsonValue(Writer, TextOffset.GetValue());
 	}
 	Writer->WriteObjectEnd();
 }
@@ -50,10 +50,10 @@ bool OpenAPICreateCompletionResponseChoicesInnerLogprobs::FromJson(const TShared
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("tokens"), Tokens);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("token_logprobs"), TokenLogprobs);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("top_logprobs"), TopLogprobs);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("text_offset"), TextOffset);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("token_logprobs"), TokenLogprobs);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("tokens"), Tokens);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("top_logprobs"), TopLogprobs);
 
 	return ParseSuccess;
 }

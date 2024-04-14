@@ -8,9 +8,9 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * CreateEmbeddingResponseUsage
+ * The usage information for the request.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateEmbeddingResponseUsage   {
   @JsonProperty("prompt_tokens")
@@ -29,7 +29,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
    /**
-   * Get promptTokens
+   * The number of tokens used by the prompt.
    * @return promptTokens
   **/
   public Integer getPromptTokens() {
@@ -46,7 +46,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
    /**
-   * Get totalTokens
+   * The total number of tokens used by the request.
    * @return totalTokens
   **/
   public Integer getTotalTokens() {

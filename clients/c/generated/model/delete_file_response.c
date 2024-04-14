@@ -4,10 +4,27 @@
 #include "delete_file_response.h"
 
 
+char* delete_file_response_object_ToString(openai_api_delete_file_response_OBJECT_e object) {
+    char* objectArray[] =  { "NULL", "file" };
+    return objectArray[object];
+}
+
+openai_api_delete_file_response_OBJECT_e delete_file_response_object_FromString(char* object){
+    int stringToReturn = 0;
+    char *objectArray[] =  { "NULL", "file" };
+    size_t sizeofArray = sizeof(objectArray) / sizeof(objectArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(object, objectArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 delete_file_response_t *delete_file_response_create(
     char *id,
-    char *object,
+    openai_api_delete_file_response_OBJECT_e object,
     int deleted
     ) {
     delete_file_response_t *delete_file_response_local_var = malloc(sizeof(delete_file_response_t));
@@ -31,10 +48,6 @@ void delete_file_response_free(delete_file_response_t *delete_file_response) {
         free(delete_file_response->id);
         delete_file_response->id = NULL;
     }
-    if (delete_file_response->object) {
-        free(delete_file_response->object);
-        delete_file_response->object = NULL;
-    }
     free(delete_file_response);
 }
 
@@ -51,11 +64,12 @@ cJSON *delete_file_response_convertToJSON(delete_file_response_t *delete_file_re
 
 
     // delete_file_response->object
-    if (!delete_file_response->object) {
+    if (openai_api_delete_file_response_OBJECT_NULL == delete_file_response->object) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "object", delete_file_response->object) == NULL) {
-    goto fail; //String
+    if(cJSON_AddStringToObject(item, "object", objectdelete_file_response_ToString(delete_file_response->object)) == NULL)
+    {
+    goto fail; //Enum
     }
 
 
@@ -97,11 +111,13 @@ delete_file_response_t *delete_file_response_parseFromJSON(cJSON *delete_file_re
         goto end;
     }
 
+    openai_api_delete_file_response_OBJECT_e objectVariable;
     
     if(!cJSON_IsString(object))
     {
-    goto end; //String
+    goto end; //Enum
     }
+    objectVariable = delete_file_response_object_FromString(object->valuestring);
 
     // delete_file_response->deleted
     cJSON *deleted = cJSON_GetObjectItemCaseSensitive(delete_file_responseJSON, "deleted");
@@ -118,7 +134,7 @@ delete_file_response_t *delete_file_response_parseFromJSON(cJSON *delete_file_re
 
     delete_file_response_local_var = delete_file_response_create (
         strdup(id->valuestring),
-        strdup(object->valuestring),
+        objectVariable,
         deleted->valueint
         );
 

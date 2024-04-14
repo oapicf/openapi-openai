@@ -8,10 +8,10 @@ use Articus\DataTransfer\Annotation as DTA;
 class Error
 {
     /**
-     * @DTA\Data(field="type")
+     * @DTA\Data(field="code")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      */
-    public ?string $type = null;
+    public ?string $code = null;
 
     /**
      * @DTA\Data(field="message")
@@ -26,9 +26,9 @@ class Error
     public ?string $param = null;
 
     /**
-     * @DTA\Data(field="code")
+     * @DTA\Data(field="type")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      */
-    public ?string $code = null;
+    public ?string $type = null;
 
 }

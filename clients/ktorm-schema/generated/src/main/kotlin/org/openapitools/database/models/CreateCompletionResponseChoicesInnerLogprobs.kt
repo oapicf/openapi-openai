@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -19,10 +19,10 @@ import .*
 
 /**
  * 
- * @param tokens 
- * @param tokenLogprobs 
- * @param topLogprobs 
  * @param textOffset 
+ * @param tokenLogprobs 
+ * @param tokens 
+ * @param topLogprobs 
  */
 object CreateCompletionResponseChoicesInnerLogprobss : BaseTable<CreateCompletionResponseChoicesInnerLogprobs>("CreateCompletionResponse_choices_inner_logprobs") {
 
@@ -30,10 +30,10 @@ object CreateCompletionResponseChoicesInnerLogprobss : BaseTable<CreateCompletio
      * Create an entity of type CreateCompletionResponseChoicesInnerLogprobs from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = CreateCompletionResponseChoicesInnerLogprobs(
-        tokens = emptyList() /* kotlin.Array<kotlin.String>? */,
+        textOffset = emptyList() /* kotlin.Array<kotlin.Int>? */,
         tokenLogprobs = emptyList() /* kotlin.Array<java.math.BigDecimal>? */,
-        topLogprobs = emptyList() /* kotlin.Array<kotlin.Any>? */,
-        textOffset = emptyList() /* kotlin.Array<kotlin.Int>? */
+        tokens = emptyList() /* kotlin.Array<kotlin.String>? */,
+        topLogprobs = emptyList() /* kotlin.Array<kotlin.collections.Map<kotlin.String, java.math.BigDecimal>>? */
     )
 
     /**
@@ -57,17 +57,17 @@ object CreateCompletionResponseChoicesInnerLogprobss : BaseTable<CreateCompletio
 }
 
 
-object CreateCompletionResponseChoicesInnerLogprobsTokens : BaseTable<Pair<kotlin.Long, kotlin.String>>("CreateCompletionResponseChoicesInnerLogprobsTokens") {
+object CreateCompletionResponseChoicesInnerLogprobsTextOffset : BaseTable<Pair<kotlin.Long, kotlin.Int>>("CreateCompletionResponseChoicesInnerLogprobsTextOffset") {
     val createCompletionResponseChoicesInnerLogprobs = long("createCompletionResponseChoicesInnerLogprobs")
-    val tokens = text("tokens")
+    val textOffset = int("textOffset")
 
-    override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): Pair<kotlin.Long, kotlin.String> =
-        Pair(row[createCompletionResponseChoicesInnerLogprobs] ?: 0, row[tokens] ?: "")
+    override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): Pair<kotlin.Long, kotlin.Int> =
+        Pair(row[createCompletionResponseChoicesInnerLogprobs] ?: 0, row[textOffset] ?: 0)
 
-    fun AssignmentsBuilder.assignFrom(entity: Pair<kotlin.Long, kotlin.String>) {
+    fun AssignmentsBuilder.assignFrom(entity: Pair<kotlin.Long, kotlin.Int>) {
         this.apply {
-            set(CreateCompletionResponseChoicesInnerLogprobsTokens.createCompletionResponseChoicesInnerLogprobs, entity.first)
-            set(CreateCompletionResponseChoicesInnerLogprobsTokens.tokens, entity.second)
+            set(CreateCompletionResponseChoicesInnerLogprobsTextOffset.createCompletionResponseChoicesInnerLogprobs, entity.first)
+            set(CreateCompletionResponseChoicesInnerLogprobsTextOffset.textOffset, entity.second)
         }
     }
 
@@ -89,33 +89,33 @@ object CreateCompletionResponseChoicesInnerLogprobsTokenLogprobs : BaseTable<Pai
 
 }
 
-object CreateCompletionResponseChoicesInnerLogprobsTopLogprobs : BaseTable<Pair<kotlin.Long, kotlin.Any>>("CreateCompletionResponseChoicesInnerLogprobsTopLogprobs") {
+object CreateCompletionResponseChoicesInnerLogprobsTokens : BaseTable<Pair<kotlin.Long, kotlin.String>>("CreateCompletionResponseChoicesInnerLogprobsTokens") {
     val createCompletionResponseChoicesInnerLogprobs = long("createCompletionResponseChoicesInnerLogprobs")
-    val topLogprobs = blob("topLogprobs")
+    val tokens = text("tokens")
 
-    override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): Pair<kotlin.Long, kotlin.Any> =
-        Pair(row[createCompletionResponseChoicesInnerLogprobs] ?: 0, row[topLogprobs] ?: )
+    override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): Pair<kotlin.Long, kotlin.String> =
+        Pair(row[createCompletionResponseChoicesInnerLogprobs] ?: 0, row[tokens] ?: "")
 
-    fun AssignmentsBuilder.assignFrom(entity: Pair<kotlin.Long, kotlin.Any>) {
+    fun AssignmentsBuilder.assignFrom(entity: Pair<kotlin.Long, kotlin.String>) {
         this.apply {
-            set(CreateCompletionResponseChoicesInnerLogprobsTopLogprobs.createCompletionResponseChoicesInnerLogprobs, entity.first)
-            set(CreateCompletionResponseChoicesInnerLogprobsTopLogprobs.topLogprobs, entity.second)
+            set(CreateCompletionResponseChoicesInnerLogprobsTokens.createCompletionResponseChoicesInnerLogprobs, entity.first)
+            set(CreateCompletionResponseChoicesInnerLogprobsTokens.tokens, entity.second)
         }
     }
 
 }
 
-object CreateCompletionResponseChoicesInnerLogprobsTextOffset : BaseTable<Pair<kotlin.Long, kotlin.Int>>("CreateCompletionResponseChoicesInnerLogprobsTextOffset") {
+object CreateCompletionResponseChoicesInnerLogprobsTopLogprobs : BaseTable<Pair<kotlin.Long, kotlin.collections.Map<kotlin.String, java.math.BigDecimal>>>("CreateCompletionResponseChoicesInnerLogprobsTopLogprobs") {
     val createCompletionResponseChoicesInnerLogprobs = long("createCompletionResponseChoicesInnerLogprobs")
-    val textOffset = int("textOffset")
+    val topLogprobs = blob("topLogprobs")
 
-    override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): Pair<kotlin.Long, kotlin.Int> =
-        Pair(row[createCompletionResponseChoicesInnerLogprobs] ?: 0, row[textOffset] ?: 0)
+    override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): Pair<kotlin.Long, kotlin.collections.Map<kotlin.String, java.math.BigDecimal>> =
+        Pair(row[createCompletionResponseChoicesInnerLogprobs] ?: 0, row[topLogprobs] ?: )
 
-    fun AssignmentsBuilder.assignFrom(entity: Pair<kotlin.Long, kotlin.Int>) {
+    fun AssignmentsBuilder.assignFrom(entity: Pair<kotlin.Long, kotlin.collections.Map<kotlin.String, java.math.BigDecimal>>) {
         this.apply {
-            set(CreateCompletionResponseChoicesInnerLogprobsTextOffset.createCompletionResponseChoicesInnerLogprobs, entity.first)
-            set(CreateCompletionResponseChoicesInnerLogprobsTextOffset.textOffset, entity.second)
+            set(CreateCompletionResponseChoicesInnerLogprobsTopLogprobs.createCompletionResponseChoicesInnerLogprobs, entity.first)
+            set(CreateCompletionResponseChoicesInnerLogprobsTopLogprobs.topLogprobs, entity.second)
         }
     }
 

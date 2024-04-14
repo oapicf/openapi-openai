@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,15 +27,16 @@ import javax.annotation.Generated;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
- * CreateModerationResponse
+ * Represents if a given text input is potentially harmful.
  */
+@Schema(name = "CreateModerationResponse", description = "Represents if a given text input is potentially harmful.")
 @JsonPropertyOrder({
   CreateModerationResponse.JSON_PROPERTY_ID,
   CreateModerationResponse.JSON_PROPERTY_MODEL,
   CreateModerationResponse.JSON_PROPERTY_RESULTS
 })
 @JsonTypeName("CreateModerationResponse")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-03-16T01:12:38.762786439Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-04-14T13:38:24.957235058Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateModerationResponse {
     public static final String JSON_PROPERTY_ID = "id";
@@ -59,11 +60,11 @@ public class CreateModerationResponse {
     }
 
     /**
-     * Get id
+     * The unique identifier for the moderation request.
      * @return id
      **/
     @NotNull
-    @Schema(name = "id", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "id", description = "The unique identifier for the moderation request.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public String getId() {
@@ -82,11 +83,11 @@ public class CreateModerationResponse {
     }
 
     /**
-     * Get model
+     * The model used to generate the moderation results.
      * @return model
      **/
     @NotNull
-    @Schema(name = "model", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "model", description = "The model used to generate the moderation results.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_MODEL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public String getModel() {
@@ -110,11 +111,11 @@ public class CreateModerationResponse {
     }
 
     /**
-     * Get results
+     * A list of moderation objects.
      * @return results
      **/
     @NotNull
-    @Schema(name = "results", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "results", description = "A list of moderation objects.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_RESULTS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public List<@Valid CreateModerationResponseResultsInner> getResults() {

@@ -28,7 +28,7 @@ import javax.validation.Valid;
 @Api(description = "the embeddings API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-03-16T01:13:26.699737416Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-04-14T13:41:22.441879330Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 
 public class EmbeddingsApi  {
 
@@ -41,7 +41,10 @@ public class EmbeddingsApi  {
     
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Creates an embedding vector representing the input text.", notes = "", response = CreateEmbeddingResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Creates an embedding vector representing the input text.", notes = "", response = CreateEmbeddingResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Embeddings" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateEmbeddingResponse.class) })
     public Response createEmbedding(@ApiParam(value = "" ,required=true) CreateEmbeddingRequest createEmbeddingRequest) {

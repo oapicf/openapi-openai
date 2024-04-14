@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,8 +27,9 @@ namespace Org.OpenAPITools.Models
     public partial class CreateModerationResponseResultsInner : IEquatable<CreateModerationResponseResultsInner>
     {
         /// <summary>
-        /// Gets or Sets Flagged
+        /// Whether any of the below categories are flagged.
         /// </summary>
+        /// <value>Whether any of the below categories are flagged.</value>
         [Required]
         [DataMember(Name="flagged", EmitDefaultValue=true)]
         public bool Flagged { get; set; }

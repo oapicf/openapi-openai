@@ -7,47 +7,54 @@
 #' @title CreateChatCompletionStreamResponseChoicesInner
 #' @description CreateChatCompletionStreamResponseChoicesInner Class
 #' @format An \code{R6Class} generator object
-#' @field index  integer [optional]
-#' @field delta  \link{ChatCompletionStreamResponseDelta} [optional]
-#' @field finish_reason  character [optional]
+#' @field delta  \link{ChatCompletionStreamResponseDelta}
+#' @field logprobs  \link{CreateChatCompletionResponseChoicesInnerLogprobs} [optional]
+#' @field finish_reason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. character
+#' @field index The index of the choice in the list of choices. integer
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 CreateChatCompletionStreamResponseChoicesInner <- R6::R6Class(
   "CreateChatCompletionStreamResponseChoicesInner",
   public = list(
-    `index` = NULL,
     `delta` = NULL,
+    `logprobs` = NULL,
     `finish_reason` = NULL,
+    `index` = NULL,
     #' Initialize a new CreateChatCompletionStreamResponseChoicesInner class.
     #'
     #' @description
     #' Initialize a new CreateChatCompletionStreamResponseChoicesInner class.
     #'
-    #' @param index index
     #' @param delta delta
-    #' @param finish_reason finish_reason
+    #' @param finish_reason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
+    #' @param index The index of the choice in the list of choices.
+    #' @param logprobs logprobs
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`index` = NULL, `delta` = NULL, `finish_reason` = NULL, ...) {
-      if (!is.null(`index`)) {
-        if (!(is.numeric(`index`) && length(`index`) == 1)) {
-          stop(paste("Error! Invalid data for `index`. Must be an integer:", `index`))
-        }
-        self$`index` <- `index`
-      }
-      if (!is.null(`delta`)) {
+    initialize = function(`delta`, `finish_reason`, `index`, `logprobs` = NULL, ...) {
+      if (!missing(`delta`)) {
         stopifnot(R6::is.R6(`delta`))
         self$`delta` <- `delta`
       }
-      if (!is.null(`finish_reason`)) {
-        if (!(`finish_reason` %in% c("stop", "length", "function_call"))) {
-          stop(paste("Error! \"", `finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\", \"function_call\".", sep = ""))
+      if (!missing(`finish_reason`)) {
+        if (!(`finish_reason` %in% c("stop", "length", "tool_calls", "content_filter", "function_call"))) {
+          stop(paste("Error! \"", `finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\", \"tool_calls\", \"content_filter\", \"function_call\".", sep = ""))
         }
         if (!(is.character(`finish_reason`) && length(`finish_reason`) == 1)) {
           stop(paste("Error! Invalid data for `finish_reason`. Must be a string:", `finish_reason`))
         }
         self$`finish_reason` <- `finish_reason`
+      }
+      if (!missing(`index`)) {
+        if (!(is.numeric(`index`) && length(`index`) == 1)) {
+          stop(paste("Error! Invalid data for `index`. Must be an integer:", `index`))
+        }
+        self$`index` <- `index`
+      }
+      if (!is.null(`logprobs`)) {
+        stopifnot(R6::is.R6(`logprobs`))
+        self$`logprobs` <- `logprobs`
       }
     },
     #' To JSON string
@@ -59,17 +66,21 @@ CreateChatCompletionStreamResponseChoicesInner <- R6::R6Class(
     #' @export
     toJSON = function() {
       CreateChatCompletionStreamResponseChoicesInnerObject <- list()
-      if (!is.null(self$`index`)) {
-        CreateChatCompletionStreamResponseChoicesInnerObject[["index"]] <-
-          self$`index`
-      }
       if (!is.null(self$`delta`)) {
         CreateChatCompletionStreamResponseChoicesInnerObject[["delta"]] <-
           self$`delta`$toJSON()
       }
+      if (!is.null(self$`logprobs`)) {
+        CreateChatCompletionStreamResponseChoicesInnerObject[["logprobs"]] <-
+          self$`logprobs`$toJSON()
+      }
       if (!is.null(self$`finish_reason`)) {
         CreateChatCompletionStreamResponseChoicesInnerObject[["finish_reason"]] <-
           self$`finish_reason`
+      }
+      if (!is.null(self$`index`)) {
+        CreateChatCompletionStreamResponseChoicesInnerObject[["index"]] <-
+          self$`index`
       }
       CreateChatCompletionStreamResponseChoicesInnerObject
     },
@@ -83,19 +94,24 @@ CreateChatCompletionStreamResponseChoicesInner <- R6::R6Class(
     #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`index`)) {
-        self$`index` <- this_object$`index`
-      }
       if (!is.null(this_object$`delta`)) {
         `delta_object` <- ChatCompletionStreamResponseDelta$new()
         `delta_object`$fromJSON(jsonlite::toJSON(this_object$`delta`, auto_unbox = TRUE, digits = NA))
         self$`delta` <- `delta_object`
       }
+      if (!is.null(this_object$`logprobs`)) {
+        `logprobs_object` <- CreateChatCompletionResponseChoicesInnerLogprobs$new()
+        `logprobs_object`$fromJSON(jsonlite::toJSON(this_object$`logprobs`, auto_unbox = TRUE, digits = NA))
+        self$`logprobs` <- `logprobs_object`
+      }
       if (!is.null(this_object$`finish_reason`)) {
-        if (!is.null(this_object$`finish_reason`) && !(this_object$`finish_reason` %in% c("stop", "length", "function_call"))) {
-          stop(paste("Error! \"", this_object$`finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\", \"function_call\".", sep = ""))
+        if (!is.null(this_object$`finish_reason`) && !(this_object$`finish_reason` %in% c("stop", "length", "tool_calls", "content_filter", "function_call"))) {
+          stop(paste("Error! \"", this_object$`finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\", \"tool_calls\", \"content_filter\", \"function_call\".", sep = ""))
         }
         self$`finish_reason` <- this_object$`finish_reason`
+      }
+      if (!is.null(this_object$`index`)) {
+        self$`index` <- this_object$`index`
       }
       self
     },
@@ -108,14 +124,6 @@ CreateChatCompletionStreamResponseChoicesInner <- R6::R6Class(
     #' @export
     toJSONString = function() {
       jsoncontent <- c(
-        if (!is.null(self$`index`)) {
-          sprintf(
-          '"index":
-            %d
-                    ',
-          self$`index`
-          )
-        },
         if (!is.null(self$`delta`)) {
           sprintf(
           '"delta":
@@ -124,12 +132,28 @@ CreateChatCompletionStreamResponseChoicesInner <- R6::R6Class(
           jsonlite::toJSON(self$`delta`$toJSON(), auto_unbox = TRUE, digits = NA)
           )
         },
+        if (!is.null(self$`logprobs`)) {
+          sprintf(
+          '"logprobs":
+          %s
+          ',
+          jsonlite::toJSON(self$`logprobs`$toJSON(), auto_unbox = TRUE, digits = NA)
+          )
+        },
         if (!is.null(self$`finish_reason`)) {
           sprintf(
           '"finish_reason":
             "%s"
                     ',
           self$`finish_reason`
+          )
+        },
+        if (!is.null(self$`index`)) {
+          sprintf(
+          '"index":
+            %d
+                    ',
+          self$`index`
           )
         }
       )
@@ -146,12 +170,13 @@ CreateChatCompletionStreamResponseChoicesInner <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`index` <- this_object$`index`
       self$`delta` <- ChatCompletionStreamResponseDelta$new()$fromJSON(jsonlite::toJSON(this_object$`delta`, auto_unbox = TRUE, digits = NA))
-      if (!is.null(this_object$`finish_reason`) && !(this_object$`finish_reason` %in% c("stop", "length", "function_call"))) {
-        stop(paste("Error! \"", this_object$`finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\", \"function_call\".", sep = ""))
+      self$`logprobs` <- CreateChatCompletionResponseChoicesInnerLogprobs$new()$fromJSON(jsonlite::toJSON(this_object$`logprobs`, auto_unbox = TRUE, digits = NA))
+      if (!is.null(this_object$`finish_reason`) && !(this_object$`finish_reason` %in% c("stop", "length", "tool_calls", "content_filter", "function_call"))) {
+        stop(paste("Error! \"", this_object$`finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\", \"tool_calls\", \"content_filter\", \"function_call\".", sep = ""))
       }
       self$`finish_reason` <- this_object$`finish_reason`
+      self$`index` <- this_object$`index`
       self
     },
     #' Validate JSON input with respect to CreateChatCompletionStreamResponseChoicesInner
@@ -163,6 +188,28 @@ CreateChatCompletionStreamResponseChoicesInner <- R6::R6Class(
     #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
+      # check the required field `delta`
+      if (!is.null(input_json$`delta`)) {
+        stopifnot(R6::is.R6(input_json$`delta`))
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionStreamResponseChoicesInner: the required field `delta` is missing."))
+      }
+      # check the required field `finish_reason`
+      if (!is.null(input_json$`finish_reason`)) {
+        if (!(is.character(input_json$`finish_reason`) && length(input_json$`finish_reason`) == 1)) {
+          stop(paste("Error! Invalid data for `finish_reason`. Must be a string:", input_json$`finish_reason`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionStreamResponseChoicesInner: the required field `finish_reason` is missing."))
+      }
+      # check the required field `index`
+      if (!is.null(input_json$`index`)) {
+        if (!(is.numeric(input_json$`index`) && length(input_json$`index`) == 1)) {
+          stop(paste("Error! Invalid data for `index`. Must be an integer:", input_json$`index`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionStreamResponseChoicesInner: the required field `index` is missing."))
+      }
     },
     #' To string (JSON format)
     #'
@@ -182,6 +229,16 @@ CreateChatCompletionStreamResponseChoicesInner <- R6::R6Class(
     #' @return true if the values in all fields are valid.
     #' @export
     isValid = function() {
+      # check if the required `delta` is null
+      if (is.null(self$`delta`)) {
+        return(FALSE)
+      }
+
+      # check if the required `index` is null
+      if (is.null(self$`index`)) {
+        return(FALSE)
+      }
+
       TRUE
     },
     #' Return a list of invalid fields (if any).
@@ -193,6 +250,16 @@ CreateChatCompletionStreamResponseChoicesInner <- R6::R6Class(
     #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
+      # check if the required `delta` is null
+      if (is.null(self$`delta`)) {
+        invalid_fields["delta"] <- "Non-nullable required field `delta` cannot be null."
+      }
+
+      # check if the required `index` is null
+      if (is.null(self$`index`)) {
+        invalid_fields["index"] <- "Non-nullable required field `index` cannot be null."
+      }
+
       invalid_fields
     },
     #' Print the object

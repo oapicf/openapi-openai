@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -47,14 +47,14 @@ bool ImagesResponse::validate(std::stringstream& msg, const std::string& pathPre
              
     
     /* Data */ {
-        const std::vector<org::openapitools::server::model::ImagesResponse_data_inner>& value = m_Data;
+        const std::vector<org::openapitools::server::model::Image>& value = m_Data;
         const std::string currentValuePath = _pathPrefix + ".data";
                 
         
         { // Recursive validation of array elements
             const std::string oldValuePath = currentValuePath;
             int i = 0;
-            for (const org::openapitools::server::model::ImagesResponse_data_inner& value : value)
+            for (const org::openapitools::server::model::Image& value : value)
             { 
                 const std::string currentValuePath = oldValuePath + "[" + std::to_string(i) + "]";
                         
@@ -111,11 +111,11 @@ void ImagesResponse::setCreated(int32_t const value)
 {
     m_Created = value;
 }
-std::vector<org::openapitools::server::model::ImagesResponse_data_inner> ImagesResponse::getData() const
+std::vector<org::openapitools::server::model::Image> ImagesResponse::getData() const
 {
     return m_Data;
 }
-void ImagesResponse::setData(std::vector<org::openapitools::server::model::ImagesResponse_data_inner> const& value)
+void ImagesResponse::setData(std::vector<org::openapitools::server::model::Image> const& value)
 {
     m_Data = value;
 }

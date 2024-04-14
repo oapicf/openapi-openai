@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,11 +19,15 @@ local function cast_create_moderation_response_results_inner_category_scores(t)
 	return setmetatable(t, create_moderation_response_results_inner_category_scores_mt)
 end
 
-local function new_create_moderation_response_results_inner_category_scores(hate, hate_threatening, self_harm, sexual, sexual_minors, violence, violence_graphic)
+local function new_create_moderation_response_results_inner_category_scores(hate, hate_threatening, harassment, harassment_threatening, self_harm, self_harm_intent, self_harm_instructions, sexual, sexual_minors, violence, violence_graphic)
 	return cast_create_moderation_response_results_inner_category_scores({
 		["hate"] = hate;
 		["hate/threatening"] = hate_threatening;
+		["harassment"] = harassment;
+		["harassment/threatening"] = harassment_threatening;
 		["self-harm"] = self_harm;
+		["self-harm/intent"] = self_harm_intent;
+		["self-harm/instructions"] = self_harm_instructions;
 		["sexual"] = sexual;
 		["sexual/minors"] = sexual_minors;
 		["violence"] = violence;

@@ -3,22 +3,53 @@ package org.openapitools.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Model
+ * Describes an OpenAI model offering that can be used with the API.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-16T01:12:44.741883350Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@ApiModel(description = "Describes an OpenAI model offering that can be used with the API.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-04-14T13:38:52.193957698Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Model   {
   @JsonProperty("id")
   private String id;
 
-  @JsonProperty("object")
-  private String _object;
-
   @JsonProperty("created")
   private Integer created;
+
+  /**
+   * The object type, which is always \"model\".
+   */
+  public enum ObjectEnum {
+    MODEL("model");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String text) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+    }
+  }
+
+  @JsonProperty("object")
+  private ObjectEnum _object;
 
   @JsonProperty("owned_by")
   private String ownedBy;
@@ -29,10 +60,10 @@ public class Model   {
   }
 
    /**
-   * Get id
+   * The model identifier, which can be referenced in the API endpoints.
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model identifier, which can be referenced in the API endpoints.")
   public String getId() {
     return id;
   }
@@ -41,34 +72,16 @@ public class Model   {
     this.id = id;
   }
 
-  public Model _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
   public Model created(Integer created) {
     this.created = created;
     return this;
   }
 
    /**
-   * Get created
+   * The Unix timestamp (in seconds) when the model was created.
    * @return created
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) when the model was created.")
   public Integer getCreated() {
     return created;
   }
@@ -77,16 +90,34 @@ public class Model   {
     this.created = created;
   }
 
+  public Model _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * The object type, which is always \"model\".
+   * @return _object
+  **/
+  @ApiModelProperty(required = true, value = "The object type, which is always \"model\".")
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
   public Model ownedBy(String ownedBy) {
     this.ownedBy = ownedBy;
     return this;
   }
 
    /**
-   * Get ownedBy
+   * The organization that owns the model.
    * @return ownedBy
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The organization that owns the model.")
   public String getOwnedBy() {
     return ownedBy;
   }
@@ -106,14 +137,14 @@ public class Model   {
     }
     Model model = (Model) o;
     return Objects.equals(this.id, model.id) &&
-        Objects.equals(this._object, model._object) &&
         Objects.equals(this.created, model.created) &&
+        Objects.equals(this._object, model._object) &&
         Objects.equals(this.ownedBy, model.ownedBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, ownedBy);
+    return Objects.hash(id, created, _object, ownedBy);
   }
 
   @Override
@@ -122,8 +153,8 @@ public class Model   {
     sb.append("class Model {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    ownedBy: ").append(toIndentedString(ownedBy)).append("\n");
     sb.append("}");
     return sb.toString();

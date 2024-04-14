@@ -19,6 +19,7 @@ resourceTypes {
         object {
           type =  string
           description = ""
+          enum = ["list"]
           optional = true
         }
         data {

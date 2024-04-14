@@ -2,7 +2,7 @@
 
 WWW::OpenAPIClient::Role - a Moose role for the OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 # VERSION
 
@@ -232,24 +232,74 @@ cpanm --quiet --no-interactive Class::Accessor Test::Exception Test::More Log::A
 
 To load the API packages:
 ```perl
-use WWW::OpenAPIClient::OpenAIApi;
+use WWW::OpenAPIClient::AssistantsApi;
+use WWW::OpenAPIClient::AudioApi;
+use WWW::OpenAPIClient::ChatApi;
+use WWW::OpenAPIClient::CompletionsApi;
+use WWW::OpenAPIClient::EmbeddingsApi;
+use WWW::OpenAPIClient::FilesApi;
+use WWW::OpenAPIClient::FineTuningApi;
+use WWW::OpenAPIClient::ImagesApi;
+use WWW::OpenAPIClient::ModelsApi;
+use WWW::OpenAPIClient::ModerationsApi;
 
 ```
 
 To load the models:
 ```perl
+use WWW::OpenAPIClient::Object::AssistantFileObject;
+use WWW::OpenAPIClient::Object::AssistantObject;
+use WWW::OpenAPIClient::Object::AssistantObjectToolsInner;
+use WWW::OpenAPIClient::Object::AssistantStreamEvent;
+use WWW::OpenAPIClient::Object::AssistantToolsCode;
+use WWW::OpenAPIClient::Object::AssistantToolsFunction;
+use WWW::OpenAPIClient::Object::AssistantToolsRetrieval;
+use WWW::OpenAPIClient::Object::AssistantsApiNamedToolChoice;
+use WWW::OpenAPIClient::Object::AssistantsApiResponseFormat;
+use WWW::OpenAPIClient::Object::AssistantsApiResponseFormatOption;
+use WWW::OpenAPIClient::Object::AssistantsApiToolChoiceOption;
+use WWW::OpenAPIClient::Object::ChatCompletionFunctionCallOption;
 use WWW::OpenAPIClient::Object::ChatCompletionFunctions;
+use WWW::OpenAPIClient::Object::ChatCompletionMessageToolCall;
+use WWW::OpenAPIClient::Object::ChatCompletionMessageToolCallChunk;
+use WWW::OpenAPIClient::Object::ChatCompletionMessageToolCallChunkFunction;
+use WWW::OpenAPIClient::Object::ChatCompletionMessageToolCallFunction;
+use WWW::OpenAPIClient::Object::ChatCompletionNamedToolChoice;
+use WWW::OpenAPIClient::Object::ChatCompletionNamedToolChoiceFunction;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestAssistantMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestAssistantMessageFunctionCall;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestFunctionMessage;
 use WWW::OpenAPIClient::Object::ChatCompletionRequestMessage;
-use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageFunctionCall;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPart;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPartImage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPartImageImageUrl;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPartText;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestSystemMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestToolMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestUserMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestUserMessageContent;
 use WWW::OpenAPIClient::Object::ChatCompletionResponseMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRole;
 use WWW::OpenAPIClient::Object::ChatCompletionStreamResponseDelta;
+use WWW::OpenAPIClient::Object::ChatCompletionStreamResponseDeltaFunctionCall;
+use WWW::OpenAPIClient::Object::ChatCompletionTokenLogprob;
+use WWW::OpenAPIClient::Object::ChatCompletionTokenLogprobTopLogprobsInner;
+use WWW::OpenAPIClient::Object::ChatCompletionTool;
+use WWW::OpenAPIClient::Object::ChatCompletionToolChoiceOption;
+use WWW::OpenAPIClient::Object::CompletionUsage;
+use WWW::OpenAPIClient::Object::CreateAssistantFileRequest;
+use WWW::OpenAPIClient::Object::CreateAssistantRequest;
+use WWW::OpenAPIClient::Object::CreateAssistantRequestModel;
+use WWW::OpenAPIClient::Object::CreateChatCompletionFunctionResponse;
+use WWW::OpenAPIClient::Object::CreateChatCompletionFunctionResponseChoicesInner;
 use WWW::OpenAPIClient::Object::CreateChatCompletionRequest;
 use WWW::OpenAPIClient::Object::CreateChatCompletionRequestFunctionCall;
-use WWW::OpenAPIClient::Object::CreateChatCompletionRequestFunctionCallOneOf;
 use WWW::OpenAPIClient::Object::CreateChatCompletionRequestModel;
+use WWW::OpenAPIClient::Object::CreateChatCompletionRequestResponseFormat;
 use WWW::OpenAPIClient::Object::CreateChatCompletionRequestStop;
 use WWW::OpenAPIClient::Object::CreateChatCompletionResponse;
 use WWW::OpenAPIClient::Object::CreateChatCompletionResponseChoicesInner;
+use WWW::OpenAPIClient::Object::CreateChatCompletionResponseChoicesInnerLogprobs;
 use WWW::OpenAPIClient::Object::CreateChatCompletionStreamResponse;
 use WWW::OpenAPIClient::Object::CreateChatCompletionStreamResponseChoicesInner;
 use WWW::OpenAPIClient::Object::CreateCompletionRequest;
@@ -259,20 +309,24 @@ use WWW::OpenAPIClient::Object::CreateCompletionRequestStop;
 use WWW::OpenAPIClient::Object::CreateCompletionResponse;
 use WWW::OpenAPIClient::Object::CreateCompletionResponseChoicesInner;
 use WWW::OpenAPIClient::Object::CreateCompletionResponseChoicesInnerLogprobs;
-use WWW::OpenAPIClient::Object::CreateCompletionResponseUsage;
-use WWW::OpenAPIClient::Object::CreateEditRequest;
-use WWW::OpenAPIClient::Object::CreateEditRequestModel;
-use WWW::OpenAPIClient::Object::CreateEditResponse;
-use WWW::OpenAPIClient::Object::CreateEditResponseChoicesInner;
 use WWW::OpenAPIClient::Object::CreateEmbeddingRequest;
 use WWW::OpenAPIClient::Object::CreateEmbeddingRequestInput;
 use WWW::OpenAPIClient::Object::CreateEmbeddingRequestModel;
 use WWW::OpenAPIClient::Object::CreateEmbeddingResponse;
-use WWW::OpenAPIClient::Object::CreateEmbeddingResponseDataInner;
 use WWW::OpenAPIClient::Object::CreateEmbeddingResponseUsage;
-use WWW::OpenAPIClient::Object::CreateFineTuneRequest;
-use WWW::OpenAPIClient::Object::CreateFineTuneRequestModel;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequest;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparameters;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparametersBatchSize;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparametersNEpochs;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestIntegrationsInner;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestIntegrationsInnerType;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestIntegrationsInnerWandb;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestModel;
+use WWW::OpenAPIClient::Object::CreateImageEditRequestModel;
 use WWW::OpenAPIClient::Object::CreateImageRequest;
+use WWW::OpenAPIClient::Object::CreateImageRequestModel;
+use WWW::OpenAPIClient::Object::CreateMessageRequest;
 use WWW::OpenAPIClient::Object::CreateModerationRequest;
 use WWW::OpenAPIClient::Object::CreateModerationRequestInput;
 use WWW::OpenAPIClient::Object::CreateModerationRequestModel;
@@ -280,23 +334,159 @@ use WWW::OpenAPIClient::Object::CreateModerationResponse;
 use WWW::OpenAPIClient::Object::CreateModerationResponseResultsInner;
 use WWW::OpenAPIClient::Object::CreateModerationResponseResultsInnerCategories;
 use WWW::OpenAPIClient::Object::CreateModerationResponseResultsInnerCategoryScores;
+use WWW::OpenAPIClient::Object::CreateRunRequest;
+use WWW::OpenAPIClient::Object::CreateRunRequestModel;
+use WWW::OpenAPIClient::Object::CreateSpeechRequest;
+use WWW::OpenAPIClient::Object::CreateSpeechRequestModel;
+use WWW::OpenAPIClient::Object::CreateThreadAndRunRequest;
+use WWW::OpenAPIClient::Object::CreateThreadAndRunRequestToolsInner;
+use WWW::OpenAPIClient::Object::CreateThreadRequest;
+use WWW::OpenAPIClient::Object::CreateTranscription200Response;
 use WWW::OpenAPIClient::Object::CreateTranscriptionRequestModel;
-use WWW::OpenAPIClient::Object::CreateTranscriptionResponse;
-use WWW::OpenAPIClient::Object::CreateTranslationResponse;
+use WWW::OpenAPIClient::Object::CreateTranscriptionResponseJson;
+use WWW::OpenAPIClient::Object::CreateTranscriptionResponseVerboseJson;
+use WWW::OpenAPIClient::Object::CreateTranslation200Response;
+use WWW::OpenAPIClient::Object::CreateTranslationResponseJson;
+use WWW::OpenAPIClient::Object::CreateTranslationResponseVerboseJson;
+use WWW::OpenAPIClient::Object::DeleteAssistantFileResponse;
+use WWW::OpenAPIClient::Object::DeleteAssistantResponse;
 use WWW::OpenAPIClient::Object::DeleteFileResponse;
+use WWW::OpenAPIClient::Object::DeleteMessageResponse;
 use WWW::OpenAPIClient::Object::DeleteModelResponse;
+use WWW::OpenAPIClient::Object::DeleteThreadResponse;
+use WWW::OpenAPIClient::Object::DoneEvent;
+use WWW::OpenAPIClient::Object::Embedding;
 use WWW::OpenAPIClient::Object::Error;
+use WWW::OpenAPIClient::Object::ErrorEvent;
 use WWW::OpenAPIClient::Object::ErrorResponse;
-use WWW::OpenAPIClient::Object::FineTune;
-use WWW::OpenAPIClient::Object::FineTuneEvent;
+use WWW::OpenAPIClient::Object::FineTuningIntegration;
+use WWW::OpenAPIClient::Object::FineTuningJob;
+use WWW::OpenAPIClient::Object::FineTuningJobCheckpoint;
+use WWW::OpenAPIClient::Object::FineTuningJobCheckpointMetrics;
+use WWW::OpenAPIClient::Object::FineTuningJobError;
+use WWW::OpenAPIClient::Object::FineTuningJobEvent;
+use WWW::OpenAPIClient::Object::FineTuningJobHyperparameters;
+use WWW::OpenAPIClient::Object::FineTuningJobHyperparametersNEpochs;
+use WWW::OpenAPIClient::Object::FineTuningJobIntegrationsInner;
+use WWW::OpenAPIClient::Object::FunctionObject;
+use WWW::OpenAPIClient::Object::Image;
 use WWW::OpenAPIClient::Object::ImagesResponse;
-use WWW::OpenAPIClient::Object::ImagesResponseDataInner;
+use WWW::OpenAPIClient::Object::ListAssistantFilesResponse;
+use WWW::OpenAPIClient::Object::ListAssistantsResponse;
 use WWW::OpenAPIClient::Object::ListFilesResponse;
-use WWW::OpenAPIClient::Object::ListFineTuneEventsResponse;
-use WWW::OpenAPIClient::Object::ListFineTunesResponse;
+use WWW::OpenAPIClient::Object::ListFineTuningJobCheckpointsResponse;
+use WWW::OpenAPIClient::Object::ListFineTuningJobEventsResponse;
+use WWW::OpenAPIClient::Object::ListMessageFilesResponse;
+use WWW::OpenAPIClient::Object::ListMessagesResponse;
 use WWW::OpenAPIClient::Object::ListModelsResponse;
+use WWW::OpenAPIClient::Object::ListPaginatedFineTuningJobsResponse;
+use WWW::OpenAPIClient::Object::ListRunStepsResponse;
+use WWW::OpenAPIClient::Object::ListRunsResponse;
+use WWW::OpenAPIClient::Object::ListThreadsResponse;
+use WWW::OpenAPIClient::Object::MessageContentImageFileObject;
+use WWW::OpenAPIClient::Object::MessageContentImageFileObjectImageFile;
+use WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFileCitationObject;
+use WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFileCitationObjectFileCitation;
+use WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFilePathObject;
+use WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFilePathObjectFilePath;
+use WWW::OpenAPIClient::Object::MessageContentTextObject;
+use WWW::OpenAPIClient::Object::MessageContentTextObjectText;
+use WWW::OpenAPIClient::Object::MessageContentTextObjectTextAnnotationsInner;
+use WWW::OpenAPIClient::Object::MessageDeltaContentImageFileObject;
+use WWW::OpenAPIClient::Object::MessageDeltaContentImageFileObjectImageFile;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFileCitationObject;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFilePathObject;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFilePathObjectFilePath;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextObject;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextObjectText;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextObjectTextAnnotationsInner;
+use WWW::OpenAPIClient::Object::MessageDeltaObject;
+use WWW::OpenAPIClient::Object::MessageDeltaObjectDelta;
+use WWW::OpenAPIClient::Object::MessageDeltaObjectDeltaContentInner;
+use WWW::OpenAPIClient::Object::MessageFileObject;
+use WWW::OpenAPIClient::Object::MessageObject;
+use WWW::OpenAPIClient::Object::MessageObjectContentInner;
+use WWW::OpenAPIClient::Object::MessageObjectIncompleteDetails;
+use WWW::OpenAPIClient::Object::MessageStreamEvent;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf1;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf2;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf3;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf4;
 use WWW::OpenAPIClient::Object::Model;
+use WWW::OpenAPIClient::Object::ModifyAssistantRequest;
+use WWW::OpenAPIClient::Object::ModifyMessageRequest;
+use WWW::OpenAPIClient::Object::ModifyRunRequest;
+use WWW::OpenAPIClient::Object::ModifyThreadRequest;
 use WWW::OpenAPIClient::Object::OpenAIFile;
+use WWW::OpenAPIClient::Object::RunCompletionUsage;
+use WWW::OpenAPIClient::Object::RunObject;
+use WWW::OpenAPIClient::Object::RunObjectIncompleteDetails;
+use WWW::OpenAPIClient::Object::RunObjectLastError;
+use WWW::OpenAPIClient::Object::RunObjectRequiredAction;
+use WWW::OpenAPIClient::Object::RunObjectRequiredActionSubmitToolOutputs;
+use WWW::OpenAPIClient::Object::RunStepCompletionUsage;
+use WWW::OpenAPIClient::Object::RunStepDeltaObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaObjectDelta;
+use WWW::OpenAPIClient::Object::RunStepDeltaObjectDeltaStepDetails;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsMessageCreationObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsMessageCreationObjectMessageCreation;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeOutputImageObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsFunctionObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsObjectToolCallsInner;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsRetrievalObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsMessageCreationObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsMessageCreationObjectMessageCreation;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeOutputImageObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeOutputImageObjectImage;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeOutputLogsObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsFunctionObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsFunctionObjectFunction;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsObjectToolCallsInner;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsRetrievalObject;
+use WWW::OpenAPIClient::Object::RunStepObject;
+use WWW::OpenAPIClient::Object::RunStepObjectLastError;
+use WWW::OpenAPIClient::Object::RunStepObjectStepDetails;
+use WWW::OpenAPIClient::Object::RunStepStreamEvent;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf1;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf2;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf3;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf4;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf5;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf6;
+use WWW::OpenAPIClient::Object::RunStreamEvent;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf1;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf2;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf3;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf4;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf5;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf6;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf7;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf8;
+use WWW::OpenAPIClient::Object::RunToolCallObject;
+use WWW::OpenAPIClient::Object::RunToolCallObjectFunction;
+use WWW::OpenAPIClient::Object::SubmitToolOutputsRunRequest;
+use WWW::OpenAPIClient::Object::SubmitToolOutputsRunRequestToolOutputsInner;
+use WWW::OpenAPIClient::Object::ThreadObject;
+use WWW::OpenAPIClient::Object::ThreadStreamEvent;
+use WWW::OpenAPIClient::Object::ThreadStreamEventOneOf;
+use WWW::OpenAPIClient::Object::TranscriptionSegment;
+use WWW::OpenAPIClient::Object::TranscriptionWord;
+use WWW::OpenAPIClient::Object::TruncationObject;
 
 ````
 
@@ -308,21 +498,71 @@ use lib 'lib';
 use strict;
 use warnings;
 # load the API package
-use WWW::OpenAPIClient::OpenAIApi;
+use WWW::OpenAPIClient::AssistantsApi;
+use WWW::OpenAPIClient::AudioApi;
+use WWW::OpenAPIClient::ChatApi;
+use WWW::OpenAPIClient::CompletionsApi;
+use WWW::OpenAPIClient::EmbeddingsApi;
+use WWW::OpenAPIClient::FilesApi;
+use WWW::OpenAPIClient::FineTuningApi;
+use WWW::OpenAPIClient::ImagesApi;
+use WWW::OpenAPIClient::ModelsApi;
+use WWW::OpenAPIClient::ModerationsApi;
 
 # load the models
+use WWW::OpenAPIClient::Object::AssistantFileObject;
+use WWW::OpenAPIClient::Object::AssistantObject;
+use WWW::OpenAPIClient::Object::AssistantObjectToolsInner;
+use WWW::OpenAPIClient::Object::AssistantStreamEvent;
+use WWW::OpenAPIClient::Object::AssistantToolsCode;
+use WWW::OpenAPIClient::Object::AssistantToolsFunction;
+use WWW::OpenAPIClient::Object::AssistantToolsRetrieval;
+use WWW::OpenAPIClient::Object::AssistantsApiNamedToolChoice;
+use WWW::OpenAPIClient::Object::AssistantsApiResponseFormat;
+use WWW::OpenAPIClient::Object::AssistantsApiResponseFormatOption;
+use WWW::OpenAPIClient::Object::AssistantsApiToolChoiceOption;
+use WWW::OpenAPIClient::Object::ChatCompletionFunctionCallOption;
 use WWW::OpenAPIClient::Object::ChatCompletionFunctions;
+use WWW::OpenAPIClient::Object::ChatCompletionMessageToolCall;
+use WWW::OpenAPIClient::Object::ChatCompletionMessageToolCallChunk;
+use WWW::OpenAPIClient::Object::ChatCompletionMessageToolCallChunkFunction;
+use WWW::OpenAPIClient::Object::ChatCompletionMessageToolCallFunction;
+use WWW::OpenAPIClient::Object::ChatCompletionNamedToolChoice;
+use WWW::OpenAPIClient::Object::ChatCompletionNamedToolChoiceFunction;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestAssistantMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestAssistantMessageFunctionCall;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestFunctionMessage;
 use WWW::OpenAPIClient::Object::ChatCompletionRequestMessage;
-use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageFunctionCall;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPart;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPartImage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPartImageImageUrl;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPartText;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestSystemMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestToolMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestUserMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRequestUserMessageContent;
 use WWW::OpenAPIClient::Object::ChatCompletionResponseMessage;
+use WWW::OpenAPIClient::Object::ChatCompletionRole;
 use WWW::OpenAPIClient::Object::ChatCompletionStreamResponseDelta;
+use WWW::OpenAPIClient::Object::ChatCompletionStreamResponseDeltaFunctionCall;
+use WWW::OpenAPIClient::Object::ChatCompletionTokenLogprob;
+use WWW::OpenAPIClient::Object::ChatCompletionTokenLogprobTopLogprobsInner;
+use WWW::OpenAPIClient::Object::ChatCompletionTool;
+use WWW::OpenAPIClient::Object::ChatCompletionToolChoiceOption;
+use WWW::OpenAPIClient::Object::CompletionUsage;
+use WWW::OpenAPIClient::Object::CreateAssistantFileRequest;
+use WWW::OpenAPIClient::Object::CreateAssistantRequest;
+use WWW::OpenAPIClient::Object::CreateAssistantRequestModel;
+use WWW::OpenAPIClient::Object::CreateChatCompletionFunctionResponse;
+use WWW::OpenAPIClient::Object::CreateChatCompletionFunctionResponseChoicesInner;
 use WWW::OpenAPIClient::Object::CreateChatCompletionRequest;
 use WWW::OpenAPIClient::Object::CreateChatCompletionRequestFunctionCall;
-use WWW::OpenAPIClient::Object::CreateChatCompletionRequestFunctionCallOneOf;
 use WWW::OpenAPIClient::Object::CreateChatCompletionRequestModel;
+use WWW::OpenAPIClient::Object::CreateChatCompletionRequestResponseFormat;
 use WWW::OpenAPIClient::Object::CreateChatCompletionRequestStop;
 use WWW::OpenAPIClient::Object::CreateChatCompletionResponse;
 use WWW::OpenAPIClient::Object::CreateChatCompletionResponseChoicesInner;
+use WWW::OpenAPIClient::Object::CreateChatCompletionResponseChoicesInnerLogprobs;
 use WWW::OpenAPIClient::Object::CreateChatCompletionStreamResponse;
 use WWW::OpenAPIClient::Object::CreateChatCompletionStreamResponseChoicesInner;
 use WWW::OpenAPIClient::Object::CreateCompletionRequest;
@@ -332,20 +572,24 @@ use WWW::OpenAPIClient::Object::CreateCompletionRequestStop;
 use WWW::OpenAPIClient::Object::CreateCompletionResponse;
 use WWW::OpenAPIClient::Object::CreateCompletionResponseChoicesInner;
 use WWW::OpenAPIClient::Object::CreateCompletionResponseChoicesInnerLogprobs;
-use WWW::OpenAPIClient::Object::CreateCompletionResponseUsage;
-use WWW::OpenAPIClient::Object::CreateEditRequest;
-use WWW::OpenAPIClient::Object::CreateEditRequestModel;
-use WWW::OpenAPIClient::Object::CreateEditResponse;
-use WWW::OpenAPIClient::Object::CreateEditResponseChoicesInner;
 use WWW::OpenAPIClient::Object::CreateEmbeddingRequest;
 use WWW::OpenAPIClient::Object::CreateEmbeddingRequestInput;
 use WWW::OpenAPIClient::Object::CreateEmbeddingRequestModel;
 use WWW::OpenAPIClient::Object::CreateEmbeddingResponse;
-use WWW::OpenAPIClient::Object::CreateEmbeddingResponseDataInner;
 use WWW::OpenAPIClient::Object::CreateEmbeddingResponseUsage;
-use WWW::OpenAPIClient::Object::CreateFineTuneRequest;
-use WWW::OpenAPIClient::Object::CreateFineTuneRequestModel;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequest;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparameters;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparametersBatchSize;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparametersNEpochs;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestIntegrationsInner;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestIntegrationsInnerType;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestIntegrationsInnerWandb;
+use WWW::OpenAPIClient::Object::CreateFineTuningJobRequestModel;
+use WWW::OpenAPIClient::Object::CreateImageEditRequestModel;
 use WWW::OpenAPIClient::Object::CreateImageRequest;
+use WWW::OpenAPIClient::Object::CreateImageRequestModel;
+use WWW::OpenAPIClient::Object::CreateMessageRequest;
 use WWW::OpenAPIClient::Object::CreateModerationRequest;
 use WWW::OpenAPIClient::Object::CreateModerationRequestInput;
 use WWW::OpenAPIClient::Object::CreateModerationRequestModel;
@@ -353,39 +597,176 @@ use WWW::OpenAPIClient::Object::CreateModerationResponse;
 use WWW::OpenAPIClient::Object::CreateModerationResponseResultsInner;
 use WWW::OpenAPIClient::Object::CreateModerationResponseResultsInnerCategories;
 use WWW::OpenAPIClient::Object::CreateModerationResponseResultsInnerCategoryScores;
+use WWW::OpenAPIClient::Object::CreateRunRequest;
+use WWW::OpenAPIClient::Object::CreateRunRequestModel;
+use WWW::OpenAPIClient::Object::CreateSpeechRequest;
+use WWW::OpenAPIClient::Object::CreateSpeechRequestModel;
+use WWW::OpenAPIClient::Object::CreateThreadAndRunRequest;
+use WWW::OpenAPIClient::Object::CreateThreadAndRunRequestToolsInner;
+use WWW::OpenAPIClient::Object::CreateThreadRequest;
+use WWW::OpenAPIClient::Object::CreateTranscription200Response;
 use WWW::OpenAPIClient::Object::CreateTranscriptionRequestModel;
-use WWW::OpenAPIClient::Object::CreateTranscriptionResponse;
-use WWW::OpenAPIClient::Object::CreateTranslationResponse;
+use WWW::OpenAPIClient::Object::CreateTranscriptionResponseJson;
+use WWW::OpenAPIClient::Object::CreateTranscriptionResponseVerboseJson;
+use WWW::OpenAPIClient::Object::CreateTranslation200Response;
+use WWW::OpenAPIClient::Object::CreateTranslationResponseJson;
+use WWW::OpenAPIClient::Object::CreateTranslationResponseVerboseJson;
+use WWW::OpenAPIClient::Object::DeleteAssistantFileResponse;
+use WWW::OpenAPIClient::Object::DeleteAssistantResponse;
 use WWW::OpenAPIClient::Object::DeleteFileResponse;
+use WWW::OpenAPIClient::Object::DeleteMessageResponse;
 use WWW::OpenAPIClient::Object::DeleteModelResponse;
+use WWW::OpenAPIClient::Object::DeleteThreadResponse;
+use WWW::OpenAPIClient::Object::DoneEvent;
+use WWW::OpenAPIClient::Object::Embedding;
 use WWW::OpenAPIClient::Object::Error;
+use WWW::OpenAPIClient::Object::ErrorEvent;
 use WWW::OpenAPIClient::Object::ErrorResponse;
-use WWW::OpenAPIClient::Object::FineTune;
-use WWW::OpenAPIClient::Object::FineTuneEvent;
+use WWW::OpenAPIClient::Object::FineTuningIntegration;
+use WWW::OpenAPIClient::Object::FineTuningJob;
+use WWW::OpenAPIClient::Object::FineTuningJobCheckpoint;
+use WWW::OpenAPIClient::Object::FineTuningJobCheckpointMetrics;
+use WWW::OpenAPIClient::Object::FineTuningJobError;
+use WWW::OpenAPIClient::Object::FineTuningJobEvent;
+use WWW::OpenAPIClient::Object::FineTuningJobHyperparameters;
+use WWW::OpenAPIClient::Object::FineTuningJobHyperparametersNEpochs;
+use WWW::OpenAPIClient::Object::FineTuningJobIntegrationsInner;
+use WWW::OpenAPIClient::Object::FunctionObject;
+use WWW::OpenAPIClient::Object::Image;
 use WWW::OpenAPIClient::Object::ImagesResponse;
-use WWW::OpenAPIClient::Object::ImagesResponseDataInner;
+use WWW::OpenAPIClient::Object::ListAssistantFilesResponse;
+use WWW::OpenAPIClient::Object::ListAssistantsResponse;
 use WWW::OpenAPIClient::Object::ListFilesResponse;
-use WWW::OpenAPIClient::Object::ListFineTuneEventsResponse;
-use WWW::OpenAPIClient::Object::ListFineTunesResponse;
+use WWW::OpenAPIClient::Object::ListFineTuningJobCheckpointsResponse;
+use WWW::OpenAPIClient::Object::ListFineTuningJobEventsResponse;
+use WWW::OpenAPIClient::Object::ListMessageFilesResponse;
+use WWW::OpenAPIClient::Object::ListMessagesResponse;
 use WWW::OpenAPIClient::Object::ListModelsResponse;
+use WWW::OpenAPIClient::Object::ListPaginatedFineTuningJobsResponse;
+use WWW::OpenAPIClient::Object::ListRunStepsResponse;
+use WWW::OpenAPIClient::Object::ListRunsResponse;
+use WWW::OpenAPIClient::Object::ListThreadsResponse;
+use WWW::OpenAPIClient::Object::MessageContentImageFileObject;
+use WWW::OpenAPIClient::Object::MessageContentImageFileObjectImageFile;
+use WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFileCitationObject;
+use WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFileCitationObjectFileCitation;
+use WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFilePathObject;
+use WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFilePathObjectFilePath;
+use WWW::OpenAPIClient::Object::MessageContentTextObject;
+use WWW::OpenAPIClient::Object::MessageContentTextObjectText;
+use WWW::OpenAPIClient::Object::MessageContentTextObjectTextAnnotationsInner;
+use WWW::OpenAPIClient::Object::MessageDeltaContentImageFileObject;
+use WWW::OpenAPIClient::Object::MessageDeltaContentImageFileObjectImageFile;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFileCitationObject;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFilePathObject;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFilePathObjectFilePath;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextObject;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextObjectText;
+use WWW::OpenAPIClient::Object::MessageDeltaContentTextObjectTextAnnotationsInner;
+use WWW::OpenAPIClient::Object::MessageDeltaObject;
+use WWW::OpenAPIClient::Object::MessageDeltaObjectDelta;
+use WWW::OpenAPIClient::Object::MessageDeltaObjectDeltaContentInner;
+use WWW::OpenAPIClient::Object::MessageFileObject;
+use WWW::OpenAPIClient::Object::MessageObject;
+use WWW::OpenAPIClient::Object::MessageObjectContentInner;
+use WWW::OpenAPIClient::Object::MessageObjectIncompleteDetails;
+use WWW::OpenAPIClient::Object::MessageStreamEvent;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf1;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf2;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf3;
+use WWW::OpenAPIClient::Object::MessageStreamEventOneOf4;
 use WWW::OpenAPIClient::Object::Model;
+use WWW::OpenAPIClient::Object::ModifyAssistantRequest;
+use WWW::OpenAPIClient::Object::ModifyMessageRequest;
+use WWW::OpenAPIClient::Object::ModifyRunRequest;
+use WWW::OpenAPIClient::Object::ModifyThreadRequest;
 use WWW::OpenAPIClient::Object::OpenAIFile;
+use WWW::OpenAPIClient::Object::RunCompletionUsage;
+use WWW::OpenAPIClient::Object::RunObject;
+use WWW::OpenAPIClient::Object::RunObjectIncompleteDetails;
+use WWW::OpenAPIClient::Object::RunObjectLastError;
+use WWW::OpenAPIClient::Object::RunObjectRequiredAction;
+use WWW::OpenAPIClient::Object::RunObjectRequiredActionSubmitToolOutputs;
+use WWW::OpenAPIClient::Object::RunStepCompletionUsage;
+use WWW::OpenAPIClient::Object::RunStepDeltaObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaObjectDelta;
+use WWW::OpenAPIClient::Object::RunStepDeltaObjectDeltaStepDetails;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsMessageCreationObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsMessageCreationObjectMessageCreation;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeOutputImageObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsFunctionObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsObject;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsObjectToolCallsInner;
+use WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsRetrievalObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsMessageCreationObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsMessageCreationObjectMessageCreation;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeOutputImageObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeOutputImageObjectImage;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeOutputLogsObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsFunctionObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsFunctionObjectFunction;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsObject;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsObjectToolCallsInner;
+use WWW::OpenAPIClient::Object::RunStepDetailsToolCallsRetrievalObject;
+use WWW::OpenAPIClient::Object::RunStepObject;
+use WWW::OpenAPIClient::Object::RunStepObjectLastError;
+use WWW::OpenAPIClient::Object::RunStepObjectStepDetails;
+use WWW::OpenAPIClient::Object::RunStepStreamEvent;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf1;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf2;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf3;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf4;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf5;
+use WWW::OpenAPIClient::Object::RunStepStreamEventOneOf6;
+use WWW::OpenAPIClient::Object::RunStreamEvent;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf1;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf2;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf3;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf4;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf5;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf6;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf7;
+use WWW::OpenAPIClient::Object::RunStreamEventOneOf8;
+use WWW::OpenAPIClient::Object::RunToolCallObject;
+use WWW::OpenAPIClient::Object::RunToolCallObjectFunction;
+use WWW::OpenAPIClient::Object::SubmitToolOutputsRunRequest;
+use WWW::OpenAPIClient::Object::SubmitToolOutputsRunRequestToolOutputsInner;
+use WWW::OpenAPIClient::Object::ThreadObject;
+use WWW::OpenAPIClient::Object::ThreadStreamEvent;
+use WWW::OpenAPIClient::Object::ThreadStreamEventOneOf;
+use WWW::OpenAPIClient::Object::TranscriptionSegment;
+use WWW::OpenAPIClient::Object::TranscriptionWord;
+use WWW::OpenAPIClient::Object::TruncationObject;
 
 # for displaying the API response data
 use Data::Dumper;
 
 
-my $api_instance = WWW::OpenAPIClient::OpenAIApi->new(
+my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
 );
 
-my $fine_tune_id = ft-AF1WoRqd3aJAHsqc9NY7iL8F; # string | The ID of the fine-tune job to cancel 
+my $thread_id = "thread_id_example"; # string | The ID of the thread to which this run belongs.
+my $run_id = "run_id_example"; # string | The ID of the run to cancel.
 
 eval {
-    my $result = $api_instance->cancel_fine_tune(fine_tune_id => $fine_tune_id);
+    my $result = $api_instance->cancel_run(thread_id => $thread_id, run_id => $run_id);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling OpenAIApi->cancel_fine_tune: $@\n";
+    warn "Exception when calling AssistantsApi->cancel_run: $@\n";
 }
 
 ```
@@ -396,44 +777,114 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OpenAIApi* | [**cancel_fine_tune**](docs/OpenAIApi.md#cancel_fine_tune) | **POST** /fine-tunes/{fine_tune_id}/cancel | Immediately cancel a fine-tune job. 
-*OpenAIApi* | [**create_chat_completion**](docs/OpenAIApi.md#create_chat_completion) | **POST** /chat/completions | Creates a model response for the given chat conversation.
-*OpenAIApi* | [**create_completion**](docs/OpenAIApi.md#create_completion) | **POST** /completions | Creates a completion for the provided prompt and parameters.
-*OpenAIApi* | [**create_edit**](docs/OpenAIApi.md#create_edit) | **POST** /edits | Creates a new edit for the provided input, instruction, and parameters.
-*OpenAIApi* | [**create_embedding**](docs/OpenAIApi.md#create_embedding) | **POST** /embeddings | Creates an embedding vector representing the input text.
-*OpenAIApi* | [**create_file**](docs/OpenAIApi.md#create_file) | **POST** /files | Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
-*OpenAIApi* | [**create_fine_tune**](docs/OpenAIApi.md#create_fine_tune) | **POST** /fine-tunes | Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-*OpenAIApi* | [**create_image**](docs/OpenAIApi.md#create_image) | **POST** /images/generations | Creates an image given a prompt.
-*OpenAIApi* | [**create_image_edit**](docs/OpenAIApi.md#create_image_edit) | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
-*OpenAIApi* | [**create_image_variation**](docs/OpenAIApi.md#create_image_variation) | **POST** /images/variations | Creates a variation of a given image.
-*OpenAIApi* | [**create_moderation**](docs/OpenAIApi.md#create_moderation) | **POST** /moderations | Classifies if text violates OpenAI&#39;s Content Policy
-*OpenAIApi* | [**create_transcription**](docs/OpenAIApi.md#create_transcription) | **POST** /audio/transcriptions | Transcribes audio into the input language.
-*OpenAIApi* | [**create_translation**](docs/OpenAIApi.md#create_translation) | **POST** /audio/translations | Translates audio into English.
-*OpenAIApi* | [**delete_file**](docs/OpenAIApi.md#delete_file) | **DELETE** /files/{file_id} | Delete a file.
-*OpenAIApi* | [**delete_model**](docs/OpenAIApi.md#delete_model) | **DELETE** /models/{model} | Delete a fine-tuned model. You must have the Owner role in your organization.
-*OpenAIApi* | [**download_file**](docs/OpenAIApi.md#download_file) | **GET** /files/{file_id}/content | Returns the contents of the specified file
-*OpenAIApi* | [**list_files**](docs/OpenAIApi.md#list_files) | **GET** /files | Returns a list of files that belong to the user&#39;s organization.
-*OpenAIApi* | [**list_fine_tune_events**](docs/OpenAIApi.md#list_fine_tune_events) | **GET** /fine-tunes/{fine_tune_id}/events | Get fine-grained status updates for a fine-tune job. 
-*OpenAIApi* | [**list_fine_tunes**](docs/OpenAIApi.md#list_fine_tunes) | **GET** /fine-tunes | List your organization&#39;s fine-tuning jobs 
-*OpenAIApi* | [**list_models**](docs/OpenAIApi.md#list_models) | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
-*OpenAIApi* | [**retrieve_file**](docs/OpenAIApi.md#retrieve_file) | **GET** /files/{file_id} | Returns information about a specific file.
-*OpenAIApi* | [**retrieve_fine_tune**](docs/OpenAIApi.md#retrieve_fine_tune) | **GET** /fine-tunes/{fine_tune_id} | Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-*OpenAIApi* | [**retrieve_model**](docs/OpenAIApi.md#retrieve_model) | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+*AssistantsApi* | [**cancel_run**](docs/AssistantsApi.md#cancel_run) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
+*AssistantsApi* | [**create_assistant**](docs/AssistantsApi.md#create_assistant) | **POST** /assistants | Create an assistant with a model and instructions.
+*AssistantsApi* | [**create_assistant_file**](docs/AssistantsApi.md#create_assistant_file) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+*AssistantsApi* | [**create_message**](docs/AssistantsApi.md#create_message) | **POST** /threads/{thread_id}/messages | Create a message.
+*AssistantsApi* | [**create_run**](docs/AssistantsApi.md#create_run) | **POST** /threads/{thread_id}/runs | Create a run.
+*AssistantsApi* | [**create_thread**](docs/AssistantsApi.md#create_thread) | **POST** /threads | Create a thread.
+*AssistantsApi* | [**create_thread_and_run**](docs/AssistantsApi.md#create_thread_and_run) | **POST** /threads/runs | Create a thread and run it in one request.
+*AssistantsApi* | [**delete_assistant**](docs/AssistantsApi.md#delete_assistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
+*AssistantsApi* | [**delete_assistant_file**](docs/AssistantsApi.md#delete_assistant_file) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+*AssistantsApi* | [**delete_thread**](docs/AssistantsApi.md#delete_thread) | **DELETE** /threads/{thread_id} | Delete a thread.
+*AssistantsApi* | [**get_assistant**](docs/AssistantsApi.md#get_assistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
+*AssistantsApi* | [**get_assistant_file**](docs/AssistantsApi.md#get_assistant_file) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
+*AssistantsApi* | [**get_message**](docs/AssistantsApi.md#get_message) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
+*AssistantsApi* | [**get_message_file**](docs/AssistantsApi.md#get_message_file) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
+*AssistantsApi* | [**get_run**](docs/AssistantsApi.md#get_run) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
+*AssistantsApi* | [**get_run_step**](docs/AssistantsApi.md#get_run_step) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
+*AssistantsApi* | [**get_thread**](docs/AssistantsApi.md#get_thread) | **GET** /threads/{thread_id} | Retrieves a thread.
+*AssistantsApi* | [**list_assistant_files**](docs/AssistantsApi.md#list_assistant_files) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
+*AssistantsApi* | [**list_assistants**](docs/AssistantsApi.md#list_assistants) | **GET** /assistants | Returns a list of assistants.
+*AssistantsApi* | [**list_message_files**](docs/AssistantsApi.md#list_message_files) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
+*AssistantsApi* | [**list_messages**](docs/AssistantsApi.md#list_messages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
+*AssistantsApi* | [**list_run_steps**](docs/AssistantsApi.md#list_run_steps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
+*AssistantsApi* | [**list_runs**](docs/AssistantsApi.md#list_runs) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
+*AssistantsApi* | [**modify_assistant**](docs/AssistantsApi.md#modify_assistant) | **POST** /assistants/{assistant_id} | Modifies an assistant.
+*AssistantsApi* | [**modify_message**](docs/AssistantsApi.md#modify_message) | **POST** /threads/{thread_id}/messages/{message_id} | Modifies a message.
+*AssistantsApi* | [**modify_run**](docs/AssistantsApi.md#modify_run) | **POST** /threads/{thread_id}/runs/{run_id} | Modifies a run.
+*AssistantsApi* | [**modify_thread**](docs/AssistantsApi.md#modify_thread) | **POST** /threads/{thread_id} | Modifies a thread.
+*AssistantsApi* | [**submit_tool_ouputs_to_run**](docs/AssistantsApi.md#submit_tool_ouputs_to_run) | **POST** /threads/{thread_id}/runs/{run_id}/submit_tool_outputs | When a run has the &#x60;status: \&quot;requires_action\&quot;&#x60; and &#x60;required_action.type&#x60; is &#x60;submit_tool_outputs&#x60;, this endpoint can be used to submit the outputs from the tool calls once they&#39;re all completed. All outputs must be submitted in a single request. 
+*AudioApi* | [**create_speech**](docs/AudioApi.md#create_speech) | **POST** /audio/speech | Generates audio from the input text.
+*AudioApi* | [**create_transcription**](docs/AudioApi.md#create_transcription) | **POST** /audio/transcriptions | Transcribes audio into the input language.
+*AudioApi* | [**create_translation**](docs/AudioApi.md#create_translation) | **POST** /audio/translations | Translates audio into English.
+*ChatApi* | [**create_chat_completion**](docs/ChatApi.md#create_chat_completion) | **POST** /chat/completions | Creates a model response for the given chat conversation.
+*CompletionsApi* | [**create_completion**](docs/CompletionsApi.md#create_completion) | **POST** /completions | Creates a completion for the provided prompt and parameters.
+*EmbeddingsApi* | [**create_embedding**](docs/EmbeddingsApi.md#create_embedding) | **POST** /embeddings | Creates an embedding vector representing the input text.
+*FilesApi* | [**create_file**](docs/FilesApi.md#create_file) | **POST** /files | Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+*FilesApi* | [**delete_file**](docs/FilesApi.md#delete_file) | **DELETE** /files/{file_id} | Delete a file.
+*FilesApi* | [**download_file**](docs/FilesApi.md#download_file) | **GET** /files/{file_id}/content | Returns the contents of the specified file.
+*FilesApi* | [**list_files**](docs/FilesApi.md#list_files) | **GET** /files | Returns a list of files that belong to the user&#39;s organization.
+*FilesApi* | [**retrieve_file**](docs/FilesApi.md#retrieve_file) | **GET** /files/{file_id} | Returns information about a specific file.
+*FineTuningApi* | [**cancel_fine_tuning_job**](docs/FineTuningApi.md#cancel_fine_tuning_job) | **POST** /fine_tuning/jobs/{fine_tuning_job_id}/cancel | Immediately cancel a fine-tune job. 
+*FineTuningApi* | [**create_fine_tuning_job**](docs/FineTuningApi.md#create_fine_tuning_job) | **POST** /fine_tuning/jobs | Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+*FineTuningApi* | [**list_fine_tuning_events**](docs/FineTuningApi.md#list_fine_tuning_events) | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/events | Get status updates for a fine-tuning job. 
+*FineTuningApi* | [**list_fine_tuning_job_checkpoints**](docs/FineTuningApi.md#list_fine_tuning_job_checkpoints) | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/checkpoints | List checkpoints for a fine-tuning job. 
+*FineTuningApi* | [**list_paginated_fine_tuning_jobs**](docs/FineTuningApi.md#list_paginated_fine_tuning_jobs) | **GET** /fine_tuning/jobs | List your organization&#39;s fine-tuning jobs 
+*FineTuningApi* | [**retrieve_fine_tuning_job**](docs/FineTuningApi.md#retrieve_fine_tuning_job) | **GET** /fine_tuning/jobs/{fine_tuning_job_id} | Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+*ImagesApi* | [**create_image**](docs/ImagesApi.md#create_image) | **POST** /images/generations | Creates an image given a prompt.
+*ImagesApi* | [**create_image_edit**](docs/ImagesApi.md#create_image_edit) | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
+*ImagesApi* | [**create_image_variation**](docs/ImagesApi.md#create_image_variation) | **POST** /images/variations | Creates a variation of a given image.
+*ModelsApi* | [**delete_model**](docs/ModelsApi.md#delete_model) | **DELETE** /models/{model} | Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
+*ModelsApi* | [**list_models**](docs/ModelsApi.md#list_models) | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
+*ModelsApi* | [**retrieve_model**](docs/ModelsApi.md#retrieve_model) | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+*ModerationsApi* | [**create_moderation**](docs/ModerationsApi.md#create_moderation) | **POST** /moderations | Classifies if text is potentially harmful.
 
 
 # DOCUMENTATION FOR MODELS
+ - [WWW::OpenAPIClient::Object::AssistantFileObject](docs/AssistantFileObject.md)
+ - [WWW::OpenAPIClient::Object::AssistantObject](docs/AssistantObject.md)
+ - [WWW::OpenAPIClient::Object::AssistantObjectToolsInner](docs/AssistantObjectToolsInner.md)
+ - [WWW::OpenAPIClient::Object::AssistantStreamEvent](docs/AssistantStreamEvent.md)
+ - [WWW::OpenAPIClient::Object::AssistantToolsCode](docs/AssistantToolsCode.md)
+ - [WWW::OpenAPIClient::Object::AssistantToolsFunction](docs/AssistantToolsFunction.md)
+ - [WWW::OpenAPIClient::Object::AssistantToolsRetrieval](docs/AssistantToolsRetrieval.md)
+ - [WWW::OpenAPIClient::Object::AssistantsApiNamedToolChoice](docs/AssistantsApiNamedToolChoice.md)
+ - [WWW::OpenAPIClient::Object::AssistantsApiResponseFormat](docs/AssistantsApiResponseFormat.md)
+ - [WWW::OpenAPIClient::Object::AssistantsApiResponseFormatOption](docs/AssistantsApiResponseFormatOption.md)
+ - [WWW::OpenAPIClient::Object::AssistantsApiToolChoiceOption](docs/AssistantsApiToolChoiceOption.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionFunctionCallOption](docs/ChatCompletionFunctionCallOption.md)
  - [WWW::OpenAPIClient::Object::ChatCompletionFunctions](docs/ChatCompletionFunctions.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionMessageToolCall](docs/ChatCompletionMessageToolCall.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionMessageToolCallChunk](docs/ChatCompletionMessageToolCallChunk.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionMessageToolCallChunkFunction](docs/ChatCompletionMessageToolCallChunkFunction.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionMessageToolCallFunction](docs/ChatCompletionMessageToolCallFunction.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionNamedToolChoice](docs/ChatCompletionNamedToolChoice.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionNamedToolChoiceFunction](docs/ChatCompletionNamedToolChoiceFunction.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestAssistantMessage](docs/ChatCompletionRequestAssistantMessage.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestAssistantMessageFunctionCall](docs/ChatCompletionRequestAssistantMessageFunctionCall.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestFunctionMessage](docs/ChatCompletionRequestFunctionMessage.md)
  - [WWW::OpenAPIClient::Object::ChatCompletionRequestMessage](docs/ChatCompletionRequestMessage.md)
- - [WWW::OpenAPIClient::Object::ChatCompletionRequestMessageFunctionCall](docs/ChatCompletionRequestMessageFunctionCall.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPart](docs/ChatCompletionRequestMessageContentPart.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPartImage](docs/ChatCompletionRequestMessageContentPartImage.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPartImageImageUrl](docs/ChatCompletionRequestMessageContentPartImageImageUrl.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestMessageContentPartText](docs/ChatCompletionRequestMessageContentPartText.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestSystemMessage](docs/ChatCompletionRequestSystemMessage.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestToolMessage](docs/ChatCompletionRequestToolMessage.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestUserMessage](docs/ChatCompletionRequestUserMessage.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRequestUserMessageContent](docs/ChatCompletionRequestUserMessageContent.md)
  - [WWW::OpenAPIClient::Object::ChatCompletionResponseMessage](docs/ChatCompletionResponseMessage.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionRole](docs/ChatCompletionRole.md)
  - [WWW::OpenAPIClient::Object::ChatCompletionStreamResponseDelta](docs/ChatCompletionStreamResponseDelta.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionStreamResponseDeltaFunctionCall](docs/ChatCompletionStreamResponseDeltaFunctionCall.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionTokenLogprob](docs/ChatCompletionTokenLogprob.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionTokenLogprobTopLogprobsInner](docs/ChatCompletionTokenLogprobTopLogprobsInner.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionTool](docs/ChatCompletionTool.md)
+ - [WWW::OpenAPIClient::Object::ChatCompletionToolChoiceOption](docs/ChatCompletionToolChoiceOption.md)
+ - [WWW::OpenAPIClient::Object::CompletionUsage](docs/CompletionUsage.md)
+ - [WWW::OpenAPIClient::Object::CreateAssistantFileRequest](docs/CreateAssistantFileRequest.md)
+ - [WWW::OpenAPIClient::Object::CreateAssistantRequest](docs/CreateAssistantRequest.md)
+ - [WWW::OpenAPIClient::Object::CreateAssistantRequestModel](docs/CreateAssistantRequestModel.md)
+ - [WWW::OpenAPIClient::Object::CreateChatCompletionFunctionResponse](docs/CreateChatCompletionFunctionResponse.md)
+ - [WWW::OpenAPIClient::Object::CreateChatCompletionFunctionResponseChoicesInner](docs/CreateChatCompletionFunctionResponseChoicesInner.md)
  - [WWW::OpenAPIClient::Object::CreateChatCompletionRequest](docs/CreateChatCompletionRequest.md)
  - [WWW::OpenAPIClient::Object::CreateChatCompletionRequestFunctionCall](docs/CreateChatCompletionRequestFunctionCall.md)
- - [WWW::OpenAPIClient::Object::CreateChatCompletionRequestFunctionCallOneOf](docs/CreateChatCompletionRequestFunctionCallOneOf.md)
  - [WWW::OpenAPIClient::Object::CreateChatCompletionRequestModel](docs/CreateChatCompletionRequestModel.md)
+ - [WWW::OpenAPIClient::Object::CreateChatCompletionRequestResponseFormat](docs/CreateChatCompletionRequestResponseFormat.md)
  - [WWW::OpenAPIClient::Object::CreateChatCompletionRequestStop](docs/CreateChatCompletionRequestStop.md)
  - [WWW::OpenAPIClient::Object::CreateChatCompletionResponse](docs/CreateChatCompletionResponse.md)
  - [WWW::OpenAPIClient::Object::CreateChatCompletionResponseChoicesInner](docs/CreateChatCompletionResponseChoicesInner.md)
+ - [WWW::OpenAPIClient::Object::CreateChatCompletionResponseChoicesInnerLogprobs](docs/CreateChatCompletionResponseChoicesInnerLogprobs.md)
  - [WWW::OpenAPIClient::Object::CreateChatCompletionStreamResponse](docs/CreateChatCompletionStreamResponse.md)
  - [WWW::OpenAPIClient::Object::CreateChatCompletionStreamResponseChoicesInner](docs/CreateChatCompletionStreamResponseChoicesInner.md)
  - [WWW::OpenAPIClient::Object::CreateCompletionRequest](docs/CreateCompletionRequest.md)
@@ -443,20 +894,24 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::CreateCompletionResponse](docs/CreateCompletionResponse.md)
  - [WWW::OpenAPIClient::Object::CreateCompletionResponseChoicesInner](docs/CreateCompletionResponseChoicesInner.md)
  - [WWW::OpenAPIClient::Object::CreateCompletionResponseChoicesInnerLogprobs](docs/CreateCompletionResponseChoicesInnerLogprobs.md)
- - [WWW::OpenAPIClient::Object::CreateCompletionResponseUsage](docs/CreateCompletionResponseUsage.md)
- - [WWW::OpenAPIClient::Object::CreateEditRequest](docs/CreateEditRequest.md)
- - [WWW::OpenAPIClient::Object::CreateEditRequestModel](docs/CreateEditRequestModel.md)
- - [WWW::OpenAPIClient::Object::CreateEditResponse](docs/CreateEditResponse.md)
- - [WWW::OpenAPIClient::Object::CreateEditResponseChoicesInner](docs/CreateEditResponseChoicesInner.md)
  - [WWW::OpenAPIClient::Object::CreateEmbeddingRequest](docs/CreateEmbeddingRequest.md)
  - [WWW::OpenAPIClient::Object::CreateEmbeddingRequestInput](docs/CreateEmbeddingRequestInput.md)
  - [WWW::OpenAPIClient::Object::CreateEmbeddingRequestModel](docs/CreateEmbeddingRequestModel.md)
  - [WWW::OpenAPIClient::Object::CreateEmbeddingResponse](docs/CreateEmbeddingResponse.md)
- - [WWW::OpenAPIClient::Object::CreateEmbeddingResponseDataInner](docs/CreateEmbeddingResponseDataInner.md)
  - [WWW::OpenAPIClient::Object::CreateEmbeddingResponseUsage](docs/CreateEmbeddingResponseUsage.md)
- - [WWW::OpenAPIClient::Object::CreateFineTuneRequest](docs/CreateFineTuneRequest.md)
- - [WWW::OpenAPIClient::Object::CreateFineTuneRequestModel](docs/CreateFineTuneRequestModel.md)
+ - [WWW::OpenAPIClient::Object::CreateFineTuningJobRequest](docs/CreateFineTuningJobRequest.md)
+ - [WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparameters](docs/CreateFineTuningJobRequestHyperparameters.md)
+ - [WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparametersBatchSize](docs/CreateFineTuningJobRequestHyperparametersBatchSize.md)
+ - [WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparametersLearningRateMultiplier](docs/CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.md)
+ - [WWW::OpenAPIClient::Object::CreateFineTuningJobRequestHyperparametersNEpochs](docs/CreateFineTuningJobRequestHyperparametersNEpochs.md)
+ - [WWW::OpenAPIClient::Object::CreateFineTuningJobRequestIntegrationsInner](docs/CreateFineTuningJobRequestIntegrationsInner.md)
+ - [WWW::OpenAPIClient::Object::CreateFineTuningJobRequestIntegrationsInnerType](docs/CreateFineTuningJobRequestIntegrationsInnerType.md)
+ - [WWW::OpenAPIClient::Object::CreateFineTuningJobRequestIntegrationsInnerWandb](docs/CreateFineTuningJobRequestIntegrationsInnerWandb.md)
+ - [WWW::OpenAPIClient::Object::CreateFineTuningJobRequestModel](docs/CreateFineTuningJobRequestModel.md)
+ - [WWW::OpenAPIClient::Object::CreateImageEditRequestModel](docs/CreateImageEditRequestModel.md)
  - [WWW::OpenAPIClient::Object::CreateImageRequest](docs/CreateImageRequest.md)
+ - [WWW::OpenAPIClient::Object::CreateImageRequestModel](docs/CreateImageRequestModel.md)
+ - [WWW::OpenAPIClient::Object::CreateMessageRequest](docs/CreateMessageRequest.md)
  - [WWW::OpenAPIClient::Object::CreateModerationRequest](docs/CreateModerationRequest.md)
  - [WWW::OpenAPIClient::Object::CreateModerationRequestInput](docs/CreateModerationRequestInput.md)
  - [WWW::OpenAPIClient::Object::CreateModerationRequestModel](docs/CreateModerationRequestModel.md)
@@ -464,25 +919,165 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::CreateModerationResponseResultsInner](docs/CreateModerationResponseResultsInner.md)
  - [WWW::OpenAPIClient::Object::CreateModerationResponseResultsInnerCategories](docs/CreateModerationResponseResultsInnerCategories.md)
  - [WWW::OpenAPIClient::Object::CreateModerationResponseResultsInnerCategoryScores](docs/CreateModerationResponseResultsInnerCategoryScores.md)
+ - [WWW::OpenAPIClient::Object::CreateRunRequest](docs/CreateRunRequest.md)
+ - [WWW::OpenAPIClient::Object::CreateRunRequestModel](docs/CreateRunRequestModel.md)
+ - [WWW::OpenAPIClient::Object::CreateSpeechRequest](docs/CreateSpeechRequest.md)
+ - [WWW::OpenAPIClient::Object::CreateSpeechRequestModel](docs/CreateSpeechRequestModel.md)
+ - [WWW::OpenAPIClient::Object::CreateThreadAndRunRequest](docs/CreateThreadAndRunRequest.md)
+ - [WWW::OpenAPIClient::Object::CreateThreadAndRunRequestToolsInner](docs/CreateThreadAndRunRequestToolsInner.md)
+ - [WWW::OpenAPIClient::Object::CreateThreadRequest](docs/CreateThreadRequest.md)
+ - [WWW::OpenAPIClient::Object::CreateTranscription200Response](docs/CreateTranscription200Response.md)
  - [WWW::OpenAPIClient::Object::CreateTranscriptionRequestModel](docs/CreateTranscriptionRequestModel.md)
- - [WWW::OpenAPIClient::Object::CreateTranscriptionResponse](docs/CreateTranscriptionResponse.md)
- - [WWW::OpenAPIClient::Object::CreateTranslationResponse](docs/CreateTranslationResponse.md)
+ - [WWW::OpenAPIClient::Object::CreateTranscriptionResponseJson](docs/CreateTranscriptionResponseJson.md)
+ - [WWW::OpenAPIClient::Object::CreateTranscriptionResponseVerboseJson](docs/CreateTranscriptionResponseVerboseJson.md)
+ - [WWW::OpenAPIClient::Object::CreateTranslation200Response](docs/CreateTranslation200Response.md)
+ - [WWW::OpenAPIClient::Object::CreateTranslationResponseJson](docs/CreateTranslationResponseJson.md)
+ - [WWW::OpenAPIClient::Object::CreateTranslationResponseVerboseJson](docs/CreateTranslationResponseVerboseJson.md)
+ - [WWW::OpenAPIClient::Object::DeleteAssistantFileResponse](docs/DeleteAssistantFileResponse.md)
+ - [WWW::OpenAPIClient::Object::DeleteAssistantResponse](docs/DeleteAssistantResponse.md)
  - [WWW::OpenAPIClient::Object::DeleteFileResponse](docs/DeleteFileResponse.md)
+ - [WWW::OpenAPIClient::Object::DeleteMessageResponse](docs/DeleteMessageResponse.md)
  - [WWW::OpenAPIClient::Object::DeleteModelResponse](docs/DeleteModelResponse.md)
+ - [WWW::OpenAPIClient::Object::DeleteThreadResponse](docs/DeleteThreadResponse.md)
+ - [WWW::OpenAPIClient::Object::DoneEvent](docs/DoneEvent.md)
+ - [WWW::OpenAPIClient::Object::Embedding](docs/Embedding.md)
  - [WWW::OpenAPIClient::Object::Error](docs/Error.md)
+ - [WWW::OpenAPIClient::Object::ErrorEvent](docs/ErrorEvent.md)
  - [WWW::OpenAPIClient::Object::ErrorResponse](docs/ErrorResponse.md)
- - [WWW::OpenAPIClient::Object::FineTune](docs/FineTune.md)
- - [WWW::OpenAPIClient::Object::FineTuneEvent](docs/FineTuneEvent.md)
+ - [WWW::OpenAPIClient::Object::FineTuningIntegration](docs/FineTuningIntegration.md)
+ - [WWW::OpenAPIClient::Object::FineTuningJob](docs/FineTuningJob.md)
+ - [WWW::OpenAPIClient::Object::FineTuningJobCheckpoint](docs/FineTuningJobCheckpoint.md)
+ - [WWW::OpenAPIClient::Object::FineTuningJobCheckpointMetrics](docs/FineTuningJobCheckpointMetrics.md)
+ - [WWW::OpenAPIClient::Object::FineTuningJobError](docs/FineTuningJobError.md)
+ - [WWW::OpenAPIClient::Object::FineTuningJobEvent](docs/FineTuningJobEvent.md)
+ - [WWW::OpenAPIClient::Object::FineTuningJobHyperparameters](docs/FineTuningJobHyperparameters.md)
+ - [WWW::OpenAPIClient::Object::FineTuningJobHyperparametersNEpochs](docs/FineTuningJobHyperparametersNEpochs.md)
+ - [WWW::OpenAPIClient::Object::FineTuningJobIntegrationsInner](docs/FineTuningJobIntegrationsInner.md)
+ - [WWW::OpenAPIClient::Object::FunctionObject](docs/FunctionObject.md)
+ - [WWW::OpenAPIClient::Object::Image](docs/Image.md)
  - [WWW::OpenAPIClient::Object::ImagesResponse](docs/ImagesResponse.md)
- - [WWW::OpenAPIClient::Object::ImagesResponseDataInner](docs/ImagesResponseDataInner.md)
+ - [WWW::OpenAPIClient::Object::ListAssistantFilesResponse](docs/ListAssistantFilesResponse.md)
+ - [WWW::OpenAPIClient::Object::ListAssistantsResponse](docs/ListAssistantsResponse.md)
  - [WWW::OpenAPIClient::Object::ListFilesResponse](docs/ListFilesResponse.md)
- - [WWW::OpenAPIClient::Object::ListFineTuneEventsResponse](docs/ListFineTuneEventsResponse.md)
- - [WWW::OpenAPIClient::Object::ListFineTunesResponse](docs/ListFineTunesResponse.md)
+ - [WWW::OpenAPIClient::Object::ListFineTuningJobCheckpointsResponse](docs/ListFineTuningJobCheckpointsResponse.md)
+ - [WWW::OpenAPIClient::Object::ListFineTuningJobEventsResponse](docs/ListFineTuningJobEventsResponse.md)
+ - [WWW::OpenAPIClient::Object::ListMessageFilesResponse](docs/ListMessageFilesResponse.md)
+ - [WWW::OpenAPIClient::Object::ListMessagesResponse](docs/ListMessagesResponse.md)
  - [WWW::OpenAPIClient::Object::ListModelsResponse](docs/ListModelsResponse.md)
+ - [WWW::OpenAPIClient::Object::ListPaginatedFineTuningJobsResponse](docs/ListPaginatedFineTuningJobsResponse.md)
+ - [WWW::OpenAPIClient::Object::ListRunStepsResponse](docs/ListRunStepsResponse.md)
+ - [WWW::OpenAPIClient::Object::ListRunsResponse](docs/ListRunsResponse.md)
+ - [WWW::OpenAPIClient::Object::ListThreadsResponse](docs/ListThreadsResponse.md)
+ - [WWW::OpenAPIClient::Object::MessageContentImageFileObject](docs/MessageContentImageFileObject.md)
+ - [WWW::OpenAPIClient::Object::MessageContentImageFileObjectImageFile](docs/MessageContentImageFileObjectImageFile.md)
+ - [WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFileCitationObject](docs/MessageContentTextAnnotationsFileCitationObject.md)
+ - [WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFileCitationObjectFileCitation](docs/MessageContentTextAnnotationsFileCitationObjectFileCitation.md)
+ - [WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFilePathObject](docs/MessageContentTextAnnotationsFilePathObject.md)
+ - [WWW::OpenAPIClient::Object::MessageContentTextAnnotationsFilePathObjectFilePath](docs/MessageContentTextAnnotationsFilePathObjectFilePath.md)
+ - [WWW::OpenAPIClient::Object::MessageContentTextObject](docs/MessageContentTextObject.md)
+ - [WWW::OpenAPIClient::Object::MessageContentTextObjectText](docs/MessageContentTextObjectText.md)
+ - [WWW::OpenAPIClient::Object::MessageContentTextObjectTextAnnotationsInner](docs/MessageContentTextObjectTextAnnotationsInner.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaContentImageFileObject](docs/MessageDeltaContentImageFileObject.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaContentImageFileObjectImageFile](docs/MessageDeltaContentImageFileObjectImageFile.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFileCitationObject](docs/MessageDeltaContentTextAnnotationsFileCitationObject.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation](docs/MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFilePathObject](docs/MessageDeltaContentTextAnnotationsFilePathObject.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaContentTextAnnotationsFilePathObjectFilePath](docs/MessageDeltaContentTextAnnotationsFilePathObjectFilePath.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaContentTextObject](docs/MessageDeltaContentTextObject.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaContentTextObjectText](docs/MessageDeltaContentTextObjectText.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaContentTextObjectTextAnnotationsInner](docs/MessageDeltaContentTextObjectTextAnnotationsInner.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaObject](docs/MessageDeltaObject.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaObjectDelta](docs/MessageDeltaObjectDelta.md)
+ - [WWW::OpenAPIClient::Object::MessageDeltaObjectDeltaContentInner](docs/MessageDeltaObjectDeltaContentInner.md)
+ - [WWW::OpenAPIClient::Object::MessageFileObject](docs/MessageFileObject.md)
+ - [WWW::OpenAPIClient::Object::MessageObject](docs/MessageObject.md)
+ - [WWW::OpenAPIClient::Object::MessageObjectContentInner](docs/MessageObjectContentInner.md)
+ - [WWW::OpenAPIClient::Object::MessageObjectIncompleteDetails](docs/MessageObjectIncompleteDetails.md)
+ - [WWW::OpenAPIClient::Object::MessageStreamEvent](docs/MessageStreamEvent.md)
+ - [WWW::OpenAPIClient::Object::MessageStreamEventOneOf](docs/MessageStreamEventOneOf.md)
+ - [WWW::OpenAPIClient::Object::MessageStreamEventOneOf1](docs/MessageStreamEventOneOf1.md)
+ - [WWW::OpenAPIClient::Object::MessageStreamEventOneOf2](docs/MessageStreamEventOneOf2.md)
+ - [WWW::OpenAPIClient::Object::MessageStreamEventOneOf3](docs/MessageStreamEventOneOf3.md)
+ - [WWW::OpenAPIClient::Object::MessageStreamEventOneOf4](docs/MessageStreamEventOneOf4.md)
  - [WWW::OpenAPIClient::Object::Model](docs/Model.md)
+ - [WWW::OpenAPIClient::Object::ModifyAssistantRequest](docs/ModifyAssistantRequest.md)
+ - [WWW::OpenAPIClient::Object::ModifyMessageRequest](docs/ModifyMessageRequest.md)
+ - [WWW::OpenAPIClient::Object::ModifyRunRequest](docs/ModifyRunRequest.md)
+ - [WWW::OpenAPIClient::Object::ModifyThreadRequest](docs/ModifyThreadRequest.md)
  - [WWW::OpenAPIClient::Object::OpenAIFile](docs/OpenAIFile.md)
+ - [WWW::OpenAPIClient::Object::RunCompletionUsage](docs/RunCompletionUsage.md)
+ - [WWW::OpenAPIClient::Object::RunObject](docs/RunObject.md)
+ - [WWW::OpenAPIClient::Object::RunObjectIncompleteDetails](docs/RunObjectIncompleteDetails.md)
+ - [WWW::OpenAPIClient::Object::RunObjectLastError](docs/RunObjectLastError.md)
+ - [WWW::OpenAPIClient::Object::RunObjectRequiredAction](docs/RunObjectRequiredAction.md)
+ - [WWW::OpenAPIClient::Object::RunObjectRequiredActionSubmitToolOutputs](docs/RunObjectRequiredActionSubmitToolOutputs.md)
+ - [WWW::OpenAPIClient::Object::RunStepCompletionUsage](docs/RunStepCompletionUsage.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaObject](docs/RunStepDeltaObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaObjectDelta](docs/RunStepDeltaObjectDelta.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaObjectDeltaStepDetails](docs/RunStepDeltaObjectDeltaStepDetails.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsMessageCreationObject](docs/RunStepDeltaStepDetailsMessageCreationObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsMessageCreationObjectMessageCreation](docs/RunStepDeltaStepDetailsMessageCreationObjectMessageCreation.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeObject](docs/RunStepDeltaStepDetailsToolCallsCodeObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter](docs/RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner](docs/RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeOutputImageObject](docs/RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage](docs/RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject](docs/RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsFunctionObject](docs/RunStepDeltaStepDetailsToolCallsFunctionObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsFunctionObjectFunction](docs/RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsObject](docs/RunStepDeltaStepDetailsToolCallsObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsObjectToolCallsInner](docs/RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.md)
+ - [WWW::OpenAPIClient::Object::RunStepDeltaStepDetailsToolCallsRetrievalObject](docs/RunStepDeltaStepDetailsToolCallsRetrievalObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsMessageCreationObject](docs/RunStepDetailsMessageCreationObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsMessageCreationObjectMessageCreation](docs/RunStepDetailsMessageCreationObjectMessageCreation.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeObject](docs/RunStepDetailsToolCallsCodeObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeObjectCodeInterpreter](docs/RunStepDetailsToolCallsCodeObjectCodeInterpreter.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner](docs/RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeOutputImageObject](docs/RunStepDetailsToolCallsCodeOutputImageObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeOutputImageObjectImage](docs/RunStepDetailsToolCallsCodeOutputImageObjectImage.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsCodeOutputLogsObject](docs/RunStepDetailsToolCallsCodeOutputLogsObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsFunctionObject](docs/RunStepDetailsToolCallsFunctionObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsFunctionObjectFunction](docs/RunStepDetailsToolCallsFunctionObjectFunction.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsObject](docs/RunStepDetailsToolCallsObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsObjectToolCallsInner](docs/RunStepDetailsToolCallsObjectToolCallsInner.md)
+ - [WWW::OpenAPIClient::Object::RunStepDetailsToolCallsRetrievalObject](docs/RunStepDetailsToolCallsRetrievalObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepObject](docs/RunStepObject.md)
+ - [WWW::OpenAPIClient::Object::RunStepObjectLastError](docs/RunStepObjectLastError.md)
+ - [WWW::OpenAPIClient::Object::RunStepObjectStepDetails](docs/RunStepObjectStepDetails.md)
+ - [WWW::OpenAPIClient::Object::RunStepStreamEvent](docs/RunStepStreamEvent.md)
+ - [WWW::OpenAPIClient::Object::RunStepStreamEventOneOf](docs/RunStepStreamEventOneOf.md)
+ - [WWW::OpenAPIClient::Object::RunStepStreamEventOneOf1](docs/RunStepStreamEventOneOf1.md)
+ - [WWW::OpenAPIClient::Object::RunStepStreamEventOneOf2](docs/RunStepStreamEventOneOf2.md)
+ - [WWW::OpenAPIClient::Object::RunStepStreamEventOneOf3](docs/RunStepStreamEventOneOf3.md)
+ - [WWW::OpenAPIClient::Object::RunStepStreamEventOneOf4](docs/RunStepStreamEventOneOf4.md)
+ - [WWW::OpenAPIClient::Object::RunStepStreamEventOneOf5](docs/RunStepStreamEventOneOf5.md)
+ - [WWW::OpenAPIClient::Object::RunStepStreamEventOneOf6](docs/RunStepStreamEventOneOf6.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEvent](docs/RunStreamEvent.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEventOneOf](docs/RunStreamEventOneOf.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEventOneOf1](docs/RunStreamEventOneOf1.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEventOneOf2](docs/RunStreamEventOneOf2.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEventOneOf3](docs/RunStreamEventOneOf3.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEventOneOf4](docs/RunStreamEventOneOf4.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEventOneOf5](docs/RunStreamEventOneOf5.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEventOneOf6](docs/RunStreamEventOneOf6.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEventOneOf7](docs/RunStreamEventOneOf7.md)
+ - [WWW::OpenAPIClient::Object::RunStreamEventOneOf8](docs/RunStreamEventOneOf8.md)
+ - [WWW::OpenAPIClient::Object::RunToolCallObject](docs/RunToolCallObject.md)
+ - [WWW::OpenAPIClient::Object::RunToolCallObjectFunction](docs/RunToolCallObjectFunction.md)
+ - [WWW::OpenAPIClient::Object::SubmitToolOutputsRunRequest](docs/SubmitToolOutputsRunRequest.md)
+ - [WWW::OpenAPIClient::Object::SubmitToolOutputsRunRequestToolOutputsInner](docs/SubmitToolOutputsRunRequestToolOutputsInner.md)
+ - [WWW::OpenAPIClient::Object::ThreadObject](docs/ThreadObject.md)
+ - [WWW::OpenAPIClient::Object::ThreadStreamEvent](docs/ThreadStreamEvent.md)
+ - [WWW::OpenAPIClient::Object::ThreadStreamEventOneOf](docs/ThreadStreamEventOneOf.md)
+ - [WWW::OpenAPIClient::Object::TranscriptionSegment](docs/TranscriptionSegment.md)
+ - [WWW::OpenAPIClient::Object::TranscriptionWord](docs/TranscriptionWord.md)
+ - [WWW::OpenAPIClient::Object::TruncationObject](docs/TruncationObject.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION
-Endpoints do not require authorization.
+
+Authentication schemes defined for the API:
+## ApiKeyAuth
+
+- **Type**: HTTP Bearer Token authentication
 

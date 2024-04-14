@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -90,18 +90,18 @@ class DeleteModelResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "object"
+     * Test attribute "deleted"
      */
-    public function testPropertyObject()
+    public function testPropertyDeleted()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "deleted"
+     * Test attribute "object"
      */
-    public function testPropertyDeleted()
+    public function testPropertyObject()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

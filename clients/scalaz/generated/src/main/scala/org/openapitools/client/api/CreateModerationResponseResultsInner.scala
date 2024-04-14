@@ -12,6 +12,7 @@ import org.joda.time.DateTime
 import CreateModerationResponseResultsInner._
 
 case class CreateModerationResponseResultsInner (
+  /* Whether any of the below categories are flagged. */
   flagged: Boolean,
 categories: CreateModerationResponseResultsInnerCategories,
 categoryScores: CreateModerationResponseResultsInnerCategoryScores)

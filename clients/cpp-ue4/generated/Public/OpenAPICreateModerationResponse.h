@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ namespace OpenAPI
 /*
  * OpenAPICreateModerationResponse
  *
- * 
+ * Represents if a given text input is potentially harmful.
  */
 class OPENAPI_API OpenAPICreateModerationResponse : public Model
 {
@@ -30,8 +30,11 @@ public:
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 	void WriteJson(JsonWriter& Writer) const final;
 
+	/* The unique identifier for the moderation request. */
 	FString Id;
+	/* The model used to generate the moderation results. */
 	FString Model;
+	/* A list of moderation objects. */
 	TArray<OpenAPICreateModerationResponseResultsInner> Results;
 };
 

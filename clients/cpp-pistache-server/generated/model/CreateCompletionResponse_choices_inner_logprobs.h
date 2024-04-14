@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -20,7 +20,7 @@
 
 
 #include <string>
-#include "Object.h"
+#include <map>
 #include <vector>
 #include <nlohmann/json.hpp>
 
@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<std::string> getTokens() const;
-    void setTokens(std::vector<std::string> const& value);
-    bool tokensIsSet() const;
-    void unsetTokens();
+    std::vector<int32_t> getTextOffset() const;
+    void setTextOffset(std::vector<int32_t> const value);
+    bool textOffsetIsSet() const;
+    void unsetText_offset();
     /// <summary>
     /// 
     /// </summary>
@@ -77,29 +77,29 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<org::openapitools::server::model::Object> getTopLogprobs() const;
-    void setTopLogprobs(std::vector<org::openapitools::server::model::Object> const& value);
-    bool topLogprobsIsSet() const;
-    void unsetTop_logprobs();
+    std::vector<std::string> getTokens() const;
+    void setTokens(std::vector<std::string> const& value);
+    bool tokensIsSet() const;
+    void unsetTokens();
     /// <summary>
     /// 
     /// </summary>
-    std::vector<int32_t> getTextOffset() const;
-    void setTextOffset(std::vector<int32_t> const value);
-    bool textOffsetIsSet() const;
-    void unsetText_offset();
+    std::vector<std::map<std::string, double>> getTopLogprobs() const;
+    void setTopLogprobs(std::vector<std::map<std::string, double>> const& value);
+    bool topLogprobsIsSet() const;
+    void unsetTop_logprobs();
 
     friend  void to_json(nlohmann::json& j, const CreateCompletionResponse_choices_inner_logprobs& o);
     friend  void from_json(const nlohmann::json& j, CreateCompletionResponse_choices_inner_logprobs& o);
 protected:
-    std::vector<std::string> m_Tokens;
-    bool m_TokensIsSet;
-    std::vector<double> m_Token_logprobs;
-    bool m_Token_logprobsIsSet;
-    std::vector<org::openapitools::server::model::Object> m_Top_logprobs;
-    bool m_Top_logprobsIsSet;
     std::vector<int32_t> m_Text_offset;
     bool m_Text_offsetIsSet;
+    std::vector<double> m_Token_logprobs;
+    bool m_Token_logprobsIsSet;
+    std::vector<std::string> m_Tokens;
+    bool m_TokensIsSet;
+    std::vector<std::map<std::string, double>> m_Top_logprobs;
+    bool m_Top_logprobsIsSet;
     
 };
 

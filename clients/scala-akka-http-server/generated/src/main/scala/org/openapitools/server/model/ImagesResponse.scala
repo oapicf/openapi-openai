@@ -7,6 +7,6 @@ package org.openapitools.server.model
 */
 final case class ImagesResponse (
   created: Int,
-  data: Seq[ImagesResponseDataInner]
+  data: Seq[Image]
 )
 

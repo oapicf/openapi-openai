@@ -6,15 +6,15 @@
 
 -type openapi_delete_model_response() ::
     #{ 'id' := binary(),
-       'object' := binary(),
-       'deleted' := boolean()
+       'deleted' := boolean(),
+       'object' := binary()
      }.
 
 encode(#{ 'id' := Id,
-          'object' := Object,
-          'deleted' := Deleted
+          'deleted' := Deleted,
+          'object' := Object
         }) ->
     #{ 'id' => Id,
-       'object' => Object,
-       'deleted' => Deleted
+       'deleted' => Deleted,
+       'object' => Object
      }.

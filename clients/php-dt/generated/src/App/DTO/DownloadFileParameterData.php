@@ -11,7 +11,7 @@ use Articus\DataTransfer\Annotation as DTA;
 class DownloadFileParameterData
 {
     /**
-     * The ID of the file to use for this request
+     * The ID of the file to use for this request.
      * @DTA\Data(subset="path", field="file_id")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})

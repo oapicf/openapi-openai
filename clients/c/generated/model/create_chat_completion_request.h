@@ -17,46 +17,60 @@ typedef struct create_chat_completion_request_t create_chat_completion_request_t
 
 #include "chat_completion_functions.h"
 #include "chat_completion_request_message.h"
+#include "chat_completion_tool.h"
+#include "chat_completion_tool_choice_option.h"
 #include "create_chat_completion_request_function_call.h"
 #include "create_chat_completion_request_model.h"
+#include "create_chat_completion_request_response_format.h"
 #include "create_chat_completion_request_stop.h"
-#include "object.h"
 
 
 
 typedef struct create_chat_completion_request_t {
-    struct create_chat_completion_request_model_t *model; //model
     list_t *messages; //nonprimitive container
-    list_t *functions; //nonprimitive container
-    struct create_chat_completion_request_function_call_t *function_call; //model
+    struct create_chat_completion_request_model_t *model; //model
+    double frequency_penalty; //numeric
+    list_t* logit_bias; //map
+    int logprobs; //boolean
+    int top_logprobs; //numeric
+    int max_tokens; //numeric
+    int n; //numeric
+    double presence_penalty; //numeric
+    struct create_chat_completion_request_response_format_t *response_format; //model
+    int seed; //numeric
+    struct create_chat_completion_request_stop_t *stop; //model
+    int stream; //boolean
     double temperature; //numeric
     double top_p; //numeric
-    int n; //numeric
-    int stream; //boolean
-    struct create_chat_completion_request_stop_t *stop; //model
-    int max_tokens; //numeric
-    double presence_penalty; //numeric
-    double frequency_penalty; //numeric
-    object_t *logit_bias; //object
+    list_t *tools; //nonprimitive container
+    struct chat_completion_tool_choice_option_t *tool_choice; //model
     char *user; // string
+    struct create_chat_completion_request_function_call_t *function_call; //model
+    list_t *functions; //nonprimitive container
 
 } create_chat_completion_request_t;
 
 create_chat_completion_request_t *create_chat_completion_request_create(
-    create_chat_completion_request_model_t *model,
     list_t *messages,
-    list_t *functions,
-    create_chat_completion_request_function_call_t *function_call,
+    create_chat_completion_request_model_t *model,
+    double frequency_penalty,
+    list_t* logit_bias,
+    int logprobs,
+    int top_logprobs,
+    int max_tokens,
+    int n,
+    double presence_penalty,
+    create_chat_completion_request_response_format_t *response_format,
+    int seed,
+    create_chat_completion_request_stop_t *stop,
+    int stream,
     double temperature,
     double top_p,
-    int n,
-    int stream,
-    create_chat_completion_request_stop_t *stop,
-    int max_tokens,
-    double presence_penalty,
-    double frequency_penalty,
-    object_t *logit_bias,
-    char *user
+    list_t *tools,
+    chat_completion_tool_choice_option_t *tool_choice,
+    char *user,
+    create_chat_completion_request_function_call_t *function_call,
+    list_t *functions
 );
 
 void create_chat_completion_request_free(create_chat_completion_request_t *create_chat_completion_request);

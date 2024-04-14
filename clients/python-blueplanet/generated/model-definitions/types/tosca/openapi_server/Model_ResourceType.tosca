@@ -17,22 +17,23 @@ resourceTypes {
     properties {
         id {
           type =  string
-          description = ""
-          optional = true
-        }
-        object {
-          type =  string
-          description = ""
+          description = "The model identifier, which can be referenced in the API endpoints."
           optional = true
         }
         created {
           type =  integer
-          description = ""
+          description = "The Unix timestamp (in seconds) when the model was created."
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always \&quot;model\&quot;."
+          enum = ["model"]
           optional = true
         }
         owned_by {
           type =  string
-          description = ""
+          description = "The organization that owns the model."
           optional = true
         }
     }

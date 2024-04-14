@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -87,14 +87,14 @@ class ErrorTest extends TestCase
     }
 
     /**
-     * Test attribute "type"
+     * Test attribute "code"
      *
      * @group unit
      * @small
      */
-    public function testPropertyType(): void
+    public function testPropertyCode(): void
     {
-        $this->markTestSkipped('Test for property type not implemented');
+        $this->markTestSkipped('Test for property code not implemented');
     }
 
     /**
@@ -120,13 +120,13 @@ class ErrorTest extends TestCase
     }
 
     /**
-     * Test attribute "code"
+     * Test attribute "type"
      *
      * @group unit
      * @small
      */
-    public function testPropertyCode(): void
+    public function testPropertyType(): void
     {
-        $this->markTestSkipped('Test for property code not implemented');
+        $this->markTestSkipped('Test for property type not implemented');
     }
 }

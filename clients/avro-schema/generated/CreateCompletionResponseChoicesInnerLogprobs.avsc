@@ -5,10 +5,10 @@
   "name": "CreateCompletionResponseChoicesInnerLogprobs",
   "fields": [
     {
-      "name": "tokens",
+      "name": "text_offset",
       "type": ["null", {
         "type": "array",
-        "items": "string"
+        "items": "int"
       }],
       "doc": "",
       "default": null
@@ -23,19 +23,19 @@
       "default": null
     },
     {
-      "name": "top_logprobs",
+      "name": "tokens",
       "type": ["null", {
         "type": "array",
-        "items": "model.object"
+        "items": "string"
       }],
       "doc": "",
       "default": null
     },
     {
-      "name": "text_offset",
+      "name": "top_logprobs",
       "type": ["null", {
         "type": "array",
-        "items": "int"
+        "items": "map"
       }],
       "doc": "",
       "default": null

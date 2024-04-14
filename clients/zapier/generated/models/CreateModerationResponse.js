@@ -7,13 +7,13 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `[${labelPrefix}id]`,
+                label: `The unique identifier for the moderation request. - [${labelPrefix}id]`,
                 required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}model`,
-                label: `[${labelPrefix}model]`,
+                label: `The model used to generate the moderation results. - [${labelPrefix}model]`,
                 required: true,
                 type: 'string',
             },

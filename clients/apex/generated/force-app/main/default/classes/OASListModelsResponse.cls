@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,10 +15,17 @@
  */
 public class OASListModelsResponse implements OAS.MappedProperties {
     /**
+     * Gets or Sets r_object
+     */
+    public enum RObjectEnum {
+        LIST
+    }
+
+    /**
      * Get r_object
      * @return r_object
      */
-    public String r_object { get; set; }
+    public RObjectEnum r_object { get; set; }
 
     /**
      * Get data
@@ -40,7 +47,7 @@ public class OASListModelsResponse implements OAS.MappedProperties {
 
     public static OASListModelsResponse getExample() {
         OASListModelsResponse listModelsResponse = new OASListModelsResponse();
-          listModelsResponse.r_object = '';
+          listModelsResponse.r_object = RObjectEnum.LIST;
           listModelsResponse.data = new List<OASModel>{OASModel.getExample()};
         return listModelsResponse;
     }

@@ -16,25 +16,25 @@ CreateChatCompletionRequestFunctionCall <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("CreateChatCompletionRequestFunctionCallOneOf", "character"),
+    one_of = list("ChatCompletionFunctionCallOption", "character"),
     #' Initialize a new CreateChatCompletionRequestFunctionCall.
     #'
     #' @description
     #' Initialize a new CreateChatCompletionRequestFunctionCall.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "CreateChatCompletionRequestFunctionCallOneOf", "character"
+    #' @param instance an instance of the object defined in the oneOf schemas: "ChatCompletionFunctionCallOption", "character"
     #' @export
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
-      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "CreateChatCompletionRequestFunctionCallOneOf") {
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ChatCompletionFunctionCallOption") {
         self$actual_instance <- instance
-        self$actual_type <- "CreateChatCompletionRequestFunctionCallOneOf"
+        self$actual_type <- "ChatCompletionFunctionCallOption"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "character") {
         self$actual_instance <- instance
         self$actual_type <- "character"
       } else {
-        stop(paste("Failed to initialize CreateChatCompletionRequestFunctionCall with oneOf schemas CreateChatCompletionRequestFunctionCallOneOf, character. Provided class name: ",
+        stop(paste("Failed to initialize CreateChatCompletionRequestFunctionCall with oneOf schemas ChatCompletionFunctionCallOption, character. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -80,19 +80,19 @@ CreateChatCompletionRequestFunctionCall <- R6::R6Class(
         error_messages <- append(error_messages, `character_result`["message"])
       }
 
-      `CreateChatCompletionRequestFunctionCallOneOf_result` <- tryCatch({
-          `CreateChatCompletionRequestFunctionCallOneOf`$public_methods$validateJSON(input)
-          `CreateChatCompletionRequestFunctionCallOneOf_instance` <- `CreateChatCompletionRequestFunctionCallOneOf`$new()
-          instance <- `CreateChatCompletionRequestFunctionCallOneOf_instance`$fromJSON(input)
-          instance_type <- "CreateChatCompletionRequestFunctionCallOneOf"
-          matched_schemas <- append(matched_schemas, "CreateChatCompletionRequestFunctionCallOneOf")
+      `ChatCompletionFunctionCallOption_result` <- tryCatch({
+          `ChatCompletionFunctionCallOption`$public_methods$validateJSON(input)
+          `ChatCompletionFunctionCallOption_instance` <- `ChatCompletionFunctionCallOption`$new()
+          instance <- `ChatCompletionFunctionCallOption_instance`$fromJSON(input)
+          instance_type <- "ChatCompletionFunctionCallOption"
+          matched_schemas <- append(matched_schemas, "ChatCompletionFunctionCallOption")
           matched <- matched + 1
         },
         error = function(err) err
       )
 
-      if (!is.null(`CreateChatCompletionRequestFunctionCallOneOf_result`["error"])) {
-        error_messages <- append(error_messages, `CreateChatCompletionRequestFunctionCallOneOf_result`["message"])
+      if (!is.null(`ChatCompletionFunctionCallOption_result`["error"])) {
+        error_messages <- append(error_messages, `ChatCompletionFunctionCallOption_result`["message"])
       }
 
       if (matched == 1) {
@@ -101,11 +101,11 @@ CreateChatCompletionRequestFunctionCall <- R6::R6Class(
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into CreateChatCompletionRequestFunctionCall with oneOf schemas CreateChatCompletionRequestFunctionCallOneOf, character. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into CreateChatCompletionRequestFunctionCall with oneOf schemas ChatCompletionFunctionCallOption, character. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into CreateChatCompletionRequestFunctionCall with oneOf schemas CreateChatCompletionRequestFunctionCallOneOf, character. Details: >>",
+        stop(paste("No match found when deserializing the input into CreateChatCompletionRequestFunctionCall with oneOf schemas ChatCompletionFunctionCallOption, character. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

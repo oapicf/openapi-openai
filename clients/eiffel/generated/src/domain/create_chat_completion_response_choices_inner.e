@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -19,14 +19,24 @@ class CREATE_CHAT_COMPLETION_RESPONSE_CHOICES_INNER
 
 feature --Access
 
+    finish_reason: detachable STRING_32
+      -- The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
     index: INTEGER_32
-      
+      -- The index of the choice in the list of choices.
     message: detachable CHAT_COMPLETION_RESPONSE_MESSAGE
       
-    finish_reason: detachable STRING_32
+    logprobs: detachable CREATE_CHAT_COMPLETION_RESPONSE_CHOICES_INNER_LOGPROBS
       
 
 feature -- Change Element
+
+    set_finish_reason (a_name: like finish_reason)
+        -- Set 'finish_reason' with 'a_name'.
+      do
+        finish_reason := a_name
+      ensure
+        finish_reason_set: finish_reason = a_name
+      end
 
     set_index (a_name: like index)
         -- Set 'index' with 'a_name'.
@@ -44,12 +54,12 @@ feature -- Change Element
         message_set: message = a_name
       end
 
-    set_finish_reason (a_name: like finish_reason)
-        -- Set 'finish_reason' with 'a_name'.
+    set_logprobs (a_name: like logprobs)
+        -- Set 'logprobs' with 'a_name'.
       do
-        finish_reason := a_name
+        logprobs := a_name
       ensure
-        finish_reason_set: finish_reason = a_name
+        logprobs_set: logprobs = a_name
       end
 
 
@@ -60,6 +70,11 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass CREATE_CHAT_COMPLETION_RESPONSE_CHOICES_INNER%N")
+        if attached finish_reason as l_finish_reason then
+          Result.append ("%Nfinish_reason:")
+          Result.append (l_finish_reason.out)
+          Result.append ("%N")
+        end
         if attached index as l_index then
           Result.append ("%Nindex:")
           Result.append (l_index.out)
@@ -70,9 +85,9 @@ feature -- Change Element
           Result.append (l_message.out)
           Result.append ("%N")
         end
-        if attached finish_reason as l_finish_reason then
-          Result.append ("%Nfinish_reason:")
-          Result.append (l_finish_reason.out)
+        if attached logprobs as l_logprobs then
+          Result.append ("%Nlogprobs:")
+          Result.append (l_logprobs.out)
           Result.append ("%N")
         end
       end

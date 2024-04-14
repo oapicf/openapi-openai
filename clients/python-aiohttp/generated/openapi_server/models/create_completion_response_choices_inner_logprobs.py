@@ -14,32 +14,32 @@ class CreateCompletionResponseChoicesInnerLogprobs(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, tokens: List[str]=None, token_logprobs: List[float]=None, top_logprobs: List[object]=None, text_offset: List[int]=None):
+    def __init__(self, text_offset: List[int]=None, token_logprobs: List[float]=None, tokens: List[str]=None, top_logprobs: List[Dict[str, float]]=None):
         """CreateCompletionResponseChoicesInnerLogprobs - a model defined in OpenAPI
 
-        :param tokens: The tokens of this CreateCompletionResponseChoicesInnerLogprobs.
-        :param token_logprobs: The token_logprobs of this CreateCompletionResponseChoicesInnerLogprobs.
-        :param top_logprobs: The top_logprobs of this CreateCompletionResponseChoicesInnerLogprobs.
         :param text_offset: The text_offset of this CreateCompletionResponseChoicesInnerLogprobs.
+        :param token_logprobs: The token_logprobs of this CreateCompletionResponseChoicesInnerLogprobs.
+        :param tokens: The tokens of this CreateCompletionResponseChoicesInnerLogprobs.
+        :param top_logprobs: The top_logprobs of this CreateCompletionResponseChoicesInnerLogprobs.
         """
         self.openapi_types = {
-            'tokens': List[str],
+            'text_offset': List[int],
             'token_logprobs': List[float],
-            'top_logprobs': List[object],
-            'text_offset': List[int]
+            'tokens': List[str],
+            'top_logprobs': List[Dict[str, float]]
         }
 
         self.attribute_map = {
-            'tokens': 'tokens',
+            'text_offset': 'text_offset',
             'token_logprobs': 'token_logprobs',
-            'top_logprobs': 'top_logprobs',
-            'text_offset': 'text_offset'
+            'tokens': 'tokens',
+            'top_logprobs': 'top_logprobs'
         }
 
-        self._tokens = tokens
-        self._token_logprobs = token_logprobs
-        self._top_logprobs = top_logprobs
         self._text_offset = text_offset
+        self._token_logprobs = token_logprobs
+        self._tokens = tokens
+        self._top_logprobs = top_logprobs
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'CreateCompletionResponseChoicesInnerLogprobs':
@@ -51,25 +51,25 @@ class CreateCompletionResponseChoicesInnerLogprobs(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def tokens(self):
-        """Gets the tokens of this CreateCompletionResponseChoicesInnerLogprobs.
+    def text_offset(self):
+        """Gets the text_offset of this CreateCompletionResponseChoicesInnerLogprobs.
 
 
-        :return: The tokens of this CreateCompletionResponseChoicesInnerLogprobs.
-        :rtype: List[str]
+        :return: The text_offset of this CreateCompletionResponseChoicesInnerLogprobs.
+        :rtype: List[int]
         """
-        return self._tokens
+        return self._text_offset
 
-    @tokens.setter
-    def tokens(self, tokens):
-        """Sets the tokens of this CreateCompletionResponseChoicesInnerLogprobs.
+    @text_offset.setter
+    def text_offset(self, text_offset):
+        """Sets the text_offset of this CreateCompletionResponseChoicesInnerLogprobs.
 
 
-        :param tokens: The tokens of this CreateCompletionResponseChoicesInnerLogprobs.
-        :type tokens: List[str]
+        :param text_offset: The text_offset of this CreateCompletionResponseChoicesInnerLogprobs.
+        :type text_offset: List[int]
         """
 
-        self._tokens = tokens
+        self._text_offset = text_offset
 
     @property
     def token_logprobs(self):
@@ -93,12 +93,33 @@ class CreateCompletionResponseChoicesInnerLogprobs(Model):
         self._token_logprobs = token_logprobs
 
     @property
+    def tokens(self):
+        """Gets the tokens of this CreateCompletionResponseChoicesInnerLogprobs.
+
+
+        :return: The tokens of this CreateCompletionResponseChoicesInnerLogprobs.
+        :rtype: List[str]
+        """
+        return self._tokens
+
+    @tokens.setter
+    def tokens(self, tokens):
+        """Sets the tokens of this CreateCompletionResponseChoicesInnerLogprobs.
+
+
+        :param tokens: The tokens of this CreateCompletionResponseChoicesInnerLogprobs.
+        :type tokens: List[str]
+        """
+
+        self._tokens = tokens
+
+    @property
     def top_logprobs(self):
         """Gets the top_logprobs of this CreateCompletionResponseChoicesInnerLogprobs.
 
 
         :return: The top_logprobs of this CreateCompletionResponseChoicesInnerLogprobs.
-        :rtype: List[object]
+        :rtype: List[Dict[str, float]]
         """
         return self._top_logprobs
 
@@ -108,28 +129,7 @@ class CreateCompletionResponseChoicesInnerLogprobs(Model):
 
 
         :param top_logprobs: The top_logprobs of this CreateCompletionResponseChoicesInnerLogprobs.
-        :type top_logprobs: List[object]
+        :type top_logprobs: List[Dict[str, float]]
         """
 
         self._top_logprobs = top_logprobs
-
-    @property
-    def text_offset(self):
-        """Gets the text_offset of this CreateCompletionResponseChoicesInnerLogprobs.
-
-
-        :return: The text_offset of this CreateCompletionResponseChoicesInnerLogprobs.
-        :rtype: List[int]
-        """
-        return self._text_offset
-
-    @text_offset.setter
-    def text_offset(self, text_offset):
-        """Sets the text_offset of this CreateCompletionResponseChoicesInnerLogprobs.
-
-
-        :param text_offset: The text_offset of this CreateCompletionResponseChoicesInnerLogprobs.
-        :type text_offset: List[int]
-        """
-
-        self._text_offset = text_offset

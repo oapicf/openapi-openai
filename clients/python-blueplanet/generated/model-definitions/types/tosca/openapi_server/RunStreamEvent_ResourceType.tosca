@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStreamEvent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStreamEvent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunObject = openapi_server.resourceTypes.RunObject
+  RunStreamEventOneOf = openapi_server.resourceTypes.RunStreamEventOneOf
+  RunStreamEventOneOf1 = openapi_server.resourceTypes.RunStreamEventOneOf1
+  RunStreamEventOneOf2 = openapi_server.resourceTypes.RunStreamEventOneOf2
+  RunStreamEventOneOf3 = openapi_server.resourceTypes.RunStreamEventOneOf3
+  RunStreamEventOneOf4 = openapi_server.resourceTypes.RunStreamEventOneOf4
+  RunStreamEventOneOf5 = openapi_server.resourceTypes.RunStreamEventOneOf5
+  RunStreamEventOneOf6 = openapi_server.resourceTypes.RunStreamEventOneOf6
+  RunStreamEventOneOf7 = openapi_server.resourceTypes.RunStreamEventOneOf7
+  RunStreamEventOneOf8 = openapi_server.resourceTypes.RunStreamEventOneOf8
+}
+resourceTypes {
+
+  RunStreamEvent {
+    title = RunStreamEvent
+    description = RunStreamEvent
+    derivedFrom = Root
+    properties {
+        event {
+          type =  string
+          description = ""
+          enum = ["thread.run.expired"]
+          optional = true
+        }
+        data {
+          type = RunObject
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStreamEvent {
+    title = RunStreamEvent
+    description = RunStreamEvent
+    implements = openapi_server.resourceTypes.RunStreamEvent
+
+  }
+}

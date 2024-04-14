@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created** | **int** |  | 
-**data** | [**List[ImagesResponseDataInner]**](ImagesResponseDataInner.md) |  | 
+**data** | [**List[Image]**](Image.md) |  | 
 
 ## Example
 

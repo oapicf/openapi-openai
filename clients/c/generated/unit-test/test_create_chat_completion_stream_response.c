@@ -23,18 +23,20 @@ create_chat_completion_stream_response_t* instantiate_create_chat_completion_str
   if (include_optional) {
     create_chat_completion_stream_response = create_chat_completion_stream_response_create(
       "0",
-      "0",
+      list_createList(),
       56,
       "0",
-      list_createList()
+      "0",
+      openai_api_create_chat_completion_stream_response_OBJECT_chat.completion.chunk
     );
   } else {
     create_chat_completion_stream_response = create_chat_completion_stream_response_create(
       "0",
-      "0",
+      list_createList(),
       56,
       "0",
-      list_createList()
+      "0",
+      openai_api_create_chat_completion_stream_response_OBJECT_chat.completion.chunk
     );
   }
 

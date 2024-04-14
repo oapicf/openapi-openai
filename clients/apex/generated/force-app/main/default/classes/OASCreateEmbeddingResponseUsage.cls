@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,17 +11,17 @@
  */
 
 /**
- * OASCreateEmbeddingResponseUsage
+ * The usage information for the request.
  */
 public class OASCreateEmbeddingResponseUsage implements OAS.MappedProperties {
     /**
-     * Get promptTokens
+     * The number of tokens used by the prompt.
      * @return promptTokens
      */
     public Integer promptTokens { get; set; }
 
     /**
-     * Get totalTokens
+     * The total number of tokens used by the request.
      * @return totalTokens
      */
     public Integer totalTokens { get; set; }

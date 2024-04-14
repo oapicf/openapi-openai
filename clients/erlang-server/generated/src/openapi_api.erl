@@ -15,80 +15,207 @@
 -spec request_params(OperationID :: operation_id()) -> [Param :: request_param()].
 
 
-request_params('CancelFineTune') ->
+request_params('CancelRun') ->
     [
-        'fine_tune_id'
+        'thread_id',
+        'run_id'
     ];
 
-request_params('CreateChatCompletion') ->
+request_params('CreateAssistant') ->
     [
-        'CreateChatCompletionRequest'
+        'CreateAssistantRequest'
     ];
 
-request_params('CreateCompletion') ->
+request_params('CreateAssistantFile') ->
     [
-        'CreateCompletionRequest'
+        'assistant_id',
+        'CreateAssistantFileRequest'
     ];
 
-request_params('CreateEdit') ->
+request_params('CreateMessage') ->
     [
-        'CreateEditRequest'
+        'thread_id',
+        'CreateMessageRequest'
     ];
 
-request_params('CreateEmbedding') ->
+request_params('CreateRun') ->
     [
-        'CreateEmbeddingRequest'
+        'thread_id',
+        'CreateRunRequest'
     ];
 
-request_params('CreateFile') ->
+request_params('CreateThread') ->
     [
-        'file',
-        'purpose'
+        'CreateThreadRequest'
     ];
 
-request_params('CreateFineTune') ->
+request_params('CreateThreadAndRun') ->
     [
-        'CreateFineTuneRequest'
+        'CreateThreadAndRunRequest'
     ];
 
-request_params('CreateImage') ->
+request_params('DeleteAssistant') ->
     [
-        'CreateImageRequest'
+        'assistant_id'
     ];
 
-request_params('CreateImageEdit') ->
+request_params('DeleteAssistantFile') ->
     [
-        'image',
-        'prompt',
-        'mask',
-        'n',
-        'size',
-        'response_format',
-        'user'
+        'assistant_id',
+        'file_id'
     ];
 
-request_params('CreateImageVariation') ->
+request_params('DeleteThread') ->
     [
-        'image',
-        'n',
-        'size',
-        'response_format',
-        'user'
+        'thread_id'
     ];
 
-request_params('CreateModeration') ->
+request_params('GetAssistant') ->
     [
-        'CreateModerationRequest'
+        'assistant_id'
+    ];
+
+request_params('GetAssistantFile') ->
+    [
+        'assistant_id',
+        'file_id'
+    ];
+
+request_params('GetMessage') ->
+    [
+        'thread_id',
+        'message_id'
+    ];
+
+request_params('GetMessageFile') ->
+    [
+        'thread_id',
+        'message_id',
+        'file_id'
+    ];
+
+request_params('GetRun') ->
+    [
+        'thread_id',
+        'run_id'
+    ];
+
+request_params('GetRunStep') ->
+    [
+        'thread_id',
+        'run_id',
+        'step_id'
+    ];
+
+request_params('GetThread') ->
+    [
+        'thread_id'
+    ];
+
+request_params('ListAssistantFiles') ->
+    [
+        'assistant_id',
+        'limit',
+        'order',
+        'after',
+        'before'
+    ];
+
+request_params('ListAssistants') ->
+    [
+        'limit',
+        'order',
+        'after',
+        'before'
+    ];
+
+request_params('ListMessageFiles') ->
+    [
+        'thread_id',
+        'message_id',
+        'limit',
+        'order',
+        'after',
+        'before'
+    ];
+
+request_params('ListMessages') ->
+    [
+        'thread_id',
+        'limit',
+        'order',
+        'after',
+        'before',
+        'run_id'
+    ];
+
+request_params('ListRunSteps') ->
+    [
+        'thread_id',
+        'run_id',
+        'limit',
+        'order',
+        'after',
+        'before'
+    ];
+
+request_params('ListRuns') ->
+    [
+        'thread_id',
+        'limit',
+        'order',
+        'after',
+        'before'
+    ];
+
+request_params('ModifyAssistant') ->
+    [
+        'assistant_id',
+        'ModifyAssistantRequest'
+    ];
+
+request_params('ModifyMessage') ->
+    [
+        'thread_id',
+        'message_id',
+        'ModifyMessageRequest'
+    ];
+
+request_params('ModifyRun') ->
+    [
+        'thread_id',
+        'run_id',
+        'ModifyRunRequest'
+    ];
+
+request_params('ModifyThread') ->
+    [
+        'thread_id',
+        'ModifyThreadRequest'
+    ];
+
+request_params('SubmitToolOuputsToRun') ->
+    [
+        'thread_id',
+        'run_id',
+        'SubmitToolOutputsRunRequest'
+    ];
+
+
+request_params('CreateSpeech') ->
+    [
+        'CreateSpeechRequest'
     ];
 
 request_params('CreateTranscription') ->
     [
         'file',
         'model',
+        'language',
         'prompt',
         'response_format',
         'temperature',
-        'language'
+        'timestamp_granularities[]'
     ];
 
 request_params('CreateTranslation') ->
@@ -100,14 +227,34 @@ request_params('CreateTranslation') ->
         'temperature'
     ];
 
+
+request_params('CreateChatCompletion') ->
+    [
+        'CreateChatCompletionRequest'
+    ];
+
+
+request_params('CreateCompletion') ->
+    [
+        'CreateCompletionRequest'
+    ];
+
+
+request_params('CreateEmbedding') ->
+    [
+        'CreateEmbeddingRequest'
+    ];
+
+
+request_params('CreateFile') ->
+    [
+        'file',
+        'purpose'
+    ];
+
 request_params('DeleteFile') ->
     [
         'file_id'
-    ];
-
-request_params('DeleteModel') ->
-    [
-        'model'
     ];
 
 request_params('DownloadFile') ->
@@ -117,20 +264,7 @@ request_params('DownloadFile') ->
 
 request_params('ListFiles') ->
     [
-    ];
-
-request_params('ListFineTuneEvents') ->
-    [
-        'fine_tune_id',
-        'stream'
-    ];
-
-request_params('ListFineTunes') ->
-    [
-    ];
-
-request_params('ListModels') ->
-    [
+        'purpose'
     ];
 
 request_params('RetrieveFile') ->
@@ -138,14 +272,89 @@ request_params('RetrieveFile') ->
         'file_id'
     ];
 
-request_params('RetrieveFineTune') ->
+
+request_params('CancelFineTuningJob') ->
     [
-        'fine_tune_id'
+        'fine_tuning_job_id'
+    ];
+
+request_params('CreateFineTuningJob') ->
+    [
+        'CreateFineTuningJobRequest'
+    ];
+
+request_params('ListFineTuningEvents') ->
+    [
+        'fine_tuning_job_id',
+        'after',
+        'limit'
+    ];
+
+request_params('ListFineTuningJobCheckpoints') ->
+    [
+        'fine_tuning_job_id',
+        'after',
+        'limit'
+    ];
+
+request_params('ListPaginatedFineTuningJobs') ->
+    [
+        'after',
+        'limit'
+    ];
+
+request_params('RetrieveFineTuningJob') ->
+    [
+        'fine_tuning_job_id'
+    ];
+
+
+request_params('CreateImage') ->
+    [
+        'CreateImageRequest'
+    ];
+
+request_params('CreateImageEdit') ->
+    [
+        'image',
+        'prompt',
+        'mask',
+        'model',
+        'n',
+        'size',
+        'response_format',
+        'user'
+    ];
+
+request_params('CreateImageVariation') ->
+    [
+        'image',
+        'model',
+        'n',
+        'response_format',
+        'size',
+        'user'
+    ];
+
+
+request_params('DeleteModel') ->
+    [
+        'model'
+    ];
+
+request_params('ListModels') ->
+    [
     ];
 
 request_params('RetrieveModel') ->
     [
         'model'
+    ];
+
+
+request_params('CreateModeration') ->
+    [
+        'CreateModerationRequest'
     ];
 
 request_params(_) ->
@@ -178,7 +387,7 @@ request_params(_) ->
 
 
 
-request_param_info('CancelFineTune', 'fine_tune_id') ->
+request_param_info('CancelRun', 'thread_id') ->
     #{
         source =>  binding ,
         rules => [
@@ -186,6 +395,785 @@ request_param_info('CancelFineTune', 'fine_tune_id') ->
             required
         ]
     };
+
+request_param_info('CancelRun', 'run_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('CreateAssistant', 'CreateAssistantRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('CreateAssistantFile', 'assistant_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('CreateAssistantFile', 'CreateAssistantFileRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('CreateMessage', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('CreateMessage', 'CreateMessageRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('CreateRun', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('CreateRun', 'CreateRunRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('CreateThread', 'CreateThreadRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            not_required
+        ]
+    };
+
+request_param_info('CreateThreadAndRun', 'CreateThreadAndRunRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('DeleteAssistant', 'assistant_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('DeleteAssistantFile', 'assistant_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('DeleteAssistantFile', 'file_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('DeleteThread', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetAssistant', 'assistant_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetAssistantFile', 'assistant_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetAssistantFile', 'file_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetMessage', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetMessage', 'message_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetMessageFile', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetMessageFile', 'message_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetMessageFile', 'file_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetRun', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetRun', 'run_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetRunStep', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetRunStep', 'run_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetRunStep', 'step_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetThread', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListAssistantFiles', 'assistant_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListAssistantFiles', 'limit') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('ListAssistantFiles', 'order') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            {enum, ['asc', 'desc'] },
+            not_required
+        ]
+    };
+
+request_param_info('ListAssistantFiles', 'after') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListAssistantFiles', 'before') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListAssistants', 'limit') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('ListAssistants', 'order') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            {enum, ['asc', 'desc'] },
+            not_required
+        ]
+    };
+
+request_param_info('ListAssistants', 'after') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListAssistants', 'before') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListMessageFiles', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListMessageFiles', 'message_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListMessageFiles', 'limit') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('ListMessageFiles', 'order') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            {enum, ['asc', 'desc'] },
+            not_required
+        ]
+    };
+
+request_param_info('ListMessageFiles', 'after') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListMessageFiles', 'before') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListMessages', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListMessages', 'limit') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('ListMessages', 'order') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            {enum, ['asc', 'desc'] },
+            not_required
+        ]
+    };
+
+request_param_info('ListMessages', 'after') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListMessages', 'before') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListMessages', 'run_id') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListRunSteps', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListRunSteps', 'run_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListRunSteps', 'limit') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('ListRunSteps', 'order') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            {enum, ['asc', 'desc'] },
+            not_required
+        ]
+    };
+
+request_param_info('ListRunSteps', 'after') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListRunSteps', 'before') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListRuns', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListRuns', 'limit') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('ListRuns', 'order') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            {enum, ['asc', 'desc'] },
+            not_required
+        ]
+    };
+
+request_param_info('ListRuns', 'after') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListRuns', 'before') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ModifyAssistant', 'assistant_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ModifyAssistant', 'ModifyAssistantRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('ModifyMessage', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ModifyMessage', 'message_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ModifyMessage', 'ModifyMessageRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('ModifyRun', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ModifyRun', 'run_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ModifyRun', 'ModifyRunRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('ModifyThread', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ModifyThread', 'ModifyThreadRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('SubmitToolOuputsToRun', 'thread_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('SubmitToolOuputsToRun', 'run_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('SubmitToolOuputsToRun', 'SubmitToolOutputsRunRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+
+request_param_info('CreateSpeech', 'CreateSpeechRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('CreateTranscription', 'file') ->
+    #{
+        source =>   body,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('CreateTranscription', 'model') ->
+    #{
+        source =>   body,
+        rules => [
+            required
+        ]
+    };
+
+request_param_info('CreateTranscription', 'language') ->
+    #{
+        source =>   body,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('CreateTranscription', 'prompt') ->
+    #{
+        source =>   body,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('CreateTranscription', 'response_format') ->
+    #{
+        source =>   body,
+        rules => [
+            {type, 'binary'},
+            {enum, ['json', 'text', 'srt', 'verbose_json', 'vtt'] },
+            not_required
+        ]
+    };
+
+request_param_info('CreateTranscription', 'temperature') ->
+    #{
+        source =>   body,
+        rules => [
+            not_required
+        ]
+    };
+
+request_param_info('CreateTranscription', 'timestamp_granularities[]') ->
+    #{
+        source =>   body,
+        rules => [
+            {enum, ['word', 'segment'] },
+            not_required
+        ]
+    };
+
+request_param_info('CreateTranslation', 'file') ->
+    #{
+        source =>   body,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('CreateTranslation', 'model') ->
+    #{
+        source =>   body,
+        rules => [
+            required
+        ]
+    };
+
+request_param_info('CreateTranslation', 'prompt') ->
+    #{
+        source =>   body,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('CreateTranslation', 'response_format') ->
+    #{
+        source =>   body,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('CreateTranslation', 'temperature') ->
+    #{
+        source =>   body,
+        rules => [
+            not_required
+        ]
+    };
+
 
 request_param_info('CreateChatCompletion', 'CreateChatCompletionRequest') ->
     #{
@@ -196,6 +1184,7 @@ request_param_info('CreateChatCompletion', 'CreateChatCompletionRequest') ->
         ]
     };
 
+
 request_param_info('CreateCompletion', 'CreateCompletionRequest') ->
     #{
         source =>   body,
@@ -205,14 +1194,6 @@ request_param_info('CreateCompletion', 'CreateCompletionRequest') ->
         ]
     };
 
-request_param_info('CreateEdit', 'CreateEditRequest') ->
-    #{
-        source =>   body,
-        rules => [
-            schema,
-            required
-        ]
-    };
 
 request_param_info('CreateEmbedding', 'CreateEmbeddingRequest') ->
     #{
@@ -222,6 +1203,7 @@ request_param_info('CreateEmbedding', 'CreateEmbeddingRequest') ->
             required
         ]
     };
+
 
 request_param_info('CreateFile', 'file') ->
     #{
@@ -237,11 +1219,58 @@ request_param_info('CreateFile', 'purpose') ->
         source =>   body,
         rules => [
             {type, 'binary'},
+            {enum, ['fine-tune', 'assistants'] },
             required
         ]
     };
 
-request_param_info('CreateFineTune', 'CreateFineTuneRequest') ->
+request_param_info('DeleteFile', 'file_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('DownloadFile', 'file_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListFiles', 'purpose') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('RetrieveFile', 'file_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+
+request_param_info('CancelFineTuningJob', 'fine_tuning_job_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('CreateFineTuningJob', 'CreateFineTuningJobRequest') ->
     #{
         source =>   body,
         rules => [
@@ -249,6 +1278,88 @@ request_param_info('CreateFineTune', 'CreateFineTuneRequest') ->
             required
         ]
     };
+
+request_param_info('ListFineTuningEvents', 'fine_tuning_job_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListFineTuningEvents', 'after') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListFineTuningEvents', 'limit') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('ListFineTuningJobCheckpoints', 'fine_tuning_job_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('ListFineTuningJobCheckpoints', 'after') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListFineTuningJobCheckpoints', 'limit') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('ListPaginatedFineTuningJobs', 'after') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('ListPaginatedFineTuningJobs', 'limit') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('RetrieveFineTuningJob', 'fine_tuning_job_id') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
 
 request_param_info('CreateImage', 'CreateImageRequest') ->
     #{
@@ -282,6 +1393,14 @@ request_param_info('CreateImageEdit', 'mask') ->
         source =>   body,
         rules => [
             {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('CreateImageEdit', 'model') ->
+    #{
+        source =>   body,
+        rules => [
             not_required
         ]
     };
@@ -335,6 +1454,14 @@ request_param_info('CreateImageVariation', 'image') ->
         ]
     };
 
+request_param_info('CreateImageVariation', 'model') ->
+    #{
+        source =>   body,
+        rules => [
+            not_required
+        ]
+    };
+
 request_param_info('CreateImageVariation', 'n') ->
     #{
         source =>   body,
@@ -342,16 +1469,6 @@ request_param_info('CreateImageVariation', 'n') ->
             {type, 'integer'},
             {max, 10 }, 
             {min, 1 },
-            not_required
-        ]
-    };
-
-request_param_info('CreateImageVariation', 'size') ->
-    #{
-        source =>   body,
-        rules => [
-            {type, 'binary'},
-            {enum, ['256x256', '512x512', '1024x1024'] },
             not_required
         ]
     };
@@ -366,6 +1483,16 @@ request_param_info('CreateImageVariation', 'response_format') ->
         ]
     };
 
+request_param_info('CreateImageVariation', 'size') ->
+    #{
+        source =>   body,
+        rules => [
+            {type, 'binary'},
+            {enum, ['256x256', '512x512', '1024x1024'] },
+            not_required
+        ]
+    };
+
 request_param_info('CreateImageVariation', 'user') ->
     #{
         source =>   body,
@@ -375,165 +1502,8 @@ request_param_info('CreateImageVariation', 'user') ->
         ]
     };
 
-request_param_info('CreateModeration', 'CreateModerationRequest') ->
-    #{
-        source =>   body,
-        rules => [
-            schema,
-            required
-        ]
-    };
-
-request_param_info('CreateTranscription', 'file') ->
-    #{
-        source =>   body,
-        rules => [
-            {type, 'binary'},
-            required
-        ]
-    };
-
-request_param_info('CreateTranscription', 'model') ->
-    #{
-        source =>   body,
-        rules => [
-            required
-        ]
-    };
-
-request_param_info('CreateTranscription', 'prompt') ->
-    #{
-        source =>   body,
-        rules => [
-            {type, 'binary'},
-            not_required
-        ]
-    };
-
-request_param_info('CreateTranscription', 'response_format') ->
-    #{
-        source =>   body,
-        rules => [
-            {type, 'binary'},
-            not_required
-        ]
-    };
-
-request_param_info('CreateTranscription', 'temperature') ->
-    #{
-        source =>   body,
-        rules => [
-            not_required
-        ]
-    };
-
-request_param_info('CreateTranscription', 'language') ->
-    #{
-        source =>   body,
-        rules => [
-            {type, 'binary'},
-            not_required
-        ]
-    };
-
-request_param_info('CreateTranslation', 'file') ->
-    #{
-        source =>   body,
-        rules => [
-            {type, 'binary'},
-            required
-        ]
-    };
-
-request_param_info('CreateTranslation', 'model') ->
-    #{
-        source =>   body,
-        rules => [
-            required
-        ]
-    };
-
-request_param_info('CreateTranslation', 'prompt') ->
-    #{
-        source =>   body,
-        rules => [
-            {type, 'binary'},
-            not_required
-        ]
-    };
-
-request_param_info('CreateTranslation', 'response_format') ->
-    #{
-        source =>   body,
-        rules => [
-            {type, 'binary'},
-            not_required
-        ]
-    };
-
-request_param_info('CreateTranslation', 'temperature') ->
-    #{
-        source =>   body,
-        rules => [
-            not_required
-        ]
-    };
-
-request_param_info('DeleteFile', 'file_id') ->
-    #{
-        source =>  binding ,
-        rules => [
-            {type, 'binary'},
-            required
-        ]
-    };
 
 request_param_info('DeleteModel', 'model') ->
-    #{
-        source =>  binding ,
-        rules => [
-            {type, 'binary'},
-            required
-        ]
-    };
-
-request_param_info('DownloadFile', 'file_id') ->
-    #{
-        source =>  binding ,
-        rules => [
-            {type, 'binary'},
-            required
-        ]
-    };
-
-request_param_info('ListFineTuneEvents', 'fine_tune_id') ->
-    #{
-        source =>  binding ,
-        rules => [
-            {type, 'binary'},
-            required
-        ]
-    };
-
-request_param_info('ListFineTuneEvents', 'stream') ->
-    #{
-        source => qs_val  ,
-        rules => [
-            {type, 'boolean'},
-            not_required
-        ]
-    };
-
-request_param_info('RetrieveFile', 'file_id') ->
-    #{
-        source =>  binding ,
-        rules => [
-            {type, 'binary'},
-            required
-        ]
-    };
-
-request_param_info('RetrieveFineTune', 'fine_tune_id') ->
     #{
         source =>  binding ,
         rules => [
@@ -547,6 +1517,16 @@ request_param_info('RetrieveModel', 'model') ->
         source =>  binding ,
         rules => [
             {type, 'binary'},
+            required
+        ]
+    };
+
+
+request_param_info('CreateModeration', 'CreateModerationRequest') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
             required
         ]
     };
@@ -598,26 +1578,147 @@ populate_request_param(OperationID, Name, Req0, ValidatorState) ->
 ) -> ok | no_return().
 
 
-validate_response('CancelFineTune', 200, Body, ValidatorState) ->
-    validate_response_body('FineTune', 'FineTune', Body, ValidatorState);
+validate_response('CancelRun', 200, Body, ValidatorState) ->
+    validate_response_body('RunObject', 'RunObject', Body, ValidatorState);
+
+validate_response('CreateAssistant', 200, Body, ValidatorState) ->
+    validate_response_body('AssistantObject', 'AssistantObject', Body, ValidatorState);
+
+validate_response('CreateAssistantFile', 200, Body, ValidatorState) ->
+    validate_response_body('AssistantFileObject', 'AssistantFileObject', Body, ValidatorState);
+
+validate_response('CreateMessage', 200, Body, ValidatorState) ->
+    validate_response_body('MessageObject', 'MessageObject', Body, ValidatorState);
+
+validate_response('CreateRun', 200, Body, ValidatorState) ->
+    validate_response_body('RunObject', 'RunObject', Body, ValidatorState);
+
+validate_response('CreateThread', 200, Body, ValidatorState) ->
+    validate_response_body('ThreadObject', 'ThreadObject', Body, ValidatorState);
+
+validate_response('CreateThreadAndRun', 200, Body, ValidatorState) ->
+    validate_response_body('RunObject', 'RunObject', Body, ValidatorState);
+
+validate_response('DeleteAssistant', 200, Body, ValidatorState) ->
+    validate_response_body('DeleteAssistantResponse', 'DeleteAssistantResponse', Body, ValidatorState);
+
+validate_response('DeleteAssistantFile', 200, Body, ValidatorState) ->
+    validate_response_body('DeleteAssistantFileResponse', 'DeleteAssistantFileResponse', Body, ValidatorState);
+
+validate_response('DeleteThread', 200, Body, ValidatorState) ->
+    validate_response_body('DeleteThreadResponse', 'DeleteThreadResponse', Body, ValidatorState);
+
+validate_response('GetAssistant', 200, Body, ValidatorState) ->
+    validate_response_body('AssistantObject', 'AssistantObject', Body, ValidatorState);
+
+validate_response('GetAssistantFile', 200, Body, ValidatorState) ->
+    validate_response_body('AssistantFileObject', 'AssistantFileObject', Body, ValidatorState);
+
+validate_response('GetMessage', 200, Body, ValidatorState) ->
+    validate_response_body('MessageObject', 'MessageObject', Body, ValidatorState);
+
+validate_response('GetMessageFile', 200, Body, ValidatorState) ->
+    validate_response_body('MessageFileObject', 'MessageFileObject', Body, ValidatorState);
+
+validate_response('GetRun', 200, Body, ValidatorState) ->
+    validate_response_body('RunObject', 'RunObject', Body, ValidatorState);
+
+validate_response('GetRunStep', 200, Body, ValidatorState) ->
+    validate_response_body('RunStepObject', 'RunStepObject', Body, ValidatorState);
+
+validate_response('GetThread', 200, Body, ValidatorState) ->
+    validate_response_body('ThreadObject', 'ThreadObject', Body, ValidatorState);
+
+validate_response('ListAssistantFiles', 200, Body, ValidatorState) ->
+    validate_response_body('ListAssistantFilesResponse', 'ListAssistantFilesResponse', Body, ValidatorState);
+
+validate_response('ListAssistants', 200, Body, ValidatorState) ->
+    validate_response_body('ListAssistantsResponse', 'ListAssistantsResponse', Body, ValidatorState);
+
+validate_response('ListMessageFiles', 200, Body, ValidatorState) ->
+    validate_response_body('ListMessageFilesResponse', 'ListMessageFilesResponse', Body, ValidatorState);
+
+validate_response('ListMessages', 200, Body, ValidatorState) ->
+    validate_response_body('ListMessagesResponse', 'ListMessagesResponse', Body, ValidatorState);
+
+validate_response('ListRunSteps', 200, Body, ValidatorState) ->
+    validate_response_body('ListRunStepsResponse', 'ListRunStepsResponse', Body, ValidatorState);
+
+validate_response('ListRuns', 200, Body, ValidatorState) ->
+    validate_response_body('ListRunsResponse', 'ListRunsResponse', Body, ValidatorState);
+
+validate_response('ModifyAssistant', 200, Body, ValidatorState) ->
+    validate_response_body('AssistantObject', 'AssistantObject', Body, ValidatorState);
+
+validate_response('ModifyMessage', 200, Body, ValidatorState) ->
+    validate_response_body('MessageObject', 'MessageObject', Body, ValidatorState);
+
+validate_response('ModifyRun', 200, Body, ValidatorState) ->
+    validate_response_body('RunObject', 'RunObject', Body, ValidatorState);
+
+validate_response('ModifyThread', 200, Body, ValidatorState) ->
+    validate_response_body('ThreadObject', 'ThreadObject', Body, ValidatorState);
+
+validate_response('SubmitToolOuputsToRun', 200, Body, ValidatorState) ->
+    validate_response_body('RunObject', 'RunObject', Body, ValidatorState);
+
+
+validate_response('CreateSpeech', 200, Body, ValidatorState) ->
+    validate_response_body('file', 'file', Body, ValidatorState);
+
+validate_response('CreateTranscription', 200, Body, ValidatorState) ->
+    validate_response_body('createTranscription_200_response', 'createTranscription_200_response', Body, ValidatorState);
+
+validate_response('CreateTranslation', 200, Body, ValidatorState) ->
+    validate_response_body('createTranslation_200_response', 'createTranslation_200_response', Body, ValidatorState);
+
 
 validate_response('CreateChatCompletion', 200, Body, ValidatorState) ->
     validate_response_body('CreateChatCompletionResponse', 'CreateChatCompletionResponse', Body, ValidatorState);
 
+
 validate_response('CreateCompletion', 200, Body, ValidatorState) ->
     validate_response_body('CreateCompletionResponse', 'CreateCompletionResponse', Body, ValidatorState);
 
-validate_response('CreateEdit', 200, Body, ValidatorState) ->
-    validate_response_body('CreateEditResponse', 'CreateEditResponse', Body, ValidatorState);
 
 validate_response('CreateEmbedding', 200, Body, ValidatorState) ->
     validate_response_body('CreateEmbeddingResponse', 'CreateEmbeddingResponse', Body, ValidatorState);
 
+
 validate_response('CreateFile', 200, Body, ValidatorState) ->
     validate_response_body('OpenAIFile', 'OpenAIFile', Body, ValidatorState);
 
-validate_response('CreateFineTune', 200, Body, ValidatorState) ->
-    validate_response_body('FineTune', 'FineTune', Body, ValidatorState);
+validate_response('DeleteFile', 200, Body, ValidatorState) ->
+    validate_response_body('DeleteFileResponse', 'DeleteFileResponse', Body, ValidatorState);
+
+validate_response('DownloadFile', 200, Body, ValidatorState) ->
+    validate_response_body('binary', 'string', Body, ValidatorState);
+
+validate_response('ListFiles', 200, Body, ValidatorState) ->
+    validate_response_body('ListFilesResponse', 'ListFilesResponse', Body, ValidatorState);
+
+validate_response('RetrieveFile', 200, Body, ValidatorState) ->
+    validate_response_body('OpenAIFile', 'OpenAIFile', Body, ValidatorState);
+
+
+validate_response('CancelFineTuningJob', 200, Body, ValidatorState) ->
+    validate_response_body('FineTuningJob', 'FineTuningJob', Body, ValidatorState);
+
+validate_response('CreateFineTuningJob', 200, Body, ValidatorState) ->
+    validate_response_body('FineTuningJob', 'FineTuningJob', Body, ValidatorState);
+
+validate_response('ListFineTuningEvents', 200, Body, ValidatorState) ->
+    validate_response_body('ListFineTuningJobEventsResponse', 'ListFineTuningJobEventsResponse', Body, ValidatorState);
+
+validate_response('ListFineTuningJobCheckpoints', 200, Body, ValidatorState) ->
+    validate_response_body('ListFineTuningJobCheckpointsResponse', 'ListFineTuningJobCheckpointsResponse', Body, ValidatorState);
+
+validate_response('ListPaginatedFineTuningJobs', 200, Body, ValidatorState) ->
+    validate_response_body('ListPaginatedFineTuningJobsResponse', 'ListPaginatedFineTuningJobsResponse', Body, ValidatorState);
+
+validate_response('RetrieveFineTuningJob', 200, Body, ValidatorState) ->
+    validate_response_body('FineTuningJob', 'FineTuningJob', Body, ValidatorState);
+
 
 validate_response('CreateImage', 200, Body, ValidatorState) ->
     validate_response_body('ImagesResponse', 'ImagesResponse', Body, ValidatorState);
@@ -628,44 +1729,19 @@ validate_response('CreateImageEdit', 200, Body, ValidatorState) ->
 validate_response('CreateImageVariation', 200, Body, ValidatorState) ->
     validate_response_body('ImagesResponse', 'ImagesResponse', Body, ValidatorState);
 
-validate_response('CreateModeration', 200, Body, ValidatorState) ->
-    validate_response_body('CreateModerationResponse', 'CreateModerationResponse', Body, ValidatorState);
-
-validate_response('CreateTranscription', 200, Body, ValidatorState) ->
-    validate_response_body('CreateTranscriptionResponse', 'CreateTranscriptionResponse', Body, ValidatorState);
-
-validate_response('CreateTranslation', 200, Body, ValidatorState) ->
-    validate_response_body('CreateTranslationResponse', 'CreateTranslationResponse', Body, ValidatorState);
-
-validate_response('DeleteFile', 200, Body, ValidatorState) ->
-    validate_response_body('DeleteFileResponse', 'DeleteFileResponse', Body, ValidatorState);
 
 validate_response('DeleteModel', 200, Body, ValidatorState) ->
     validate_response_body('DeleteModelResponse', 'DeleteModelResponse', Body, ValidatorState);
 
-validate_response('DownloadFile', 200, Body, ValidatorState) ->
-    validate_response_body('binary', 'string', Body, ValidatorState);
-
-validate_response('ListFiles', 200, Body, ValidatorState) ->
-    validate_response_body('ListFilesResponse', 'ListFilesResponse', Body, ValidatorState);
-
-validate_response('ListFineTuneEvents', 200, Body, ValidatorState) ->
-    validate_response_body('ListFineTuneEventsResponse', 'ListFineTuneEventsResponse', Body, ValidatorState);
-
-validate_response('ListFineTunes', 200, Body, ValidatorState) ->
-    validate_response_body('ListFineTunesResponse', 'ListFineTunesResponse', Body, ValidatorState);
-
 validate_response('ListModels', 200, Body, ValidatorState) ->
     validate_response_body('ListModelsResponse', 'ListModelsResponse', Body, ValidatorState);
 
-validate_response('RetrieveFile', 200, Body, ValidatorState) ->
-    validate_response_body('OpenAIFile', 'OpenAIFile', Body, ValidatorState);
-
-validate_response('RetrieveFineTune', 200, Body, ValidatorState) ->
-    validate_response_body('FineTune', 'FineTune', Body, ValidatorState);
-
 validate_response('RetrieveModel', 200, Body, ValidatorState) ->
     validate_response_body('Model', 'Model', Body, ValidatorState);
+
+
+validate_response('CreateModeration', 200, Body, ValidatorState) ->
+    validate_response_body('CreateModerationResponse', 'CreateModerationResponse', Body, ValidatorState);
 
 
 validate_response(_OperationID, _Code, _Body, _ValidatorState) ->

@@ -22,22 +22,18 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("CreateCompletionResponse_choices_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateCompletionResponseChoicesInner {
 
-  private String text;
-
-  private Integer index;
-
-  private JsonNullable<CreateCompletionResponseChoicesInnerLogprobs> logprobs = JsonNullable.<CreateCompletionResponseChoicesInnerLogprobs>undefined();
-
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
    */
   public enum FinishReasonEnum {
     STOP("stop"),
     
-    LENGTH("length");
+    LENGTH("length"),
+    
+    CONTENT_FILTER("content_filter");
 
     private String value;
 
@@ -68,6 +64,12 @@ public class CreateCompletionResponseChoicesInner {
 
   private FinishReasonEnum finishReason;
 
+  private Integer index;
+
+  private JsonNullable<CreateCompletionResponseChoicesInnerLogprobs> logprobs = JsonNullable.<CreateCompletionResponseChoicesInnerLogprobs>undefined();
+
+  private String text;
+
   public CreateCompletionResponseChoicesInner() {
     super();
   }
@@ -75,31 +77,31 @@ public class CreateCompletionResponseChoicesInner {
   /**
    * Constructor with only required parameters
    */
-  public CreateCompletionResponseChoicesInner(String text, Integer index, CreateCompletionResponseChoicesInnerLogprobs logprobs, FinishReasonEnum finishReason) {
-    this.text = text;
+  public CreateCompletionResponseChoicesInner(FinishReasonEnum finishReason, Integer index, CreateCompletionResponseChoicesInnerLogprobs logprobs, String text) {
+    this.finishReason = finishReason;
     this.index = index;
     this.logprobs = JsonNullable.of(logprobs);
-    this.finishReason = finishReason;
+    this.text = text;
   }
 
-  public CreateCompletionResponseChoicesInner text(String text) {
-    this.text = text;
+  public CreateCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
     return this;
   }
 
   /**
-   * Get text
-   * @return text
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+   * @return finishReason
   */
   @NotNull 
-  @Schema(name = "text", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("text")
-  public String getText() {
-    return text;
+  @Schema(name = "finish_reason", description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("finish_reason")
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
   }
 
-  public void setText(String text) {
-    this.text = text;
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
   }
 
   public CreateCompletionResponseChoicesInner index(Integer index) {
@@ -142,24 +144,24 @@ public class CreateCompletionResponseChoicesInner {
     this.logprobs = logprobs;
   }
 
-  public CreateCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public CreateCompletionResponseChoicesInner text(String text) {
+    this.text = text;
     return this;
   }
 
   /**
-   * Get finishReason
-   * @return finishReason
+   * Get text
+   * @return text
   */
   @NotNull 
-  @Schema(name = "finish_reason", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("finish_reason")
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  @Schema(name = "text", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("text")
+  public String getText() {
+    return text;
   }
 
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setText(String text) {
+    this.text = text;
   }
 
   @Override
@@ -171,25 +173,25 @@ public class CreateCompletionResponseChoicesInner {
       return false;
     }
     CreateCompletionResponseChoicesInner createCompletionResponseChoicesInner = (CreateCompletionResponseChoicesInner) o;
-    return Objects.equals(this.text, createCompletionResponseChoicesInner.text) &&
+    return Objects.equals(this.finishReason, createCompletionResponseChoicesInner.finishReason) &&
         Objects.equals(this.index, createCompletionResponseChoicesInner.index) &&
         Objects.equals(this.logprobs, createCompletionResponseChoicesInner.logprobs) &&
-        Objects.equals(this.finishReason, createCompletionResponseChoicesInner.finishReason);
+        Objects.equals(this.text, createCompletionResponseChoicesInner.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, index, logprobs, finishReason);
+    return Objects.hash(finishReason, index, logprobs, text);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInner {\n");
-    sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

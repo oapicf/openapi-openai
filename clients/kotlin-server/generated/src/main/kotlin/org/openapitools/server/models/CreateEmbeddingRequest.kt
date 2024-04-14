@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -16,14 +16,30 @@ import org.openapitools.server.models.CreateEmbeddingRequestModel
 
 /**
  * 
- * @param model 
  * @param input 
+ * @param model 
+ * @param encodingFormat The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+ * @param dimensions The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
  * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
  */
 data class CreateEmbeddingRequest(
-    val model: CreateEmbeddingRequestModel,
     val input: CreateEmbeddingRequestInput,
+    val model: CreateEmbeddingRequestModel,
+    /* The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/). */
+    val encodingFormat: CreateEmbeddingRequest.EncodingFormat? = EncodingFormat.float,
+    /* The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */
+    val dimensions: kotlin.Int? = null,
     /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
     val user: kotlin.String? = null
 ) 
+{
+    /**
+    * The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+    * Values: float,base64
+    */
+    enum class EncodingFormat(val value: kotlin.String){
+        float("float"),
+        base64("base64");
+    }
+}
 

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,14 +23,14 @@ namespace model {
 
 Error::Error()
 {
-    m_Type = utility::conversions::to_string_t("");
-    m_TypeIsSet = false;
+    m_Code = utility::conversions::to_string_t("");
+    m_CodeIsSet = false;
     m_Message = utility::conversions::to_string_t("");
     m_MessageIsSet = false;
     m_Param = utility::conversions::to_string_t("");
     m_ParamIsSet = false;
-    m_Code = utility::conversions::to_string_t("");
-    m_CodeIsSet = false;
+    m_Type = utility::conversions::to_string_t("");
+    m_TypeIsSet = false;
 }
 
 Error::~Error()
@@ -47,9 +47,9 @@ web::json::value Error::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_TypeIsSet)
+    if(m_CodeIsSet)
     {
-        val[utility::conversions::to_string_t(U("type"))] = ModelBase::toJson(m_Type);
+        val[utility::conversions::to_string_t(U("code"))] = ModelBase::toJson(m_Code);
     }
     if(m_MessageIsSet)
     {
@@ -59,9 +59,9 @@ web::json::value Error::toJson() const
     {
         val[utility::conversions::to_string_t(U("param"))] = ModelBase::toJson(m_Param);
     }
-    if(m_CodeIsSet)
+    if(m_TypeIsSet)
     {
-        val[utility::conversions::to_string_t(U("code"))] = ModelBase::toJson(m_Code);
+        val[utility::conversions::to_string_t(U("type"))] = ModelBase::toJson(m_Type);
     }
 
     return val;
@@ -71,14 +71,14 @@ bool Error::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("type"))))
+    if(val.has_field(utility::conversions::to_string_t(U("code"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("type")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("code")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setType;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setType);
-            setType(refVal_setType);
+            utility::string_t refVal_setCode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCode);
+            setCode(refVal_setCode);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("message"))))
@@ -101,14 +101,14 @@ bool Error::fromJson(const web::json::value& val)
             setParam(refVal_setParam);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("code"))))
+    if(val.has_field(utility::conversions::to_string_t(U("type"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("code")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("type")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setCode;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCode);
-            setCode(refVal_setCode);
+            utility::string_t refVal_setType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setType);
+            setType(refVal_setType);
         }
     }
     return ok;
@@ -121,9 +121,9 @@ void Error::toMultipart(std::shared_ptr<MultipartFormData> multipart, const util
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_TypeIsSet)
+    if(m_CodeIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("type")), m_Type));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("code")), m_Code));
     }
     if(m_MessageIsSet)
     {
@@ -133,9 +133,9 @@ void Error::toMultipart(std::shared_ptr<MultipartFormData> multipart, const util
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("param")), m_Param));
     }
-    if(m_CodeIsSet)
+    if(m_TypeIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("code")), m_Code));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("type")), m_Type));
     }
 }
 
@@ -148,11 +148,11 @@ bool Error::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("type"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("code"))))
     {
-        utility::string_t refVal_setType;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("type"))), refVal_setType );
-        setType(refVal_setType);
+        utility::string_t refVal_setCode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("code"))), refVal_setCode );
+        setCode(refVal_setCode);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("message"))))
     {
@@ -166,34 +166,34 @@ bool Error::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("param"))), refVal_setParam );
         setParam(refVal_setParam);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("code"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("type"))))
     {
-        utility::string_t refVal_setCode;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("code"))), refVal_setCode );
-        setCode(refVal_setCode);
+        utility::string_t refVal_setType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("type"))), refVal_setType );
+        setType(refVal_setType);
     }
     return ok;
 }
 
-utility::string_t Error::getType() const
+utility::string_t Error::getCode() const
 {
-    return m_Type;
+    return m_Code;
 }
 
-void Error::setType(const utility::string_t& value)
+void Error::setCode(const utility::string_t& value)
 {
-    m_Type = value;
-    m_TypeIsSet = true;
+    m_Code = value;
+    m_CodeIsSet = true;
 }
 
-bool Error::typeIsSet() const
+bool Error::codeIsSet() const
 {
-    return m_TypeIsSet;
+    return m_CodeIsSet;
 }
 
-void Error::unsetType()
+void Error::unsetCode()
 {
-    m_TypeIsSet = false;
+    m_CodeIsSet = false;
 }
 utility::string_t Error::getMessage() const
 {
@@ -235,25 +235,25 @@ void Error::unsetParam()
 {
     m_ParamIsSet = false;
 }
-utility::string_t Error::getCode() const
+utility::string_t Error::getType() const
 {
-    return m_Code;
+    return m_Type;
 }
 
-void Error::setCode(const utility::string_t& value)
+void Error::setType(const utility::string_t& value)
 {
-    m_Code = value;
-    m_CodeIsSet = true;
+    m_Type = value;
+    m_TypeIsSet = true;
 }
 
-bool Error::codeIsSet() const
+bool Error::typeIsSet() const
 {
-    return m_CodeIsSet;
+    return m_TypeIsSet;
 }
 
-void Error::unsetCode()
+void Error::unsetType()
 {
-    m_CodeIsSet = false;
+    m_TypeIsSet = false;
 }
 }
 }

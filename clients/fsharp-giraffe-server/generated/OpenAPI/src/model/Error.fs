@@ -10,9 +10,9 @@ module Error =
 
 
   type Error = {
-    Type : string;
+    Code : string option;
     Message : string;
     Param : string option;
-    Code : string option;
+    Type : string;
   }
   //#endregion

@@ -12,10 +12,14 @@ module CreateEmbeddingRequest =
 
   [<CLIMutable>]
   type CreateEmbeddingRequest = {
-    [<JsonProperty(PropertyName = "model")>]
-    Model : CreateEmbeddingRequestModel;
     [<JsonProperty(PropertyName = "input")>]
     Input : CreateEmbeddingRequestInput;
+    [<JsonProperty(PropertyName = "model")>]
+    Model : CreateEmbeddingRequestModel;
+    [<JsonProperty(PropertyName = "encoding_format")>]
+    EncodingFormat : string;
+    [<JsonProperty(PropertyName = "dimensions")>]
+    Dimensions : int;
     [<JsonProperty(PropertyName = "user")>]
     User : string;
   }

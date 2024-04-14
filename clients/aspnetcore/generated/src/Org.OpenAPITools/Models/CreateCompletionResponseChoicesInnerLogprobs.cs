@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,10 +27,10 @@ namespace Org.OpenAPITools.Models
     public partial class CreateCompletionResponseChoicesInnerLogprobs : IEquatable<CreateCompletionResponseChoicesInnerLogprobs>
     {
         /// <summary>
-        /// Gets or Sets Tokens
+        /// Gets or Sets TextOffset
         /// </summary>
-        [DataMember(Name="tokens", EmitDefaultValue=false)]
-        public List<string> Tokens { get; set; }
+        [DataMember(Name="text_offset", EmitDefaultValue=false)]
+        public List<int> TextOffset { get; set; }
 
         /// <summary>
         /// Gets or Sets TokenLogprobs
@@ -39,16 +39,16 @@ namespace Org.OpenAPITools.Models
         public List<decimal> TokenLogprobs { get; set; }
 
         /// <summary>
+        /// Gets or Sets Tokens
+        /// </summary>
+        [DataMember(Name="tokens", EmitDefaultValue=false)]
+        public List<string> Tokens { get; set; }
+
+        /// <summary>
         /// Gets or Sets TopLogprobs
         /// </summary>
         [DataMember(Name="top_logprobs", EmitDefaultValue=false)]
-        public List<Object> TopLogprobs { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TextOffset
-        /// </summary>
-        [DataMember(Name="text_offset", EmitDefaultValue=false)]
-        public List<int> TextOffset { get; set; }
+        public List<Dictionary<string, decimal>> TopLogprobs { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -58,10 +58,10 @@ namespace Org.OpenAPITools.Models
         {
             var sb = new StringBuilder();
             sb.Append("class CreateCompletionResponseChoicesInnerLogprobs {\n");
-            sb.Append("  Tokens: ").Append(Tokens).Append("\n");
-            sb.Append("  TokenLogprobs: ").Append(TokenLogprobs).Append("\n");
-            sb.Append("  TopLogprobs: ").Append(TopLogprobs).Append("\n");
             sb.Append("  TextOffset: ").Append(TextOffset).Append("\n");
+            sb.Append("  TokenLogprobs: ").Append(TokenLogprobs).Append("\n");
+            sb.Append("  Tokens: ").Append(Tokens).Append("\n");
+            sb.Append("  TopLogprobs: ").Append(TopLogprobs).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -99,10 +99,10 @@ namespace Org.OpenAPITools.Models
 
             return 
                 (
-                    Tokens == other.Tokens ||
-                    Tokens != null &&
-                    other.Tokens != null &&
-                    Tokens.SequenceEqual(other.Tokens)
+                    TextOffset == other.TextOffset ||
+                    TextOffset != null &&
+                    other.TextOffset != null &&
+                    TextOffset.SequenceEqual(other.TextOffset)
                 ) && 
                 (
                     TokenLogprobs == other.TokenLogprobs ||
@@ -111,16 +111,16 @@ namespace Org.OpenAPITools.Models
                     TokenLogprobs.SequenceEqual(other.TokenLogprobs)
                 ) && 
                 (
+                    Tokens == other.Tokens ||
+                    Tokens != null &&
+                    other.Tokens != null &&
+                    Tokens.SequenceEqual(other.Tokens)
+                ) && 
+                (
                     TopLogprobs == other.TopLogprobs ||
                     TopLogprobs != null &&
                     other.TopLogprobs != null &&
                     TopLogprobs.SequenceEqual(other.TopLogprobs)
-                ) && 
-                (
-                    TextOffset == other.TextOffset ||
-                    TextOffset != null &&
-                    other.TextOffset != null &&
-                    TextOffset.SequenceEqual(other.TextOffset)
                 );
         }
 
@@ -134,14 +134,14 @@ namespace Org.OpenAPITools.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Tokens != null)
-                    hashCode = hashCode * 59 + Tokens.GetHashCode();
-                    if (TokenLogprobs != null)
-                    hashCode = hashCode * 59 + TokenLogprobs.GetHashCode();
-                    if (TopLogprobs != null)
-                    hashCode = hashCode * 59 + TopLogprobs.GetHashCode();
                     if (TextOffset != null)
                     hashCode = hashCode * 59 + TextOffset.GetHashCode();
+                    if (TokenLogprobs != null)
+                    hashCode = hashCode * 59 + TokenLogprobs.GetHashCode();
+                    if (Tokens != null)
+                    hashCode = hashCode * 59 + Tokens.GetHashCode();
+                    if (TopLogprobs != null)
+                    hashCode = hashCode * 59 + TopLogprobs.GetHashCode();
                 return hashCode;
             }
         }

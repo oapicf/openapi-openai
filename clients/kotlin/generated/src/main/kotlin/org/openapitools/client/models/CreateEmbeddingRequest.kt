@@ -24,23 +24,45 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param model 
  * @param input 
+ * @param model 
+ * @param encodingFormat The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+ * @param dimensions The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
  * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
  */
 
 
 data class CreateEmbeddingRequest (
 
+    @Json(name = "input")
+    val input: CreateEmbeddingRequestInput,
+
     @Json(name = "model")
     val model: CreateEmbeddingRequestModel,
 
-    @Json(name = "input")
-    val input: CreateEmbeddingRequestInput,
+    /* The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/). */
+    @Json(name = "encoding_format")
+    val encodingFormat: CreateEmbeddingRequest.EncodingFormat? = EncodingFormat.float,
+
+    /* The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */
+    @Json(name = "dimensions")
+    val dimensions: kotlin.Int? = null,
 
     /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
     @Json(name = "user")
     val user: kotlin.String? = null
 
-)
+) {
+
+    /**
+     * The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+     *
+     * Values: float,base64
+     */
+    @JsonClass(generateAdapter = false)
+    enum class EncodingFormat(val value: kotlin.String) {
+        @Json(name = "float") float("float"),
+        @Json(name = "base64") base64("base64");
+    }
+}
 

@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * OpenAIFileTest Class Doc Comment
  *
  * @category    Class
- * @description OpenAIFile
+ * @description The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
  * @link        https://github.com/openapitools/openapi-generator
@@ -98,17 +98,6 @@ class OpenAIFileTest extends TestCase
     }
 
     /**
-     * Test attribute "object"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyObject(): void
-    {
-        $this->markTestSkipped('Test for property object not implemented');
-    }
-
-    /**
      * Test attribute "bytes"
      *
      * @group unit
@@ -139,6 +128,17 @@ class OpenAIFileTest extends TestCase
     public function testPropertyFilename(): void
     {
         $this->markTestSkipped('Test for property filename not implemented');
+    }
+
+    /**
+     * Test attribute "object"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyObject(): void
+    {
+        $this->markTestSkipped('Test for property object not implemented');
     }
 
     /**

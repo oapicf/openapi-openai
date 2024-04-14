@@ -1,6 +1,6 @@
 package apimodels;
 
-import apimodels.ImagesResponseDataInner;
+import apimodels.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.validation.Valid;
 /**
  * ImagesResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ImagesResponse   {
   @JsonProperty("created")
@@ -25,7 +25,7 @@ public class ImagesResponse   {
   @NotNull
 @Valid
 
-  private List<@Valid ImagesResponseDataInner> data = new ArrayList<>();
+  private List<@Valid Image> data = new ArrayList<>();
 
   public ImagesResponse created(Integer created) {
     this.created = created;
@@ -44,12 +44,12 @@ public class ImagesResponse   {
     this.created = created;
   }
 
-  public ImagesResponse data(List<@Valid ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<@Valid Image> data) {
     this.data = data;
     return this;
   }
 
-  public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse addDataItem(Image dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -61,11 +61,11 @@ public class ImagesResponse   {
    * Get data
    * @return data
   **/
-  public List<@Valid ImagesResponseDataInner> getData() {
+  public List<@Valid Image> getData() {
     return data;
   }
 
-  public void setData(List<@Valid ImagesResponseDataInner> data) {
+  public void setData(List<@Valid Image> data) {
     this.data = data;
   }
 

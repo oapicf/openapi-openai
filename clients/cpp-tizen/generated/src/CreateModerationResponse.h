@@ -1,7 +1,7 @@
 /*
  * CreateModerationResponse.h
  *
- * 
+ * Represents if a given text input is potentially harmful.
  */
 
 #ifndef _CreateModerationResponse_H_
@@ -22,7 +22,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Represents if a given text input is potentially harmful.
  *
  *  \ingroup Models
  *
@@ -47,25 +47,25 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get The unique identifier for the moderation request.
 	 */
 	std::string getId();
 
-	/*! \brief Set 
+	/*! \brief Set The unique identifier for the moderation request.
 	 */
 	void setId(std::string  id);
-	/*! \brief Get 
+	/*! \brief Get The model used to generate the moderation results.
 	 */
 	std::string getModel();
 
-	/*! \brief Set 
+	/*! \brief Set The model used to generate the moderation results.
 	 */
 	void setModel(std::string  model);
-	/*! \brief Get 
+	/*! \brief Get A list of moderation objects.
 	 */
 	std::list<CreateModerationResponse_results_inner> getResults();
 
-	/*! \brief Set 
+	/*! \brief Set A list of moderation objects.
 	 */
 	void setResults(std::list <CreateModerationResponse_results_inner> results);
 

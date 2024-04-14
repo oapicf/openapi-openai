@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,17 +13,27 @@
 import * as models from './models';
 
 export interface CreateChatCompletionResponseChoicesInner {
-    index?: number;
+    /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+     */
+    finish_reason: CreateChatCompletionResponseChoicesInner.FinishReasonEnum;
 
-    message?: models.ChatCompletionResponseMessage;
+    /**
+     * The index of the choice in the list of choices.
+     */
+    index: number;
 
-    finish_reason?: CreateChatCompletionResponseChoicesInner.FinishReasonEnum;
+    message: models.ChatCompletionResponseMessage;
+
+    logprobs: models.CreateChatCompletionResponseChoicesInnerLogprobs;
 
 }
 export namespace CreateChatCompletionResponseChoicesInner {
     export enum FinishReasonEnum {
         Stop = <any> 'stop',
         Length = <any> 'length',
+        ToolCalls = <any> 'tool_calls',
+        ContentFilter = <any> 'content_filter',
         FunctionCall = <any> 'function_call'
     }
 }

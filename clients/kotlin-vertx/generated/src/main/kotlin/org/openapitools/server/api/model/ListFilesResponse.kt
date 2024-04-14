@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -19,19 +19,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param &#x60;object&#x60; 
  * @param &#x60;data&#x60; 
+ * @param &#x60;object&#x60; 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class ListFilesResponse (
-    @SerializedName("`object`") private val _`object`: kotlin.String?,
-    @SerializedName("`data`") private val _`data`: kotlin.Array<OpenAIFile>?
+    @SerializedName("`data`") private val _`data`: kotlin.Array<OpenAIFile>?,
+    @SerializedName("`object`") private val _`object`: ListFilesResponse.&#x60;Object&#x60;?
 ) {
 
-        val `object` get() = _`object` ?: throw IllegalArgumentException("`object` is required")
-                    
+    /**
+    * 
+    * Values: list
+    */
+    enum class &#x60;Object&#x60;(val value: kotlin.String){
+    
+        list("list");
+    
+    }
+
         val `data` get() = _`data` ?: throw IllegalArgumentException("`data` is required")
+                    
+        val `object` get() = _`object` ?: throw IllegalArgumentException("`object` is required")
                     
 }
 

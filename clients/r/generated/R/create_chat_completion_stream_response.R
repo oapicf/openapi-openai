@@ -1,17 +1,18 @@
 #' Create a new CreateChatCompletionStreamResponse
 #'
 #' @description
-#' CreateChatCompletionStreamResponse Class
+#' Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
 #'
 #' @docType class
 #' @title CreateChatCompletionStreamResponse
 #' @description CreateChatCompletionStreamResponse Class
 #' @format An \code{R6Class} generator object
-#' @field id  character
-#' @field object  character
-#' @field created  integer
-#' @field model  character
-#' @field choices  list(\link{CreateChatCompletionStreamResponseChoicesInner})
+#' @field id A unique identifier for the chat completion. Each chunk has the same ID. character
+#' @field choices A list of chat completion choices. Can be more than one if `n` is greater than 1. list(\link{CreateChatCompletionStreamResponseChoicesInner})
+#' @field created The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. integer
+#' @field model The model to generate the completion. character
+#' @field system_fingerprint This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. character [optional]
+#' @field object The object type, which is always `chat.completion.chunk`. character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -19,34 +20,35 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
   "CreateChatCompletionStreamResponse",
   public = list(
     `id` = NULL,
-    `object` = NULL,
+    `choices` = NULL,
     `created` = NULL,
     `model` = NULL,
-    `choices` = NULL,
+    `system_fingerprint` = NULL,
+    `object` = NULL,
     #' Initialize a new CreateChatCompletionStreamResponse class.
     #'
     #' @description
     #' Initialize a new CreateChatCompletionStreamResponse class.
     #'
-    #' @param id id
-    #' @param object object
-    #' @param created created
-    #' @param model model
-    #' @param choices choices
+    #' @param id A unique identifier for the chat completion. Each chunk has the same ID.
+    #' @param choices A list of chat completion choices. Can be more than one if `n` is greater than 1.
+    #' @param created The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+    #' @param model The model to generate the completion.
+    #' @param object The object type, which is always `chat.completion.chunk`.
+    #' @param system_fingerprint This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`id`, `object`, `created`, `model`, `choices`, ...) {
+    initialize = function(`id`, `choices`, `created`, `model`, `object`, `system_fingerprint` = NULL, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
         }
         self$`id` <- `id`
       }
-      if (!missing(`object`)) {
-        if (!(is.character(`object`) && length(`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
-        }
-        self$`object` <- `object`
+      if (!missing(`choices`)) {
+        stopifnot(is.vector(`choices`), length(`choices`) != 0)
+        sapply(`choices`, function(x) stopifnot(R6::is.R6(x)))
+        self$`choices` <- `choices`
       }
       if (!missing(`created`)) {
         if (!(is.numeric(`created`) && length(`created`) == 1)) {
@@ -60,10 +62,20 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
         }
         self$`model` <- `model`
       }
-      if (!missing(`choices`)) {
-        stopifnot(is.vector(`choices`), length(`choices`) != 0)
-        sapply(`choices`, function(x) stopifnot(R6::is.R6(x)))
-        self$`choices` <- `choices`
+      if (!missing(`object`)) {
+        if (!(`object` %in% c("chat.completion.chunk"))) {
+          stop(paste("Error! \"", `object`, "\" cannot be assigned to `object`. Must be \"chat.completion.chunk\".", sep = ""))
+        }
+        if (!(is.character(`object`) && length(`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
+        }
+        self$`object` <- `object`
+      }
+      if (!is.null(`system_fingerprint`)) {
+        if (!(is.character(`system_fingerprint`) && length(`system_fingerprint`) == 1)) {
+          stop(paste("Error! Invalid data for `system_fingerprint`. Must be a string:", `system_fingerprint`))
+        }
+        self$`system_fingerprint` <- `system_fingerprint`
       }
     },
     #' To JSON string
@@ -79,9 +91,9 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
         CreateChatCompletionStreamResponseObject[["id"]] <-
           self$`id`
       }
-      if (!is.null(self$`object`)) {
-        CreateChatCompletionStreamResponseObject[["object"]] <-
-          self$`object`
+      if (!is.null(self$`choices`)) {
+        CreateChatCompletionStreamResponseObject[["choices"]] <-
+          lapply(self$`choices`, function(x) x$toJSON())
       }
       if (!is.null(self$`created`)) {
         CreateChatCompletionStreamResponseObject[["created"]] <-
@@ -91,9 +103,13 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
         CreateChatCompletionStreamResponseObject[["model"]] <-
           self$`model`
       }
-      if (!is.null(self$`choices`)) {
-        CreateChatCompletionStreamResponseObject[["choices"]] <-
-          lapply(self$`choices`, function(x) x$toJSON())
+      if (!is.null(self$`system_fingerprint`)) {
+        CreateChatCompletionStreamResponseObject[["system_fingerprint"]] <-
+          self$`system_fingerprint`
+      }
+      if (!is.null(self$`object`)) {
+        CreateChatCompletionStreamResponseObject[["object"]] <-
+          self$`object`
       }
       CreateChatCompletionStreamResponseObject
     },
@@ -110,8 +126,8 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
       if (!is.null(this_object$`id`)) {
         self$`id` <- this_object$`id`
       }
-      if (!is.null(this_object$`object`)) {
-        self$`object` <- this_object$`object`
+      if (!is.null(this_object$`choices`)) {
+        self$`choices` <- ApiClient$new()$deserializeObj(this_object$`choices`, "array[CreateChatCompletionStreamResponseChoicesInner]", loadNamespace("openapi"))
       }
       if (!is.null(this_object$`created`)) {
         self$`created` <- this_object$`created`
@@ -119,8 +135,14 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
       if (!is.null(this_object$`model`)) {
         self$`model` <- this_object$`model`
       }
-      if (!is.null(this_object$`choices`)) {
-        self$`choices` <- ApiClient$new()$deserializeObj(this_object$`choices`, "array[CreateChatCompletionStreamResponseChoicesInner]", loadNamespace("openapi"))
+      if (!is.null(this_object$`system_fingerprint`)) {
+        self$`system_fingerprint` <- this_object$`system_fingerprint`
+      }
+      if (!is.null(this_object$`object`)) {
+        if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("chat.completion.chunk"))) {
+          stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"chat.completion.chunk\".", sep = ""))
+        }
+        self$`object` <- this_object$`object`
       }
       self
     },
@@ -141,12 +163,12 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
           self$`id`
           )
         },
-        if (!is.null(self$`object`)) {
+        if (!is.null(self$`choices`)) {
           sprintf(
-          '"object":
-            "%s"
-                    ',
-          self$`object`
+          '"choices":
+          [%s]
+',
+          paste(sapply(self$`choices`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
           )
         },
         if (!is.null(self$`created`)) {
@@ -165,12 +187,20 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
           self$`model`
           )
         },
-        if (!is.null(self$`choices`)) {
+        if (!is.null(self$`system_fingerprint`)) {
           sprintf(
-          '"choices":
-          [%s]
-',
-          paste(sapply(self$`choices`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
+          '"system_fingerprint":
+            "%s"
+                    ',
+          self$`system_fingerprint`
+          )
+        },
+        if (!is.null(self$`object`)) {
+          sprintf(
+          '"object":
+            "%s"
+                    ',
+          self$`object`
           )
         }
       )
@@ -188,10 +218,14 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`id` <- this_object$`id`
-      self$`object` <- this_object$`object`
+      self$`choices` <- ApiClient$new()$deserializeObj(this_object$`choices`, "array[CreateChatCompletionStreamResponseChoicesInner]", loadNamespace("openapi"))
       self$`created` <- this_object$`created`
       self$`model` <- this_object$`model`
-      self$`choices` <- ApiClient$new()$deserializeObj(this_object$`choices`, "array[CreateChatCompletionStreamResponseChoicesInner]", loadNamespace("openapi"))
+      self$`system_fingerprint` <- this_object$`system_fingerprint`
+      if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("chat.completion.chunk"))) {
+        stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"chat.completion.chunk\".", sep = ""))
+      }
+      self$`object` <- this_object$`object`
       self
     },
     #' Validate JSON input with respect to CreateChatCompletionStreamResponse
@@ -211,13 +245,12 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionStreamResponse: the required field `id` is missing."))
       }
-      # check the required field `object`
-      if (!is.null(input_json$`object`)) {
-        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
-        }
+      # check the required field `choices`
+      if (!is.null(input_json$`choices`)) {
+        stopifnot(is.vector(input_json$`choices`), length(input_json$`choices`) != 0)
+        tmp <- sapply(input_json$`choices`, function(x) stopifnot(R6::is.R6(x)))
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionStreamResponse: the required field `object` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionStreamResponse: the required field `choices` is missing."))
       }
       # check the required field `created`
       if (!is.null(input_json$`created`)) {
@@ -235,12 +268,13 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionStreamResponse: the required field `model` is missing."))
       }
-      # check the required field `choices`
-      if (!is.null(input_json$`choices`)) {
-        stopifnot(is.vector(input_json$`choices`), length(input_json$`choices`) != 0)
-        tmp <- sapply(input_json$`choices`, function(x) stopifnot(R6::is.R6(x)))
+      # check the required field `object`
+      if (!is.null(input_json$`object`)) {
+        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
+        }
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionStreamResponse: the required field `choices` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionStreamResponse: the required field `object` is missing."))
       }
     },
     #' To string (JSON format)
@@ -266,8 +300,8 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
+      # check if the required `choices` is null
+      if (is.null(self$`choices`)) {
         return(FALSE)
       }
 
@@ -281,8 +315,8 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `choices` is null
-      if (is.null(self$`choices`)) {
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
         return(FALSE)
       }
 
@@ -302,9 +336,9 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
         invalid_fields["id"] <- "Non-nullable required field `id` cannot be null."
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
-        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
+      # check if the required `choices` is null
+      if (is.null(self$`choices`)) {
+        invalid_fields["choices"] <- "Non-nullable required field `choices` cannot be null."
       }
 
       # check if the required `created` is null
@@ -317,9 +351,9 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
         invalid_fields["model"] <- "Non-nullable required field `model` cannot be null."
       }
 
-      # check if the required `choices` is null
-      if (is.null(self$`choices`)) {
-        invalid_fields["choices"] <- "Non-nullable required field `choices` cannot be null."
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
+        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
       }
 
       invalid_fields

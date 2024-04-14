@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -39,10 +39,10 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    QString getType() const;
-    void setType(const QString &type);
-    bool is_type_Set() const;
-    bool is_type_Valid() const;
+    QString getCode() const;
+    void setCode(const QString &code);
+    bool is_code_Set() const;
+    bool is_code_Valid() const;
 
     QString getMessage() const;
     void setMessage(const QString &message);
@@ -54,10 +54,10 @@ public:
     bool is_param_Set() const;
     bool is_param_Valid() const;
 
-    QString getCode() const;
-    void setCode(const QString &code);
-    bool is_code_Set() const;
-    bool is_code_Valid() const;
+    QString getType() const;
+    void setType(const QString &type);
+    bool is_type_Set() const;
+    bool is_type_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -65,9 +65,9 @@ public:
 private:
     void initializeModel();
 
-    QString m_type;
-    bool m_type_isSet;
-    bool m_type_isValid;
+    QString m_code;
+    bool m_code_isSet;
+    bool m_code_isValid;
 
     QString m_message;
     bool m_message_isSet;
@@ -77,9 +77,9 @@ private:
     bool m_param_isSet;
     bool m_param_isValid;
 
-    QString m_code;
-    bool m_code_isSet;
-    bool m_code_isValid;
+    QString m_type;
+    bool m_type_isSet;
+    bool m_type_isValid;
 };
 
 } // namespace OpenAPI

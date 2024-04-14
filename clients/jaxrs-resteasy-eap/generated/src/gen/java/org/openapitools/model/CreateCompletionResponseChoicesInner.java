@@ -13,20 +13,19 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-16T01:13:41.666812110Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-04-14T13:42:04.201119898Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateCompletionResponseChoicesInner   {
   
-  private String text;
-  private Integer index;
-  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
 
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
    */
   public enum FinishReasonEnum {
     STOP("stop"),
 
-        LENGTH("length");
+        LENGTH("length"),
+
+        CONTENT_FILTER("content_filter");
     private String value;
 
     FinishReasonEnum(String value) {
@@ -41,18 +40,22 @@ public class CreateCompletionResponseChoicesInner   {
   }
 
   private FinishReasonEnum finishReason;
+  private Integer index;
+  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
+  private String text;
 
   /**
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
    **/
   
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("text")
+  @ApiModelProperty(required = true, value = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. ")
+  @JsonProperty("finish_reason")
   @NotNull
-  public String getText() {
-    return text;
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
   }
-  public void setText(String text) {
-    this.text = text;
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
   }
 
   /**
@@ -85,13 +88,13 @@ public class CreateCompletionResponseChoicesInner   {
    **/
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("finish_reason")
+  @JsonProperty("text")
   @NotNull
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  public String getText() {
+    return text;
   }
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -104,15 +107,15 @@ public class CreateCompletionResponseChoicesInner   {
       return false;
     }
     CreateCompletionResponseChoicesInner createCompletionResponseChoicesInner = (CreateCompletionResponseChoicesInner) o;
-    return Objects.equals(this.text, createCompletionResponseChoicesInner.text) &&
+    return Objects.equals(this.finishReason, createCompletionResponseChoicesInner.finishReason) &&
         Objects.equals(this.index, createCompletionResponseChoicesInner.index) &&
         Objects.equals(this.logprobs, createCompletionResponseChoicesInner.logprobs) &&
-        Objects.equals(this.finishReason, createCompletionResponseChoicesInner.finishReason);
+        Objects.equals(this.text, createCompletionResponseChoicesInner.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, index, logprobs, finishReason);
+    return Objects.hash(finishReason, index, logprobs, text);
   }
 
   @Override
@@ -120,10 +123,10 @@ public class CreateCompletionResponseChoicesInner   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInner {\n");
     
-    sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

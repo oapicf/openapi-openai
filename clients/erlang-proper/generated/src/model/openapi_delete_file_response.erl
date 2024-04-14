@@ -20,7 +20,7 @@ openapi_delete_file_response() ->
 
 openapi_delete_file_response(Fields) ->
   Default = [ {'id', binary() }
-            , {'object', binary() }
+            , {'object', elements([<<"file">>]) }
             , {'deleted', boolean() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

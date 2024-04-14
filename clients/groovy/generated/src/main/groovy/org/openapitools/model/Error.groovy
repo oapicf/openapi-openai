@@ -7,11 +7,11 @@ import io.swagger.annotations.ApiModelProperty;
 @Canonical
 class Error {
     
-    String type
+    String code
     
     String message
     
     String param
     
-    String code
+    String type
 }

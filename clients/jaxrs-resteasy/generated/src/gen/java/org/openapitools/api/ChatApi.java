@@ -28,7 +28,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the chat API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-16T01:13:37.006745963Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-04-14T13:41:51.736364282Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ChatApi  {
 
     @Inject ChatApiService service;
@@ -37,7 +37,9 @@ public class ChatApi  {
     
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Creates a model response for the given chat conversation.", notes = "", response = CreateChatCompletionResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Creates a model response for the given chat conversation.", notes = "", response = CreateChatCompletionResponse.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Chat", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = CreateChatCompletionResponse.class) })
     public Response createChatCompletion(@ApiParam(value = "" ,required=true) @NotNull @Valid CreateChatCompletionRequest createChatCompletionRequest,@Context SecurityContext securityContext)

@@ -9,9 +9,10 @@
 -export_type([openapi_chat_completion_response_message/0]).
 
 -type openapi_chat_completion_response_message() ::
-  [ {'role', binary() }
-  | {'content', binary() }
-  | {'function_call', openapi_chat_completion_request_message_function_call:openapi_chat_completion_request_message_function_call() }
+  [ {'content', binary() }
+  | {'tool_calls', list(openapi_chat_completion_message_tool_call:openapi_chat_completion_message_tool_call()) }
+  | {'role', binary() }
+  | {'function_call', openapi_chat_completion_request_assistant_message_function_call:openapi_chat_completion_request_assistant_message_function_call() }
   ].
 
 
@@ -19,9 +20,10 @@ openapi_chat_completion_response_message() ->
     openapi_chat_completion_response_message([]).
 
 openapi_chat_completion_response_message(Fields) ->
-  Default = [ {'role', elements([<<"system">>, <<"user">>, <<"assistant">>, <<"function">>]) }
-            , {'content', binary() }
-            , {'function_call', openapi_chat_completion_request_message_function_call:openapi_chat_completion_request_message_function_call() }
+  Default = [ {'content', binary() }
+            , {'tool_calls', list(openapi_chat_completion_message_tool_call:openapi_chat_completion_message_tool_call()) }
+            , {'role', elements([<<"assistant">>]) }
+            , {'function_call', openapi_chat_completion_request_assistant_message_function_call:openapi_chat_completion_request_assistant_message_function_call() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

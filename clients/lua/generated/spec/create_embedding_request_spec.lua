@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -16,6 +16,13 @@ Please update as you see appropriate
 describe("create_embedding_request", function()
   local openapiclient_create_embedding_request = require "openapiclient.model.create_embedding_request"
 
+  -- unit tests for the property 'input'
+  describe("property input test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'model'
   describe("property model test", function()
     it("should work", function()
@@ -23,8 +30,15 @@ describe("create_embedding_request", function()
     end)
   end)
 
-  -- unit tests for the property 'input'
-  describe("property input test", function()
+  -- unit tests for the property 'encoding_format'
+  describe("property encoding_format test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'dimensions'
+  describe("property dimensions test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

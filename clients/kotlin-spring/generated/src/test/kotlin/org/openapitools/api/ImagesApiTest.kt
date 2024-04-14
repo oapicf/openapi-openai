@@ -1,5 +1,6 @@
 package org.openapitools.api
 
+import org.openapitools.model.CreateImageEditRequestModel
 import org.openapitools.model.CreateImageRequest
 import org.openapitools.model.ImagesResponse
 import org.junit.jupiter.api.Test
@@ -34,11 +35,12 @@ class ImagesApiTest {
         val image: org.springframework.core.io.Resource = TODO()
         val prompt: kotlin.String = TODO()
         val mask: org.springframework.core.io.Resource? = TODO()
+        val model: CreateImageEditRequestModel? = TODO()
         val n: kotlin.Int = TODO()
         val size: kotlin.String = TODO()
         val responseFormat: kotlin.String = TODO()
         val user: kotlin.String? = TODO()
-        val response: ResponseEntity<ImagesResponse> = api.createImageEdit(image, prompt, mask, n, size, responseFormat, user)
+        val response: ResponseEntity<ImagesResponse> = api.createImageEdit(image, prompt, mask, model, n, size, responseFormat, user)
 
         // TODO: test validations
     }
@@ -52,11 +54,12 @@ class ImagesApiTest {
     @Test
     fun createImageVariationTest() {
         val image: org.springframework.core.io.Resource = TODO()
+        val model: CreateImageEditRequestModel? = TODO()
         val n: kotlin.Int = TODO()
-        val size: kotlin.String = TODO()
         val responseFormat: kotlin.String = TODO()
+        val size: kotlin.String = TODO()
         val user: kotlin.String? = TODO()
-        val response: ResponseEntity<ImagesResponse> = api.createImageVariation(image, n, size, responseFormat, user)
+        val response: ResponseEntity<ImagesResponse> = api.createImageVariation(image, model, n, responseFormat, size, user)
 
         // TODO: test validations
     }

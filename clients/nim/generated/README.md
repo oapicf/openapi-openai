@@ -1,6 +1,6 @@
 # Nim API client for OpenAI API (Package: openapiclient)
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 ## Overview
 
@@ -26,29 +26,58 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Module | Proc | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-api_open_ai | cancelFineTune | **POST** /fine-tunes/{fine_tune_id}/cancel | Immediately cancel a fine-tune job. 
-api_open_ai | createChatCompletion | **POST** /chat/completions | Creates a model response for the given chat conversation.
-api_open_ai | createCompletion | **POST** /completions | Creates a completion for the provided prompt and parameters.
-api_open_ai | createEdit | **POST** /edits | Creates a new edit for the provided input, instruction, and parameters.
-api_open_ai | createEmbedding | **POST** /embeddings | Creates an embedding vector representing the input text.
-api_open_ai | createFile | **POST** /files | Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
-api_open_ai | createFineTune | **POST** /fine-tunes | Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-api_open_ai | createImage | **POST** /images/generations | Creates an image given a prompt.
-api_open_ai | createImageEdit | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
-api_open_ai | createImageVariation | **POST** /images/variations | Creates a variation of a given image.
-api_open_ai | createModeration | **POST** /moderations | Classifies if text violates OpenAI's Content Policy
-api_open_ai | createTranscription | **POST** /audio/transcriptions | Transcribes audio into the input language.
-api_open_ai | createTranslation | **POST** /audio/translations | Translates audio into English.
-api_open_ai | deleteFile | **DELETE** /files/{file_id} | Delete a file.
-api_open_ai | deleteModel | **DELETE** /models/{model} | Delete a fine-tuned model. You must have the Owner role in your organization.
-api_open_ai | downloadFile | **GET** /files/{file_id}/content | Returns the contents of the specified file
-api_open_ai | listFiles | **GET** /files | Returns a list of files that belong to the user's organization.
-api_open_ai | listFineTuneEvents | **GET** /fine-tunes/{fine_tune_id}/events | Get fine-grained status updates for a fine-tune job. 
-api_open_ai | listFineTunes | **GET** /fine-tunes | List your organization's fine-tuning jobs 
-api_open_ai | listModels | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
-api_open_ai | retrieveFile | **GET** /files/{file_id} | Returns information about a specific file.
-api_open_ai | retrieveFineTune | **GET** /fine-tunes/{fine_tune_id} | Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-api_open_ai | retrieveModel | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+api_assistants | cancelRun | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is `in_progress`.
+api_assistants | createAssistant | **POST** /assistants | Create an assistant with a model and instructions.
+api_assistants | createAssistantFile | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+api_assistants | createMessage | **POST** /threads/{thread_id}/messages | Create a message.
+api_assistants | createRun | **POST** /threads/{thread_id}/runs | Create a run.
+api_assistants | createThread | **POST** /threads | Create a thread.
+api_assistants | createThreadAndRun | **POST** /threads/runs | Create a thread and run it in one request.
+api_assistants | deleteAssistant | **DELETE** /assistants/{assistant_id} | Delete an assistant.
+api_assistants | deleteAssistantFile | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+api_assistants | deleteThread | **DELETE** /threads/{thread_id} | Delete a thread.
+api_assistants | getAssistant | **GET** /assistants/{assistant_id} | Retrieves an assistant.
+api_assistants | getAssistantFile | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
+api_assistants | getMessage | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
+api_assistants | getMessageFile | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
+api_assistants | getRun | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
+api_assistants | getRunStep | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
+api_assistants | getThread | **GET** /threads/{thread_id} | Retrieves a thread.
+api_assistants | listAssistantFiles | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
+api_assistants | listAssistants | **GET** /assistants | Returns a list of assistants.
+api_assistants | listMessageFiles | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
+api_assistants | listMessages | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
+api_assistants | listRunSteps | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
+api_assistants | listRuns | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
+api_assistants | modifyAssistant | **POST** /assistants/{assistant_id} | Modifies an assistant.
+api_assistants | modifyMessage | **POST** /threads/{thread_id}/messages/{message_id} | Modifies a message.
+api_assistants | modifyRun | **POST** /threads/{thread_id}/runs/{run_id} | Modifies a run.
+api_assistants | modifyThread | **POST** /threads/{thread_id} | Modifies a thread.
+api_assistants | submitToolOuputsToRun | **POST** /threads/{thread_id}/runs/{run_id}/submit_tool_outputs | When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request. 
+api_audio | createSpeech | **POST** /audio/speech | Generates audio from the input text.
+api_audio | createTranscription | **POST** /audio/transcriptions | Transcribes audio into the input language.
+api_audio | createTranslation | **POST** /audio/translations | Translates audio into English.
+api_chat | createChatCompletion | **POST** /chat/completions | Creates a model response for the given chat conversation.
+api_completions | createCompletion | **POST** /completions | Creates a completion for the provided prompt and parameters.
+api_embeddings | createEmbedding | **POST** /embeddings | Creates an embedding vector representing the input text.
+api_files | createFile | **POST** /files | Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+api_files | deleteFile | **DELETE** /files/{file_id} | Delete a file.
+api_files | downloadFile | **GET** /files/{file_id}/content | Returns the contents of the specified file.
+api_files | listFiles | **GET** /files | Returns a list of files that belong to the user's organization.
+api_files | retrieveFile | **GET** /files/{file_id} | Returns information about a specific file.
+api_fine_tuning | cancelFineTuningJob | **POST** /fine_tuning/jobs/{fine_tuning_job_id}/cancel | Immediately cancel a fine-tune job. 
+api_fine_tuning | createFineTuningJob | **POST** /fine_tuning/jobs | Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+api_fine_tuning | listFineTuningEvents | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/events | Get status updates for a fine-tuning job. 
+api_fine_tuning | listFineTuningJobCheckpoints | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/checkpoints | List checkpoints for a fine-tuning job. 
+api_fine_tuning | listPaginatedFineTuningJobs | **GET** /fine_tuning/jobs | List your organization's fine-tuning jobs 
+api_fine_tuning | retrieveFineTuningJob | **GET** /fine_tuning/jobs/{fine_tuning_job_id} | Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+api_images | createImage | **POST** /images/generations | Creates an image given a prompt.
+api_images | createImageEdit | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
+api_images | createImageVariation | **POST** /images/variations | Creates a variation of a given image.
+api_models | deleteModel | **DELETE** /models/{model} | Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
+api_models | listModels | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
+api_models | retrieveModel | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+api_moderations | createModeration | **POST** /moderations | Classifies if text is potentially harmful.
 
 
 To generate documentation with Nim DocGen, use:

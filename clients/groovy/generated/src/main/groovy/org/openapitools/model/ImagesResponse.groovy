@@ -5,12 +5,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 
 @Canonical
 class ImagesResponse {
     
     Integer created
     
-    List<ImagesResponseDataInner> data = new ArrayList<>()
+    List<Image> data = new ArrayList<>()
 }

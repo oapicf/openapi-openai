@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -20,14 +20,21 @@ import (
 // checks if the CreateChatCompletionResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateChatCompletionResponse{}
 
-// CreateChatCompletionResponse struct for CreateChatCompletionResponse
+// CreateChatCompletionResponse Represents a chat completion response returned by model, based on the provided input.
 type CreateChatCompletionResponse struct {
+	// A unique identifier for the chat completion.
 	Id string `json:"id"`
-	Object string `json:"object"`
-	Created int32 `json:"created"`
-	Model string `json:"model"`
+	// A list of chat completion choices. Can be more than one if `n` is greater than 1.
 	Choices []CreateChatCompletionResponseChoicesInner `json:"choices"`
-	Usage *CreateCompletionResponseUsage `json:"usage,omitempty"`
+	// The Unix timestamp (in seconds) of when the chat completion was created.
+	Created int32 `json:"created"`
+	// The model used for the chat completion.
+	Model string `json:"model"`
+	// This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+	SystemFingerprint *string `json:"system_fingerprint,omitempty"`
+	// The object type, which is always `chat.completion`.
+	Object string `json:"object"`
+	Usage *CompletionUsage `json:"usage,omitempty"`
 }
 
 type _CreateChatCompletionResponse CreateChatCompletionResponse
@@ -36,13 +43,13 @@ type _CreateChatCompletionResponse CreateChatCompletionResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateChatCompletionResponse(id string, object string, created int32, model string, choices []CreateChatCompletionResponseChoicesInner) *CreateChatCompletionResponse {
+func NewCreateChatCompletionResponse(id string, choices []CreateChatCompletionResponseChoicesInner, created int32, model string, object string) *CreateChatCompletionResponse {
 	this := CreateChatCompletionResponse{}
 	this.Id = id
-	this.Object = object
+	this.Choices = choices
 	this.Created = created
 	this.Model = model
-	this.Choices = choices
+	this.Object = object
 	return &this
 }
 
@@ -78,28 +85,28 @@ func (o *CreateChatCompletionResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetObject returns the Object field value
-func (o *CreateChatCompletionResponse) GetObject() string {
+// GetChoices returns the Choices field value
+func (o *CreateChatCompletionResponse) GetChoices() []CreateChatCompletionResponseChoicesInner {
 	if o == nil {
-		var ret string
+		var ret []CreateChatCompletionResponseChoicesInner
 		return ret
 	}
 
-	return o.Object
+	return o.Choices
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetChoicesOk returns a tuple with the Choices field value
 // and a boolean to check if the value has been set.
-func (o *CreateChatCompletionResponse) GetObjectOk() (*string, bool) {
+func (o *CreateChatCompletionResponse) GetChoicesOk() ([]CreateChatCompletionResponseChoicesInner, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Choices, true
 }
 
-// SetObject sets field value
-func (o *CreateChatCompletionResponse) SetObject(v string) {
-	o.Object = v
+// SetChoices sets field value
+func (o *CreateChatCompletionResponse) SetChoices(v []CreateChatCompletionResponseChoicesInner) {
+	o.Choices = v
 }
 
 // GetCreated returns the Created field value
@@ -150,34 +157,66 @@ func (o *CreateChatCompletionResponse) SetModel(v string) {
 	o.Model = v
 }
 
-// GetChoices returns the Choices field value
-func (o *CreateChatCompletionResponse) GetChoices() []CreateChatCompletionResponseChoicesInner {
+// GetSystemFingerprint returns the SystemFingerprint field value if set, zero value otherwise.
+func (o *CreateChatCompletionResponse) GetSystemFingerprint() string {
+	if o == nil || IsNil(o.SystemFingerprint) {
+		var ret string
+		return ret
+	}
+	return *o.SystemFingerprint
+}
+
+// GetSystemFingerprintOk returns a tuple with the SystemFingerprint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateChatCompletionResponse) GetSystemFingerprintOk() (*string, bool) {
+	if o == nil || IsNil(o.SystemFingerprint) {
+		return nil, false
+	}
+	return o.SystemFingerprint, true
+}
+
+// HasSystemFingerprint returns a boolean if a field has been set.
+func (o *CreateChatCompletionResponse) HasSystemFingerprint() bool {
+	if o != nil && !IsNil(o.SystemFingerprint) {
+		return true
+	}
+
+	return false
+}
+
+// SetSystemFingerprint gets a reference to the given string and assigns it to the SystemFingerprint field.
+func (o *CreateChatCompletionResponse) SetSystemFingerprint(v string) {
+	o.SystemFingerprint = &v
+}
+
+// GetObject returns the Object field value
+func (o *CreateChatCompletionResponse) GetObject() string {
 	if o == nil {
-		var ret []CreateChatCompletionResponseChoicesInner
+		var ret string
 		return ret
 	}
 
-	return o.Choices
+	return o.Object
 }
 
-// GetChoicesOk returns a tuple with the Choices field value
+// GetObjectOk returns a tuple with the Object field value
 // and a boolean to check if the value has been set.
-func (o *CreateChatCompletionResponse) GetChoicesOk() ([]CreateChatCompletionResponseChoicesInner, bool) {
+func (o *CreateChatCompletionResponse) GetObjectOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Choices, true
+	return &o.Object, true
 }
 
-// SetChoices sets field value
-func (o *CreateChatCompletionResponse) SetChoices(v []CreateChatCompletionResponseChoicesInner) {
-	o.Choices = v
+// SetObject sets field value
+func (o *CreateChatCompletionResponse) SetObject(v string) {
+	o.Object = v
 }
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
-func (o *CreateChatCompletionResponse) GetUsage() CreateCompletionResponseUsage {
+func (o *CreateChatCompletionResponse) GetUsage() CompletionUsage {
 	if o == nil || IsNil(o.Usage) {
-		var ret CreateCompletionResponseUsage
+		var ret CompletionUsage
 		return ret
 	}
 	return *o.Usage
@@ -185,7 +224,7 @@ func (o *CreateChatCompletionResponse) GetUsage() CreateCompletionResponseUsage 
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateChatCompletionResponse) GetUsageOk() (*CreateCompletionResponseUsage, bool) {
+func (o *CreateChatCompletionResponse) GetUsageOk() (*CompletionUsage, bool) {
 	if o == nil || IsNil(o.Usage) {
 		return nil, false
 	}
@@ -201,8 +240,8 @@ func (o *CreateChatCompletionResponse) HasUsage() bool {
 	return false
 }
 
-// SetUsage gets a reference to the given CreateCompletionResponseUsage and assigns it to the Usage field.
-func (o *CreateChatCompletionResponse) SetUsage(v CreateCompletionResponseUsage) {
+// SetUsage gets a reference to the given CompletionUsage and assigns it to the Usage field.
+func (o *CreateChatCompletionResponse) SetUsage(v CompletionUsage) {
 	o.Usage = &v
 }
 
@@ -217,10 +256,13 @@ func (o CreateChatCompletionResponse) MarshalJSON() ([]byte, error) {
 func (o CreateChatCompletionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	toSerialize["object"] = o.Object
+	toSerialize["choices"] = o.Choices
 	toSerialize["created"] = o.Created
 	toSerialize["model"] = o.Model
-	toSerialize["choices"] = o.Choices
+	if !IsNil(o.SystemFingerprint) {
+		toSerialize["system_fingerprint"] = o.SystemFingerprint
+	}
+	toSerialize["object"] = o.Object
 	if !IsNil(o.Usage) {
 		toSerialize["usage"] = o.Usage
 	}
@@ -233,10 +275,10 @@ func (o *CreateChatCompletionResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
-		"object",
+		"choices",
 		"created",
 		"model",
-		"choices",
+		"object",
 	}
 
 	allProperties := make(map[string]interface{})

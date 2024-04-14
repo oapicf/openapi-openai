@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,7 @@ import re  # noqa: F401
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from openapi_server.models.create_chat_completion_request_function_call_one_of import CreateChatCompletionRequestFunctionCallOneOf
+from openapi_server.models.chat_completion_function_call_option import ChatCompletionFunctionCallOption
 from typing import Union, Any, List, TYPE_CHECKING, Optional, Dict
 from typing_extensions import Literal
 from pydantic import StrictStr, Field
@@ -32,18 +32,18 @@ try:
 except ImportError:
     from typing_extensions import Self
 
-CREATECHATCOMPLETIONREQUESTFUNCTIONCALL_ONE_OF_SCHEMAS = ["CreateChatCompletionRequestFunctionCallOneOf", "str"]
+CREATECHATCOMPLETIONREQUESTFUNCTIONCALL_ONE_OF_SCHEMAS = ["ChatCompletionFunctionCallOption", "str"]
 
 class CreateChatCompletionRequestFunctionCall(BaseModel):
     """
-    Controls how the model responds to function calls. \"none\" means the model does not call a function, and responds to the end-user. \"auto\" means the model can pick between an end-user or calling a function.  Specifying a particular function via `{\"name\":\\ \"my_function\"}` forces the model to call that function. \"none\" is the default when no functions are present. \"auto\" is the default if functions are present.
+    Deprecated in favor of `tool_choice`.  Controls which (if any) function is called by the model. `none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. Specifying a particular function via `{\"name\": \"my_function\"}` forces the model to call that function.  `none` is the default when no functions are present. `auto` is the default if functions are present. 
     """
     # data type: str
-    oneof_schema_1_validator: Optional[StrictStr] = None
-    # data type: CreateChatCompletionRequestFunctionCallOneOf
-    oneof_schema_2_validator: Optional[CreateChatCompletionRequestFunctionCallOneOf] = None
-    actual_instance: Optional[Union[CreateChatCompletionRequestFunctionCallOneOf, str]] = None
-    one_of_schemas: List[str] = Literal["CreateChatCompletionRequestFunctionCallOneOf", "str"]
+    oneof_schema_1_validator: Optional[StrictStr] = Field(default=None, description="`none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. ")
+    # data type: ChatCompletionFunctionCallOption
+    oneof_schema_2_validator: Optional[ChatCompletionFunctionCallOption] = None
+    actual_instance: Optional[Union[ChatCompletionFunctionCallOption, str]] = None
+    one_of_schemas: List[str] = Literal["ChatCompletionFunctionCallOption", "str"]
 
     model_config = {
         "validate_assignment": True,
@@ -72,17 +72,17 @@ class CreateChatCompletionRequestFunctionCall(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # validate data type: CreateChatCompletionRequestFunctionCallOneOf
-        if not isinstance(v, CreateChatCompletionRequestFunctionCallOneOf):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `CreateChatCompletionRequestFunctionCallOneOf`")
+        # validate data type: ChatCompletionFunctionCallOption
+        if not isinstance(v, ChatCompletionFunctionCallOption):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ChatCompletionFunctionCallOption`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CreateChatCompletionRequestFunctionCall with oneOf schemas: CreateChatCompletionRequestFunctionCallOneOf, str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CreateChatCompletionRequestFunctionCall with oneOf schemas: ChatCompletionFunctionCallOption, str. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CreateChatCompletionRequestFunctionCall with oneOf schemas: CreateChatCompletionRequestFunctionCallOneOf, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CreateChatCompletionRequestFunctionCall with oneOf schemas: ChatCompletionFunctionCallOption, str. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -106,19 +106,19 @@ class CreateChatCompletionRequestFunctionCall(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into CreateChatCompletionRequestFunctionCallOneOf
+        # deserialize data into ChatCompletionFunctionCallOption
         try:
-            instance.actual_instance = CreateChatCompletionRequestFunctionCallOneOf.from_json(json_str)
+            instance.actual_instance = ChatCompletionFunctionCallOption.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CreateChatCompletionRequestFunctionCall with oneOf schemas: CreateChatCompletionRequestFunctionCallOneOf, str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CreateChatCompletionRequestFunctionCall with oneOf schemas: ChatCompletionFunctionCallOption, str. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CreateChatCompletionRequestFunctionCall with oneOf schemas: CreateChatCompletionRequestFunctionCallOneOf, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CreateChatCompletionRequestFunctionCall with oneOf schemas: ChatCompletionFunctionCallOption, str. Details: " + ", ".join(error_messages))
         else:
             return instance
 

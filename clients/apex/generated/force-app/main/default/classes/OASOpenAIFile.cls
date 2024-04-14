@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,60 +11,86 @@
  */
 
 /**
- * OASOpenAIFile
+ * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
 public class OASOpenAIFile implements OAS.MappedProperties {
     /**
-     * Get id
+     * The file identifier, which can be referenced in the API endpoints.
      * @return id
      */
     public String id { get; set; }
 
     /**
-     * Get r_object
-     * @return r_object
-     */
-    public String r_object { get; set; }
-
-    /**
-     * Get bytes
+     * The size of the file, in bytes.
      * @return bytes
      */
     public Integer bytes { get; set; }
 
     /**
-     * Get createdAt
+     * The Unix timestamp (in seconds) for when the file was created.
      * @return createdAt
      */
     public Integer createdAt { get; set; }
 
     /**
-     * Get filename
+     * The name of the file.
      * @return filename
      */
     public String filename { get; set; }
 
     /**
-     * Get purpose
+     * The object type, which is always `file`.
+     */
+    public enum RObjectEnum {
+        FILE
+    }
+
+    /**
+     * The object type, which is always `file`.
+     * @return r_object
+     */
+    public RObjectEnum r_object { get; set; }
+
+    /**
+     * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+     */
+    public enum PurposeEnum {
+        FINE_TUNE,
+        FINE_TUNE_RESULTS,
+        ASSISTANTS,
+        ASSISTANTS_OUTPUT
+    }
+
+    /**
+     * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
      * @return purpose
      */
-    public String purpose { get; set; }
+    public PurposeEnum purpose { get; set; }
 
     /**
-     * Get status
+     * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+     */
+    public enum StatusEnum {
+        UPLOADED,
+        PROCESSED,
+        ERROR
+    }
+
+    /**
+     * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
      * @return status
      */
-    public String status { get; set; }
+    public StatusEnum status { get; set; }
 
     /**
-     * Get statusDetails
+     * Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
      * @return statusDetails
      */
-    public Object statusDetails { get; set; }
+    public String statusDetails { get; set; }
 
     private static final Map<String, String> propertyMappings = new Map<String, String>{
-        'object' => 'r_object',
         'created_at' => 'createdAt',
+        'object' => 'r_object',
         'status_details' => 'statusDetails'
     };
 
@@ -73,8 +99,8 @@ public class OASOpenAIFile implements OAS.MappedProperties {
     }
 
     private static final Map<String, String> propertyMappings = new Map<String, String>{
-        'object' => 'r_object',
         'created_at' => 'createdAt',
+        'object' => 'r_object',
         'status_details' => 'statusDetails'
     };
 
@@ -83,8 +109,8 @@ public class OASOpenAIFile implements OAS.MappedProperties {
     }
 
     private static final Map<String, String> propertyMappings = new Map<String, String>{
-        'object' => 'r_object',
         'created_at' => 'createdAt',
+        'object' => 'r_object',
         'status_details' => 'statusDetails'
     };
 
@@ -95,13 +121,13 @@ public class OASOpenAIFile implements OAS.MappedProperties {
     public static OASOpenAIFile getExample() {
         OASOpenAIFile openAIFile = new OASOpenAIFile();
           openAIFile.id = '';
-          openAIFile.r_object = '';
           openAIFile.bytes = 0;
           openAIFile.createdAt = 0;
           openAIFile.filename = '';
-          openAIFile.purpose = '';
-          openAIFile.status = '';
-          openAIFile.statusDetails = null;
+          openAIFile.r_object = RObjectEnum.FILE;
+          openAIFile.purpose = PurposeEnum.FINE_TUNE;
+          openAIFile.status = StatusEnum.UPLOADED;
+          openAIFile.statusDetails = '';
         return openAIFile;
     }
 
@@ -109,10 +135,10 @@ public class OASOpenAIFile implements OAS.MappedProperties {
         if (obj instanceof OASOpenAIFile) {           
             OASOpenAIFile openAIFile = (OASOpenAIFile) obj;
             return this.id == openAIFile.id
-                && this.r_object == openAIFile.r_object
                 && this.bytes == openAIFile.bytes
                 && this.createdAt == openAIFile.createdAt
                 && this.filename == openAIFile.filename
+                && this.r_object == openAIFile.r_object
                 && this.purpose == openAIFile.purpose
                 && this.status == openAIFile.status
                 && this.statusDetails == openAIFile.statusDetails;
@@ -123,10 +149,10 @@ public class OASOpenAIFile implements OAS.MappedProperties {
     public Integer hashCode() {
         Integer hashCode = 43;
         hashCode = (17 * hashCode) + (id == null ? 0 : System.hashCode(id));
-        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
         hashCode = (17 * hashCode) + (bytes == null ? 0 : System.hashCode(bytes));
         hashCode = (17 * hashCode) + (createdAt == null ? 0 : System.hashCode(createdAt));
         hashCode = (17 * hashCode) + (filename == null ? 0 : System.hashCode(filename));
+        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
         hashCode = (17 * hashCode) + (purpose == null ? 0 : System.hashCode(purpose));
         hashCode = (17 * hashCode) + (status == null ? 0 : System.hashCode(status));
         hashCode = (17 * hashCode) + (statusDetails == null ? 0 : System.hashCode(statusDetails));

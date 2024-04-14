@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,6 +37,8 @@ use JMS\Serializer\Annotation\SerializedName;
 /**
  * Class representing the Model model.
  *
+ * Describes an OpenAI model offering that can be used with the API.
+ *
  * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
@@ -44,6 +46,8 @@ use JMS\Serializer\Annotation\SerializedName;
 class Model 
 {
         /**
+     * The model identifier, which can be referenced in the API endpoints.
+     *
      * @var string|null
      * @SerializedName("id")
      * @Assert\NotNull()
@@ -53,15 +57,8 @@ class Model
     protected ?string $id = null;
 
     /**
-     * @var string|null
-     * @SerializedName("object")
-     * @Assert\NotNull()
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected ?string $object = null;
-
-    /**
+     * The Unix timestamp (in seconds) when the model was created.
+     *
      * @var int|null
      * @SerializedName("created")
      * @Assert\NotNull()
@@ -71,6 +68,20 @@ class Model
     protected ?int $created = null;
 
     /**
+     * The object type, which is always \&quot;model\&quot;.
+     *
+     * @var string|null
+     * @SerializedName("object")
+     * @Assert\NotNull()
+     * @Assert\Choice({ "model" })
+     * @Assert\Type("string")
+     * @Type("string")
+     */
+    protected ?string $object = null;
+
+    /**
+     * The organization that owns the model.
+     *
      * @var string|null
      * @SerializedName("owned_by")
      * @Assert\NotNull()
@@ -87,8 +98,8 @@ class Model
     {
         if (is_array($data)) {
             $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
-            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
             $this->created = array_key_exists('created', $data) ? $data['created'] : $this->created;
+            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
             $this->ownedBy = array_key_exists('ownedBy', $data) ? $data['ownedBy'] : $this->ownedBy;
         }
     }
@@ -108,39 +119,13 @@ class Model
     /**
      * Sets id.
      *
-     * @param string|null $id
+     * @param string|null $id  The model identifier, which can be referenced in the API endpoints.
      *
      * @return $this
      */
     public function setId(?string $id): self
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets object.
-     *
-     * @return string|null
-     */
-    public function getObject(): ?string
-    {
-        return $this->object;
-    }
-
-
-
-    /**
-     * Sets object.
-     *
-     * @param string|null $object
-     *
-     * @return $this
-     */
-    public function setObject(?string $object): self
-    {
-        $this->object = $object;
 
         return $this;
     }
@@ -160,13 +145,39 @@ class Model
     /**
      * Sets created.
      *
-     * @param int|null $created
+     * @param int|null $created  The Unix timestamp (in seconds) when the model was created.
      *
      * @return $this
      */
     public function setCreated(?int $created): self
     {
         $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Gets object.
+     *
+     * @return string|null
+     */
+    public function getObject(): ?string
+    {
+        return $this->object;
+    }
+
+
+
+    /**
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always \"model\".
+     *
+     * @return $this
+     */
+    public function setObject(?string $object): self
+    {
+        $this->object = $object;
 
         return $this;
     }
@@ -186,7 +197,7 @@ class Model
     /**
      * Sets ownedBy.
      *
-     * @param string|null $ownedBy
+     * @param string|null $ownedBy  The organization that owns the model.
      *
      * @return $this
      */

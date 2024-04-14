@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Text** | **string** |  | 
+**FinishReason** | **string** | The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters.  | 
 **Index** | **int32** |  | 
 **Logprobs** | [**NullableCreateCompletionResponseChoicesInnerLogprobs**](CreateCompletionResponseChoicesInnerLogprobs.md) |  | 
-**FinishReason** | **string** |  | 
+**Text** | **string** |  | 
 
 ## Methods
 
 ### NewCreateCompletionResponseChoicesInner
 
-`func NewCreateCompletionResponseChoicesInner(text string, index int32, logprobs NullableCreateCompletionResponseChoicesInnerLogprobs, finishReason string, ) *CreateCompletionResponseChoicesInner`
+`func NewCreateCompletionResponseChoicesInner(finishReason string, index int32, logprobs NullableCreateCompletionResponseChoicesInnerLogprobs, text string, ) *CreateCompletionResponseChoicesInner`
 
 NewCreateCompletionResponseChoicesInner instantiates a new CreateCompletionResponseChoicesInner object
 This constructor will assign default values to properties that have it defined,
@@ -28,24 +28,24 @@ NewCreateCompletionResponseChoicesInnerWithDefaults instantiates a new CreateCom
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetText
+### GetFinishReason
 
-`func (o *CreateCompletionResponseChoicesInner) GetText() string`
+`func (o *CreateCompletionResponseChoicesInner) GetFinishReason() string`
 
-GetText returns the Text field if non-nil, zero value otherwise.
+GetFinishReason returns the FinishReason field if non-nil, zero value otherwise.
 
-### GetTextOk
+### GetFinishReasonOk
 
-`func (o *CreateCompletionResponseChoicesInner) GetTextOk() (*string, bool)`
+`func (o *CreateCompletionResponseChoicesInner) GetFinishReasonOk() (*string, bool)`
 
-GetTextOk returns a tuple with the Text field if it's non-nil, zero value otherwise
+GetFinishReasonOk returns a tuple with the FinishReason field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetText
+### SetFinishReason
 
-`func (o *CreateCompletionResponseChoicesInner) SetText(v string)`
+`func (o *CreateCompletionResponseChoicesInner) SetFinishReason(v string)`
 
-SetText sets Text field to given value.
+SetFinishReason sets FinishReason field to given value.
 
 
 ### GetIndex
@@ -98,24 +98,24 @@ SetLogprobs sets Logprobs field to given value.
 `func (o *CreateCompletionResponseChoicesInner) UnsetLogprobs()`
 
 UnsetLogprobs ensures that no value is present for Logprobs, not even an explicit nil
-### GetFinishReason
+### GetText
 
-`func (o *CreateCompletionResponseChoicesInner) GetFinishReason() string`
+`func (o *CreateCompletionResponseChoicesInner) GetText() string`
 
-GetFinishReason returns the FinishReason field if non-nil, zero value otherwise.
+GetText returns the Text field if non-nil, zero value otherwise.
 
-### GetFinishReasonOk
+### GetTextOk
 
-`func (o *CreateCompletionResponseChoicesInner) GetFinishReasonOk() (*string, bool)`
+`func (o *CreateCompletionResponseChoicesInner) GetTextOk() (*string, bool)`
 
-GetFinishReasonOk returns a tuple with the FinishReason field if it's non-nil, zero value otherwise
+GetTextOk returns a tuple with the Text field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFinishReason
+### SetText
 
-`func (o *CreateCompletionResponseChoicesInner) SetFinishReason(v string)`
+`func (o *CreateCompletionResponseChoicesInner) SetText(v string)`
 
-SetFinishReason sets FinishReason field to given value.
+SetText sets Text field to given value.
 
 
 

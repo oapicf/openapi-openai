@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -22,10 +22,10 @@ var _ MappedNullable = &Error{}
 
 // Error struct for Error
 type Error struct {
-	Type string `json:"type"`
+	Code NullableString `json:"code"`
 	Message string `json:"message"`
 	Param NullableString `json:"param"`
-	Code NullableString `json:"code"`
+	Type string `json:"type"`
 }
 
 type _Error Error
@@ -34,12 +34,12 @@ type _Error Error
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewError(type_ string, message string, param NullableString, code NullableString) *Error {
+func NewError(code NullableString, message string, param NullableString, type_ string) *Error {
 	this := Error{}
-	this.Type = type_
+	this.Code = code
 	this.Message = message
 	this.Param = param
-	this.Code = code
+	this.Type = type_
 	return &this
 }
 
@@ -51,28 +51,30 @@ func NewErrorWithDefaults() *Error {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *Error) GetType() string {
-	if o == nil {
+// GetCode returns the Code field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Error) GetCode() string {
+	if o == nil || o.Code.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return *o.Code.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-func (o *Error) GetTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Error) GetCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Code.Get(), o.Code.IsSet()
 }
 
-// SetType sets field value
-func (o *Error) SetType(v string) {
-	o.Type = v
+// SetCode sets field value
+func (o *Error) SetCode(v string) {
+	o.Code.Set(&v)
 }
 
 // GetMessage returns the Message field value
@@ -125,30 +127,28 @@ func (o *Error) SetParam(v string) {
 	o.Param.Set(&v)
 }
 
-// GetCode returns the Code field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Error) GetCode() string {
-	if o == nil || o.Code.Get() == nil {
+// GetType returns the Type field value
+func (o *Error) GetType() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Code.Get()
+	return o.Type
 }
 
-// GetCodeOk returns a tuple with the Code field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Error) GetCodeOk() (*string, bool) {
+func (o *Error) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Code.Get(), o.Code.IsSet()
+	return &o.Type, true
 }
 
-// SetCode sets field value
-func (o *Error) SetCode(v string) {
-	o.Code.Set(&v)
+// SetType sets field value
+func (o *Error) SetType(v string) {
+	o.Type = v
 }
 
 func (o Error) MarshalJSON() ([]byte, error) {
@@ -161,10 +161,10 @@ func (o Error) MarshalJSON() ([]byte, error) {
 
 func (o Error) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
+	toSerialize["code"] = o.Code.Get()
 	toSerialize["message"] = o.Message
 	toSerialize["param"] = o.Param.Get()
-	toSerialize["code"] = o.Code.Get()
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -173,10 +173,10 @@ func (o *Error) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
+		"code",
 		"message",
 		"param",
-		"code",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})

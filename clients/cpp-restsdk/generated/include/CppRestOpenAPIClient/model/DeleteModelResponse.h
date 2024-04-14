@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -66,29 +66,29 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getObject() const;
-    bool objectIsSet() const;
-    void unsetobject();
-
-    void setObject(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     bool isDeleted() const;
     bool deletedIsSet() const;
     void unsetDeleted();
 
     void setDeleted(bool value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getObject() const;
+    bool objectIsSet() const;
+    void unsetobject();
+
+    void setObject(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
-    utility::string_t m_object;
-    bool m_objectIsSet;
     bool m_Deleted;
     bool m_DeletedIsSet;
+    utility::string_t m_object;
+    bool m_objectIsSet;
 };
 
 

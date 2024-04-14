@@ -1,5 +1,6 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,19 +13,33 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+/**
+ * Represents if a given text input is potentially harmful.
+ */
+@ApiModel(description="Represents if a given text input is potentially harmful.")
+
 public class CreateModerationResponse  {
   
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The unique identifier for the moderation request.
+  */
+  @ApiModelProperty(required = true, value = "The unique identifier for the moderation request.")
   private String id;
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The model used to generate the moderation results.
+  */
+  @ApiModelProperty(required = true, value = "The model used to generate the moderation results.")
   private String model;
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * A list of moderation objects.
+  */
+  @ApiModelProperty(required = true, value = "A list of moderation objects.")
   @Valid
   private List<@Valid CreateModerationResponseResultsInner> results = new ArrayList<>();
  /**
-  * Get id
+  * The unique identifier for the moderation request.
   * @return id
   */
   @JsonProperty("id")
@@ -49,7 +64,7 @@ public class CreateModerationResponse  {
   }
 
  /**
-  * Get model
+  * The model used to generate the moderation results.
   * @return model
   */
   @JsonProperty("model")
@@ -74,7 +89,7 @@ public class CreateModerationResponse  {
   }
 
  /**
-  * Get results
+  * A list of moderation objects.
   * @return results
   */
   @JsonProperty("results")

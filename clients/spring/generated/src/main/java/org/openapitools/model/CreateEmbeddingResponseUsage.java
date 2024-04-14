@@ -16,11 +16,12 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * CreateEmbeddingResponseUsage
+ * The usage information for the request.
  */
 
+@Schema(name = "CreateEmbeddingResponse_usage", description = "The usage information for the request.")
 @JsonTypeName("CreateEmbeddingResponse_usage")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateEmbeddingResponseUsage {
 
   private Integer promptTokens;
@@ -45,11 +46,11 @@ public class CreateEmbeddingResponseUsage {
   }
 
   /**
-   * Get promptTokens
+   * The number of tokens used by the prompt.
    * @return promptTokens
   */
   @NotNull 
-  @Schema(name = "prompt_tokens", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "prompt_tokens", description = "The number of tokens used by the prompt.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("prompt_tokens")
   public Integer getPromptTokens() {
     return promptTokens;
@@ -65,11 +66,11 @@ public class CreateEmbeddingResponseUsage {
   }
 
   /**
-   * Get totalTokens
+   * The total number of tokens used by the request.
    * @return totalTokens
   */
   @NotNull 
-  @Schema(name = "total_tokens", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "total_tokens", description = "The total number of tokens used by the request.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("total_tokens")
   public Integer getTotalTokens() {
     return totalTokens;

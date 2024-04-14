@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -36,33 +36,33 @@ class TestListFilesResponse(unittest.TestCase):
         model = ListFilesResponse()
         if include_optional:
             return ListFilesResponse(
-                object = '',
                 data = [
                     openapiopenai.models.open_ai_file.OpenAIFile(
                         id = '', 
-                        object = '', 
                         bytes = 56, 
                         created_at = 56, 
                         filename = '', 
-                        purpose = '', 
-                        status = '', 
-                        status_details = openapiopenai.models.status_details.status_details(), )
-                    ]
+                        object = 'file', 
+                        purpose = 'fine-tune', 
+                        status = 'uploaded', 
+                        status_details = '', )
+                    ],
+                object = 'list'
             )
         else:
             return ListFilesResponse(
-                object = '',
                 data = [
                     openapiopenai.models.open_ai_file.OpenAIFile(
                         id = '', 
-                        object = '', 
                         bytes = 56, 
                         created_at = 56, 
                         filename = '', 
-                        purpose = '', 
-                        status = '', 
-                        status_details = openapiopenai.models.status_details.status_details(), )
+                        object = 'file', 
+                        purpose = 'fine-tune', 
+                        status = 'uploaded', 
+                        status_details = '', )
                     ],
+                object = 'list',
         )
         """
 

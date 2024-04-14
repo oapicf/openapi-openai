@@ -14,16 +14,16 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * 
- * @param promptTokens 
- * @param totalTokens 
+ * The usage information for the request.
+ * @param promptTokens The number of tokens used by the prompt.
+ * @param totalTokens The total number of tokens used by the request.
  */
 data class CreateEmbeddingResponseUsage(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(example = "null", required = true, description = "The number of tokens used by the prompt.")
     @get:JsonProperty("prompt_tokens", required = true) val promptTokens: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(example = "null", required = true, description = "The total number of tokens used by the request.")
     @get:JsonProperty("total_tokens", required = true) val totalTokens: kotlin.Int
 ) {
 

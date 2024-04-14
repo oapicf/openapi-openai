@@ -12,27 +12,31 @@ import org.joda.time.DateTime
 import CreateCompletionResponseChoicesInner._
 
 case class CreateCompletionResponseChoicesInner (
-  text: String,
+  /* The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.  */
+  finishReason: FinishReason,
 index: Integer,
 logprobs: CreateCompletionResponseChoicesInnerLogprobs,
-finishReason: FinishReason)
+text: String)
 
 object CreateCompletionResponseChoicesInner {
   import DateTimeCodecs._
   sealed trait FinishReason
   case object Stop extends FinishReason
   case object Length extends FinishReason
+  case object ContentFilter extends FinishReason
 
   object FinishReason {
     def toFinishReason(s: String): Option[FinishReason] = s match {
       case "Stop" => Some(Stop)
       case "Length" => Some(Length)
+      case "ContentFilter" => Some(ContentFilter)
       case _ => None
     }
 
     def fromFinishReason(x: FinishReason): String = x match {
       case Stop => "Stop"
       case Length => "Length"
+      case ContentFilter => "ContentFilter"
     }
   }
 

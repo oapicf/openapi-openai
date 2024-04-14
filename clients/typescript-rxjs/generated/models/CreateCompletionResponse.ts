@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,43 +12,64 @@
  */
 
 import type {
+    CompletionUsage,
     CreateCompletionResponseChoicesInner,
-    CreateCompletionResponseUsage,
 } from './';
 
 /**
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
  * @export
  * @interface CreateCompletionResponse
  */
 export interface CreateCompletionResponse {
     /**
+     * A unique identifier for the completion.
      * @type {string}
      * @memberof CreateCompletionResponse
      */
     id: string;
     /**
-     * @type {string}
-     * @memberof CreateCompletionResponse
-     */
-    object: string;
-    /**
-     * @type {number}
-     * @memberof CreateCompletionResponse
-     */
-    created: number;
-    /**
-     * @type {string}
-     * @memberof CreateCompletionResponse
-     */
-    model: string;
-    /**
+     * The list of completion choices the model generated for the input prompt.
      * @type {Array<CreateCompletionResponseChoicesInner>}
      * @memberof CreateCompletionResponse
      */
     choices: Array<CreateCompletionResponseChoicesInner>;
     /**
-     * @type {CreateCompletionResponseUsage}
+     * The Unix timestamp (in seconds) of when the completion was created.
+     * @type {number}
      * @memberof CreateCompletionResponse
      */
-    usage?: CreateCompletionResponseUsage;
+    created: number;
+    /**
+     * The model used for completion.
+     * @type {string}
+     * @memberof CreateCompletionResponse
+     */
+    model: string;
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+     * @type {string}
+     * @memberof CreateCompletionResponse
+     */
+    system_fingerprint?: string;
+    /**
+     * The object type, which is always \"text_completion\"
+     * @type {string}
+     * @memberof CreateCompletionResponse
+     */
+    object: CreateCompletionResponseObjectEnum;
+    /**
+     * @type {CompletionUsage}
+     * @memberof CreateCompletionResponse
+     */
+    usage?: CompletionUsage;
 }
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum CreateCompletionResponseObjectEnum {
+    TextCompletion = 'text_completion'
+}
+

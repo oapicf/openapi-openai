@@ -4,24 +4,43 @@
 #include "create_completion_response.h"
 
 
+char* create_completion_response_object_ToString(openai_api_create_completion_response_OBJECT_e object) {
+    char* objectArray[] =  { "NULL", "text_completion" };
+    return objectArray[object];
+}
+
+openai_api_create_completion_response_OBJECT_e create_completion_response_object_FromString(char* object){
+    int stringToReturn = 0;
+    char *objectArray[] =  { "NULL", "text_completion" };
+    size_t sizeofArray = sizeof(objectArray) / sizeof(objectArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(object, objectArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 create_completion_response_t *create_completion_response_create(
     char *id,
-    char *object,
+    list_t *choices,
     int created,
     char *model,
-    list_t *choices,
-    create_completion_response_usage_t *usage
+    char *system_fingerprint,
+    openai_api_create_completion_response_OBJECT_e object,
+    completion_usage_t *usage
     ) {
     create_completion_response_t *create_completion_response_local_var = malloc(sizeof(create_completion_response_t));
     if (!create_completion_response_local_var) {
         return NULL;
     }
     create_completion_response_local_var->id = id;
-    create_completion_response_local_var->object = object;
+    create_completion_response_local_var->choices = choices;
     create_completion_response_local_var->created = created;
     create_completion_response_local_var->model = model;
-    create_completion_response_local_var->choices = choices;
+    create_completion_response_local_var->system_fingerprint = system_fingerprint;
+    create_completion_response_local_var->object = object;
     create_completion_response_local_var->usage = usage;
 
     return create_completion_response_local_var;
@@ -37,14 +56,6 @@ void create_completion_response_free(create_completion_response_t *create_comple
         free(create_completion_response->id);
         create_completion_response->id = NULL;
     }
-    if (create_completion_response->object) {
-        free(create_completion_response->object);
-        create_completion_response->object = NULL;
-    }
-    if (create_completion_response->model) {
-        free(create_completion_response->model);
-        create_completion_response->model = NULL;
-    }
     if (create_completion_response->choices) {
         list_ForEach(listEntry, create_completion_response->choices) {
             create_completion_response_choices_inner_free(listEntry->data);
@@ -52,8 +63,16 @@ void create_completion_response_free(create_completion_response_t *create_comple
         list_freeList(create_completion_response->choices);
         create_completion_response->choices = NULL;
     }
+    if (create_completion_response->model) {
+        free(create_completion_response->model);
+        create_completion_response->model = NULL;
+    }
+    if (create_completion_response->system_fingerprint) {
+        free(create_completion_response->system_fingerprint);
+        create_completion_response->system_fingerprint = NULL;
+    }
     if (create_completion_response->usage) {
-        create_completion_response_usage_free(create_completion_response->usage);
+        completion_usage_free(create_completion_response->usage);
         create_completion_response->usage = NULL;
     }
     free(create_completion_response);
@@ -67,33 +86,6 @@ cJSON *create_completion_response_convertToJSON(create_completion_response_t *cr
         goto fail;
     }
     if(cJSON_AddStringToObject(item, "id", create_completion_response->id) == NULL) {
-    goto fail; //String
-    }
-
-
-    // create_completion_response->object
-    if (!create_completion_response->object) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "object", create_completion_response->object) == NULL) {
-    goto fail; //String
-    }
-
-
-    // create_completion_response->created
-    if (!create_completion_response->created) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "created", create_completion_response->created) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // create_completion_response->model
-    if (!create_completion_response->model) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "model", create_completion_response->model) == NULL) {
     goto fail; //String
     }
 
@@ -119,9 +111,45 @@ cJSON *create_completion_response_convertToJSON(create_completion_response_t *cr
     }
 
 
+    // create_completion_response->created
+    if (!create_completion_response->created) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "created", create_completion_response->created) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // create_completion_response->model
+    if (!create_completion_response->model) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "model", create_completion_response->model) == NULL) {
+    goto fail; //String
+    }
+
+
+    // create_completion_response->system_fingerprint
+    if(create_completion_response->system_fingerprint) {
+    if(cJSON_AddStringToObject(item, "system_fingerprint", create_completion_response->system_fingerprint) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // create_completion_response->object
+    if (openai_api_create_completion_response_OBJECT_NULL == create_completion_response->object) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "object", objectcreate_completion_response_ToString(create_completion_response->object)) == NULL)
+    {
+    goto fail; //Enum
+    }
+
+
     // create_completion_response->usage
     if(create_completion_response->usage) {
-    cJSON *usage_local_JSON = create_completion_response_usage_convertToJSON(create_completion_response->usage);
+    cJSON *usage_local_JSON = completion_usage_convertToJSON(create_completion_response->usage);
     if(usage_local_JSON == NULL) {
     goto fail; //model
     }
@@ -147,7 +175,7 @@ create_completion_response_t *create_completion_response_parseFromJSON(cJSON *cr
     list_t *choicesList = NULL;
 
     // define the local variable for create_completion_response->usage
-    create_completion_response_usage_t *usage_local_nonprim = NULL;
+    completion_usage_t *usage_local_nonprim = NULL;
 
     // create_completion_response->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "id");
@@ -157,42 +185,6 @@ create_completion_response_t *create_completion_response_parseFromJSON(cJSON *cr
 
     
     if(!cJSON_IsString(id))
-    {
-    goto end; //String
-    }
-
-    // create_completion_response->object
-    cJSON *object = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "object");
-    if (!object) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(object))
-    {
-    goto end; //String
-    }
-
-    // create_completion_response->created
-    cJSON *created = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "created");
-    if (!created) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(created))
-    {
-    goto end; //Numeric
-    }
-
-    // create_completion_response->model
-    cJSON *model = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "model");
-    if (!model) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(model))
     {
     goto end; //String
     }
@@ -221,19 +213,67 @@ create_completion_response_t *create_completion_response_parseFromJSON(cJSON *cr
         list_addElement(choicesList, choicesItem);
     }
 
+    // create_completion_response->created
+    cJSON *created = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "created");
+    if (!created) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(created))
+    {
+    goto end; //Numeric
+    }
+
+    // create_completion_response->model
+    cJSON *model = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "model");
+    if (!model) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(model))
+    {
+    goto end; //String
+    }
+
+    // create_completion_response->system_fingerprint
+    cJSON *system_fingerprint = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "system_fingerprint");
+    if (system_fingerprint) { 
+    if(!cJSON_IsString(system_fingerprint) && !cJSON_IsNull(system_fingerprint))
+    {
+    goto end; //String
+    }
+    }
+
+    // create_completion_response->object
+    cJSON *object = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "object");
+    if (!object) {
+        goto end;
+    }
+
+    openai_api_create_completion_response_OBJECT_e objectVariable;
+    
+    if(!cJSON_IsString(object))
+    {
+    goto end; //Enum
+    }
+    objectVariable = create_completion_response_object_FromString(object->valuestring);
+
     // create_completion_response->usage
     cJSON *usage = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "usage");
     if (usage) { 
-    usage_local_nonprim = create_completion_response_usage_parseFromJSON(usage); //nonprimitive
+    usage_local_nonprim = completion_usage_parseFromJSON(usage); //nonprimitive
     }
 
 
     create_completion_response_local_var = create_completion_response_create (
         strdup(id->valuestring),
-        strdup(object->valuestring),
+        choicesList,
         created->valuedouble,
         strdup(model->valuestring),
-        choicesList,
+        system_fingerprint && !cJSON_IsNull(system_fingerprint) ? strdup(system_fingerprint->valuestring) : NULL,
+        objectVariable,
         usage ? usage_local_nonprim : NULL
         );
 
@@ -249,7 +289,7 @@ end:
         choicesList = NULL;
     }
     if (usage_local_nonprim) {
-        create_completion_response_usage_free(usage_local_nonprim);
+        completion_usage_free(usage_local_nonprim);
         usage_local_nonprim = NULL;
     }
     return NULL;

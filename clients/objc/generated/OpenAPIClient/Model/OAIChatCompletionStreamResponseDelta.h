@@ -3,7 +3,7 @@
 
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -14,9 +14,12 @@
 */
 
 
-#import "OAIChatCompletionRequestMessageFunctionCall.h"
-@protocol OAIChatCompletionRequestMessageFunctionCall;
-@class OAIChatCompletionRequestMessageFunctionCall;
+#import "OAIChatCompletionMessageToolCallChunk.h"
+#import "OAIChatCompletionStreamResponseDeltaFunctionCall.h"
+@protocol OAIChatCompletionMessageToolCallChunk;
+@class OAIChatCompletionMessageToolCallChunk;
+@protocol OAIChatCompletionStreamResponseDeltaFunctionCall;
+@class OAIChatCompletionStreamResponseDeltaFunctionCall;
 
 
 
@@ -25,13 +28,15 @@
 
 @interface OAIChatCompletionStreamResponseDelta : OAIObject
 
-/* The role of the author of this message. [optional]
- */
-@property(nonatomic) NSString* role;
 /* The contents of the chunk message. [optional]
  */
 @property(nonatomic) NSString* content;
 
-@property(nonatomic) OAIChatCompletionRequestMessageFunctionCall* functionCall;
+@property(nonatomic) OAIChatCompletionStreamResponseDeltaFunctionCall* functionCall;
+
+@property(nonatomic) NSArray<OAIChatCompletionMessageToolCallChunk>* toolCalls;
+/* The role of the author of this message. [optional]
+ */
+@property(nonatomic) NSString* role;
 
 @end

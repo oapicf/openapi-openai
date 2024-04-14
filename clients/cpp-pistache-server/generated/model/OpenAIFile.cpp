@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -22,13 +22,13 @@ namespace org::openapitools::server::model
 OpenAIFile::OpenAIFile()
 {
     m_Id = "";
-    m_object = "";
     m_Bytes = 0;
     m_Created_at = 0;
     m_Filename = "";
+    m_object = "";
     m_Purpose = "";
     m_Status = "";
-    m_StatusIsSet = false;
+    m_Status_details = "";
     m_Status_detailsIsSet = false;
     
 }
@@ -64,9 +64,6 @@ bool OpenAIFile::operator==(const OpenAIFile& rhs) const
     (getId() == rhs.getId())
      &&
     
-    (getObject() == rhs.getObject())
-     &&
-    
     (getBytes() == rhs.getBytes())
      &&
     
@@ -76,11 +73,14 @@ bool OpenAIFile::operator==(const OpenAIFile& rhs) const
     (getFilename() == rhs.getFilename())
      &&
     
+    (getObject() == rhs.getObject())
+     &&
+    
     (getPurpose() == rhs.getPurpose())
      &&
     
-    
-    ((!statusIsSet() && !rhs.statusIsSet()) || (statusIsSet() && rhs.statusIsSet() && getStatus() == rhs.getStatus())) &&
+    (getStatus() == rhs.getStatus())
+     &&
     
     
     ((!statusDetailsIsSet() && !rhs.statusDetailsIsSet()) || (statusDetailsIsSet() && rhs.statusDetailsIsSet() && getStatusDetails() == rhs.getStatusDetails()))
@@ -97,13 +97,12 @@ void to_json(nlohmann::json& j, const OpenAIFile& o)
 {
     j = nlohmann::json::object();
     j["id"] = o.m_Id;
-    j["object"] = o.m_object;
     j["bytes"] = o.m_Bytes;
     j["created_at"] = o.m_Created_at;
     j["filename"] = o.m_Filename;
+    j["object"] = o.m_object;
     j["purpose"] = o.m_Purpose;
-    if(o.statusIsSet())
-        j["status"] = o.m_Status;
+    j["status"] = o.m_Status;
     if(o.statusDetailsIsSet())
         j["status_details"] = o.m_Status_details;
     
@@ -112,16 +111,12 @@ void to_json(nlohmann::json& j, const OpenAIFile& o)
 void from_json(const nlohmann::json& j, OpenAIFile& o)
 {
     j.at("id").get_to(o.m_Id);
-    j.at("object").get_to(o.m_object);
     j.at("bytes").get_to(o.m_Bytes);
     j.at("created_at").get_to(o.m_Created_at);
     j.at("filename").get_to(o.m_Filename);
+    j.at("object").get_to(o.m_object);
     j.at("purpose").get_to(o.m_Purpose);
-    if(j.find("status") != j.end())
-    {
-        j.at("status").get_to(o.m_Status);
-        o.m_StatusIsSet = true;
-    } 
+    j.at("status").get_to(o.m_Status);
     if(j.find("status_details") != j.end())
     {
         j.at("status_details").get_to(o.m_Status_details);
@@ -137,14 +132,6 @@ std::string OpenAIFile::getId() const
 void OpenAIFile::setId(std::string const& value)
 {
     m_Id = value;
-}
-std::string OpenAIFile::getObject() const
-{
-    return m_object;
-}
-void OpenAIFile::setObject(std::string const& value)
-{
-    m_object = value;
 }
 int32_t OpenAIFile::getBytes() const
 {
@@ -170,6 +157,14 @@ void OpenAIFile::setFilename(std::string const& value)
 {
     m_Filename = value;
 }
+std::string OpenAIFile::getObject() const
+{
+    return m_object;
+}
+void OpenAIFile::setObject(std::string const& value)
+{
+    m_object = value;
+}
 std::string OpenAIFile::getPurpose() const
 {
     return m_Purpose;
@@ -185,21 +180,12 @@ std::string OpenAIFile::getStatus() const
 void OpenAIFile::setStatus(std::string const& value)
 {
     m_Status = value;
-    m_StatusIsSet = true;
 }
-bool OpenAIFile::statusIsSet() const
-{
-    return m_StatusIsSet;
-}
-void OpenAIFile::unsetStatus()
-{
-    m_StatusIsSet = false;
-}
-org::openapitools::server::model::Object OpenAIFile::getStatusDetails() const
+std::string OpenAIFile::getStatusDetails() const
 {
     return m_Status_details;
 }
-void OpenAIFile::setStatusDetails(org::openapitools::server::model::Object const& value)
+void OpenAIFile::setStatusDetails(std::string const& value)
 {
     m_Status_details = value;
     m_Status_detailsIsSet = true;

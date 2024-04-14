@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,30 +13,39 @@
 package org.openapitools.client.model;
 
 import java.util.*;
+import org.openapitools.client.model.CompletionUsage;
 import org.openapitools.client.model.CreateCompletionResponseChoicesInner;
-import org.openapitools.client.model.CreateCompletionResponseUsage;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
-@ApiModel(description = "")
+/**
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
+ **/
+@ApiModel(description = "Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). ")
 public class CreateCompletionResponse {
   
   @SerializedName("id")
   private String id = null;
-  @SerializedName("object")
-  private String _object = null;
+  @SerializedName("choices")
+  private List<CreateCompletionResponseChoicesInner> choices = null;
   @SerializedName("created")
   private Integer created = null;
   @SerializedName("model")
   private String model = null;
-  @SerializedName("choices")
-  private List<CreateCompletionResponseChoicesInner> choices = null;
+  @SerializedName("system_fingerprint")
+  private String systemFingerprint = null;
+  public enum _objectEnum {
+     text_completion, 
+  };
+  @SerializedName("object")
+  private _objectEnum _object = null;
   @SerializedName("usage")
-  private CreateCompletionResponseUsage usage = null;
+  private CompletionUsage usage = null;
 
   /**
+   * A unique identifier for the completion.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A unique identifier for the completion.")
   public String getId() {
     return id;
   }
@@ -45,38 +54,9 @@ public class CreateCompletionResponse {
   }
 
   /**
+   * The list of completion choices the model generated for the input prompt.
    **/
-  @ApiModelProperty(required = true, value = "")
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
-  public Integer getCreated() {
-    return created;
-  }
-  public void setCreated(Integer created) {
-    this.created = created;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
-  public String getModel() {
-    return model;
-  }
-  public void setModel(String model) {
-    this.model = model;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The list of completion choices the model generated for the input prompt.")
   public List<CreateCompletionResponseChoicesInner> getChoices() {
     return choices;
   }
@@ -85,12 +65,56 @@ public class CreateCompletionResponse {
   }
 
   /**
+   * The Unix timestamp (in seconds) of when the completion was created.
+   **/
+  @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) of when the completion was created.")
+  public Integer getCreated() {
+    return created;
+  }
+  public void setCreated(Integer created) {
+    this.created = created;
+  }
+
+  /**
+   * The model used for completion.
+   **/
+  @ApiModelProperty(required = true, value = "The model used for completion.")
+  public String getModel() {
+    return model;
+  }
+  public void setModel(String model) {
+    this.model = model;
+  }
+
+  /**
+   * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+   **/
+  @ApiModelProperty(value = "This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ")
+  public String getSystemFingerprint() {
+    return systemFingerprint;
+  }
+  public void setSystemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+  }
+
+  /**
+   * The object type, which is always \"text_completion\"
+   **/
+  @ApiModelProperty(required = true, value = "The object type, which is always \"text_completion\"")
+  public _objectEnum getObject() {
+    return _object;
+  }
+  public void setObject(_objectEnum _object) {
+    this._object = _object;
+  }
+
+  /**
    **/
   @ApiModelProperty(value = "")
-  public CreateCompletionResponseUsage getUsage() {
+  public CompletionUsage getUsage() {
     return usage;
   }
-  public void setUsage(CreateCompletionResponseUsage usage) {
+  public void setUsage(CompletionUsage usage) {
     this.usage = usage;
   }
 
@@ -105,10 +129,11 @@ public class CreateCompletionResponse {
     }
     CreateCompletionResponse createCompletionResponse = (CreateCompletionResponse) o;
     return (this.id == null ? createCompletionResponse.id == null : this.id.equals(createCompletionResponse.id)) &&
-        (this._object == null ? createCompletionResponse._object == null : this._object.equals(createCompletionResponse._object)) &&
+        (this.choices == null ? createCompletionResponse.choices == null : this.choices.equals(createCompletionResponse.choices)) &&
         (this.created == null ? createCompletionResponse.created == null : this.created.equals(createCompletionResponse.created)) &&
         (this.model == null ? createCompletionResponse.model == null : this.model.equals(createCompletionResponse.model)) &&
-        (this.choices == null ? createCompletionResponse.choices == null : this.choices.equals(createCompletionResponse.choices)) &&
+        (this.systemFingerprint == null ? createCompletionResponse.systemFingerprint == null : this.systemFingerprint.equals(createCompletionResponse.systemFingerprint)) &&
+        (this._object == null ? createCompletionResponse._object == null : this._object.equals(createCompletionResponse._object)) &&
         (this.usage == null ? createCompletionResponse.usage == null : this.usage.equals(createCompletionResponse.usage));
   }
 
@@ -116,10 +141,11 @@ public class CreateCompletionResponse {
   public int hashCode() {
     int result = 17;
     result = 31 * result + (this.id == null ? 0: this.id.hashCode());
-    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
+    result = 31 * result + (this.choices == null ? 0: this.choices.hashCode());
     result = 31 * result + (this.created == null ? 0: this.created.hashCode());
     result = 31 * result + (this.model == null ? 0: this.model.hashCode());
-    result = 31 * result + (this.choices == null ? 0: this.choices.hashCode());
+    result = 31 * result + (this.systemFingerprint == null ? 0: this.systemFingerprint.hashCode());
+    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
     result = 31 * result + (this.usage == null ? 0: this.usage.hashCode());
     return result;
   }
@@ -130,10 +156,11 @@ public class CreateCompletionResponse {
     sb.append("class CreateCompletionResponse {\n");
     
     sb.append("  id: ").append(id).append("\n");
-    sb.append("  _object: ").append(_object).append("\n");
+    sb.append("  choices: ").append(choices).append("\n");
     sb.append("  created: ").append(created).append("\n");
     sb.append("  model: ").append(model).append("\n");
-    sb.append("  choices: ").append(choices).append("\n");
+    sb.append("  systemFingerprint: ").append(systemFingerprint).append("\n");
+    sb.append("  _object: ").append(_object).append("\n");
     sb.append("  usage: ").append(usage).append("\n");
     sb.append("}\n");
     return sb.toString();

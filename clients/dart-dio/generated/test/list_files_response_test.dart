@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ListFilesResponse, () {
-    // String object
-    test('to test the property `object`', () async {
+    // BuiltList<OpenAIFile> data
+    test('to test the property `data`', () async {
       // TODO
     });
 
-    // BuiltList<OpenAIFile> data
-    test('to test the property `data`', () async {
+    // String object
+    test('to test the property `object`', () async {
       // TODO
     });
 

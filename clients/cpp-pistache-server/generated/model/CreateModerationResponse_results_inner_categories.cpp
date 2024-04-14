@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,11 @@ CreateModerationResponse_results_inner_categories::CreateModerationResponse_resu
 {
     m_Hate = false;
     m_Hate_threatening = false;
+    m_Harassment = false;
+    m_Harassment_threatening = false;
     m_Self_harm = false;
+    m_Self_harm_intent = false;
+    m_Self_harm_instructions = false;
     m_Sexual = false;
     m_Sexual_minors = false;
     m_Violence = false;
@@ -50,7 +54,7 @@ bool CreateModerationResponse_results_inner_categories::validate(std::stringstre
     bool success = true;
     const std::string _pathPrefix = pathPrefix.empty() ? "CreateModerationResponse_results_inner_categories" : pathPrefix;
 
-                                
+                                                
     return success;
 }
 
@@ -65,7 +69,19 @@ bool CreateModerationResponse_results_inner_categories::operator==(const CreateM
     (isHateThreatening() == rhs.isHateThreatening())
      &&
     
+    (isHarassment() == rhs.isHarassment())
+     &&
+    
+    (isHarassmentThreatening() == rhs.isHarassmentThreatening())
+     &&
+    
     (isSelfHarm() == rhs.isSelfHarm())
+     &&
+    
+    (isSelfHarmIntent() == rhs.isSelfHarmIntent())
+     &&
+    
+    (isSelfHarmInstructions() == rhs.isSelfHarmInstructions())
      &&
     
     (isSexual() == rhs.isSexual())
@@ -93,7 +109,11 @@ void to_json(nlohmann::json& j, const CreateModerationResponse_results_inner_cat
     j = nlohmann::json::object();
     j["hate"] = o.m_Hate;
     j["hate/threatening"] = o.m_Hate_threatening;
+    j["harassment"] = o.m_Harassment;
+    j["harassment/threatening"] = o.m_Harassment_threatening;
     j["self-harm"] = o.m_Self_harm;
+    j["self-harm/intent"] = o.m_Self_harm_intent;
+    j["self-harm/instructions"] = o.m_Self_harm_instructions;
     j["sexual"] = o.m_Sexual;
     j["sexual/minors"] = o.m_Sexual_minors;
     j["violence"] = o.m_Violence;
@@ -105,7 +125,11 @@ void from_json(const nlohmann::json& j, CreateModerationResponse_results_inner_c
 {
     j.at("hate").get_to(o.m_Hate);
     j.at("hate/threatening").get_to(o.m_Hate_threatening);
+    j.at("harassment").get_to(o.m_Harassment);
+    j.at("harassment/threatening").get_to(o.m_Harassment_threatening);
     j.at("self-harm").get_to(o.m_Self_harm);
+    j.at("self-harm/intent").get_to(o.m_Self_harm_intent);
+    j.at("self-harm/instructions").get_to(o.m_Self_harm_instructions);
     j.at("sexual").get_to(o.m_Sexual);
     j.at("sexual/minors").get_to(o.m_Sexual_minors);
     j.at("violence").get_to(o.m_Violence);
@@ -129,6 +153,22 @@ void CreateModerationResponse_results_inner_categories::setHateThreatening(bool 
 {
     m_Hate_threatening = value;
 }
+bool CreateModerationResponse_results_inner_categories::isHarassment() const
+{
+    return m_Harassment;
+}
+void CreateModerationResponse_results_inner_categories::setHarassment(bool const value)
+{
+    m_Harassment = value;
+}
+bool CreateModerationResponse_results_inner_categories::isHarassmentThreatening() const
+{
+    return m_Harassment_threatening;
+}
+void CreateModerationResponse_results_inner_categories::setHarassmentThreatening(bool const value)
+{
+    m_Harassment_threatening = value;
+}
 bool CreateModerationResponse_results_inner_categories::isSelfHarm() const
 {
     return m_Self_harm;
@@ -136,6 +176,22 @@ bool CreateModerationResponse_results_inner_categories::isSelfHarm() const
 void CreateModerationResponse_results_inner_categories::setSelfHarm(bool const value)
 {
     m_Self_harm = value;
+}
+bool CreateModerationResponse_results_inner_categories::isSelfHarmIntent() const
+{
+    return m_Self_harm_intent;
+}
+void CreateModerationResponse_results_inner_categories::setSelfHarmIntent(bool const value)
+{
+    m_Self_harm_intent = value;
+}
+bool CreateModerationResponse_results_inner_categories::isSelfHarmInstructions() const
+{
+    return m_Self_harm_instructions;
+}
+void CreateModerationResponse_results_inner_categories::setSelfHarmInstructions(bool const value)
+{
+    m_Self_harm_instructions = value;
 }
 bool CreateModerationResponse_results_inner_categories::isSexual() const
 {

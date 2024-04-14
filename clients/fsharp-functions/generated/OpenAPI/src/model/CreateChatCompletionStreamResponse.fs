@@ -13,14 +13,16 @@ module CreateChatCompletionStreamResponse =
   type CreateChatCompletionStreamResponse = {
     [<JsonProperty(PropertyName = "id")>]
     Id : string;
-    [<JsonProperty(PropertyName = "object")>]
-    Object : string;
+    [<JsonProperty(PropertyName = "choices")>]
+    Choices : CreateChatCompletionStreamResponseChoicesInner[];
     [<JsonProperty(PropertyName = "created")>]
     Created : int;
     [<JsonProperty(PropertyName = "model")>]
     Model : string;
-    [<JsonProperty(PropertyName = "choices")>]
-    Choices : CreateChatCompletionStreamResponseChoicesInner[];
+    [<JsonProperty(PropertyName = "system_fingerprint")>]
+    SystemFingerprint : string;
+    [<JsonProperty(PropertyName = "object")>]
+    Object : string;
   }
 
   //#endregion

@@ -8,7 +8,7 @@ use Articus\DataTransfer\Annotation as DTA;
 class CreateTranslationRequest
 {
     /**
-     * The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
+     * The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.
      * @DTA\Data(field="file")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      */
@@ -29,7 +29,7 @@ class CreateTranslationRequest
     public ?string $prompt = null;
 
     /**
-     * The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.
+     * The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.
      * @DTA\Data(field="response_format", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      */

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,15 +13,19 @@ import { CreateCompletionResponseChoicesInnerLogprobs } from './createCompletion
 
 
 export interface CreateCompletionResponseChoicesInner { 
-    text: string;
+    /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+     */
+    finish_reason: CreateCompletionResponseChoicesInner.FinishReasonEnum;
     index: number;
     logprobs: CreateCompletionResponseChoicesInnerLogprobs | null;
-    finish_reason: CreateCompletionResponseChoicesInner.FinishReasonEnum;
+    text: string;
 }
 export namespace CreateCompletionResponseChoicesInner {
-    export type FinishReasonEnum = 'stop' | 'length';
+    export type FinishReasonEnum = 'stop' | 'length' | 'content_filter';
     export const FinishReasonEnum = {
         Stop: 'stop' as FinishReasonEnum,
-        Length: 'length' as FinishReasonEnum
+        Length: 'length' as FinishReasonEnum,
+        ContentFilter: 'content_filter' as FinishReasonEnum
     }
 }

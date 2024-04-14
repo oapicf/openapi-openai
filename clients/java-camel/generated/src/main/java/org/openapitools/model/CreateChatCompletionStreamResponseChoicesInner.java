@@ -6,7 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionStreamResponseDelta;
+import org.openapitools.model.CreateChatCompletionResponseChoicesInnerLogprobs;
+import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,20 +26,24 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("CreateChatCompletionStreamResponse_choices_inner")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-16T01:13:12.257183065Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-04-14T13:40:33.442815767Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionStreamResponseChoicesInner {
-
-  private Integer index;
 
   private ChatCompletionStreamResponseDelta delta;
 
+  private JsonNullable<CreateChatCompletionResponseChoicesInnerLogprobs> logprobs = JsonNullable.<CreateChatCompletionResponseChoicesInnerLogprobs>undefined();
+
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
    */
   public enum FinishReasonEnum {
     STOP("stop"),
     
     LENGTH("length"),
+    
+    TOOL_CALLS("tool_calls"),
+    
+    CONTENT_FILTER("content_filter"),
     
     FUNCTION_CALL("function_call");
 
@@ -62,29 +70,24 @@ public class CreateChatCompletionStreamResponseChoicesInner {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
-  private FinishReasonEnum finishReason;
+  private JsonNullable<FinishReasonEnum> finishReason = JsonNullable.<FinishReasonEnum>undefined();
 
-  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
-    this.index = index;
-    return this;
+  private Integer index;
+
+  public CreateChatCompletionStreamResponseChoicesInner() {
+    super();
   }
 
   /**
-   * Get index
-   * @return index
-  */
-  
-  @Schema(name = "index", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("index")
-  public Integer getIndex() {
-    return index;
-  }
-
-  public void setIndex(Integer index) {
+   * Constructor with only required parameters
+   */
+  public CreateChatCompletionStreamResponseChoicesInner(ChatCompletionStreamResponseDelta delta, FinishReasonEnum finishReason, Integer index) {
+    this.delta = delta;
+    this.finishReason = JsonNullable.of(finishReason);
     this.index = index;
   }
 
@@ -97,8 +100,8 @@ public class CreateChatCompletionStreamResponseChoicesInner {
    * Get delta
    * @return delta
   */
-  @Valid 
-  @Schema(name = "delta", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull @Valid 
+  @Schema(name = "delta", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("delta")
   public ChatCompletionStreamResponseDelta getDelta() {
     return delta;
@@ -108,24 +111,64 @@ public class CreateChatCompletionStreamResponseChoicesInner {
     this.delta = delta;
   }
 
-  public CreateChatCompletionStreamResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public CreateChatCompletionStreamResponseChoicesInner logprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = JsonNullable.of(logprobs);
     return this;
   }
 
   /**
-   * Get finishReason
+   * Get logprobs
+   * @return logprobs
+  */
+  @Valid 
+  @Schema(name = "logprobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("logprobs")
+  public JsonNullable<CreateChatCompletionResponseChoicesInnerLogprobs> getLogprobs() {
+    return logprobs;
+  }
+
+  public void setLogprobs(JsonNullable<CreateChatCompletionResponseChoicesInnerLogprobs> logprobs) {
+    this.logprobs = logprobs;
+  }
+
+  public CreateChatCompletionStreamResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
+    this.finishReason = JsonNullable.of(finishReason);
+    return this;
+  }
+
+  /**
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
    * @return finishReason
   */
-  
-  @Schema(name = "finish_reason", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "finish_reason", description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("finish_reason")
-  public FinishReasonEnum getFinishReason() {
+  public JsonNullable<FinishReasonEnum> getFinishReason() {
     return finishReason;
   }
 
-  public void setFinishReason(FinishReasonEnum finishReason) {
+  public void setFinishReason(JsonNullable<FinishReasonEnum> finishReason) {
     this.finishReason = finishReason;
+  }
+
+  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
+    this.index = index;
+    return this;
+  }
+
+  /**
+   * The index of the choice in the list of choices.
+   * @return index
+  */
+  @NotNull 
+  @Schema(name = "index", description = "The index of the choice in the list of choices.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("index")
+  public Integer getIndex() {
+    return index;
+  }
+
+  public void setIndex(Integer index) {
+    this.index = index;
   }
 
   @Override
@@ -137,23 +180,36 @@ public class CreateChatCompletionStreamResponseChoicesInner {
       return false;
     }
     CreateChatCompletionStreamResponseChoicesInner createChatCompletionStreamResponseChoicesInner = (CreateChatCompletionStreamResponseChoicesInner) o;
-    return Objects.equals(this.index, createChatCompletionStreamResponseChoicesInner.index) &&
-        Objects.equals(this.delta, createChatCompletionStreamResponseChoicesInner.delta) &&
-        Objects.equals(this.finishReason, createChatCompletionStreamResponseChoicesInner.finishReason);
+    return Objects.equals(this.delta, createChatCompletionStreamResponseChoicesInner.delta) &&
+        equalsNullable(this.logprobs, createChatCompletionStreamResponseChoicesInner.logprobs) &&
+        Objects.equals(this.finishReason, createChatCompletionStreamResponseChoicesInner.finishReason) &&
+        Objects.equals(this.index, createChatCompletionStreamResponseChoicesInner.index);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, delta, finishReason);
+    return Objects.hash(delta, hashCodeNullable(logprobs), finishReason, index);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionStreamResponseChoicesInner {\n");
-    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    delta: ").append(toIndentedString(delta)).append("\n");
+    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("}");
     return sb.toString();
   }

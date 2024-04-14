@@ -1,7 +1,7 @@
 /*
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
 
@@ -18,10 +18,13 @@ import public "models/create_moderation_response_results_inner.proto";
 
 message CreateModerationResponse {
 
+  // The unique identifier for the moderation request.
   string id = 3355;
 
+  // The model used to generate the moderation results.
   string model = 104069929;
 
+  // A list of moderation objects.
   repeated CreateModerationResponseResultsInner results = 23804920;
 
 }

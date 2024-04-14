@@ -22,17 +22,17 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param type 
+ * @param code 
  * @param message 
  * @param `param` 
- * @param code 
+ * @param type 
  */
 
 
 data class Error (
 
-    @Json(name = "type")
-    val type: kotlin.String,
+    @Json(name = "code")
+    val code: kotlin.String?,
 
     @Json(name = "message")
     val message: kotlin.String,
@@ -40,8 +40,8 @@ data class Error (
     @Json(name = "param")
     val `param`: kotlin.String?,
 
-    @Json(name = "code")
-    val code: kotlin.String?
+    @Json(name = "type")
+    val type: kotlin.String
 
 )
 

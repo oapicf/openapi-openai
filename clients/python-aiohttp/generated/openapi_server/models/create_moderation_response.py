@@ -51,6 +51,7 @@ class CreateModerationResponse(Model):
     def id(self):
         """Gets the id of this CreateModerationResponse.
 
+        The unique identifier for the moderation request.
 
         :return: The id of this CreateModerationResponse.
         :rtype: str
@@ -61,6 +62,7 @@ class CreateModerationResponse(Model):
     def id(self, id):
         """Sets the id of this CreateModerationResponse.
 
+        The unique identifier for the moderation request.
 
         :param id: The id of this CreateModerationResponse.
         :type id: str
@@ -74,6 +76,7 @@ class CreateModerationResponse(Model):
     def model(self):
         """Gets the model of this CreateModerationResponse.
 
+        The model used to generate the moderation results.
 
         :return: The model of this CreateModerationResponse.
         :rtype: str
@@ -84,6 +87,7 @@ class CreateModerationResponse(Model):
     def model(self, model):
         """Sets the model of this CreateModerationResponse.
 
+        The model used to generate the moderation results.
 
         :param model: The model of this CreateModerationResponse.
         :type model: str
@@ -97,6 +101,7 @@ class CreateModerationResponse(Model):
     def results(self):
         """Gets the results of this CreateModerationResponse.
 
+        A list of moderation objects.
 
         :return: The results of this CreateModerationResponse.
         :rtype: List[CreateModerationResponseResultsInner]
@@ -107,6 +112,7 @@ class CreateModerationResponse(Model):
     def results(self, results):
         """Sets the results of this CreateModerationResponse.
 
+        A list of moderation objects.
 
         :param results: The results of this CreateModerationResponse.
         :type results: List[CreateModerationResponseResultsInner]

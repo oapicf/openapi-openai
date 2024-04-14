@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,13 +22,13 @@ import javax.annotation.Generated;
  * ImagesResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesResponse {
 
   private Integer created;
 
   @Valid
-  private List<@Valid ImagesResponseDataInner> data = new ArrayList<>();
+  private List<@Valid Image> data = new ArrayList<>();
 
   public ImagesResponse() {
     super();
@@ -37,7 +37,7 @@ public class ImagesResponse {
   /**
    * Constructor with only required parameters
    */
-  public ImagesResponse(Integer created, List<@Valid ImagesResponseDataInner> data) {
+  public ImagesResponse(Integer created, List<@Valid Image> data) {
     this.created = created;
     this.data = data;
   }
@@ -62,12 +62,12 @@ public class ImagesResponse {
     this.created = created;
   }
 
-  public ImagesResponse data(List<@Valid ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<@Valid Image> data) {
     this.data = data;
     return this;
   }
 
-  public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse addDataItem(Image dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -82,11 +82,11 @@ public class ImagesResponse {
   @NotNull @Valid 
   @Schema(name = "data", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("data")
-  public List<@Valid ImagesResponseDataInner> getData() {
+  public List<@Valid Image> getData() {
     return data;
   }
 
-  public void setData(List<@Valid ImagesResponseDataInner> data) {
+  public void setData(List<@Valid Image> data) {
     this.data = data;
   }
 

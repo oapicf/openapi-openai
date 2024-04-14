@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -17,24 +17,43 @@ import com.google.gson.annotations.SerializedName
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
- * 
- * @param hate 
- * @param hateThreatening 
- * @param selfHarm 
- * @param sexual 
- * @param sexualMinors 
- * @param violence 
- * @param violenceGraphic 
+ * A list of the categories, and whether they are flagged or not.
+ * @param hate Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
+ * @param hateThreatening Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
+ * @param harassment Content that expresses, incites, or promotes harassing language towards any target.
+ * @param harassmentThreatening Harassment content that also includes violence or serious harm towards any target.
+ * @param selfHarm Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
+ * @param selfHarmIntent Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+ * @param selfHarmInstructions Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+ * @param sexual Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
+ * @param sexualMinors Sexual content that includes an individual who is under 18 years old.
+ * @param violence Content that depicts death, violence, or physical injury.
+ * @param violenceGraphic Content that depicts death, violence, or physical injury in graphic detail.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateModerationResponseResultsInnerCategories (
+    /* Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment. */
     @SerializedName("hate") private val _hate: kotlin.Boolean?,
+    /* Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. */
     @SerializedName("hateThreatening") private val _hateThreatening: kotlin.Boolean?,
+    /* Content that expresses, incites, or promotes harassing language towards any target. */
+    @SerializedName("harassment") private val _harassment: kotlin.Boolean?,
+    /* Harassment content that also includes violence or serious harm towards any target. */
+    @SerializedName("harassmentThreatening") private val _harassmentThreatening: kotlin.Boolean?,
+    /* Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. */
     @SerializedName("selfHarm") private val _selfHarm: kotlin.Boolean?,
+    /* Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. */
+    @SerializedName("selfHarmIntent") private val _selfHarmIntent: kotlin.Boolean?,
+    /* Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. */
+    @SerializedName("selfHarmInstructions") private val _selfHarmInstructions: kotlin.Boolean?,
+    /* Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness). */
     @SerializedName("sexual") private val _sexual: kotlin.Boolean?,
+    /* Sexual content that includes an individual who is under 18 years old. */
     @SerializedName("sexualMinors") private val _sexualMinors: kotlin.Boolean?,
+    /* Content that depicts death, violence, or physical injury. */
     @SerializedName("violence") private val _violence: kotlin.Boolean?,
+    /* Content that depicts death, violence, or physical injury in graphic detail. */
     @SerializedName("violenceGraphic") private val _violenceGraphic: kotlin.Boolean?
 ) {
 
@@ -42,7 +61,15 @@ data class CreateModerationResponseResultsInnerCategories (
                     
         val hateThreatening get() = _hateThreatening ?: throw IllegalArgumentException("hateThreatening is required")
                     
+        val harassment get() = _harassment ?: throw IllegalArgumentException("harassment is required")
+                    
+        val harassmentThreatening get() = _harassmentThreatening ?: throw IllegalArgumentException("harassmentThreatening is required")
+                    
         val selfHarm get() = _selfHarm ?: throw IllegalArgumentException("selfHarm is required")
+                    
+        val selfHarmIntent get() = _selfHarmIntent ?: throw IllegalArgumentException("selfHarmIntent is required")
+                    
+        val selfHarmInstructions get() = _selfHarmInstructions ?: throw IllegalArgumentException("selfHarmInstructions is required")
                     
         val sexual get() = _sexual ?: throw IllegalArgumentException("sexual is required")
                     

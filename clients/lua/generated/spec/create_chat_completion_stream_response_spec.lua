@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -23,8 +23,8 @@ describe("create_chat_completion_stream_response", function()
     end)
   end)
 
-  -- unit tests for the property 'object'
-  describe("property object test", function()
+  -- unit tests for the property 'choices'
+  describe("property choices test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
@@ -44,8 +44,15 @@ describe("create_chat_completion_stream_response", function()
     end)
   end)
 
-  -- unit tests for the property 'choices'
-  describe("property choices test", function()
+  -- unit tests for the property 'system_fingerprint'
+  describe("property system_fingerprint test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'object'
+  describe("property object test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

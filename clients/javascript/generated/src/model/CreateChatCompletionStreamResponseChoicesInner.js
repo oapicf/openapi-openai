@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,20 +13,24 @@
 
 import ApiClient from '../ApiClient';
 import ChatCompletionStreamResponseDelta from './ChatCompletionStreamResponseDelta';
+import CreateChatCompletionResponseChoicesInnerLogprobs from './CreateChatCompletionResponseChoicesInnerLogprobs';
 
 /**
  * The CreateChatCompletionStreamResponseChoicesInner model module.
  * @module model/CreateChatCompletionStreamResponseChoicesInner
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateChatCompletionStreamResponseChoicesInner {
     /**
      * Constructs a new <code>CreateChatCompletionStreamResponseChoicesInner</code>.
      * @alias module:model/CreateChatCompletionStreamResponseChoicesInner
+     * @param delta {module:model/ChatCompletionStreamResponseDelta} 
+     * @param finishReason {module:model/CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnum} The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+     * @param index {Number} The index of the choice in the list of choices.
      */
-    constructor() { 
+    constructor(delta, finishReason, index) { 
         
-        CreateChatCompletionStreamResponseChoicesInner.initialize(this);
+        CreateChatCompletionStreamResponseChoicesInner.initialize(this, delta, finishReason, index);
     }
 
     /**
@@ -34,7 +38,10 @@ class CreateChatCompletionStreamResponseChoicesInner {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, delta, finishReason, index) { 
+        obj['delta'] = delta;
+        obj['finish_reason'] = finishReason;
+        obj['index'] = index;
     }
 
     /**
@@ -48,14 +55,17 @@ class CreateChatCompletionStreamResponseChoicesInner {
         if (data) {
             obj = obj || new CreateChatCompletionStreamResponseChoicesInner();
 
-            if (data.hasOwnProperty('index')) {
-                obj['index'] = ApiClient.convertToType(data['index'], 'Number');
-            }
             if (data.hasOwnProperty('delta')) {
                 obj['delta'] = ChatCompletionStreamResponseDelta.constructFromObject(data['delta']);
             }
+            if (data.hasOwnProperty('logprobs')) {
+                obj['logprobs'] = CreateChatCompletionResponseChoicesInnerLogprobs.constructFromObject(data['logprobs']);
+            }
             if (data.hasOwnProperty('finish_reason')) {
                 obj['finish_reason'] = ApiClient.convertToType(data['finish_reason'], 'String');
+            }
+            if (data.hasOwnProperty('index')) {
+                obj['index'] = ApiClient.convertToType(data['index'], 'Number');
             }
         }
         return obj;
@@ -67,9 +77,19 @@ class CreateChatCompletionStreamResponseChoicesInner {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>CreateChatCompletionStreamResponseChoicesInner</code>.
      */
     static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of CreateChatCompletionStreamResponseChoicesInner.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
         // validate the optional field `delta`
         if (data['delta']) { // data not null
           ChatCompletionStreamResponseDelta.validateJSON(data['delta']);
+        }
+        // validate the optional field `logprobs`
+        if (data['logprobs']) { // data not null
+          CreateChatCompletionResponseChoicesInnerLogprobs.validateJSON(data['logprobs']);
         }
         // ensure the json data is a string
         if (data['finish_reason'] && !(typeof data['finish_reason'] === 'string' || data['finish_reason'] instanceof String)) {
@@ -82,12 +102,7 @@ class CreateChatCompletionStreamResponseChoicesInner {
 
 }
 
-
-
-/**
- * @member {Number} index
- */
-CreateChatCompletionStreamResponseChoicesInner.prototype['index'] = undefined;
+CreateChatCompletionStreamResponseChoicesInner.RequiredProperties = ["delta", "finish_reason", "index"];
 
 /**
  * @member {module:model/ChatCompletionStreamResponseDelta} delta
@@ -95,9 +110,21 @@ CreateChatCompletionStreamResponseChoicesInner.prototype['index'] = undefined;
 CreateChatCompletionStreamResponseChoicesInner.prototype['delta'] = undefined;
 
 /**
+ * @member {module:model/CreateChatCompletionResponseChoicesInnerLogprobs} logprobs
+ */
+CreateChatCompletionStreamResponseChoicesInner.prototype['logprobs'] = undefined;
+
+/**
+ * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
  * @member {module:model/CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnum} finish_reason
  */
 CreateChatCompletionStreamResponseChoicesInner.prototype['finish_reason'] = undefined;
+
+/**
+ * The index of the choice in the list of choices.
+ * @member {Number} index
+ */
+CreateChatCompletionStreamResponseChoicesInner.prototype['index'] = undefined;
 
 
 
@@ -121,6 +148,18 @@ CreateChatCompletionStreamResponseChoicesInner['FinishReasonEnum'] = {
      * @const
      */
     "length": "length",
+
+    /**
+     * value: "tool_calls"
+     * @const
+     */
+    "tool_calls": "tool_calls",
+
+    /**
+     * value: "content_filter"
+     * @const
+     */
+    "content_filter": "content_filter",
 
     /**
      * value: "function_call"

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -60,14 +60,14 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property object (base name: "object")', function() {
-      // uncomment below and update the code to test the property object
+    it('should have the property deleted (base name: "deleted")', function() {
+      // uncomment below and update the code to test the property deleted
       //var instance = new OpenapiOpenai.DeleteModelResponse();
       //expect(instance).to.be();
     });
 
-    it('should have the property deleted (base name: "deleted")', function() {
-      // uncomment below and update the code to test the property deleted
+    it('should have the property object (base name: "object")', function() {
+      // uncomment below and update the code to test the property object
       //var instance = new OpenapiOpenai.DeleteModelResponse();
       //expect(instance).to.be();
     });

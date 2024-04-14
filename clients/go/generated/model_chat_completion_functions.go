@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -22,11 +22,11 @@ var _ MappedNullable = &ChatCompletionFunctions{}
 
 // ChatCompletionFunctions struct for ChatCompletionFunctions
 type ChatCompletionFunctions struct {
+	// A description of what the function does, used by the model to choose when and how to call the function.
+	Description *string `json:"description,omitempty"`
 	// The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
 	Name string `json:"name"`
-	// The description of what the function does.
-	Description *string `json:"description,omitempty"`
-	// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+	// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
 	Parameters map[string]interface{} `json:"parameters,omitempty"`
 }
 
@@ -48,30 +48,6 @@ func NewChatCompletionFunctions(name string) *ChatCompletionFunctions {
 func NewChatCompletionFunctionsWithDefaults() *ChatCompletionFunctions {
 	this := ChatCompletionFunctions{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *ChatCompletionFunctions) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ChatCompletionFunctions) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ChatCompletionFunctions) SetName(v string) {
-	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -104,6 +80,30 @@ func (o *ChatCompletionFunctions) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *ChatCompletionFunctions) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetName returns the Name field value
+func (o *ChatCompletionFunctions) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ChatCompletionFunctions) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ChatCompletionFunctions) SetName(v string) {
+	o.Name = v
 }
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
@@ -148,10 +148,10 @@ func (o ChatCompletionFunctions) MarshalJSON() ([]byte, error) {
 
 func (o ChatCompletionFunctions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	toSerialize["name"] = o.Name
 	if !IsNil(o.Parameters) {
 		toSerialize["parameters"] = o.Parameters
 	}

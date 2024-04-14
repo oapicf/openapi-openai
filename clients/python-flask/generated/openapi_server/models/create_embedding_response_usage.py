@@ -48,6 +48,7 @@ class CreateEmbeddingResponseUsage(Model):
     def prompt_tokens(self) -> int:
         """Gets the prompt_tokens of this CreateEmbeddingResponseUsage.
 
+        The number of tokens used by the prompt.  # noqa: E501
 
         :return: The prompt_tokens of this CreateEmbeddingResponseUsage.
         :rtype: int
@@ -58,6 +59,7 @@ class CreateEmbeddingResponseUsage(Model):
     def prompt_tokens(self, prompt_tokens: int):
         """Sets the prompt_tokens of this CreateEmbeddingResponseUsage.
 
+        The number of tokens used by the prompt.  # noqa: E501
 
         :param prompt_tokens: The prompt_tokens of this CreateEmbeddingResponseUsage.
         :type prompt_tokens: int
@@ -71,6 +73,7 @@ class CreateEmbeddingResponseUsage(Model):
     def total_tokens(self) -> int:
         """Gets the total_tokens of this CreateEmbeddingResponseUsage.
 
+        The total number of tokens used by the request.  # noqa: E501
 
         :return: The total_tokens of this CreateEmbeddingResponseUsage.
         :rtype: int
@@ -81,6 +84,7 @@ class CreateEmbeddingResponseUsage(Model):
     def total_tokens(self, total_tokens: int):
         """Sets the total_tokens of this CreateEmbeddingResponseUsage.
 
+        The total number of tokens used by the request.  # noqa: E501
 
         :param total_tokens: The total_tokens of this CreateEmbeddingResponseUsage.
         :type total_tokens: int

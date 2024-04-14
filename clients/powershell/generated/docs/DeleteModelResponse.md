@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **String** |  | 
-**Object** | **String** |  | 
 **Deleted** | **Boolean** |  | 
+**Object** | **String** |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $DeleteModelResponse = Initialize-PSOpenAPIToolsDeleteModelResponse  -Id null `
- -Object null `
- -Deleted null
+ -Deleted null `
+ -Object null
 ```
 
 - Convert the resource to JSON

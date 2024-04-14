@@ -37,6 +37,9 @@ DeleteFileResponse <- R6::R6Class(
         self$`id` <- `id`
       }
       if (!missing(`object`)) {
+        if (!(`object` %in% c("file"))) {
+          stop(paste("Error! \"", `object`, "\" cannot be assigned to `object`. Must be \"file\".", sep = ""))
+        }
         if (!(is.character(`object`) && length(`object`) == 1)) {
           stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
         }
@@ -86,6 +89,9 @@ DeleteFileResponse <- R6::R6Class(
         self$`id` <- this_object$`id`
       }
       if (!is.null(this_object$`object`)) {
+        if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("file"))) {
+          stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"file\".", sep = ""))
+        }
         self$`object` <- this_object$`object`
       }
       if (!is.null(this_object$`deleted`)) {
@@ -141,6 +147,9 @@ DeleteFileResponse <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`id` <- this_object$`id`
+      if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("file"))) {
+        stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"file\".", sep = ""))
+      }
       self$`object` <- this_object$`object`
       self$`deleted` <- this_object$`deleted`
       self

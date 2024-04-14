@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,21 +16,25 @@ import type {
 } from './';
 
 /**
+ * Represents if a given text input is potentially harmful.
  * @export
  * @interface CreateModerationResponse
  */
 export interface CreateModerationResponse {
     /**
+     * The unique identifier for the moderation request.
      * @type {string}
      * @memberof CreateModerationResponse
      */
     id: string;
     /**
+     * The model used to generate the moderation results.
      * @type {string}
      * @memberof CreateModerationResponse
      */
     model: string;
     /**
+     * A list of moderation objects.
      * @type {Array<CreateModerationResponseResultsInner>}
      * @memberof CreateModerationResponse
      */

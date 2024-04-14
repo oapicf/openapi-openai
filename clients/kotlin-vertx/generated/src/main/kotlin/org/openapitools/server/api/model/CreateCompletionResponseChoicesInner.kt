@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -19,39 +19,42 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param text 
+ * @param finishReason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
  * @param index 
  * @param logprobs 
- * @param finishReason 
+ * @param text 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateCompletionResponseChoicesInner (
-    @SerializedName("text") private val _text: kotlin.String?,
+    /* The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.  */
+    @SerializedName("finishReason") private val _finishReason: CreateCompletionResponseChoicesInner.FinishReason?,
     @SerializedName("index") private val _index: kotlin.Int?,
     @SerializedName("logprobs") private val _logprobs: CreateCompletionResponseChoicesInnerLogprobs?,
-    @SerializedName("finishReason") private val _finishReason: CreateCompletionResponseChoicesInner.FinishReason?
+    @SerializedName("text") private val _text: kotlin.String?
 ) {
 
     /**
-    * 
-    * Values: stop,length
+    * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+    * Values: stop,length,content_filter
     */
     enum class FinishReason(val value: kotlin.String){
     
         stop("stop"),
     
-        length("length");
+        length("length"),
+    
+        content_filter("content_filter");
     
     }
 
-        val text get() = _text ?: throw IllegalArgumentException("text is required")
+        val finishReason get() = _finishReason ?: throw IllegalArgumentException("finishReason is required")
                     
         val index get() = _index ?: throw IllegalArgumentException("index is required")
                     
         val logprobs get() = _logprobs ?: throw IllegalArgumentException("logprobs is required")
                     
-        val finishReason get() = _finishReason ?: throw IllegalArgumentException("finishReason is required")
+        val text get() = _text ?: throw IllegalArgumentException("text is required")
                     
 }
 

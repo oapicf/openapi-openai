@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import io.swagger.annotations.*;
 import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-16T01:13:37.006745963Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-04-14T13:41:51.736364282Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponseResultsInner   {
   
   private Boolean flagged;
@@ -22,9 +22,10 @@ public class CreateModerationResponseResultsInner   {
   private CreateModerationResponseResultsInnerCategoryScores categoryScores;
 
   /**
+   * Whether any of the below categories are flagged.
    **/
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Whether any of the below categories are flagged.")
   @JsonProperty("flagged")
   @NotNull
   public Boolean getFlagged() {

@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -17,24 +17,43 @@ import com.google.gson.annotations.SerializedName
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
- * 
- * @param hate 
- * @param hateThreatening 
- * @param selfHarm 
- * @param sexual 
- * @param sexualMinors 
- * @param violence 
- * @param violenceGraphic 
+ * A list of the categories along with their scores as predicted by model.
+ * @param hate The score for the category 'hate'.
+ * @param hateThreatening The score for the category 'hate/threatening'.
+ * @param harassment The score for the category 'harassment'.
+ * @param harassmentThreatening The score for the category 'harassment/threatening'.
+ * @param selfHarm The score for the category 'self-harm'.
+ * @param selfHarmIntent The score for the category 'self-harm/intent'.
+ * @param selfHarmInstructions The score for the category 'self-harm/instructions'.
+ * @param sexual The score for the category 'sexual'.
+ * @param sexualMinors The score for the category 'sexual/minors'.
+ * @param violence The score for the category 'violence'.
+ * @param violenceGraphic The score for the category 'violence/graphic'.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateModerationResponseResultsInnerCategoryScores (
+    /* The score for the category 'hate'. */
     @SerializedName("hate") private val _hate: java.math.BigDecimal?,
+    /* The score for the category 'hate/threatening'. */
     @SerializedName("hateThreatening") private val _hateThreatening: java.math.BigDecimal?,
+    /* The score for the category 'harassment'. */
+    @SerializedName("harassment") private val _harassment: java.math.BigDecimal?,
+    /* The score for the category 'harassment/threatening'. */
+    @SerializedName("harassmentThreatening") private val _harassmentThreatening: java.math.BigDecimal?,
+    /* The score for the category 'self-harm'. */
     @SerializedName("selfHarm") private val _selfHarm: java.math.BigDecimal?,
+    /* The score for the category 'self-harm/intent'. */
+    @SerializedName("selfHarmIntent") private val _selfHarmIntent: java.math.BigDecimal?,
+    /* The score for the category 'self-harm/instructions'. */
+    @SerializedName("selfHarmInstructions") private val _selfHarmInstructions: java.math.BigDecimal?,
+    /* The score for the category 'sexual'. */
     @SerializedName("sexual") private val _sexual: java.math.BigDecimal?,
+    /* The score for the category 'sexual/minors'. */
     @SerializedName("sexualMinors") private val _sexualMinors: java.math.BigDecimal?,
+    /* The score for the category 'violence'. */
     @SerializedName("violence") private val _violence: java.math.BigDecimal?,
+    /* The score for the category 'violence/graphic'. */
     @SerializedName("violenceGraphic") private val _violenceGraphic: java.math.BigDecimal?
 ) {
 
@@ -42,7 +61,15 @@ data class CreateModerationResponseResultsInnerCategoryScores (
                     
         val hateThreatening get() = _hateThreatening ?: throw IllegalArgumentException("hateThreatening is required")
                     
+        val harassment get() = _harassment ?: throw IllegalArgumentException("harassment is required")
+                    
+        val harassmentThreatening get() = _harassmentThreatening ?: throw IllegalArgumentException("harassmentThreatening is required")
+                    
         val selfHarm get() = _selfHarm ?: throw IllegalArgumentException("selfHarm is required")
+                    
+        val selfHarmIntent get() = _selfHarmIntent ?: throw IllegalArgumentException("selfHarmIntent is required")
+                    
+        val selfHarmInstructions get() = _selfHarmInstructions ?: throw IllegalArgumentException("selfHarmInstructions is required")
                     
         val sexual get() = _sexual ?: throw IllegalArgumentException("sexual is required")
                     

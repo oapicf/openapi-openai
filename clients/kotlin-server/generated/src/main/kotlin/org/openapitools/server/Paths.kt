@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -17,11 +17,277 @@ import org.openapitools.server.models.*
 
 object Paths {
     /**
-     * Immediately cancel a fine-tune job. 
+     * Cancels a run that is &#x60;in_progress&#x60;.
      * 
-     * @param fineTuneId The ID of the fine-tune job to cancel  
+     * @param threadId The ID of the thread to which this run belongs. 
+     * @param runId The ID of the run to cancel. 
      */
-    @Serializable @Resource("/fine-tunes/{fine_tune_id}/cancel") class cancelFineTune(val fineTuneId: kotlin.String)
+    @Serializable @Resource("/threads/{thread_id}/runs/{run_id}/cancel") class cancelRun(val threadId: kotlin.String, val runId: kotlin.String)
+
+    /**
+     * Create an assistant with a model and instructions.
+     * 
+     * @param createAssistantRequest  
+     */
+    @Serializable @Resource("/assistants") class createAssistant(val createAssistantRequest: CreateAssistantRequest)
+
+    /**
+     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+     * 
+     * @param assistantId The ID of the assistant for which to create a File.  
+     * @param createAssistantFileRequest  
+     */
+    @Serializable @Resource("/assistants/{assistant_id}/files") class createAssistantFile(val assistantId: kotlin.String, val createAssistantFileRequest: CreateAssistantFileRequest)
+
+    /**
+     * Create a message.
+     * 
+     * @param threadId The ID of the [thread](/docs/api-reference/threads) to create a message for. 
+     * @param createMessageRequest  
+     */
+    @Serializable @Resource("/threads/{thread_id}/messages") class createMessage(val threadId: kotlin.String, val createMessageRequest: CreateMessageRequest)
+
+    /**
+     * Create a run.
+     * 
+     * @param threadId The ID of the thread to run. 
+     * @param createRunRequest  
+     */
+    @Serializable @Resource("/threads/{thread_id}/runs") class createRun(val threadId: kotlin.String, val createRunRequest: CreateRunRequest)
+
+    /**
+     * Create a thread.
+     * 
+     * @param createThreadRequest  (optional)
+     */
+    @Serializable @Resource("/threads") class createThread(val createThreadRequest: CreateThreadRequest? = null)
+
+    /**
+     * Create a thread and run it in one request.
+     * 
+     * @param createThreadAndRunRequest  
+     */
+    @Serializable @Resource("/threads/runs") class createThreadAndRun(val createThreadAndRunRequest: CreateThreadAndRunRequest)
+
+    /**
+     * Delete an assistant.
+     * 
+     * @param assistantId The ID of the assistant to delete. 
+     */
+    @Serializable @Resource("/assistants/{assistant_id}") class deleteAssistant(val assistantId: kotlin.String)
+
+    /**
+     * Delete an assistant file.
+     * 
+     * @param assistantId The ID of the assistant that the file belongs to. 
+     * @param fileId The ID of the file to delete. 
+     */
+    @Serializable @Resource("/assistants/{assistant_id}/files/{file_id}") class deleteAssistantFile(val assistantId: kotlin.String, val fileId: kotlin.String)
+
+    /**
+     * Delete a thread.
+     * 
+     * @param threadId The ID of the thread to delete. 
+     */
+    @Serializable @Resource("/threads/{thread_id}") class deleteThread(val threadId: kotlin.String)
+
+    /**
+     * Retrieves an assistant.
+     * 
+     * @param assistantId The ID of the assistant to retrieve. 
+     */
+    @Serializable @Resource("/assistants/{assistant_id}") class getAssistant(val assistantId: kotlin.String)
+
+    /**
+     * Retrieves an AssistantFile.
+     * 
+     * @param assistantId The ID of the assistant who the file belongs to. 
+     * @param fileId The ID of the file we&#39;re getting. 
+     */
+    @Serializable @Resource("/assistants/{assistant_id}/files/{file_id}") class getAssistantFile(val assistantId: kotlin.String, val fileId: kotlin.String)
+
+    /**
+     * Retrieve a message.
+     * 
+     * @param threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs. 
+     * @param messageId The ID of the message to retrieve. 
+     */
+    @Serializable @Resource("/threads/{thread_id}/messages/{message_id}") class getMessage(val threadId: kotlin.String, val messageId: kotlin.String)
+
+    /**
+     * Retrieves a message file.
+     * 
+     * @param threadId The ID of the thread to which the message and File belong. 
+     * @param messageId The ID of the message the file belongs to. 
+     * @param fileId The ID of the file being retrieved. 
+     */
+    @Serializable @Resource("/threads/{thread_id}/messages/{message_id}/files/{file_id}") class getMessageFile(val threadId: kotlin.String, val messageId: kotlin.String, val fileId: kotlin.String)
+
+    /**
+     * Retrieves a run.
+     * 
+     * @param threadId The ID of the [thread](/docs/api-reference/threads) that was run. 
+     * @param runId The ID of the run to retrieve. 
+     */
+    @Serializable @Resource("/threads/{thread_id}/runs/{run_id}") class getRun(val threadId: kotlin.String, val runId: kotlin.String)
+
+    /**
+     * Retrieves a run step.
+     * 
+     * @param threadId The ID of the thread to which the run and run step belongs. 
+     * @param runId The ID of the run to which the run step belongs. 
+     * @param stepId The ID of the run step to retrieve. 
+     */
+    @Serializable @Resource("/threads/{thread_id}/runs/{run_id}/steps/{step_id}") class getRunStep(val threadId: kotlin.String, val runId: kotlin.String, val stepId: kotlin.String)
+
+    /**
+     * Retrieves a thread.
+     * 
+     * @param threadId The ID of the thread to retrieve. 
+     */
+    @Serializable @Resource("/threads/{thread_id}") class getThread(val threadId: kotlin.String)
+
+    /**
+     * Returns a list of assistant files.
+     * 
+     * @param assistantId The ID of the assistant the file belongs to. 
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     */
+    @Serializable @Resource("/assistants/{assistant_id}/files") class listAssistantFiles(val assistantId: kotlin.String, val limit: kotlin.Int? = null, val order: kotlin.String? = null, val after: kotlin.String? = null, val before: kotlin.String? = null)
+
+    /**
+     * Returns a list of assistants.
+     * 
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     */
+    @Serializable @Resource("/assistants") class listAssistants(val limit: kotlin.Int? = null, val order: kotlin.String? = null, val after: kotlin.String? = null, val before: kotlin.String? = null)
+
+    /**
+     * Returns a list of message files.
+     * 
+     * @param threadId The ID of the thread that the message and files belong to. 
+     * @param messageId The ID of the message that the files belongs to. 
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     */
+    @Serializable @Resource("/threads/{thread_id}/messages/{message_id}/files") class listMessageFiles(val threadId: kotlin.String, val messageId: kotlin.String, val limit: kotlin.Int? = null, val order: kotlin.String? = null, val after: kotlin.String? = null, val before: kotlin.String? = null)
+
+    /**
+     * Returns a list of messages for a given thread.
+     * 
+     * @param threadId The ID of the [thread](/docs/api-reference/threads) the messages belong to. 
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param runId Filter messages by the run ID that generated them.  (optional)
+     */
+    @Serializable @Resource("/threads/{thread_id}/messages") class listMessages(val threadId: kotlin.String, val limit: kotlin.Int? = null, val order: kotlin.String? = null, val after: kotlin.String? = null, val before: kotlin.String? = null, val runId: kotlin.String? = null)
+
+    /**
+     * Returns a list of run steps belonging to a run.
+     * 
+     * @param threadId The ID of the thread the run and run steps belong to. 
+     * @param runId The ID of the run the run steps belong to. 
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     */
+    @Serializable @Resource("/threads/{thread_id}/runs/{run_id}/steps") class listRunSteps(val threadId: kotlin.String, val runId: kotlin.String, val limit: kotlin.Int? = null, val order: kotlin.String? = null, val after: kotlin.String? = null, val before: kotlin.String? = null)
+
+    /**
+     * Returns a list of runs belonging to a thread.
+     * 
+     * @param threadId The ID of the thread the run belongs to. 
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     */
+    @Serializable @Resource("/threads/{thread_id}/runs") class listRuns(val threadId: kotlin.String, val limit: kotlin.Int? = null, val order: kotlin.String? = null, val after: kotlin.String? = null, val before: kotlin.String? = null)
+
+    /**
+     * Modifies an assistant.
+     * 
+     * @param assistantId The ID of the assistant to modify. 
+     * @param modifyAssistantRequest  
+     */
+    @Serializable @Resource("/assistants/{assistant_id}") class modifyAssistant(val assistantId: kotlin.String, val modifyAssistantRequest: ModifyAssistantRequest)
+
+    /**
+     * Modifies a message.
+     * 
+     * @param threadId The ID of the thread to which this message belongs. 
+     * @param messageId The ID of the message to modify. 
+     * @param modifyMessageRequest  
+     */
+    @Serializable @Resource("/threads/{thread_id}/messages/{message_id}") class modifyMessage(val threadId: kotlin.String, val messageId: kotlin.String, val modifyMessageRequest: ModifyMessageRequest)
+
+    /**
+     * Modifies a run.
+     * 
+     * @param threadId The ID of the [thread](/docs/api-reference/threads) that was run. 
+     * @param runId The ID of the run to modify. 
+     * @param modifyRunRequest  
+     */
+    @Serializable @Resource("/threads/{thread_id}/runs/{run_id}") class modifyRun(val threadId: kotlin.String, val runId: kotlin.String, val modifyRunRequest: ModifyRunRequest)
+
+    /**
+     * Modifies a thread.
+     * 
+     * @param threadId The ID of the thread to modify. Only the &#x60;metadata&#x60; can be modified. 
+     * @param modifyThreadRequest  
+     */
+    @Serializable @Resource("/threads/{thread_id}") class modifyThread(val threadId: kotlin.String, val modifyThreadRequest: ModifyThreadRequest)
+
+    /**
+     * When a run has the &#x60;status: \&quot;requires_action\&quot;&#x60; and &#x60;required_action.type&#x60; is &#x60;submit_tool_outputs&#x60;, this endpoint can be used to submit the outputs from the tool calls once they&#39;re all completed. All outputs must be submitted in a single request. 
+     * 
+     * @param threadId The ID of the [thread](/docs/api-reference/threads) to which this run belongs. 
+     * @param runId The ID of the run that requires the tool output submission. 
+     * @param submitToolOutputsRunRequest  
+     */
+    @Serializable @Resource("/threads/{thread_id}/runs/{run_id}/submit_tool_outputs") class submitToolOuputsToRun(val threadId: kotlin.String, val runId: kotlin.String, val submitToolOutputsRunRequest: SubmitToolOutputsRunRequest)
+
+    /**
+     * Generates audio from the input text.
+     * 
+     * @param createSpeechRequest  
+     */
+    @Serializable @Resource("/audio/speech") class createSpeech(val createSpeechRequest: CreateSpeechRequest)
+
+    /**
+     * Transcribes audio into the input language.
+     * 
+     * @param file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  
+     * @param model  
+     * @param language The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  (optional)
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  (optional)
+     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to json)
+     * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
+     * @param timestampGranularities The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)
+     */
+    @Serializable @Resource("/audio/transcriptions") class createTranscription(val file: java.io.File, val model: CreateTranscriptionRequestModel, val language: kotlin.String? = null, val prompt: kotlin.String? = null, val responseFormat: kotlin.String? = null, val temperature: java.math.BigDecimal? = null, val timestampGranularities: kotlin.collections.List<kotlin.String>? = null)
+
+    /**
+     * Translates audio into English.
+     * 
+     * @param file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  
+     * @param model  
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  (optional)
+     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to "json")
+     * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
+     */
+    @Serializable @Resource("/audio/translations") class createTranslation(val file: java.io.File, val model: CreateTranscriptionRequestModel, val prompt: kotlin.String? = null, val responseFormat: kotlin.String? = null, val temperature: java.math.BigDecimal? = null)
 
     /**
      * Creates a model response for the given chat conversation.
@@ -38,13 +304,6 @@ object Paths {
     @Serializable @Resource("/completions") class createCompletion(val createCompletionRequest: CreateCompletionRequest)
 
     /**
-     * Creates a new edit for the provided input, instruction, and parameters.
-     * 
-     * @param createEditRequest  
-     */
-    @Serializable @Resource("/edits") class createEdit(val createEditRequest: CreateEditRequest)
-
-    /**
      * Creates an embedding vector representing the input text.
      * 
      * @param createEmbeddingRequest  
@@ -52,19 +311,87 @@ object Paths {
     @Serializable @Resource("/embeddings") class createEmbedding(val createEmbeddingRequest: CreateEmbeddingRequest)
 
     /**
-     * Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
+     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      * 
-     * @param file Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.  If the &#x60;purpose&#x60; is set to \\\&quot;fine-tune\\\&quot;, each line is a JSON record with \\\&quot;prompt\\\&quot; and \\\&quot;completion\\\&quot; fields representing your [training examples](/docs/guides/fine-tuning/prepare-training-data).  
-     * @param purpose The intended purpose of the uploaded documents.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tunes). This allows us to validate the format of the uploaded file.  
+     * @param file The File object (not file name) to be uploaded.  
+     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning.  
      */
     @Serializable @Resource("/files") class createFile(val file: java.io.File, val purpose: kotlin.String)
 
     /**
-     * Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
+     * Delete a file.
      * 
-     * @param createFineTuneRequest  
+     * @param fileId The ID of the file to use for this request. 
      */
-    @Serializable @Resource("/fine-tunes") class createFineTune(val createFineTuneRequest: CreateFineTuneRequest)
+    @Serializable @Resource("/files/{file_id}") class deleteFile(val fileId: kotlin.String)
+
+    /**
+     * Returns the contents of the specified file.
+     * 
+     * @param fileId The ID of the file to use for this request. 
+     */
+    @Serializable @Resource("/files/{file_id}/content") class downloadFile(val fileId: kotlin.String)
+
+    /**
+     * Returns a list of files that belong to the user&#39;s organization.
+     * 
+     * @param purpose Only return files with the given purpose. (optional)
+     */
+    @Serializable @Resource("/files") class listFiles(val purpose: kotlin.String? = null)
+
+    /**
+     * Returns information about a specific file.
+     * 
+     * @param fileId The ID of the file to use for this request. 
+     */
+    @Serializable @Resource("/files/{file_id}") class retrieveFile(val fileId: kotlin.String)
+
+    /**
+     * Immediately cancel a fine-tune job. 
+     * 
+     * @param fineTuningJobId The ID of the fine-tuning job to cancel.  
+     */
+    @Serializable @Resource("/fine_tuning/jobs/{fine_tuning_job_id}/cancel") class cancelFineTuningJob(val fineTuningJobId: kotlin.String)
+
+    /**
+     * Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+     * 
+     * @param createFineTuningJobRequest  
+     */
+    @Serializable @Resource("/fine_tuning/jobs") class createFineTuningJob(val createFineTuningJobRequest: CreateFineTuningJobRequest)
+
+    /**
+     * Get status updates for a fine-tuning job. 
+     * 
+     * @param fineTuningJobId The ID of the fine-tuning job to get events for.  
+     * @param after Identifier for the last event from the previous pagination request. (optional)
+     * @param limit Number of events to retrieve. (optional, default to 20)
+     */
+    @Serializable @Resource("/fine_tuning/jobs/{fine_tuning_job_id}/events") class listFineTuningEvents(val fineTuningJobId: kotlin.String, val after: kotlin.String? = null, val limit: kotlin.Int? = null)
+
+    /**
+     * List checkpoints for a fine-tuning job. 
+     * 
+     * @param fineTuningJobId The ID of the fine-tuning job to get checkpoints for.  
+     * @param after Identifier for the last checkpoint ID from the previous pagination request. (optional)
+     * @param limit Number of checkpoints to retrieve. (optional, default to 10)
+     */
+    @Serializable @Resource("/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints") class listFineTuningJobCheckpoints(val fineTuningJobId: kotlin.String, val after: kotlin.String? = null, val limit: kotlin.Int? = null)
+
+    /**
+     * List your organization&#39;s fine-tuning jobs 
+     * 
+     * @param after Identifier for the last job from the previous pagination request. (optional)
+     * @param limit Number of fine-tuning jobs to retrieve. (optional, default to 20)
+     */
+    @Serializable @Resource("/fine_tuning/jobs") class listPaginatedFineTuningJobs(val after: kotlin.String? = null, val limit: kotlin.Int? = null)
+
+    /**
+     * Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+     * 
+     * @param fineTuningJobId The ID of the fine-tuning job.  
+     */
+    @Serializable @Resource("/fine_tuning/jobs/{fine_tuning_job_id}") class retrieveFineTuningJob(val fineTuningJobId: kotlin.String)
 
     /**
      * Creates an image given a prompt.
@@ -79,94 +406,32 @@ object Paths {
      * @param image The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. 
      * @param prompt A text description of the desired image(s). The maximum length is 1000 characters. 
      * @param mask An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;. (optional)
+     * @param model  (optional)
      * @param n The number of images to generate. Must be between 1 and 10. (optional, default to 1)
      * @param size The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. (optional, default to 1024x1024)
-     * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. (optional, default to url)
+     * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. (optional, default to url)
      * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
      */
-    @Serializable @Resource("/images/edits") class createImageEdit(val image: java.io.File, val prompt: kotlin.String, val mask: java.io.File? = null, val n: kotlin.Int? = null, val size: kotlin.String? = null, val responseFormat: kotlin.String? = null, val user: kotlin.String? = null)
+    @Serializable @Resource("/images/edits") class createImageEdit(val image: java.io.File, val prompt: kotlin.String, val mask: java.io.File? = null, val model: CreateImageEditRequestModel? = null, val n: kotlin.Int? = null, val size: kotlin.String? = null, val responseFormat: kotlin.String? = null, val user: kotlin.String? = null)
 
     /**
      * Creates a variation of a given image.
      * 
      * @param image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. 
-     * @param n The number of images to generate. Must be between 1 and 10. (optional, default to 1)
+     * @param model  (optional)
+     * @param n The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. (optional, default to 1)
+     * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. (optional, default to url)
      * @param size The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. (optional, default to 1024x1024)
-     * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. (optional, default to url)
      * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
      */
-    @Serializable @Resource("/images/variations") class createImageVariation(val image: java.io.File, val n: kotlin.Int? = null, val size: kotlin.String? = null, val responseFormat: kotlin.String? = null, val user: kotlin.String? = null)
+    @Serializable @Resource("/images/variations") class createImageVariation(val image: java.io.File, val model: CreateImageEditRequestModel? = null, val n: kotlin.Int? = null, val responseFormat: kotlin.String? = null, val size: kotlin.String? = null, val user: kotlin.String? = null)
 
     /**
-     * Classifies if text violates OpenAI&#39;s Content Policy
-     * 
-     * @param createModerationRequest  
-     */
-    @Serializable @Resource("/moderations") class createModeration(val createModerationRequest: CreateModerationRequest)
-
-    /**
-     * Transcribes audio into the input language.
-     * 
-     * @param file The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.  
-     * @param model  
-     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  (optional)
-     * @param responseFormat The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.  (optional, default to "json")
-     * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
-     * @param language The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  (optional)
-     */
-    @Serializable @Resource("/audio/transcriptions") class createTranscription(val file: java.io.File, val model: CreateTranscriptionRequestModel, val prompt: kotlin.String? = null, val responseFormat: kotlin.String? = null, val temperature: java.math.BigDecimal? = null, val language: kotlin.String? = null)
-
-    /**
-     * Translates audio into English.
-     * 
-     * @param file The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.  
-     * @param model  
-     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  (optional)
-     * @param responseFormat The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.  (optional, default to "json")
-     * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
-     */
-    @Serializable @Resource("/audio/translations") class createTranslation(val file: java.io.File, val model: CreateTranscriptionRequestModel, val prompt: kotlin.String? = null, val responseFormat: kotlin.String? = null, val temperature: java.math.BigDecimal? = null)
-
-    /**
-     * Delete a file.
-     * 
-     * @param fileId The ID of the file to use for this request 
-     */
-    @Serializable @Resource("/files/{file_id}") class deleteFile(val fileId: kotlin.String)
-
-    /**
-     * Delete a fine-tuned model. You must have the Owner role in your organization.
+     * Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
      * 
      * @param model The model to delete 
      */
     @Serializable @Resource("/models/{model}") class deleteModel(val model: kotlin.String)
-
-    /**
-     * Returns the contents of the specified file
-     * 
-     * @param fileId The ID of the file to use for this request 
-     */
-    @Serializable @Resource("/files/{file_id}/content") class downloadFile(val fileId: kotlin.String)
-
-    /**
-     * Returns a list of files that belong to the user&#39;s organization.
-     * 
-     */
-    @Serializable @Resource("/files") class listFiles
-
-    /**
-     * Get fine-grained status updates for a fine-tune job. 
-     * 
-     * @param fineTuneId The ID of the fine-tune job to get events for.  
-     * @param stream Whether to stream events for the fine-tune job. If set to true, events will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available. The stream will terminate with a &#x60;data: [DONE]&#x60; message when the job is finished (succeeded, cancelled, or failed).  If set to false, only events generated so far will be returned.  (optional, default to false)
-     */
-    @Serializable @Resource("/fine-tunes/{fine_tune_id}/events") class listFineTuneEvents(val fineTuneId: kotlin.String, val stream: kotlin.Boolean? = null)
-
-    /**
-     * List your organization&#39;s fine-tuning jobs 
-     * 
-     */
-    @Serializable @Resource("/fine-tunes") class listFineTunes
 
     /**
      * Lists the currently available models, and provides basic information about each one such as the owner and availability.
@@ -175,24 +440,17 @@ object Paths {
     @Serializable @Resource("/models") class listModels
 
     /**
-     * Returns information about a specific file.
-     * 
-     * @param fileId The ID of the file to use for this request 
-     */
-    @Serializable @Resource("/files/{file_id}") class retrieveFile(val fileId: kotlin.String)
-
-    /**
-     * Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-     * 
-     * @param fineTuneId The ID of the fine-tune job  
-     */
-    @Serializable @Resource("/fine-tunes/{fine_tune_id}") class retrieveFineTune(val fineTuneId: kotlin.String)
-
-    /**
      * Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
      * 
      * @param model The ID of the model to use for this request 
      */
     @Serializable @Resource("/models/{model}") class retrieveModel(val model: kotlin.String)
+
+    /**
+     * Classifies if text is potentially harmful.
+     * 
+     * @param createModerationRequest  
+     */
+    @Serializable @Resource("/moderations") class createModeration(val createModerationRequest: CreateModerationRequest)
 
 }

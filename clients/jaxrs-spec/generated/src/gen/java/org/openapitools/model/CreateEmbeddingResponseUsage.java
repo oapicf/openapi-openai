@@ -13,15 +13,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-
-
+/**
+ * The usage information for the request.
+ **/
+@ApiModel(description = "The usage information for the request.")
 @JsonTypeName("CreateEmbeddingResponse_usage")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateEmbeddingResponseUsage   {
   private @Valid Integer promptTokens;
   private @Valid Integer totalTokens;
 
   /**
+   * The number of tokens used by the prompt.
    **/
   public CreateEmbeddingResponseUsage promptTokens(Integer promptTokens) {
     this.promptTokens = promptTokens;
@@ -29,7 +32,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The number of tokens used by the prompt.")
   @JsonProperty("prompt_tokens")
   @NotNull
   public Integer getPromptTokens() {
@@ -42,6 +45,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   /**
+   * The total number of tokens used by the request.
    **/
   public CreateEmbeddingResponseUsage totalTokens(Integer totalTokens) {
     this.totalTokens = totalTokens;
@@ -49,7 +53,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The total number of tokens used by the request.")
   @JsonProperty("total_tokens")
   @NotNull
   public Integer getTotalTokens() {

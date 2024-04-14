@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -13,34 +13,58 @@ require "json"
 require "time"
 
 module OpenAPIClient
+  # A list of the categories along with their scores as predicted by model.
   class CreateModerationResponseResultsInnerCategoryScores
     include JSON::Serializable
 
     # Required properties
+    # The score for the category 'hate'.
     @[JSON::Field(key: "hate", type: Float64, nillable: false, emit_null: false)]
     property hate : Float64
 
+    # The score for the category 'hate/threatening'.
     @[JSON::Field(key: "hate/threatening", type: Float64, nillable: false, emit_null: false)]
     property hate_threatening : Float64
 
+    # The score for the category 'harassment'.
+    @[JSON::Field(key: "harassment", type: Float64, nillable: false, emit_null: false)]
+    property harassment : Float64
+
+    # The score for the category 'harassment/threatening'.
+    @[JSON::Field(key: "harassment/threatening", type: Float64, nillable: false, emit_null: false)]
+    property harassment_threatening : Float64
+
+    # The score for the category 'self-harm'.
     @[JSON::Field(key: "self-harm", type: Float64, nillable: false, emit_null: false)]
     property self_harm : Float64
 
+    # The score for the category 'self-harm/intent'.
+    @[JSON::Field(key: "self-harm/intent", type: Float64, nillable: false, emit_null: false)]
+    property self_harm_intent : Float64
+
+    # The score for the category 'self-harm/instructions'.
+    @[JSON::Field(key: "self-harm/instructions", type: Float64, nillable: false, emit_null: false)]
+    property self_harm_instructions : Float64
+
+    # The score for the category 'sexual'.
     @[JSON::Field(key: "sexual", type: Float64, nillable: false, emit_null: false)]
     property sexual : Float64
 
+    # The score for the category 'sexual/minors'.
     @[JSON::Field(key: "sexual/minors", type: Float64, nillable: false, emit_null: false)]
     property sexual_minors : Float64
 
+    # The score for the category 'violence'.
     @[JSON::Field(key: "violence", type: Float64, nillable: false, emit_null: false)]
     property violence : Float64
 
+    # The score for the category 'violence/graphic'.
     @[JSON::Field(key: "violence/graphic", type: Float64, nillable: false, emit_null: false)]
     property violence_graphic : Float64
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@hate : Float64, @hate_threatening : Float64, @self_harm : Float64, @sexual : Float64, @sexual_minors : Float64, @violence : Float64, @violence_graphic : Float64)
+    def initialize(@hate : Float64, @hate_threatening : Float64, @harassment : Float64, @harassment_threatening : Float64, @self_harm : Float64, @self_harm_intent : Float64, @self_harm_instructions : Float64, @sexual : Float64, @sexual_minors : Float64, @violence : Float64, @violence_graphic : Float64)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -63,7 +87,11 @@ module OpenAPIClient
       self.class == o.class &&
           hate == o.hate &&
           hate_threatening == o.hate_threatening &&
+          harassment == o.harassment &&
+          harassment_threatening == o.harassment_threatening &&
           self_harm == o.self_harm &&
+          self_harm_intent == o.self_harm_intent &&
+          self_harm_instructions == o.self_harm_instructions &&
           sexual == o.sexual &&
           sexual_minors == o.sexual_minors &&
           violence == o.violence &&
@@ -79,7 +107,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [hate, hate_threatening, self_harm, sexual, sexual_minors, violence, violence_graphic].hash
+      [hate, hate_threatening, harassment, harassment_threatening, self_harm, self_harm_intent, self_harm_instructions, sexual, sexual_minors, violence, violence_graphic].hash
     end
 
     # Builds the object from hash

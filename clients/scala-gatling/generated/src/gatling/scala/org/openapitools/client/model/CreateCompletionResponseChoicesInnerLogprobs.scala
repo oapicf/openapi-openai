@@ -3,16 +3,16 @@ package org.openapitools.client.model
 
 
 case class CreateCompletionResponseChoicesInnerLogprobs (
-    _tokens: Option[List[String]],
+    _textOffset: Option[List[Integer]],
     _tokenLogprobs: Option[List[Number]],
-    _topLogprobs: Option[List[Any]],
-    _textOffset: Option[List[Integer]]
+    _tokens: Option[List[String]],
+    _topLogprobs: Option[List[Map[String, Number]]]
 )
 object CreateCompletionResponseChoicesInnerLogprobs {
-    def toStringBody(var_tokens: Object, var_tokenLogprobs: Object, var_topLogprobs: Object, var_textOffset: Object) =
+    def toStringBody(var_textOffset: Object, var_tokenLogprobs: Object, var_tokens: Object, var_topLogprobs: Object) =
         s"""
         | {
-        | "tokens":$var_tokens,"tokenLogprobs":$var_tokenLogprobs,"topLogprobs":$var_topLogprobs,"textOffset":$var_textOffset
+        | "textOffset":$var_textOffset,"tokenLogprobs":$var_tokenLogprobs,"tokens":$var_tokens,"topLogprobs":$var_topLogprobs
         | }
         """.stripMargin
 }

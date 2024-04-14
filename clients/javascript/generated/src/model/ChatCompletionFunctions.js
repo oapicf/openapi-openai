@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ChatCompletionFunctions model module.
  * @module model/ChatCompletionFunctions
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class ChatCompletionFunctions {
     /**
@@ -49,11 +49,11 @@ class ChatCompletionFunctions {
         if (data) {
             obj = obj || new ChatCompletionFunctions();
 
-            if (data.hasOwnProperty('name')) {
-                obj['name'] = ApiClient.convertToType(data['name'], 'String');
-            }
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
+            }
+            if (data.hasOwnProperty('name')) {
+                obj['name'] = ApiClient.convertToType(data['name'], 'String');
             }
             if (data.hasOwnProperty('parameters')) {
                 obj['parameters'] = ApiClient.convertToType(data['parameters'], {'String': Object});
@@ -75,12 +75,12 @@ class ChatCompletionFunctions {
             }
         }
         // ensure the json data is a string
-        if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
-            throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
-        }
-        // ensure the json data is a string
         if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
             throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
+        }
+        // ensure the json data is a string
+        if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
+            throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
         }
 
         return true;
@@ -92,19 +92,19 @@ class ChatCompletionFunctions {
 ChatCompletionFunctions.RequiredProperties = ["name"];
 
 /**
+ * A description of what the function does, used by the model to choose when and how to call the function.
+ * @member {String} description
+ */
+ChatCompletionFunctions.prototype['description'] = undefined;
+
+/**
  * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
  * @member {String} name
  */
 ChatCompletionFunctions.prototype['name'] = undefined;
 
 /**
- * The description of what the function does.
- * @member {String} description
- */
-ChatCompletionFunctions.prototype['description'] = undefined;
-
-/**
- * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+ * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
  * @member {Object.<String, Object>} parameters
  */
 ChatCompletionFunctions.prototype['parameters'] = undefined;

@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,12 +19,14 @@ local function cast_chat_completion_request_message(t)
 	return setmetatable(t, chat_completion_request_message_mt)
 end
 
-local function new_chat_completion_request_message(role, content, name, function_call)
+local function new_chat_completion_request_message(content, role, name, tool_calls, function_call, tool_call_id)
 	return cast_chat_completion_request_message({
-		["role"] = role;
 		["content"] = content;
+		["role"] = role;
 		["name"] = name;
+		["tool_calls"] = tool_calls;
 		["function_call"] = function_call;
+		["tool_call_id"] = tool_call_id;
 	})
 end
 

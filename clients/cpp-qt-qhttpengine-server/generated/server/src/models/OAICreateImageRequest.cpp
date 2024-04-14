@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,14 +37,23 @@ void OAICreateImageRequest::initializeModel() {
     m_prompt_isSet = false;
     m_prompt_isValid = false;
 
+    m_model_isSet = false;
+    m_model_isValid = false;
+
     m_n_isSet = false;
     m_n_isValid = false;
+
+    m_quality_isSet = false;
+    m_quality_isValid = false;
+
+    m_response_format_isSet = false;
+    m_response_format_isValid = false;
 
     m_size_isSet = false;
     m_size_isValid = false;
 
-    m_response_format_isSet = false;
-    m_response_format_isValid = false;
+    m_style_isSet = false;
+    m_style_isValid = false;
 
     m_user_isSet = false;
     m_user_isValid = false;
@@ -62,14 +71,23 @@ void OAICreateImageRequest::fromJsonObject(QJsonObject json) {
     m_prompt_isValid = ::OpenAPI::fromJsonValue(prompt, json[QString("prompt")]);
     m_prompt_isSet = !json[QString("prompt")].isNull() && m_prompt_isValid;
 
+    m_model_isValid = ::OpenAPI::fromJsonValue(model, json[QString("model")]);
+    m_model_isSet = !json[QString("model")].isNull() && m_model_isValid;
+
     m_n_isValid = ::OpenAPI::fromJsonValue(n, json[QString("n")]);
     m_n_isSet = !json[QString("n")].isNull() && m_n_isValid;
+
+    m_quality_isValid = ::OpenAPI::fromJsonValue(quality, json[QString("quality")]);
+    m_quality_isSet = !json[QString("quality")].isNull() && m_quality_isValid;
+
+    m_response_format_isValid = ::OpenAPI::fromJsonValue(response_format, json[QString("response_format")]);
+    m_response_format_isSet = !json[QString("response_format")].isNull() && m_response_format_isValid;
 
     m_size_isValid = ::OpenAPI::fromJsonValue(size, json[QString("size")]);
     m_size_isSet = !json[QString("size")].isNull() && m_size_isValid;
 
-    m_response_format_isValid = ::OpenAPI::fromJsonValue(response_format, json[QString("response_format")]);
-    m_response_format_isSet = !json[QString("response_format")].isNull() && m_response_format_isValid;
+    m_style_isValid = ::OpenAPI::fromJsonValue(style, json[QString("style")]);
+    m_style_isSet = !json[QString("style")].isNull() && m_style_isValid;
 
     m_user_isValid = ::OpenAPI::fromJsonValue(user, json[QString("user")]);
     m_user_isSet = !json[QString("user")].isNull() && m_user_isValid;
@@ -87,14 +105,23 @@ QJsonObject OAICreateImageRequest::asJsonObject() const {
     if (m_prompt_isSet) {
         obj.insert(QString("prompt"), ::OpenAPI::toJsonValue(prompt));
     }
+    if (model.isSet()) {
+        obj.insert(QString("model"), ::OpenAPI::toJsonValue(model));
+    }
     if (m_n_isSet) {
         obj.insert(QString("n"), ::OpenAPI::toJsonValue(n));
+    }
+    if (m_quality_isSet) {
+        obj.insert(QString("quality"), ::OpenAPI::toJsonValue(quality));
+    }
+    if (m_response_format_isSet) {
+        obj.insert(QString("response_format"), ::OpenAPI::toJsonValue(response_format));
     }
     if (m_size_isSet) {
         obj.insert(QString("size"), ::OpenAPI::toJsonValue(size));
     }
-    if (m_response_format_isSet) {
-        obj.insert(QString("response_format"), ::OpenAPI::toJsonValue(response_format));
+    if (m_style_isSet) {
+        obj.insert(QString("style"), ::OpenAPI::toJsonValue(style));
     }
     if (m_user_isSet) {
         obj.insert(QString("user"), ::OpenAPI::toJsonValue(user));
@@ -118,6 +145,22 @@ bool OAICreateImageRequest::is_prompt_Valid() const{
     return m_prompt_isValid;
 }
 
+OAICreateImageRequest_model OAICreateImageRequest::getModel() const {
+    return model;
+}
+void OAICreateImageRequest::setModel(const OAICreateImageRequest_model &model) {
+    this->model = model;
+    this->m_model_isSet = true;
+}
+
+bool OAICreateImageRequest::is_model_Set() const{
+    return m_model_isSet;
+}
+
+bool OAICreateImageRequest::is_model_Valid() const{
+    return m_model_isValid;
+}
+
 qint32 OAICreateImageRequest::getN() const {
     return n;
 }
@@ -132,6 +175,38 @@ bool OAICreateImageRequest::is_n_Set() const{
 
 bool OAICreateImageRequest::is_n_Valid() const{
     return m_n_isValid;
+}
+
+QString OAICreateImageRequest::getQuality() const {
+    return quality;
+}
+void OAICreateImageRequest::setQuality(const QString &quality) {
+    this->quality = quality;
+    this->m_quality_isSet = true;
+}
+
+bool OAICreateImageRequest::is_quality_Set() const{
+    return m_quality_isSet;
+}
+
+bool OAICreateImageRequest::is_quality_Valid() const{
+    return m_quality_isValid;
+}
+
+QString OAICreateImageRequest::getResponseFormat() const {
+    return response_format;
+}
+void OAICreateImageRequest::setResponseFormat(const QString &response_format) {
+    this->response_format = response_format;
+    this->m_response_format_isSet = true;
+}
+
+bool OAICreateImageRequest::is_response_format_Set() const{
+    return m_response_format_isSet;
+}
+
+bool OAICreateImageRequest::is_response_format_Valid() const{
+    return m_response_format_isValid;
 }
 
 QString OAICreateImageRequest::getSize() const {
@@ -150,20 +225,20 @@ bool OAICreateImageRequest::is_size_Valid() const{
     return m_size_isValid;
 }
 
-QString OAICreateImageRequest::getResponseFormat() const {
-    return response_format;
+QString OAICreateImageRequest::getStyle() const {
+    return style;
 }
-void OAICreateImageRequest::setResponseFormat(const QString &response_format) {
-    this->response_format = response_format;
-    this->m_response_format_isSet = true;
-}
-
-bool OAICreateImageRequest::is_response_format_Set() const{
-    return m_response_format_isSet;
+void OAICreateImageRequest::setStyle(const QString &style) {
+    this->style = style;
+    this->m_style_isSet = true;
 }
 
-bool OAICreateImageRequest::is_response_format_Valid() const{
-    return m_response_format_isValid;
+bool OAICreateImageRequest::is_style_Set() const{
+    return m_style_isSet;
+}
+
+bool OAICreateImageRequest::is_style_Valid() const{
+    return m_style_isValid;
 }
 
 QString OAICreateImageRequest::getUser() const {
@@ -190,7 +265,22 @@ bool OAICreateImageRequest::isSet() const {
             break;
         }
 
+        if (model.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (m_n_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_quality_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_response_format_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -200,7 +290,7 @@ bool OAICreateImageRequest::isSet() const {
             break;
         }
 
-        if (m_response_format_isSet) {
+        if (m_style_isSet) {
             isObjectUpdated = true;
             break;
         }

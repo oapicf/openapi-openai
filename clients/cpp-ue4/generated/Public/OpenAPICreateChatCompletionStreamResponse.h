@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ namespace OpenAPI
 /*
  * OpenAPICreateChatCompletionStreamResponse
  *
- * 
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
  */
 class OPENAPI_API OpenAPICreateChatCompletionStreamResponse : public Model
 {
@@ -30,11 +30,25 @@ public:
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 	void WriteJson(JsonWriter& Writer) const final;
 
+	/* A unique identifier for the chat completion. Each chunk has the same ID. */
 	FString Id;
-	FString Object;
-	int32 Created = 0;
-	FString Model;
+	/* A list of chat completion choices. Can be more than one if `n` is greater than 1. */
 	TArray<OpenAPICreateChatCompletionStreamResponseChoicesInner> Choices;
+	/* The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. */
+	int32 Created = 0;
+	/* The model to generate the completion. */
+	FString Model;
+	/* This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
+	TOptional<FString> SystemFingerprint;
+	enum class ObjectEnum
+	{
+		ChatCompletionChunk,
+  	};
+
+	static FString EnumToString(const ObjectEnum& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, ObjectEnum& EnumValue);
+	/* The object type, which is always `chat.completion.chunk`. */
+	ObjectEnum Object;
 };
 
 }

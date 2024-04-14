@@ -73,7 +73,7 @@ private class OASChatCompletionFunctionsTest {
     private static void defaultValuesPopulated() {
         OASChatCompletionFunctions chatCompletionFunctions = new OASChatCompletionFunctions();
         System.assertEquals(new Map<String, oas_any_type_not_mapped>(), chatCompletionFunctions.parameters);
-        System.assertEquals(null, chatCompletionFunctions.name);
         System.assertEquals(null, chatCompletionFunctions.description);
+        System.assertEquals(null, chatCompletionFunctions.name);
     }
 }

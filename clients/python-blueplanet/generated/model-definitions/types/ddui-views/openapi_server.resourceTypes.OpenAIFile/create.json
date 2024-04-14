@@ -12,10 +12,10 @@
     "model": "properties",
     "children": [
       {"model": "id" },
-      {"model": "object" },
       {"model": "bytes" },
       {"model": "created_at" },
       {"model": "filename" },
+      {"model": "object" },
       {"model": "purpose" },
       {"model": "status" },
       {"model": "status_details" },

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,7 +20,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -47,14 +46,6 @@ public class OpenAIFileTest {
     }
 
     /**
-     * Test the property '_object'
-     */
-    @Test
-    public void _objectTest() {
-        // TODO: test _object
-    }
-
-    /**
      * Test the property 'bytes'
      */
     @Test
@@ -76,6 +67,14 @@ public class OpenAIFileTest {
     @Test
     public void filenameTest() {
         // TODO: test filename
+    }
+
+    /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
     }
 
     /**

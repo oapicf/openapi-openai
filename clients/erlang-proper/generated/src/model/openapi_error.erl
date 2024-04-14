@@ -9,10 +9,10 @@
 -export_type([openapi_error/0]).
 
 -type openapi_error() ::
-  [ {'type', binary() }
+  [ {'code', binary() }
   | {'message', binary() }
   | {'param', binary() }
-  | {'code', binary() }
+  | {'type', binary() }
   ].
 
 
@@ -20,10 +20,10 @@ openapi_error() ->
     openapi_error([]).
 
 openapi_error(Fields) ->
-  Default = [ {'type', binary() }
+  Default = [ {'code', binary() }
             , {'message', binary() }
             , {'param', binary() }
-            , {'code', binary() }
+            , {'type', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

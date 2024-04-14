@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,10 +25,10 @@ DeleteModelResponse::DeleteModelResponse()
 {
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_object = utility::conversions::to_string_t("");
-    m_objectIsSet = false;
     m_Deleted = false;
     m_DeletedIsSet = false;
+    m_object = utility::conversions::to_string_t("");
+    m_objectIsSet = false;
 }
 
 DeleteModelResponse::~DeleteModelResponse()
@@ -49,13 +49,13 @@ web::json::value DeleteModelResponse::toJson() const
     {
         val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
     }
-    if(m_objectIsSet)
-    {
-        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
-    }
     if(m_DeletedIsSet)
     {
         val[utility::conversions::to_string_t(U("deleted"))] = ModelBase::toJson(m_Deleted);
+    }
+    if(m_objectIsSet)
+    {
+        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
     }
 
     return val;
@@ -75,16 +75,6 @@ bool DeleteModelResponse::fromJson(const web::json::value& val)
             setId(refVal_setId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("object"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setObject;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
-            setObject(refVal_setObject);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("deleted"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("deleted")));
@@ -93,6 +83,16 @@ bool DeleteModelResponse::fromJson(const web::json::value& val)
             bool refVal_setDeleted;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeleted);
             setDeleted(refVal_setDeleted);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("object"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setObject;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
+            setObject(refVal_setObject);
         }
     }
     return ok;
@@ -109,13 +109,13 @@ void DeleteModelResponse::toMultipart(std::shared_ptr<MultipartFormData> multipa
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
     }
-    if(m_objectIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
-    }
     if(m_DeletedIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("deleted")), m_Deleted));
+    }
+    if(m_objectIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
     }
 }
 
@@ -134,17 +134,17 @@ bool DeleteModelResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
         setId(refVal_setId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
-    {
-        utility::string_t refVal_setObject;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
-        setObject(refVal_setObject);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("deleted"))))
     {
         bool refVal_setDeleted;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("deleted"))), refVal_setDeleted );
         setDeleted(refVal_setDeleted);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
+    {
+        utility::string_t refVal_setObject;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
+        setObject(refVal_setObject);
     }
     return ok;
 }
@@ -169,26 +169,6 @@ void DeleteModelResponse::unsetId()
 {
     m_IdIsSet = false;
 }
-utility::string_t DeleteModelResponse::getObject() const
-{
-    return m_object;
-}
-
-void DeleteModelResponse::setObject(const utility::string_t& value)
-{
-    m_object = value;
-    m_objectIsSet = true;
-}
-
-bool DeleteModelResponse::objectIsSet() const
-{
-    return m_objectIsSet;
-}
-
-void DeleteModelResponse::unsetobject()
-{
-    m_objectIsSet = false;
-}
 bool DeleteModelResponse::isDeleted() const
 {
     return m_Deleted;
@@ -208,6 +188,26 @@ bool DeleteModelResponse::deletedIsSet() const
 void DeleteModelResponse::unsetDeleted()
 {
     m_DeletedIsSet = false;
+}
+utility::string_t DeleteModelResponse::getObject() const
+{
+    return m_object;
+}
+
+void DeleteModelResponse::setObject(const utility::string_t& value)
+{
+    m_object = value;
+    m_objectIsSet = true;
+}
+
+bool DeleteModelResponse::objectIsSet() const
+{
+    return m_objectIsSet;
+}
+
+void DeleteModelResponse::unsetobject()
+{
+    m_objectIsSet = false;
 }
 }
 }

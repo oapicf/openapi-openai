@@ -3,7 +3,7 @@
 
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -14,9 +14,9 @@
 */
 
 
-#import "OAIImagesResponseDataInner.h"
-@protocol OAIImagesResponseDataInner;
-@class OAIImagesResponseDataInner;
+#import "OAIImage.h"
+@protocol OAIImage;
+@class OAIImage;
 
 
 
@@ -28,6 +28,6 @@
 
 @property(nonatomic) NSNumber* created;
 
-@property(nonatomic) NSArray<OAIImagesResponseDataInner>* data;
+@property(nonatomic) NSArray<OAIImage>* data;
 
 @end

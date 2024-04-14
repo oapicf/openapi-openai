@@ -2,7 +2,7 @@
 Protected Class CreateCompletionResponseChoicesInnerLogprobs
 
 	#tag Property, Flags = &h0
-		tokens() As String
+		text_offset() As Integer
 	#tag EndProperty
 
 
@@ -12,12 +12,12 @@ Protected Class CreateCompletionResponseChoicesInnerLogprobs
 
 
 	#tag Property, Flags = &h0
-		top_logprobs() As Object
+		tokens() As String
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		text_offset() As Integer
+		top_logprobs() As Dictionary
 	#tag EndProperty
 
 
@@ -58,11 +58,11 @@ Protected Class CreateCompletionResponseChoicesInnerLogprobs
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="tokens"
+			Name="text_offset"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="String"
+			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -74,19 +74,19 @@ Protected Class CreateCompletionResponseChoicesInnerLogprobs
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="tokens"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="top_logprobs"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Object"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="text_offset"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
+			Type="Dictionary"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

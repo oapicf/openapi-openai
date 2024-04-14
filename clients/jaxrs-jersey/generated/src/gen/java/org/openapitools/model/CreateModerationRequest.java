@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -31,7 +31,7 @@ import javax.validation.Valid;
   CreateModerationRequest.JSON_PROPERTY_INPUT,
   CreateModerationRequest.JSON_PROPERTY_MODEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationRequest   {
   public static final String JSON_PROPERTY_INPUT = "input";
   @JsonProperty(JSON_PROPERTY_INPUT)

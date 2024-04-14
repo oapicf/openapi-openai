@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,7 +17,10 @@ import org.openapitools.client.model.CreateModerationResponseResultsInner;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
-@ApiModel(description = "")
+/**
+ * Represents if a given text input is potentially harmful.
+ **/
+@ApiModel(description = "Represents if a given text input is potentially harmful.")
 public class CreateModerationResponse {
   
   @SerializedName("id")
@@ -28,8 +31,9 @@ public class CreateModerationResponse {
   private List<CreateModerationResponseResultsInner> results = null;
 
   /**
+   * The unique identifier for the moderation request.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier for the moderation request.")
   public String getId() {
     return id;
   }
@@ -38,8 +42,9 @@ public class CreateModerationResponse {
   }
 
   /**
+   * The model used to generate the moderation results.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model used to generate the moderation results.")
   public String getModel() {
     return model;
   }
@@ -48,8 +53,9 @@ public class CreateModerationResponse {
   }
 
   /**
+   * A list of moderation objects.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A list of moderation objects.")
   public List<CreateModerationResponseResultsInner> getResults() {
     return results;
   }

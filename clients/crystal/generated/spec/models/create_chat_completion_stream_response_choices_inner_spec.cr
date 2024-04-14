@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -23,13 +23,13 @@ describe OpenAPIClient::CreateChatCompletionStreamResponseChoicesInner do
       #expect(instance).to be_instance_of(OpenAPIClient::CreateChatCompletionStreamResponseChoicesInner)
     end
   end
-  describe "test attribute 'index'" do
+  describe "test attribute 'delta'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end
   end
 
-  describe "test attribute 'delta'" do
+  describe "test attribute 'logprobs'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end
@@ -38,10 +38,16 @@ describe OpenAPIClient::CreateChatCompletionStreamResponseChoicesInner do
   describe "test attribute 'finish_reason'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new("String", ["stop", "length", "function_call"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new("String", ["stop", "length", "tool_calls", "content_filter", "function_call"])
       # validator.allowable_values.each do |value|
       #   expect { instance.finish_reason = value }.not_to raise_error
       # end
+    end
+  end
+
+  describe "test attribute 'index'" do
+    it "should work" do
+      # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end
   end
 

@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -17,8 +17,9 @@ module OpenAPIClient
     include JSON::Serializable
 
     # Required properties
-    @[JSON::Field(key: "text", type: String, nillable: false, emit_null: false)]
-    property text : String
+    # The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+    @[JSON::Field(key: "finish_reason", type: String, nillable: false, emit_null: false)]
+    property finish_reason : String
 
     @[JSON::Field(key: "index", type: Int32, nillable: false, emit_null: false)]
     property index : Int32
@@ -26,8 +27,8 @@ module OpenAPIClient
     @[JSON::Field(key: "logprobs", type: CreateCompletionResponseChoicesInnerLogprobs, nillable: false, emit_null: false)]
     property logprobs : CreateCompletionResponseChoicesInnerLogprobs
 
-    @[JSON::Field(key: "finish_reason", type: String, nillable: false, emit_null: false)]
-    property finish_reason : String
+    @[JSON::Field(key: "text", type: String, nillable: false, emit_null: false)]
+    property text : String
 
     class EnumAttributeValidator
       getter datatype : String
@@ -54,7 +55,7 @@ module OpenAPIClient
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@text : String, @index : Int32, @logprobs : CreateCompletionResponseChoicesInnerLogprobs, @finish_reason : String)
+    def initialize(@finish_reason : String, @index : Int32, @logprobs : CreateCompletionResponseChoicesInnerLogprobs, @text : String)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -67,7 +68,7 @@ module OpenAPIClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      finish_reason_validator = EnumAttributeValidator.new("String", ["stop", "length"])
+      finish_reason_validator = EnumAttributeValidator.new("String", ["stop", "length", "content_filter"])
       return false unless finish_reason_validator.valid?(@finish_reason)
       true
     end
@@ -75,7 +76,7 @@ module OpenAPIClient
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] finish_reason Object to be assigned
     def finish_reason=(finish_reason)
-      validator = EnumAttributeValidator.new("String", ["stop", "length"])
+      validator = EnumAttributeValidator.new("String", ["stop", "length", "content_filter"])
       unless validator.valid?(finish_reason)
         raise ArgumentError.new("invalid value for \"finish_reason\", must be one of #{validator.allowable_values}.")
       end
@@ -87,10 +88,10 @@ module OpenAPIClient
     def ==(o)
       return true if self.same?(o)
       self.class == o.class &&
-          text == o.text &&
+          finish_reason == o.finish_reason &&
           index == o.index &&
           logprobs == o.logprobs &&
-          finish_reason == o.finish_reason
+          text == o.text
     end
 
     # @see the `==` method
@@ -102,7 +103,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [text, index, logprobs, finish_reason].hash
+      [finish_reason, index, logprobs, text].hash
     end
 
     # Builds the object from hash

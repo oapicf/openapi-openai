@@ -8,19 +8,19 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 
 
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-03-16T01:12:27.532392463Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-04-14T13:37:33.081471369Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesResponse   {
   @JsonProperty("created")
   private Integer created;
 
   @JsonProperty("data")
-  private List<ImagesResponseDataInner> data = new ArrayList<>();
+  private List<Image> data = new ArrayList<>();
 
   /**
    **/
@@ -41,7 +41,7 @@ public class ImagesResponse   {
 
   /**
    **/
-  public ImagesResponse data(List<ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<Image> data) {
     this.data = data;
     return this;
   }
@@ -49,10 +49,10 @@ public class ImagesResponse   {
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("data")
-  public List<ImagesResponseDataInner> getData() {
+  public List<Image> getData() {
     return data;
   }
-  public void setData(List<ImagesResponseDataInner> data) {
+  public void setData(List<Image> data) {
     this.data = data;
   }
 

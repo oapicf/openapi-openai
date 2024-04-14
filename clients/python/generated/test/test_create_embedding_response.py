@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -36,32 +36,32 @@ class TestCreateEmbeddingResponse(unittest.TestCase):
         model = CreateEmbeddingResponse()
         if include_optional:
             return CreateEmbeddingResponse(
-                object = '',
-                model = '',
                 data = [
-                    openapiopenai.models.create_embedding_response_data_inner.CreateEmbeddingResponse_data_inner(
+                    openapiopenai.models.embedding.Embedding(
                         index = 56, 
-                        object = '', 
                         embedding = [
                             1.337
-                            ], )
+                            ], 
+                        object = 'embedding', )
                     ],
+                model = '',
+                object = 'list',
                 usage = openapiopenai.models.create_embedding_response_usage.CreateEmbeddingResponse_usage(
                     prompt_tokens = 56, 
                     total_tokens = 56, )
             )
         else:
             return CreateEmbeddingResponse(
-                object = '',
-                model = '',
                 data = [
-                    openapiopenai.models.create_embedding_response_data_inner.CreateEmbeddingResponse_data_inner(
+                    openapiopenai.models.embedding.Embedding(
                         index = 56, 
-                        object = '', 
                         embedding = [
                             1.337
-                            ], )
+                            ], 
+                        object = 'embedding', )
                     ],
+                model = '',
+                object = 'list',
                 usage = openapiopenai.models.create_embedding_response_usage.CreateEmbeddingResponse_usage(
                     prompt_tokens = 56, 
                     total_tokens = 56, ),

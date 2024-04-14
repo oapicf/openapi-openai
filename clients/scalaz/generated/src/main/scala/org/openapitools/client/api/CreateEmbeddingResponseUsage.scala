@@ -12,8 +12,10 @@ import org.joda.time.DateTime
 import CreateEmbeddingResponseUsage._
 
 case class CreateEmbeddingResponseUsage (
+  /* The number of tokens used by the prompt. */
   promptTokens: Integer,
-totalTokens: Integer)
+/* The total number of tokens used by the request. */
+  totalTokens: Integer)
 
 object CreateEmbeddingResponseUsage {
   import DateTimeCodecs._

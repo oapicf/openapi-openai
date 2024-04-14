@@ -16,20 +16,25 @@ void main() {
   // final instance = ChatCompletionStreamResponseDelta();
 
   group('test ChatCompletionStreamResponseDelta', () {
-    // The role of the author of this message.
-    // String role
-    test('to test the property `role`', () async {
-      // TODO
-    });
-
     // The contents of the chunk message.
     // String content
     test('to test the property `content`', () async {
       // TODO
     });
 
-    // ChatCompletionRequestMessageFunctionCall functionCall
+    // ChatCompletionStreamResponseDeltaFunctionCall functionCall
     test('to test the property `functionCall`', () async {
+      // TODO
+    });
+
+    // List<ChatCompletionMessageToolCallChunk> toolCalls (default value: const [])
+    test('to test the property `toolCalls`', () async {
+      // TODO
+    });
+
+    // The role of the author of this message.
+    // String role
+    test('to test the property `role`', () async {
       // TODO
     });
 

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -30,8 +30,15 @@ public:
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 	void WriteJson(JsonWriter& Writer) const final;
 
-	FString Object;
 	TArray<OpenAPIOpenAIFile> Data;
+	enum class ObjectEnum
+	{
+		List,
+  	};
+
+	static FString EnumToString(const ObjectEnum& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, ObjectEnum& EnumValue);
+	ObjectEnum Object;
 };
 
 }

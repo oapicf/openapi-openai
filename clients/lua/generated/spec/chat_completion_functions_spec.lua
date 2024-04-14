@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -16,15 +16,15 @@ Please update as you see appropriate
 describe("chat_completion_functions", function()
   local openapiclient_chat_completion_functions = require "openapiclient.model.chat_completion_functions"
 
-  -- unit tests for the property 'name'
-  describe("property name test", function()
+  -- unit tests for the property 'description'
+  describe("property description test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for the property 'description'
-  describe("property description test", function()
+  -- unit tests for the property 'name'
+  describe("property name test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,7 +14,16 @@ package org.openapitools.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import org.openapitools.model.ChatCompletionRequestMessageFunctionCall;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.openapitools.model.ChatCompletionMessageToolCall;
+import org.openapitools.model.ChatCompletionRequestAssistantMessage;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageFunctionCall;
+import org.openapitools.model.ChatCompletionRequestFunctionMessage;
+import org.openapitools.model.ChatCompletionRequestSystemMessage;
+import org.openapitools.model.ChatCompletionRequestToolMessage;
+import org.openapitools.model.ChatCompletionRequestUserMessage;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -27,22 +36,24 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * ChatCompletionRequestMessage
  */
 @JsonPropertyOrder({
-  ChatCompletionRequestMessage.JSON_PROPERTY_ROLE,
   ChatCompletionRequestMessage.JSON_PROPERTY_CONTENT,
+  ChatCompletionRequestMessage.JSON_PROPERTY_ROLE,
   ChatCompletionRequestMessage.JSON_PROPERTY_NAME,
-  ChatCompletionRequestMessage.JSON_PROPERTY_FUNCTION_CALL
+  ChatCompletionRequestMessage.JSON_PROPERTY_TOOL_CALLS,
+  ChatCompletionRequestMessage.JSON_PROPERTY_FUNCTION_CALL,
+  ChatCompletionRequestMessage.JSON_PROPERTY_TOOL_CALL_ID
 })
 @JsonTypeName("ChatCompletionRequestMessage")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-03-16T01:12:38.762786439Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-04-14T13:38:24.957235058Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class ChatCompletionRequestMessage {
+    public static final String JSON_PROPERTY_CONTENT = "content";
+    private String content;
+
     /**
-     * The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.
+     * The role of the messages author, in this case &#x60;function&#x60;.
      */
     public enum RoleEnum {
-        SYSTEM("system"),
-        USER("user"),
-        ASSISTANT("assistant"),
         FUNCTION("function");
 
         private String value;
@@ -74,17 +85,46 @@ public class ChatCompletionRequestMessage {
     public static final String JSON_PROPERTY_ROLE = "role";
     private RoleEnum role;
 
-    public static final String JSON_PROPERTY_CONTENT = "content";
-    private String content;
-
     public static final String JSON_PROPERTY_NAME = "name";
     private String name;
 
-    public static final String JSON_PROPERTY_FUNCTION_CALL = "function_call";
-    private ChatCompletionRequestMessageFunctionCall functionCall;
+    public static final String JSON_PROPERTY_TOOL_CALLS = "tool_calls";
+    private List<@Valid ChatCompletionMessageToolCall> toolCalls = null;
 
-    public ChatCompletionRequestMessage(RoleEnum role) {
+    public static final String JSON_PROPERTY_FUNCTION_CALL = "function_call";
+    private ChatCompletionRequestAssistantMessageFunctionCall functionCall;
+
+    public static final String JSON_PROPERTY_TOOL_CALL_ID = "tool_call_id";
+    private String toolCallId;
+
+    public ChatCompletionRequestMessage(String content, RoleEnum role, String name, String toolCallId) {
+        this.content = content;
         this.role = role;
+        this.name = name;
+        this.toolCallId = toolCallId;
+    }
+
+    public ChatCompletionRequestMessage content(String content) {
+        this.content = content;
+        return this;
+    }
+
+    /**
+     * The contents of the function message.
+     * @return content
+     **/
+    @Nullable
+    @Schema(name = "content", description = "The contents of the function message.", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(JSON_PROPERTY_CONTENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public String getContent() {
+        return content;
+    }
+
+    @JsonProperty(JSON_PROPERTY_CONTENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public ChatCompletionRequestMessage role(RoleEnum role) {
@@ -93,11 +133,11 @@ public class ChatCompletionRequestMessage {
     }
 
     /**
-     * The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.
+     * The role of the messages author, in this case &#x60;function&#x60;.
      * @return role
      **/
     @NotNull
-    @Schema(name = "role", description = "The role of the messages author. One of `system`, `user`, `assistant`, or `function`.", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "role", description = "The role of the messages author, in this case `function`.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_ROLE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public RoleEnum getRole() {
@@ -110,53 +150,61 @@ public class ChatCompletionRequestMessage {
         this.role = role;
     }
 
-    public ChatCompletionRequestMessage content(String content) {
-        this.content = content;
-        return this;
-    }
-
-    /**
-     * The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls.
-     * @return content
-     **/
-    @Nullable
-    @Schema(name = "content", description = "The contents of the message. `content` is required for all messages except assistant messages with function calls.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_CONTENT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public String getContent() {
-        return content;
-    }
-
-    @JsonProperty(JSON_PROPERTY_CONTENT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public ChatCompletionRequestMessage name(String name) {
         this.name = name;
         return this;
     }
 
     /**
-     * The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
+     * The name of the function to call.
      * @return name
      **/
-    @Nullable
-    @Schema(name = "name", description = "The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @NotNull
+    @Schema(name = "name", description = "The name of the function to call.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_NAME)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public String getName() {
         return name;
     }
 
     @JsonProperty(JSON_PROPERTY_NAME)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setName(String name) {
         this.name = name;
     }
 
-    public ChatCompletionRequestMessage functionCall(ChatCompletionRequestMessageFunctionCall functionCall) {
+    public ChatCompletionRequestMessage toolCalls(List<@Valid ChatCompletionMessageToolCall> toolCalls) {
+        this.toolCalls = toolCalls;
+        return this;
+    }
+
+    public ChatCompletionRequestMessage addToolCallsItem(ChatCompletionMessageToolCall toolCallsItem) {
+        if (this.toolCalls == null) {
+            this.toolCalls = new ArrayList<>();
+        }
+        this.toolCalls.add(toolCallsItem);
+        return this;
+    }
+
+    /**
+     * The tool calls generated by the model, such as function calls.
+     * @return toolCalls
+     **/
+    @Nullable
+    @Schema(name = "tool_calls", description = "The tool calls generated by the model, such as function calls.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_TOOL_CALLS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public List<@Valid ChatCompletionMessageToolCall> getToolCalls() {
+        return toolCalls;
+    }
+
+    @JsonProperty(JSON_PROPERTY_TOOL_CALLS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setToolCalls(List<@Valid ChatCompletionMessageToolCall> toolCalls) {
+        this.toolCalls = toolCalls;
+    }
+
+    public ChatCompletionRequestMessage functionCall(ChatCompletionRequestAssistantMessageFunctionCall functionCall) {
         this.functionCall = functionCall;
         return this;
     }
@@ -170,14 +218,37 @@ public class ChatCompletionRequestMessage {
     @Schema(name = "function_call", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_FUNCTION_CALL)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public ChatCompletionRequestMessageFunctionCall getFunctionCall() {
+    public ChatCompletionRequestAssistantMessageFunctionCall getFunctionCall() {
         return functionCall;
     }
 
     @JsonProperty(JSON_PROPERTY_FUNCTION_CALL)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setFunctionCall(ChatCompletionRequestMessageFunctionCall functionCall) {
+    public void setFunctionCall(ChatCompletionRequestAssistantMessageFunctionCall functionCall) {
         this.functionCall = functionCall;
+    }
+
+    public ChatCompletionRequestMessage toolCallId(String toolCallId) {
+        this.toolCallId = toolCallId;
+        return this;
+    }
+
+    /**
+     * Tool call that this message is responding to.
+     * @return toolCallId
+     **/
+    @NotNull
+    @Schema(name = "tool_call_id", description = "Tool call that this message is responding to.", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(JSON_PROPERTY_TOOL_CALL_ID)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public String getToolCallId() {
+        return toolCallId;
+    }
+
+    @JsonProperty(JSON_PROPERTY_TOOL_CALL_ID)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setToolCallId(String toolCallId) {
+        this.toolCallId = toolCallId;
     }
 
     @Override
@@ -189,25 +260,29 @@ public class ChatCompletionRequestMessage {
             return false;
         }
         ChatCompletionRequestMessage chatCompletionRequestMessage = (ChatCompletionRequestMessage) o;
-        return Objects.equals(this.role, chatCompletionRequestMessage.role) &&
-            Objects.equals(this.content, chatCompletionRequestMessage.content) &&
+        return Objects.equals(this.content, chatCompletionRequestMessage.content) &&
+            Objects.equals(this.role, chatCompletionRequestMessage.role) &&
             Objects.equals(this.name, chatCompletionRequestMessage.name) &&
-            Objects.equals(this.functionCall, chatCompletionRequestMessage.functionCall);
+            Objects.equals(this.toolCalls, chatCompletionRequestMessage.toolCalls) &&
+            Objects.equals(this.functionCall, chatCompletionRequestMessage.functionCall) &&
+            Objects.equals(this.toolCallId, chatCompletionRequestMessage.toolCallId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(role, content, name, functionCall);
+        return Objects.hash(content, role, name, toolCalls, functionCall, toolCallId);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class ChatCompletionRequestMessage {\n");
-        sb.append("    role: ").append(toIndentedString(role)).append("\n");
         sb.append("    content: ").append(toIndentedString(content)).append("\n");
+        sb.append("    role: ").append(toIndentedString(role)).append("\n");
         sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    toolCalls: ").append(toIndentedString(toolCalls)).append("\n");
         sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
+        sb.append("    toolCallId: ").append(toIndentedString(toolCallId)).append("\n");
         sb.append("}");
         return sb.toString();
     }

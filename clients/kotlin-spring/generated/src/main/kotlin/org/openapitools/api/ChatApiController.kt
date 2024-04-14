@@ -39,7 +39,8 @@ class ChatApiController() {
         operationId = "createChatCompletion",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = CreateChatCompletionResponse::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = CreateChatCompletionResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.POST],

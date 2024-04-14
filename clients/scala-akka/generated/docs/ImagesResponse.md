@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created** | **Int** |  | 
-**data** | [**Seq&lt;ImagesResponseDataInner&gt;**](ImagesResponseDataInner.md) |  | 
+**data** | [**Seq&lt;Image&gt;**](Image.md) |  | 
 
 
 

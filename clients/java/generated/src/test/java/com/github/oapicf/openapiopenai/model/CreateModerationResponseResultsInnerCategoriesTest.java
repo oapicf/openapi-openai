@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -54,11 +54,43 @@ public class CreateModerationResponseResultsInnerCategoriesTest {
     }
 
     /**
+     * Test the property 'harassment'
+     */
+    @Test
+    public void harassmentTest() {
+        // TODO: test harassment
+    }
+
+    /**
+     * Test the property 'harassmentThreatening'
+     */
+    @Test
+    public void harassmentThreateningTest() {
+        // TODO: test harassmentThreatening
+    }
+
+    /**
      * Test the property 'selfHarm'
      */
     @Test
     public void selfHarmTest() {
         // TODO: test selfHarm
+    }
+
+    /**
+     * Test the property 'selfHarmIntent'
+     */
+    @Test
+    public void selfHarmIntentTest() {
+        // TODO: test selfHarmIntent
+    }
+
+    /**
+     * Test the property 'selfHarmInstructions'
+     */
+    @Test
+    public void selfHarmInstructionsTest() {
+        // TODO: test selfHarmInstructions
     }
 
     /**

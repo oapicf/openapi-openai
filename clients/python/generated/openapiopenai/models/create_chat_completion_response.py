@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -18,24 +18,32 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from openapiopenai.models.completion_usage import CompletionUsage
 from openapiopenai.models.create_chat_completion_response_choices_inner import CreateChatCompletionResponseChoicesInner
-from openapiopenai.models.create_completion_response_usage import CreateCompletionResponseUsage
 from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateChatCompletionResponse(BaseModel):
     """
-    CreateChatCompletionResponse
+    Represents a chat completion response returned by model, based on the provided input.
     """ # noqa: E501
-    id: StrictStr
-    object: StrictStr
-    created: StrictInt
-    model: StrictStr
-    choices: List[CreateChatCompletionResponseChoicesInner]
-    usage: Optional[CreateCompletionResponseUsage] = None
-    __properties: ClassVar[List[str]] = ["id", "object", "created", "model", "choices", "usage"]
+    id: StrictStr = Field(description="A unique identifier for the chat completion.")
+    choices: List[CreateChatCompletionResponseChoicesInner] = Field(description="A list of chat completion choices. Can be more than one if `n` is greater than 1.")
+    created: StrictInt = Field(description="The Unix timestamp (in seconds) of when the chat completion was created.")
+    model: StrictStr = Field(description="The model used for the chat completion.")
+    system_fingerprint: Optional[StrictStr] = Field(default=None, description="This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ")
+    object: StrictStr = Field(description="The object type, which is always `chat.completion`.")
+    usage: Optional[CompletionUsage] = None
+    __properties: ClassVar[List[str]] = ["id", "choices", "created", "model", "system_fingerprint", "object", "usage"]
+
+    @field_validator('object')
+    def object_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['chat.completion']):
+            raise ValueError("must be one of enum values ('chat.completion')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,11 +107,12 @@ class CreateChatCompletionResponse(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "object": obj.get("object"),
+            "choices": [CreateChatCompletionResponseChoicesInner.from_dict(_item) for _item in obj["choices"]] if obj.get("choices") is not None else None,
             "created": obj.get("created"),
             "model": obj.get("model"),
-            "choices": [CreateChatCompletionResponseChoicesInner.from_dict(_item) for _item in obj["choices"]] if obj.get("choices") is not None else None,
-            "usage": CreateCompletionResponseUsage.from_dict(obj["usage"]) if obj.get("usage") is not None else None
+            "system_fingerprint": obj.get("system_fingerprint"),
+            "object": obj.get("object"),
+            "usage": CompletionUsage.from_dict(obj["usage"]) if obj.get("usage") is not None else None
         })
         return _obj
 

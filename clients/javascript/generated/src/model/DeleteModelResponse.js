@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,19 +16,19 @@ import ApiClient from '../ApiClient';
 /**
  * The DeleteModelResponse model module.
  * @module model/DeleteModelResponse
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class DeleteModelResponse {
     /**
      * Constructs a new <code>DeleteModelResponse</code>.
      * @alias module:model/DeleteModelResponse
      * @param id {String} 
-     * @param object {String} 
      * @param deleted {Boolean} 
+     * @param object {String} 
      */
-    constructor(id, object, deleted) { 
+    constructor(id, deleted, object) { 
         
-        DeleteModelResponse.initialize(this, id, object, deleted);
+        DeleteModelResponse.initialize(this, id, deleted, object);
     }
 
     /**
@@ -36,10 +36,10 @@ class DeleteModelResponse {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, object, deleted) { 
+    static initialize(obj, id, deleted, object) { 
         obj['id'] = id;
-        obj['object'] = object;
         obj['deleted'] = deleted;
+        obj['object'] = object;
     }
 
     /**
@@ -56,11 +56,11 @@ class DeleteModelResponse {
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
-            if (data.hasOwnProperty('object')) {
-                obj['object'] = ApiClient.convertToType(data['object'], 'String');
-            }
             if (data.hasOwnProperty('deleted')) {
                 obj['deleted'] = ApiClient.convertToType(data['deleted'], 'Boolean');
+            }
+            if (data.hasOwnProperty('object')) {
+                obj['object'] = ApiClient.convertToType(data['object'], 'String');
             }
         }
         return obj;
@@ -93,7 +93,7 @@ class DeleteModelResponse {
 
 }
 
-DeleteModelResponse.RequiredProperties = ["id", "object", "deleted"];
+DeleteModelResponse.RequiredProperties = ["id", "deleted", "object"];
 
 /**
  * @member {String} id
@@ -101,14 +101,14 @@ DeleteModelResponse.RequiredProperties = ["id", "object", "deleted"];
 DeleteModelResponse.prototype['id'] = undefined;
 
 /**
- * @member {String} object
- */
-DeleteModelResponse.prototype['object'] = undefined;
-
-/**
  * @member {Boolean} deleted
  */
 DeleteModelResponse.prototype['deleted'] = undefined;
+
+/**
+ * @member {String} object
+ */
+DeleteModelResponse.prototype['object'] = undefined;
 
 
 

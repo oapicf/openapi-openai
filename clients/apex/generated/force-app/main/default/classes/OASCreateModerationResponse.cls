@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,23 +11,23 @@
  */
 
 /**
- * OASCreateModerationResponse
+ * Represents if a given text input is potentially harmful.
  */
 public class OASCreateModerationResponse {
     /**
-     * Get id
+     * The unique identifier for the moderation request.
      * @return id
      */
     public String id { get; set; }
 
     /**
-     * Get model
+     * The model used to generate the moderation results.
      * @return model
      */
     public String model { get; set; }
 
     /**
-     * Get results
+     * A list of moderation objects.
      * @return results
      */
     public List<OASCreateModerationResponseResultsIn> results { get; set; }

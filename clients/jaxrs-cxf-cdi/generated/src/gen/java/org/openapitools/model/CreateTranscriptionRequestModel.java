@@ -6,14 +6,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * ID of the model to use. Only &#x60;whisper-1&#x60; is currently available. 
+ * ID of the model to use. Only &#x60;whisper-1&#x60; (which is powered by our open source Whisper V2 model) is currently available. 
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "ID of the model to use. Only `whisper-1` is currently available. ")
+@ApiModel(description = "ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available. ")
 public class CreateTranscriptionRequestModel   {
   
 

@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `CreateEmbeddingRequest`
 --
-SELECT `model`, `input`, `user` FROM `CreateEmbeddingRequest` WHERE 1;
+SELECT `input`, `model`, `encoding_format`, `dimensions`, `user` FROM `CreateEmbeddingRequest` WHERE 1;
 
 --
 -- INSERT template for table `CreateEmbeddingRequest`
 --
-INSERT INTO `CreateEmbeddingRequest`(`model`, `input`, `user`) VALUES (?, ?, ?);
+INSERT INTO `CreateEmbeddingRequest`(`input`, `model`, `encoding_format`, `dimensions`, `user`) VALUES (?, ?, ?, ?, ?);
 
 --
 -- UPDATE template for table `CreateEmbeddingRequest`
 --
-UPDATE `CreateEmbeddingRequest` SET `model` = ?, `input` = ?, `user` = ? WHERE 1;
+UPDATE `CreateEmbeddingRequest` SET `input` = ?, `model` = ?, `encoding_format` = ?, `dimensions` = ?, `user` = ? WHERE 1;
 
 --
 -- DELETE template for table `CreateEmbeddingRequest`

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,14 +13,17 @@
 
 package com.github.oapicf.openapiopenai.model;
 
-import com.github.oapicf.openapiopenai.model.ChatCompletionRequestMessageFunctionCall;
+import com.github.oapicf.openapiopenai.model.ChatCompletionMessageToolCallChunk;
+import com.github.oapicf.openapiopenai.model.ChatCompletionStreamResponseDeltaFunctionCall;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -40,14 +43,6 @@ public class ChatCompletionStreamResponseDeltaTest {
     }
 
     /**
-     * Test the property 'role'
-     */
-    @Test
-    public void roleTest() {
-        // TODO: test role
-    }
-
-    /**
      * Test the property 'content'
      */
     @Test
@@ -61,6 +56,22 @@ public class ChatCompletionStreamResponseDeltaTest {
     @Test
     public void functionCallTest() {
         // TODO: test functionCall
+    }
+
+    /**
+     * Test the property 'toolCalls'
+     */
+    @Test
+    public void toolCallsTest() {
+        // TODO: test toolCalls
+    }
+
+    /**
+     * Test the property 'role'
+     */
+    @Test
+    public void roleTest() {
+        // TODO: test role
     }
 
 }

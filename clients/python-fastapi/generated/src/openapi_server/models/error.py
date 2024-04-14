@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -32,11 +32,11 @@ class Error(BaseModel):
     """
     Error
     """ # noqa: E501
-    type: StrictStr
+    code: Optional[StrictStr]
     message: StrictStr
     param: Optional[StrictStr]
-    code: Optional[StrictStr]
-    __properties: ClassVar[List[str]] = ["type", "message", "param", "code"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["code", "message", "param", "type"]
 
     model_config = {
         "populate_by_name": True,
@@ -75,15 +75,15 @@ class Error(BaseModel):
             },
             exclude_none=True,
         )
-        # set to None if param (nullable) is None
-        # and model_fields_set contains the field
-        if self.param is None and "param" in self.model_fields_set:
-            _dict['param'] = None
-
         # set to None if code (nullable) is None
         # and model_fields_set contains the field
         if self.code is None and "code" in self.model_fields_set:
             _dict['code'] = None
+
+        # set to None if param (nullable) is None
+        # and model_fields_set contains the field
+        if self.param is None and "param" in self.model_fields_set:
+            _dict['param'] = None
 
         return _dict
 
@@ -97,10 +97,10 @@ class Error(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "type": obj.get("type"),
+            "code": obj.get("code"),
             "message": obj.get("message"),
             "param": obj.get("param"),
-            "code": obj.get("code")
+            "type": obj.get("type")
         })
         return _obj
 

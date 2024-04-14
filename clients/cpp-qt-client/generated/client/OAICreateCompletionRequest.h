@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,7 +24,7 @@
 #include "OAICreateCompletionRequest_model.h"
 #include "OAICreateCompletionRequest_prompt.h"
 #include "OAICreateCompletionRequest_stop.h"
-#include "OAIObject.h"
+#include <QMap>
 #include <QString>
 
 #include "OAIEnum.h"
@@ -53,15 +53,65 @@ public:
     bool is_prompt_Set() const;
     bool is_prompt_Valid() const;
 
-    QString getSuffix() const;
-    void setSuffix(const QString &suffix);
-    bool is_suffix_Set() const;
-    bool is_suffix_Valid() const;
+    qint32 getBestOf() const;
+    void setBestOf(const qint32 &best_of);
+    bool is_best_of_Set() const;
+    bool is_best_of_Valid() const;
+
+    bool isEcho() const;
+    void setEcho(const bool &echo);
+    bool is_echo_Set() const;
+    bool is_echo_Valid() const;
+
+    double getFrequencyPenalty() const;
+    void setFrequencyPenalty(const double &frequency_penalty);
+    bool is_frequency_penalty_Set() const;
+    bool is_frequency_penalty_Valid() const;
+
+    QMap<QString, qint32> getLogitBias() const;
+    void setLogitBias(const QMap<QString, qint32> &logit_bias);
+    bool is_logit_bias_Set() const;
+    bool is_logit_bias_Valid() const;
+
+    qint32 getLogprobs() const;
+    void setLogprobs(const qint32 &logprobs);
+    bool is_logprobs_Set() const;
+    bool is_logprobs_Valid() const;
 
     qint32 getMaxTokens() const;
     void setMaxTokens(const qint32 &max_tokens);
     bool is_max_tokens_Set() const;
     bool is_max_tokens_Valid() const;
+
+    qint32 getN() const;
+    void setN(const qint32 &n);
+    bool is_n_Set() const;
+    bool is_n_Valid() const;
+
+    double getPresencePenalty() const;
+    void setPresencePenalty(const double &presence_penalty);
+    bool is_presence_penalty_Set() const;
+    bool is_presence_penalty_Valid() const;
+
+    qint32 getSeed() const;
+    void setSeed(const qint32 &seed);
+    bool is_seed_Set() const;
+    bool is_seed_Valid() const;
+
+    OAICreateCompletionRequest_stop getStop() const;
+    void setStop(const OAICreateCompletionRequest_stop &stop);
+    bool is_stop_Set() const;
+    bool is_stop_Valid() const;
+
+    bool isStream() const;
+    void setStream(const bool &stream);
+    bool is_stream_Set() const;
+    bool is_stream_Valid() const;
+
+    QString getSuffix() const;
+    void setSuffix(const QString &suffix);
+    bool is_suffix_Set() const;
+    bool is_suffix_Valid() const;
 
     double getTemperature() const;
     void setTemperature(const double &temperature);
@@ -72,51 +122,6 @@ public:
     void setTopP(const double &top_p);
     bool is_top_p_Set() const;
     bool is_top_p_Valid() const;
-
-    qint32 getN() const;
-    void setN(const qint32 &n);
-    bool is_n_Set() const;
-    bool is_n_Valid() const;
-
-    bool isStream() const;
-    void setStream(const bool &stream);
-    bool is_stream_Set() const;
-    bool is_stream_Valid() const;
-
-    qint32 getLogprobs() const;
-    void setLogprobs(const qint32 &logprobs);
-    bool is_logprobs_Set() const;
-    bool is_logprobs_Valid() const;
-
-    bool isEcho() const;
-    void setEcho(const bool &echo);
-    bool is_echo_Set() const;
-    bool is_echo_Valid() const;
-
-    OAICreateCompletionRequest_stop getStop() const;
-    void setStop(const OAICreateCompletionRequest_stop &stop);
-    bool is_stop_Set() const;
-    bool is_stop_Valid() const;
-
-    double getPresencePenalty() const;
-    void setPresencePenalty(const double &presence_penalty);
-    bool is_presence_penalty_Set() const;
-    bool is_presence_penalty_Valid() const;
-
-    double getFrequencyPenalty() const;
-    void setFrequencyPenalty(const double &frequency_penalty);
-    bool is_frequency_penalty_Set() const;
-    bool is_frequency_penalty_Valid() const;
-
-    qint32 getBestOf() const;
-    void setBestOf(const qint32 &best_of);
-    bool is_best_of_Set() const;
-    bool is_best_of_Valid() const;
-
-    OAIObject getLogitBias() const;
-    void setLogitBias(const OAIObject &logit_bias);
-    bool is_logit_bias_Set() const;
-    bool is_logit_bias_Valid() const;
 
     QString getUser() const;
     void setUser(const QString &user);
@@ -137,13 +142,53 @@ private:
     bool m_prompt_isSet;
     bool m_prompt_isValid;
 
-    QString m_suffix;
-    bool m_suffix_isSet;
-    bool m_suffix_isValid;
+    qint32 m_best_of;
+    bool m_best_of_isSet;
+    bool m_best_of_isValid;
+
+    bool m_echo;
+    bool m_echo_isSet;
+    bool m_echo_isValid;
+
+    double m_frequency_penalty;
+    bool m_frequency_penalty_isSet;
+    bool m_frequency_penalty_isValid;
+
+    QMap<QString, qint32> m_logit_bias;
+    bool m_logit_bias_isSet;
+    bool m_logit_bias_isValid;
+
+    qint32 m_logprobs;
+    bool m_logprobs_isSet;
+    bool m_logprobs_isValid;
 
     qint32 m_max_tokens;
     bool m_max_tokens_isSet;
     bool m_max_tokens_isValid;
+
+    qint32 m_n;
+    bool m_n_isSet;
+    bool m_n_isValid;
+
+    double m_presence_penalty;
+    bool m_presence_penalty_isSet;
+    bool m_presence_penalty_isValid;
+
+    qint32 m_seed;
+    bool m_seed_isSet;
+    bool m_seed_isValid;
+
+    OAICreateCompletionRequest_stop m_stop;
+    bool m_stop_isSet;
+    bool m_stop_isValid;
+
+    bool m_stream;
+    bool m_stream_isSet;
+    bool m_stream_isValid;
+
+    QString m_suffix;
+    bool m_suffix_isSet;
+    bool m_suffix_isValid;
 
     double m_temperature;
     bool m_temperature_isSet;
@@ -152,42 +197,6 @@ private:
     double m_top_p;
     bool m_top_p_isSet;
     bool m_top_p_isValid;
-
-    qint32 m_n;
-    bool m_n_isSet;
-    bool m_n_isValid;
-
-    bool m_stream;
-    bool m_stream_isSet;
-    bool m_stream_isValid;
-
-    qint32 m_logprobs;
-    bool m_logprobs_isSet;
-    bool m_logprobs_isValid;
-
-    bool m_echo;
-    bool m_echo_isSet;
-    bool m_echo_isValid;
-
-    OAICreateCompletionRequest_stop m_stop;
-    bool m_stop_isSet;
-    bool m_stop_isValid;
-
-    double m_presence_penalty;
-    bool m_presence_penalty_isSet;
-    bool m_presence_penalty_isValid;
-
-    double m_frequency_penalty;
-    bool m_frequency_penalty_isSet;
-    bool m_frequency_penalty_isValid;
-
-    qint32 m_best_of;
-    bool m_best_of_isSet;
-    bool m_best_of_isValid;
-
-    OAIObject m_logit_bias;
-    bool m_logit_bias_isSet;
-    bool m_logit_bias_isValid;
 
     QString m_user;
     bool m_user_isSet;

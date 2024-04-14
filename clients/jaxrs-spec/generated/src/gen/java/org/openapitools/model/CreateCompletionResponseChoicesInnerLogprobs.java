@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -20,44 +21,44 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("CreateCompletionResponse_choices_inner_logprobs")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateCompletionResponseChoicesInnerLogprobs   {
-  private @Valid List<String> tokens;
-  private @Valid List<BigDecimal> tokenLogprobs;
-  private @Valid List<Object> topLogprobs;
   private @Valid List<Integer> textOffset;
+  private @Valid List<BigDecimal> tokenLogprobs;
+  private @Valid List<String> tokens;
+  private @Valid List<Map<String, BigDecimal>> topLogprobs;
 
   /**
    **/
-  public CreateCompletionResponseChoicesInnerLogprobs tokens(List<String> tokens) {
-    this.tokens = tokens;
+  public CreateCompletionResponseChoicesInnerLogprobs textOffset(List<Integer> textOffset) {
+    this.textOffset = textOffset;
     return this;
   }
 
   
   @ApiModelProperty(value = "")
-  @JsonProperty("tokens")
-  public List<String> getTokens() {
-    return tokens;
+  @JsonProperty("text_offset")
+  public List<Integer> getTextOffset() {
+    return textOffset;
   }
 
-  @JsonProperty("tokens")
-  public void setTokens(List<String> tokens) {
-    this.tokens = tokens;
+  @JsonProperty("text_offset")
+  public void setTextOffset(List<Integer> textOffset) {
+    this.textOffset = textOffset;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs addTokensItem(String tokensItem) {
-    if (this.tokens == null) {
-      this.tokens = new ArrayList<>();
+  public CreateCompletionResponseChoicesInnerLogprobs addTextOffsetItem(Integer textOffsetItem) {
+    if (this.textOffset == null) {
+      this.textOffset = new ArrayList<>();
     }
 
-    this.tokens.add(tokensItem);
+    this.textOffset.add(textOffsetItem);
     return this;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs removeTokensItem(String tokensItem) {
-    if (tokensItem != null && this.tokens != null) {
-      this.tokens.remove(tokensItem);
+  public CreateCompletionResponseChoicesInnerLogprobs removeTextOffsetItem(Integer textOffsetItem) {
+    if (textOffsetItem != null && this.textOffset != null) {
+      this.textOffset.remove(textOffsetItem);
     }
 
     return this;
@@ -99,7 +100,42 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
   }
   /**
    **/
-  public CreateCompletionResponseChoicesInnerLogprobs topLogprobs(List<Object> topLogprobs) {
+  public CreateCompletionResponseChoicesInnerLogprobs tokens(List<String> tokens) {
+    this.tokens = tokens;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("tokens")
+  public List<String> getTokens() {
+    return tokens;
+  }
+
+  @JsonProperty("tokens")
+  public void setTokens(List<String> tokens) {
+    this.tokens = tokens;
+  }
+
+  public CreateCompletionResponseChoicesInnerLogprobs addTokensItem(String tokensItem) {
+    if (this.tokens == null) {
+      this.tokens = new ArrayList<>();
+    }
+
+    this.tokens.add(tokensItem);
+    return this;
+  }
+
+  public CreateCompletionResponseChoicesInnerLogprobs removeTokensItem(String tokensItem) {
+    if (tokensItem != null && this.tokens != null) {
+      this.tokens.remove(tokensItem);
+    }
+
+    return this;
+  }
+  /**
+   **/
+  public CreateCompletionResponseChoicesInnerLogprobs topLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
     this.topLogprobs = topLogprobs;
     return this;
   }
@@ -107,16 +143,16 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("top_logprobs")
-  public List<Object> getTopLogprobs() {
+  public List<Map<String, BigDecimal>> getTopLogprobs() {
     return topLogprobs;
   }
 
   @JsonProperty("top_logprobs")
-  public void setTopLogprobs(List<Object> topLogprobs) {
+  public void setTopLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
     this.topLogprobs = topLogprobs;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs addTopLogprobsItem(Object topLogprobsItem) {
+  public CreateCompletionResponseChoicesInnerLogprobs addTopLogprobsItem(Map<String, BigDecimal> topLogprobsItem) {
     if (this.topLogprobs == null) {
       this.topLogprobs = new ArrayList<>();
     }
@@ -125,44 +161,9 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
     return this;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs removeTopLogprobsItem(Object topLogprobsItem) {
+  public CreateCompletionResponseChoicesInnerLogprobs removeTopLogprobsItem(Map<String, BigDecimal> topLogprobsItem) {
     if (topLogprobsItem != null && this.topLogprobs != null) {
       this.topLogprobs.remove(topLogprobsItem);
-    }
-
-    return this;
-  }
-  /**
-   **/
-  public CreateCompletionResponseChoicesInnerLogprobs textOffset(List<Integer> textOffset) {
-    this.textOffset = textOffset;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "")
-  @JsonProperty("text_offset")
-  public List<Integer> getTextOffset() {
-    return textOffset;
-  }
-
-  @JsonProperty("text_offset")
-  public void setTextOffset(List<Integer> textOffset) {
-    this.textOffset = textOffset;
-  }
-
-  public CreateCompletionResponseChoicesInnerLogprobs addTextOffsetItem(Integer textOffsetItem) {
-    if (this.textOffset == null) {
-      this.textOffset = new ArrayList<>();
-    }
-
-    this.textOffset.add(textOffsetItem);
-    return this;
-  }
-
-  public CreateCompletionResponseChoicesInnerLogprobs removeTextOffsetItem(Integer textOffsetItem) {
-    if (textOffsetItem != null && this.textOffset != null) {
-      this.textOffset.remove(textOffsetItem);
     }
 
     return this;
@@ -177,15 +178,15 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
       return false;
     }
     CreateCompletionResponseChoicesInnerLogprobs createCompletionResponseChoicesInnerLogprobs = (CreateCompletionResponseChoicesInnerLogprobs) o;
-    return Objects.equals(this.tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+    return Objects.equals(this.textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset) &&
         Objects.equals(this.tokenLogprobs, createCompletionResponseChoicesInnerLogprobs.tokenLogprobs) &&
-        Objects.equals(this.topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs) &&
-        Objects.equals(this.textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset);
+        Objects.equals(this.tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+        Objects.equals(this.topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tokens, tokenLogprobs, topLogprobs, textOffset);
+    return Objects.hash(textOffset, tokenLogprobs, tokens, topLogprobs);
   }
 
   @Override
@@ -193,10 +194,10 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInnerLogprobs {\n");
     
-    sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
-    sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
-    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("    textOffset: ").append(toIndentedString(textOffset)).append("\n");
+    sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
+    sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
+    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

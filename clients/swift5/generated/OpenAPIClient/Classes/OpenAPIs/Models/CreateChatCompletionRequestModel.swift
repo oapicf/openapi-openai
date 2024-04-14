@@ -11,24 +11,16 @@ import AnyCodable
 #endif
 
 /** ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API. */
-public enum CreateChatCompletionRequestModel: Codable, JSONEncodable, Hashable {
-    case typeString(String)
+public struct CreateChatCompletionRequestModel: Codable, JSONEncodable, Hashable {
 
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .typeString(let value):
-            try container.encode(value)
-        }
+
+    public enum CodingKeys: CodingKey, CaseIterable {
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(String.self) {
-            self = .typeString(value)
-        } else {
-            throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of CreateChatCompletionRequestModel"))
-        }
+    // Encodable protocol methods
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
     }
 }
 

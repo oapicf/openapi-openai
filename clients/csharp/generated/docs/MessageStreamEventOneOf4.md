@@ -1,0 +1,12 @@
+# Org.OpenAPITools.Model.MessageStreamEventOneOf4
+Occurs when a [message](/docs/api-reference/messages/object) ends before it is completed.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**VarEvent** | **string** |  | 
+**Data** | [**MessageObject**](MessageObject.md) |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

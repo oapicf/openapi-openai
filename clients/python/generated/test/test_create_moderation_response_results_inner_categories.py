@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -38,7 +38,11 @@ class TestCreateModerationResponseResultsInnerCategories(unittest.TestCase):
             return CreateModerationResponseResultsInnerCategories(
                 hate = True,
                 hate_threatening = True,
+                harassment = True,
+                harassment_threatening = True,
                 self_harm = True,
+                self_harm_intent = True,
+                self_harm_instructions = True,
                 sexual = True,
                 sexual_minors = True,
                 violence = True,
@@ -48,7 +52,11 @@ class TestCreateModerationResponseResultsInnerCategories(unittest.TestCase):
             return CreateModerationResponseResultsInnerCategories(
                 hate = True,
                 hate_threatening = True,
+                harassment = True,
+                harassment_threatening = True,
                 self_harm = True,
+                self_harm_intent = True,
+                self_harm_instructions = True,
                 sexual = True,
                 sexual_minors = True,
                 violence = True,

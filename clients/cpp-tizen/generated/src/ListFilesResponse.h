@@ -49,22 +49,22 @@ public:
 
 	/*! \brief Get 
 	 */
-	std::string getObject();
-
-	/*! \brief Set 
-	 */
-	void setObject(std::string  object);
-	/*! \brief Get 
-	 */
 	std::list<OpenAIFile> getData();
 
 	/*! \brief Set 
 	 */
 	void setData(std::list <OpenAIFile> data);
+	/*! \brief Get 
+	 */
+	std::string getObject();
+
+	/*! \brief Set 
+	 */
+	void setObject(std::string  object);
 
 private:
-	std::string object;
 	std::list <OpenAIFile>data;
+	std::string object;
 	void __init();
 	void __cleanup();
 

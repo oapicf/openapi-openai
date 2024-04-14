@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,33 +20,30 @@
 namespace OpenAPI
 {
 
-inline FString ToString(const OpenAPICreateImageRequest::SizeEnum& Value)
+inline FString ToString(const OpenAPICreateImageRequest::QualityEnum& Value)
 {
 	switch (Value)
 	{
-	case OpenAPICreateImageRequest::SizeEnum::_256x256:
-		return TEXT("256x256");
-	case OpenAPICreateImageRequest::SizeEnum::_512x512:
-		return TEXT("512x512");
-	case OpenAPICreateImageRequest::SizeEnum::_1024x1024:
-		return TEXT("1024x1024");
+	case OpenAPICreateImageRequest::QualityEnum::Standard:
+		return TEXT("standard");
+	case OpenAPICreateImageRequest::QualityEnum::Hd:
+		return TEXT("hd");
 	}
 
-	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPICreateImageRequest::SizeEnum Value (%d)"), (int)Value);
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPICreateImageRequest::QualityEnum Value (%d)"), (int)Value);
 	return TEXT("");
 }
 
-FString OpenAPICreateImageRequest::EnumToString(const OpenAPICreateImageRequest::SizeEnum& EnumValue)
+FString OpenAPICreateImageRequest::EnumToString(const OpenAPICreateImageRequest::QualityEnum& EnumValue)
 {
 	return ToString(EnumValue);
 }
 
-inline bool FromString(const FString& EnumAsString, OpenAPICreateImageRequest::SizeEnum& Value)
+inline bool FromString(const FString& EnumAsString, OpenAPICreateImageRequest::QualityEnum& Value)
 {
-	static TMap<FString, OpenAPICreateImageRequest::SizeEnum> StringToEnum = { 
-		{ TEXT("256x256"), OpenAPICreateImageRequest::SizeEnum::_256x256 },
-		{ TEXT("512x512"), OpenAPICreateImageRequest::SizeEnum::_512x512 },
-		{ TEXT("1024x1024"), OpenAPICreateImageRequest::SizeEnum::_1024x1024 }, };
+	static TMap<FString, OpenAPICreateImageRequest::QualityEnum> StringToEnum = { 
+		{ TEXT("standard"), OpenAPICreateImageRequest::QualityEnum::Standard },
+		{ TEXT("hd"), OpenAPICreateImageRequest::QualityEnum::Hd }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -55,17 +52,17 @@ inline bool FromString(const FString& EnumAsString, OpenAPICreateImageRequest::S
 	return Found != nullptr;
 }
 
-bool OpenAPICreateImageRequest::EnumFromString(const FString& EnumAsString, OpenAPICreateImageRequest::SizeEnum& EnumValue)
+bool OpenAPICreateImageRequest::EnumFromString(const FString& EnumAsString, OpenAPICreateImageRequest::QualityEnum& EnumValue)
 {
 	return FromString(EnumAsString, EnumValue);
 }
 
-inline void WriteJsonValue(JsonWriter& Writer, const OpenAPICreateImageRequest::SizeEnum& Value)
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPICreateImageRequest::QualityEnum& Value)
 {
 	WriteJsonValue(Writer, ToString(Value));
 }
 
-inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPICreateImageRequest::SizeEnum& Value)
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPICreateImageRequest::QualityEnum& Value)
 {
 	FString TmpValue;
 	if (JsonValue->TryGetString(TmpValue))
@@ -129,21 +126,148 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPICrea
 	return false;
 }
 
+inline FString ToString(const OpenAPICreateImageRequest::SizeEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPICreateImageRequest::SizeEnum::_256x256:
+		return TEXT("256x256");
+	case OpenAPICreateImageRequest::SizeEnum::_512x512:
+		return TEXT("512x512");
+	case OpenAPICreateImageRequest::SizeEnum::_1024x1024:
+		return TEXT("1024x1024");
+	case OpenAPICreateImageRequest::SizeEnum::_1792x1024:
+		return TEXT("1792x1024");
+	case OpenAPICreateImageRequest::SizeEnum::_1024x1792:
+		return TEXT("1024x1792");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPICreateImageRequest::SizeEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPICreateImageRequest::EnumToString(const OpenAPICreateImageRequest::SizeEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPICreateImageRequest::SizeEnum& Value)
+{
+	static TMap<FString, OpenAPICreateImageRequest::SizeEnum> StringToEnum = { 
+		{ TEXT("256x256"), OpenAPICreateImageRequest::SizeEnum::_256x256 },
+		{ TEXT("512x512"), OpenAPICreateImageRequest::SizeEnum::_512x512 },
+		{ TEXT("1024x1024"), OpenAPICreateImageRequest::SizeEnum::_1024x1024 },
+		{ TEXT("1792x1024"), OpenAPICreateImageRequest::SizeEnum::_1792x1024 },
+		{ TEXT("1024x1792"), OpenAPICreateImageRequest::SizeEnum::_1024x1792 }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPICreateImageRequest::EnumFromString(const FString& EnumAsString, OpenAPICreateImageRequest::SizeEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPICreateImageRequest::SizeEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPICreateImageRequest::SizeEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
+
+inline FString ToString(const OpenAPICreateImageRequest::StyleEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPICreateImageRequest::StyleEnum::Vivid:
+		return TEXT("vivid");
+	case OpenAPICreateImageRequest::StyleEnum::Natural:
+		return TEXT("natural");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPICreateImageRequest::StyleEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPICreateImageRequest::EnumToString(const OpenAPICreateImageRequest::StyleEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPICreateImageRequest::StyleEnum& Value)
+{
+	static TMap<FString, OpenAPICreateImageRequest::StyleEnum> StringToEnum = { 
+		{ TEXT("vivid"), OpenAPICreateImageRequest::StyleEnum::Vivid },
+		{ TEXT("natural"), OpenAPICreateImageRequest::StyleEnum::Natural }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPICreateImageRequest::EnumFromString(const FString& EnumAsString, OpenAPICreateImageRequest::StyleEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPICreateImageRequest::StyleEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPICreateImageRequest::StyleEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
+
 void OpenAPICreateImageRequest::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("prompt")); WriteJsonValue(Writer, Prompt);
+	if (Model.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("model")); WriteJsonValue(Writer, Model.GetValue());
+	}
 	if (N.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("n")); WriteJsonValue(Writer, N.GetValue());
+	}
+	if (Quality.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("quality")); WriteJsonValue(Writer, Quality.GetValue());
+	}
+	if (ResponseFormat.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("response_format")); WriteJsonValue(Writer, ResponseFormat.GetValue());
 	}
 	if (Size.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("size")); WriteJsonValue(Writer, Size.GetValue());
 	}
-	if (ResponseFormat.IsSet())
+	if (Style.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("response_format")); WriteJsonValue(Writer, ResponseFormat.GetValue());
+		Writer->WriteIdentifierPrefix(TEXT("style")); WriteJsonValue(Writer, Style.GetValue());
 	}
 	if (User.IsSet())
 	{
@@ -161,9 +285,12 @@ bool OpenAPICreateImageRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("prompt"), Prompt);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("model"), Model);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("n"), N);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("size"), Size);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("quality"), Quality);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("response_format"), ResponseFormat);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("size"), Size);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("style"), Style);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("user"), User);
 
 	return ParseSuccess;

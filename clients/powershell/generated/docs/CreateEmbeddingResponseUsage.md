@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PromptTokens** | **Int32** |  | 
-**TotalTokens** | **Int32** |  | 
+**PromptTokens** | **Int32** | The number of tokens used by the prompt. | 
+**TotalTokens** | **Int32** | The total number of tokens used by the request. | 
 
 ## Examples
 

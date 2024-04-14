@@ -1,7 +1,7 @@
 /*
  * create_embedding_response_usage.h
  *
- * 
+ * The usage information for the request.
  */
 
 #ifndef _create_embedding_response_usage_H_

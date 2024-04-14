@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -12,6 +12,7 @@
 package org.openapitools.server.api.model
 
 import org.openapitools.server.api.model.ChatCompletionStreamResponseDelta
+import org.openapitools.server.api.model.CreateChatCompletionResponseChoicesInnerLogprobs
 
         
 import com.google.gson.annotations.SerializedName
@@ -19,21 +20,25 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param index 
  * @param delta 
- * @param finishReason 
+ * @param finishReason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+ * @param index The index of the choice in the list of choices.
+ * @param logprobs 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateChatCompletionStreamResponseChoicesInner (
-    val index: kotlin.Int? = null,
-    val delta: ChatCompletionStreamResponseDelta? = null,
-    val finishReason: CreateChatCompletionStreamResponseChoicesInner.FinishReason? = null
+    @SerializedName("delta") private val _delta: ChatCompletionStreamResponseDelta?,
+    /* The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.  */
+    @SerializedName("finishReason") private val _finishReason: CreateChatCompletionStreamResponseChoicesInner.FinishReason?,
+    /* The index of the choice in the list of choices. */
+    @SerializedName("index") private val _index: kotlin.Int?,
+    val logprobs: CreateChatCompletionResponseChoicesInnerLogprobs? = null
 ) {
 
     /**
-    * 
-    * Values: stop,length,function_call
+    * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+    * Values: stop,length,tool_calls,content_filter,function_call
     */
     enum class FinishReason(val value: kotlin.String){
     
@@ -41,9 +46,19 @@ data class CreateChatCompletionStreamResponseChoicesInner (
     
         length("length"),
     
+        tool_calls("tool_calls"),
+    
+        content_filter("content_filter"),
+    
         function_call("function_call");
     
     }
 
+        val delta get() = _delta ?: throw IllegalArgumentException("delta is required")
+                    
+        val finishReason get() = _finishReason ?: throw IllegalArgumentException("finishReason is required")
+                    
+        val index get() = _index ?: throw IllegalArgumentException("index is required")
+                    
 }
 

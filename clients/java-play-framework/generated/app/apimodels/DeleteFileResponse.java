@@ -9,7 +9,7 @@ import javax.validation.Valid;
 /**
  * DeleteFileResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class DeleteFileResponse   {
   @JsonProperty("id")
@@ -17,10 +17,39 @@ public class DeleteFileResponse   {
 
   private String id;
 
+  /**
+   * Gets or Sets _object
+   */
+  public enum ObjectEnum {
+    FILE("file");
+
+    private final String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   @JsonProperty("object")
   @NotNull
 
-  private String _object;
+  private ObjectEnum _object;
 
   @JsonProperty("deleted")
   @NotNull
@@ -44,7 +73,7 @@ public class DeleteFileResponse   {
     this.id = id;
   }
 
-  public DeleteFileResponse _object(String _object) {
+  public DeleteFileResponse _object(ObjectEnum _object) {
     this._object = _object;
     return this;
   }
@@ -53,11 +82,11 @@ public class DeleteFileResponse   {
    * Get _object
    * @return _object
   **/
-  public String getObject() {
+  public ObjectEnum getObject() {
     return _object;
   }
 
-  public void setObject(String _object) {
+  public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 

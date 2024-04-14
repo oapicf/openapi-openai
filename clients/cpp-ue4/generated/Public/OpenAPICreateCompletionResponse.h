@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,8 +13,8 @@
 #pragma once
 
 #include "OpenAPIBaseModel.h"
+#include "OpenAPICompletionUsage.h"
 #include "OpenAPICreateCompletionResponseChoicesInner.h"
-#include "OpenAPICreateCompletionResponseUsage.h"
 
 namespace OpenAPI
 {
@@ -22,7 +22,7 @@ namespace OpenAPI
 /*
  * OpenAPICreateCompletionResponse
  *
- * 
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
  */
 class OPENAPI_API OpenAPICreateCompletionResponse : public Model
 {
@@ -31,12 +31,26 @@ public:
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 	void WriteJson(JsonWriter& Writer) const final;
 
+	/* A unique identifier for the completion. */
 	FString Id;
-	FString Object;
-	int32 Created = 0;
-	FString Model;
+	/* The list of completion choices the model generated for the input prompt. */
 	TArray<OpenAPICreateCompletionResponseChoicesInner> Choices;
-	TOptional<OpenAPICreateCompletionResponseUsage> Usage;
+	/* The Unix timestamp (in seconds) of when the completion was created. */
+	int32 Created = 0;
+	/* The model used for completion. */
+	FString Model;
+	/* This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
+	TOptional<FString> SystemFingerprint;
+	enum class ObjectEnum
+	{
+		TextCompletion,
+  	};
+
+	static FString EnumToString(const ObjectEnum& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, ObjectEnum& EnumValue);
+	/* The object type, which is always \"text_completion\" */
+	ObjectEnum Object;
+	TOptional<OpenAPICompletionUsage> Usage;
 };
 
 }

@@ -7,7 +7,7 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
-  ImagesResponseDataInner = openapi_server.resourceTypes.ImagesResponseDataInner
+  Image = openapi_server.resourceTypes.Image
 }
 resourceTypes {
 
@@ -23,7 +23,7 @@ resourceTypes {
         }
         data {
           type = array
-          items.type = ImagesResponseDataInner
+          items.type = Image
           description = ""
           optional = true
         }

@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -19,23 +19,23 @@ class CREATE_COMPLETION_RESPONSE_CHOICES_INNER_LOGPROBS
 
 feature --Access
 
-    tokens: detachable LIST [STRING_32]
+    text_offset: detachable LIST [INTEGER_32]
       
     token_logprobs: detachable LIST [REAL_32]
       
-    top_logprobs: detachable LIST [ANY]
+    tokens: detachable LIST [STRING_32]
       
-    text_offset: detachable LIST [INTEGER_32]
+    top_logprobs: detachable LIST [STRING_TABLE [REAL_32]]
       
 
 feature -- Change Element
 
-    set_tokens (a_name: like tokens)
-        -- Set 'tokens' with 'a_name'.
+    set_text_offset (a_name: like text_offset)
+        -- Set 'text_offset' with 'a_name'.
       do
-        tokens := a_name
+        text_offset := a_name
       ensure
-        tokens_set: tokens = a_name
+        text_offset_set: text_offset = a_name
       end
 
     set_token_logprobs (a_name: like token_logprobs)
@@ -46,20 +46,20 @@ feature -- Change Element
         token_logprobs_set: token_logprobs = a_name
       end
 
+    set_tokens (a_name: like tokens)
+        -- Set 'tokens' with 'a_name'.
+      do
+        tokens := a_name
+      ensure
+        tokens_set: tokens = a_name
+      end
+
     set_top_logprobs (a_name: like top_logprobs)
         -- Set 'top_logprobs' with 'a_name'.
       do
         top_logprobs := a_name
       ensure
         top_logprobs_set: top_logprobs = a_name
-      end
-
-    set_text_offset (a_name: like text_offset)
-        -- Set 'text_offset' with 'a_name'.
-      do
-        text_offset := a_name
-      ensure
-        text_offset_set: text_offset = a_name
       end
 
 
@@ -70,9 +70,9 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass CREATE_COMPLETION_RESPONSE_CHOICES_INNER_LOGPROBS%N")
-        if attached tokens as l_tokens then
-          across l_tokens as ic loop
-            Result.append ("%N tokens:")
+        if attached text_offset as l_text_offset then
+          across l_text_offset as ic loop
+            Result.append ("%N text_offset:")
             Result.append (ic.item.out)
             Result.append ("%N")
           end
@@ -84,16 +84,16 @@ feature -- Change Element
             Result.append ("%N")
           end
         end
-        if attached top_logprobs as l_top_logprobs then
-          across l_top_logprobs as ic loop
-            Result.append ("%N top_logprobs:")
+        if attached tokens as l_tokens then
+          across l_tokens as ic loop
+            Result.append ("%N tokens:")
             Result.append (ic.item.out)
             Result.append ("%N")
           end
         end
-        if attached text_offset as l_text_offset then
-          across l_text_offset as ic loop
-            Result.append ("%N text_offset:")
+        if attached top_logprobs as l_top_logprobs then
+          across l_top_logprobs as ic loop
+            Result.append ("%N top_logprobs:")
             Result.append (ic.item.out)
             Result.append ("%N")
           end

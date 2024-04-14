@@ -19,10 +19,11 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * CreateModerationResponse
+ * Represents if a given text input is potentially harmful.
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-16T01:13:12.257183065Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Schema(name = "CreateModerationResponse", description = "Represents if a given text input is potentially harmful.")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-04-14T13:40:33.442815767Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponse {
 
   private String id;
@@ -51,11 +52,11 @@ public class CreateModerationResponse {
   }
 
   /**
-   * Get id
+   * The unique identifier for the moderation request.
    * @return id
   */
   @NotNull 
-  @Schema(name = "id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "id", description = "The unique identifier for the moderation request.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("id")
   public String getId() {
     return id;
@@ -71,11 +72,11 @@ public class CreateModerationResponse {
   }
 
   /**
-   * Get model
+   * The model used to generate the moderation results.
    * @return model
   */
   @NotNull 
-  @Schema(name = "model", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "model", description = "The model used to generate the moderation results.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("model")
   public String getModel() {
     return model;
@@ -99,11 +100,11 @@ public class CreateModerationResponse {
   }
 
   /**
-   * Get results
+   * A list of moderation objects.
    * @return results
   */
   @NotNull @Valid 
-  @Schema(name = "results", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "results", description = "A list of moderation objects.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("results")
   public List<@Valid CreateModerationResponseResultsInner> getResults() {
     return results;

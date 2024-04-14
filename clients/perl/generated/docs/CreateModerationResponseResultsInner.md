@@ -8,7 +8,7 @@ use WWW::OpenAPIClient::Object::CreateModerationResponseResultsInner;
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flagged** | **boolean** |  | 
+**flagged** | **boolean** | Whether any of the below categories are flagged. | 
 **categories** | [**CreateModerationResponseResultsInnerCategories**](CreateModerationResponseResultsInnerCategories.md) |  | 
 **category_scores** | [**CreateModerationResponseResultsInnerCategoryScores**](CreateModerationResponseResultsInnerCategoryScores.md) |  | 
 

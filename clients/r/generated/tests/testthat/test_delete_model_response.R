@@ -12,16 +12,16 @@ test_that("id", {
   #expect_equal(model.instance$`id`, "EXPECTED_RESULT")
 })
 
-test_that("object", {
-  # tests for the property `object` (character)
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`object`, "EXPECTED_RESULT")
-})
-
 test_that("deleted", {
   # tests for the property `deleted` (character)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`deleted`, "EXPECTED_RESULT")
+})
+
+test_that("object", {
+  # tests for the property `object` (character)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`object`, "EXPECTED_RESULT")
 })

@@ -5,7 +5,7 @@ import io.finch.circe._
 import io.circe.generic.semiauto._
 import io.circe.java8.time._
 import org.openapitools._
-import org.openapitools.models.ImagesResponseDataInner
+import org.openapitools.models.Image
 import scala.collection.immutable.Seq
 
 /**
@@ -14,7 +14,7 @@ import scala.collection.immutable.Seq
  * @param data 
  */
 case class ImagesResponse(created: Int,
-                data: Seq[ImagesResponseDataInner]
+                data: Seq[Image]
                 )
 
 object ImagesResponse {

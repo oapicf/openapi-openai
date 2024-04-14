@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,12 +17,17 @@ import java.util.Arrays;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionFunctions;
 import org.openapitools.model.ChatCompletionRequestMessage;
+import org.openapitools.model.ChatCompletionTool;
+import org.openapitools.model.ChatCompletionToolChoiceOption;
 import org.openapitools.model.CreateChatCompletionRequestFunctionCall;
 import org.openapitools.model.CreateChatCompletionRequestModel;
+import org.openapitools.model.CreateChatCompletionRequestResponseFormat;
 import org.openapitools.model.CreateChatCompletionRequestStop;
 import com.fasterxml.jackson.annotation.*;
 
@@ -36,36 +41,69 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * CreateChatCompletionRequest
  */
 @JsonPropertyOrder({
-  CreateChatCompletionRequest.JSON_PROPERTY_MODEL,
   CreateChatCompletionRequest.JSON_PROPERTY_MESSAGES,
-  CreateChatCompletionRequest.JSON_PROPERTY_FUNCTIONS,
-  CreateChatCompletionRequest.JSON_PROPERTY_FUNCTION_CALL,
-  CreateChatCompletionRequest.JSON_PROPERTY_TEMPERATURE,
-  CreateChatCompletionRequest.JSON_PROPERTY_TOP_P,
-  CreateChatCompletionRequest.JSON_PROPERTY_N,
-  CreateChatCompletionRequest.JSON_PROPERTY_STREAM,
-  CreateChatCompletionRequest.JSON_PROPERTY_STOP,
-  CreateChatCompletionRequest.JSON_PROPERTY_MAX_TOKENS,
-  CreateChatCompletionRequest.JSON_PROPERTY_PRESENCE_PENALTY,
+  CreateChatCompletionRequest.JSON_PROPERTY_MODEL,
   CreateChatCompletionRequest.JSON_PROPERTY_FREQUENCY_PENALTY,
   CreateChatCompletionRequest.JSON_PROPERTY_LOGIT_BIAS,
-  CreateChatCompletionRequest.JSON_PROPERTY_USER
+  CreateChatCompletionRequest.JSON_PROPERTY_LOGPROBS,
+  CreateChatCompletionRequest.JSON_PROPERTY_TOP_LOGPROBS,
+  CreateChatCompletionRequest.JSON_PROPERTY_MAX_TOKENS,
+  CreateChatCompletionRequest.JSON_PROPERTY_N,
+  CreateChatCompletionRequest.JSON_PROPERTY_PRESENCE_PENALTY,
+  CreateChatCompletionRequest.JSON_PROPERTY_RESPONSE_FORMAT,
+  CreateChatCompletionRequest.JSON_PROPERTY_SEED,
+  CreateChatCompletionRequest.JSON_PROPERTY_STOP,
+  CreateChatCompletionRequest.JSON_PROPERTY_STREAM,
+  CreateChatCompletionRequest.JSON_PROPERTY_TEMPERATURE,
+  CreateChatCompletionRequest.JSON_PROPERTY_TOP_P,
+  CreateChatCompletionRequest.JSON_PROPERTY_TOOLS,
+  CreateChatCompletionRequest.JSON_PROPERTY_TOOL_CHOICE,
+  CreateChatCompletionRequest.JSON_PROPERTY_USER,
+  CreateChatCompletionRequest.JSON_PROPERTY_FUNCTION_CALL,
+  CreateChatCompletionRequest.JSON_PROPERTY_FUNCTIONS
 })
 @JsonTypeName("CreateChatCompletionRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-03-16T01:12:38.762786439Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-04-14T13:38:24.957235058Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateChatCompletionRequest {
+    public static final String JSON_PROPERTY_MESSAGES = "messages";
+    private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+
     public static final String JSON_PROPERTY_MODEL = "model";
     private CreateChatCompletionRequestModel model;
 
-    public static final String JSON_PROPERTY_MESSAGES = "messages";
-    private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
+    public static final String JSON_PROPERTY_FREQUENCY_PENALTY = "frequency_penalty";
+    private BigDecimal frequencyPenalty = new BigDecimal("0");
 
-    public static final String JSON_PROPERTY_FUNCTIONS = "functions";
-    private List<@Valid ChatCompletionFunctions> functions = null;
+    public static final String JSON_PROPERTY_LOGIT_BIAS = "logit_bias";
+    private Map<String, Integer> logitBias = null;
 
-    public static final String JSON_PROPERTY_FUNCTION_CALL = "function_call";
-    private CreateChatCompletionRequestFunctionCall functionCall;
+    public static final String JSON_PROPERTY_LOGPROBS = "logprobs";
+    private Boolean logprobs = false;
+
+    public static final String JSON_PROPERTY_TOP_LOGPROBS = "top_logprobs";
+    private Integer topLogprobs;
+
+    public static final String JSON_PROPERTY_MAX_TOKENS = "max_tokens";
+    private Integer maxTokens;
+
+    public static final String JSON_PROPERTY_N = "n";
+    private Integer n = 1;
+
+    public static final String JSON_PROPERTY_PRESENCE_PENALTY = "presence_penalty";
+    private BigDecimal presencePenalty = new BigDecimal("0");
+
+    public static final String JSON_PROPERTY_RESPONSE_FORMAT = "response_format";
+    private CreateChatCompletionRequestResponseFormat responseFormat;
+
+    public static final String JSON_PROPERTY_SEED = "seed";
+    private Integer seed;
+
+    public static final String JSON_PROPERTY_STOP = "stop";
+    private CreateChatCompletionRequestStop stop = null;
+
+    public static final String JSON_PROPERTY_STREAM = "stream";
+    private Boolean stream = false;
 
     public static final String JSON_PROPERTY_TEMPERATURE = "temperature";
     private BigDecimal temperature = new BigDecimal("1");
@@ -73,32 +111,52 @@ public class CreateChatCompletionRequest {
     public static final String JSON_PROPERTY_TOP_P = "top_p";
     private BigDecimal topP = new BigDecimal("1");
 
-    public static final String JSON_PROPERTY_N = "n";
-    private Integer n = 1;
+    public static final String JSON_PROPERTY_TOOLS = "tools";
+    private List<@Valid ChatCompletionTool> tools = null;
 
-    public static final String JSON_PROPERTY_STREAM = "stream";
-    private Boolean stream = false;
-
-    public static final String JSON_PROPERTY_STOP = "stop";
-    private CreateChatCompletionRequestStop stop = null;
-
-    public static final String JSON_PROPERTY_MAX_TOKENS = "max_tokens";
-    private Integer maxTokens;
-
-    public static final String JSON_PROPERTY_PRESENCE_PENALTY = "presence_penalty";
-    private BigDecimal presencePenalty = new BigDecimal("0");
-
-    public static final String JSON_PROPERTY_FREQUENCY_PENALTY = "frequency_penalty";
-    private BigDecimal frequencyPenalty = new BigDecimal("0");
-
-    public static final String JSON_PROPERTY_LOGIT_BIAS = "logit_bias";
-    private Object logitBias;
+    public static final String JSON_PROPERTY_TOOL_CHOICE = "tool_choice";
+    private ChatCompletionToolChoiceOption toolChoice;
 
     public static final String JSON_PROPERTY_USER = "user";
     private String user;
 
-    public CreateChatCompletionRequest(CreateChatCompletionRequestModel model, List<@Valid ChatCompletionRequestMessage> messages) {
+    public static final String JSON_PROPERTY_FUNCTION_CALL = "function_call";
+    private CreateChatCompletionRequestFunctionCall functionCall;
+
+    public static final String JSON_PROPERTY_FUNCTIONS = "functions";
+    private List<@Valid ChatCompletionFunctions> functions = null;
+
+    public CreateChatCompletionRequest(List<ChatCompletionRequestMessage> messages, CreateChatCompletionRequestModel model) {
+        this.messages = messages;
         this.model = model;
+    }
+
+    public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+        this.messages = messages;
+        return this;
+    }
+
+    public CreateChatCompletionRequest addMessagesItem(ChatCompletionRequestMessage messagesItem) {
+        this.messages.add(messagesItem);
+        return this;
+    }
+
+    /**
+     * A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+     * @return messages
+     **/
+    @NotNull
+    @Size(min=1)
+    @Schema(name = "messages", description = "A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(JSON_PROPERTY_MESSAGES)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public List<ChatCompletionRequestMessage> getMessages() {
+        return messages;
+    }
+
+    @JsonProperty(JSON_PROPERTY_MESSAGES)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setMessages(List<ChatCompletionRequestMessage> messages) {
         this.messages = messages;
     }
 
@@ -126,89 +184,287 @@ public class CreateChatCompletionRequest {
         this.model = model;
     }
 
-    public CreateChatCompletionRequest messages(List<@Valid ChatCompletionRequestMessage> messages) {
-        this.messages = messages;
-        return this;
-    }
-
-    public CreateChatCompletionRequest addMessagesItem(ChatCompletionRequestMessage messagesItem) {
-        this.messages.add(messagesItem);
+    public CreateChatCompletionRequest frequencyPenalty(BigDecimal frequencyPenalty) {
+        this.frequencyPenalty = frequencyPenalty;
         return this;
     }
 
     /**
-     * A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
-     * @return messages
-     **/
-    @NotNull
-    @Size(min=1)
-    @Schema(name = "messages", description = "A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonProperty(JSON_PROPERTY_MESSAGES)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<@Valid ChatCompletionRequestMessage> getMessages() {
-        return messages;
-    }
-
-    @JsonProperty(JSON_PROPERTY_MESSAGES)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
-        this.messages = messages;
-    }
-
-    public CreateChatCompletionRequest functions(List<@Valid ChatCompletionFunctions> functions) {
-        this.functions = functions;
-        return this;
-    }
-
-    public CreateChatCompletionRequest addFunctionsItem(ChatCompletionFunctions functionsItem) {
-        if (this.functions == null) {
-            this.functions = new ArrayList<>();
-        }
-        this.functions.add(functionsItem);
-        return this;
-    }
-
-    /**
-     * A list of functions the model may generate JSON inputs for.
-     * @return functions
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+     * minimum: -2
+     * maximum: 2
+     * @return frequencyPenalty
      **/
     @Nullable
-    @Size(min=1)
-    @Schema(name = "functions", description = "A list of functions the model may generate JSON inputs for.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_FUNCTIONS)
+    @DecimalMin("-2")
+    @DecimalMax("2")
+    @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_FREQUENCY_PENALTY)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<@Valid ChatCompletionFunctions> getFunctions() {
-        return functions;
+    public BigDecimal getFrequencyPenalty() {
+        return frequencyPenalty;
     }
 
-    @JsonProperty(JSON_PROPERTY_FUNCTIONS)
+    @JsonProperty(JSON_PROPERTY_FREQUENCY_PENALTY)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setFunctions(List<@Valid ChatCompletionFunctions> functions) {
-        this.functions = functions;
+    public void setFrequencyPenalty(BigDecimal frequencyPenalty) {
+        this.frequencyPenalty = frequencyPenalty;
     }
 
-    public CreateChatCompletionRequest functionCall(CreateChatCompletionRequestFunctionCall functionCall) {
-        this.functionCall = functionCall;
+    public CreateChatCompletionRequest logitBias(Map<String, Integer> logitBias) {
+        this.logitBias = logitBias;
+        return this;
+    }
+
+    public CreateChatCompletionRequest putLogitBiasItem(String key, Integer logitBiasItem) {
+        if (this.logitBias == null) {
+            this.logitBias = new HashMap<>();
+        }
+        this.logitBias.put(key, logitBiasItem);
+        return this;
+  }
+
+    /**
+     * Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
+     * @return logitBias
+     **/
+    @Nullable
+    @Schema(name = "logit_bias", description = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_LOGIT_BIAS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Map<String, Integer> getLogitBias() {
+        return logitBias;
+    }
+
+    @JsonProperty(JSON_PROPERTY_LOGIT_BIAS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setLogitBias(Map<String, Integer> logitBias) {
+        this.logitBias = logitBias;
+    }
+
+    public CreateChatCompletionRequest logprobs(Boolean logprobs) {
+        this.logprobs = logprobs;
         return this;
     }
 
     /**
-     * Get functionCall
-     * @return functionCall
+     * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the &#x60;content&#x60; of &#x60;message&#x60;.
+     * @return logprobs
+     **/
+    @Nullable
+    @Schema(name = "logprobs", description = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_LOGPROBS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Boolean getLogprobs() {
+        return logprobs;
+    }
+
+    @JsonProperty(JSON_PROPERTY_LOGPROBS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setLogprobs(Boolean logprobs) {
+        this.logprobs = logprobs;
+    }
+
+    public CreateChatCompletionRequest topLogprobs(Integer topLogprobs) {
+        this.topLogprobs = topLogprobs;
+        return this;
+    }
+
+    /**
+     * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. &#x60;logprobs&#x60; must be set to &#x60;true&#x60; if this parameter is used.
+     * minimum: 0
+     * maximum: 20
+     * @return topLogprobs
+     **/
+    @Nullable
+    @Min(0)
+    @Max(20)
+    @Schema(name = "top_logprobs", description = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_TOP_LOGPROBS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Integer getTopLogprobs() {
+        return topLogprobs;
+    }
+
+    @JsonProperty(JSON_PROPERTY_TOP_LOGPROBS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setTopLogprobs(Integer topLogprobs) {
+        this.topLogprobs = topLogprobs;
+    }
+
+    public CreateChatCompletionRequest maxTokens(Integer maxTokens) {
+        this.maxTokens = maxTokens;
+        return this;
+    }
+
+    /**
+     * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model&#39;s context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+     * @return maxTokens
+     **/
+    @Nullable
+    @Schema(name = "max_tokens", description = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_MAX_TOKENS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Integer getMaxTokens() {
+        return maxTokens;
+    }
+
+    @JsonProperty(JSON_PROPERTY_MAX_TOKENS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setMaxTokens(Integer maxTokens) {
+        this.maxTokens = maxTokens;
+    }
+
+    public CreateChatCompletionRequest n(Integer n) {
+        this.n = n;
+        return this;
+    }
+
+    /**
+     * How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep &#x60;n&#x60; as &#x60;1&#x60; to minimize costs.
+     * minimum: 1
+     * maximum: 128
+     * @return n
+     **/
+    @Nullable
+    @Min(1)
+    @Max(128)
+    @Schema(name = "n", example = "1", description = "How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_N)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Integer getN() {
+        return n;
+    }
+
+    @JsonProperty(JSON_PROPERTY_N)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setN(Integer n) {
+        this.n = n;
+    }
+
+    public CreateChatCompletionRequest presencePenalty(BigDecimal presencePenalty) {
+        this.presencePenalty = presencePenalty;
+        return this;
+    }
+
+    /**
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+     * minimum: -2
+     * maximum: 2
+     * @return presencePenalty
+     **/
+    @Nullable
+    @DecimalMin("-2")
+    @DecimalMax("2")
+    @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_PRESENCE_PENALTY)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public BigDecimal getPresencePenalty() {
+        return presencePenalty;
+    }
+
+    @JsonProperty(JSON_PROPERTY_PRESENCE_PENALTY)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setPresencePenalty(BigDecimal presencePenalty) {
+        this.presencePenalty = presencePenalty;
+    }
+
+    public CreateChatCompletionRequest responseFormat(CreateChatCompletionRequestResponseFormat responseFormat) {
+        this.responseFormat = responseFormat;
+        return this;
+    }
+
+    /**
+     * Get responseFormat
+     * @return responseFormat
      **/
     @Valid
     @Nullable
-    @Schema(name = "function_call", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_FUNCTION_CALL)
+    @Schema(name = "response_format", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_RESPONSE_FORMAT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public CreateChatCompletionRequestFunctionCall getFunctionCall() {
-        return functionCall;
+    public CreateChatCompletionRequestResponseFormat getResponseFormat() {
+        return responseFormat;
     }
 
-    @JsonProperty(JSON_PROPERTY_FUNCTION_CALL)
+    @JsonProperty(JSON_PROPERTY_RESPONSE_FORMAT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setFunctionCall(CreateChatCompletionRequestFunctionCall functionCall) {
-        this.functionCall = functionCall;
+    public void setResponseFormat(CreateChatCompletionRequestResponseFormat responseFormat) {
+        this.responseFormat = responseFormat;
+    }
+
+    public CreateChatCompletionRequest seed(Integer seed) {
+        this.seed = seed;
+        return this;
+    }
+
+    /**
+     * This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same &#x60;seed&#x60; and parameters should return the same result. Determinism is not guaranteed, and you should refer to the &#x60;system_fingerprint&#x60; response parameter to monitor changes in the backend. 
+     * minimum: -9223372036854775808
+     * maximum: 9223372036854775807
+     * @return seed
+     **/
+    @Nullable
+    @Min(-9223372036854775808)
+    @Max(9223372036854775807)
+    @Schema(name = "seed", description = "This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_SEED)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Integer getSeed() {
+        return seed;
+    }
+
+    @JsonProperty(JSON_PROPERTY_SEED)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setSeed(Integer seed) {
+        this.seed = seed;
+    }
+
+    public CreateChatCompletionRequest stop(CreateChatCompletionRequestStop stop) {
+        this.stop = stop;
+        return this;
+    }
+
+    /**
+     * Get stop
+     * @return stop
+     **/
+    @Valid
+    @Nullable
+    @Schema(name = "stop", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_STOP)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public CreateChatCompletionRequestStop getStop() {
+        return stop;
+    }
+
+    @JsonProperty(JSON_PROPERTY_STOP)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setStop(CreateChatCompletionRequestStop stop) {
+        this.stop = stop;
+    }
+
+    public CreateChatCompletionRequest stream(Boolean stream) {
+        this.stream = stream;
+        return this;
+    }
+
+    /**
+     * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
+     * @return stream
+     **/
+    @Nullable
+    @Schema(name = "stream", description = "If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_STREAM)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Boolean getStream() {
+        return stream;
+    }
+
+    @JsonProperty(JSON_PROPERTY_STREAM)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setStream(Boolean stream) {
+        this.stream = stream;
     }
 
     public CreateChatCompletionRequest temperature(BigDecimal temperature) {
@@ -265,178 +521,59 @@ public class CreateChatCompletionRequest {
         this.topP = topP;
     }
 
-    public CreateChatCompletionRequest n(Integer n) {
-        this.n = n;
+    public CreateChatCompletionRequest tools(List<@Valid ChatCompletionTool> tools) {
+        this.tools = tools;
+        return this;
+    }
+
+    public CreateChatCompletionRequest addToolsItem(ChatCompletionTool toolsItem) {
+        if (this.tools == null) {
+            this.tools = new ArrayList<>();
+        }
+        this.tools.add(toolsItem);
         return this;
     }
 
     /**
-     * How many chat completion choices to generate for each input message.
-     * minimum: 1
-     * maximum: 128
-     * @return n
+     * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. 
+     * @return tools
      **/
     @Nullable
-    @Min(1)
-    @Max(128)
-    @Schema(name = "n", example = "1", description = "How many chat completion choices to generate for each input message.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_N)
+    @Schema(name = "tools", description = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public Integer getN() {
-        return n;
+    public List<@Valid ChatCompletionTool> getTools() {
+        return tools;
     }
 
-    @JsonProperty(JSON_PROPERTY_N)
+    @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setN(Integer n) {
-        this.n = n;
+    public void setTools(List<@Valid ChatCompletionTool> tools) {
+        this.tools = tools;
     }
 
-    public CreateChatCompletionRequest stream(Boolean stream) {
-        this.stream = stream;
+    public CreateChatCompletionRequest toolChoice(ChatCompletionToolChoiceOption toolChoice) {
+        this.toolChoice = toolChoice;
         return this;
     }
 
     /**
-     * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). 
-     * @return stream
-     **/
-    @Nullable
-    @Schema(name = "stream", description = "If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_STREAM)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public Boolean getStream() {
-        return stream;
-    }
-
-    @JsonProperty(JSON_PROPERTY_STREAM)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setStream(Boolean stream) {
-        this.stream = stream;
-    }
-
-    public CreateChatCompletionRequest stop(CreateChatCompletionRequestStop stop) {
-        this.stop = stop;
-        return this;
-    }
-
-    /**
-     * Get stop
-     * @return stop
+     * Get toolChoice
+     * @return toolChoice
      **/
     @Valid
     @Nullable
-    @Schema(name = "stop", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_STOP)
+    @Schema(name = "tool_choice", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_TOOL_CHOICE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public CreateChatCompletionRequestStop getStop() {
-        return stop;
+    public ChatCompletionToolChoiceOption getToolChoice() {
+        return toolChoice;
     }
 
-    @JsonProperty(JSON_PROPERTY_STOP)
+    @JsonProperty(JSON_PROPERTY_TOOL_CHOICE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setStop(CreateChatCompletionRequestStop stop) {
-        this.stop = stop;
-    }
-
-    public CreateChatCompletionRequest maxTokens(Integer maxTokens) {
-        this.maxTokens = maxTokens;
-        return this;
-    }
-
-    /**
-     * The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model&#39;s context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
-     * @return maxTokens
-     **/
-    @Nullable
-    @Schema(name = "max_tokens", description = "The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_MAX_TOKENS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public Integer getMaxTokens() {
-        return maxTokens;
-    }
-
-    @JsonProperty(JSON_PROPERTY_MAX_TOKENS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setMaxTokens(Integer maxTokens) {
-        this.maxTokens = maxTokens;
-    }
-
-    public CreateChatCompletionRequest presencePenalty(BigDecimal presencePenalty) {
-        this.presencePenalty = presencePenalty;
-        return this;
-    }
-
-    /**
-     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-     * minimum: -2
-     * maximum: 2
-     * @return presencePenalty
-     **/
-    @Nullable
-    @DecimalMin("-2")
-    @DecimalMax("2")
-    @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_PRESENCE_PENALTY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public BigDecimal getPresencePenalty() {
-        return presencePenalty;
-    }
-
-    @JsonProperty(JSON_PROPERTY_PRESENCE_PENALTY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setPresencePenalty(BigDecimal presencePenalty) {
-        this.presencePenalty = presencePenalty;
-    }
-
-    public CreateChatCompletionRequest frequencyPenalty(BigDecimal frequencyPenalty) {
-        this.frequencyPenalty = frequencyPenalty;
-        return this;
-    }
-
-    /**
-     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-     * minimum: -2
-     * maximum: 2
-     * @return frequencyPenalty
-     **/
-    @Nullable
-    @DecimalMin("-2")
-    @DecimalMax("2")
-    @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_FREQUENCY_PENALTY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public BigDecimal getFrequencyPenalty() {
-        return frequencyPenalty;
-    }
-
-    @JsonProperty(JSON_PROPERTY_FREQUENCY_PENALTY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setFrequencyPenalty(BigDecimal frequencyPenalty) {
-        this.frequencyPenalty = frequencyPenalty;
-    }
-
-    public CreateChatCompletionRequest logitBias(Object logitBias) {
-        this.logitBias = logitBias;
-        return this;
-    }
-
-    /**
-     * Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
-     * @return logitBias
-     **/
-    @Nullable
-    @Schema(name = "logit_bias", description = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_LOGIT_BIAS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public Object getLogitBias() {
-        return logitBias;
-    }
-
-    @JsonProperty(JSON_PROPERTY_LOGIT_BIAS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setLogitBias(Object logitBias) {
-        this.logitBias = logitBias;
+    public void setToolChoice(ChatCompletionToolChoiceOption toolChoice) {
+        this.toolChoice = toolChoice;
     }
 
     public CreateChatCompletionRequest user(String user) {
@@ -462,6 +599,62 @@ public class CreateChatCompletionRequest {
         this.user = user;
     }
 
+    public CreateChatCompletionRequest functionCall(CreateChatCompletionRequestFunctionCall functionCall) {
+        this.functionCall = functionCall;
+        return this;
+    }
+
+    /**
+     * Get functionCall
+     * @return functionCall
+     **/
+    @Valid
+    @Nullable
+    @Schema(name = "function_call", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_FUNCTION_CALL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public CreateChatCompletionRequestFunctionCall getFunctionCall() {
+        return functionCall;
+    }
+
+    @JsonProperty(JSON_PROPERTY_FUNCTION_CALL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setFunctionCall(CreateChatCompletionRequestFunctionCall functionCall) {
+        this.functionCall = functionCall;
+    }
+
+    public CreateChatCompletionRequest functions(List<@Valid ChatCompletionFunctions> functions) {
+        this.functions = functions;
+        return this;
+    }
+
+    public CreateChatCompletionRequest addFunctionsItem(ChatCompletionFunctions functionsItem) {
+        if (this.functions == null) {
+            this.functions = new ArrayList<>();
+        }
+        this.functions.add(functionsItem);
+        return this;
+    }
+
+    /**
+     * Deprecated in favor of &#x60;tools&#x60;.  A list of functions the model may generate JSON inputs for. 
+     * @return functions
+     **/
+    @Nullable
+    @Size(min=1, max=128)
+    @Schema(name = "functions", description = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_FUNCTIONS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public List<@Valid ChatCompletionFunctions> getFunctions() {
+        return functions;
+    }
+
+    @JsonProperty(JSON_PROPERTY_FUNCTIONS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setFunctions(List<@Valid ChatCompletionFunctions> functions) {
+        this.functions = functions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -471,45 +664,57 @@ public class CreateChatCompletionRequest {
             return false;
         }
         CreateChatCompletionRequest createChatCompletionRequest = (CreateChatCompletionRequest) o;
-        return Objects.equals(this.model, createChatCompletionRequest.model) &&
-            Objects.equals(this.messages, createChatCompletionRequest.messages) &&
-            Objects.equals(this.functions, createChatCompletionRequest.functions) &&
-            Objects.equals(this.functionCall, createChatCompletionRequest.functionCall) &&
-            Objects.equals(this.temperature, createChatCompletionRequest.temperature) &&
-            Objects.equals(this.topP, createChatCompletionRequest.topP) &&
-            Objects.equals(this.n, createChatCompletionRequest.n) &&
-            Objects.equals(this.stream, createChatCompletionRequest.stream) &&
-            Objects.equals(this.stop, createChatCompletionRequest.stop) &&
-            Objects.equals(this.maxTokens, createChatCompletionRequest.maxTokens) &&
-            Objects.equals(this.presencePenalty, createChatCompletionRequest.presencePenalty) &&
+        return Objects.equals(this.messages, createChatCompletionRequest.messages) &&
+            Objects.equals(this.model, createChatCompletionRequest.model) &&
             Objects.equals(this.frequencyPenalty, createChatCompletionRequest.frequencyPenalty) &&
             Objects.equals(this.logitBias, createChatCompletionRequest.logitBias) &&
-            Objects.equals(this.user, createChatCompletionRequest.user);
+            Objects.equals(this.logprobs, createChatCompletionRequest.logprobs) &&
+            Objects.equals(this.topLogprobs, createChatCompletionRequest.topLogprobs) &&
+            Objects.equals(this.maxTokens, createChatCompletionRequest.maxTokens) &&
+            Objects.equals(this.n, createChatCompletionRequest.n) &&
+            Objects.equals(this.presencePenalty, createChatCompletionRequest.presencePenalty) &&
+            Objects.equals(this.responseFormat, createChatCompletionRequest.responseFormat) &&
+            Objects.equals(this.seed, createChatCompletionRequest.seed) &&
+            Objects.equals(this.stop, createChatCompletionRequest.stop) &&
+            Objects.equals(this.stream, createChatCompletionRequest.stream) &&
+            Objects.equals(this.temperature, createChatCompletionRequest.temperature) &&
+            Objects.equals(this.topP, createChatCompletionRequest.topP) &&
+            Objects.equals(this.tools, createChatCompletionRequest.tools) &&
+            Objects.equals(this.toolChoice, createChatCompletionRequest.toolChoice) &&
+            Objects.equals(this.user, createChatCompletionRequest.user) &&
+            Objects.equals(this.functionCall, createChatCompletionRequest.functionCall) &&
+            Objects.equals(this.functions, createChatCompletionRequest.functions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(model, messages, functions, functionCall, temperature, topP, n, stream, stop, maxTokens, presencePenalty, frequencyPenalty, logitBias, user);
+        return Objects.hash(messages, model, frequencyPenalty, logitBias, logprobs, topLogprobs, maxTokens, n, presencePenalty, responseFormat, seed, stop, stream, temperature, topP, tools, toolChoice, user, functionCall, functions);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class CreateChatCompletionRequest {\n");
-        sb.append("    model: ").append(toIndentedString(model)).append("\n");
         sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
-        sb.append("    functions: ").append(toIndentedString(functions)).append("\n");
-        sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
-        sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
-        sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
-        sb.append("    n: ").append(toIndentedString(n)).append("\n");
-        sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
-        sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
-        sb.append("    maxTokens: ").append(toIndentedString(maxTokens)).append("\n");
-        sb.append("    presencePenalty: ").append(toIndentedString(presencePenalty)).append("\n");
+        sb.append("    model: ").append(toIndentedString(model)).append("\n");
         sb.append("    frequencyPenalty: ").append(toIndentedString(frequencyPenalty)).append("\n");
         sb.append("    logitBias: ").append(toIndentedString(logitBias)).append("\n");
+        sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
+        sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
+        sb.append("    maxTokens: ").append(toIndentedString(maxTokens)).append("\n");
+        sb.append("    n: ").append(toIndentedString(n)).append("\n");
+        sb.append("    presencePenalty: ").append(toIndentedString(presencePenalty)).append("\n");
+        sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
+        sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+        sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
+        sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
+        sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+        sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+        sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
+        sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
         sb.append("    user: ").append(toIndentedString(user)).append("\n");
+        sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
+        sb.append("    functions: ").append(toIndentedString(functions)).append("\n");
         sb.append("}");
         return sb.toString();
     }

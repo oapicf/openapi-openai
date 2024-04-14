@@ -10,8 +10,8 @@
 
 -type openapi_model() ::
   [ {'id', binary() }
-  | {'object', binary() }
   | {'created', integer() }
+  | {'object', binary() }
   | {'owned_by', binary() }
   ].
 
@@ -21,8 +21,8 @@ openapi_model() ->
 
 openapi_model(Fields) ->
   Default = [ {'id', binary() }
-            , {'object', binary() }
             , {'created', integer() }
+            , {'object', elements([<<"model">>]) }
             , {'owned_by', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

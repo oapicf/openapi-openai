@@ -1,6 +1,5 @@
 package org.openapitools.model;
 
-import org.openapitools.jackson.nullable.JsonNullable;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -29,14 +28,6 @@ public class OpenAIFileTest {
     }
 
     /**
-     * Test the property '_object'
-     */
-    @Test
-    public void _objectTest() {
-        // TODO: test _object
-    }
-
-    /**
      * Test the property 'bytes'
      */
     @Test
@@ -58,6 +49,14 @@ public class OpenAIFileTest {
     @Test
     public void filenameTest() {
         // TODO: test filename
+    }
+
+    /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
     }
 
     /**

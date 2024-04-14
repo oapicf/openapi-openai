@@ -7,29 +7,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Error   {
   
-  private String type;
+  private String code;
   private String message;
   private String param;
-  private String code;
+  private String type;
 
   public Error () {
 
   }
 
-  public Error (String type, String message, String param, String code) {
-    this.type = type;
+  public Error (String code, String message, String param, String type) {
+    this.code = code;
     this.message = message;
     this.param = param;
-    this.code = code;
+    this.type = type;
   }
 
     
-  @JsonProperty("type")
-  public String getType() {
-    return type;
+  @JsonProperty("code")
+  public String getCode() {
+    return code;
   }
-  public void setType(String type) {
-    this.type = type;
+  public void setCode(String code) {
+    this.code = code;
   }
 
     
@@ -51,12 +51,12 @@ public class Error   {
   }
 
     
-  @JsonProperty("code")
-  public String getCode() {
-    return code;
+  @JsonProperty("type")
+  public String getType() {
+    return type;
   }
-  public void setCode(String code) {
-    this.code = code;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -69,15 +69,15 @@ public class Error   {
       return false;
     }
     Error error = (Error) o;
-    return Objects.equals(type, error.type) &&
+    return Objects.equals(code, error.code) &&
         Objects.equals(message, error.message) &&
         Objects.equals(param, error.param) &&
-        Objects.equals(code, error.code);
+        Objects.equals(type, error.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, message, param, code);
+    return Objects.hash(code, message, param, type);
   }
 
   @Override
@@ -85,10 +85,10 @@ public class Error   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    param: ").append(toIndentedString(param)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

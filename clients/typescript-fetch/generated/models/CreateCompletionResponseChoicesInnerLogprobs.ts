@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface CreateCompletionResponseChoicesInnerLogprobs {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<number>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    tokens?: Array<string>;
+    textOffset?: Array<number>;
     /**
      * 
      * @type {Array<number>}
@@ -33,16 +33,16 @@ export interface CreateCompletionResponseChoicesInnerLogprobs {
     tokenLogprobs?: Array<number>;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    topLogprobs?: Array<object>;
+    tokens?: Array<string>;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<{ [key: string]: number; }>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    textOffset?: Array<number>;
+    topLogprobs?: Array<{ [key: string]: number; }>;
 }
 
 /**
@@ -62,10 +62,10 @@ export function CreateCompletionResponseChoicesInnerLogprobsFromJSONTyped(json: 
     }
     return {
         
-        'tokens': json['tokens'] == null ? undefined : json['tokens'],
-        'tokenLogprobs': json['token_logprobs'] == null ? undefined : json['token_logprobs'],
-        'topLogprobs': json['top_logprobs'] == null ? undefined : json['top_logprobs'],
         'textOffset': json['text_offset'] == null ? undefined : json['text_offset'],
+        'tokenLogprobs': json['token_logprobs'] == null ? undefined : json['token_logprobs'],
+        'tokens': json['tokens'] == null ? undefined : json['tokens'],
+        'topLogprobs': json['top_logprobs'] == null ? undefined : json['top_logprobs'],
     };
 }
 
@@ -75,10 +75,10 @@ export function CreateCompletionResponseChoicesInnerLogprobsToJSON(value?: Creat
     }
     return {
         
-        'tokens': value['tokens'],
-        'token_logprobs': value['tokenLogprobs'],
-        'top_logprobs': value['topLogprobs'],
         'text_offset': value['textOffset'],
+        'token_logprobs': value['tokenLogprobs'],
+        'tokens': value['tokens'],
+        'top_logprobs': value['topLogprobs'],
     };
 }
 

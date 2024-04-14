@@ -7,6 +7,7 @@ model_instance <- CreateModerationResponse$new()
 
 test_that("id", {
   # tests for the property `id` (character)
+  # The unique identifier for the moderation request.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`id`, "EXPECTED_RESULT")
@@ -14,6 +15,7 @@ test_that("id", {
 
 test_that("model", {
   # tests for the property `model` (character)
+  # The model used to generate the moderation results.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`model`, "EXPECTED_RESULT")
@@ -21,6 +23,7 @@ test_that("model", {
 
 test_that("results", {
   # tests for the property `results` (array[CreateModerationResponseResultsInner])
+  # A list of moderation objects.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`results`, "EXPECTED_RESULT")

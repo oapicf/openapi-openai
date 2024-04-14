@@ -39,7 +39,8 @@ class EmbeddingsApiController() {
         operationId = "createEmbedding",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = CreateEmbeddingResponse::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = CreateEmbeddingResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.POST],

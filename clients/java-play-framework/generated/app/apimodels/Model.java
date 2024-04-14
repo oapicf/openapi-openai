@@ -7,9 +7,9 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * Model
+ * Describes an OpenAI model offering that can be used with the API.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class Model   {
   @JsonProperty("id")
@@ -17,15 +17,44 @@ public class Model   {
 
   private String id;
 
-  @JsonProperty("object")
-  @NotNull
-
-  private String _object;
-
   @JsonProperty("created")
   @NotNull
 
   private Integer created;
+
+  /**
+   * The object type, which is always \"model\".
+   */
+  public enum ObjectEnum {
+    MODEL("model");
+
+    private final String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("object")
+  @NotNull
+
+  private ObjectEnum _object;
 
   @JsonProperty("owned_by")
   @NotNull
@@ -38,7 +67,7 @@ public class Model   {
   }
 
    /**
-   * Get id
+   * The model identifier, which can be referenced in the API endpoints.
    * @return id
   **/
   public String getId() {
@@ -49,30 +78,13 @@ public class Model   {
     this.id = id;
   }
 
-  public Model _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
   public Model created(Integer created) {
     this.created = created;
     return this;
   }
 
    /**
-   * Get created
+   * The Unix timestamp (in seconds) when the model was created.
    * @return created
   **/
   public Integer getCreated() {
@@ -83,13 +95,30 @@ public class Model   {
     this.created = created;
   }
 
+  public Model _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * The object type, which is always \"model\".
+   * @return _object
+  **/
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
   public Model ownedBy(String ownedBy) {
     this.ownedBy = ownedBy;
     return this;
   }
 
    /**
-   * Get ownedBy
+   * The organization that owns the model.
    * @return ownedBy
   **/
   public String getOwnedBy() {
@@ -111,14 +140,14 @@ public class Model   {
     }
     Model model = (Model) o;
     return Objects.equals(id, model.id) &&
-        Objects.equals(_object, model._object) &&
         Objects.equals(created, model.created) &&
+        Objects.equals(_object, model._object) &&
         Objects.equals(ownedBy, model.ownedBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, ownedBy);
+    return Objects.hash(id, created, _object, ownedBy);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -128,8 +157,8 @@ public class Model   {
     sb.append("class Model {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    ownedBy: ").append(toIndentedString(ownedBy)).append("\n");
     sb.append("}");
     return sb.toString();

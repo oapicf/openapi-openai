@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -20,13 +20,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param flagged 
+ * @param flagged Whether any of the below categories are flagged.
  * @param categories 
  * @param categoryScores 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateModerationResponseResultsInner (
+    /* Whether any of the below categories are flagged. */
     @SerializedName("flagged") private val _flagged: kotlin.Boolean?,
     @SerializedName("categories") private val _categories: CreateModerationResponseResultsInnerCategories?,
     @SerializedName("categoryScores") private val _categoryScores: CreateModerationResponseResultsInnerCategoryScores?

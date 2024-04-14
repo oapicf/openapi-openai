@@ -1,7 +1,7 @@
 =begin
 #OpenAI API
 
-#APIs for sampling from and fine-tuning language models
+#The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 The version of the OpenAPI document: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -33,7 +33,7 @@ describe OpenApiOpenAIClient::CreateChatCompletionResponse do
     end
   end
 
-  describe 'test attribute "object"' do
+  describe 'test attribute "choices"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end
@@ -51,9 +51,19 @@ describe OpenApiOpenAIClient::CreateChatCompletionResponse do
     end
   end
 
-  describe 'test attribute "choices"' do
+  describe 'test attribute "system_fingerprint"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
+  describe 'test attribute "object"' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["chat.completion"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.object = value }.not_to raise_error
+      # end
     end
   end
 

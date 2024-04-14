@@ -15,23 +15,31 @@
 
 typedef struct create_embedding_response_t create_embedding_response_t;
 
-#include "create_embedding_response_data_inner.h"
 #include "create_embedding_response_usage.h"
+#include "embedding.h"
+
+// Enum OBJECT for create_embedding_response
+
+typedef enum  { openai_api_create_embedding_response_OBJECT_NULL = 0, openai_api_create_embedding_response_OBJECT_list } openai_api_create_embedding_response_OBJECT_e;
+
+char* create_embedding_response_object_ToString(openai_api_create_embedding_response_OBJECT_e object);
+
+openai_api_create_embedding_response_OBJECT_e create_embedding_response_object_FromString(char* object);
 
 
 
 typedef struct create_embedding_response_t {
-    char *object; // string
-    char *model; // string
     list_t *data; //nonprimitive container
+    char *model; // string
+    openai_api_create_embedding_response_OBJECT_e object; //enum
     struct create_embedding_response_usage_t *usage; //model
 
 } create_embedding_response_t;
 
 create_embedding_response_t *create_embedding_response_create(
-    char *object,
-    char *model,
     list_t *data,
+    char *model,
+    openai_api_create_embedding_response_OBJECT_e object,
     create_embedding_response_usage_t *usage
 );
 

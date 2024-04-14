@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -12,26 +12,33 @@
 package org.openapitools.server.models
 
 import org.openapitools.server.models.ChatCompletionResponseMessage
+import org.openapitools.server.models.CreateChatCompletionResponseChoicesInnerLogprobs
 
 /**
  * 
- * @param index 
+ * @param finishReason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+ * @param index The index of the choice in the list of choices.
  * @param message 
- * @param finishReason 
+ * @param logprobs 
  */
 data class CreateChatCompletionResponseChoicesInner(
-    val index: kotlin.Int? = null,
-    val message: ChatCompletionResponseMessage? = null,
-    val finishReason: CreateChatCompletionResponseChoicesInner.FinishReason? = null
+    /* The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.  */
+    val finishReason: CreateChatCompletionResponseChoicesInner.FinishReason,
+    /* The index of the choice in the list of choices. */
+    val index: kotlin.Int,
+    val message: ChatCompletionResponseMessage,
+    val logprobs: CreateChatCompletionResponseChoicesInnerLogprobs
 ) 
 {
     /**
-    * 
-    * Values: stop,length,function_call
+    * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+    * Values: stop,length,tool_calls,content_filter,function_call
     */
     enum class FinishReason(val value: kotlin.String){
         stop("stop"),
         length("length"),
+        tool_calls("tool_calls"),
+        content_filter("content_filter"),
         function_call("function_call");
     }
 }

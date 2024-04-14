@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <regex>
+#include <algorithm>
 #include <boost/lexical_cast.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -62,7 +63,6 @@ ptree ListFilesResponse::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.put("object", m_object);
 	// generate tree for Data
     tmp_node.clear();
 	if (!m_Data.empty()) {
@@ -70,29 +70,19 @@ ptree ListFilesResponse::toPropertyTree() const
 		pt.add_child("data", tmp_node);
 		tmp_node.clear();
 	}
+	pt.put("object", m_object);
 	return pt;
 }
 
 void ListFilesResponse::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	m_object = pt.get("object", "");
 	// push all items of Data into member
 	if (pt.get_child_optional("data")) {
         m_Data = fromPt<std::vector<OpenAIFile>>(pt.get_child("data"));
 	}
+	setObject(pt.get("object", ""));
 }
-
-std::string ListFilesResponse::getObject() const
-{
-    return m_object;
-}
-
-void ListFilesResponse::setObject(std::string value)
-{
-    m_object = value;
-}
-
 
 std::vector<OpenAIFile> ListFilesResponse::getData() const
 {
@@ -102,6 +92,25 @@ std::vector<OpenAIFile> ListFilesResponse::getData() const
 void ListFilesResponse::setData(std::vector<OpenAIFile> value)
 {
     m_Data = value;
+}
+
+
+std::string ListFilesResponse::getObject() const
+{
+    return m_object;
+}
+
+void ListFilesResponse::setObject(std::string value)
+{
+    static const std::array<std::string, 1> allowedValues = {
+        "list"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_object = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 

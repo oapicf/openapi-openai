@@ -19,18 +19,18 @@ typedef struct error_t error_t;
 
 
 typedef struct error_t {
-    char *type; // string
+    char *code; // string
     char *message; // string
     char *param; // string
-    char *code; // string
+    char *type; // string
 
 } error_t;
 
 error_t *error_create(
-    char *type,
+    char *code,
     char *message,
     char *param,
-    char *code
+    char *type
 );
 
 void error_free(error_t *error);

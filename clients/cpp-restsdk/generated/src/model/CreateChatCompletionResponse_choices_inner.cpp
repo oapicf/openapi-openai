@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,11 +23,12 @@ namespace model {
 
 CreateChatCompletionResponse_choices_inner::CreateChatCompletionResponse_choices_inner()
 {
+    m_Finish_reason = utility::conversions::to_string_t("");
+    m_Finish_reasonIsSet = false;
     m_Index = 0;
     m_IndexIsSet = false;
     m_MessageIsSet = false;
-    m_Finish_reason = utility::conversions::to_string_t("");
-    m_Finish_reasonIsSet = false;
+    m_LogprobsIsSet = false;
 }
 
 CreateChatCompletionResponse_choices_inner::~CreateChatCompletionResponse_choices_inner()
@@ -44,6 +45,10 @@ web::json::value CreateChatCompletionResponse_choices_inner::toJson() const
 
     web::json::value val = web::json::value::object();
     
+    if(m_Finish_reasonIsSet)
+    {
+        val[utility::conversions::to_string_t(U("finish_reason"))] = ModelBase::toJson(m_Finish_reason);
+    }
     if(m_IndexIsSet)
     {
         val[utility::conversions::to_string_t(U("index"))] = ModelBase::toJson(m_Index);
@@ -52,9 +57,9 @@ web::json::value CreateChatCompletionResponse_choices_inner::toJson() const
     {
         val[utility::conversions::to_string_t(U("message"))] = ModelBase::toJson(m_Message);
     }
-    if(m_Finish_reasonIsSet)
+    if(m_LogprobsIsSet)
     {
-        val[utility::conversions::to_string_t(U("finish_reason"))] = ModelBase::toJson(m_Finish_reason);
+        val[utility::conversions::to_string_t(U("logprobs"))] = ModelBase::toJson(m_Logprobs);
     }
 
     return val;
@@ -64,6 +69,16 @@ bool CreateChatCompletionResponse_choices_inner::fromJson(const web::json::value
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t(U("finish_reason"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("finish_reason")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setFinishReason;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFinishReason);
+            setFinishReason(refVal_setFinishReason);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("index"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("index")));
@@ -84,14 +99,14 @@ bool CreateChatCompletionResponse_choices_inner::fromJson(const web::json::value
             setMessage(refVal_setMessage);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("finish_reason"))))
+    if(val.has_field(utility::conversions::to_string_t(U("logprobs"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("finish_reason")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("logprobs")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setFinishReason;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFinishReason);
-            setFinishReason(refVal_setFinishReason);
+            std::shared_ptr<CreateChatCompletionResponse_choices_inner_logprobs> refVal_setLogprobs;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setLogprobs);
+            setLogprobs(refVal_setLogprobs);
         }
     }
     return ok;
@@ -104,6 +119,10 @@ void CreateChatCompletionResponse_choices_inner::toMultipart(std::shared_ptr<Mul
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
+    if(m_Finish_reasonIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("finish_reason")), m_Finish_reason));
+    }
     if(m_IndexIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("index")), m_Index));
@@ -112,9 +131,9 @@ void CreateChatCompletionResponse_choices_inner::toMultipart(std::shared_ptr<Mul
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("message")), m_Message));
     }
-    if(m_Finish_reasonIsSet)
+    if(m_LogprobsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("finish_reason")), m_Finish_reason));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logprobs")), m_Logprobs));
     }
 }
 
@@ -127,6 +146,12 @@ bool CreateChatCompletionResponse_choices_inner::fromMultiPart(std::shared_ptr<M
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(U("finish_reason"))))
+    {
+        utility::string_t refVal_setFinishReason;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("finish_reason"))), refVal_setFinishReason );
+        setFinishReason(refVal_setFinishReason);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("index"))))
     {
         int32_t refVal_setIndex;
@@ -139,15 +164,35 @@ bool CreateChatCompletionResponse_choices_inner::fromMultiPart(std::shared_ptr<M
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("message"))), refVal_setMessage );
         setMessage(refVal_setMessage);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("finish_reason"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("logprobs"))))
     {
-        utility::string_t refVal_setFinishReason;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("finish_reason"))), refVal_setFinishReason );
-        setFinishReason(refVal_setFinishReason);
+        std::shared_ptr<CreateChatCompletionResponse_choices_inner_logprobs> refVal_setLogprobs;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logprobs"))), refVal_setLogprobs );
+        setLogprobs(refVal_setLogprobs);
     }
     return ok;
 }
 
+utility::string_t CreateChatCompletionResponse_choices_inner::getFinishReason() const
+{
+    return m_Finish_reason;
+}
+
+void CreateChatCompletionResponse_choices_inner::setFinishReason(const utility::string_t& value)
+{
+    m_Finish_reason = value;
+    m_Finish_reasonIsSet = true;
+}
+
+bool CreateChatCompletionResponse_choices_inner::finishReasonIsSet() const
+{
+    return m_Finish_reasonIsSet;
+}
+
+void CreateChatCompletionResponse_choices_inner::unsetFinish_reason()
+{
+    m_Finish_reasonIsSet = false;
+}
 int32_t CreateChatCompletionResponse_choices_inner::getIndex() const
 {
     return m_Index;
@@ -188,25 +233,25 @@ void CreateChatCompletionResponse_choices_inner::unsetMessage()
 {
     m_MessageIsSet = false;
 }
-utility::string_t CreateChatCompletionResponse_choices_inner::getFinishReason() const
+std::shared_ptr<CreateChatCompletionResponse_choices_inner_logprobs> CreateChatCompletionResponse_choices_inner::getLogprobs() const
 {
-    return m_Finish_reason;
+    return m_Logprobs;
 }
 
-void CreateChatCompletionResponse_choices_inner::setFinishReason(const utility::string_t& value)
+void CreateChatCompletionResponse_choices_inner::setLogprobs(const std::shared_ptr<CreateChatCompletionResponse_choices_inner_logprobs>& value)
 {
-    m_Finish_reason = value;
-    m_Finish_reasonIsSet = true;
+    m_Logprobs = value;
+    m_LogprobsIsSet = true;
 }
 
-bool CreateChatCompletionResponse_choices_inner::finishReasonIsSet() const
+bool CreateChatCompletionResponse_choices_inner::logprobsIsSet() const
 {
-    return m_Finish_reasonIsSet;
+    return m_LogprobsIsSet;
 }
 
-void CreateChatCompletionResponse_choices_inner::unsetFinish_reason()
+void CreateChatCompletionResponse_choices_inner::unsetLogprobs()
 {
-    m_Finish_reasonIsSet = false;
+    m_LogprobsIsSet = false;
 }
 }
 }

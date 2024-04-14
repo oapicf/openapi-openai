@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -20,16 +20,26 @@ import (
 // checks if the OpenAIFile type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OpenAIFile{}
 
-// OpenAIFile struct for OpenAIFile
+// OpenAIFile The `File` object represents a document that has been uploaded to OpenAI.
 type OpenAIFile struct {
+	// The file identifier, which can be referenced in the API endpoints.
 	Id string `json:"id"`
-	Object string `json:"object"`
+	// The size of the file, in bytes.
 	Bytes int32 `json:"bytes"`
+	// The Unix timestamp (in seconds) for when the file was created.
 	CreatedAt int32 `json:"created_at"`
+	// The name of the file.
 	Filename string `json:"filename"`
+	// The object type, which is always `file`.
+	Object string `json:"object"`
+	// The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
 	Purpose string `json:"purpose"`
-	Status *string `json:"status,omitempty"`
-	StatusDetails map[string]interface{} `json:"status_details,omitempty"`
+	// Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+	// Deprecated
+	Status string `json:"status"`
+	// Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
+	// Deprecated
+	StatusDetails *string `json:"status_details,omitempty"`
 }
 
 type _OpenAIFile OpenAIFile
@@ -38,14 +48,15 @@ type _OpenAIFile OpenAIFile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOpenAIFile(id string, object string, bytes int32, createdAt int32, filename string, purpose string) *OpenAIFile {
+func NewOpenAIFile(id string, bytes int32, createdAt int32, filename string, object string, purpose string, status string) *OpenAIFile {
 	this := OpenAIFile{}
 	this.Id = id
-	this.Object = object
 	this.Bytes = bytes
 	this.CreatedAt = createdAt
 	this.Filename = filename
+	this.Object = object
 	this.Purpose = purpose
+	this.Status = status
 	return &this
 }
 
@@ -79,30 +90,6 @@ func (o *OpenAIFile) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *OpenAIFile) SetId(v string) {
 	o.Id = v
-}
-
-// GetObject returns the Object field value
-func (o *OpenAIFile) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *OpenAIFile) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *OpenAIFile) SetObject(v string) {
-	o.Object = v
 }
 
 // GetBytes returns the Bytes field value
@@ -177,6 +164,30 @@ func (o *OpenAIFile) SetFilename(v string) {
 	o.Filename = v
 }
 
+// GetObject returns the Object field value
+func (o *OpenAIFile) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *OpenAIFile) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *OpenAIFile) SetObject(v string) {
+	o.Object = v
+}
+
 // GetPurpose returns the Purpose field value
 func (o *OpenAIFile) GetPurpose() string {
 	if o == nil {
@@ -201,53 +212,49 @@ func (o *OpenAIFile) SetPurpose(v string) {
 	o.Purpose = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
+// GetStatus returns the Status field value
+// Deprecated
 func (o *OpenAIFile) GetStatus() string {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *OpenAIFile) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *OpenAIFile) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus sets field value
+// Deprecated
 func (o *OpenAIFile) SetStatus(v string) {
-	o.Status = &v
+	o.Status = v
 }
 
-// GetStatusDetails returns the StatusDetails field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OpenAIFile) GetStatusDetails() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetStatusDetails returns the StatusDetails field value if set, zero value otherwise.
+// Deprecated
+func (o *OpenAIFile) GetStatusDetails() string {
+	if o == nil || IsNil(o.StatusDetails) {
+		var ret string
 		return ret
 	}
-	return o.StatusDetails
+	return *o.StatusDetails
 }
 
 // GetStatusDetailsOk returns a tuple with the StatusDetails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OpenAIFile) GetStatusDetailsOk() (map[string]interface{}, bool) {
+// Deprecated
+func (o *OpenAIFile) GetStatusDetailsOk() (*string, bool) {
 	if o == nil || IsNil(o.StatusDetails) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.StatusDetails, true
 }
@@ -261,9 +268,10 @@ func (o *OpenAIFile) HasStatusDetails() bool {
 	return false
 }
 
-// SetStatusDetails gets a reference to the given map[string]interface{} and assigns it to the StatusDetails field.
-func (o *OpenAIFile) SetStatusDetails(v map[string]interface{}) {
-	o.StatusDetails = v
+// SetStatusDetails gets a reference to the given string and assigns it to the StatusDetails field.
+// Deprecated
+func (o *OpenAIFile) SetStatusDetails(v string) {
+	o.StatusDetails = &v
 }
 
 func (o OpenAIFile) MarshalJSON() ([]byte, error) {
@@ -277,15 +285,13 @@ func (o OpenAIFile) MarshalJSON() ([]byte, error) {
 func (o OpenAIFile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	toSerialize["object"] = o.Object
 	toSerialize["bytes"] = o.Bytes
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["filename"] = o.Filename
+	toSerialize["object"] = o.Object
 	toSerialize["purpose"] = o.Purpose
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if o.StatusDetails != nil {
+	toSerialize["status"] = o.Status
+	if !IsNil(o.StatusDetails) {
 		toSerialize["status_details"] = o.StatusDetails
 	}
 	return toSerialize, nil
@@ -297,11 +303,12 @@ func (o *OpenAIFile) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
-		"object",
 		"bytes",
 		"created_at",
 		"filename",
+		"object",
 		"purpose",
+		"status",
 	}
 
 	allProperties := make(map[string]interface{})

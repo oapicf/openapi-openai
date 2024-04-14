@@ -7,17 +7,17 @@
 #' @title ChatCompletionFunctions
 #' @description ChatCompletionFunctions Class
 #' @format An \code{R6Class} generator object
+#' @field description A description of what the function does, used by the model to choose when and how to call the function. character [optional]
 #' @field name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. character
-#' @field description The description of what the function does. character [optional]
-#' @field parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. named list(\link{AnyType}) [optional]
+#' @field parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. named list(\link{AnyType}) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 ChatCompletionFunctions <- R6::R6Class(
   "ChatCompletionFunctions",
   public = list(
-    `name` = NULL,
     `description` = NULL,
+    `name` = NULL,
     `parameters` = NULL,
     #' Initialize a new ChatCompletionFunctions class.
     #'
@@ -25,8 +25,8 @@ ChatCompletionFunctions <- R6::R6Class(
     #' Initialize a new ChatCompletionFunctions class.
     #'
     #' @param name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
-    #' @param description The description of what the function does.
-    #' @param parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+    #' @param description A description of what the function does, used by the model to choose when and how to call the function.
+    #' @param parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
     #' @param ... Other optional arguments.
     #' @export
     initialize = function(`name`, `description` = NULL, `parameters` = NULL, ...) {
@@ -57,13 +57,13 @@ ChatCompletionFunctions <- R6::R6Class(
     #' @export
     toJSON = function() {
       ChatCompletionFunctionsObject <- list()
-      if (!is.null(self$`name`)) {
-        ChatCompletionFunctionsObject[["name"]] <-
-          self$`name`
-      }
       if (!is.null(self$`description`)) {
         ChatCompletionFunctionsObject[["description"]] <-
           self$`description`
+      }
+      if (!is.null(self$`name`)) {
+        ChatCompletionFunctionsObject[["name"]] <-
+          self$`name`
       }
       if (!is.null(self$`parameters`)) {
         ChatCompletionFunctionsObject[["parameters"]] <-
@@ -81,11 +81,11 @@ ChatCompletionFunctions <- R6::R6Class(
     #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`name`)) {
-        self$`name` <- this_object$`name`
-      }
       if (!is.null(this_object$`description`)) {
         self$`description` <- this_object$`description`
+      }
+      if (!is.null(this_object$`name`)) {
+        self$`name` <- this_object$`name`
       }
       if (!is.null(this_object$`parameters`)) {
         self$`parameters` <- ApiClient$new()$deserializeObj(this_object$`parameters`, "map(AnyType)", loadNamespace("openapi"))
@@ -101,20 +101,20 @@ ChatCompletionFunctions <- R6::R6Class(
     #' @export
     toJSONString = function() {
       jsoncontent <- c(
-        if (!is.null(self$`name`)) {
-          sprintf(
-          '"name":
-            "%s"
-                    ',
-          self$`name`
-          )
-        },
         if (!is.null(self$`description`)) {
           sprintf(
           '"description":
             "%s"
                     ',
           self$`description`
+          )
+        },
+        if (!is.null(self$`name`)) {
+          sprintf(
+          '"name":
+            "%s"
+                    ',
+          self$`name`
           )
         },
         if (!is.null(self$`parameters`)) {
@@ -139,8 +139,8 @@ ChatCompletionFunctions <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`name` <- this_object$`name`
       self$`description` <- this_object$`description`
+      self$`name` <- this_object$`name`
       self$`parameters` <- ApiClient$new()$deserializeObj(this_object$`parameters`, "map(AnyType)", loadNamespace("openapi"))
       self
     },

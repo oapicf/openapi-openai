@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -63,32 +63,40 @@ ptree CreateCompletionResponse_choices_inner::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.put("text", m_Text);
+	pt.put("finish_reason", m_Finish_reason);
 	pt.put("index", m_Index);
 	pt.add_child("logprobs", m_Logprobs.toPropertyTree());
-	pt.put("finish_reason", m_Finish_reason);
+	pt.put("text", m_Text);
 	return pt;
 }
 
 void CreateCompletionResponse_choices_inner::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	m_Text = pt.get("text", "");
+	setFinishReason(pt.get("finish_reason", ""));
 	m_Index = pt.get("index", 0);
 	if (pt.get_child_optional("logprobs")) {
         m_Logprobs = fromPt<CreateCompletionResponse_choices_inner_logprobs>(pt.get_child("logprobs"));
 	}
-	setFinishReason(pt.get("finish_reason", ""));
+	m_Text = pt.get("text", "");
 }
 
-std::string CreateCompletionResponse_choices_inner::getText() const
+std::string CreateCompletionResponse_choices_inner::getFinishReason() const
 {
-    return m_Text;
+    return m_Finish_reason;
 }
 
-void CreateCompletionResponse_choices_inner::setText(std::string value)
+void CreateCompletionResponse_choices_inner::setFinishReason(std::string value)
 {
-    m_Text = value;
+    static const std::array<std::string, 3> allowedValues = {
+        "stop", "length", "content_filter"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Finish_reason = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 
@@ -114,22 +122,14 @@ void CreateCompletionResponse_choices_inner::setLogprobs(CreateCompletionRespons
 }
 
 
-std::string CreateCompletionResponse_choices_inner::getFinishReason() const
+std::string CreateCompletionResponse_choices_inner::getText() const
 {
-    return m_Finish_reason;
+    return m_Text;
 }
 
-void CreateCompletionResponse_choices_inner::setFinishReason(std::string value)
+void CreateCompletionResponse_choices_inner::setText(std::string value)
 {
-    static const std::array<std::string, 2> allowedValues = {
-        "stop", "length"
-    };
-
-    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
-		m_Finish_reason = value;
-	} else {
-		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
-	}
+    m_Text = value;
 }
 
 

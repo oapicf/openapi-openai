@@ -94,29 +94,58 @@ impl<C> Server<C> {
 
 use openapi_client::{
     Api,
-    CancelFineTuneResponse,
+    CancelRunResponse,
+    CreateAssistantResponse,
+    CreateAssistantFileResponse,
+    CreateMessageResponse,
+    CreateRunResponse,
+    CreateThreadResponse,
+    CreateThreadAndRunResponse,
+    DeleteAssistantResponse,
+    DeleteAssistantFileResponse,
+    DeleteThreadResponse,
+    GetAssistantResponse,
+    GetAssistantFileResponse,
+    GetMessageResponse,
+    GetMessageFileResponse,
+    GetRunResponse,
+    GetRunStepResponse,
+    GetThreadResponse,
+    ListAssistantFilesResponse,
+    ListAssistantsResponse,
+    ListMessageFilesResponse,
+    ListMessagesResponse,
+    ListRunStepsResponse,
+    ListRunsResponse,
+    ModifyAssistantResponse,
+    ModifyMessageResponse,
+    ModifyRunResponse,
+    ModifyThreadResponse,
+    SubmitToolOuputsToRunResponse,
+    CreateSpeechResponse,
+    CreateTranscriptionResponse,
+    CreateTranslationResponse,
     CreateChatCompletionResponse,
     CreateCompletionResponse,
-    CreateEditResponse,
     CreateEmbeddingResponse,
     CreateFileResponse,
-    CreateFineTuneResponse,
+    DeleteFileResponse,
+    DownloadFileResponse,
+    ListFilesResponse,
+    RetrieveFileResponse,
+    CancelFineTuningJobResponse,
+    CreateFineTuningJobResponse,
+    ListFineTuningEventsResponse,
+    ListFineTuningJobCheckpointsResponse,
+    ListPaginatedFineTuningJobsResponse,
+    RetrieveFineTuningJobResponse,
     CreateImageResponse,
     CreateImageEditResponse,
     CreateImageVariationResponse,
-    CreateModerationResponse,
-    CreateTranscriptionResponse,
-    CreateTranslationResponse,
-    DeleteFileResponse,
     DeleteModelResponse,
-    DownloadFileResponse,
-    ListFilesResponse,
-    ListFineTuneEventsResponse,
-    ListFineTunesResponse,
     ListModelsResponse,
-    RetrieveFileResponse,
-    RetrieveFineTuneResponse,
     RetrieveModelResponse,
+    CreateModerationResponse,
 };
 use openapi_client::server::MakeService;
 use std::error::Error;
@@ -125,13 +154,369 @@ use swagger::ApiError;
 #[async_trait]
 impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
 {
-    /// Immediately cancel a fine-tune job. 
-    async fn cancel_fine_tune(
+    /// Cancels a run that is `in_progress`.
+    async fn cancel_run(
         &self,
-        fine_tune_id: String,
-        context: &C) -> Result<CancelFineTuneResponse, ApiError>
+        thread_id: String,
+        run_id: String,
+        context: &C) -> Result<CancelRunResponse, ApiError>
     {
-        info!("cancel_fine_tune(\"{}\") - X-Span-ID: {:?}", fine_tune_id, context.get().0.clone());
+        info!("cancel_run(\"{}\", \"{}\") - X-Span-ID: {:?}", thread_id, run_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Create an assistant with a model and instructions.
+    async fn create_assistant(
+        &self,
+        create_assistant_request: models::CreateAssistantRequest,
+        context: &C) -> Result<CreateAssistantResponse, ApiError>
+    {
+        info!("create_assistant({:?}) - X-Span-ID: {:?}", create_assistant_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+    async fn create_assistant_file(
+        &self,
+        assistant_id: String,
+        create_assistant_file_request: models::CreateAssistantFileRequest,
+        context: &C) -> Result<CreateAssistantFileResponse, ApiError>
+    {
+        info!("create_assistant_file(\"{}\", {:?}) - X-Span-ID: {:?}", assistant_id, create_assistant_file_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Create a message.
+    async fn create_message(
+        &self,
+        thread_id: String,
+        create_message_request: models::CreateMessageRequest,
+        context: &C) -> Result<CreateMessageResponse, ApiError>
+    {
+        info!("create_message(\"{}\", {:?}) - X-Span-ID: {:?}", thread_id, create_message_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Create a run.
+    async fn create_run(
+        &self,
+        thread_id: String,
+        create_run_request: models::CreateRunRequest,
+        context: &C) -> Result<CreateRunResponse, ApiError>
+    {
+        info!("create_run(\"{}\", {:?}) - X-Span-ID: {:?}", thread_id, create_run_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Create a thread.
+    async fn create_thread(
+        &self,
+        create_thread_request: Option<models::CreateThreadRequest>,
+        context: &C) -> Result<CreateThreadResponse, ApiError>
+    {
+        info!("create_thread({:?}) - X-Span-ID: {:?}", create_thread_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Create a thread and run it in one request.
+    async fn create_thread_and_run(
+        &self,
+        create_thread_and_run_request: models::CreateThreadAndRunRequest,
+        context: &C) -> Result<CreateThreadAndRunResponse, ApiError>
+    {
+        info!("create_thread_and_run({:?}) - X-Span-ID: {:?}", create_thread_and_run_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Delete an assistant.
+    async fn delete_assistant(
+        &self,
+        assistant_id: String,
+        context: &C) -> Result<DeleteAssistantResponse, ApiError>
+    {
+        info!("delete_assistant(\"{}\") - X-Span-ID: {:?}", assistant_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Delete an assistant file.
+    async fn delete_assistant_file(
+        &self,
+        assistant_id: String,
+        file_id: String,
+        context: &C) -> Result<DeleteAssistantFileResponse, ApiError>
+    {
+        info!("delete_assistant_file(\"{}\", \"{}\") - X-Span-ID: {:?}", assistant_id, file_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Delete a thread.
+    async fn delete_thread(
+        &self,
+        thread_id: String,
+        context: &C) -> Result<DeleteThreadResponse, ApiError>
+    {
+        info!("delete_thread(\"{}\") - X-Span-ID: {:?}", thread_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Retrieves an assistant.
+    async fn get_assistant(
+        &self,
+        assistant_id: String,
+        context: &C) -> Result<GetAssistantResponse, ApiError>
+    {
+        info!("get_assistant(\"{}\") - X-Span-ID: {:?}", assistant_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Retrieves an AssistantFile.
+    async fn get_assistant_file(
+        &self,
+        assistant_id: String,
+        file_id: String,
+        context: &C) -> Result<GetAssistantFileResponse, ApiError>
+    {
+        info!("get_assistant_file(\"{}\", \"{}\") - X-Span-ID: {:?}", assistant_id, file_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Retrieve a message.
+    async fn get_message(
+        &self,
+        thread_id: String,
+        message_id: String,
+        context: &C) -> Result<GetMessageResponse, ApiError>
+    {
+        info!("get_message(\"{}\", \"{}\") - X-Span-ID: {:?}", thread_id, message_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Retrieves a message file.
+    async fn get_message_file(
+        &self,
+        thread_id: String,
+        message_id: String,
+        file_id: String,
+        context: &C) -> Result<GetMessageFileResponse, ApiError>
+    {
+        info!("get_message_file(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", thread_id, message_id, file_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Retrieves a run.
+    async fn get_run(
+        &self,
+        thread_id: String,
+        run_id: String,
+        context: &C) -> Result<GetRunResponse, ApiError>
+    {
+        info!("get_run(\"{}\", \"{}\") - X-Span-ID: {:?}", thread_id, run_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Retrieves a run step.
+    async fn get_run_step(
+        &self,
+        thread_id: String,
+        run_id: String,
+        step_id: String,
+        context: &C) -> Result<GetRunStepResponse, ApiError>
+    {
+        info!("get_run_step(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", thread_id, run_id, step_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Retrieves a thread.
+    async fn get_thread(
+        &self,
+        thread_id: String,
+        context: &C) -> Result<GetThreadResponse, ApiError>
+    {
+        info!("get_thread(\"{}\") - X-Span-ID: {:?}", thread_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Returns a list of assistant files.
+    async fn list_assistant_files(
+        &self,
+        assistant_id: String,
+        limit: Option<i32>,
+        order: Option<String>,
+        after: Option<String>,
+        before: Option<String>,
+        context: &C) -> Result<ListAssistantFilesResponse, ApiError>
+    {
+        info!("list_assistant_files(\"{}\", {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", assistant_id, limit, order, after, before, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Returns a list of assistants.
+    async fn list_assistants(
+        &self,
+        limit: Option<i32>,
+        order: Option<String>,
+        after: Option<String>,
+        before: Option<String>,
+        context: &C) -> Result<ListAssistantsResponse, ApiError>
+    {
+        info!("list_assistants({:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", limit, order, after, before, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Returns a list of message files.
+    async fn list_message_files(
+        &self,
+        thread_id: String,
+        message_id: String,
+        limit: Option<i32>,
+        order: Option<String>,
+        after: Option<String>,
+        before: Option<String>,
+        context: &C) -> Result<ListMessageFilesResponse, ApiError>
+    {
+        info!("list_message_files(\"{}\", \"{}\", {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", thread_id, message_id, limit, order, after, before, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Returns a list of messages for a given thread.
+    async fn list_messages(
+        &self,
+        thread_id: String,
+        limit: Option<i32>,
+        order: Option<String>,
+        after: Option<String>,
+        before: Option<String>,
+        run_id: Option<String>,
+        context: &C) -> Result<ListMessagesResponse, ApiError>
+    {
+        info!("list_messages(\"{}\", {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", thread_id, limit, order, after, before, run_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Returns a list of run steps belonging to a run.
+    async fn list_run_steps(
+        &self,
+        thread_id: String,
+        run_id: String,
+        limit: Option<i32>,
+        order: Option<String>,
+        after: Option<String>,
+        before: Option<String>,
+        context: &C) -> Result<ListRunStepsResponse, ApiError>
+    {
+        info!("list_run_steps(\"{}\", \"{}\", {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", thread_id, run_id, limit, order, after, before, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Returns a list of runs belonging to a thread.
+    async fn list_runs(
+        &self,
+        thread_id: String,
+        limit: Option<i32>,
+        order: Option<String>,
+        after: Option<String>,
+        before: Option<String>,
+        context: &C) -> Result<ListRunsResponse, ApiError>
+    {
+        info!("list_runs(\"{}\", {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", thread_id, limit, order, after, before, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Modifies an assistant.
+    async fn modify_assistant(
+        &self,
+        assistant_id: String,
+        modify_assistant_request: models::ModifyAssistantRequest,
+        context: &C) -> Result<ModifyAssistantResponse, ApiError>
+    {
+        info!("modify_assistant(\"{}\", {:?}) - X-Span-ID: {:?}", assistant_id, modify_assistant_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Modifies a message.
+    async fn modify_message(
+        &self,
+        thread_id: String,
+        message_id: String,
+        modify_message_request: models::ModifyMessageRequest,
+        context: &C) -> Result<ModifyMessageResponse, ApiError>
+    {
+        info!("modify_message(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", thread_id, message_id, modify_message_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Modifies a run.
+    async fn modify_run(
+        &self,
+        thread_id: String,
+        run_id: String,
+        modify_run_request: models::ModifyRunRequest,
+        context: &C) -> Result<ModifyRunResponse, ApiError>
+    {
+        info!("modify_run(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", thread_id, run_id, modify_run_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Modifies a thread.
+    async fn modify_thread(
+        &self,
+        thread_id: String,
+        modify_thread_request: models::ModifyThreadRequest,
+        context: &C) -> Result<ModifyThreadResponse, ApiError>
+    {
+        info!("modify_thread(\"{}\", {:?}) - X-Span-ID: {:?}", thread_id, modify_thread_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request. 
+    async fn submit_tool_ouputs_to_run(
+        &self,
+        thread_id: String,
+        run_id: String,
+        submit_tool_outputs_run_request: models::SubmitToolOutputsRunRequest,
+        context: &C) -> Result<SubmitToolOuputsToRunResponse, ApiError>
+    {
+        info!("submit_tool_ouputs_to_run(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", thread_id, run_id, submit_tool_outputs_run_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Generates audio from the input text.
+    async fn create_speech(
+        &self,
+        create_speech_request: models::CreateSpeechRequest,
+        context: &C) -> Result<CreateSpeechResponse, ApiError>
+    {
+        info!("create_speech({:?}) - X-Span-ID: {:?}", create_speech_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Transcribes audio into the input language.
+    async fn create_transcription(
+        &self,
+        file: swagger::ByteArray,
+        model: models::CreateTranscriptionRequestModel,
+        language: Option<String>,
+        prompt: Option<String>,
+        response_format: Option<String>,
+        temperature: Option<f64>,
+        timestamp_granularities_left_square_bracket_right_square_bracket: Option<&Vec<String>>,
+        context: &C) -> Result<CreateTranscriptionResponse, ApiError>
+    {
+        info!("create_transcription({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", file, model, language, prompt, response_format, temperature, timestamp_granularities_left_square_bracket_right_square_bracket, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Translates audio into English.
+    async fn create_translation(
+        &self,
+        file: swagger::ByteArray,
+        model: models::CreateTranscriptionRequestModel,
+        prompt: Option<String>,
+        response_format: Option<String>,
+        temperature: Option<f64>,
+        context: &C) -> Result<CreateTranslationResponse, ApiError>
+    {
+        info!("create_translation({:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", file, model, prompt, response_format, temperature, context.get().0.clone());
         Err(ApiError("Generic failure".into()))
     }
 
@@ -155,16 +540,6 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         Err(ApiError("Generic failure".into()))
     }
 
-    /// Creates a new edit for the provided input, instruction, and parameters.
-    async fn create_edit(
-        &self,
-        create_edit_request: models::CreateEditRequest,
-        context: &C) -> Result<CreateEditResponse, ApiError>
-    {
-        info!("create_edit({:?}) - X-Span-ID: {:?}", create_edit_request, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
     /// Creates an embedding vector representing the input text.
     async fn create_embedding(
         &self,
@@ -175,7 +550,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         Err(ApiError("Generic failure".into()))
     }
 
-    /// Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
+    /// Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
     async fn create_file(
         &self,
         file: swagger::ByteArray,
@@ -186,13 +561,108 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         Err(ApiError("Generic failure".into()))
     }
 
-    /// Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-    async fn create_fine_tune(
+    /// Delete a file.
+    async fn delete_file(
         &self,
-        create_fine_tune_request: models::CreateFineTuneRequest,
-        context: &C) -> Result<CreateFineTuneResponse, ApiError>
+        file_id: String,
+        context: &C) -> Result<DeleteFileResponse, ApiError>
     {
-        info!("create_fine_tune({:?}) - X-Span-ID: {:?}", create_fine_tune_request, context.get().0.clone());
+        info!("delete_file(\"{}\") - X-Span-ID: {:?}", file_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Returns the contents of the specified file.
+    async fn download_file(
+        &self,
+        file_id: String,
+        context: &C) -> Result<DownloadFileResponse, ApiError>
+    {
+        info!("download_file(\"{}\") - X-Span-ID: {:?}", file_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Returns a list of files that belong to the user's organization.
+    async fn list_files(
+        &self,
+        purpose: Option<String>,
+        context: &C) -> Result<ListFilesResponse, ApiError>
+    {
+        info!("list_files({:?}) - X-Span-ID: {:?}", purpose, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Returns information about a specific file.
+    async fn retrieve_file(
+        &self,
+        file_id: String,
+        context: &C) -> Result<RetrieveFileResponse, ApiError>
+    {
+        info!("retrieve_file(\"{}\") - X-Span-ID: {:?}", file_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Immediately cancel a fine-tune job. 
+    async fn cancel_fine_tuning_job(
+        &self,
+        fine_tuning_job_id: String,
+        context: &C) -> Result<CancelFineTuningJobResponse, ApiError>
+    {
+        info!("cancel_fine_tuning_job(\"{}\") - X-Span-ID: {:?}", fine_tuning_job_id, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+    async fn create_fine_tuning_job(
+        &self,
+        create_fine_tuning_job_request: models::CreateFineTuningJobRequest,
+        context: &C) -> Result<CreateFineTuningJobResponse, ApiError>
+    {
+        info!("create_fine_tuning_job({:?}) - X-Span-ID: {:?}", create_fine_tuning_job_request, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Get status updates for a fine-tuning job. 
+    async fn list_fine_tuning_events(
+        &self,
+        fine_tuning_job_id: String,
+        after: Option<String>,
+        limit: Option<i32>,
+        context: &C) -> Result<ListFineTuningEventsResponse, ApiError>
+    {
+        info!("list_fine_tuning_events(\"{}\", {:?}, {:?}) - X-Span-ID: {:?}", fine_tuning_job_id, after, limit, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// List checkpoints for a fine-tuning job. 
+    async fn list_fine_tuning_job_checkpoints(
+        &self,
+        fine_tuning_job_id: String,
+        after: Option<String>,
+        limit: Option<i32>,
+        context: &C) -> Result<ListFineTuningJobCheckpointsResponse, ApiError>
+    {
+        info!("list_fine_tuning_job_checkpoints(\"{}\", {:?}, {:?}) - X-Span-ID: {:?}", fine_tuning_job_id, after, limit, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// List your organization's fine-tuning jobs 
+    async fn list_paginated_fine_tuning_jobs(
+        &self,
+        after: Option<String>,
+        limit: Option<i32>,
+        context: &C) -> Result<ListPaginatedFineTuningJobsResponse, ApiError>
+    {
+        info!("list_paginated_fine_tuning_jobs({:?}, {:?}) - X-Span-ID: {:?}", after, limit, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+    async fn retrieve_fine_tuning_job(
+        &self,
+        fine_tuning_job_id: String,
+        context: &C) -> Result<RetrieveFineTuningJobResponse, ApiError>
+    {
+        info!("retrieve_fine_tuning_job(\"{}\") - X-Span-ID: {:?}", fine_tuning_job_id, context.get().0.clone());
         Err(ApiError("Generic failure".into()))
     }
 
@@ -212,13 +682,14 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         image: swagger::ByteArray,
         prompt: String,
         mask: Option<swagger::ByteArray>,
+        model: Option<models::CreateImageEditRequestModel>,
         n: Option<i32>,
         size: Option<String>,
         response_format: Option<String>,
         user: Option<String>,
         context: &C) -> Result<CreateImageEditResponse, ApiError>
     {
-        info!("create_image_edit({:?}, \"{}\", {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", image, prompt, mask, n, size, response_format, user, context.get().0.clone());
+        info!("create_image_edit({:?}, \"{}\", {:?}, {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", image, prompt, mask, model, n, size, response_format, user, context.get().0.clone());
         Err(ApiError("Generic failure".into()))
     }
 
@@ -226,111 +697,24 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     async fn create_image_variation(
         &self,
         image: swagger::ByteArray,
+        model: Option<models::CreateImageEditRequestModel>,
         n: Option<i32>,
-        size: Option<String>,
         response_format: Option<String>,
+        size: Option<String>,
         user: Option<String>,
         context: &C) -> Result<CreateImageVariationResponse, ApiError>
     {
-        info!("create_image_variation({:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", image, n, size, response_format, user, context.get().0.clone());
+        info!("create_image_variation({:?}, {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", image, model, n, response_format, size, user, context.get().0.clone());
         Err(ApiError("Generic failure".into()))
     }
 
-    /// Classifies if text violates OpenAI's Content Policy
-    async fn create_moderation(
-        &self,
-        create_moderation_request: models::CreateModerationRequest,
-        context: &C) -> Result<CreateModerationResponse, ApiError>
-    {
-        info!("create_moderation({:?}) - X-Span-ID: {:?}", create_moderation_request, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
-    /// Transcribes audio into the input language.
-    async fn create_transcription(
-        &self,
-        file: swagger::ByteArray,
-        model: models::CreateTranscriptionRequestModel,
-        prompt: Option<String>,
-        response_format: Option<String>,
-        temperature: Option<f64>,
-        language: Option<String>,
-        context: &C) -> Result<CreateTranscriptionResponse, ApiError>
-    {
-        info!("create_transcription({:?}, {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", file, model, prompt, response_format, temperature, language, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
-    /// Translates audio into English.
-    async fn create_translation(
-        &self,
-        file: swagger::ByteArray,
-        model: models::CreateTranscriptionRequestModel,
-        prompt: Option<String>,
-        response_format: Option<String>,
-        temperature: Option<f64>,
-        context: &C) -> Result<CreateTranslationResponse, ApiError>
-    {
-        info!("create_translation({:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", file, model, prompt, response_format, temperature, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
-    /// Delete a file.
-    async fn delete_file(
-        &self,
-        file_id: String,
-        context: &C) -> Result<DeleteFileResponse, ApiError>
-    {
-        info!("delete_file(\"{}\") - X-Span-ID: {:?}", file_id, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
-    /// Delete a fine-tuned model. You must have the Owner role in your organization.
+    /// Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
     async fn delete_model(
         &self,
         model: String,
         context: &C) -> Result<DeleteModelResponse, ApiError>
     {
         info!("delete_model(\"{}\") - X-Span-ID: {:?}", model, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
-    /// Returns the contents of the specified file
-    async fn download_file(
-        &self,
-        file_id: String,
-        context: &C) -> Result<DownloadFileResponse, ApiError>
-    {
-        info!("download_file(\"{}\") - X-Span-ID: {:?}", file_id, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
-    /// Returns a list of files that belong to the user's organization.
-    async fn list_files(
-        &self,
-        context: &C) -> Result<ListFilesResponse, ApiError>
-    {
-        info!("list_files() - X-Span-ID: {:?}", context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
-    /// Get fine-grained status updates for a fine-tune job. 
-    async fn list_fine_tune_events(
-        &self,
-        fine_tune_id: String,
-        stream: Option<bool>,
-        context: &C) -> Result<ListFineTuneEventsResponse, ApiError>
-    {
-        info!("list_fine_tune_events(\"{}\", {:?}) - X-Span-ID: {:?}", fine_tune_id, stream, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
-    /// List your organization's fine-tuning jobs 
-    async fn list_fine_tunes(
-        &self,
-        context: &C) -> Result<ListFineTunesResponse, ApiError>
-    {
-        info!("list_fine_tunes() - X-Span-ID: {:?}", context.get().0.clone());
         Err(ApiError("Generic failure".into()))
     }
 
@@ -343,26 +727,6 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         Err(ApiError("Generic failure".into()))
     }
 
-    /// Returns information about a specific file.
-    async fn retrieve_file(
-        &self,
-        file_id: String,
-        context: &C) -> Result<RetrieveFileResponse, ApiError>
-    {
-        info!("retrieve_file(\"{}\") - X-Span-ID: {:?}", file_id, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
-    /// Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-    async fn retrieve_fine_tune(
-        &self,
-        fine_tune_id: String,
-        context: &C) -> Result<RetrieveFineTuneResponse, ApiError>
-    {
-        info!("retrieve_fine_tune(\"{}\") - X-Span-ID: {:?}", fine_tune_id, context.get().0.clone());
-        Err(ApiError("Generic failure".into()))
-    }
-
     /// Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
     async fn retrieve_model(
         &self,
@@ -370,6 +734,16 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         context: &C) -> Result<RetrieveModelResponse, ApiError>
     {
         info!("retrieve_model(\"{}\") - X-Span-ID: {:?}", model, context.get().0.clone());
+        Err(ApiError("Generic failure".into()))
+    }
+
+    /// Classifies if text is potentially harmful.
+    async fn create_moderation(
+        &self,
+        create_moderation_request: models::CreateModerationRequest,
+        context: &C) -> Result<CreateModerationResponse, ApiError>
+    {
+        info!("create_moderation({:?}) - X-Span-ID: {:?}", create_moderation_request, context.get().0.clone());
         Err(ApiError("Generic failure".into()))
     }
 

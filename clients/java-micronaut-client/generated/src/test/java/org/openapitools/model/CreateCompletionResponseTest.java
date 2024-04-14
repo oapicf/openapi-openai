@@ -3,8 +3,8 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateCompletionResponseChoicesInner;
-import org.openapitools.model.CreateCompletionResponseUsage;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -33,11 +33,11 @@ public class CreateCompletionResponseTest {
     }
 
     /**
-     * Test the property '_object'
+     * Test the property 'choices'
      */
     @Test
-    public void _objectTest() {
-        // TODO: test _object
+    public void choicesTest() {
+        // TODO: test choices
     }
 
     /**
@@ -57,11 +57,19 @@ public class CreateCompletionResponseTest {
     }
 
     /**
-     * Test the property 'choices'
+     * Test the property 'systemFingerprint'
      */
     @Test
-    public void choicesTest() {
-        // TODO: test choices
+    public void systemFingerprintTest() {
+        // TODO: test systemFingerprint
+    }
+
+    /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
     }
 
     /**

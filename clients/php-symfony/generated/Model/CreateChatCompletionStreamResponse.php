@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,6 +37,8 @@ use JMS\Serializer\Annotation\SerializedName;
 /**
  * Class representing the CreateChatCompletionStreamResponse model.
  *
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+ *
  * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
@@ -44,6 +46,8 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateChatCompletionStreamResponse 
 {
         /**
+     * A unique identifier for the chat completion. Each chunk has the same ID.
+     *
      * @var string|null
      * @SerializedName("id")
      * @Assert\NotNull()
@@ -53,33 +57,8 @@ class CreateChatCompletionStreamResponse
     protected ?string $id = null;
 
     /**
-     * @var string|null
-     * @SerializedName("object")
-     * @Assert\NotNull()
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected ?string $object = null;
-
-    /**
-     * @var int|null
-     * @SerializedName("created")
-     * @Assert\NotNull()
-     * @Assert\Type("int")
-     * @Type("int")
-     */
-    protected ?int $created = null;
-
-    /**
-     * @var string|null
-     * @SerializedName("model")
-     * @Assert\NotNull()
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected ?string $model = null;
-
-    /**
+     * A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
+     *
      * @var CreateChatCompletionStreamResponseChoicesInner[]|null
      * @SerializedName("choices")
      * @Assert\NotNull()
@@ -92,6 +71,50 @@ class CreateChatCompletionStreamResponse
     protected ?array $choices = null;
 
     /**
+     * The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+     *
+     * @var int|null
+     * @SerializedName("created")
+     * @Assert\NotNull()
+     * @Assert\Type("int")
+     * @Type("int")
+     */
+    protected ?int $created = null;
+
+    /**
+     * The model to generate the completion.
+     *
+     * @var string|null
+     * @SerializedName("model")
+     * @Assert\NotNull()
+     * @Assert\Type("string")
+     * @Type("string")
+     */
+    protected ?string $model = null;
+
+    /**
+     * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism.
+     *
+     * @var string|null
+     * @SerializedName("system_fingerprint")
+     * @Assert\Type("string")
+     * @Type("string")
+     */
+    protected ?string $systemFingerprint = null;
+
+    /**
+     * The object type, which is always &#x60;chat.completion.chunk&#x60;.
+     *
+     * @var string|null
+     * @SerializedName("object")
+     * @Assert\NotNull()
+     * @Assert\Choice({ "chat.completion.chunk" })
+     * @Assert\Type("string")
+     * @Type("string")
+     */
+    protected ?string $object = null;
+
+    /**
      * Constructor
      * @param array|null $data Associated array of property values initializing the model
      */
@@ -99,10 +122,11 @@ class CreateChatCompletionStreamResponse
     {
         if (is_array($data)) {
             $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
-            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
+            $this->choices = array_key_exists('choices', $data) ? $data['choices'] : $this->choices;
             $this->created = array_key_exists('created', $data) ? $data['created'] : $this->created;
             $this->model = array_key_exists('model', $data) ? $data['model'] : $this->model;
-            $this->choices = array_key_exists('choices', $data) ? $data['choices'] : $this->choices;
+            $this->systemFingerprint = array_key_exists('systemFingerprint', $data) ? $data['systemFingerprint'] : $this->systemFingerprint;
+            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
         }
     }
 
@@ -121,7 +145,7 @@ class CreateChatCompletionStreamResponse
     /**
      * Sets id.
      *
-     * @param string|null $id
+     * @param string|null $id  A unique identifier for the chat completion. Each chunk has the same ID.
      *
      * @return $this
      */
@@ -133,27 +157,27 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-     * Gets object.
+     * Gets choices.
      *
-     * @return string|null
+     * @return CreateChatCompletionStreamResponseChoicesInner[]|null
      */
-    public function getObject(): ?string
+    public function getChoices(): ?array
     {
-        return $this->object;
+        return $this->choices;
     }
 
 
 
     /**
-     * Sets object.
+     * Sets choices.
      *
-     * @param string|null $object
+     * @param CreateChatCompletionStreamResponseChoicesInner[]|null $choices  A list of chat completion choices. Can be more than one if `n` is greater than 1.
      *
      * @return $this
      */
-    public function setObject(?string $object): self
+    public function setChoices(?array $choices): self
     {
-        $this->object = $object;
+        $this->choices = $choices;
 
         return $this;
     }
@@ -173,7 +197,7 @@ class CreateChatCompletionStreamResponse
     /**
      * Sets created.
      *
-     * @param int|null $created
+     * @param int|null $created  The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
      *
      * @return $this
      */
@@ -199,7 +223,7 @@ class CreateChatCompletionStreamResponse
     /**
      * Sets model.
      *
-     * @param string|null $model
+     * @param string|null $model  The model to generate the completion.
      *
      * @return $this
      */
@@ -211,27 +235,53 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-     * Gets choices.
+     * Gets systemFingerprint.
      *
-     * @return CreateChatCompletionStreamResponseChoicesInner[]|null
+     * @return string|null
      */
-    public function getChoices(): ?array
+    public function getSystemFingerprint(): ?string
     {
-        return $this->choices;
+        return $this->systemFingerprint;
     }
 
 
 
     /**
-     * Sets choices.
+     * Sets systemFingerprint.
      *
-     * @param CreateChatCompletionStreamResponseChoicesInner[]|null $choices
+     * @param string|null $systemFingerprint  This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
      *
      * @return $this
      */
-    public function setChoices(?array $choices): self
+    public function setSystemFingerprint(?string $systemFingerprint = null): self
     {
-        $this->choices = $choices;
+        $this->systemFingerprint = $systemFingerprint;
+
+        return $this;
+    }
+
+    /**
+     * Gets object.
+     *
+     * @return string|null
+     */
+    public function getObject(): ?string
+    {
+        return $this->object;
+    }
+
+
+
+    /**
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `chat.completion.chunk`.
+     *
+     * @return $this
+     */
+    public function setObject(?string $object): self
+    {
+        $this->object = $object;
 
         return $this;
     }

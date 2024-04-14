@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -18,32 +18,50 @@ import com.google.gson.annotations.SerializedName
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
- * 
- * @param id 
- * @param &#x60;object&#x60; 
- * @param created 
- * @param model 
- * @param choices 
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+ * @param id A unique identifier for the chat completion. Each chunk has the same ID.
+ * @param choices A list of chat completion choices. Can be more than one if `n` is greater than 1.
+ * @param created The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+ * @param model The model to generate the completion.
+ * @param &#x60;object&#x60; The object type, which is always `chat.completion.chunk`.
+ * @param systemFingerprint This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateChatCompletionStreamResponse (
+    /* A unique identifier for the chat completion. Each chunk has the same ID. */
     @SerializedName("id") private val _id: kotlin.String?,
-    @SerializedName("`object`") private val _`object`: kotlin.String?,
+    /* A list of chat completion choices. Can be more than one if `n` is greater than 1. */
+    @SerializedName("choices") private val _choices: kotlin.Array<CreateChatCompletionStreamResponseChoicesInner>?,
+    /* The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. */
     @SerializedName("created") private val _created: kotlin.Int?,
+    /* The model to generate the completion. */
     @SerializedName("model") private val _model: kotlin.String?,
-    @SerializedName("choices") private val _choices: kotlin.Array<CreateChatCompletionStreamResponseChoicesInner>?
+    /* The object type, which is always `chat.completion.chunk`. */
+    @SerializedName("`object`") private val _`object`: CreateChatCompletionStreamResponse.&#x60;Object&#x60;?,
+    /* This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
+    val systemFingerprint: kotlin.String? = null
 ) {
+
+    /**
+    * The object type, which is always `chat.completion.chunk`.
+    * Values: chatPeriodCompletionPeriodChunk
+    */
+    enum class &#x60;Object&#x60;(val value: kotlin.String){
+    
+        chatPeriodCompletionPeriodChunk("chat.completion.chunk");
+    
+    }
 
         val id get() = _id ?: throw IllegalArgumentException("id is required")
                     
-        val `object` get() = _`object` ?: throw IllegalArgumentException("`object` is required")
+        val choices get() = _choices ?: throw IllegalArgumentException("choices is required")
                     
         val created get() = _created ?: throw IllegalArgumentException("created is required")
                     
         val model get() = _model ?: throw IllegalArgumentException("model is required")
                     
-        val choices get() = _choices ?: throw IllegalArgumentException("choices is required")
+        val `object` get() = _`object` ?: throw IllegalArgumentException("`object` is required")
                     
 }
 

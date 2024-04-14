@@ -9,10 +9,15 @@ module CreateEmbeddingRequest =
 
   //#region CreateEmbeddingRequest
 
+  //#region enums
+  type EncodingFormatEnum = FloatEnum of string  |  Base64Enum of string  
+  //#endregion
 
   type CreateEmbeddingRequest = {
-    Model : CreateEmbeddingRequestModel;
     Input : CreateEmbeddingRequestInput;
+    Model : CreateEmbeddingRequestModel;
+    EncodingFormat : EncodingFormatEnum;
+    Dimensions : int;
     User : string;
   }
   //#endregion

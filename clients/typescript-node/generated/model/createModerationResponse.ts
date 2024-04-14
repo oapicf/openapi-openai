@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,9 +13,21 @@
 import { RequestFile } from './models';
 import { CreateModerationResponseResultsInner } from './createModerationResponseResultsInner';
 
+/**
+* Represents if a given text input is potentially harmful.
+*/
 export class CreateModerationResponse {
+    /**
+    * The unique identifier for the moderation request.
+    */
     'id': string;
+    /**
+    * The model used to generate the moderation results.
+    */
     'model': string;
+    /**
+    * A list of moderation objects.
+    */
     'results': Array<CreateModerationResponseResultsInner>;
 
     static discriminator: string | undefined = undefined;

@@ -12,11 +12,30 @@ import org.joda.time.DateTime
 import ListFilesResponse._
 
 case class ListFilesResponse (
-  `object`: String,
-data: List[OpenAIFile])
+  data: List[OpenAIFile],
+`object`: `Object`)
 
 object ListFilesResponse {
   import DateTimeCodecs._
+  sealed trait `Object`
+  case object List extends `Object`
+
+  object `Object` {
+    def to`Object`(s: String): Option[`Object`] = s match {
+      case "List" => Some(List)
+      case _ => None
+    }
+
+    def from`Object`(x: `Object`): String = x match {
+      case List => "List"
+    }
+  }
+
+  implicit val `Object`EnumEncoder: EncodeJson[`Object`] =
+    EncodeJson[`Object`](is => StringEncodeJson(`Object`.from`Object`(is)))
+
+  implicit val `Object`EnumDecoder: DecodeJson[`Object`] =
+    DecodeJson.optionDecoder[`Object`](n => n.string.flatMap(jStr => `Object`.to`Object`(jStr)), "`Object` failed to de-serialize")
 
   implicit val ListFilesResponseCodecJson: CodecJson[ListFilesResponse] = CodecJson.derive[ListFilesResponse]
   implicit val ListFilesResponseDecoder: EntityDecoder[ListFilesResponse] = jsonOf[ListFilesResponse]

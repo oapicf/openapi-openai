@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -17,8 +17,8 @@ module OpenAPIClient
     include JSON::Serializable
 
     # Required properties
-    @[JSON::Field(key: "type", type: String, nillable: false, emit_null: false)]
-    property _type : String
+    @[JSON::Field(key: "code", type: String, nillable: false, emit_null: false)]
+    property code : String
 
     @[JSON::Field(key: "message", type: String, nillable: false, emit_null: false)]
     property message : String
@@ -26,12 +26,12 @@ module OpenAPIClient
     @[JSON::Field(key: "param", type: String, nillable: false, emit_null: false)]
     property param : String
 
-    @[JSON::Field(key: "code", type: String, nillable: false, emit_null: false)]
-    property code : String
+    @[JSON::Field(key: "type", type: String, nillable: false, emit_null: false)]
+    property _type : String
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@_type : String, @message : String, @param : String, @code : String)
+    def initialize(@code : String, @message : String, @param : String, @_type : String)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -52,10 +52,10 @@ module OpenAPIClient
     def ==(o)
       return true if self.same?(o)
       self.class == o.class &&
-          _type == o._type &&
+          code == o.code &&
           message == o.message &&
           param == o.param &&
-          code == o.code
+          _type == o._type
     end
 
     # @see the `==` method
@@ -67,7 +67,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [_type, message, param, code].hash
+      [code, message, param, _type].hash
     end
 
     # Builds the object from hash

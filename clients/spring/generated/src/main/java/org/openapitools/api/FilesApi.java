@@ -34,9 +34,9 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Validated
-@Tag(name = "OpenAI", description = "The OpenAI REST API")
+@Tag(name = "Files", description = "Files are used to upload documents that can be used with features like Assistants and Fine-tuning.")
 public interface FilesApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -44,20 +44,23 @@ public interface FilesApi {
     }
 
     /**
-     * POST /files : Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
+     * POST /files : Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      *
-     * @param file Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.  If the &#x60;purpose&#x60; is set to \\\&quot;fine-tune\\\&quot;, each line is a JSON record with \\\&quot;prompt\\\&quot; and \\\&quot;completion\\\&quot; fields representing your [training examples](/docs/guides/fine-tuning/prepare-training-data).  (required)
-     * @param purpose The intended purpose of the uploaded documents.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tunes). This allows us to validate the format of the uploaded file.  (required)
+     * @param file The File object (not file name) to be uploaded.  (required)
+     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning.  (required)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "createFile",
-        summary = "Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. ",
-        tags = { "OpenAI" },
+        summary = "Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ",
+        tags = { "Files" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = OpenAIFile.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -68,13 +71,13 @@ public interface FilesApi {
     )
     
     default ResponseEntity<OpenAIFile> createFile(
-        @Parameter(name = "file", description = "Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.  If the `purpose` is set to \\\"fine-tune\\\", each line is a JSON record with \\\"prompt\\\" and \\\"completion\\\" fields representing your [training examples](/docs/guides/fine-tuning/prepare-training-data). ", required = true) @RequestPart(value = "file", required = true) MultipartFile file,
-        @Parameter(name = "purpose", description = "The intended purpose of the uploaded documents.  Use \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tunes). This allows us to validate the format of the uploaded file. ", required = true) @Valid @RequestParam(value = "purpose", required = true) String purpose
+        @Parameter(name = "file", description = "The File object (not file name) to be uploaded. ", required = true) @RequestPart(value = "file", required = true) MultipartFile file,
+        @Parameter(name = "purpose", description = "The intended purpose of the uploaded file.  Use \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. ", required = true) @Valid @RequestParam(value = "purpose", required = true) String purpose
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"filename\" : \"filename\", \"purpose\" : \"purpose\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"{}\", \"object\" : \"object\", \"status\" : \"status\" }";
+                    String exampleString = "{ \"filename\" : \"filename\", \"purpose\" : \"fine-tune\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -88,17 +91,20 @@ public interface FilesApi {
     /**
      * DELETE /files/{file_id} : Delete a file.
      *
-     * @param fileId The ID of the file to use for this request (required)
+     * @param fileId The ID of the file to use for this request. (required)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "deleteFile",
         summary = "Delete a file.",
-        tags = { "OpenAI" },
+        tags = { "Files" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = DeleteFileResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -108,12 +114,12 @@ public interface FilesApi {
     )
     
     default ResponseEntity<DeleteFileResponse> deleteFile(
-        @Parameter(name = "file_id", description = "The ID of the file to use for this request", required = true, in = ParameterIn.PATH) @PathVariable("file_id") String fileId
+        @Parameter(name = "file_id", description = "The ID of the file to use for this request.", required = true, in = ParameterIn.PATH) @PathVariable("file_id") String fileId
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"deleted\" : true, \"id\" : \"id\", \"object\" : \"object\" }";
+                    String exampleString = "{ \"deleted\" : true, \"id\" : \"id\", \"object\" : \"file\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -125,19 +131,22 @@ public interface FilesApi {
 
 
     /**
-     * GET /files/{file_id}/content : Returns the contents of the specified file
+     * GET /files/{file_id}/content : Returns the contents of the specified file.
      *
-     * @param fileId The ID of the file to use for this request (required)
+     * @param fileId The ID of the file to use for this request. (required)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "downloadFile",
-        summary = "Returns the contents of the specified file",
-        tags = { "OpenAI" },
+        summary = "Returns the contents of the specified file.",
+        tags = { "Files" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -147,7 +156,7 @@ public interface FilesApi {
     )
     
     default ResponseEntity<String> downloadFile(
-        @Parameter(name = "file_id", description = "The ID of the file to use for this request", required = true, in = ParameterIn.PATH) @PathVariable("file_id") String fileId
+        @Parameter(name = "file_id", description = "The ID of the file to use for this request.", required = true, in = ParameterIn.PATH) @PathVariable("file_id") String fileId
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -157,16 +166,20 @@ public interface FilesApi {
     /**
      * GET /files : Returns a list of files that belong to the user&#39;s organization.
      *
+     * @param purpose Only return files with the given purpose. (optional)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "listFiles",
         summary = "Returns a list of files that belong to the user's organization.",
-        tags = { "OpenAI" },
+        tags = { "Files" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ListFilesResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -176,12 +189,12 @@ public interface FilesApi {
     )
     
     default ResponseEntity<ListFilesResponse> listFiles(
-        
+        @Parameter(name = "purpose", description = "Only return files with the given purpose.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "purpose", required = false) String purpose
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"data\" : [ { \"filename\" : \"filename\", \"purpose\" : \"purpose\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"{}\", \"object\" : \"object\", \"status\" : \"status\" }, { \"filename\" : \"filename\", \"purpose\" : \"purpose\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"{}\", \"object\" : \"object\", \"status\" : \"status\" } ], \"object\" : \"object\" }";
+                    String exampleString = "{ \"data\" : [ { \"filename\" : \"filename\", \"purpose\" : \"fine-tune\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" }, { \"filename\" : \"filename\", \"purpose\" : \"fine-tune\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" } ], \"object\" : \"list\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -195,17 +208,20 @@ public interface FilesApi {
     /**
      * GET /files/{file_id} : Returns information about a specific file.
      *
-     * @param fileId The ID of the file to use for this request (required)
+     * @param fileId The ID of the file to use for this request. (required)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "retrieveFile",
         summary = "Returns information about a specific file.",
-        tags = { "OpenAI" },
+        tags = { "Files" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = OpenAIFile.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -215,12 +231,12 @@ public interface FilesApi {
     )
     
     default ResponseEntity<OpenAIFile> retrieveFile(
-        @Parameter(name = "file_id", description = "The ID of the file to use for this request", required = true, in = ParameterIn.PATH) @PathVariable("file_id") String fileId
+        @Parameter(name = "file_id", description = "The ID of the file to use for this request.", required = true, in = ParameterIn.PATH) @PathVariable("file_id") String fileId
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"filename\" : \"filename\", \"purpose\" : \"purpose\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"{}\", \"object\" : \"object\", \"status\" : \"status\" }";
+                    String exampleString = "{ \"filename\" : \"filename\", \"purpose\" : \"fine-tune\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

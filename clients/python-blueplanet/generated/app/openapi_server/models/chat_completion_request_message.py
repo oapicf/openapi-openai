@@ -6,7 +6,13 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
-from app.openapi_server.models.chat_completion_request_message_function_call import ChatCompletionRequestMessageFunctionCall  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_message_tool_call import ChatCompletionMessageToolCall  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_request_assistant_message import ChatCompletionRequestAssistantMessage  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_request_assistant_message_function_call import ChatCompletionRequestAssistantMessageFunctionCall  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_request_function_message import ChatCompletionRequestFunctionMessage  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_request_system_message import ChatCompletionRequestSystemMessage  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_request_tool_message import ChatCompletionRequestToolMessage  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_request_user_message import ChatCompletionRequestUserMessage  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -16,36 +22,46 @@ class ChatCompletionRequestMessage(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, role: str=None, content: str=None, name: str=None, function_call: ChatCompletionRequestMessageFunctionCall=None):  # noqa: E501
+    def __init__(self, content: str=None, role: str=None, name: str=None, tool_calls: List[ChatCompletionMessageToolCall]=None, function_call: ChatCompletionRequestAssistantMessageFunctionCall=None, tool_call_id: str=None):  # noqa: E501
         """ChatCompletionRequestMessage - a model defined in Swagger
 
-        :param role: The role of this ChatCompletionRequestMessage.  # noqa: E501
-        :type role: str
         :param content: The content of this ChatCompletionRequestMessage.  # noqa: E501
         :type content: str
+        :param role: The role of this ChatCompletionRequestMessage.  # noqa: E501
+        :type role: str
         :param name: The name of this ChatCompletionRequestMessage.  # noqa: E501
         :type name: str
+        :param tool_calls: The tool_calls of this ChatCompletionRequestMessage.  # noqa: E501
+        :type tool_calls: List[ChatCompletionMessageToolCall]
         :param function_call: The function_call of this ChatCompletionRequestMessage.  # noqa: E501
-        :type function_call: ChatCompletionRequestMessageFunctionCall
+        :type function_call: ChatCompletionRequestAssistantMessageFunctionCall
+        :param tool_call_id: The tool_call_id of this ChatCompletionRequestMessage.  # noqa: E501
+        :type tool_call_id: str
         """
         self.swagger_types = {
-            'role': str,
             'content': str,
+            'role': str,
             'name': str,
-            'function_call': ChatCompletionRequestMessageFunctionCall
+            'tool_calls': List[ChatCompletionMessageToolCall],
+            'function_call': ChatCompletionRequestAssistantMessageFunctionCall,
+            'tool_call_id': str
         }
 
         self.attribute_map = {
-            'role': 'role',
             'content': 'content',
+            'role': 'role',
             'name': 'name',
-            'function_call': 'function_call'
+            'tool_calls': 'tool_calls',
+            'function_call': 'function_call',
+            'tool_call_id': 'tool_call_id'
         }
 
-        self._role = role
         self._content = content
+        self._role = role
         self._name = name
+        self._tool_calls = tool_calls
         self._function_call = function_call
+        self._tool_call_id = tool_call_id
 
     @classmethod
     def from_dict(cls, dikt) -> 'ChatCompletionRequestMessage':
@@ -59,39 +75,10 @@ class ChatCompletionRequestMessage(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def role(self) -> str:
-        """Gets the role of this ChatCompletionRequestMessage.
-
-        The role of the messages author. One of `system`, `user`, `assistant`, or `function`.  # noqa: E501
-
-        :return: The role of this ChatCompletionRequestMessage.
-        :rtype: str
-        """
-        return self._role
-
-    @role.setter
-    def role(self, role: str):
-        """Sets the role of this ChatCompletionRequestMessage.
-
-        The role of the messages author. One of `system`, `user`, `assistant`, or `function`.  # noqa: E501
-
-        :param role: The role of this ChatCompletionRequestMessage.
-        :type role: str
-        """
-        allowed_values = ["system", "user", "assistant", "function"]  # noqa: E501
-        if role not in allowed_values:
-            raise ValueError(
-                "Invalid value for `role` ({0}), must be one of {1}"
-                .format(role, allowed_values)
-            )
-
-        self._role = role
-
-    @property
     def content(self) -> str:
         """Gets the content of this ChatCompletionRequestMessage.
 
-        The contents of the message. `content` is required for all messages except assistant messages with function calls.  # noqa: E501
+        The contents of the function message.  # noqa: E501
 
         :return: The content of this ChatCompletionRequestMessage.
         :rtype: str
@@ -102,19 +89,50 @@ class ChatCompletionRequestMessage(Model):
     def content(self, content: str):
         """Sets the content of this ChatCompletionRequestMessage.
 
-        The contents of the message. `content` is required for all messages except assistant messages with function calls.  # noqa: E501
+        The contents of the function message.  # noqa: E501
 
         :param content: The content of this ChatCompletionRequestMessage.
         :type content: str
         """
+        if content is None:
+            raise ValueError("Invalid value for `content`, must not be `None`")  # noqa: E501
 
         self._content = content
+
+    @property
+    def role(self) -> str:
+        """Gets the role of this ChatCompletionRequestMessage.
+
+        The role of the messages author, in this case `function`.  # noqa: E501
+
+        :return: The role of this ChatCompletionRequestMessage.
+        :rtype: str
+        """
+        return self._role
+
+    @role.setter
+    def role(self, role: str):
+        """Sets the role of this ChatCompletionRequestMessage.
+
+        The role of the messages author, in this case `function`.  # noqa: E501
+
+        :param role: The role of this ChatCompletionRequestMessage.
+        :type role: str
+        """
+        allowed_values = ["function"]  # noqa: E501
+        if role not in allowed_values:
+            raise ValueError(
+                "Invalid value for `role` ({0}), must be one of {1}"
+                .format(role, allowed_values)
+            )
+
+        self._role = role
 
     @property
     def name(self) -> str:
         """Gets the name of this ChatCompletionRequestMessage.
 
-        The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.  # noqa: E501
+        The name of the function to call.  # noqa: E501
 
         :return: The name of this ChatCompletionRequestMessage.
         :rtype: str
@@ -125,31 +143,81 @@ class ChatCompletionRequestMessage(Model):
     def name(self, name: str):
         """Sets the name of this ChatCompletionRequestMessage.
 
-        The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.  # noqa: E501
+        The name of the function to call.  # noqa: E501
 
         :param name: The name of this ChatCompletionRequestMessage.
         :type name: str
         """
+        if name is None:
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
     @property
-    def function_call(self) -> ChatCompletionRequestMessageFunctionCall:
+    def tool_calls(self) -> List[ChatCompletionMessageToolCall]:
+        """Gets the tool_calls of this ChatCompletionRequestMessage.
+
+        The tool calls generated by the model, such as function calls.  # noqa: E501
+
+        :return: The tool_calls of this ChatCompletionRequestMessage.
+        :rtype: List[ChatCompletionMessageToolCall]
+        """
+        return self._tool_calls
+
+    @tool_calls.setter
+    def tool_calls(self, tool_calls: List[ChatCompletionMessageToolCall]):
+        """Sets the tool_calls of this ChatCompletionRequestMessage.
+
+        The tool calls generated by the model, such as function calls.  # noqa: E501
+
+        :param tool_calls: The tool_calls of this ChatCompletionRequestMessage.
+        :type tool_calls: List[ChatCompletionMessageToolCall]
+        """
+
+        self._tool_calls = tool_calls
+
+    @property
+    def function_call(self) -> ChatCompletionRequestAssistantMessageFunctionCall:
         """Gets the function_call of this ChatCompletionRequestMessage.
 
 
         :return: The function_call of this ChatCompletionRequestMessage.
-        :rtype: ChatCompletionRequestMessageFunctionCall
+        :rtype: ChatCompletionRequestAssistantMessageFunctionCall
         """
         return self._function_call
 
     @function_call.setter
-    def function_call(self, function_call: ChatCompletionRequestMessageFunctionCall):
+    def function_call(self, function_call: ChatCompletionRequestAssistantMessageFunctionCall):
         """Sets the function_call of this ChatCompletionRequestMessage.
 
 
         :param function_call: The function_call of this ChatCompletionRequestMessage.
-        :type function_call: ChatCompletionRequestMessageFunctionCall
+        :type function_call: ChatCompletionRequestAssistantMessageFunctionCall
         """
 
         self._function_call = function_call
+
+    @property
+    def tool_call_id(self) -> str:
+        """Gets the tool_call_id of this ChatCompletionRequestMessage.
+
+        Tool call that this message is responding to.  # noqa: E501
+
+        :return: The tool_call_id of this ChatCompletionRequestMessage.
+        :rtype: str
+        """
+        return self._tool_call_id
+
+    @tool_call_id.setter
+    def tool_call_id(self, tool_call_id: str):
+        """Sets the tool_call_id of this ChatCompletionRequestMessage.
+
+        Tool call that this message is responding to.  # noqa: E501
+
+        :param tool_call_id: The tool_call_id of this ChatCompletionRequestMessage.
+        :type tool_call_id: str
+        """
+        if tool_call_id is None:
+            raise ValueError("Invalid value for `tool_call_id`, must not be `None`")  # noqa: E501
+
+        self._tool_call_id = tool_call_id

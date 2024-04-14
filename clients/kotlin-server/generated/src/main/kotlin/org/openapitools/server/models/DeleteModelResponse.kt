@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -15,12 +15,12 @@ package org.openapitools.server.models
 /**
  * 
  * @param id 
- * @param `object` 
  * @param deleted 
+ * @param `object` 
  */
 data class DeleteModelResponse(
     val id: kotlin.String,
-    val `object`: kotlin.String,
-    val deleted: kotlin.Boolean
+    val deleted: kotlin.Boolean,
+    val `object`: kotlin.String
 ) 
 

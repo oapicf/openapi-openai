@@ -1,9 +1,10 @@
 package org.openapitools.api;
 
 import java.math.BigDecimal;
+import org.openapitools.model.CreateSpeechRequest;
+import org.openapitools.model.CreateTranscription200Response;
 import org.openapitools.model.CreateTranscriptionRequestModel;
-import org.openapitools.model.CreateTranscriptionResponse;
-import org.openapitools.model.CreateTranslationResponse;
+import org.openapitools.model.CreateTranslation200Response;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Controller
 @RequestMapping("${openapi.openAI.base-path:/v1}")
 public class AudioApiController implements AudioApi {

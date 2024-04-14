@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,14 +20,68 @@
 namespace OpenAPI
 {
 
+inline FString ToString(const OpenAPICreateChatCompletionStreamResponse::ObjectEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPICreateChatCompletionStreamResponse::ObjectEnum::ChatCompletionChunk:
+		return TEXT("chat.completion.chunk");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPICreateChatCompletionStreamResponse::ObjectEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPICreateChatCompletionStreamResponse::EnumToString(const OpenAPICreateChatCompletionStreamResponse::ObjectEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPICreateChatCompletionStreamResponse::ObjectEnum& Value)
+{
+	static TMap<FString, OpenAPICreateChatCompletionStreamResponse::ObjectEnum> StringToEnum = { 
+		{ TEXT("chat.completion.chunk"), OpenAPICreateChatCompletionStreamResponse::ObjectEnum::ChatCompletionChunk }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPICreateChatCompletionStreamResponse::EnumFromString(const FString& EnumAsString, OpenAPICreateChatCompletionStreamResponse::ObjectEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPICreateChatCompletionStreamResponse::ObjectEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPICreateChatCompletionStreamResponse::ObjectEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
+
 void OpenAPICreateChatCompletionStreamResponse::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("id")); WriteJsonValue(Writer, Id);
-	Writer->WriteIdentifierPrefix(TEXT("object")); WriteJsonValue(Writer, Object);
+	Writer->WriteIdentifierPrefix(TEXT("choices")); WriteJsonValue(Writer, Choices);
 	Writer->WriteIdentifierPrefix(TEXT("created")); WriteJsonValue(Writer, Created);
 	Writer->WriteIdentifierPrefix(TEXT("model")); WriteJsonValue(Writer, Model);
-	Writer->WriteIdentifierPrefix(TEXT("choices")); WriteJsonValue(Writer, Choices);
+	if (SystemFingerprint.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("system_fingerprint")); WriteJsonValue(Writer, SystemFingerprint.GetValue());
+	}
+	Writer->WriteIdentifierPrefix(TEXT("object")); WriteJsonValue(Writer, Object);
 	Writer->WriteObjectEnd();
 }
 
@@ -40,10 +94,11 @@ bool OpenAPICreateChatCompletionStreamResponse::FromJson(const TSharedPtr<FJsonV
 	bool ParseSuccess = true;
 
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("id"), Id);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("object"), Object);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("choices"), Choices);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("created"), Created);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("model"), Model);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("choices"), Choices);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("system_fingerprint"), SystemFingerprint);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("object"), Object);
 
 	return ParseSuccess;
 }

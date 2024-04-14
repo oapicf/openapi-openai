@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -60,8 +60,26 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property model (base name: "model")', function() {
+      // uncomment below and update the code to test the property model
+      //var instance = new OpenapiOpenai.CreateImageRequest();
+      //expect(instance).to.be();
+    });
+
     it('should have the property n (base name: "n")', function() {
       // uncomment below and update the code to test the property n
+      //var instance = new OpenapiOpenai.CreateImageRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property quality (base name: "quality")', function() {
+      // uncomment below and update the code to test the property quality
+      //var instance = new OpenapiOpenai.CreateImageRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property responseFormat (base name: "response_format")', function() {
+      // uncomment below and update the code to test the property responseFormat
       //var instance = new OpenapiOpenai.CreateImageRequest();
       //expect(instance).to.be();
     });
@@ -72,8 +90,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property responseFormat (base name: "response_format")', function() {
-      // uncomment below and update the code to test the property responseFormat
+    it('should have the property style (base name: "style")', function() {
+      // uncomment below and update the code to test the property style
       //var instance = new OpenapiOpenai.CreateImageRequest();
       //expect(instance).to.be();
     });

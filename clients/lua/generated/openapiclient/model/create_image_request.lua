@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,12 +19,15 @@ local function cast_create_image_request(t)
 	return setmetatable(t, create_image_request_mt)
 end
 
-local function new_create_image_request(prompt, n, size, response_format, user)
+local function new_create_image_request(prompt, model, n, quality, response_format, size, style, user)
 	return cast_create_image_request({
 		["prompt"] = prompt;
+		["model"] = model;
 		["n"] = n;
-		["size"] = size;
+		["quality"] = quality;
 		["response_format"] = response_format;
+		["size"] = size;
+		["style"] = style;
 		["user"] = user;
 	})
 end

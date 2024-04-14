@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -40,18 +40,18 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Error" /> class.
         /// </summary>
-        /// <param name="type">type (required).</param>
+        /// <param name="code">code (required).</param>
         /// <param name="message">message (required).</param>
         /// <param name="param">param (required).</param>
-        /// <param name="code">code (required).</param>
-        public Error(string type = default(string), string message = default(string), string param = default(string), string code = default(string))
+        /// <param name="type">type (required).</param>
+        public Error(string code = default(string), string message = default(string), string param = default(string), string type = default(string))
         {
-            // to ensure "type" is required (not null)
-            if (type == null)
+            // to ensure "code" is required (not null)
+            if (code == null)
             {
-                throw new ArgumentNullException("type is a required property for Error and cannot be null");
+                throw new ArgumentNullException("code is a required property for Error and cannot be null");
             }
-            this.Type = type;
+            this.Code = code;
             // to ensure "message" is required (not null)
             if (message == null)
             {
@@ -64,19 +64,19 @@ namespace Org.OpenAPITools.Model
                 throw new ArgumentNullException("param is a required property for Error and cannot be null");
             }
             this.Param = param;
-            // to ensure "code" is required (not null)
-            if (code == null)
+            // to ensure "type" is required (not null)
+            if (type == null)
             {
-                throw new ArgumentNullException("code is a required property for Error and cannot be null");
+                throw new ArgumentNullException("type is a required property for Error and cannot be null");
             }
-            this.Code = code;
+            this.Type = type;
         }
 
         /// <summary>
-        /// Gets or Sets Type
+        /// Gets or Sets Code
         /// </summary>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public string Type { get; set; }
+        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
+        public string Code { get; set; }
 
         /// <summary>
         /// Gets or Sets Message
@@ -91,10 +91,10 @@ namespace Org.OpenAPITools.Model
         public string Param { get; set; }
 
         /// <summary>
-        /// Gets or Sets Code
+        /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
-        public string Code { get; set; }
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public string Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -104,10 +104,10 @@ namespace Org.OpenAPITools.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Error {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Param: ").Append(Param).Append("\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

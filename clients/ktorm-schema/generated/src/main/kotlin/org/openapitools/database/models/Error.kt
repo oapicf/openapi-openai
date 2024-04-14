@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -19,25 +19,25 @@ import .*
 
 /**
  * 
- * @param type 
+ * @param code 
  * @param message 
  * @param param 
- * @param code 
+ * @param type 
  */
 object Errors : BaseTable<Error>("Error") {
-    val type = text("type")
+    val code = text("code")
     val message = text("message")
     val param = text("param")
-    val code = text("code")
+    val type = text("type")
 
     /**
      * Create an entity of type Error from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = Error(
-        type = row[type] ?: "" /* kotlin.String */,
+        code = row[code] ?: "" /* kotlin.String */,
         message = row[message] ?: "" /* kotlin.String */,
         param = row[param] ?: "" /* kotlin.String */,
-        code = row[code] ?: "" /* kotlin.String */
+        type = row[type] ?: "" /* kotlin.String */
     )
 
     /**
@@ -55,10 +55,10 @@ object Errors : BaseTable<Error>("Error") {
     */
     fun AssignmentsBuilder.assignFrom(entity: Error) {
         this.apply {
-            set(Errors.type, entity.type)
+            set(Errors.code, entity.code)
             set(Errors.message, entity.message)
             set(Errors.param, entity.param)
-            set(Errors.code, entity.code)
+            set(Errors.type, entity.type)
         }
     }
 

@@ -1,12 +1,13 @@
 # CreateEmbeddingResponseUsage
 
+The usage information for the request.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**prompt_tokens** | **int** |  | 
-**total_tokens** | **int** |  | 
+**prompt_tokens** | **int** | The number of tokens used by the prompt. | 
+**total_tokens** | **int** | The total number of tokens used by the request. | 
 
 ## Example
 

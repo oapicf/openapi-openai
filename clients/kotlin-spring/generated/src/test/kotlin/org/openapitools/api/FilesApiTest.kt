@@ -61,7 +61,8 @@ class FilesApiTest {
      */
     @Test
     fun listFilesTest() {
-        val response: ResponseEntity<ListFilesResponse> = api.listFiles()
+        val purpose: kotlin.String? = TODO()
+        val response: ResponseEntity<ListFilesResponse> = api.listFiles(purpose)
 
         // TODO: test validations
     }

@@ -9,10 +9,10 @@ import org.openapitools.models.CreateModerationResponseResultsInner
 import scala.collection.immutable.Seq
 
 /**
- * 
- * @param id 
- * @param model 
- * @param results 
+ * Represents if a given text input is potentially harmful.
+ * @param id The unique identifier for the moderation request.
+ * @param model The model used to generate the moderation results.
+ * @param results A list of moderation objects.
  */
 case class CreateModerationResponse(id: String,
                 model: String,

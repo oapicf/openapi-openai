@@ -10,11 +10,12 @@ import java.util.List;
 
 import org.openapitools.model.*;
 
+import org.openapitools.model.CreateImageEditRequestModel;
 import org.openapitools.model.CreateImageRequest;
 import java.io.File;
 import org.openapitools.model.ImagesResponse;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-03-16T01:12:27.532392463Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-04-14T13:37:33.081471369Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map
@@ -29,13 +30,13 @@ public class ImagesController  {
   */
 
   /*
-    public ResponseContext createImageEdit(RequestContext request , FormDataContentDisposition fileDetail, String prompt, FormDataContentDisposition fileDetail, Integer n, String size, String responseFormat, String user) {
+    public ResponseContext createImageEdit(RequestContext request , FormDataContentDisposition fileDetail, String prompt, FormDataContentDisposition fileDetail, CreateImageEditRequestModel model, Integer n, String size, String responseFormat, String user) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
 
   /*
-    public ResponseContext createImageVariation(RequestContext request , FormDataContentDisposition fileDetail, Integer n, String size, String responseFormat, String user) {
+    public ResponseContext createImageVariation(RequestContext request , FormDataContentDisposition fileDetail, CreateImageEditRequestModel model, Integer n, String responseFormat, String size, String user) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */

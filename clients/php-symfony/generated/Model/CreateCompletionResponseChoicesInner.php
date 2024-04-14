@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -44,13 +44,16 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateCompletionResponseChoicesInner 
 {
         /**
+     * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters.
+     *
      * @var string|null
-     * @SerializedName("text")
+     * @SerializedName("finish_reason")
      * @Assert\NotNull()
+     * @Assert\Choice({ "stop", "length", "content_filter" })
      * @Assert\Type("string")
      * @Type("string")
      */
-    protected ?string $text = null;
+    protected ?string $finishReason = null;
 
     /**
      * @var int|null
@@ -73,13 +76,12 @@ class CreateCompletionResponseChoicesInner
 
     /**
      * @var string|null
-     * @SerializedName("finish_reason")
+     * @SerializedName("text")
      * @Assert\NotNull()
-     * @Assert\Choice({ "stop", "length" })
      * @Assert\Type("string")
      * @Type("string")
      */
-    protected ?string $finishReason = null;
+    protected ?string $text = null;
 
     /**
      * Constructor
@@ -88,35 +90,35 @@ class CreateCompletionResponseChoicesInner
     public function __construct(array $data = null)
     {
         if (is_array($data)) {
-            $this->text = array_key_exists('text', $data) ? $data['text'] : $this->text;
+            $this->finishReason = array_key_exists('finishReason', $data) ? $data['finishReason'] : $this->finishReason;
             $this->index = array_key_exists('index', $data) ? $data['index'] : $this->index;
             $this->logprobs = array_key_exists('logprobs', $data) ? $data['logprobs'] : $this->logprobs;
-            $this->finishReason = array_key_exists('finishReason', $data) ? $data['finishReason'] : $this->finishReason;
+            $this->text = array_key_exists('text', $data) ? $data['text'] : $this->text;
         }
     }
 
     /**
-     * Gets text.
+     * Gets finishReason.
      *
      * @return string|null
      */
-    public function getText(): ?string
+    public function getFinishReason(): ?string
     {
-        return $this->text;
+        return $this->finishReason;
     }
 
 
 
     /**
-     * Sets text.
+     * Sets finishReason.
      *
-     * @param string|null $text
+     * @param string|null $finishReason  The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.
      *
      * @return $this
      */
-    public function setText(?string $text): self
+    public function setFinishReason(?string $finishReason): self
     {
-        $this->text = $text;
+        $this->finishReason = $finishReason;
 
         return $this;
     }
@@ -174,27 +176,27 @@ class CreateCompletionResponseChoicesInner
     }
 
     /**
-     * Gets finishReason.
+     * Gets text.
      *
      * @return string|null
      */
-    public function getFinishReason(): ?string
+    public function getText(): ?string
     {
-        return $this->finishReason;
+        return $this->text;
     }
 
 
 
     /**
-     * Sets finishReason.
+     * Sets text.
      *
-     * @param string|null $finishReason
+     * @param string|null $text
      *
      * @return $this
      */
-    public function setFinishReason(?string $finishReason): self
+    public function setText(?string $text): self
     {
-        $this->finishReason = $finishReason;
+        $this->text = $text;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -18,23 +18,23 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class Error {
   
-  @SerializedName("type")
-  private String type = null;
+  @SerializedName("code")
+  private String code = null;
   @SerializedName("message")
   private String message = null;
   @SerializedName("param")
   private String param = null;
-  @SerializedName("code")
-  private String code = null;
+  @SerializedName("type")
+  private String type = null;
 
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public String getType() {
-    return type;
+  public String getCode() {
+    return code;
   }
-  public void setType(String type) {
-    this.type = type;
+  public void setCode(String code) {
+    this.code = code;
   }
 
   /**
@@ -60,11 +60,11 @@ public class Error {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public String getCode() {
-    return code;
+  public String getType() {
+    return type;
   }
-  public void setCode(String code) {
-    this.code = code;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -77,19 +77,19 @@ public class Error {
       return false;
     }
     Error error = (Error) o;
-    return (this.type == null ? error.type == null : this.type.equals(error.type)) &&
+    return (this.code == null ? error.code == null : this.code.equals(error.code)) &&
         (this.message == null ? error.message == null : this.message.equals(error.message)) &&
         (this.param == null ? error.param == null : this.param.equals(error.param)) &&
-        (this.code == null ? error.code == null : this.code.equals(error.code));
+        (this.type == null ? error.type == null : this.type.equals(error.type));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
-    result = 31 * result + (this.type == null ? 0: this.type.hashCode());
+    result = 31 * result + (this.code == null ? 0: this.code.hashCode());
     result = 31 * result + (this.message == null ? 0: this.message.hashCode());
     result = 31 * result + (this.param == null ? 0: this.param.hashCode());
-    result = 31 * result + (this.code == null ? 0: this.code.hashCode());
+    result = 31 * result + (this.type == null ? 0: this.type.hashCode());
     return result;
   }
 
@@ -98,10 +98,10 @@ public class Error {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     
-    sb.append("  type: ").append(type).append("\n");
+    sb.append("  code: ").append(code).append("\n");
     sb.append("  message: ").append(message).append("\n");
     sb.append("  param: ").append(param).append("\n");
-    sb.append("  code: ").append(code).append("\n");
+    sb.append("  type: ").append(type).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

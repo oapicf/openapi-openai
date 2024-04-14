@@ -34,10 +34,21 @@ data class DeleteFileResponse (
     val id: kotlin.String,
 
     @Json(name = "object")
-    val `object`: kotlin.String,
+    val `object`: DeleteFileResponse.`Object`,
 
     @Json(name = "deleted")
     val deleted: kotlin.Boolean
 
-)
+) {
+
+    /**
+     * 
+     *
+     * Values: file
+     */
+    @JsonClass(generateAdapter = false)
+    enum class `Object`(val value: kotlin.String) {
+        @Json(name = "file") file("file");
+    }
+}
 

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,7 @@
 #include "CppRestOpenAPIClient/ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
-#include "CppRestOpenAPIClient/Object.h"
+#include <map>
 #include <vector>
 
 namespace org {
@@ -59,11 +59,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<utility::string_t>& getTokens();
-    bool tokensIsSet() const;
-    void unsetTokens();
+    std::vector<int32_t>& getTextOffset();
+    bool textOffsetIsSet() const;
+    void unsetText_offset();
 
-    void setTokens(const std::vector<utility::string_t>& value);
+    void setTextOffset(std::vector<int32_t> value);
 
     /// <summary>
     /// 
@@ -77,31 +77,31 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<std::shared_ptr<Object>>& getTopLogprobs();
-    bool topLogprobsIsSet() const;
-    void unsetTop_logprobs();
+    std::vector<utility::string_t>& getTokens();
+    bool tokensIsSet() const;
+    void unsetTokens();
 
-    void setTopLogprobs(const std::vector<std::shared_ptr<Object>>& value);
+    void setTokens(const std::vector<utility::string_t>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::vector<int32_t>& getTextOffset();
-    bool textOffsetIsSet() const;
-    void unsetText_offset();
+    std::vector<std::map<utility::string_t, double>>& getTopLogprobs();
+    bool topLogprobsIsSet() const;
+    void unsetTop_logprobs();
 
-    void setTextOffset(std::vector<int32_t> value);
+    void setTopLogprobs(const std::vector<std::map<utility::string_t, double>>& value);
 
 
 protected:
-    std::vector<utility::string_t> m_Tokens;
-    bool m_TokensIsSet;
-    std::vector<double> m_Token_logprobs;
-    bool m_Token_logprobsIsSet;
-    std::vector<std::shared_ptr<Object>> m_Top_logprobs;
-    bool m_Top_logprobsIsSet;
     std::vector<int32_t> m_Text_offset;
     bool m_Text_offsetIsSet;
+    std::vector<double> m_Token_logprobs;
+    bool m_Token_logprobsIsSet;
+    std::vector<utility::string_t> m_Tokens;
+    bool m_TokensIsSet;
+    std::vector<std::map<utility::string_t, double>> m_Top_logprobs;
+    bool m_Top_logprobsIsSet;
 };
 
 

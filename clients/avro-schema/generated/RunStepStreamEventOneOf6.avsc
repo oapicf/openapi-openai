@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Occurs when a [run step](/docs/api-reference/runs/step-object) expires.",
+  "name": "RunStepStreamEventOneOf6",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "RunStepStreamEventOneOf6_event",
+        "symbols": [
+          "thread.run.step.expired"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.RunStepObject",
+      "doc": ""
+    }
+  ]
+
+}

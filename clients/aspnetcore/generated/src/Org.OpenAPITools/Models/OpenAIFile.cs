@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,64 +21,154 @@ using Org.OpenAPITools.Converters;
 namespace Org.OpenAPITools.Models
 { 
     /// <summary>
-    /// 
+    /// The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
     /// </summary>
     [DataContract]
     public partial class OpenAIFile : IEquatable<OpenAIFile>
     {
         /// <summary>
-        /// Gets or Sets Id
+        /// The file identifier, which can be referenced in the API endpoints.
         /// </summary>
+        /// <value>The file identifier, which can be referenced in the API endpoints.</value>
         [Required]
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarObject
+        /// The size of the file, in bytes.
         /// </summary>
-        [Required]
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string VarObject { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Bytes
-        /// </summary>
+        /// <value>The size of the file, in bytes.</value>
         [Required]
         [DataMember(Name="bytes", EmitDefaultValue=true)]
         public int Bytes { get; set; }
 
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// The Unix timestamp (in seconds) for when the file was created.
         /// </summary>
+        /// <value>The Unix timestamp (in seconds) for when the file was created.</value>
         [Required]
         [DataMember(Name="created_at", EmitDefaultValue=true)]
         public int CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Filename
+        /// The name of the file.
         /// </summary>
+        /// <value>The name of the file.</value>
         [Required]
         [DataMember(Name="filename", EmitDefaultValue=false)]
         public string Filename { get; set; }
 
+
         /// <summary>
-        /// Gets or Sets Purpose
+        /// The object type, which is always `file`.
         /// </summary>
+        /// <value>The object type, which is always `file`.</value>
+        [TypeConverter(typeof(CustomEnumConverter<ObjectEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            
+            /// <summary>
+            /// Enum FileEnum for file
+            /// </summary>
+            [EnumMember(Value = "file")]
+            FileEnum = 1
+        }
+
+        /// <summary>
+        /// The object type, which is always &#x60;file&#x60;.
+        /// </summary>
+        /// <value>The object type, which is always &#x60;file&#x60;.</value>
         [Required]
-        [DataMember(Name="purpose", EmitDefaultValue=false)]
-        public string Purpose { get; set; }
+        [DataMember(Name="object", EmitDefaultValue=true)]
+        public ObjectEnum VarObject { get; set; }
+
 
         /// <summary>
-        /// Gets or Sets Status
+        /// The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
         /// </summary>
-        [DataMember(Name="status", EmitDefaultValue=false)]
-        public string Status { get; set; }
+        /// <value>The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.</value>
+        [TypeConverter(typeof(CustomEnumConverter<PurposeEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum PurposeEnum
+        {
+            
+            /// <summary>
+            /// Enum FineTuneEnum for fine-tune
+            /// </summary>
+            [EnumMember(Value = "fine-tune")]
+            FineTuneEnum = 1,
+            
+            /// <summary>
+            /// Enum FineTuneResultsEnum for fine-tune-results
+            /// </summary>
+            [EnumMember(Value = "fine-tune-results")]
+            FineTuneResultsEnum = 2,
+            
+            /// <summary>
+            /// Enum AssistantsEnum for assistants
+            /// </summary>
+            [EnumMember(Value = "assistants")]
+            AssistantsEnum = 3,
+            
+            /// <summary>
+            /// Enum AssistantsOutputEnum for assistants_output
+            /// </summary>
+            [EnumMember(Value = "assistants_output")]
+            AssistantsOutputEnum = 4
+        }
 
         /// <summary>
-        /// Gets or Sets StatusDetails
+        /// The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
         /// </summary>
-        [DataMember(Name="status_details", EmitDefaultValue=true)]
-        public Object StatusDetails { get; set; }
+        /// <value>The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.</value>
+        [Required]
+        [DataMember(Name="purpose", EmitDefaultValue=true)]
+        public PurposeEnum Purpose { get; set; }
+
+
+        /// <summary>
+        /// Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+        /// </summary>
+        /// <value>Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.</value>
+        [TypeConverter(typeof(CustomEnumConverter<StatusEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum StatusEnum
+        {
+            
+            /// <summary>
+            /// Enum UploadedEnum for uploaded
+            /// </summary>
+            [EnumMember(Value = "uploaded")]
+            UploadedEnum = 1,
+            
+            /// <summary>
+            /// Enum ProcessedEnum for processed
+            /// </summary>
+            [EnumMember(Value = "processed")]
+            ProcessedEnum = 2,
+            
+            /// <summary>
+            /// Enum ErrorEnum for error
+            /// </summary>
+            [EnumMember(Value = "error")]
+            ErrorEnum = 3
+        }
+
+        /// <summary>
+        /// Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.
+        /// </summary>
+        /// <value>Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.</value>
+        [Required]
+        [DataMember(Name="status", EmitDefaultValue=true)]
+        public StatusEnum Status { get; set; }
+
+        /// <summary>
+        /// Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;.
+        /// </summary>
+        /// <value>Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;.</value>
+        [DataMember(Name="status_details", EmitDefaultValue=false)]
+        public string StatusDetails { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,10 +179,10 @@ namespace Org.OpenAPITools.Models
             var sb = new StringBuilder();
             sb.Append("class OpenAIFile {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  Bytes: ").Append(Bytes).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Filename: ").Append(Filename).Append("\n");
+            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  Purpose: ").Append(Purpose).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  StatusDetails: ").Append(StatusDetails).Append("\n");
@@ -138,11 +228,6 @@ namespace Org.OpenAPITools.Models
                     Id.Equals(other.Id)
                 ) && 
                 (
-                    VarObject == other.VarObject ||
-                    VarObject != null &&
-                    VarObject.Equals(other.VarObject)
-                ) && 
-                (
                     Bytes == other.Bytes ||
                     
                     Bytes.Equals(other.Bytes)
@@ -158,13 +243,18 @@ namespace Org.OpenAPITools.Models
                     Filename.Equals(other.Filename)
                 ) && 
                 (
+                    VarObject == other.VarObject ||
+                    
+                    VarObject.Equals(other.VarObject)
+                ) && 
+                (
                     Purpose == other.Purpose ||
-                    Purpose != null &&
+                    
                     Purpose.Equals(other.Purpose)
                 ) && 
                 (
                     Status == other.Status ||
-                    Status != null &&
+                    
                     Status.Equals(other.Status)
                 ) && 
                 (
@@ -186,17 +276,17 @@ namespace Org.OpenAPITools.Models
                 // Suitable nullity checks etc, of course :)
                     if (Id != null)
                     hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (VarObject != null)
-                    hashCode = hashCode * 59 + VarObject.GetHashCode();
                     
                     hashCode = hashCode * 59 + Bytes.GetHashCode();
                     
                     hashCode = hashCode * 59 + CreatedAt.GetHashCode();
                     if (Filename != null)
                     hashCode = hashCode * 59 + Filename.GetHashCode();
-                    if (Purpose != null)
+                    
+                    hashCode = hashCode * 59 + VarObject.GetHashCode();
+                    
                     hashCode = hashCode * 59 + Purpose.GetHashCode();
-                    if (Status != null)
+                    
                     hashCode = hashCode * 59 + Status.GetHashCode();
                     if (StatusDetails != null)
                     hashCode = hashCode * 59 + StatusDetails.GetHashCode();

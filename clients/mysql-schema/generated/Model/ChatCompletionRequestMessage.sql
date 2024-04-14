@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `ChatCompletionRequestMessage`
 --
-SELECT `role`, `content`, `name`, `function_call` FROM `ChatCompletionRequestMessage` WHERE 1;
+SELECT `content`, `role`, `name`, `tool_calls`, `function_call`, `tool_call_id` FROM `ChatCompletionRequestMessage` WHERE 1;
 
 --
 -- INSERT template for table `ChatCompletionRequestMessage`
 --
-INSERT INTO `ChatCompletionRequestMessage`(`role`, `content`, `name`, `function_call`) VALUES (?, ?, ?, ?);
+INSERT INTO `ChatCompletionRequestMessage`(`content`, `role`, `name`, `tool_calls`, `function_call`, `tool_call_id`) VALUES (?, ?, ?, ?, ?, ?);
 
 --
 -- UPDATE template for table `ChatCompletionRequestMessage`
 --
-UPDATE `ChatCompletionRequestMessage` SET `role` = ?, `content` = ?, `name` = ?, `function_call` = ? WHERE 1;
+UPDATE `ChatCompletionRequestMessage` SET `content` = ?, `role` = ?, `name` = ?, `tool_calls` = ?, `function_call` = ?, `tool_call_id` = ? WHERE 1;
 
 --
 -- DELETE template for table `ChatCompletionRequestMessage`

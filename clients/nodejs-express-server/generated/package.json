@@ -1,7 +1,7 @@
 {
   "name":  "openai-api",
   "version": "2.0.0",
-  "description": "APIs for sampling from and fine-tuning language models",
+  "description": "The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.",
   "main": "index.js",
   "scripts": {
     "prestart": "npm install",

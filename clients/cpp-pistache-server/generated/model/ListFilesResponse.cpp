@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -44,7 +44,7 @@ bool ListFilesResponse::validate(std::stringstream& msg, const std::string& path
     bool success = true;
     const std::string _pathPrefix = pathPrefix.empty() ? "ListFilesResponse" : pathPrefix;
 
-             
+         
     
     /* Data */ {
         const std::vector<org::openapitools::server::model::OpenAIFile>& value = m_Data;
@@ -65,7 +65,7 @@ bool ListFilesResponse::validate(std::stringstream& msg, const std::string& path
         }
 
     }
-    
+        
     return success;
 }
 
@@ -74,10 +74,10 @@ bool ListFilesResponse::operator==(const ListFilesResponse& rhs) const
     return
     
     
-    (getObject() == rhs.getObject())
+    (getData() == rhs.getData())
      &&
     
-    (getData() == rhs.getData())
+    (getObject() == rhs.getObject())
     
     
     ;
@@ -91,26 +91,18 @@ bool ListFilesResponse::operator!=(const ListFilesResponse& rhs) const
 void to_json(nlohmann::json& j, const ListFilesResponse& o)
 {
     j = nlohmann::json::object();
-    j["object"] = o.m_object;
     j["data"] = o.m_Data;
+    j["object"] = o.m_object;
     
 }
 
 void from_json(const nlohmann::json& j, ListFilesResponse& o)
 {
-    j.at("object").get_to(o.m_object);
     j.at("data").get_to(o.m_Data);
+    j.at("object").get_to(o.m_object);
     
 }
 
-std::string ListFilesResponse::getObject() const
-{
-    return m_object;
-}
-void ListFilesResponse::setObject(std::string const& value)
-{
-    m_object = value;
-}
 std::vector<org::openapitools::server::model::OpenAIFile> ListFilesResponse::getData() const
 {
     return m_Data;
@@ -118,6 +110,14 @@ std::vector<org::openapitools::server::model::OpenAIFile> ListFilesResponse::get
 void ListFilesResponse::setData(std::vector<org::openapitools::server::model::OpenAIFile> const& value)
 {
     m_Data = value;
+}
+std::string ListFilesResponse::getObject() const
+{
+    return m_object;
+}
+void ListFilesResponse::setObject(std::string const& value)
+{
+    m_object = value;
 }
 
 

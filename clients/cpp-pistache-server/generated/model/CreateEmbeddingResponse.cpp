@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -21,8 +21,8 @@ namespace org::openapitools::server::model
 
 CreateEmbeddingResponse::CreateEmbeddingResponse()
 {
-    m_object = "";
     m_Model = "";
+    m_object = "";
     
 }
 
@@ -45,17 +45,17 @@ bool CreateEmbeddingResponse::validate(std::stringstream& msg, const std::string
     bool success = true;
     const std::string _pathPrefix = pathPrefix.empty() ? "CreateEmbeddingResponse" : pathPrefix;
 
-                 
+         
     
     /* Data */ {
-        const std::vector<org::openapitools::server::model::CreateEmbeddingResponse_data_inner>& value = m_Data;
+        const std::vector<org::openapitools::server::model::Embedding>& value = m_Data;
         const std::string currentValuePath = _pathPrefix + ".data";
                 
         
         { // Recursive validation of array elements
             const std::string oldValuePath = currentValuePath;
             int i = 0;
-            for (const org::openapitools::server::model::CreateEmbeddingResponse_data_inner& value : value)
+            for (const org::openapitools::server::model::Embedding& value : value)
             { 
                 const std::string currentValuePath = oldValuePath + "[" + std::to_string(i) + "]";
                         
@@ -66,7 +66,7 @@ bool CreateEmbeddingResponse::validate(std::stringstream& msg, const std::string
         }
 
     }
-        
+                
     if (!m_Usage.validate()) {
         msg << _pathPrefix << ": Usage is invalid;";
         success = false;
@@ -79,13 +79,13 @@ bool CreateEmbeddingResponse::operator==(const CreateEmbeddingResponse& rhs) con
     return
     
     
-    (getObject() == rhs.getObject())
+    (getData() == rhs.getData())
      &&
     
     (getModel() == rhs.getModel())
      &&
     
-    (getData() == rhs.getData())
+    (getObject() == rhs.getObject())
      &&
     
     (getUsage() == rhs.getUsage())
@@ -102,29 +102,29 @@ bool CreateEmbeddingResponse::operator!=(const CreateEmbeddingResponse& rhs) con
 void to_json(nlohmann::json& j, const CreateEmbeddingResponse& o)
 {
     j = nlohmann::json::object();
-    j["object"] = o.m_object;
-    j["model"] = o.m_Model;
     j["data"] = o.m_Data;
+    j["model"] = o.m_Model;
+    j["object"] = o.m_object;
     j["usage"] = o.m_Usage;
     
 }
 
 void from_json(const nlohmann::json& j, CreateEmbeddingResponse& o)
 {
-    j.at("object").get_to(o.m_object);
-    j.at("model").get_to(o.m_Model);
     j.at("data").get_to(o.m_Data);
+    j.at("model").get_to(o.m_Model);
+    j.at("object").get_to(o.m_object);
     j.at("usage").get_to(o.m_Usage);
     
 }
 
-std::string CreateEmbeddingResponse::getObject() const
+std::vector<org::openapitools::server::model::Embedding> CreateEmbeddingResponse::getData() const
 {
-    return m_object;
+    return m_Data;
 }
-void CreateEmbeddingResponse::setObject(std::string const& value)
+void CreateEmbeddingResponse::setData(std::vector<org::openapitools::server::model::Embedding> const& value)
 {
-    m_object = value;
+    m_Data = value;
 }
 std::string CreateEmbeddingResponse::getModel() const
 {
@@ -134,13 +134,13 @@ void CreateEmbeddingResponse::setModel(std::string const& value)
 {
     m_Model = value;
 }
-std::vector<org::openapitools::server::model::CreateEmbeddingResponse_data_inner> CreateEmbeddingResponse::getData() const
+std::string CreateEmbeddingResponse::getObject() const
 {
-    return m_Data;
+    return m_object;
 }
-void CreateEmbeddingResponse::setData(std::vector<org::openapitools::server::model::CreateEmbeddingResponse_data_inner> const& value)
+void CreateEmbeddingResponse::setObject(std::string const& value)
 {
-    m_Data = value;
+    m_object = value;
 }
 org::openapitools::server::model::CreateEmbeddingResponse_usage CreateEmbeddingResponse::getUsage() const
 {

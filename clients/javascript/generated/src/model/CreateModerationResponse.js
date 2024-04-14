@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,15 +17,16 @@ import CreateModerationResponseResultsInner from './CreateModerationResponseResu
 /**
  * The CreateModerationResponse model module.
  * @module model/CreateModerationResponse
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateModerationResponse {
     /**
      * Constructs a new <code>CreateModerationResponse</code>.
+     * Represents if a given text input is potentially harmful.
      * @alias module:model/CreateModerationResponse
-     * @param id {String} 
-     * @param model {String} 
-     * @param results {Array.<module:model/CreateModerationResponseResultsInner>} 
+     * @param id {String} The unique identifier for the moderation request.
+     * @param model {String} The model used to generate the moderation results.
+     * @param results {Array.<module:model/CreateModerationResponseResultsInner>} A list of moderation objects.
      */
     constructor(id, model, results) { 
         
@@ -107,16 +108,19 @@ class CreateModerationResponse {
 CreateModerationResponse.RequiredProperties = ["id", "model", "results"];
 
 /**
+ * The unique identifier for the moderation request.
  * @member {String} id
  */
 CreateModerationResponse.prototype['id'] = undefined;
 
 /**
+ * The model used to generate the moderation results.
  * @member {String} model
  */
 CreateModerationResponse.prototype['model'] = undefined;
 
 /**
+ * A list of moderation objects.
  * @member {Array.<module:model/CreateModerationResponseResultsInner>} results
  */
 CreateModerationResponse.prototype['results'] = undefined;

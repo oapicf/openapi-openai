@@ -6,18 +6,18 @@
 
 -type openapi_model() ::
     #{ 'id' := binary(),
-       'object' := binary(),
        'created' := integer(),
+       'object' := binary(),
        'owned_by' := binary()
      }.
 
 encode(#{ 'id' := Id,
-          'object' := Object,
           'created' := Created,
+          'object' := Object,
           'owned_by' := OwnedBy
         }) ->
     #{ 'id' => Id,
-       'object' => Object,
        'created' => Created,
+       'object' => Object,
        'owned_by' => OwnedBy
      }.

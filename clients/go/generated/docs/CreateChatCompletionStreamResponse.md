@@ -4,17 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Object** | **string** |  | 
-**Created** | **int32** |  | 
-**Model** | **string** |  | 
-**Choices** | [**[]CreateChatCompletionStreamResponseChoicesInner**](CreateChatCompletionStreamResponseChoicesInner.md) |  | 
+**Id** | **string** | A unique identifier for the chat completion. Each chunk has the same ID. | 
+**Choices** | [**[]CreateChatCompletionStreamResponseChoicesInner**](CreateChatCompletionStreamResponseChoicesInner.md) | A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1. | 
+**Created** | **int32** | The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. | 
+**Model** | **string** | The model to generate the completion. | 
+**SystemFingerprint** | Pointer to **string** | This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism.  | [optional] 
+**Object** | **string** | The object type, which is always &#x60;chat.completion.chunk&#x60;. | 
 
 ## Methods
 
 ### NewCreateChatCompletionStreamResponse
 
-`func NewCreateChatCompletionStreamResponse(id string, object string, created int32, model string, choices []CreateChatCompletionStreamResponseChoicesInner, ) *CreateChatCompletionStreamResponse`
+`func NewCreateChatCompletionStreamResponse(id string, choices []CreateChatCompletionStreamResponseChoicesInner, created int32, model string, object string, ) *CreateChatCompletionStreamResponse`
 
 NewCreateChatCompletionStreamResponse instantiates a new CreateChatCompletionStreamResponse object
 This constructor will assign default values to properties that have it defined,
@@ -49,24 +50,24 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetObject
+### GetChoices
 
-`func (o *CreateChatCompletionStreamResponse) GetObject() string`
+`func (o *CreateChatCompletionStreamResponse) GetChoices() []CreateChatCompletionStreamResponseChoicesInner`
 
-GetObject returns the Object field if non-nil, zero value otherwise.
+GetChoices returns the Choices field if non-nil, zero value otherwise.
 
-### GetObjectOk
+### GetChoicesOk
 
-`func (o *CreateChatCompletionStreamResponse) GetObjectOk() (*string, bool)`
+`func (o *CreateChatCompletionStreamResponse) GetChoicesOk() (*[]CreateChatCompletionStreamResponseChoicesInner, bool)`
 
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+GetChoicesOk returns a tuple with the Choices field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetObject
+### SetChoices
 
-`func (o *CreateChatCompletionStreamResponse) SetObject(v string)`
+`func (o *CreateChatCompletionStreamResponse) SetChoices(v []CreateChatCompletionStreamResponseChoicesInner)`
 
-SetObject sets Object field to given value.
+SetChoices sets Choices field to given value.
 
 
 ### GetCreated
@@ -109,24 +110,49 @@ and a boolean to check if the value has been set.
 SetModel sets Model field to given value.
 
 
-### GetChoices
+### GetSystemFingerprint
 
-`func (o *CreateChatCompletionStreamResponse) GetChoices() []CreateChatCompletionStreamResponseChoicesInner`
+`func (o *CreateChatCompletionStreamResponse) GetSystemFingerprint() string`
 
-GetChoices returns the Choices field if non-nil, zero value otherwise.
+GetSystemFingerprint returns the SystemFingerprint field if non-nil, zero value otherwise.
 
-### GetChoicesOk
+### GetSystemFingerprintOk
 
-`func (o *CreateChatCompletionStreamResponse) GetChoicesOk() (*[]CreateChatCompletionStreamResponseChoicesInner, bool)`
+`func (o *CreateChatCompletionStreamResponse) GetSystemFingerprintOk() (*string, bool)`
 
-GetChoicesOk returns a tuple with the Choices field if it's non-nil, zero value otherwise
+GetSystemFingerprintOk returns a tuple with the SystemFingerprint field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetChoices
+### SetSystemFingerprint
 
-`func (o *CreateChatCompletionStreamResponse) SetChoices(v []CreateChatCompletionStreamResponseChoicesInner)`
+`func (o *CreateChatCompletionStreamResponse) SetSystemFingerprint(v string)`
 
-SetChoices sets Choices field to given value.
+SetSystemFingerprint sets SystemFingerprint field to given value.
+
+### HasSystemFingerprint
+
+`func (o *CreateChatCompletionStreamResponse) HasSystemFingerprint() bool`
+
+HasSystemFingerprint returns a boolean if a field has been set.
+
+### GetObject
+
+`func (o *CreateChatCompletionStreamResponse) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *CreateChatCompletionStreamResponse) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *CreateChatCompletionStreamResponse) SetObject(v string)`
+
+SetObject sets Object field to given value.
 
 
 

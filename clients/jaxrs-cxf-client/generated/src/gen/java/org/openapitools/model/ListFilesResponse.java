@@ -13,28 +13,40 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ListFilesResponse  {
   
   @ApiModelProperty(required = true, value = "")
-  private String _object;
+  private List<OpenAIFile> data = new ArrayList<>();
+
+public enum ObjectEnum {
+
+LIST(String.valueOf("list"));
+
+
+    private String value;
+
+    ObjectEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
 
   @ApiModelProperty(required = true, value = "")
-  private List<OpenAIFile> data = new ArrayList<>();
- /**
-   * Get _object
-   * @return _object
-  **/
-  @JsonProperty("object")
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-  public ListFilesResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
+  private ObjectEnum _object;
  /**
    * Get data
    * @return data
@@ -58,6 +70,27 @@ public class ListFilesResponse  {
     return this;
   }
 
+ /**
+   * Get _object
+   * @return _object
+  **/
+  @JsonProperty("object")
+  public String getObject() {
+    if (_object == null) {
+      return null;
+    }
+    return _object.value();
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+  public ListFilesResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -67,13 +100,13 @@ public class ListFilesResponse  {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(this._object, listFilesResponse._object) &&
-        Objects.equals(this.data, listFilesResponse.data);
+    return Objects.equals(this.data, listFilesResponse.data) &&
+        Objects.equals(this._object, listFilesResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_object, data);
+    return Objects.hash(data, _object);
   }
 
   @Override
@@ -81,8 +114,8 @@ public class ListFilesResponse  {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

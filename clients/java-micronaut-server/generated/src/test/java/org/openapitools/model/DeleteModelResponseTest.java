@@ -28,19 +28,19 @@ public class DeleteModelResponseTest {
     }
 
     /**
-     * Test the property '_object'
-     */
-    @Test
-    public void _objectTest() {
-        // TODO: test _object
-    }
-
-    /**
      * Test the property 'deleted'
      */
     @Test
     public void deletedTest() {
         // TODO: test deleted
+    }
+
+    /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
     }
 
 }

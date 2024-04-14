@@ -1,7 +1,7 @@
 =begin
 #OpenAI API
 
-#APIs for sampling from and fine-tuning language models
+#The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 The version of the OpenAPI document: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -39,7 +39,31 @@ describe OpenApiOpenAIClient::CreateModerationResponseResultsInnerCategoryScores
     end
   end
 
+  describe 'test attribute "harassment"' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
+  describe 'test attribute "harassment_threatening"' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
   describe 'test attribute "self_harm"' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
+  describe 'test attribute "self_harm_intent"' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
+  describe 'test attribute "self_harm_instructions"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end

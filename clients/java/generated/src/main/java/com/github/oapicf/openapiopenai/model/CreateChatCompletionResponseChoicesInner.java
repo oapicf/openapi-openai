@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,6 +15,7 @@ package com.github.oapicf.openapiopenai.model;
 
 import java.util.Objects;
 import com.github.oapicf.openapiopenai.model.ChatCompletionResponseMessage;
+import com.github.oapicf.openapiopenai.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,24 +51,20 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateChatCompletionResponseChoicesInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionResponseChoicesInner {
-  public static final String SERIALIZED_NAME_INDEX = "index";
-  @SerializedName(SERIALIZED_NAME_INDEX)
-  private Integer index;
-
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  private ChatCompletionResponseMessage message;
-
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
    */
   @JsonAdapter(FinishReasonEnum.Adapter.class)
   public enum FinishReasonEnum {
     STOP("stop"),
     
     LENGTH("length"),
+    
+    TOOL_CALLS("tool_calls"),
+    
+    CONTENT_FILTER("content_filter"),
     
     FUNCTION_CALL("function_call");
 
@@ -118,8 +115,39 @@ public class CreateChatCompletionResponseChoicesInner {
   @SerializedName(SERIALIZED_NAME_FINISH_REASON)
   private FinishReasonEnum finishReason;
 
+  public static final String SERIALIZED_NAME_INDEX = "index";
+  @SerializedName(SERIALIZED_NAME_INDEX)
+  private Integer index;
+
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private ChatCompletionResponseMessage message;
+
+  public static final String SERIALIZED_NAME_LOGPROBS = "logprobs";
+  @SerializedName(SERIALIZED_NAME_LOGPROBS)
+  private CreateChatCompletionResponseChoicesInnerLogprobs logprobs;
+
   public CreateChatCompletionResponseChoicesInner() {
   }
+
+  public CreateChatCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
+    return this;
+  }
+
+   /**
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
+   * @return finishReason
+  **/
+  @javax.annotation.Nonnull
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
+  }
+
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
+  }
+
 
   public CreateChatCompletionResponseChoicesInner index(Integer index) {
     this.index = index;
@@ -127,10 +155,10 @@ public class CreateChatCompletionResponseChoicesInner {
   }
 
    /**
-   * Get index
+   * The index of the choice in the list of choices.
    * @return index
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public Integer getIndex() {
     return index;
   }
@@ -149,7 +177,7 @@ public class CreateChatCompletionResponseChoicesInner {
    * Get message
    * @return message
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public ChatCompletionResponseMessage getMessage() {
     return message;
   }
@@ -159,22 +187,22 @@ public class CreateChatCompletionResponseChoicesInner {
   }
 
 
-  public CreateChatCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public CreateChatCompletionResponseChoicesInner logprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
     return this;
   }
 
    /**
-   * Get finishReason
-   * @return finishReason
+   * Get logprobs
+   * @return logprobs
   **/
   @javax.annotation.Nullable
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  public CreateChatCompletionResponseChoicesInnerLogprobs getLogprobs() {
+    return logprobs;
   }
 
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setLogprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
   }
 
 
@@ -188,23 +216,25 @@ public class CreateChatCompletionResponseChoicesInner {
       return false;
     }
     CreateChatCompletionResponseChoicesInner createChatCompletionResponseChoicesInner = (CreateChatCompletionResponseChoicesInner) o;
-    return Objects.equals(this.index, createChatCompletionResponseChoicesInner.index) &&
+    return Objects.equals(this.finishReason, createChatCompletionResponseChoicesInner.finishReason) &&
+        Objects.equals(this.index, createChatCompletionResponseChoicesInner.index) &&
         Objects.equals(this.message, createChatCompletionResponseChoicesInner.message) &&
-        Objects.equals(this.finishReason, createChatCompletionResponseChoicesInner.finishReason);
+        Objects.equals(this.logprobs, createChatCompletionResponseChoicesInner.logprobs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, message, finishReason);
+    return Objects.hash(finishReason, index, message, logprobs);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionResponseChoicesInner {\n");
+    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -227,12 +257,17 @@ public class CreateChatCompletionResponseChoicesInner {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("finish_reason");
     openapiFields.add("index");
     openapiFields.add("message");
-    openapiFields.add("finish_reason");
+    openapiFields.add("logprobs");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("finish_reason");
+    openapiRequiredFields.add("index");
+    openapiRequiredFields.add("message");
+    openapiRequiredFields.add("logprobs");
   }
 
  /**
@@ -255,18 +290,23 @@ public class CreateChatCompletionResponseChoicesInner {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateChatCompletionResponseChoicesInner` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `message`
-      if (jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) {
-        ChatCompletionResponseMessage.validateJsonElement(jsonObj.get("message"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : CreateChatCompletionResponseChoicesInner.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
-      if ((jsonObj.get("finish_reason") != null && !jsonObj.get("finish_reason").isJsonNull()) && !jsonObj.get("finish_reason").isJsonPrimitive()) {
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("finish_reason").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `finish_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("finish_reason").toString()));
       }
-      // validate the optional field `finish_reason`
-      if (jsonObj.get("finish_reason") != null && !jsonObj.get("finish_reason").isJsonNull()) {
-        FinishReasonEnum.validateJsonElement(jsonObj.get("finish_reason"));
-      }
+      // validate the required field `finish_reason`
+      FinishReasonEnum.validateJsonElement(jsonObj.get("finish_reason"));
+      // validate the required field `message`
+      ChatCompletionResponseMessage.validateJsonElement(jsonObj.get("message"));
+      // validate the required field `logprobs`
+      CreateChatCompletionResponseChoicesInnerLogprobs.validateJsonElement(jsonObj.get("logprobs"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

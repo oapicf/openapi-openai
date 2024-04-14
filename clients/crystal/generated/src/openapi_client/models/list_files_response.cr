@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -17,15 +17,38 @@ module OpenAPIClient
     include JSON::Serializable
 
     # Required properties
-    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
-    property object : String
-
     @[JSON::Field(key: "data", type: Array(OpenAIFile), nillable: false, emit_null: false)]
     property data : Array(OpenAIFile)
 
+    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
+    property object : String
+
+    class EnumAttributeValidator
+      getter datatype : String
+      getter allowable_values : Array(String)
+
+      def initialize(datatype, allowable_values)
+        @datatype = datatype
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.includes?(value)
+      end
+    end
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@object : String, @data : Array(OpenAIFile))
+    def initialize(@data : Array(OpenAIFile), @object : String)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -38,7 +61,19 @@ module OpenAPIClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      object_validator = EnumAttributeValidator.new("String", ["list"])
+      return false unless object_validator.valid?(@object)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] object Object to be assigned
+    def object=(object)
+      validator = EnumAttributeValidator.new("String", ["list"])
+      unless validator.valid?(object)
+        raise ArgumentError.new("invalid value for \"object\", must be one of #{validator.allowable_values}.")
+      end
+      @object = object
     end
 
     # Checks equality by comparing each attribute.
@@ -46,8 +81,8 @@ module OpenAPIClient
     def ==(o)
       return true if self.same?(o)
       self.class == o.class &&
-          object == o.object &&
-          data == o.data
+          data == o.data &&
+          object == o.object
     end
 
     # @see the `==` method
@@ -59,7 +94,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [object, data].hash
+      [data, object].hash
     end
 
     # Builds the object from hash

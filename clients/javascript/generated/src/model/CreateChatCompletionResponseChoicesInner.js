@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,20 +13,25 @@
 
 import ApiClient from '../ApiClient';
 import ChatCompletionResponseMessage from './ChatCompletionResponseMessage';
+import CreateChatCompletionResponseChoicesInnerLogprobs from './CreateChatCompletionResponseChoicesInnerLogprobs';
 
 /**
  * The CreateChatCompletionResponseChoicesInner model module.
  * @module model/CreateChatCompletionResponseChoicesInner
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateChatCompletionResponseChoicesInner {
     /**
      * Constructs a new <code>CreateChatCompletionResponseChoicesInner</code>.
      * @alias module:model/CreateChatCompletionResponseChoicesInner
+     * @param finishReason {module:model/CreateChatCompletionResponseChoicesInner.FinishReasonEnum} The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+     * @param index {Number} The index of the choice in the list of choices.
+     * @param message {module:model/ChatCompletionResponseMessage} 
+     * @param logprobs {module:model/CreateChatCompletionResponseChoicesInnerLogprobs} 
      */
-    constructor() { 
+    constructor(finishReason, index, message, logprobs) { 
         
-        CreateChatCompletionResponseChoicesInner.initialize(this);
+        CreateChatCompletionResponseChoicesInner.initialize(this, finishReason, index, message, logprobs);
     }
 
     /**
@@ -34,7 +39,11 @@ class CreateChatCompletionResponseChoicesInner {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, finishReason, index, message, logprobs) { 
+        obj['finish_reason'] = finishReason;
+        obj['index'] = index;
+        obj['message'] = message;
+        obj['logprobs'] = logprobs;
     }
 
     /**
@@ -48,14 +57,17 @@ class CreateChatCompletionResponseChoicesInner {
         if (data) {
             obj = obj || new CreateChatCompletionResponseChoicesInner();
 
+            if (data.hasOwnProperty('finish_reason')) {
+                obj['finish_reason'] = ApiClient.convertToType(data['finish_reason'], 'String');
+            }
             if (data.hasOwnProperty('index')) {
                 obj['index'] = ApiClient.convertToType(data['index'], 'Number');
             }
             if (data.hasOwnProperty('message')) {
                 obj['message'] = ChatCompletionResponseMessage.constructFromObject(data['message']);
             }
-            if (data.hasOwnProperty('finish_reason')) {
-                obj['finish_reason'] = ApiClient.convertToType(data['finish_reason'], 'String');
+            if (data.hasOwnProperty('logprobs')) {
+                obj['logprobs'] = CreateChatCompletionResponseChoicesInnerLogprobs.constructFromObject(data['logprobs']);
             }
         }
         return obj;
@@ -67,13 +79,23 @@ class CreateChatCompletionResponseChoicesInner {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>CreateChatCompletionResponseChoicesInner</code>.
      */
     static validateJSON(data) {
-        // validate the optional field `message`
-        if (data['message']) { // data not null
-          ChatCompletionResponseMessage.validateJSON(data['message']);
+        // check to make sure all required properties are present in the JSON string
+        for (const property of CreateChatCompletionResponseChoicesInner.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
         }
         // ensure the json data is a string
         if (data['finish_reason'] && !(typeof data['finish_reason'] === 'string' || data['finish_reason'] instanceof String)) {
             throw new Error("Expected the field `finish_reason` to be a primitive type in the JSON string but got " + data['finish_reason']);
+        }
+        // validate the optional field `message`
+        if (data['message']) { // data not null
+          ChatCompletionResponseMessage.validateJSON(data['message']);
+        }
+        // validate the optional field `logprobs`
+        if (data['logprobs']) { // data not null
+          CreateChatCompletionResponseChoicesInnerLogprobs.validateJSON(data['logprobs']);
         }
 
         return true;
@@ -82,9 +104,16 @@ class CreateChatCompletionResponseChoicesInner {
 
 }
 
-
+CreateChatCompletionResponseChoicesInner.RequiredProperties = ["finish_reason", "index", "message", "logprobs"];
 
 /**
+ * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+ * @member {module:model/CreateChatCompletionResponseChoicesInner.FinishReasonEnum} finish_reason
+ */
+CreateChatCompletionResponseChoicesInner.prototype['finish_reason'] = undefined;
+
+/**
+ * The index of the choice in the list of choices.
  * @member {Number} index
  */
 CreateChatCompletionResponseChoicesInner.prototype['index'] = undefined;
@@ -95,9 +124,9 @@ CreateChatCompletionResponseChoicesInner.prototype['index'] = undefined;
 CreateChatCompletionResponseChoicesInner.prototype['message'] = undefined;
 
 /**
- * @member {module:model/CreateChatCompletionResponseChoicesInner.FinishReasonEnum} finish_reason
+ * @member {module:model/CreateChatCompletionResponseChoicesInnerLogprobs} logprobs
  */
-CreateChatCompletionResponseChoicesInner.prototype['finish_reason'] = undefined;
+CreateChatCompletionResponseChoicesInner.prototype['logprobs'] = undefined;
 
 
 
@@ -121,6 +150,18 @@ CreateChatCompletionResponseChoicesInner['FinishReasonEnum'] = {
      * @const
      */
     "length": "length",
+
+    /**
+     * value: "tool_calls"
+     * @const
+     */
+    "tool_calls": "tool_calls",
+
+    /**
+     * value: "content_filter"
+     * @const
+     */
+    "content_filter": "content_filter",
 
     /**
      * value: "function_call"

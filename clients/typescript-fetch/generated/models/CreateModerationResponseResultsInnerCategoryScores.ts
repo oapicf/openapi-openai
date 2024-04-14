@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,49 +14,73 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * A list of the categories along with their scores as predicted by model.
  * @export
  * @interface CreateModerationResponseResultsInnerCategoryScores
  */
 export interface CreateModerationResponseResultsInnerCategoryScores {
     /**
-     * 
+     * The score for the category 'hate'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     hate: number;
     /**
-     * 
+     * The score for the category 'hate/threatening'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     hateThreatening: number;
     /**
-     * 
+     * The score for the category 'harassment'.
+     * @type {number}
+     * @memberof CreateModerationResponseResultsInnerCategoryScores
+     */
+    harassment: number;
+    /**
+     * The score for the category 'harassment/threatening'.
+     * @type {number}
+     * @memberof CreateModerationResponseResultsInnerCategoryScores
+     */
+    harassmentThreatening: number;
+    /**
+     * The score for the category 'self-harm'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     selfHarm: number;
     /**
-     * 
+     * The score for the category 'self-harm/intent'.
+     * @type {number}
+     * @memberof CreateModerationResponseResultsInnerCategoryScores
+     */
+    selfHarmIntent: number;
+    /**
+     * The score for the category 'self-harm/instructions'.
+     * @type {number}
+     * @memberof CreateModerationResponseResultsInnerCategoryScores
+     */
+    selfHarmInstructions: number;
+    /**
+     * The score for the category 'sexual'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     sexual: number;
     /**
-     * 
+     * The score for the category 'sexual/minors'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     sexualMinors: number;
     /**
-     * 
+     * The score for the category 'violence'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     violence: number;
     /**
-     * 
+     * The score for the category 'violence/graphic'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
@@ -69,7 +93,11 @@ export interface CreateModerationResponseResultsInnerCategoryScores {
 export function instanceOfCreateModerationResponseResultsInnerCategoryScores(value: object): boolean {
     if (!('hate' in value)) return false;
     if (!('hateThreatening' in value)) return false;
+    if (!('harassment' in value)) return false;
+    if (!('harassmentThreatening' in value)) return false;
     if (!('selfHarm' in value)) return false;
+    if (!('selfHarmIntent' in value)) return false;
+    if (!('selfHarmInstructions' in value)) return false;
     if (!('sexual' in value)) return false;
     if (!('sexualMinors' in value)) return false;
     if (!('violence' in value)) return false;
@@ -89,7 +117,11 @@ export function CreateModerationResponseResultsInnerCategoryScoresFromJSONTyped(
         
         'hate': json['hate'],
         'hateThreatening': json['hate/threatening'],
+        'harassment': json['harassment'],
+        'harassmentThreatening': json['harassment/threatening'],
         'selfHarm': json['self-harm'],
+        'selfHarmIntent': json['self-harm/intent'],
+        'selfHarmInstructions': json['self-harm/instructions'],
         'sexual': json['sexual'],
         'sexualMinors': json['sexual/minors'],
         'violence': json['violence'],
@@ -105,7 +137,11 @@ export function CreateModerationResponseResultsInnerCategoryScoresToJSON(value?:
         
         'hate': value['hate'],
         'hate/threatening': value['hateThreatening'],
+        'harassment': value['harassment'],
+        'harassment/threatening': value['harassmentThreatening'],
         'self-harm': value['selfHarm'],
+        'self-harm/intent': value['selfHarmIntent'],
+        'self-harm/instructions': value['selfHarmInstructions'],
         'sexual': value['sexual'],
         'sexual/minors': value['sexualMinors'],
         'violence': value['violence'],

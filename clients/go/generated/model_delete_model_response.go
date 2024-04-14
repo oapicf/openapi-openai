@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -23,8 +23,8 @@ var _ MappedNullable = &DeleteModelResponse{}
 // DeleteModelResponse struct for DeleteModelResponse
 type DeleteModelResponse struct {
 	Id string `json:"id"`
-	Object string `json:"object"`
 	Deleted bool `json:"deleted"`
+	Object string `json:"object"`
 }
 
 type _DeleteModelResponse DeleteModelResponse
@@ -33,11 +33,11 @@ type _DeleteModelResponse DeleteModelResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeleteModelResponse(id string, object string, deleted bool) *DeleteModelResponse {
+func NewDeleteModelResponse(id string, deleted bool, object string) *DeleteModelResponse {
 	this := DeleteModelResponse{}
 	this.Id = id
-	this.Object = object
 	this.Deleted = deleted
+	this.Object = object
 	return &this
 }
 
@@ -73,30 +73,6 @@ func (o *DeleteModelResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetObject returns the Object field value
-func (o *DeleteModelResponse) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *DeleteModelResponse) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *DeleteModelResponse) SetObject(v string) {
-	o.Object = v
-}
-
 // GetDeleted returns the Deleted field value
 func (o *DeleteModelResponse) GetDeleted() bool {
 	if o == nil {
@@ -121,6 +97,30 @@ func (o *DeleteModelResponse) SetDeleted(v bool) {
 	o.Deleted = v
 }
 
+// GetObject returns the Object field value
+func (o *DeleteModelResponse) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *DeleteModelResponse) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *DeleteModelResponse) SetObject(v string) {
+	o.Object = v
+}
+
 func (o DeleteModelResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -132,8 +132,8 @@ func (o DeleteModelResponse) MarshalJSON() ([]byte, error) {
 func (o DeleteModelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	toSerialize["object"] = o.Object
 	toSerialize["deleted"] = o.Deleted
+	toSerialize["object"] = o.Object
 	return toSerialize, nil
 }
 
@@ -143,8 +143,8 @@ func (o *DeleteModelResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
-		"object",
 		"deleted",
+		"object",
 	}
 
 	allProperties := make(map[string]interface{})

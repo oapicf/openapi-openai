@@ -11,24 +11,16 @@ import AnyCodable
 #endif
 
 /** ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.  */
-public enum CreateEmbeddingRequestModel: Codable, JSONEncodable, Hashable {
-    case typeString(String)
+public struct CreateEmbeddingRequestModel: Codable, JSONEncodable, Hashable {
 
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .typeString(let value):
-            try container.encode(value)
-        }
+
+    public enum CodingKeys: CodingKey, CaseIterable {
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(String.self) {
-            self = .typeString(value)
-        } else {
-            throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of CreateEmbeddingRequestModel"))
-        }
+    // Encodable protocol methods
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
     }
 }
 

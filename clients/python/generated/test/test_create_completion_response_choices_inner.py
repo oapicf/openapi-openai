@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -36,41 +36,45 @@ class TestCreateCompletionResponseChoicesInner(unittest.TestCase):
         model = CreateCompletionResponseChoicesInner()
         if include_optional:
             return CreateCompletionResponseChoicesInner(
-                text = '',
+                finish_reason = 'stop',
                 index = 56,
                 logprobs = openapiopenai.models.create_completion_response_choices_inner_logprobs.CreateCompletionResponse_choices_inner_logprobs(
-                    tokens = [
-                        ''
+                    text_offset = [
+                        56
                         ], 
                     token_logprobs = [
                         1.337
                         ], 
-                    top_logprobs = [
-                        None
+                    tokens = [
+                        ''
                         ], 
-                    text_offset = [
-                        56
+                    top_logprobs = [
+                        {
+                            'key' : 1.337
+                            }
                         ], ),
-                finish_reason = 'stop'
+                text = ''
             )
         else:
             return CreateCompletionResponseChoicesInner(
-                text = '',
+                finish_reason = 'stop',
                 index = 56,
                 logprobs = openapiopenai.models.create_completion_response_choices_inner_logprobs.CreateCompletionResponse_choices_inner_logprobs(
-                    tokens = [
-                        ''
+                    text_offset = [
+                        56
                         ], 
                     token_logprobs = [
                         1.337
                         ], 
-                    top_logprobs = [
-                        None
+                    tokens = [
+                        ''
                         ], 
-                    text_offset = [
-                        56
+                    top_logprobs = [
+                        {
+                            'key' : 1.337
+                            }
                         ], ),
-                finish_reason = 'stop',
+                text = '',
         )
         """
 

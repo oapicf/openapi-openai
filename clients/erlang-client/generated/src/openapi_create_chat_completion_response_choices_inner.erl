@@ -5,16 +5,19 @@
 -export_type([openapi_create_chat_completion_response_choices_inner/0]).
 
 -type openapi_create_chat_completion_response_choices_inner() ::
-    #{ 'index' => integer(),
-       'message' => openapi_chat_completion_response_message:openapi_chat_completion_response_message(),
-       'finish_reason' => binary()
+    #{ 'finish_reason' := binary(),
+       'index' := integer(),
+       'message' := openapi_chat_completion_response_message:openapi_chat_completion_response_message(),
+       'logprobs' := openapi_create_chat_completion_response_choices_inner_logprobs:openapi_create_chat_completion_response_choices_inner_logprobs()
      }.
 
-encode(#{ 'index' := Index,
+encode(#{ 'finish_reason' := FinishReason,
+          'index' := Index,
           'message' := Message,
-          'finish_reason' := FinishReason
+          'logprobs' := Logprobs
         }) ->
-    #{ 'index' => Index,
+    #{ 'finish_reason' => FinishReason,
+       'index' => Index,
        'message' => Message,
-       'finish_reason' => FinishReason
+       'logprobs' => Logprobs
      }.

@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,11 +24,284 @@ import type { RequestArgs } from './base';
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
+ * A list of [Files](/docs/api-reference/files) attached to an `assistant`.
+ * @export
+ * @interface AssistantFileObject
+ */
+export interface AssistantFileObject {
+    /**
+     * The identifier, which can be referenced in API endpoints.
+     * @type {string}
+     * @memberof AssistantFileObject
+     */
+    'id': string;
+    /**
+     * The object type, which is always `assistant.file`.
+     * @type {string}
+     * @memberof AssistantFileObject
+     */
+    'object': AssistantFileObjectObjectEnum;
+    /**
+     * The Unix timestamp (in seconds) for when the assistant file was created.
+     * @type {number}
+     * @memberof AssistantFileObject
+     */
+    'created_at': number;
+    /**
+     * The assistant ID that the file is attached to.
+     * @type {string}
+     * @memberof AssistantFileObject
+     */
+    'assistant_id': string;
+}
+
+export const AssistantFileObjectObjectEnum = {
+    AssistantFile: 'assistant.file'
+} as const;
+
+export type AssistantFileObjectObjectEnum = typeof AssistantFileObjectObjectEnum[keyof typeof AssistantFileObjectObjectEnum];
+
+/**
+ * Represents an `assistant` that can call the model and use tools.
+ * @export
+ * @interface AssistantObject
+ */
+export interface AssistantObject {
+    /**
+     * The identifier, which can be referenced in API endpoints.
+     * @type {string}
+     * @memberof AssistantObject
+     */
+    'id': string;
+    /**
+     * The object type, which is always `assistant`.
+     * @type {string}
+     * @memberof AssistantObject
+     */
+    'object': AssistantObjectObjectEnum;
+    /**
+     * The Unix timestamp (in seconds) for when the assistant was created.
+     * @type {number}
+     * @memberof AssistantObject
+     */
+    'created_at': number;
+    /**
+     * The name of the assistant. The maximum length is 256 characters. 
+     * @type {string}
+     * @memberof AssistantObject
+     */
+    'name': string | null;
+    /**
+     * The description of the assistant. The maximum length is 512 characters. 
+     * @type {string}
+     * @memberof AssistantObject
+     */
+    'description': string | null;
+    /**
+     * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+     * @type {string}
+     * @memberof AssistantObject
+     */
+    'model': string;
+    /**
+     * The system instructions that the assistant uses. The maximum length is 256,000 characters. 
+     * @type {string}
+     * @memberof AssistantObject
+     */
+    'instructions': string | null;
+    /**
+     * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+     * @type {Array<AssistantObjectToolsInner>}
+     * @memberof AssistantObject
+     */
+    'tools': Array<AssistantObjectToolsInner>;
+    /**
+     * A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
+     * @type {Array<string>}
+     * @memberof AssistantObject
+     */
+    'file_ids': Array<string>;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof AssistantObject
+     */
+    'metadata': object | null;
+}
+
+export const AssistantObjectObjectEnum = {
+    Assistant: 'assistant'
+} as const;
+
+export type AssistantObjectObjectEnum = typeof AssistantObjectObjectEnum[keyof typeof AssistantObjectObjectEnum];
+
+/**
+ * @type AssistantObjectToolsInner
+ * @export
+ */
+export type AssistantObjectToolsInner = AssistantToolsCode | AssistantToolsFunction | AssistantToolsRetrieval;
+
+/**
+ * @type AssistantStreamEvent
+ * Represents an event emitted when streaming a Run.  Each event in a server-sent events stream has an `event` and `data` property:  ``` event: thread.created data: {\"id\": \"thread_123\", \"object\": \"thread\", ...} ```  We emit events whenever a new object is created, transitions to a new state, or is being streamed in parts (deltas). For example, we emit `thread.run.created` when a new run is created, `thread.run.completed` when a run completes, and so on. When an Assistant chooses to create a message during a run, we emit a `thread.message.created event`, a `thread.message.in_progress` event, many `thread.message.delta` events, and finally a `thread.message.completed` event.  We may add additional events over time, so we recommend handling unknown events gracefully in your code. See the [Assistants API quickstart](/docs/assistants/overview) to learn how to integrate the Assistants API with streaming. 
+ * @export
+ */
+export type AssistantStreamEvent = DoneEvent | ErrorEvent | MessageStreamEvent | RunStepStreamEvent | RunStreamEvent | ThreadStreamEvent;
+
+/**
+ * 
+ * @export
+ * @interface AssistantToolsCode
+ */
+export interface AssistantToolsCode {
+    /**
+     * The type of tool being defined: `code_interpreter`
+     * @type {string}
+     * @memberof AssistantToolsCode
+     */
+    'type': AssistantToolsCodeTypeEnum;
+}
+
+export const AssistantToolsCodeTypeEnum = {
+    CodeInterpreter: 'code_interpreter'
+} as const;
+
+export type AssistantToolsCodeTypeEnum = typeof AssistantToolsCodeTypeEnum[keyof typeof AssistantToolsCodeTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface AssistantToolsFunction
+ */
+export interface AssistantToolsFunction {
+    /**
+     * The type of tool being defined: `function`
+     * @type {string}
+     * @memberof AssistantToolsFunction
+     */
+    'type': AssistantToolsFunctionTypeEnum;
+    /**
+     * 
+     * @type {FunctionObject}
+     * @memberof AssistantToolsFunction
+     */
+    'function': FunctionObject;
+}
+
+export const AssistantToolsFunctionTypeEnum = {
+    Function: 'function'
+} as const;
+
+export type AssistantToolsFunctionTypeEnum = typeof AssistantToolsFunctionTypeEnum[keyof typeof AssistantToolsFunctionTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface AssistantToolsRetrieval
+ */
+export interface AssistantToolsRetrieval {
+    /**
+     * The type of tool being defined: `retrieval`
+     * @type {string}
+     * @memberof AssistantToolsRetrieval
+     */
+    'type': AssistantToolsRetrievalTypeEnum;
+}
+
+export const AssistantToolsRetrievalTypeEnum = {
+    Retrieval: 'retrieval'
+} as const;
+
+export type AssistantToolsRetrievalTypeEnum = typeof AssistantToolsRetrievalTypeEnum[keyof typeof AssistantToolsRetrievalTypeEnum];
+
+/**
+ * Specifies a tool the model should use. Use to force the model to call a specific tool.
+ * @export
+ * @interface AssistantsApiNamedToolChoice
+ */
+export interface AssistantsApiNamedToolChoice {
+    /**
+     * The type of the tool. If type is `function`, the function name must be set
+     * @type {string}
+     * @memberof AssistantsApiNamedToolChoice
+     */
+    'type': AssistantsApiNamedToolChoiceTypeEnum;
+    /**
+     * 
+     * @type {ChatCompletionNamedToolChoiceFunction}
+     * @memberof AssistantsApiNamedToolChoice
+     */
+    'function'?: ChatCompletionNamedToolChoiceFunction;
+}
+
+export const AssistantsApiNamedToolChoiceTypeEnum = {
+    Function: 'function',
+    CodeInterpreter: 'code_interpreter',
+    Retrieval: 'retrieval'
+} as const;
+
+export type AssistantsApiNamedToolChoiceTypeEnum = typeof AssistantsApiNamedToolChoiceTypeEnum[keyof typeof AssistantsApiNamedToolChoiceTypeEnum];
+
+/**
+ * An object describing the expected output of the model. If `json_object` only `function` type `tools` are allowed to be passed to the Run. If `text` the model can return text or any value needed. 
+ * @export
+ * @interface AssistantsApiResponseFormat
+ */
+export interface AssistantsApiResponseFormat {
+    /**
+     * Must be one of `text` or `json_object`.
+     * @type {string}
+     * @memberof AssistantsApiResponseFormat
+     */
+    'type'?: AssistantsApiResponseFormatTypeEnum;
+}
+
+export const AssistantsApiResponseFormatTypeEnum = {
+    Text: 'text',
+    JsonObject: 'json_object'
+} as const;
+
+export type AssistantsApiResponseFormatTypeEnum = typeof AssistantsApiResponseFormatTypeEnum[keyof typeof AssistantsApiResponseFormatTypeEnum];
+
+/**
+ * @type AssistantsApiResponseFormatOption
+ * Specifies the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
+ * @export
+ */
+export type AssistantsApiResponseFormatOption = AssistantsApiResponseFormat | string;
+
+/**
+ * @type AssistantsApiToolChoiceOption
+ * Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like `{\"type\": \"TOOL_TYPE\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. 
+ * @export
+ */
+export type AssistantsApiToolChoiceOption = AssistantsApiNamedToolChoice | string;
+
+/**
+ * Specifying a particular function via `{\"name\": \"my_function\"}` forces the model to call that function. 
+ * @export
+ * @interface ChatCompletionFunctionCallOption
+ */
+export interface ChatCompletionFunctionCallOption {
+    /**
+     * The name of the function to call.
+     * @type {string}
+     * @memberof ChatCompletionFunctionCallOption
+     */
+    'name': string;
+}
+/**
  * 
  * @export
  * @interface ChatCompletionFunctions
  */
 export interface ChatCompletionFunctions {
+    /**
+     * A description of what the function does, used by the model to choose when and how to call the function.
+     * @type {string}
+     * @memberof ChatCompletionFunctions
+     */
+    'description'?: string;
     /**
      * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
      * @type {string}
@@ -36,13 +309,7 @@ export interface ChatCompletionFunctions {
      */
     'name': string;
     /**
-     * The description of what the function does.
-     * @type {string}
-     * @memberof ChatCompletionFunctions
-     */
-    'description'?: string;
-    /**
-     * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+     * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
      * @type {{ [key: string]: any; }}
      * @memberof ChatCompletionFunctions
      */
@@ -51,69 +318,459 @@ export interface ChatCompletionFunctions {
 /**
  * 
  * @export
- * @interface ChatCompletionRequestMessage
+ * @interface ChatCompletionMessageToolCall
  */
-export interface ChatCompletionRequestMessage {
+export interface ChatCompletionMessageToolCall {
     /**
-     * The role of the messages author. One of `system`, `user`, `assistant`, or `function`.
+     * The ID of the tool call.
      * @type {string}
-     * @memberof ChatCompletionRequestMessage
+     * @memberof ChatCompletionMessageToolCall
      */
-    'role': ChatCompletionRequestMessageRoleEnum;
+    'id': string;
     /**
-     * The contents of the message. `content` is required for all messages except assistant messages with function calls.
+     * The type of the tool. Currently, only `function` is supported.
      * @type {string}
-     * @memberof ChatCompletionRequestMessage
+     * @memberof ChatCompletionMessageToolCall
      */
-    'content'?: string;
-    /**
-     * The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
-     * @type {string}
-     * @memberof ChatCompletionRequestMessage
-     */
-    'name'?: string;
+    'type': ChatCompletionMessageToolCallTypeEnum;
     /**
      * 
-     * @type {ChatCompletionRequestMessageFunctionCall}
-     * @memberof ChatCompletionRequestMessage
+     * @type {ChatCompletionMessageToolCallFunction}
+     * @memberof ChatCompletionMessageToolCall
      */
-    'function_call'?: ChatCompletionRequestMessageFunctionCall;
+    'function': ChatCompletionMessageToolCallFunction;
 }
 
-export const ChatCompletionRequestMessageRoleEnum = {
-    System: 'system',
-    User: 'user',
-    Assistant: 'assistant',
+export const ChatCompletionMessageToolCallTypeEnum = {
     Function: 'function'
 } as const;
 
-export type ChatCompletionRequestMessageRoleEnum = typeof ChatCompletionRequestMessageRoleEnum[keyof typeof ChatCompletionRequestMessageRoleEnum];
+export type ChatCompletionMessageToolCallTypeEnum = typeof ChatCompletionMessageToolCallTypeEnum[keyof typeof ChatCompletionMessageToolCallTypeEnum];
 
 /**
- * The name and arguments of a function that should be called, as generated by the model.
+ * 
  * @export
- * @interface ChatCompletionRequestMessageFunctionCall
+ * @interface ChatCompletionMessageToolCallChunk
  */
-export interface ChatCompletionRequestMessageFunctionCall {
+export interface ChatCompletionMessageToolCallChunk {
+    /**
+     * 
+     * @type {number}
+     * @memberof ChatCompletionMessageToolCallChunk
+     */
+    'index': number;
+    /**
+     * The ID of the tool call.
+     * @type {string}
+     * @memberof ChatCompletionMessageToolCallChunk
+     */
+    'id'?: string;
+    /**
+     * The type of the tool. Currently, only `function` is supported.
+     * @type {string}
+     * @memberof ChatCompletionMessageToolCallChunk
+     */
+    'type'?: ChatCompletionMessageToolCallChunkTypeEnum;
+    /**
+     * 
+     * @type {ChatCompletionMessageToolCallChunkFunction}
+     * @memberof ChatCompletionMessageToolCallChunk
+     */
+    'function'?: ChatCompletionMessageToolCallChunkFunction;
+}
+
+export const ChatCompletionMessageToolCallChunkTypeEnum = {
+    Function: 'function'
+} as const;
+
+export type ChatCompletionMessageToolCallChunkTypeEnum = typeof ChatCompletionMessageToolCallChunkTypeEnum[keyof typeof ChatCompletionMessageToolCallChunkTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface ChatCompletionMessageToolCallChunkFunction
+ */
+export interface ChatCompletionMessageToolCallChunkFunction {
     /**
      * The name of the function to call.
      * @type {string}
-     * @memberof ChatCompletionRequestMessageFunctionCall
+     * @memberof ChatCompletionMessageToolCallChunkFunction
      */
     'name'?: string;
     /**
      * The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.
      * @type {string}
-     * @memberof ChatCompletionRequestMessageFunctionCall
+     * @memberof ChatCompletionMessageToolCallChunkFunction
      */
     'arguments'?: string;
 }
 /**
+ * The function that the model called.
+ * @export
+ * @interface ChatCompletionMessageToolCallFunction
+ */
+export interface ChatCompletionMessageToolCallFunction {
+    /**
+     * The name of the function to call.
+     * @type {string}
+     * @memberof ChatCompletionMessageToolCallFunction
+     */
+    'name': string;
+    /**
+     * The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.
+     * @type {string}
+     * @memberof ChatCompletionMessageToolCallFunction
+     */
+    'arguments': string;
+}
+/**
+ * Specifies a tool the model should use. Use to force the model to call a specific function.
+ * @export
+ * @interface ChatCompletionNamedToolChoice
+ */
+export interface ChatCompletionNamedToolChoice {
+    /**
+     * The type of the tool. Currently, only `function` is supported.
+     * @type {string}
+     * @memberof ChatCompletionNamedToolChoice
+     */
+    'type': ChatCompletionNamedToolChoiceTypeEnum;
+    /**
+     * 
+     * @type {ChatCompletionNamedToolChoiceFunction}
+     * @memberof ChatCompletionNamedToolChoice
+     */
+    'function': ChatCompletionNamedToolChoiceFunction;
+}
+
+export const ChatCompletionNamedToolChoiceTypeEnum = {
+    Function: 'function'
+} as const;
+
+export type ChatCompletionNamedToolChoiceTypeEnum = typeof ChatCompletionNamedToolChoiceTypeEnum[keyof typeof ChatCompletionNamedToolChoiceTypeEnum];
+
+/**
  * 
+ * @export
+ * @interface ChatCompletionNamedToolChoiceFunction
+ */
+export interface ChatCompletionNamedToolChoiceFunction {
+    /**
+     * The name of the function to call.
+     * @type {string}
+     * @memberof ChatCompletionNamedToolChoiceFunction
+     */
+    'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface ChatCompletionRequestAssistantMessage
+ */
+export interface ChatCompletionRequestAssistantMessage {
+    /**
+     * The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. 
+     * @type {string}
+     * @memberof ChatCompletionRequestAssistantMessage
+     */
+    'content'?: string | null;
+    /**
+     * The role of the messages author, in this case `assistant`.
+     * @type {string}
+     * @memberof ChatCompletionRequestAssistantMessage
+     */
+    'role': ChatCompletionRequestAssistantMessageRoleEnum;
+    /**
+     * An optional name for the participant. Provides the model information to differentiate between participants of the same role.
+     * @type {string}
+     * @memberof ChatCompletionRequestAssistantMessage
+     */
+    'name'?: string;
+    /**
+     * The tool calls generated by the model, such as function calls.
+     * @type {Array<ChatCompletionMessageToolCall>}
+     * @memberof ChatCompletionRequestAssistantMessage
+     */
+    'tool_calls'?: Array<ChatCompletionMessageToolCall>;
+    /**
+     * 
+     * @type {ChatCompletionRequestAssistantMessageFunctionCall}
+     * @memberof ChatCompletionRequestAssistantMessage
+     * @deprecated
+     */
+    'function_call'?: ChatCompletionRequestAssistantMessageFunctionCall;
+}
+
+export const ChatCompletionRequestAssistantMessageRoleEnum = {
+    Assistant: 'assistant'
+} as const;
+
+export type ChatCompletionRequestAssistantMessageRoleEnum = typeof ChatCompletionRequestAssistantMessageRoleEnum[keyof typeof ChatCompletionRequestAssistantMessageRoleEnum];
+
+/**
+ * Deprecated and replaced by `tool_calls`. The name and arguments of a function that should be called, as generated by the model.
+ * @export
+ * @interface ChatCompletionRequestAssistantMessageFunctionCall
+ */
+export interface ChatCompletionRequestAssistantMessageFunctionCall {
+    /**
+     * The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.
+     * @type {string}
+     * @memberof ChatCompletionRequestAssistantMessageFunctionCall
+     */
+    'arguments': string;
+    /**
+     * The name of the function to call.
+     * @type {string}
+     * @memberof ChatCompletionRequestAssistantMessageFunctionCall
+     */
+    'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface ChatCompletionRequestFunctionMessage
+ */
+export interface ChatCompletionRequestFunctionMessage {
+    /**
+     * The role of the messages author, in this case `function`.
+     * @type {string}
+     * @memberof ChatCompletionRequestFunctionMessage
+     */
+    'role': ChatCompletionRequestFunctionMessageRoleEnum;
+    /**
+     * The contents of the function message.
+     * @type {string}
+     * @memberof ChatCompletionRequestFunctionMessage
+     */
+    'content': string | null;
+    /**
+     * The name of the function to call.
+     * @type {string}
+     * @memberof ChatCompletionRequestFunctionMessage
+     */
+    'name': string;
+}
+
+export const ChatCompletionRequestFunctionMessageRoleEnum = {
+    Function: 'function'
+} as const;
+
+export type ChatCompletionRequestFunctionMessageRoleEnum = typeof ChatCompletionRequestFunctionMessageRoleEnum[keyof typeof ChatCompletionRequestFunctionMessageRoleEnum];
+
+/**
+ * @type ChatCompletionRequestMessage
+ * @export
+ */
+export type ChatCompletionRequestMessage = ChatCompletionRequestAssistantMessage | ChatCompletionRequestFunctionMessage | ChatCompletionRequestSystemMessage | ChatCompletionRequestToolMessage | ChatCompletionRequestUserMessage;
+
+/**
+ * @type ChatCompletionRequestMessageContentPart
+ * @export
+ */
+export type ChatCompletionRequestMessageContentPart = ChatCompletionRequestMessageContentPartImage | ChatCompletionRequestMessageContentPartText;
+
+/**
+ * 
+ * @export
+ * @interface ChatCompletionRequestMessageContentPartImage
+ */
+export interface ChatCompletionRequestMessageContentPartImage {
+    /**
+     * The type of the content part.
+     * @type {string}
+     * @memberof ChatCompletionRequestMessageContentPartImage
+     */
+    'type': ChatCompletionRequestMessageContentPartImageTypeEnum;
+    /**
+     * 
+     * @type {ChatCompletionRequestMessageContentPartImageImageUrl}
+     * @memberof ChatCompletionRequestMessageContentPartImage
+     */
+    'image_url': ChatCompletionRequestMessageContentPartImageImageUrl;
+}
+
+export const ChatCompletionRequestMessageContentPartImageTypeEnum = {
+    ImageUrl: 'image_url'
+} as const;
+
+export type ChatCompletionRequestMessageContentPartImageTypeEnum = typeof ChatCompletionRequestMessageContentPartImageTypeEnum[keyof typeof ChatCompletionRequestMessageContentPartImageTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface ChatCompletionRequestMessageContentPartImageImageUrl
+ */
+export interface ChatCompletionRequestMessageContentPartImageImageUrl {
+    /**
+     * Either a URL of the image or the base64 encoded image data.
+     * @type {string}
+     * @memberof ChatCompletionRequestMessageContentPartImageImageUrl
+     */
+    'url': string;
+    /**
+     * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+     * @type {string}
+     * @memberof ChatCompletionRequestMessageContentPartImageImageUrl
+     */
+    'detail'?: ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum;
+}
+
+export const ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum = {
+    Auto: 'auto',
+    Low: 'low',
+    High: 'high'
+} as const;
+
+export type ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum = typeof ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum[keyof typeof ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum];
+
+/**
+ * 
+ * @export
+ * @interface ChatCompletionRequestMessageContentPartText
+ */
+export interface ChatCompletionRequestMessageContentPartText {
+    /**
+     * The type of the content part.
+     * @type {string}
+     * @memberof ChatCompletionRequestMessageContentPartText
+     */
+    'type': ChatCompletionRequestMessageContentPartTextTypeEnum;
+    /**
+     * The text content.
+     * @type {string}
+     * @memberof ChatCompletionRequestMessageContentPartText
+     */
+    'text': string;
+}
+
+export const ChatCompletionRequestMessageContentPartTextTypeEnum = {
+    Text: 'text'
+} as const;
+
+export type ChatCompletionRequestMessageContentPartTextTypeEnum = typeof ChatCompletionRequestMessageContentPartTextTypeEnum[keyof typeof ChatCompletionRequestMessageContentPartTextTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface ChatCompletionRequestSystemMessage
+ */
+export interface ChatCompletionRequestSystemMessage {
+    /**
+     * The contents of the system message.
+     * @type {string}
+     * @memberof ChatCompletionRequestSystemMessage
+     */
+    'content': string;
+    /**
+     * The role of the messages author, in this case `system`.
+     * @type {string}
+     * @memberof ChatCompletionRequestSystemMessage
+     */
+    'role': ChatCompletionRequestSystemMessageRoleEnum;
+    /**
+     * An optional name for the participant. Provides the model information to differentiate between participants of the same role.
+     * @type {string}
+     * @memberof ChatCompletionRequestSystemMessage
+     */
+    'name'?: string;
+}
+
+export const ChatCompletionRequestSystemMessageRoleEnum = {
+    System: 'system'
+} as const;
+
+export type ChatCompletionRequestSystemMessageRoleEnum = typeof ChatCompletionRequestSystemMessageRoleEnum[keyof typeof ChatCompletionRequestSystemMessageRoleEnum];
+
+/**
+ * 
+ * @export
+ * @interface ChatCompletionRequestToolMessage
+ */
+export interface ChatCompletionRequestToolMessage {
+    /**
+     * The role of the messages author, in this case `tool`.
+     * @type {string}
+     * @memberof ChatCompletionRequestToolMessage
+     */
+    'role': ChatCompletionRequestToolMessageRoleEnum;
+    /**
+     * The contents of the tool message.
+     * @type {string}
+     * @memberof ChatCompletionRequestToolMessage
+     */
+    'content': string;
+    /**
+     * Tool call that this message is responding to.
+     * @type {string}
+     * @memberof ChatCompletionRequestToolMessage
+     */
+    'tool_call_id': string;
+}
+
+export const ChatCompletionRequestToolMessageRoleEnum = {
+    Tool: 'tool'
+} as const;
+
+export type ChatCompletionRequestToolMessageRoleEnum = typeof ChatCompletionRequestToolMessageRoleEnum[keyof typeof ChatCompletionRequestToolMessageRoleEnum];
+
+/**
+ * 
+ * @export
+ * @interface ChatCompletionRequestUserMessage
+ */
+export interface ChatCompletionRequestUserMessage {
+    /**
+     * 
+     * @type {ChatCompletionRequestUserMessageContent}
+     * @memberof ChatCompletionRequestUserMessage
+     */
+    'content': ChatCompletionRequestUserMessageContent;
+    /**
+     * The role of the messages author, in this case `user`.
+     * @type {string}
+     * @memberof ChatCompletionRequestUserMessage
+     */
+    'role': ChatCompletionRequestUserMessageRoleEnum;
+    /**
+     * An optional name for the participant. Provides the model information to differentiate between participants of the same role.
+     * @type {string}
+     * @memberof ChatCompletionRequestUserMessage
+     */
+    'name'?: string;
+}
+
+export const ChatCompletionRequestUserMessageRoleEnum = {
+    User: 'user'
+} as const;
+
+export type ChatCompletionRequestUserMessageRoleEnum = typeof ChatCompletionRequestUserMessageRoleEnum[keyof typeof ChatCompletionRequestUserMessageRoleEnum];
+
+/**
+ * @type ChatCompletionRequestUserMessageContent
+ * The contents of the user message. 
+ * @export
+ */
+export type ChatCompletionRequestUserMessageContent = Array<ChatCompletionRequestMessageContentPart> | string;
+
+/**
+ * A chat completion message generated by the model.
  * @export
  * @interface ChatCompletionResponseMessage
  */
 export interface ChatCompletionResponseMessage {
+    /**
+     * The contents of the message.
+     * @type {string}
+     * @memberof ChatCompletionResponseMessage
+     */
+    'content': string | null;
+    /**
+     * The tool calls generated by the model, such as function calls.
+     * @type {Array<ChatCompletionMessageToolCall>}
+     * @memberof ChatCompletionResponseMessage
+     */
+    'tool_calls'?: Array<ChatCompletionMessageToolCall>;
     /**
      * The role of the author of this message.
      * @type {string}
@@ -121,40 +778,43 @@ export interface ChatCompletionResponseMessage {
      */
     'role': ChatCompletionResponseMessageRoleEnum;
     /**
-     * The contents of the message.
-     * @type {string}
-     * @memberof ChatCompletionResponseMessage
-     */
-    'content'?: string | null;
-    /**
      * 
-     * @type {ChatCompletionRequestMessageFunctionCall}
+     * @type {ChatCompletionRequestAssistantMessageFunctionCall}
      * @memberof ChatCompletionResponseMessage
+     * @deprecated
      */
-    'function_call'?: ChatCompletionRequestMessageFunctionCall;
+    'function_call'?: ChatCompletionRequestAssistantMessageFunctionCall;
 }
 
 export const ChatCompletionResponseMessageRoleEnum = {
-    System: 'system',
-    User: 'user',
-    Assistant: 'assistant',
-    Function: 'function'
+    Assistant: 'assistant'
 } as const;
 
 export type ChatCompletionResponseMessageRoleEnum = typeof ChatCompletionResponseMessageRoleEnum[keyof typeof ChatCompletionResponseMessageRoleEnum];
 
 /**
- * 
+ * The role of the author of a message
+ * @export
+ * @enum {string}
+ */
+
+export const ChatCompletionRole = {
+    System: 'system',
+    User: 'user',
+    Assistant: 'assistant',
+    Tool: 'tool',
+    Function: 'function'
+} as const;
+
+export type ChatCompletionRole = typeof ChatCompletionRole[keyof typeof ChatCompletionRole];
+
+
+/**
+ * A chat completion delta generated by streamed model responses.
  * @export
  * @interface ChatCompletionStreamResponseDelta
  */
 export interface ChatCompletionStreamResponseDelta {
-    /**
-     * The role of the author of this message.
-     * @type {string}
-     * @memberof ChatCompletionStreamResponseDelta
-     */
-    'role'?: ChatCompletionStreamResponseDeltaRoleEnum;
     /**
      * The contents of the chunk message.
      * @type {string}
@@ -163,20 +823,326 @@ export interface ChatCompletionStreamResponseDelta {
     'content'?: string | null;
     /**
      * 
-     * @type {ChatCompletionRequestMessageFunctionCall}
+     * @type {ChatCompletionStreamResponseDeltaFunctionCall}
+     * @memberof ChatCompletionStreamResponseDelta
+     * @deprecated
+     */
+    'function_call'?: ChatCompletionStreamResponseDeltaFunctionCall;
+    /**
+     * 
+     * @type {Array<ChatCompletionMessageToolCallChunk>}
      * @memberof ChatCompletionStreamResponseDelta
      */
-    'function_call'?: ChatCompletionRequestMessageFunctionCall;
+    'tool_calls'?: Array<ChatCompletionMessageToolCallChunk>;
+    /**
+     * The role of the author of this message.
+     * @type {string}
+     * @memberof ChatCompletionStreamResponseDelta
+     */
+    'role'?: ChatCompletionStreamResponseDeltaRoleEnum;
 }
 
 export const ChatCompletionStreamResponseDeltaRoleEnum = {
     System: 'system',
     User: 'user',
     Assistant: 'assistant',
-    Function: 'function'
+    Tool: 'tool'
 } as const;
 
 export type ChatCompletionStreamResponseDeltaRoleEnum = typeof ChatCompletionStreamResponseDeltaRoleEnum[keyof typeof ChatCompletionStreamResponseDeltaRoleEnum];
+
+/**
+ * Deprecated and replaced by `tool_calls`. The name and arguments of a function that should be called, as generated by the model.
+ * @export
+ * @interface ChatCompletionStreamResponseDeltaFunctionCall
+ */
+export interface ChatCompletionStreamResponseDeltaFunctionCall {
+    /**
+     * The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.
+     * @type {string}
+     * @memberof ChatCompletionStreamResponseDeltaFunctionCall
+     */
+    'arguments'?: string;
+    /**
+     * The name of the function to call.
+     * @type {string}
+     * @memberof ChatCompletionStreamResponseDeltaFunctionCall
+     */
+    'name'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ChatCompletionTokenLogprob
+ */
+export interface ChatCompletionTokenLogprob {
+    /**
+     * The token.
+     * @type {string}
+     * @memberof ChatCompletionTokenLogprob
+     */
+    'token': string;
+    /**
+     * The log probability of this token, if it is within the top 20 most likely tokens. Otherwise, the value `-9999.0` is used to signify that the token is very unlikely.
+     * @type {number}
+     * @memberof ChatCompletionTokenLogprob
+     */
+    'logprob': number;
+    /**
+     * A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.
+     * @type {Array<number>}
+     * @memberof ChatCompletionTokenLogprob
+     */
+    'bytes': Array<number> | null;
+    /**
+     * List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned.
+     * @type {Array<ChatCompletionTokenLogprobTopLogprobsInner>}
+     * @memberof ChatCompletionTokenLogprob
+     */
+    'top_logprobs': Array<ChatCompletionTokenLogprobTopLogprobsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface ChatCompletionTokenLogprobTopLogprobsInner
+ */
+export interface ChatCompletionTokenLogprobTopLogprobsInner {
+    /**
+     * The token.
+     * @type {string}
+     * @memberof ChatCompletionTokenLogprobTopLogprobsInner
+     */
+    'token': string;
+    /**
+     * The log probability of this token, if it is within the top 20 most likely tokens. Otherwise, the value `-9999.0` is used to signify that the token is very unlikely.
+     * @type {number}
+     * @memberof ChatCompletionTokenLogprobTopLogprobsInner
+     */
+    'logprob': number;
+    /**
+     * A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.
+     * @type {Array<number>}
+     * @memberof ChatCompletionTokenLogprobTopLogprobsInner
+     */
+    'bytes': Array<number> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ChatCompletionTool
+ */
+export interface ChatCompletionTool {
+    /**
+     * The type of the tool. Currently, only `function` is supported.
+     * @type {string}
+     * @memberof ChatCompletionTool
+     */
+    'type': ChatCompletionToolTypeEnum;
+    /**
+     * 
+     * @type {FunctionObject}
+     * @memberof ChatCompletionTool
+     */
+    'function': FunctionObject;
+}
+
+export const ChatCompletionToolTypeEnum = {
+    Function: 'function'
+} as const;
+
+export type ChatCompletionToolTypeEnum = typeof ChatCompletionToolTypeEnum[keyof typeof ChatCompletionToolTypeEnum];
+
+/**
+ * @type ChatCompletionToolChoiceOption
+ * Controls which (if any) function is called by the model. `none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. Specifying a particular function via `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that function.  `none` is the default when no functions are present. `auto` is the default if functions are present. 
+ * @export
+ */
+export type ChatCompletionToolChoiceOption = ChatCompletionNamedToolChoice | string;
+
+/**
+ * Usage statistics for the completion request.
+ * @export
+ * @interface CompletionUsage
+ */
+export interface CompletionUsage {
+    /**
+     * Number of tokens in the generated completion.
+     * @type {number}
+     * @memberof CompletionUsage
+     */
+    'completion_tokens': number;
+    /**
+     * Number of tokens in the prompt.
+     * @type {number}
+     * @memberof CompletionUsage
+     */
+    'prompt_tokens': number;
+    /**
+     * Total number of tokens used in the request (prompt + completion).
+     * @type {number}
+     * @memberof CompletionUsage
+     */
+    'total_tokens': number;
+}
+/**
+ * 
+ * @export
+ * @interface CreateAssistantFileRequest
+ */
+export interface CreateAssistantFileRequest {
+    /**
+     * A [File](/docs/api-reference/files) ID (with `purpose=\"assistants\"`) that the assistant should use. Useful for tools like `retrieval` and `code_interpreter` that can access files.
+     * @type {string}
+     * @memberof CreateAssistantFileRequest
+     */
+    'file_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface CreateAssistantRequest
+ */
+export interface CreateAssistantRequest {
+    /**
+     * 
+     * @type {CreateAssistantRequestModel}
+     * @memberof CreateAssistantRequest
+     */
+    'model': CreateAssistantRequestModel;
+    /**
+     * The name of the assistant. The maximum length is 256 characters. 
+     * @type {string}
+     * @memberof CreateAssistantRequest
+     */
+    'name'?: string | null;
+    /**
+     * The description of the assistant. The maximum length is 512 characters. 
+     * @type {string}
+     * @memberof CreateAssistantRequest
+     */
+    'description'?: string | null;
+    /**
+     * The system instructions that the assistant uses. The maximum length is 256,000 characters. 
+     * @type {string}
+     * @memberof CreateAssistantRequest
+     */
+    'instructions'?: string | null;
+    /**
+     * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+     * @type {Array<AssistantObjectToolsInner>}
+     * @memberof CreateAssistantRequest
+     */
+    'tools'?: Array<AssistantObjectToolsInner>;
+    /**
+     * A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
+     * @type {Array<string>}
+     * @memberof CreateAssistantRequest
+     */
+    'file_ids'?: Array<string>;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof CreateAssistantRequest
+     */
+    'metadata'?: object | null;
+}
+/**
+ * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+ * @export
+ * @interface CreateAssistantRequestModel
+ */
+export interface CreateAssistantRequestModel {
+}
+/**
+ * Represents a chat completion response returned by model, based on the provided input.
+ * @export
+ * @interface CreateChatCompletionFunctionResponse
+ */
+export interface CreateChatCompletionFunctionResponse {
+    /**
+     * A unique identifier for the chat completion.
+     * @type {string}
+     * @memberof CreateChatCompletionFunctionResponse
+     */
+    'id': string;
+    /**
+     * A list of chat completion choices. Can be more than one if `n` is greater than 1.
+     * @type {Array<CreateChatCompletionFunctionResponseChoicesInner>}
+     * @memberof CreateChatCompletionFunctionResponse
+     */
+    'choices': Array<CreateChatCompletionFunctionResponseChoicesInner>;
+    /**
+     * The Unix timestamp (in seconds) of when the chat completion was created.
+     * @type {number}
+     * @memberof CreateChatCompletionFunctionResponse
+     */
+    'created': number;
+    /**
+     * The model used for the chat completion.
+     * @type {string}
+     * @memberof CreateChatCompletionFunctionResponse
+     */
+    'model': string;
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+     * @type {string}
+     * @memberof CreateChatCompletionFunctionResponse
+     */
+    'system_fingerprint'?: string;
+    /**
+     * The object type, which is always `chat.completion`.
+     * @type {string}
+     * @memberof CreateChatCompletionFunctionResponse
+     */
+    'object': CreateChatCompletionFunctionResponseObjectEnum;
+    /**
+     * 
+     * @type {CompletionUsage}
+     * @memberof CreateChatCompletionFunctionResponse
+     */
+    'usage'?: CompletionUsage;
+}
+
+export const CreateChatCompletionFunctionResponseObjectEnum = {
+    ChatCompletion: 'chat.completion'
+} as const;
+
+export type CreateChatCompletionFunctionResponseObjectEnum = typeof CreateChatCompletionFunctionResponseObjectEnum[keyof typeof CreateChatCompletionFunctionResponseObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface CreateChatCompletionFunctionResponseChoicesInner
+ */
+export interface CreateChatCompletionFunctionResponseChoicesInner {
+    /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function. 
+     * @type {string}
+     * @memberof CreateChatCompletionFunctionResponseChoicesInner
+     */
+    'finish_reason': CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum;
+    /**
+     * The index of the choice in the list of choices.
+     * @type {number}
+     * @memberof CreateChatCompletionFunctionResponseChoicesInner
+     */
+    'index': number;
+    /**
+     * 
+     * @type {ChatCompletionResponseMessage}
+     * @memberof CreateChatCompletionFunctionResponseChoicesInner
+     */
+    'message': ChatCompletionResponseMessage;
+}
+
+export const CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum = {
+    Stop: 'stop',
+    Length: 'length',
+    FunctionCall: 'function_call',
+    ContentFilter: 'content_filter'
+} as const;
+
+export type CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum = typeof CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum[keyof typeof CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum];
 
 /**
  * 
@@ -185,29 +1151,83 @@ export type ChatCompletionStreamResponseDeltaRoleEnum = typeof ChatCompletionStr
  */
 export interface CreateChatCompletionRequest {
     /**
+     * A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+     * @type {Array<ChatCompletionRequestMessage>}
+     * @memberof CreateChatCompletionRequest
+     */
+    'messages': Array<ChatCompletionRequestMessage>;
+    /**
      * 
      * @type {CreateChatCompletionRequestModel}
      * @memberof CreateChatCompletionRequest
      */
     'model': CreateChatCompletionRequestModel;
     /**
-     * A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
-     * @type {Array<ChatCompletionRequestMessage>}
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+     * @type {number}
      * @memberof CreateChatCompletionRequest
      */
-    'messages': Array<ChatCompletionRequestMessage>;
+    'frequency_penalty'?: number | null;
     /**
-     * A list of functions the model may generate JSON inputs for.
-     * @type {Array<ChatCompletionFunctions>}
+     * Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
+     * @type {{ [key: string]: number; }}
      * @memberof CreateChatCompletionRequest
      */
-    'functions'?: Array<ChatCompletionFunctions>;
+    'logit_bias'?: { [key: string]: number; } | null;
+    /**
+     * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+     * @type {boolean}
+     * @memberof CreateChatCompletionRequest
+     */
+    'logprobs'?: boolean | null;
+    /**
+     * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+     * @type {number}
+     * @memberof CreateChatCompletionRequest
+     */
+    'top_logprobs'?: number | null;
+    /**
+     * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model\'s context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+     * @type {number}
+     * @memberof CreateChatCompletionRequest
+     */
+    'max_tokens'?: number | null;
+    /**
+     * How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
+     * @type {number}
+     * @memberof CreateChatCompletionRequest
+     */
+    'n'?: number | null;
+    /**
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model\'s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+     * @type {number}
+     * @memberof CreateChatCompletionRequest
+     */
+    'presence_penalty'?: number | null;
     /**
      * 
-     * @type {CreateChatCompletionRequestFunctionCall}
+     * @type {CreateChatCompletionRequestResponseFormat}
      * @memberof CreateChatCompletionRequest
      */
-    'function_call'?: CreateChatCompletionRequestFunctionCall;
+    'response_format'?: CreateChatCompletionRequestResponseFormat;
+    /**
+     * This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. 
+     * @type {number}
+     * @memberof CreateChatCompletionRequest
+     */
+    'seed'?: number | null;
+    /**
+     * 
+     * @type {CreateChatCompletionRequestStop}
+     * @memberof CreateChatCompletionRequest
+     */
+    'stop'?: CreateChatCompletionRequestStop;
+    /**
+     * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
+     * @type {boolean}
+     * @memberof CreateChatCompletionRequest
+     */
+    'stream'?: boolean | null;
     /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
      * @type {number}
@@ -221,80 +1241,72 @@ export interface CreateChatCompletionRequest {
      */
     'top_p'?: number | null;
     /**
-     * How many chat completion choices to generate for each input message.
-     * @type {number}
+     * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. 
+     * @type {Array<ChatCompletionTool>}
      * @memberof CreateChatCompletionRequest
      */
-    'n'?: number | null;
-    /**
-     * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). 
-     * @type {boolean}
-     * @memberof CreateChatCompletionRequest
-     */
-    'stream'?: boolean | null;
+    'tools'?: Array<ChatCompletionTool>;
     /**
      * 
-     * @type {CreateChatCompletionRequestStop}
+     * @type {ChatCompletionToolChoiceOption}
      * @memberof CreateChatCompletionRequest
      */
-    'stop'?: CreateChatCompletionRequestStop;
-    /**
-     * The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model\'s context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
-     */
-    'max_tokens'?: number;
-    /**
-     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model\'s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
-     */
-    'presence_penalty'?: number | null;
-    /**
-     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
-     */
-    'frequency_penalty'?: number | null;
-    /**
-     * Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
-     * @type {object}
-     * @memberof CreateChatCompletionRequest
-     */
-    'logit_bias'?: object | null;
+    'tool_choice'?: ChatCompletionToolChoiceOption;
     /**
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
      * @type {string}
      * @memberof CreateChatCompletionRequest
      */
     'user'?: string;
+    /**
+     * 
+     * @type {CreateChatCompletionRequestFunctionCall}
+     * @memberof CreateChatCompletionRequest
+     * @deprecated
+     */
+    'function_call'?: CreateChatCompletionRequestFunctionCall;
+    /**
+     * Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. 
+     * @type {Array<ChatCompletionFunctions>}
+     * @memberof CreateChatCompletionRequest
+     * @deprecated
+     */
+    'functions'?: Array<ChatCompletionFunctions>;
 }
 /**
  * @type CreateChatCompletionRequestFunctionCall
- * Controls how the model responds to function calls. \"none\" means the model does not call a function, and responds to the end-user. \"auto\" means the model can pick between an end-user or calling a function.  Specifying a particular function via `{\"name\":\\ \"my_function\"}` forces the model to call that function. \"none\" is the default when no functions are present. \"auto\" is the default if functions are present.
+ * Deprecated in favor of `tool_choice`.  Controls which (if any) function is called by the model. `none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. Specifying a particular function via `{\"name\": \"my_function\"}` forces the model to call that function.  `none` is the default when no functions are present. `auto` is the default if functions are present. 
  * @export
  */
-export type CreateChatCompletionRequestFunctionCall = CreateChatCompletionRequestFunctionCallOneOf | string;
+export type CreateChatCompletionRequestFunctionCall = ChatCompletionFunctionCallOption | string;
 
 /**
- * 
- * @export
- * @interface CreateChatCompletionRequestFunctionCallOneOf
- */
-export interface CreateChatCompletionRequestFunctionCallOneOf {
-    /**
-     * The name of the function to call.
-     * @type {string}
-     * @memberof CreateChatCompletionRequestFunctionCallOneOf
-     */
-    'name': string;
-}
-/**
- * @type CreateChatCompletionRequestModel
  * ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.
  * @export
+ * @interface CreateChatCompletionRequestModel
  */
-export type CreateChatCompletionRequestModel = string;
+export interface CreateChatCompletionRequestModel {
+}
+/**
+ * An object specifying the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
+ * @export
+ * @interface CreateChatCompletionRequestResponseFormat
+ */
+export interface CreateChatCompletionRequestResponseFormat {
+    /**
+     * Must be one of `text` or `json_object`.
+     * @type {string}
+     * @memberof CreateChatCompletionRequestResponseFormat
+     */
+    'type'?: CreateChatCompletionRequestResponseFormatTypeEnum;
+}
+
+export const CreateChatCompletionRequestResponseFormatTypeEnum = {
+    Text: 'text',
+    JsonObject: 'json_object'
+} as const;
+
+export type CreateChatCompletionRequestResponseFormatTypeEnum = typeof CreateChatCompletionRequestResponseFormatTypeEnum[keyof typeof CreateChatCompletionRequestResponseFormatTypeEnum];
 
 /**
  * @type CreateChatCompletionRequestStop
@@ -304,48 +1316,61 @@ export type CreateChatCompletionRequestModel = string;
 export type CreateChatCompletionRequestStop = Array<string> | string;
 
 /**
- * 
+ * Represents a chat completion response returned by model, based on the provided input.
  * @export
  * @interface CreateChatCompletionResponse
  */
 export interface CreateChatCompletionResponse {
     /**
-     * 
+     * A unique identifier for the chat completion.
      * @type {string}
      * @memberof CreateChatCompletionResponse
      */
     'id': string;
     /**
-     * 
-     * @type {string}
-     * @memberof CreateChatCompletionResponse
-     */
-    'object': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateChatCompletionResponse
-     */
-    'created': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateChatCompletionResponse
-     */
-    'model': string;
-    /**
-     * 
+     * A list of chat completion choices. Can be more than one if `n` is greater than 1.
      * @type {Array<CreateChatCompletionResponseChoicesInner>}
      * @memberof CreateChatCompletionResponse
      */
     'choices': Array<CreateChatCompletionResponseChoicesInner>;
     /**
-     * 
-     * @type {CreateCompletionResponseUsage}
+     * The Unix timestamp (in seconds) of when the chat completion was created.
+     * @type {number}
      * @memberof CreateChatCompletionResponse
      */
-    'usage'?: CreateCompletionResponseUsage;
+    'created': number;
+    /**
+     * The model used for the chat completion.
+     * @type {string}
+     * @memberof CreateChatCompletionResponse
+     */
+    'model': string;
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+     * @type {string}
+     * @memberof CreateChatCompletionResponse
+     */
+    'system_fingerprint'?: string;
+    /**
+     * The object type, which is always `chat.completion`.
+     * @type {string}
+     * @memberof CreateChatCompletionResponse
+     */
+    'object': CreateChatCompletionResponseObjectEnum;
+    /**
+     * 
+     * @type {CompletionUsage}
+     * @memberof CreateChatCompletionResponse
+     */
+    'usage'?: CompletionUsage;
 }
+
+export const CreateChatCompletionResponseObjectEnum = {
+    ChatCompletion: 'chat.completion'
+} as const;
+
+export type CreateChatCompletionResponseObjectEnum = typeof CreateChatCompletionResponseObjectEnum[keyof typeof CreateChatCompletionResponseObjectEnum];
+
 /**
  * 
  * @export
@@ -353,70 +1378,104 @@ export interface CreateChatCompletionResponse {
  */
 export interface CreateChatCompletionResponseChoicesInner {
     /**
-     * 
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+     * @type {string}
+     * @memberof CreateChatCompletionResponseChoicesInner
+     */
+    'finish_reason': CreateChatCompletionResponseChoicesInnerFinishReasonEnum;
+    /**
+     * The index of the choice in the list of choices.
      * @type {number}
      * @memberof CreateChatCompletionResponseChoicesInner
      */
-    'index'?: number;
+    'index': number;
     /**
      * 
      * @type {ChatCompletionResponseMessage}
      * @memberof CreateChatCompletionResponseChoicesInner
      */
-    'message'?: ChatCompletionResponseMessage;
+    'message': ChatCompletionResponseMessage;
     /**
      * 
-     * @type {string}
+     * @type {CreateChatCompletionResponseChoicesInnerLogprobs}
      * @memberof CreateChatCompletionResponseChoicesInner
      */
-    'finish_reason'?: CreateChatCompletionResponseChoicesInnerFinishReasonEnum;
+    'logprobs': CreateChatCompletionResponseChoicesInnerLogprobs | null;
 }
 
 export const CreateChatCompletionResponseChoicesInnerFinishReasonEnum = {
     Stop: 'stop',
     Length: 'length',
+    ToolCalls: 'tool_calls',
+    ContentFilter: 'content_filter',
     FunctionCall: 'function_call'
 } as const;
 
 export type CreateChatCompletionResponseChoicesInnerFinishReasonEnum = typeof CreateChatCompletionResponseChoicesInnerFinishReasonEnum[keyof typeof CreateChatCompletionResponseChoicesInnerFinishReasonEnum];
 
 /**
- * 
+ * Log probability information for the choice.
+ * @export
+ * @interface CreateChatCompletionResponseChoicesInnerLogprobs
+ */
+export interface CreateChatCompletionResponseChoicesInnerLogprobs {
+    /**
+     * A list of message content tokens with log probability information.
+     * @type {Array<ChatCompletionTokenLogprob>}
+     * @memberof CreateChatCompletionResponseChoicesInnerLogprobs
+     */
+    'content': Array<ChatCompletionTokenLogprob> | null;
+}
+/**
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
  * @export
  * @interface CreateChatCompletionStreamResponse
  */
 export interface CreateChatCompletionStreamResponse {
     /**
-     * 
+     * A unique identifier for the chat completion. Each chunk has the same ID.
      * @type {string}
      * @memberof CreateChatCompletionStreamResponse
      */
     'id': string;
     /**
-     * 
-     * @type {string}
+     * A list of chat completion choices. Can be more than one if `n` is greater than 1.
+     * @type {Array<CreateChatCompletionStreamResponseChoicesInner>}
      * @memberof CreateChatCompletionStreamResponse
      */
-    'object': string;
+    'choices': Array<CreateChatCompletionStreamResponseChoicesInner>;
     /**
-     * 
+     * The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
      * @type {number}
      * @memberof CreateChatCompletionStreamResponse
      */
     'created': number;
     /**
-     * 
+     * The model to generate the completion.
      * @type {string}
      * @memberof CreateChatCompletionStreamResponse
      */
     'model': string;
     /**
-     * 
-     * @type {Array<CreateChatCompletionStreamResponseChoicesInner>}
+     * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+     * @type {string}
      * @memberof CreateChatCompletionStreamResponse
      */
-    'choices': Array<CreateChatCompletionStreamResponseChoicesInner>;
+    'system_fingerprint'?: string;
+    /**
+     * The object type, which is always `chat.completion.chunk`.
+     * @type {string}
+     * @memberof CreateChatCompletionStreamResponse
+     */
+    'object': CreateChatCompletionStreamResponseObjectEnum;
 }
+
+export const CreateChatCompletionStreamResponseObjectEnum = {
+    ChatCompletionChunk: 'chat.completion.chunk'
+} as const;
+
+export type CreateChatCompletionStreamResponseObjectEnum = typeof CreateChatCompletionStreamResponseObjectEnum[keyof typeof CreateChatCompletionStreamResponseObjectEnum];
+
 /**
  * 
  * @export
@@ -425,27 +1484,35 @@ export interface CreateChatCompletionStreamResponse {
 export interface CreateChatCompletionStreamResponseChoicesInner {
     /**
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionStreamResponseChoicesInner
-     */
-    'index'?: number;
-    /**
-     * 
      * @type {ChatCompletionStreamResponseDelta}
      * @memberof CreateChatCompletionStreamResponseChoicesInner
      */
-    'delta'?: ChatCompletionStreamResponseDelta;
+    'delta': ChatCompletionStreamResponseDelta;
     /**
      * 
+     * @type {CreateChatCompletionResponseChoicesInnerLogprobs}
+     * @memberof CreateChatCompletionStreamResponseChoicesInner
+     */
+    'logprobs'?: CreateChatCompletionResponseChoicesInnerLogprobs | null;
+    /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
      * @type {string}
      * @memberof CreateChatCompletionStreamResponseChoicesInner
      */
-    'finish_reason'?: CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum;
+    'finish_reason': CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum | null;
+    /**
+     * The index of the choice in the list of choices.
+     * @type {number}
+     * @memberof CreateChatCompletionStreamResponseChoicesInner
+     */
+    'index': number;
 }
 
 export const CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = {
     Stop: 'stop',
     Length: 'length',
+    ToolCalls: 'tool_calls',
+    ContentFilter: 'content_filter',
     FunctionCall: 'function_call'
 } as const;
 
@@ -470,17 +1537,77 @@ export interface CreateCompletionRequest {
      */
     'prompt': CreateCompletionRequestPrompt | null;
     /**
-     * The suffix that comes after a completion of inserted text.
-     * @type {string}
+     * Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. 
+     * @type {number}
      * @memberof CreateCompletionRequest
      */
-    'suffix'?: string | null;
+    'best_of'?: number | null;
     /**
-     * The maximum number of [tokens](/tokenizer) to generate in the completion.  The token count of your prompt plus `max_tokens` cannot exceed the model\'s context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
+     * Echo back the prompt in addition to the completion 
+     * @type {boolean}
+     * @memberof CreateCompletionRequest
+     */
+    'echo'?: boolean | null;
+    /**
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+     * @type {number}
+     * @memberof CreateCompletionRequest
+     */
+    'frequency_penalty'?: number | null;
+    /**
+     * Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](/tokenizer?view=bpe) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.  As an example, you can pass `{\"50256\": -100}` to prevent the <|endoftext|> token from being generated. 
+     * @type {{ [key: string]: number; }}
+     * @memberof CreateCompletionRequest
+     */
+    'logit_bias'?: { [key: string]: number; } | null;
+    /**
+     * Include the log probabilities on the `logprobs` most likely output tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.  The maximum value for `logprobs` is 5. 
+     * @type {number}
+     * @memberof CreateCompletionRequest
+     */
+    'logprobs'?: number | null;
+    /**
+     * The maximum number of [tokens](/tokenizer) that can be generated in the completion.  The token count of your prompt plus `max_tokens` cannot exceed the model\'s context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
      * @type {number}
      * @memberof CreateCompletionRequest
      */
     'max_tokens'?: number | null;
+    /**
+     * How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. 
+     * @type {number}
+     * @memberof CreateCompletionRequest
+     */
+    'n'?: number | null;
+    /**
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model\'s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+     * @type {number}
+     * @memberof CreateCompletionRequest
+     */
+    'presence_penalty'?: number | null;
+    /**
+     * If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. 
+     * @type {number}
+     * @memberof CreateCompletionRequest
+     */
+    'seed'?: number | null;
+    /**
+     * 
+     * @type {CreateCompletionRequestStop}
+     * @memberof CreateCompletionRequest
+     */
+    'stop'?: CreateCompletionRequestStop | null;
+    /**
+     * Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
+     * @type {boolean}
+     * @memberof CreateCompletionRequest
+     */
+    'stream'?: boolean | null;
+    /**
+     * The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`. 
+     * @type {string}
+     * @memberof CreateCompletionRequest
+     */
+    'suffix'?: string | null;
     /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
      * @type {number}
@@ -494,60 +1621,6 @@ export interface CreateCompletionRequest {
      */
     'top_p'?: number | null;
     /**
-     * How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. 
-     * @type {number}
-     * @memberof CreateCompletionRequest
-     */
-    'n'?: number | null;
-    /**
-     * Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). 
-     * @type {boolean}
-     * @memberof CreateCompletionRequest
-     */
-    'stream'?: boolean | null;
-    /**
-     * Include the log probabilities on the `logprobs` most likely tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.  The maximum value for `logprobs` is 5. 
-     * @type {number}
-     * @memberof CreateCompletionRequest
-     */
-    'logprobs'?: number | null;
-    /**
-     * Echo back the prompt in addition to the completion 
-     * @type {boolean}
-     * @memberof CreateCompletionRequest
-     */
-    'echo'?: boolean | null;
-    /**
-     * 
-     * @type {CreateCompletionRequestStop}
-     * @memberof CreateCompletionRequest
-     */
-    'stop'?: CreateCompletionRequestStop | null;
-    /**
-     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model\'s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-     * @type {number}
-     * @memberof CreateCompletionRequest
-     */
-    'presence_penalty'?: number | null;
-    /**
-     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-     * @type {number}
-     * @memberof CreateCompletionRequest
-     */
-    'frequency_penalty'?: number | null;
-    /**
-     * Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. 
-     * @type {number}
-     * @memberof CreateCompletionRequest
-     */
-    'best_of'?: number | null;
-    /**
-     * Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](/tokenizer?view=bpe) (which works for both GPT-2 and GPT-3) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.  As an example, you can pass `{\"50256\": -100}` to prevent the <|endoftext|> token from being generated. 
-     * @type {object}
-     * @memberof CreateCompletionRequest
-     */
-    'logit_bias'?: object | null;
-    /**
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
      * @type {string}
      * @memberof CreateCompletionRequest
@@ -555,12 +1628,12 @@ export interface CreateCompletionRequest {
     'user'?: string;
 }
 /**
- * @type CreateCompletionRequestModel
  * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
  * @export
+ * @interface CreateCompletionRequestModel
  */
-export type CreateCompletionRequestModel = string;
-
+export interface CreateCompletionRequestModel {
+}
 /**
  * @type CreateCompletionRequestPrompt
  * The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.  Note that <|endoftext|> is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document. 
@@ -576,48 +1649,61 @@ export type CreateCompletionRequestPrompt = Array<Array<number>> | Array<number>
 export type CreateCompletionRequestStop = Array<string> | string;
 
 /**
- * 
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
  * @export
  * @interface CreateCompletionResponse
  */
 export interface CreateCompletionResponse {
     /**
-     * 
+     * A unique identifier for the completion.
      * @type {string}
      * @memberof CreateCompletionResponse
      */
     'id': string;
     /**
-     * 
-     * @type {string}
-     * @memberof CreateCompletionResponse
-     */
-    'object': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateCompletionResponse
-     */
-    'created': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCompletionResponse
-     */
-    'model': string;
-    /**
-     * 
+     * The list of completion choices the model generated for the input prompt.
      * @type {Array<CreateCompletionResponseChoicesInner>}
      * @memberof CreateCompletionResponse
      */
     'choices': Array<CreateCompletionResponseChoicesInner>;
     /**
-     * 
-     * @type {CreateCompletionResponseUsage}
+     * The Unix timestamp (in seconds) of when the completion was created.
+     * @type {number}
      * @memberof CreateCompletionResponse
      */
-    'usage'?: CreateCompletionResponseUsage;
+    'created': number;
+    /**
+     * The model used for completion.
+     * @type {string}
+     * @memberof CreateCompletionResponse
+     */
+    'model': string;
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+     * @type {string}
+     * @memberof CreateCompletionResponse
+     */
+    'system_fingerprint'?: string;
+    /**
+     * The object type, which is always \"text_completion\"
+     * @type {string}
+     * @memberof CreateCompletionResponse
+     */
+    'object': CreateCompletionResponseObjectEnum;
+    /**
+     * 
+     * @type {CompletionUsage}
+     * @memberof CreateCompletionResponse
+     */
+    'usage'?: CompletionUsage;
 }
+
+export const CreateCompletionResponseObjectEnum = {
+    TextCompletion: 'text_completion'
+} as const;
+
+export type CreateCompletionResponseObjectEnum = typeof CreateCompletionResponseObjectEnum[keyof typeof CreateCompletionResponseObjectEnum];
+
 /**
  * 
  * @export
@@ -625,11 +1711,11 @@ export interface CreateCompletionResponse {
  */
 export interface CreateCompletionResponseChoicesInner {
     /**
-     * 
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
      * @type {string}
      * @memberof CreateCompletionResponseChoicesInner
      */
-    'text': string;
+    'finish_reason': CreateCompletionResponseChoicesInnerFinishReasonEnum;
     /**
      * 
      * @type {number}
@@ -647,12 +1733,13 @@ export interface CreateCompletionResponseChoicesInner {
      * @type {string}
      * @memberof CreateCompletionResponseChoicesInner
      */
-    'finish_reason': CreateCompletionResponseChoicesInnerFinishReasonEnum;
+    'text': string;
 }
 
 export const CreateCompletionResponseChoicesInnerFinishReasonEnum = {
     Stop: 'stop',
-    Length: 'length'
+    Length: 'length',
+    ContentFilter: 'content_filter'
 } as const;
 
 export type CreateCompletionResponseChoicesInnerFinishReasonEnum = typeof CreateCompletionResponseChoicesInnerFinishReasonEnum[keyof typeof CreateCompletionResponseChoicesInnerFinishReasonEnum];
@@ -665,10 +1752,10 @@ export type CreateCompletionResponseChoicesInnerFinishReasonEnum = typeof Create
 export interface CreateCompletionResponseChoicesInnerLogprobs {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<number>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    'tokens'?: Array<string>;
+    'text_offset'?: Array<number>;
     /**
      * 
      * @type {Array<number>}
@@ -677,162 +1764,17 @@ export interface CreateCompletionResponseChoicesInnerLogprobs {
     'token_logprobs'?: Array<number>;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    'top_logprobs'?: Array<object>;
+    'tokens'?: Array<string>;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<{ [key: string]: number; }>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    'text_offset'?: Array<number>;
+    'top_logprobs'?: Array<{ [key: string]: number; }>;
 }
-/**
- * 
- * @export
- * @interface CreateCompletionResponseUsage
- */
-export interface CreateCompletionResponseUsage {
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateCompletionResponseUsage
-     */
-    'prompt_tokens': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateCompletionResponseUsage
-     */
-    'completion_tokens': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateCompletionResponseUsage
-     */
-    'total_tokens': number;
-}
-/**
- * 
- * @export
- * @interface CreateEditRequest
- */
-export interface CreateEditRequest {
-    /**
-     * 
-     * @type {CreateEditRequestModel}
-     * @memberof CreateEditRequest
-     */
-    'model': CreateEditRequestModel;
-    /**
-     * The input text to use as a starting point for the edit.
-     * @type {string}
-     * @memberof CreateEditRequest
-     */
-    'input'?: string | null;
-    /**
-     * The instruction that tells the model how to edit the prompt.
-     * @type {string}
-     * @memberof CreateEditRequest
-     */
-    'instruction': string;
-    /**
-     * How many edits to generate for the input and instruction.
-     * @type {number}
-     * @memberof CreateEditRequest
-     */
-    'n'?: number | null;
-    /**
-     * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
-     * @type {number}
-     * @memberof CreateEditRequest
-     */
-    'temperature'?: number | null;
-    /**
-     * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both. 
-     * @type {number}
-     * @memberof CreateEditRequest
-     */
-    'top_p'?: number | null;
-}
-/**
- * @type CreateEditRequestModel
- * ID of the model to use. You can use the `text-davinci-edit-001` or `code-davinci-edit-001` model with this endpoint.
- * @export
- */
-export type CreateEditRequestModel = string;
-
-/**
- * 
- * @export
- * @interface CreateEditResponse
- */
-export interface CreateEditResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateEditResponse
-     */
-    'object': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateEditResponse
-     */
-    'created': number;
-    /**
-     * 
-     * @type {Array<CreateEditResponseChoicesInner>}
-     * @memberof CreateEditResponse
-     */
-    'choices': Array<CreateEditResponseChoicesInner>;
-    /**
-     * 
-     * @type {CreateCompletionResponseUsage}
-     * @memberof CreateEditResponse
-     */
-    'usage': CreateCompletionResponseUsage;
-}
-/**
- * 
- * @export
- * @interface CreateEditResponseChoicesInner
- */
-export interface CreateEditResponseChoicesInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateEditResponseChoicesInner
-     */
-    'text'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateEditResponseChoicesInner
-     */
-    'index'?: number;
-    /**
-     * 
-     * @type {CreateCompletionResponseChoicesInnerLogprobs}
-     * @memberof CreateEditResponseChoicesInner
-     */
-    'logprobs'?: CreateCompletionResponseChoicesInnerLogprobs | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateEditResponseChoicesInner
-     */
-    'finish_reason'?: CreateEditResponseChoicesInnerFinishReasonEnum;
-}
-
-export const CreateEditResponseChoicesInnerFinishReasonEnum = {
-    Stop: 'stop',
-    Length: 'length'
-} as const;
-
-export type CreateEditResponseChoicesInnerFinishReasonEnum = typeof CreateEditResponseChoicesInnerFinishReasonEnum[keyof typeof CreateEditResponseChoicesInnerFinishReasonEnum];
-
 /**
  * 
  * @export
@@ -841,16 +1783,28 @@ export type CreateEditResponseChoicesInnerFinishReasonEnum = typeof CreateEditRe
 export interface CreateEmbeddingRequest {
     /**
      * 
+     * @type {CreateEmbeddingRequestInput}
+     * @memberof CreateEmbeddingRequest
+     */
+    'input': CreateEmbeddingRequestInput;
+    /**
+     * 
      * @type {CreateEmbeddingRequestModel}
      * @memberof CreateEmbeddingRequest
      */
     'model': CreateEmbeddingRequestModel;
     /**
-     * 
-     * @type {CreateEmbeddingRequestInput}
+     * The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+     * @type {string}
      * @memberof CreateEmbeddingRequest
      */
-    'input': CreateEmbeddingRequestInput;
+    'encoding_format'?: CreateEmbeddingRequestEncodingFormatEnum;
+    /**
+     * The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+     * @type {number}
+     * @memberof CreateEmbeddingRequest
+     */
+    'dimensions'?: number;
     /**
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
      * @type {string}
@@ -858,20 +1812,28 @@ export interface CreateEmbeddingRequest {
      */
     'user'?: string;
 }
+
+export const CreateEmbeddingRequestEncodingFormatEnum = {
+    Float: 'float',
+    Base64: 'base64'
+} as const;
+
+export type CreateEmbeddingRequestEncodingFormatEnum = typeof CreateEmbeddingRequestEncodingFormatEnum[keyof typeof CreateEmbeddingRequestEncodingFormatEnum];
+
 /**
  * @type CreateEmbeddingRequestInput
- * Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. Each input must not exceed the max input tokens for the model (8191 tokens for `text-embedding-ada-002`). [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
+ * Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. The input must not exceed the max input tokens for the model (8192 tokens for `text-embedding-ada-002`), cannot be an empty string, and any array must be 2048 dimensions or less. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
  * @export
  */
 export type CreateEmbeddingRequestInput = Array<Array<number>> | Array<number> | Array<string> | string;
 
 /**
- * @type CreateEmbeddingRequestModel
  * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
  * @export
+ * @interface CreateEmbeddingRequestModel
  */
-export type CreateEmbeddingRequestModel = string;
-
+export interface CreateEmbeddingRequestModel {
+}
 /**
  * 
  * @export
@@ -879,23 +1841,23 @@ export type CreateEmbeddingRequestModel = string;
  */
 export interface CreateEmbeddingResponse {
     /**
-     * 
-     * @type {string}
+     * The list of embeddings generated by the model.
+     * @type {Array<Embedding>}
      * @memberof CreateEmbeddingResponse
      */
-    'object': string;
+    'data': Array<Embedding>;
     /**
-     * 
+     * The name of the model used to generate the embedding.
      * @type {string}
      * @memberof CreateEmbeddingResponse
      */
     'model': string;
     /**
-     * 
-     * @type {Array<CreateEmbeddingResponseDataInner>}
+     * The object type, which is always \"list\".
+     * @type {string}
      * @memberof CreateEmbeddingResponse
      */
-    'data': Array<CreateEmbeddingResponseDataInner>;
+    'object': CreateEmbeddingResponseObjectEnum;
     /**
      * 
      * @type {CreateEmbeddingResponseUsage}
@@ -903,45 +1865,27 @@ export interface CreateEmbeddingResponse {
      */
     'usage': CreateEmbeddingResponseUsage;
 }
+
+export const CreateEmbeddingResponseObjectEnum = {
+    List: 'list'
+} as const;
+
+export type CreateEmbeddingResponseObjectEnum = typeof CreateEmbeddingResponseObjectEnum[keyof typeof CreateEmbeddingResponseObjectEnum];
+
 /**
- * 
- * @export
- * @interface CreateEmbeddingResponseDataInner
- */
-export interface CreateEmbeddingResponseDataInner {
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateEmbeddingResponseDataInner
-     */
-    'index': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateEmbeddingResponseDataInner
-     */
-    'object': string;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof CreateEmbeddingResponseDataInner
-     */
-    'embedding': Array<number>;
-}
-/**
- * 
+ * The usage information for the request.
  * @export
  * @interface CreateEmbeddingResponseUsage
  */
 export interface CreateEmbeddingResponseUsage {
     /**
-     * 
+     * The number of tokens used by the prompt.
      * @type {number}
      * @memberof CreateEmbeddingResponseUsage
      */
     'prompt_tokens': number;
     /**
-     * 
+     * The total number of tokens used by the request.
      * @type {number}
      * @memberof CreateEmbeddingResponseUsage
      */
@@ -950,89 +1894,169 @@ export interface CreateEmbeddingResponseUsage {
 /**
  * 
  * @export
- * @interface CreateFineTuneRequest
+ * @interface CreateFineTuningJobRequest
  */
-export interface CreateFineTuneRequest {
+export interface CreateFineTuningJobRequest {
     /**
-     * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file, where each training example is a JSON object with the keys \"prompt\" and \"completion\". Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning/creating-training-data) for more details. 
+     * 
+     * @type {CreateFineTuningJobRequestModel}
+     * @memberof CreateFineTuningJobRequest
+     */
+    'model': CreateFineTuningJobRequestModel;
+    /**
+     * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
      * @type {string}
-     * @memberof CreateFineTuneRequest
+     * @memberof CreateFineTuningJobRequest
      */
     'training_file': string;
     /**
-     * The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the [fine-tuning results file](/docs/guides/fine-tuning/analyzing-your-fine-tuned-model). Your train and validation data should be mutually exclusive.  Your dataset must be formatted as a JSONL file, where each validation example is a JSON object with the keys \"prompt\" and \"completion\". Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning/creating-training-data) for more details. 
+     * 
+     * @type {CreateFineTuningJobRequestHyperparameters}
+     * @memberof CreateFineTuningJobRequest
+     */
+    'hyperparameters'?: CreateFineTuningJobRequestHyperparameters;
+    /**
+     * A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`. 
      * @type {string}
-     * @memberof CreateFineTuneRequest
+     * @memberof CreateFineTuningJobRequest
+     */
+    'suffix'?: string | null;
+    /**
+     * The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+     * @type {string}
+     * @memberof CreateFineTuningJobRequest
      */
     'validation_file'?: string | null;
     /**
-     * 
-     * @type {CreateFineTuneRequestModel}
-     * @memberof CreateFineTuneRequest
+     * A list of integrations to enable for your fine-tuning job.
+     * @type {Array<CreateFineTuningJobRequestIntegrationsInner>}
+     * @memberof CreateFineTuningJobRequest
      */
-    'model'?: CreateFineTuneRequestModel | null;
+    'integrations'?: Array<CreateFineTuningJobRequestIntegrationsInner> | null;
     /**
-     * The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. 
+     * The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you. 
      * @type {number}
-     * @memberof CreateFineTuneRequest
+     * @memberof CreateFineTuningJobRequest
      */
-    'n_epochs'?: number | null;
-    /**
-     * The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass.  By default, the batch size will be dynamically configured to be ~0.2% of the number of examples in the training set, capped at 256 - in general, we\'ve found that larger batch sizes tend to work better for larger datasets. 
-     * @type {number}
-     * @memberof CreateFineTuneRequest
-     */
-    'batch_size'?: number | null;
-    /**
-     * The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pretraining multiplied by this value.  By default, the learning rate multiplier is the 0.05, 0.1, or 0.2 depending on final `batch_size` (larger learning rates tend to perform better with larger batch sizes). We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. 
-     * @type {number}
-     * @memberof CreateFineTuneRequest
-     */
-    'learning_rate_multiplier'?: number | null;
-    /**
-     * The weight to use for loss on the prompt tokens. This controls how much the model tries to learn to generate the prompt (as compared to the completion which always has a weight of 1.0), and can add a stabilizing effect to training when completions are short.  If prompts are extremely long (relative to completions), it may make sense to reduce this weight so as to avoid over-prioritizing learning the prompt. 
-     * @type {number}
-     * @memberof CreateFineTuneRequest
-     */
-    'prompt_loss_weight'?: number | null;
-    /**
-     * If set, we calculate classification-specific metrics such as accuracy and F-1 score using the validation set at the end of every epoch. These metrics can be viewed in the [results file](/docs/guides/fine-tuning/analyzing-your-fine-tuned-model).  In order to compute classification metrics, you must provide a `validation_file`. Additionally, you must specify `classification_n_classes` for multiclass classification or `classification_positive_class` for binary classification. 
-     * @type {boolean}
-     * @memberof CreateFineTuneRequest
-     */
-    'compute_classification_metrics'?: boolean | null;
-    /**
-     * The number of classes in a classification task.  This parameter is required for multiclass classification. 
-     * @type {number}
-     * @memberof CreateFineTuneRequest
-     */
-    'classification_n_classes'?: number | null;
-    /**
-     * The positive class in binary classification.  This parameter is needed to generate precision, recall, and F1 metrics when doing binary classification. 
-     * @type {string}
-     * @memberof CreateFineTuneRequest
-     */
-    'classification_positive_class'?: string | null;
-    /**
-     * If this is provided, we calculate F-beta scores at the specified beta values. The F-beta score is a generalization of F-1 score. This is only used for binary classification.  With a beta of 1 (i.e. the F-1 score), precision and recall are given the same weight. A larger beta score puts more weight on recall and less on precision. A smaller beta score puts more weight on precision and less on recall. 
-     * @type {Array<number>}
-     * @memberof CreateFineTuneRequest
-     */
-    'classification_betas'?: Array<number> | null;
-    /**
-     * A string of up to 40 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ada:ft-your-org:custom-model-name-2022-02-15-04-21-04`. 
-     * @type {string}
-     * @memberof CreateFineTuneRequest
-     */
-    'suffix'?: string | null;
+    'seed'?: number | null;
 }
 /**
- * @type CreateFineTuneRequestModel
- * The name of the base model to fine-tune. You can select one of \"ada\", \"babbage\", \"curie\", \"davinci\", or a fine-tuned model created after 2022-04-21. To learn more about these models, see the [Models](https://platform.openai.com/docs/models) documentation. 
+ * The hyperparameters used for the fine-tuning job.
+ * @export
+ * @interface CreateFineTuningJobRequestHyperparameters
+ */
+export interface CreateFineTuningJobRequestHyperparameters {
+    /**
+     * 
+     * @type {CreateFineTuningJobRequestHyperparametersBatchSize}
+     * @memberof CreateFineTuningJobRequestHyperparameters
+     */
+    'batch_size'?: CreateFineTuningJobRequestHyperparametersBatchSize;
+    /**
+     * 
+     * @type {CreateFineTuningJobRequestHyperparametersLearningRateMultiplier}
+     * @memberof CreateFineTuningJobRequestHyperparameters
+     */
+    'learning_rate_multiplier'?: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
+    /**
+     * 
+     * @type {CreateFineTuningJobRequestHyperparametersNEpochs}
+     * @memberof CreateFineTuningJobRequestHyperparameters
+     */
+    'n_epochs'?: CreateFineTuningJobRequestHyperparametersNEpochs;
+}
+/**
+ * @type CreateFineTuningJobRequestHyperparametersBatchSize
+ * Number of examples in each batch. A larger batch size means that model parameters are updated less frequently, but with lower variance. 
  * @export
  */
-export type CreateFineTuneRequestModel = string;
+export type CreateFineTuningJobRequestHyperparametersBatchSize = number | string;
 
+/**
+ * @type CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+ * Scaling factor for the learning rate. A smaller learning rate may be useful to avoid overfitting. 
+ * @export
+ */
+export type CreateFineTuningJobRequestHyperparametersLearningRateMultiplier = number | string;
+
+/**
+ * @type CreateFineTuningJobRequestHyperparametersNEpochs
+ * The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. 
+ * @export
+ */
+export type CreateFineTuningJobRequestHyperparametersNEpochs = number | string;
+
+/**
+ * 
+ * @export
+ * @interface CreateFineTuningJobRequestIntegrationsInner
+ */
+export interface CreateFineTuningJobRequestIntegrationsInner {
+    /**
+     * 
+     * @type {CreateFineTuningJobRequestIntegrationsInnerType}
+     * @memberof CreateFineTuningJobRequestIntegrationsInner
+     */
+    'type': CreateFineTuningJobRequestIntegrationsInnerType;
+    /**
+     * 
+     * @type {CreateFineTuningJobRequestIntegrationsInnerWandb}
+     * @memberof CreateFineTuningJobRequestIntegrationsInner
+     */
+    'wandb': CreateFineTuningJobRequestIntegrationsInnerWandb;
+}
+/**
+ * @type CreateFineTuningJobRequestIntegrationsInnerType
+ * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
+ * @export
+ */
+export type CreateFineTuningJobRequestIntegrationsInnerType = string;
+
+/**
+ * The settings for your integration with Weights and Biases. This payload specifies the project that metrics will be sent to. Optionally, you can set an explicit display name for your run, add tags to your run, and set a default entity (team, username, etc) to be associated with your run. 
+ * @export
+ * @interface CreateFineTuningJobRequestIntegrationsInnerWandb
+ */
+export interface CreateFineTuningJobRequestIntegrationsInnerWandb {
+    /**
+     * The name of the project that the new run will be created under. 
+     * @type {string}
+     * @memberof CreateFineTuningJobRequestIntegrationsInnerWandb
+     */
+    'project': string;
+    /**
+     * A display name to set for the run. If not set, we will use the Job ID as the name. 
+     * @type {string}
+     * @memberof CreateFineTuningJobRequestIntegrationsInnerWandb
+     */
+    'name'?: string | null;
+    /**
+     * The entity to use for the run. This allows you to set the team or username of the WandB user that you would like associated with the run. If not set, the default entity for the registered WandB API key is used. 
+     * @type {string}
+     * @memberof CreateFineTuningJobRequestIntegrationsInnerWandb
+     */
+    'entity'?: string | null;
+    /**
+     * A list of tags to be attached to the newly created run. These tags are passed through directly to WandB. Some default tags are generated by OpenAI: \"openai/finetune\", \"openai/{base-model}\", \"openai/{ftjob-abcdef}\". 
+     * @type {Array<string>}
+     * @memberof CreateFineTuningJobRequestIntegrationsInnerWandb
+     */
+    'tags'?: Array<string>;
+}
+/**
+ * The name of the model to fine-tune. You can select one of the [supported models](/docs/guides/fine-tuning/what-models-can-be-fine-tuned). 
+ * @export
+ * @interface CreateFineTuningJobRequestModel
+ */
+export interface CreateFineTuningJobRequestModel {
+}
+/**
+ * The model to use for image generation. Only `dall-e-2` is supported at this time.
+ * @export
+ * @interface CreateImageEditRequestModel
+ */
+export interface CreateImageEditRequestModel {
+}
 /**
  * 
  * @export
@@ -1040,29 +2064,47 @@ export type CreateFineTuneRequestModel = string;
  */
 export interface CreateImageRequest {
     /**
-     * A text description of the desired image(s). The maximum length is 1000 characters.
+     * A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.
      * @type {string}
      * @memberof CreateImageRequest
      */
     'prompt': string;
     /**
-     * The number of images to generate. Must be between 1 and 10.
+     * 
+     * @type {CreateImageRequestModel}
+     * @memberof CreateImageRequest
+     */
+    'model'?: CreateImageRequestModel | null;
+    /**
+     * The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
      * @type {number}
      * @memberof CreateImageRequest
      */
     'n'?: number | null;
     /**
-     * The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
+     * The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.
+     * @type {string}
+     * @memberof CreateImageRequest
+     */
+    'quality'?: CreateImageRequestQualityEnum;
+    /**
+     * The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
+     * @type {string}
+     * @memberof CreateImageRequest
+     */
+    'response_format'?: CreateImageRequestResponseFormatEnum | null;
+    /**
+     * The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.
      * @type {string}
      * @memberof CreateImageRequest
      */
     'size'?: CreateImageRequestSizeEnum | null;
     /**
-     * The format in which the generated images are returned. Must be one of `url` or `b64_json`.
+     * The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.
      * @type {string}
      * @memberof CreateImageRequest
      */
-    'response_format'?: CreateImageRequestResponseFormatEnum | null;
+    'style'?: CreateImageRequestStyleEnum | null;
     /**
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
      * @type {string}
@@ -1071,19 +2113,79 @@ export interface CreateImageRequest {
     'user'?: string;
 }
 
-export const CreateImageRequestSizeEnum = {
-    _256x256: '256x256',
-    _512x512: '512x512',
-    _1024x1024: '1024x1024'
+export const CreateImageRequestQualityEnum = {
+    Standard: 'standard',
+    Hd: 'hd'
 } as const;
 
-export type CreateImageRequestSizeEnum = typeof CreateImageRequestSizeEnum[keyof typeof CreateImageRequestSizeEnum];
+export type CreateImageRequestQualityEnum = typeof CreateImageRequestQualityEnum[keyof typeof CreateImageRequestQualityEnum];
 export const CreateImageRequestResponseFormatEnum = {
     Url: 'url',
     B64Json: 'b64_json'
 } as const;
 
 export type CreateImageRequestResponseFormatEnum = typeof CreateImageRequestResponseFormatEnum[keyof typeof CreateImageRequestResponseFormatEnum];
+export const CreateImageRequestSizeEnum = {
+    _256x256: '256x256',
+    _512x512: '512x512',
+    _1024x1024: '1024x1024',
+    _1792x1024: '1792x1024',
+    _1024x1792: '1024x1792'
+} as const;
+
+export type CreateImageRequestSizeEnum = typeof CreateImageRequestSizeEnum[keyof typeof CreateImageRequestSizeEnum];
+export const CreateImageRequestStyleEnum = {
+    Vivid: 'vivid',
+    Natural: 'natural'
+} as const;
+
+export type CreateImageRequestStyleEnum = typeof CreateImageRequestStyleEnum[keyof typeof CreateImageRequestStyleEnum];
+
+/**
+ * The model to use for image generation.
+ * @export
+ * @interface CreateImageRequestModel
+ */
+export interface CreateImageRequestModel {
+}
+/**
+ * 
+ * @export
+ * @interface CreateMessageRequest
+ */
+export interface CreateMessageRequest {
+    /**
+     * The role of the entity that is creating the message. Allowed values include: - `user`: Indicates the message is sent by an actual user and should be used in most cases to represent user-generated messages. - `assistant`: Indicates the message is generated by the assistant. Use this value to insert messages from the assistant into the conversation. 
+     * @type {string}
+     * @memberof CreateMessageRequest
+     */
+    'role': CreateMessageRequestRoleEnum;
+    /**
+     * The content of the message.
+     * @type {string}
+     * @memberof CreateMessageRequest
+     */
+    'content': string;
+    /**
+     * A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.
+     * @type {Array<string>}
+     * @memberof CreateMessageRequest
+     */
+    'file_ids'?: Array<string>;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof CreateMessageRequest
+     */
+    'metadata'?: object | null;
+}
+
+export const CreateMessageRequestRoleEnum = {
+    User: 'user',
+    Assistant: 'assistant'
+} as const;
+
+export type CreateMessageRequestRoleEnum = typeof CreateMessageRequestRoleEnum[keyof typeof CreateMessageRequestRoleEnum];
 
 /**
  * 
@@ -1112,32 +2214,32 @@ export interface CreateModerationRequest {
 export type CreateModerationRequestInput = Array<string> | string;
 
 /**
- * @type CreateModerationRequestModel
  * Two content moderations models are available: `text-moderation-stable` and `text-moderation-latest`.  The default is `text-moderation-latest` which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use `text-moderation-stable`, we will provide advanced notice before updating the model. Accuracy of `text-moderation-stable` may be slightly lower than for `text-moderation-latest`. 
  * @export
+ * @interface CreateModerationRequestModel
  */
-export type CreateModerationRequestModel = string;
-
+export interface CreateModerationRequestModel {
+}
 /**
- * 
+ * Represents if a given text input is potentially harmful.
  * @export
  * @interface CreateModerationResponse
  */
 export interface CreateModerationResponse {
     /**
-     * 
+     * The unique identifier for the moderation request.
      * @type {string}
      * @memberof CreateModerationResponse
      */
     'id': string;
     /**
-     * 
+     * The model used to generate the moderation results.
      * @type {string}
      * @memberof CreateModerationResponse
      */
     'model': string;
     /**
-     * 
+     * A list of moderation objects.
      * @type {Array<CreateModerationResponseResultsInner>}
      * @memberof CreateModerationResponse
      */
@@ -1150,7 +2252,7 @@ export interface CreateModerationResponse {
  */
 export interface CreateModerationResponseResultsInner {
     /**
-     * 
+     * Whether any of the below categories are flagged.
      * @type {boolean}
      * @memberof CreateModerationResponseResultsInner
      */
@@ -1169,136 +2271,602 @@ export interface CreateModerationResponseResultsInner {
     'category_scores': CreateModerationResponseResultsInnerCategoryScores;
 }
 /**
- * 
+ * A list of the categories, and whether they are flagged or not.
  * @export
  * @interface CreateModerationResponseResultsInnerCategories
  */
 export interface CreateModerationResponseResultsInnerCategories {
     /**
-     * 
+     * Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
      * @type {boolean}
      * @memberof CreateModerationResponseResultsInnerCategories
      */
     'hate': boolean;
     /**
-     * 
+     * Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
      * @type {boolean}
      * @memberof CreateModerationResponseResultsInnerCategories
      */
     'hate/threatening': boolean;
     /**
-     * 
+     * Content that expresses, incites, or promotes harassing language towards any target.
+     * @type {boolean}
+     * @memberof CreateModerationResponseResultsInnerCategories
+     */
+    'harassment': boolean;
+    /**
+     * Harassment content that also includes violence or serious harm towards any target.
+     * @type {boolean}
+     * @memberof CreateModerationResponseResultsInnerCategories
+     */
+    'harassment/threatening': boolean;
+    /**
+     * Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
      * @type {boolean}
      * @memberof CreateModerationResponseResultsInnerCategories
      */
     'self-harm': boolean;
     /**
-     * 
+     * Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+     * @type {boolean}
+     * @memberof CreateModerationResponseResultsInnerCategories
+     */
+    'self-harm/intent': boolean;
+    /**
+     * Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+     * @type {boolean}
+     * @memberof CreateModerationResponseResultsInnerCategories
+     */
+    'self-harm/instructions': boolean;
+    /**
+     * Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
      * @type {boolean}
      * @memberof CreateModerationResponseResultsInnerCategories
      */
     'sexual': boolean;
     /**
-     * 
+     * Sexual content that includes an individual who is under 18 years old.
      * @type {boolean}
      * @memberof CreateModerationResponseResultsInnerCategories
      */
     'sexual/minors': boolean;
     /**
-     * 
+     * Content that depicts death, violence, or physical injury.
      * @type {boolean}
      * @memberof CreateModerationResponseResultsInnerCategories
      */
     'violence': boolean;
     /**
-     * 
+     * Content that depicts death, violence, or physical injury in graphic detail.
      * @type {boolean}
      * @memberof CreateModerationResponseResultsInnerCategories
      */
     'violence/graphic': boolean;
 }
 /**
- * 
+ * A list of the categories along with their scores as predicted by model.
  * @export
  * @interface CreateModerationResponseResultsInnerCategoryScores
  */
 export interface CreateModerationResponseResultsInnerCategoryScores {
     /**
-     * 
+     * The score for the category \'hate\'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     'hate': number;
     /**
-     * 
+     * The score for the category \'hate/threatening\'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     'hate/threatening': number;
     /**
-     * 
+     * The score for the category \'harassment\'.
+     * @type {number}
+     * @memberof CreateModerationResponseResultsInnerCategoryScores
+     */
+    'harassment': number;
+    /**
+     * The score for the category \'harassment/threatening\'.
+     * @type {number}
+     * @memberof CreateModerationResponseResultsInnerCategoryScores
+     */
+    'harassment/threatening': number;
+    /**
+     * The score for the category \'self-harm\'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     'self-harm': number;
     /**
-     * 
+     * The score for the category \'self-harm/intent\'.
+     * @type {number}
+     * @memberof CreateModerationResponseResultsInnerCategoryScores
+     */
+    'self-harm/intent': number;
+    /**
+     * The score for the category \'self-harm/instructions\'.
+     * @type {number}
+     * @memberof CreateModerationResponseResultsInnerCategoryScores
+     */
+    'self-harm/instructions': number;
+    /**
+     * The score for the category \'sexual\'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     'sexual': number;
     /**
-     * 
+     * The score for the category \'sexual/minors\'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     'sexual/minors': number;
     /**
-     * 
+     * The score for the category \'violence\'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     'violence': number;
     /**
-     * 
+     * The score for the category \'violence/graphic\'.
      * @type {number}
      * @memberof CreateModerationResponseResultsInnerCategoryScores
      */
     'violence/graphic': number;
 }
 /**
- * @type CreateTranscriptionRequestModel
- * ID of the model to use. Only `whisper-1` is currently available. 
+ * 
+ * @export
+ * @interface CreateRunRequest
+ */
+export interface CreateRunRequest {
+    /**
+     * The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run.
+     * @type {string}
+     * @memberof CreateRunRequest
+     */
+    'assistant_id': string;
+    /**
+     * 
+     * @type {CreateRunRequestModel}
+     * @memberof CreateRunRequest
+     */
+    'model'?: CreateRunRequestModel | null;
+    /**
+     * Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis.
+     * @type {string}
+     * @memberof CreateRunRequest
+     */
+    'instructions'?: string | null;
+    /**
+     * Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions.
+     * @type {string}
+     * @memberof CreateRunRequest
+     */
+    'additional_instructions'?: string | null;
+    /**
+     * Adds additional messages to the thread before creating the run.
+     * @type {Array<CreateMessageRequest>}
+     * @memberof CreateRunRequest
+     */
+    'additional_messages'?: Array<CreateMessageRequest> | null;
+    /**
+     * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
+     * @type {Array<AssistantObjectToolsInner>}
+     * @memberof CreateRunRequest
+     */
+    'tools'?: Array<AssistantObjectToolsInner> | null;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof CreateRunRequest
+     */
+    'metadata'?: object | null;
+    /**
+     * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+     * @type {number}
+     * @memberof CreateRunRequest
+     */
+    'temperature'?: number | null;
+    /**
+     * If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
+     * @type {boolean}
+     * @memberof CreateRunRequest
+     */
+    'stream'?: boolean | null;
+    /**
+     * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+     * @type {number}
+     * @memberof CreateRunRequest
+     */
+    'max_prompt_tokens'?: number | null;
+    /**
+     * The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+     * @type {number}
+     * @memberof CreateRunRequest
+     */
+    'max_completion_tokens'?: number | null;
+    /**
+     * 
+     * @type {TruncationObject}
+     * @memberof CreateRunRequest
+     */
+    'truncation_strategy'?: TruncationObject;
+    /**
+     * 
+     * @type {AssistantsApiToolChoiceOption}
+     * @memberof CreateRunRequest
+     */
+    'tool_choice'?: AssistantsApiToolChoiceOption;
+    /**
+     * 
+     * @type {AssistantsApiResponseFormatOption}
+     * @memberof CreateRunRequest
+     */
+    'response_format'?: AssistantsApiResponseFormatOption;
+}
+/**
+ * The ID of the [Model](/docs/api-reference/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used.
+ * @export
+ * @interface CreateRunRequestModel
+ */
+export interface CreateRunRequestModel {
+}
+/**
+ * 
+ * @export
+ * @interface CreateSpeechRequest
+ */
+export interface CreateSpeechRequest {
+    /**
+     * 
+     * @type {CreateSpeechRequestModel}
+     * @memberof CreateSpeechRequest
+     */
+    'model': CreateSpeechRequestModel;
+    /**
+     * The text to generate audio for. The maximum length is 4096 characters.
+     * @type {string}
+     * @memberof CreateSpeechRequest
+     */
+    'input': string;
+    /**
+     * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+     * @type {string}
+     * @memberof CreateSpeechRequest
+     */
+    'voice': CreateSpeechRequestVoiceEnum;
+    /**
+     * The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
+     * @type {string}
+     * @memberof CreateSpeechRequest
+     */
+    'response_format'?: CreateSpeechRequestResponseFormatEnum;
+    /**
+     * The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
+     * @type {number}
+     * @memberof CreateSpeechRequest
+     */
+    'speed'?: number;
+}
+
+export const CreateSpeechRequestVoiceEnum = {
+    Alloy: 'alloy',
+    Echo: 'echo',
+    Fable: 'fable',
+    Onyx: 'onyx',
+    Nova: 'nova',
+    Shimmer: 'shimmer'
+} as const;
+
+export type CreateSpeechRequestVoiceEnum = typeof CreateSpeechRequestVoiceEnum[keyof typeof CreateSpeechRequestVoiceEnum];
+export const CreateSpeechRequestResponseFormatEnum = {
+    Mp3: 'mp3',
+    Opus: 'opus',
+    Aac: 'aac',
+    Flac: 'flac',
+    Wav: 'wav',
+    Pcm: 'pcm'
+} as const;
+
+export type CreateSpeechRequestResponseFormatEnum = typeof CreateSpeechRequestResponseFormatEnum[keyof typeof CreateSpeechRequestResponseFormatEnum];
+
+/**
+ * One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd` 
+ * @export
+ * @interface CreateSpeechRequestModel
+ */
+export interface CreateSpeechRequestModel {
+}
+/**
+ * 
+ * @export
+ * @interface CreateThreadAndRunRequest
+ */
+export interface CreateThreadAndRunRequest {
+    /**
+     * The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run.
+     * @type {string}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'assistant_id': string;
+    /**
+     * 
+     * @type {CreateThreadRequest}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'thread'?: CreateThreadRequest;
+    /**
+     * 
+     * @type {CreateRunRequestModel}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'model'?: CreateRunRequestModel | null;
+    /**
+     * Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis.
+     * @type {string}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'instructions'?: string | null;
+    /**
+     * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
+     * @type {Array<CreateThreadAndRunRequestToolsInner>}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'tools'?: Array<CreateThreadAndRunRequestToolsInner> | null;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'metadata'?: object | null;
+    /**
+     * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+     * @type {number}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'temperature'?: number | null;
+    /**
+     * If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
+     * @type {boolean}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'stream'?: boolean | null;
+    /**
+     * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+     * @type {number}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'max_prompt_tokens'?: number | null;
+    /**
+     * The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
+     * @type {number}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'max_completion_tokens'?: number | null;
+    /**
+     * 
+     * @type {TruncationObject}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'truncation_strategy'?: TruncationObject;
+    /**
+     * 
+     * @type {AssistantsApiToolChoiceOption}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'tool_choice'?: AssistantsApiToolChoiceOption;
+    /**
+     * 
+     * @type {AssistantsApiResponseFormatOption}
+     * @memberof CreateThreadAndRunRequest
+     */
+    'response_format'?: AssistantsApiResponseFormatOption;
+}
+/**
+ * @type CreateThreadAndRunRequestToolsInner
  * @export
  */
-export type CreateTranscriptionRequestModel = string;
+export type CreateThreadAndRunRequestToolsInner = AssistantToolsCode | AssistantToolsFunction | AssistantToolsRetrieval;
 
 /**
  * 
  * @export
- * @interface CreateTranscriptionResponse
+ * @interface CreateThreadRequest
  */
-export interface CreateTranscriptionResponse {
+export interface CreateThreadRequest {
+    /**
+     * A list of [messages](/docs/api-reference/messages) to start the thread with.
+     * @type {Array<CreateMessageRequest>}
+     * @memberof CreateThreadRequest
+     */
+    'messages'?: Array<CreateMessageRequest>;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof CreateThreadRequest
+     */
+    'metadata'?: object | null;
+}
+/**
+ * @type CreateTranscription200Response
+ * @export
+ */
+export type CreateTranscription200Response = CreateTranscriptionResponseJson | CreateTranscriptionResponseVerboseJson;
+
+/**
+ * ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available. 
+ * @export
+ * @interface CreateTranscriptionRequestModel
+ */
+export interface CreateTranscriptionRequestModel {
+}
+/**
+ * Represents a transcription response returned by model, based on the provided input.
+ * @export
+ * @interface CreateTranscriptionResponseJson
+ */
+export interface CreateTranscriptionResponseJson {
+    /**
+     * The transcribed text.
+     * @type {string}
+     * @memberof CreateTranscriptionResponseJson
+     */
+    'text': string;
+}
+/**
+ * Represents a verbose json transcription response returned by model, based on the provided input.
+ * @export
+ * @interface CreateTranscriptionResponseVerboseJson
+ */
+export interface CreateTranscriptionResponseVerboseJson {
+    /**
+     * The language of the input audio.
+     * @type {string}
+     * @memberof CreateTranscriptionResponseVerboseJson
+     */
+    'language': string;
+    /**
+     * The duration of the input audio.
+     * @type {string}
+     * @memberof CreateTranscriptionResponseVerboseJson
+     */
+    'duration': string;
+    /**
+     * The transcribed text.
+     * @type {string}
+     * @memberof CreateTranscriptionResponseVerboseJson
+     */
+    'text': string;
+    /**
+     * Extracted words and their corresponding timestamps.
+     * @type {Array<TranscriptionWord>}
+     * @memberof CreateTranscriptionResponseVerboseJson
+     */
+    'words'?: Array<TranscriptionWord>;
+    /**
+     * Segments of the transcribed text and their corresponding details.
+     * @type {Array<TranscriptionSegment>}
+     * @memberof CreateTranscriptionResponseVerboseJson
+     */
+    'segments'?: Array<TranscriptionSegment>;
+}
+/**
+ * @type CreateTranslation200Response
+ * @export
+ */
+export type CreateTranslation200Response = CreateTranslationResponseJson | CreateTranslationResponseVerboseJson;
+
+/**
+ * 
+ * @export
+ * @interface CreateTranslationResponseJson
+ */
+export interface CreateTranslationResponseJson {
     /**
      * 
      * @type {string}
-     * @memberof CreateTranscriptionResponse
+     * @memberof CreateTranslationResponseJson
      */
     'text': string;
 }
 /**
  * 
  * @export
- * @interface CreateTranslationResponse
+ * @interface CreateTranslationResponseVerboseJson
  */
-export interface CreateTranslationResponse {
+export interface CreateTranslationResponseVerboseJson {
+    /**
+     * The language of the output translation (always `english`).
+     * @type {string}
+     * @memberof CreateTranslationResponseVerboseJson
+     */
+    'language': string;
+    /**
+     * The duration of the input audio.
+     * @type {string}
+     * @memberof CreateTranslationResponseVerboseJson
+     */
+    'duration': string;
+    /**
+     * The translated text.
+     * @type {string}
+     * @memberof CreateTranslationResponseVerboseJson
+     */
+    'text': string;
+    /**
+     * Segments of the translated text and their corresponding details.
+     * @type {Array<TranscriptionSegment>}
+     * @memberof CreateTranslationResponseVerboseJson
+     */
+    'segments'?: Array<TranscriptionSegment>;
+}
+/**
+ * Deletes the association between the assistant and the file, but does not delete the [File](/docs/api-reference/files) object itself.
+ * @export
+ * @interface DeleteAssistantFileResponse
+ */
+export interface DeleteAssistantFileResponse {
     /**
      * 
      * @type {string}
-     * @memberof CreateTranslationResponse
+     * @memberof DeleteAssistantFileResponse
      */
-    'text': string;
+    'id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeleteAssistantFileResponse
+     */
+    'deleted': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteAssistantFileResponse
+     */
+    'object': DeleteAssistantFileResponseObjectEnum;
 }
+
+export const DeleteAssistantFileResponseObjectEnum = {
+    AssistantFileDeleted: 'assistant.file.deleted'
+} as const;
+
+export type DeleteAssistantFileResponseObjectEnum = typeof DeleteAssistantFileResponseObjectEnum[keyof typeof DeleteAssistantFileResponseObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface DeleteAssistantResponse
+ */
+export interface DeleteAssistantResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteAssistantResponse
+     */
+    'id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeleteAssistantResponse
+     */
+    'deleted': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteAssistantResponse
+     */
+    'object': DeleteAssistantResponseObjectEnum;
+}
+
+export const DeleteAssistantResponseObjectEnum = {
+    AssistantDeleted: 'assistant.deleted'
+} as const;
+
+export type DeleteAssistantResponseObjectEnum = typeof DeleteAssistantResponseObjectEnum[keyof typeof DeleteAssistantResponseObjectEnum];
+
 /**
  * 
  * @export
@@ -1316,7 +2884,7 @@ export interface DeleteFileResponse {
      * @type {string}
      * @memberof DeleteFileResponse
      */
-    'object': string;
+    'object': DeleteFileResponseObjectEnum;
     /**
      * 
      * @type {boolean}
@@ -1324,6 +2892,45 @@ export interface DeleteFileResponse {
      */
     'deleted': boolean;
 }
+
+export const DeleteFileResponseObjectEnum = {
+    File: 'file'
+} as const;
+
+export type DeleteFileResponseObjectEnum = typeof DeleteFileResponseObjectEnum[keyof typeof DeleteFileResponseObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface DeleteMessageResponse
+ */
+export interface DeleteMessageResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteMessageResponse
+     */
+    'id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeleteMessageResponse
+     */
+    'deleted': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteMessageResponse
+     */
+    'object': DeleteMessageResponseObjectEnum;
+}
+
+export const DeleteMessageResponseObjectEnum = {
+    ThreadMessageDeleted: 'thread.message.deleted'
+} as const;
+
+export type DeleteMessageResponseObjectEnum = typeof DeleteMessageResponseObjectEnum[keyof typeof DeleteMessageResponseObjectEnum];
+
 /**
  * 
  * @export
@@ -1338,17 +2945,138 @@ export interface DeleteModelResponse {
     'id': string;
     /**
      * 
-     * @type {string}
-     * @memberof DeleteModelResponse
-     */
-    'object': string;
-    /**
-     * 
      * @type {boolean}
      * @memberof DeleteModelResponse
      */
     'deleted': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteModelResponse
+     */
+    'object': string;
 }
+/**
+ * 
+ * @export
+ * @interface DeleteThreadResponse
+ */
+export interface DeleteThreadResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteThreadResponse
+     */
+    'id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeleteThreadResponse
+     */
+    'deleted': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteThreadResponse
+     */
+    'object': DeleteThreadResponseObjectEnum;
+}
+
+export const DeleteThreadResponseObjectEnum = {
+    ThreadDeleted: 'thread.deleted'
+} as const;
+
+export type DeleteThreadResponseObjectEnum = typeof DeleteThreadResponseObjectEnum[keyof typeof DeleteThreadResponseObjectEnum];
+
+/**
+ * Occurs when a stream ends.
+ * @export
+ * @interface DoneEvent
+ */
+export interface DoneEvent {
+    /**
+     * 
+     * @type {string}
+     * @memberof DoneEvent
+     */
+    'event': DoneEventEventEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DoneEvent
+     */
+    'data': DoneEventDataEnum;
+}
+
+export const DoneEventEventEnum = {
+    Done: 'done'
+} as const;
+
+export type DoneEventEventEnum = typeof DoneEventEventEnum[keyof typeof DoneEventEventEnum];
+export const DoneEventDataEnum = {
+    Done: '[DONE]'
+} as const;
+
+export type DoneEventDataEnum = typeof DoneEventDataEnum[keyof typeof DoneEventDataEnum];
+
+/**
+ * Represents an embedding vector returned by embedding endpoint. 
+ * @export
+ * @interface Embedding
+ */
+export interface Embedding {
+    /**
+     * The index of the embedding in the list of embeddings.
+     * @type {number}
+     * @memberof Embedding
+     */
+    'index': number;
+    /**
+     * The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). 
+     * @type {Array<number>}
+     * @memberof Embedding
+     */
+    'embedding': Array<number>;
+    /**
+     * The object type, which is always \"embedding\".
+     * @type {string}
+     * @memberof Embedding
+     */
+    'object': EmbeddingObjectEnum;
+}
+
+export const EmbeddingObjectEnum = {
+    Embedding: 'embedding'
+} as const;
+
+export type EmbeddingObjectEnum = typeof EmbeddingObjectEnum[keyof typeof EmbeddingObjectEnum];
+
+/**
+ * Occurs when an [error](/docs/guides/error-codes/api-errors) occurs. This can happen due to an internal server error or a timeout.
+ * @export
+ * @interface ErrorEvent
+ */
+export interface ErrorEvent {
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorEvent
+     */
+    'event': ErrorEventEventEnum;
+    /**
+     * 
+     * @type {Error}
+     * @memberof ErrorEvent
+     */
+    'data': Error;
+}
+
+export const ErrorEventEventEnum = {
+    Error: 'error'
+} as const;
+
+export type ErrorEventEventEnum = typeof ErrorEventEventEnum[keyof typeof ErrorEventEventEnum];
+
 /**
  * 
  * @export
@@ -1365,118 +3093,405 @@ export interface ErrorResponse {
 /**
  * 
  * @export
- * @interface FineTune
+ * @interface FineTuningIntegration
  */
-export interface FineTune {
+export interface FineTuningIntegration {
+    /**
+     * The type of the integration being enabled for the fine-tuning job
+     * @type {string}
+     * @memberof FineTuningIntegration
+     */
+    'type': FineTuningIntegrationTypeEnum;
+    /**
+     * 
+     * @type {CreateFineTuningJobRequestIntegrationsInnerWandb}
+     * @memberof FineTuningIntegration
+     */
+    'wandb': CreateFineTuningJobRequestIntegrationsInnerWandb;
+}
+
+export const FineTuningIntegrationTypeEnum = {
+    Wandb: 'wandb'
+} as const;
+
+export type FineTuningIntegrationTypeEnum = typeof FineTuningIntegrationTypeEnum[keyof typeof FineTuningIntegrationTypeEnum];
+
+/**
+ * The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. 
+ * @export
+ * @interface FineTuningJob
+ */
+export interface FineTuningJob {
+    /**
+     * The object identifier, which can be referenced in the API endpoints.
+     * @type {string}
+     * @memberof FineTuningJob
+     */
+    'id': string;
+    /**
+     * The Unix timestamp (in seconds) for when the fine-tuning job was created.
+     * @type {number}
+     * @memberof FineTuningJob
+     */
+    'created_at': number;
+    /**
+     * 
+     * @type {FineTuningJobError}
+     * @memberof FineTuningJob
+     */
+    'error': FineTuningJobError | null;
+    /**
+     * The name of the fine-tuned model that is being created. The value will be null if the fine-tuning job is still running.
+     * @type {string}
+     * @memberof FineTuningJob
+     */
+    'fine_tuned_model': string | null;
+    /**
+     * The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running.
+     * @type {number}
+     * @memberof FineTuningJob
+     */
+    'finished_at': number | null;
+    /**
+     * 
+     * @type {FineTuningJobHyperparameters}
+     * @memberof FineTuningJob
+     */
+    'hyperparameters': FineTuningJobHyperparameters;
+    /**
+     * The base model that is being fine-tuned.
+     * @type {string}
+     * @memberof FineTuningJob
+     */
+    'model': string;
+    /**
+     * The object type, which is always \"fine_tuning.job\".
+     * @type {string}
+     * @memberof FineTuningJob
+     */
+    'object': FineTuningJobObjectEnum;
+    /**
+     * The organization that owns the fine-tuning job.
+     * @type {string}
+     * @memberof FineTuningJob
+     */
+    'organization_id': string;
+    /**
+     * The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).
+     * @type {Array<string>}
+     * @memberof FineTuningJob
+     */
+    'result_files': Array<string>;
+    /**
+     * The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
+     * @type {string}
+     * @memberof FineTuningJob
+     */
+    'status': FineTuningJobStatusEnum;
+    /**
+     * The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running.
+     * @type {number}
+     * @memberof FineTuningJob
+     */
+    'trained_tokens': number | null;
+    /**
+     * The file ID used for training. You can retrieve the training data with the [Files API](/docs/api-reference/files/retrieve-contents).
+     * @type {string}
+     * @memberof FineTuningJob
+     */
+    'training_file': string;
+    /**
+     * The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
+     * @type {string}
+     * @memberof FineTuningJob
+     */
+    'validation_file': string | null;
+    /**
+     * A list of integrations to enable for this fine-tuning job.
+     * @type {Array<FineTuningJobIntegrationsInner>}
+     * @memberof FineTuningJob
+     */
+    'integrations'?: Array<FineTuningJobIntegrationsInner> | null;
+    /**
+     * The seed used for the fine-tuning job.
+     * @type {number}
+     * @memberof FineTuningJob
+     */
+    'seed': number;
+}
+
+export const FineTuningJobObjectEnum = {
+    FineTuningJob: 'fine_tuning.job'
+} as const;
+
+export type FineTuningJobObjectEnum = typeof FineTuningJobObjectEnum[keyof typeof FineTuningJobObjectEnum];
+export const FineTuningJobStatusEnum = {
+    ValidatingFiles: 'validating_files',
+    Queued: 'queued',
+    Running: 'running',
+    Succeeded: 'succeeded',
+    Failed: 'failed',
+    Cancelled: 'cancelled'
+} as const;
+
+export type FineTuningJobStatusEnum = typeof FineTuningJobStatusEnum[keyof typeof FineTuningJobStatusEnum];
+
+/**
+ * The `fine_tuning.job.checkpoint` object represents a model checkpoint for a fine-tuning job that is ready to use. 
+ * @export
+ * @interface FineTuningJobCheckpoint
+ */
+export interface FineTuningJobCheckpoint {
+    /**
+     * The checkpoint identifier, which can be referenced in the API endpoints.
+     * @type {string}
+     * @memberof FineTuningJobCheckpoint
+     */
+    'id': string;
+    /**
+     * The Unix timestamp (in seconds) for when the checkpoint was created.
+     * @type {number}
+     * @memberof FineTuningJobCheckpoint
+     */
+    'created_at': number;
+    /**
+     * The name of the fine-tuned checkpoint model that is created.
+     * @type {string}
+     * @memberof FineTuningJobCheckpoint
+     */
+    'fine_tuned_model_checkpoint': string;
+    /**
+     * The step number that the checkpoint was created at.
+     * @type {number}
+     * @memberof FineTuningJobCheckpoint
+     */
+    'step_number': number;
+    /**
+     * 
+     * @type {FineTuningJobCheckpointMetrics}
+     * @memberof FineTuningJobCheckpoint
+     */
+    'metrics': FineTuningJobCheckpointMetrics;
+    /**
+     * The name of the fine-tuning job that this checkpoint was created from.
+     * @type {string}
+     * @memberof FineTuningJobCheckpoint
+     */
+    'fine_tuning_job_id': string;
+    /**
+     * The object type, which is always \"fine_tuning.job.checkpoint\".
+     * @type {string}
+     * @memberof FineTuningJobCheckpoint
+     */
+    'object': FineTuningJobCheckpointObjectEnum;
+}
+
+export const FineTuningJobCheckpointObjectEnum = {
+    FineTuningJobCheckpoint: 'fine_tuning.job.checkpoint'
+} as const;
+
+export type FineTuningJobCheckpointObjectEnum = typeof FineTuningJobCheckpointObjectEnum[keyof typeof FineTuningJobCheckpointObjectEnum];
+
+/**
+ * Metrics at the step number during the fine-tuning job.
+ * @export
+ * @interface FineTuningJobCheckpointMetrics
+ */
+export interface FineTuningJobCheckpointMetrics {
+    /**
+     * 
+     * @type {number}
+     * @memberof FineTuningJobCheckpointMetrics
+     */
+    'step'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FineTuningJobCheckpointMetrics
+     */
+    'train_loss'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FineTuningJobCheckpointMetrics
+     */
+    'train_mean_token_accuracy'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FineTuningJobCheckpointMetrics
+     */
+    'valid_loss'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FineTuningJobCheckpointMetrics
+     */
+    'valid_mean_token_accuracy'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FineTuningJobCheckpointMetrics
+     */
+    'full_valid_loss'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FineTuningJobCheckpointMetrics
+     */
+    'full_valid_mean_token_accuracy'?: number;
+}
+/**
+ * For fine-tuning jobs that have `failed`, this will contain more information on the cause of the failure.
+ * @export
+ * @interface FineTuningJobError
+ */
+export interface FineTuningJobError {
+    /**
+     * A machine-readable error code.
+     * @type {string}
+     * @memberof FineTuningJobError
+     */
+    'code': string;
+    /**
+     * A human-readable error message.
+     * @type {string}
+     * @memberof FineTuningJobError
+     */
+    'message': string;
+    /**
+     * The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.
+     * @type {string}
+     * @memberof FineTuningJobError
+     */
+    'param': string | null;
+}
+/**
+ * Fine-tuning job event object
+ * @export
+ * @interface FineTuningJobEvent
+ */
+export interface FineTuningJobEvent {
     /**
      * 
      * @type {string}
-     * @memberof FineTune
+     * @memberof FineTuningJobEvent
      */
     'id': string;
     /**
      * 
-     * @type {string}
-     * @memberof FineTune
-     */
-    'object': string;
-    /**
-     * 
      * @type {number}
-     * @memberof FineTune
+     * @memberof FineTuningJobEvent
      */
     'created_at': number;
     /**
      * 
-     * @type {number}
-     * @memberof FineTune
+     * @type {string}
+     * @memberof FineTuningJobEvent
      */
-    'updated_at': number;
+    'level': FineTuningJobEventLevelEnum;
     /**
      * 
      * @type {string}
-     * @memberof FineTune
+     * @memberof FineTuningJobEvent
      */
-    'model': string;
+    'message': string;
     /**
      * 
      * @type {string}
-     * @memberof FineTune
+     * @memberof FineTuningJobEvent
      */
-    'fine_tuned_model': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FineTune
-     */
-    'organization_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FineTune
-     */
-    'status': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof FineTune
-     */
-    'hyperparams': object;
-    /**
-     * 
-     * @type {Array<OpenAIFile>}
-     * @memberof FineTune
-     */
-    'training_files': Array<OpenAIFile>;
-    /**
-     * 
-     * @type {Array<OpenAIFile>}
-     * @memberof FineTune
-     */
-    'validation_files': Array<OpenAIFile>;
-    /**
-     * 
-     * @type {Array<OpenAIFile>}
-     * @memberof FineTune
-     */
-    'result_files': Array<OpenAIFile>;
-    /**
-     * 
-     * @type {Array<FineTuneEvent>}
-     * @memberof FineTune
-     */
-    'events'?: Array<FineTuneEvent>;
+    'object': FineTuningJobEventObjectEnum;
 }
+
+export const FineTuningJobEventLevelEnum = {
+    Info: 'info',
+    Warn: 'warn',
+    Error: 'error'
+} as const;
+
+export type FineTuningJobEventLevelEnum = typeof FineTuningJobEventLevelEnum[keyof typeof FineTuningJobEventLevelEnum];
+export const FineTuningJobEventObjectEnum = {
+    FineTuningJobEvent: 'fine_tuning.job.event'
+} as const;
+
+export type FineTuningJobEventObjectEnum = typeof FineTuningJobEventObjectEnum[keyof typeof FineTuningJobEventObjectEnum];
+
+/**
+ * The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+ * @export
+ * @interface FineTuningJobHyperparameters
+ */
+export interface FineTuningJobHyperparameters {
+    /**
+     * 
+     * @type {FineTuningJobHyperparametersNEpochs}
+     * @memberof FineTuningJobHyperparameters
+     */
+    'n_epochs': FineTuningJobHyperparametersNEpochs;
+}
+/**
+ * @type FineTuningJobHyperparametersNEpochs
+ * The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. \"auto\" decides the optimal number of epochs based on the size of the dataset. If setting the number manually, we support any number between 1 and 50 epochs.
+ * @export
+ */
+export type FineTuningJobHyperparametersNEpochs = number | string;
+
+/**
+ * @type FineTuningJobIntegrationsInner
+ * @export
+ */
+export type FineTuningJobIntegrationsInner = FineTuningIntegration;
+
 /**
  * 
  * @export
- * @interface FineTuneEvent
+ * @interface FunctionObject
  */
-export interface FineTuneEvent {
+export interface FunctionObject {
     /**
-     * 
+     * A description of what the function does, used by the model to choose when and how to call the function.
      * @type {string}
-     * @memberof FineTuneEvent
+     * @memberof FunctionObject
      */
-    'object': string;
+    'description'?: string;
     /**
-     * 
-     * @type {number}
-     * @memberof FineTuneEvent
-     */
-    'created_at': number;
-    /**
-     * 
+     * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
      * @type {string}
-     * @memberof FineTuneEvent
+     * @memberof FunctionObject
      */
-    'level': string;
+    'name': string;
     /**
-     * 
-     * @type {string}
-     * @memberof FineTuneEvent
+     * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+     * @type {{ [key: string]: any; }}
+     * @memberof FunctionObject
      */
-    'message': string;
+    'parameters'?: { [key: string]: any; };
+}
+/**
+ * Represents the url or the content of an image generated by the OpenAI API.
+ * @export
+ * @interface Image
+ */
+export interface Image {
+    /**
+     * The base64-encoded JSON of the generated image, if `response_format` is `b64_json`.
+     * @type {string}
+     * @memberof Image
+     */
+    'b64_json'?: string;
+    /**
+     * The URL of the generated image, if `response_format` is `url` (default).
+     * @type {string}
+     * @memberof Image
+     */
+    'url'?: string;
+    /**
+     * The prompt that was used to generate the image, if there was any revision to the prompt.
+     * @type {string}
+     * @memberof Image
+     */
+    'revised_prompt'?: string;
 }
 /**
  * 
@@ -1492,29 +3507,84 @@ export interface ImagesResponse {
     'created': number;
     /**
      * 
-     * @type {Array<ImagesResponseDataInner>}
+     * @type {Array<Image>}
      * @memberof ImagesResponse
      */
-    'data': Array<ImagesResponseDataInner>;
+    'data': Array<Image>;
 }
 /**
  * 
  * @export
- * @interface ImagesResponseDataInner
+ * @interface ListAssistantFilesResponse
  */
-export interface ImagesResponseDataInner {
+export interface ListAssistantFilesResponse {
     /**
      * 
      * @type {string}
-     * @memberof ImagesResponseDataInner
+     * @memberof ListAssistantFilesResponse
      */
-    'url'?: string;
+    'object': string;
+    /**
+     * 
+     * @type {Array<AssistantFileObject>}
+     * @memberof ListAssistantFilesResponse
+     */
+    'data': Array<AssistantFileObject>;
     /**
      * 
      * @type {string}
-     * @memberof ImagesResponseDataInner
+     * @memberof ListAssistantFilesResponse
      */
-    'b64_json'?: string;
+    'first_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListAssistantFilesResponse
+     */
+    'last_id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListAssistantFilesResponse
+     */
+    'has_more': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ListAssistantsResponse
+ */
+export interface ListAssistantsResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof ListAssistantsResponse
+     */
+    'object': string;
+    /**
+     * 
+     * @type {Array<AssistantObject>}
+     * @memberof ListAssistantsResponse
+     */
+    'data': Array<AssistantObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListAssistantsResponse
+     */
+    'first_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListAssistantsResponse
+     */
+    'last_id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListAssistantsResponse
+     */
+    'has_more': boolean;
 }
 /**
  * 
@@ -1524,54 +3594,167 @@ export interface ImagesResponseDataInner {
 export interface ListFilesResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ListFilesResponse
-     */
-    'object': string;
-    /**
-     * 
      * @type {Array<OpenAIFile>}
      * @memberof ListFilesResponse
      */
     'data': Array<OpenAIFile>;
-}
-/**
- * 
- * @export
- * @interface ListFineTuneEventsResponse
- */
-export interface ListFineTuneEventsResponse {
     /**
      * 
      * @type {string}
-     * @memberof ListFineTuneEventsResponse
+     * @memberof ListFilesResponse
+     */
+    'object': ListFilesResponseObjectEnum;
+}
+
+export const ListFilesResponseObjectEnum = {
+    List: 'list'
+} as const;
+
+export type ListFilesResponseObjectEnum = typeof ListFilesResponseObjectEnum[keyof typeof ListFilesResponseObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ListFineTuningJobCheckpointsResponse
+ */
+export interface ListFineTuningJobCheckpointsResponse {
+    /**
+     * 
+     * @type {Array<FineTuningJobCheckpoint>}
+     * @memberof ListFineTuningJobCheckpointsResponse
+     */
+    'data': Array<FineTuningJobCheckpoint>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListFineTuningJobCheckpointsResponse
+     */
+    'object': ListFineTuningJobCheckpointsResponseObjectEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListFineTuningJobCheckpointsResponse
+     */
+    'first_id'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListFineTuningJobCheckpointsResponse
+     */
+    'last_id'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListFineTuningJobCheckpointsResponse
+     */
+    'has_more': boolean;
+}
+
+export const ListFineTuningJobCheckpointsResponseObjectEnum = {
+    List: 'list'
+} as const;
+
+export type ListFineTuningJobCheckpointsResponseObjectEnum = typeof ListFineTuningJobCheckpointsResponseObjectEnum[keyof typeof ListFineTuningJobCheckpointsResponseObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ListFineTuningJobEventsResponse
+ */
+export interface ListFineTuningJobEventsResponse {
+    /**
+     * 
+     * @type {Array<FineTuningJobEvent>}
+     * @memberof ListFineTuningJobEventsResponse
+     */
+    'data': Array<FineTuningJobEvent>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListFineTuningJobEventsResponse
+     */
+    'object': ListFineTuningJobEventsResponseObjectEnum;
+}
+
+export const ListFineTuningJobEventsResponseObjectEnum = {
+    List: 'list'
+} as const;
+
+export type ListFineTuningJobEventsResponseObjectEnum = typeof ListFineTuningJobEventsResponseObjectEnum[keyof typeof ListFineTuningJobEventsResponseObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ListMessageFilesResponse
+ */
+export interface ListMessageFilesResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof ListMessageFilesResponse
      */
     'object': string;
     /**
      * 
-     * @type {Array<FineTuneEvent>}
-     * @memberof ListFineTuneEventsResponse
+     * @type {Array<MessageFileObject>}
+     * @memberof ListMessageFilesResponse
      */
-    'data': Array<FineTuneEvent>;
+    'data': Array<MessageFileObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListMessageFilesResponse
+     */
+    'first_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListMessageFilesResponse
+     */
+    'last_id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListMessageFilesResponse
+     */
+    'has_more': boolean;
 }
 /**
  * 
  * @export
- * @interface ListFineTunesResponse
+ * @interface ListMessagesResponse
  */
-export interface ListFineTunesResponse {
+export interface ListMessagesResponse {
     /**
      * 
      * @type {string}
-     * @memberof ListFineTunesResponse
+     * @memberof ListMessagesResponse
      */
     'object': string;
     /**
      * 
-     * @type {Array<FineTune>}
-     * @memberof ListFineTunesResponse
+     * @type {Array<MessageObject>}
+     * @memberof ListMessagesResponse
      */
-    'data': Array<FineTune>;
+    'data': Array<MessageObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListMessagesResponse
+     */
+    'first_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListMessagesResponse
+     */
+    'last_id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListMessagesResponse
+     */
+    'has_more': boolean;
 }
 /**
  * 
@@ -1584,7 +3767,7 @@ export interface ListModelsResponse {
      * @type {string}
      * @memberof ListModelsResponse
      */
-    'object': string;
+    'object': ListModelsResponseObjectEnum;
     /**
      * 
      * @type {Array<Model>}
@@ -1592,37 +3775,1024 @@ export interface ListModelsResponse {
      */
     'data': Array<Model>;
 }
+
+export const ListModelsResponseObjectEnum = {
+    List: 'list'
+} as const;
+
+export type ListModelsResponseObjectEnum = typeof ListModelsResponseObjectEnum[keyof typeof ListModelsResponseObjectEnum];
+
 /**
  * 
+ * @export
+ * @interface ListPaginatedFineTuningJobsResponse
+ */
+export interface ListPaginatedFineTuningJobsResponse {
+    /**
+     * 
+     * @type {Array<FineTuningJob>}
+     * @memberof ListPaginatedFineTuningJobsResponse
+     */
+    'data': Array<FineTuningJob>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListPaginatedFineTuningJobsResponse
+     */
+    'has_more': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListPaginatedFineTuningJobsResponse
+     */
+    'object': ListPaginatedFineTuningJobsResponseObjectEnum;
+}
+
+export const ListPaginatedFineTuningJobsResponseObjectEnum = {
+    List: 'list'
+} as const;
+
+export type ListPaginatedFineTuningJobsResponseObjectEnum = typeof ListPaginatedFineTuningJobsResponseObjectEnum[keyof typeof ListPaginatedFineTuningJobsResponseObjectEnum];
+
+/**
+ * 
+ * @export
+ * @interface ListRunStepsResponse
+ */
+export interface ListRunStepsResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof ListRunStepsResponse
+     */
+    'object': string;
+    /**
+     * 
+     * @type {Array<RunStepObject>}
+     * @memberof ListRunStepsResponse
+     */
+    'data': Array<RunStepObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListRunStepsResponse
+     */
+    'first_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListRunStepsResponse
+     */
+    'last_id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListRunStepsResponse
+     */
+    'has_more': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ListRunsResponse
+ */
+export interface ListRunsResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof ListRunsResponse
+     */
+    'object': string;
+    /**
+     * 
+     * @type {Array<RunObject>}
+     * @memberof ListRunsResponse
+     */
+    'data': Array<RunObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListRunsResponse
+     */
+    'first_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListRunsResponse
+     */
+    'last_id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListRunsResponse
+     */
+    'has_more': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ListThreadsResponse
+ */
+export interface ListThreadsResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof ListThreadsResponse
+     */
+    'object': string;
+    /**
+     * 
+     * @type {Array<ThreadObject>}
+     * @memberof ListThreadsResponse
+     */
+    'data': Array<ThreadObject>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListThreadsResponse
+     */
+    'first_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListThreadsResponse
+     */
+    'last_id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListThreadsResponse
+     */
+    'has_more': boolean;
+}
+/**
+ * References an image [File](/docs/api-reference/files) in the content of a message.
+ * @export
+ * @interface MessageContentImageFileObject
+ */
+export interface MessageContentImageFileObject {
+    /**
+     * Always `image_file`.
+     * @type {string}
+     * @memberof MessageContentImageFileObject
+     */
+    'type': MessageContentImageFileObjectTypeEnum;
+    /**
+     * 
+     * @type {MessageContentImageFileObjectImageFile}
+     * @memberof MessageContentImageFileObject
+     */
+    'image_file': MessageContentImageFileObjectImageFile;
+}
+
+export const MessageContentImageFileObjectTypeEnum = {
+    ImageFile: 'image_file'
+} as const;
+
+export type MessageContentImageFileObjectTypeEnum = typeof MessageContentImageFileObjectTypeEnum[keyof typeof MessageContentImageFileObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface MessageContentImageFileObjectImageFile
+ */
+export interface MessageContentImageFileObjectImageFile {
+    /**
+     * The [File](/docs/api-reference/files) ID of the image in the message content.
+     * @type {string}
+     * @memberof MessageContentImageFileObjectImageFile
+     */
+    'file_id': string;
+}
+/**
+ * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \"retrieval\" tool to search files.
+ * @export
+ * @interface MessageContentTextAnnotationsFileCitationObject
+ */
+export interface MessageContentTextAnnotationsFileCitationObject {
+    /**
+     * Always `file_citation`.
+     * @type {string}
+     * @memberof MessageContentTextAnnotationsFileCitationObject
+     */
+    'type': MessageContentTextAnnotationsFileCitationObjectTypeEnum;
+    /**
+     * The text in the message content that needs to be replaced.
+     * @type {string}
+     * @memberof MessageContentTextAnnotationsFileCitationObject
+     */
+    'text': string;
+    /**
+     * 
+     * @type {MessageContentTextAnnotationsFileCitationObjectFileCitation}
+     * @memberof MessageContentTextAnnotationsFileCitationObject
+     */
+    'file_citation': MessageContentTextAnnotationsFileCitationObjectFileCitation;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageContentTextAnnotationsFileCitationObject
+     */
+    'start_index': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageContentTextAnnotationsFileCitationObject
+     */
+    'end_index': number;
+}
+
+export const MessageContentTextAnnotationsFileCitationObjectTypeEnum = {
+    FileCitation: 'file_citation'
+} as const;
+
+export type MessageContentTextAnnotationsFileCitationObjectTypeEnum = typeof MessageContentTextAnnotationsFileCitationObjectTypeEnum[keyof typeof MessageContentTextAnnotationsFileCitationObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface MessageContentTextAnnotationsFileCitationObjectFileCitation
+ */
+export interface MessageContentTextAnnotationsFileCitationObjectFileCitation {
+    /**
+     * The ID of the specific File the citation is from.
+     * @type {string}
+     * @memberof MessageContentTextAnnotationsFileCitationObjectFileCitation
+     */
+    'file_id': string;
+    /**
+     * The specific quote in the file.
+     * @type {string}
+     * @memberof MessageContentTextAnnotationsFileCitationObjectFileCitation
+     */
+    'quote': string;
+}
+/**
+ * A URL for the file that\'s generated when the assistant used the `code_interpreter` tool to generate a file.
+ * @export
+ * @interface MessageContentTextAnnotationsFilePathObject
+ */
+export interface MessageContentTextAnnotationsFilePathObject {
+    /**
+     * Always `file_path`.
+     * @type {string}
+     * @memberof MessageContentTextAnnotationsFilePathObject
+     */
+    'type': MessageContentTextAnnotationsFilePathObjectTypeEnum;
+    /**
+     * The text in the message content that needs to be replaced.
+     * @type {string}
+     * @memberof MessageContentTextAnnotationsFilePathObject
+     */
+    'text': string;
+    /**
+     * 
+     * @type {MessageContentTextAnnotationsFilePathObjectFilePath}
+     * @memberof MessageContentTextAnnotationsFilePathObject
+     */
+    'file_path': MessageContentTextAnnotationsFilePathObjectFilePath;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageContentTextAnnotationsFilePathObject
+     */
+    'start_index': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageContentTextAnnotationsFilePathObject
+     */
+    'end_index': number;
+}
+
+export const MessageContentTextAnnotationsFilePathObjectTypeEnum = {
+    FilePath: 'file_path'
+} as const;
+
+export type MessageContentTextAnnotationsFilePathObjectTypeEnum = typeof MessageContentTextAnnotationsFilePathObjectTypeEnum[keyof typeof MessageContentTextAnnotationsFilePathObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface MessageContentTextAnnotationsFilePathObjectFilePath
+ */
+export interface MessageContentTextAnnotationsFilePathObjectFilePath {
+    /**
+     * The ID of the file that was generated.
+     * @type {string}
+     * @memberof MessageContentTextAnnotationsFilePathObjectFilePath
+     */
+    'file_id': string;
+}
+/**
+ * The text content that is part of a message.
+ * @export
+ * @interface MessageContentTextObject
+ */
+export interface MessageContentTextObject {
+    /**
+     * Always `text`.
+     * @type {string}
+     * @memberof MessageContentTextObject
+     */
+    'type': MessageContentTextObjectTypeEnum;
+    /**
+     * 
+     * @type {MessageContentTextObjectText}
+     * @memberof MessageContentTextObject
+     */
+    'text': MessageContentTextObjectText;
+}
+
+export const MessageContentTextObjectTypeEnum = {
+    Text: 'text'
+} as const;
+
+export type MessageContentTextObjectTypeEnum = typeof MessageContentTextObjectTypeEnum[keyof typeof MessageContentTextObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface MessageContentTextObjectText
+ */
+export interface MessageContentTextObjectText {
+    /**
+     * The data that makes up the text.
+     * @type {string}
+     * @memberof MessageContentTextObjectText
+     */
+    'value': string;
+    /**
+     * 
+     * @type {Array<MessageContentTextObjectTextAnnotationsInner>}
+     * @memberof MessageContentTextObjectText
+     */
+    'annotations': Array<MessageContentTextObjectTextAnnotationsInner>;
+}
+/**
+ * @type MessageContentTextObjectTextAnnotationsInner
+ * @export
+ */
+export type MessageContentTextObjectTextAnnotationsInner = MessageContentTextAnnotationsFileCitationObject | MessageContentTextAnnotationsFilePathObject;
+
+/**
+ * References an image [File](/docs/api-reference/files) in the content of a message.
+ * @export
+ * @interface MessageDeltaContentImageFileObject
+ */
+export interface MessageDeltaContentImageFileObject {
+    /**
+     * The index of the content part in the message.
+     * @type {number}
+     * @memberof MessageDeltaContentImageFileObject
+     */
+    'index': number;
+    /**
+     * Always `image_file`.
+     * @type {string}
+     * @memberof MessageDeltaContentImageFileObject
+     */
+    'type': MessageDeltaContentImageFileObjectTypeEnum;
+    /**
+     * 
+     * @type {MessageDeltaContentImageFileObjectImageFile}
+     * @memberof MessageDeltaContentImageFileObject
+     */
+    'image_file'?: MessageDeltaContentImageFileObjectImageFile;
+}
+
+export const MessageDeltaContentImageFileObjectTypeEnum = {
+    ImageFile: 'image_file'
+} as const;
+
+export type MessageDeltaContentImageFileObjectTypeEnum = typeof MessageDeltaContentImageFileObjectTypeEnum[keyof typeof MessageDeltaContentImageFileObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface MessageDeltaContentImageFileObjectImageFile
+ */
+export interface MessageDeltaContentImageFileObjectImageFile {
+    /**
+     * The [File](/docs/api-reference/files) ID of the image in the message content.
+     * @type {string}
+     * @memberof MessageDeltaContentImageFileObjectImageFile
+     */
+    'file_id'?: string;
+}
+/**
+ * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \"retrieval\" tool to search files.
+ * @export
+ * @interface MessageDeltaContentTextAnnotationsFileCitationObject
+ */
+export interface MessageDeltaContentTextAnnotationsFileCitationObject {
+    /**
+     * The index of the annotation in the text content part.
+     * @type {number}
+     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
+     */
+    'index': number;
+    /**
+     * Always `file_citation`.
+     * @type {string}
+     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
+     */
+    'type': MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum;
+    /**
+     * The text in the message content that needs to be replaced.
+     * @type {string}
+     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
+     */
+    'text'?: string;
+    /**
+     * 
+     * @type {MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation}
+     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
+     */
+    'file_citation'?: MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
+     */
+    'start_index'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
+     */
+    'end_index'?: number;
+}
+
+export const MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum = {
+    FileCitation: 'file_citation'
+} as const;
+
+export type MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum = typeof MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum[keyof typeof MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+ */
+export interface MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation {
+    /**
+     * The ID of the specific File the citation is from.
+     * @type {string}
+     * @memberof MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+     */
+    'file_id'?: string;
+    /**
+     * The specific quote in the file.
+     * @type {string}
+     * @memberof MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+     */
+    'quote'?: string;
+}
+/**
+ * A URL for the file that\'s generated when the assistant used the `code_interpreter` tool to generate a file.
+ * @export
+ * @interface MessageDeltaContentTextAnnotationsFilePathObject
+ */
+export interface MessageDeltaContentTextAnnotationsFilePathObject {
+    /**
+     * The index of the annotation in the text content part.
+     * @type {number}
+     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
+     */
+    'index': number;
+    /**
+     * Always `file_path`.
+     * @type {string}
+     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
+     */
+    'type': MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum;
+    /**
+     * The text in the message content that needs to be replaced.
+     * @type {string}
+     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
+     */
+    'text'?: string;
+    /**
+     * 
+     * @type {MessageDeltaContentTextAnnotationsFilePathObjectFilePath}
+     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
+     */
+    'file_path'?: MessageDeltaContentTextAnnotationsFilePathObjectFilePath;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
+     */
+    'start_index'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
+     */
+    'end_index'?: number;
+}
+
+export const MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum = {
+    FilePath: 'file_path'
+} as const;
+
+export type MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum = typeof MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum[keyof typeof MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+ */
+export interface MessageDeltaContentTextAnnotationsFilePathObjectFilePath {
+    /**
+     * The ID of the file that was generated.
+     * @type {string}
+     * @memberof MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+     */
+    'file_id'?: string;
+}
+/**
+ * The text content that is part of a message.
+ * @export
+ * @interface MessageDeltaContentTextObject
+ */
+export interface MessageDeltaContentTextObject {
+    /**
+     * The index of the content part in the message.
+     * @type {number}
+     * @memberof MessageDeltaContentTextObject
+     */
+    'index': number;
+    /**
+     * Always `text`.
+     * @type {string}
+     * @memberof MessageDeltaContentTextObject
+     */
+    'type': MessageDeltaContentTextObjectTypeEnum;
+    /**
+     * 
+     * @type {MessageDeltaContentTextObjectText}
+     * @memberof MessageDeltaContentTextObject
+     */
+    'text'?: MessageDeltaContentTextObjectText;
+}
+
+export const MessageDeltaContentTextObjectTypeEnum = {
+    Text: 'text'
+} as const;
+
+export type MessageDeltaContentTextObjectTypeEnum = typeof MessageDeltaContentTextObjectTypeEnum[keyof typeof MessageDeltaContentTextObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface MessageDeltaContentTextObjectText
+ */
+export interface MessageDeltaContentTextObjectText {
+    /**
+     * The data that makes up the text.
+     * @type {string}
+     * @memberof MessageDeltaContentTextObjectText
+     */
+    'value'?: string;
+    /**
+     * 
+     * @type {Array<MessageDeltaContentTextObjectTextAnnotationsInner>}
+     * @memberof MessageDeltaContentTextObjectText
+     */
+    'annotations'?: Array<MessageDeltaContentTextObjectTextAnnotationsInner>;
+}
+/**
+ * @type MessageDeltaContentTextObjectTextAnnotationsInner
+ * @export
+ */
+export type MessageDeltaContentTextObjectTextAnnotationsInner = MessageDeltaContentTextAnnotationsFileCitationObject | MessageDeltaContentTextAnnotationsFilePathObject;
+
+/**
+ * Represents a message delta i.e. any changed fields on a message during streaming. 
+ * @export
+ * @interface MessageDeltaObject
+ */
+export interface MessageDeltaObject {
+    /**
+     * The identifier of the message, which can be referenced in API endpoints.
+     * @type {string}
+     * @memberof MessageDeltaObject
+     */
+    'id': string;
+    /**
+     * The object type, which is always `thread.message.delta`.
+     * @type {string}
+     * @memberof MessageDeltaObject
+     */
+    'object': MessageDeltaObjectObjectEnum;
+    /**
+     * 
+     * @type {MessageDeltaObjectDelta}
+     * @memberof MessageDeltaObject
+     */
+    'delta': MessageDeltaObjectDelta;
+}
+
+export const MessageDeltaObjectObjectEnum = {
+    ThreadMessageDelta: 'thread.message.delta'
+} as const;
+
+export type MessageDeltaObjectObjectEnum = typeof MessageDeltaObjectObjectEnum[keyof typeof MessageDeltaObjectObjectEnum];
+
+/**
+ * The delta containing the fields that have changed on the Message.
+ * @export
+ * @interface MessageDeltaObjectDelta
+ */
+export interface MessageDeltaObjectDelta {
+    /**
+     * The entity that produced the message. One of `user` or `assistant`.
+     * @type {string}
+     * @memberof MessageDeltaObjectDelta
+     */
+    'role'?: MessageDeltaObjectDeltaRoleEnum;
+    /**
+     * The content of the message in array of text and/or images.
+     * @type {Array<MessageDeltaObjectDeltaContentInner>}
+     * @memberof MessageDeltaObjectDelta
+     */
+    'content'?: Array<MessageDeltaObjectDeltaContentInner>;
+    /**
+     * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+     * @type {Array<string>}
+     * @memberof MessageDeltaObjectDelta
+     */
+    'file_ids'?: Array<string>;
+}
+
+export const MessageDeltaObjectDeltaRoleEnum = {
+    User: 'user',
+    Assistant: 'assistant'
+} as const;
+
+export type MessageDeltaObjectDeltaRoleEnum = typeof MessageDeltaObjectDeltaRoleEnum[keyof typeof MessageDeltaObjectDeltaRoleEnum];
+
+/**
+ * @type MessageDeltaObjectDeltaContentInner
+ * @export
+ */
+export type MessageDeltaObjectDeltaContentInner = MessageDeltaContentImageFileObject | MessageDeltaContentTextObject;
+
+/**
+ * A list of files attached to a `message`.
+ * @export
+ * @interface MessageFileObject
+ */
+export interface MessageFileObject {
+    /**
+     * The identifier, which can be referenced in API endpoints.
+     * @type {string}
+     * @memberof MessageFileObject
+     */
+    'id': string;
+    /**
+     * The object type, which is always `thread.message.file`.
+     * @type {string}
+     * @memberof MessageFileObject
+     */
+    'object': MessageFileObjectObjectEnum;
+    /**
+     * The Unix timestamp (in seconds) for when the message file was created.
+     * @type {number}
+     * @memberof MessageFileObject
+     */
+    'created_at': number;
+    /**
+     * The ID of the [message](/docs/api-reference/messages) that the [File](/docs/api-reference/files) is attached to.
+     * @type {string}
+     * @memberof MessageFileObject
+     */
+    'message_id': string;
+}
+
+export const MessageFileObjectObjectEnum = {
+    ThreadMessageFile: 'thread.message.file'
+} as const;
+
+export type MessageFileObjectObjectEnum = typeof MessageFileObjectObjectEnum[keyof typeof MessageFileObjectObjectEnum];
+
+/**
+ * Represents a message within a [thread](/docs/api-reference/threads).
+ * @export
+ * @interface MessageObject
+ */
+export interface MessageObject {
+    /**
+     * The identifier, which can be referenced in API endpoints.
+     * @type {string}
+     * @memberof MessageObject
+     */
+    'id': string;
+    /**
+     * The object type, which is always `thread.message`.
+     * @type {string}
+     * @memberof MessageObject
+     */
+    'object': MessageObjectObjectEnum;
+    /**
+     * The Unix timestamp (in seconds) for when the message was created.
+     * @type {number}
+     * @memberof MessageObject
+     */
+    'created_at': number;
+    /**
+     * The [thread](/docs/api-reference/threads) ID that this message belongs to.
+     * @type {string}
+     * @memberof MessageObject
+     */
+    'thread_id': string;
+    /**
+     * The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
+     * @type {string}
+     * @memberof MessageObject
+     */
+    'status': MessageObjectStatusEnum;
+    /**
+     * 
+     * @type {MessageObjectIncompleteDetails}
+     * @memberof MessageObject
+     */
+    'incomplete_details': MessageObjectIncompleteDetails | null;
+    /**
+     * The Unix timestamp (in seconds) for when the message was completed.
+     * @type {number}
+     * @memberof MessageObject
+     */
+    'completed_at': number | null;
+    /**
+     * The Unix timestamp (in seconds) for when the message was marked as incomplete.
+     * @type {number}
+     * @memberof MessageObject
+     */
+    'incomplete_at': number | null;
+    /**
+     * The entity that produced the message. One of `user` or `assistant`.
+     * @type {string}
+     * @memberof MessageObject
+     */
+    'role': MessageObjectRoleEnum;
+    /**
+     * The content of the message in array of text and/or images.
+     * @type {Array<MessageObjectContentInner>}
+     * @memberof MessageObject
+     */
+    'content': Array<MessageObjectContentInner>;
+    /**
+     * If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
+     * @type {string}
+     * @memberof MessageObject
+     */
+    'assistant_id': string | null;
+    /**
+     * The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
+     * @type {string}
+     * @memberof MessageObject
+     */
+    'run_id': string | null;
+    /**
+     * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+     * @type {Array<string>}
+     * @memberof MessageObject
+     */
+    'file_ids': Array<string>;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof MessageObject
+     */
+    'metadata': object | null;
+}
+
+export const MessageObjectObjectEnum = {
+    ThreadMessage: 'thread.message'
+} as const;
+
+export type MessageObjectObjectEnum = typeof MessageObjectObjectEnum[keyof typeof MessageObjectObjectEnum];
+export const MessageObjectStatusEnum = {
+    InProgress: 'in_progress',
+    Incomplete: 'incomplete',
+    Completed: 'completed'
+} as const;
+
+export type MessageObjectStatusEnum = typeof MessageObjectStatusEnum[keyof typeof MessageObjectStatusEnum];
+export const MessageObjectRoleEnum = {
+    User: 'user',
+    Assistant: 'assistant'
+} as const;
+
+export type MessageObjectRoleEnum = typeof MessageObjectRoleEnum[keyof typeof MessageObjectRoleEnum];
+
+/**
+ * @type MessageObjectContentInner
+ * @export
+ */
+export type MessageObjectContentInner = MessageContentImageFileObject | MessageContentTextObject;
+
+/**
+ * On an incomplete message, details about why the message is incomplete.
+ * @export
+ * @interface MessageObjectIncompleteDetails
+ */
+export interface MessageObjectIncompleteDetails {
+    /**
+     * The reason the message is incomplete.
+     * @type {string}
+     * @memberof MessageObjectIncompleteDetails
+     */
+    'reason': MessageObjectIncompleteDetailsReasonEnum;
+}
+
+export const MessageObjectIncompleteDetailsReasonEnum = {
+    ContentFilter: 'content_filter',
+    MaxTokens: 'max_tokens',
+    RunCancelled: 'run_cancelled',
+    RunExpired: 'run_expired',
+    RunFailed: 'run_failed'
+} as const;
+
+export type MessageObjectIncompleteDetailsReasonEnum = typeof MessageObjectIncompleteDetailsReasonEnum[keyof typeof MessageObjectIncompleteDetailsReasonEnum];
+
+/**
+ * @type MessageStreamEvent
+ * @export
+ */
+export type MessageStreamEvent = MessageStreamEventOneOf | MessageStreamEventOneOf1 | MessageStreamEventOneOf2 | MessageStreamEventOneOf3 | MessageStreamEventOneOf4;
+
+/**
+ * Occurs when a [message](/docs/api-reference/messages/object) is created.
+ * @export
+ * @interface MessageStreamEventOneOf
+ */
+export interface MessageStreamEventOneOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageStreamEventOneOf
+     */
+    'event': MessageStreamEventOneOfEventEnum;
+    /**
+     * 
+     * @type {MessageObject}
+     * @memberof MessageStreamEventOneOf
+     */
+    'data': MessageObject;
+}
+
+export const MessageStreamEventOneOfEventEnum = {
+    ThreadMessageCreated: 'thread.message.created'
+} as const;
+
+export type MessageStreamEventOneOfEventEnum = typeof MessageStreamEventOneOfEventEnum[keyof typeof MessageStreamEventOneOfEventEnum];
+
+/**
+ * Occurs when a [message](/docs/api-reference/messages/object) moves to an `in_progress` state.
+ * @export
+ * @interface MessageStreamEventOneOf1
+ */
+export interface MessageStreamEventOneOf1 {
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageStreamEventOneOf1
+     */
+    'event': MessageStreamEventOneOf1EventEnum;
+    /**
+     * 
+     * @type {MessageObject}
+     * @memberof MessageStreamEventOneOf1
+     */
+    'data': MessageObject;
+}
+
+export const MessageStreamEventOneOf1EventEnum = {
+    ThreadMessageInProgress: 'thread.message.in_progress'
+} as const;
+
+export type MessageStreamEventOneOf1EventEnum = typeof MessageStreamEventOneOf1EventEnum[keyof typeof MessageStreamEventOneOf1EventEnum];
+
+/**
+ * Occurs when parts of a [Message](/docs/api-reference/messages/object) are being streamed.
+ * @export
+ * @interface MessageStreamEventOneOf2
+ */
+export interface MessageStreamEventOneOf2 {
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageStreamEventOneOf2
+     */
+    'event': MessageStreamEventOneOf2EventEnum;
+    /**
+     * 
+     * @type {MessageDeltaObject}
+     * @memberof MessageStreamEventOneOf2
+     */
+    'data': MessageDeltaObject;
+}
+
+export const MessageStreamEventOneOf2EventEnum = {
+    ThreadMessageDelta: 'thread.message.delta'
+} as const;
+
+export type MessageStreamEventOneOf2EventEnum = typeof MessageStreamEventOneOf2EventEnum[keyof typeof MessageStreamEventOneOf2EventEnum];
+
+/**
+ * Occurs when a [message](/docs/api-reference/messages/object) is completed.
+ * @export
+ * @interface MessageStreamEventOneOf3
+ */
+export interface MessageStreamEventOneOf3 {
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageStreamEventOneOf3
+     */
+    'event': MessageStreamEventOneOf3EventEnum;
+    /**
+     * 
+     * @type {MessageObject}
+     * @memberof MessageStreamEventOneOf3
+     */
+    'data': MessageObject;
+}
+
+export const MessageStreamEventOneOf3EventEnum = {
+    ThreadMessageCompleted: 'thread.message.completed'
+} as const;
+
+export type MessageStreamEventOneOf3EventEnum = typeof MessageStreamEventOneOf3EventEnum[keyof typeof MessageStreamEventOneOf3EventEnum];
+
+/**
+ * Occurs when a [message](/docs/api-reference/messages/object) ends before it is completed.
+ * @export
+ * @interface MessageStreamEventOneOf4
+ */
+export interface MessageStreamEventOneOf4 {
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageStreamEventOneOf4
+     */
+    'event': MessageStreamEventOneOf4EventEnum;
+    /**
+     * 
+     * @type {MessageObject}
+     * @memberof MessageStreamEventOneOf4
+     */
+    'data': MessageObject;
+}
+
+export const MessageStreamEventOneOf4EventEnum = {
+    ThreadMessageIncomplete: 'thread.message.incomplete'
+} as const;
+
+export type MessageStreamEventOneOf4EventEnum = typeof MessageStreamEventOneOf4EventEnum[keyof typeof MessageStreamEventOneOf4EventEnum];
+
+/**
+ * Describes an OpenAI model offering that can be used with the API.
  * @export
  * @interface Model
  */
 export interface Model {
     /**
-     * 
+     * The model identifier, which can be referenced in the API endpoints.
      * @type {string}
      * @memberof Model
      */
     'id': string;
     /**
-     * 
-     * @type {string}
-     * @memberof Model
-     */
-    'object': string;
-    /**
-     * 
+     * The Unix timestamp (in seconds) when the model was created.
      * @type {number}
      * @memberof Model
      */
     'created': number;
     /**
-     * 
+     * The object type, which is always \"model\".
+     * @type {string}
+     * @memberof Model
+     */
+    'object': ModelObjectEnum;
+    /**
+     * The organization that owns the model.
      * @type {string}
      * @memberof Model
      */
     'owned_by': string;
 }
+
+export const ModelObjectEnum = {
+    Model: 'model'
+} as const;
+
+export type ModelObjectEnum = typeof ModelObjectEnum[keyof typeof ModelObjectEnum];
+
 /**
  * 
  * @export
@@ -1634,7 +4804,7 @@ export interface ModelError {
      * @type {string}
      * @memberof ModelError
      */
-    'type': string;
+    'code': string | null;
     /**
      * 
      * @type {string}
@@ -1652,82 +4822,2029 @@ export interface ModelError {
      * @type {string}
      * @memberof ModelError
      */
-    'code': string | null;
+    'type': string;
 }
 /**
  * 
+ * @export
+ * @interface ModifyAssistantRequest
+ */
+export interface ModifyAssistantRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModifyAssistantRequest
+     */
+    'model'?: string;
+    /**
+     * The name of the assistant. The maximum length is 256 characters. 
+     * @type {string}
+     * @memberof ModifyAssistantRequest
+     */
+    'name'?: string | null;
+    /**
+     * The description of the assistant. The maximum length is 512 characters. 
+     * @type {string}
+     * @memberof ModifyAssistantRequest
+     */
+    'description'?: string | null;
+    /**
+     * The system instructions that the assistant uses. The maximum length is 256,000 characters. 
+     * @type {string}
+     * @memberof ModifyAssistantRequest
+     */
+    'instructions'?: string | null;
+    /**
+     * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+     * @type {Array<AssistantObjectToolsInner>}
+     * @memberof ModifyAssistantRequest
+     */
+    'tools'?: Array<AssistantObjectToolsInner>;
+    /**
+     * A list of [File](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant. 
+     * @type {Array<string>}
+     * @memberof ModifyAssistantRequest
+     */
+    'file_ids'?: Array<string>;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof ModifyAssistantRequest
+     */
+    'metadata'?: object | null;
+}
+/**
+ * 
+ * @export
+ * @interface ModifyMessageRequest
+ */
+export interface ModifyMessageRequest {
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof ModifyMessageRequest
+     */
+    'metadata'?: object | null;
+}
+/**
+ * 
+ * @export
+ * @interface ModifyRunRequest
+ */
+export interface ModifyRunRequest {
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof ModifyRunRequest
+     */
+    'metadata'?: object | null;
+}
+/**
+ * 
+ * @export
+ * @interface ModifyThreadRequest
+ */
+export interface ModifyThreadRequest {
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof ModifyThreadRequest
+     */
+    'metadata'?: object | null;
+}
+/**
+ * The `File` object represents a document that has been uploaded to OpenAI.
  * @export
  * @interface OpenAIFile
  */
 export interface OpenAIFile {
     /**
-     * 
+     * The file identifier, which can be referenced in the API endpoints.
      * @type {string}
      * @memberof OpenAIFile
      */
     'id': string;
     /**
-     * 
-     * @type {string}
-     * @memberof OpenAIFile
-     */
-    'object': string;
-    /**
-     * 
+     * The size of the file, in bytes.
      * @type {number}
      * @memberof OpenAIFile
      */
     'bytes': number;
     /**
-     * 
+     * The Unix timestamp (in seconds) for when the file was created.
      * @type {number}
      * @memberof OpenAIFile
      */
     'created_at': number;
     /**
-     * 
+     * The name of the file.
      * @type {string}
      * @memberof OpenAIFile
      */
     'filename': string;
     /**
-     * 
+     * The object type, which is always `file`.
      * @type {string}
      * @memberof OpenAIFile
      */
-    'purpose': string;
+    'object': OpenAIFileObjectEnum;
     /**
-     * 
+     * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
      * @type {string}
      * @memberof OpenAIFile
      */
-    'status'?: string;
+    'purpose': OpenAIFilePurposeEnum;
     /**
-     * 
-     * @type {object}
+     * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+     * @type {string}
      * @memberof OpenAIFile
+     * @deprecated
      */
-    'status_details'?: object | null;
+    'status': OpenAIFileStatusEnum;
+    /**
+     * Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
+     * @type {string}
+     * @memberof OpenAIFile
+     * @deprecated
+     */
+    'status_details'?: string;
 }
 
+export const OpenAIFileObjectEnum = {
+    File: 'file'
+} as const;
+
+export type OpenAIFileObjectEnum = typeof OpenAIFileObjectEnum[keyof typeof OpenAIFileObjectEnum];
+export const OpenAIFilePurposeEnum = {
+    FineTune: 'fine-tune',
+    FineTuneResults: 'fine-tune-results',
+    Assistants: 'assistants',
+    AssistantsOutput: 'assistants_output'
+} as const;
+
+export type OpenAIFilePurposeEnum = typeof OpenAIFilePurposeEnum[keyof typeof OpenAIFilePurposeEnum];
+export const OpenAIFileStatusEnum = {
+    Uploaded: 'uploaded',
+    Processed: 'processed',
+    Error: 'error'
+} as const;
+
+export type OpenAIFileStatusEnum = typeof OpenAIFileStatusEnum[keyof typeof OpenAIFileStatusEnum];
+
 /**
- * OpenAIApi - axios parameter creator
+ * Usage statistics related to the run. This value will be `null` if the run is not in a terminal state (i.e. `in_progress`, `queued`, etc.).
+ * @export
+ * @interface RunCompletionUsage
+ */
+export interface RunCompletionUsage {
+    /**
+     * Number of completion tokens used over the course of the run.
+     * @type {number}
+     * @memberof RunCompletionUsage
+     */
+    'completion_tokens': number;
+    /**
+     * Number of prompt tokens used over the course of the run.
+     * @type {number}
+     * @memberof RunCompletionUsage
+     */
+    'prompt_tokens': number;
+    /**
+     * Total number of tokens used (prompt + completion).
+     * @type {number}
+     * @memberof RunCompletionUsage
+     */
+    'total_tokens': number;
+}
+/**
+ * Represents an execution run on a [thread](/docs/api-reference/threads).
+ * @export
+ * @interface RunObject
+ */
+export interface RunObject {
+    /**
+     * The identifier, which can be referenced in API endpoints.
+     * @type {string}
+     * @memberof RunObject
+     */
+    'id': string;
+    /**
+     * The object type, which is always `thread.run`.
+     * @type {string}
+     * @memberof RunObject
+     */
+    'object': RunObjectObjectEnum;
+    /**
+     * The Unix timestamp (in seconds) for when the run was created.
+     * @type {number}
+     * @memberof RunObject
+     */
+    'created_at': number;
+    /**
+     * The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run.
+     * @type {string}
+     * @memberof RunObject
+     */
+    'thread_id': string;
+    /**
+     * The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
+     * @type {string}
+     * @memberof RunObject
+     */
+    'assistant_id': string;
+    /**
+     * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+     * @type {string}
+     * @memberof RunObject
+     */
+    'status': RunObjectStatusEnum;
+    /**
+     * 
+     * @type {RunObjectRequiredAction}
+     * @memberof RunObject
+     */
+    'required_action': RunObjectRequiredAction | null;
+    /**
+     * 
+     * @type {RunObjectLastError}
+     * @memberof RunObject
+     */
+    'last_error': RunObjectLastError | null;
+    /**
+     * The Unix timestamp (in seconds) for when the run will expire.
+     * @type {number}
+     * @memberof RunObject
+     */
+    'expires_at': number | null;
+    /**
+     * The Unix timestamp (in seconds) for when the run was started.
+     * @type {number}
+     * @memberof RunObject
+     */
+    'started_at': number | null;
+    /**
+     * The Unix timestamp (in seconds) for when the run was cancelled.
+     * @type {number}
+     * @memberof RunObject
+     */
+    'cancelled_at': number | null;
+    /**
+     * The Unix timestamp (in seconds) for when the run failed.
+     * @type {number}
+     * @memberof RunObject
+     */
+    'failed_at': number | null;
+    /**
+     * The Unix timestamp (in seconds) for when the run was completed.
+     * @type {number}
+     * @memberof RunObject
+     */
+    'completed_at': number | null;
+    /**
+     * 
+     * @type {RunObjectIncompleteDetails}
+     * @memberof RunObject
+     */
+    'incomplete_details': RunObjectIncompleteDetails | null;
+    /**
+     * The model that the [assistant](/docs/api-reference/assistants) used for this run.
+     * @type {string}
+     * @memberof RunObject
+     */
+    'model': string;
+    /**
+     * The instructions that the [assistant](/docs/api-reference/assistants) used for this run.
+     * @type {string}
+     * @memberof RunObject
+     */
+    'instructions': string;
+    /**
+     * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
+     * @type {Array<AssistantObjectToolsInner>}
+     * @memberof RunObject
+     */
+    'tools': Array<AssistantObjectToolsInner>;
+    /**
+     * The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
+     * @type {Array<string>}
+     * @memberof RunObject
+     */
+    'file_ids': Array<string>;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof RunObject
+     */
+    'metadata': object | null;
+    /**
+     * 
+     * @type {RunCompletionUsage}
+     * @memberof RunObject
+     */
+    'usage': RunCompletionUsage | null;
+    /**
+     * The sampling temperature used for this run. If not set, defaults to 1.
+     * @type {number}
+     * @memberof RunObject
+     */
+    'temperature'?: number | null;
+    /**
+     * The maximum number of prompt tokens specified to have been used over the course of the run. 
+     * @type {number}
+     * @memberof RunObject
+     */
+    'max_prompt_tokens': number | null;
+    /**
+     * The maximum number of completion tokens specified to have been used over the course of the run. 
+     * @type {number}
+     * @memberof RunObject
+     */
+    'max_completion_tokens': number | null;
+    /**
+     * 
+     * @type {TruncationObject}
+     * @memberof RunObject
+     */
+    'truncation_strategy': TruncationObject;
+    /**
+     * 
+     * @type {AssistantsApiToolChoiceOption}
+     * @memberof RunObject
+     */
+    'tool_choice': AssistantsApiToolChoiceOption;
+    /**
+     * 
+     * @type {AssistantsApiResponseFormatOption}
+     * @memberof RunObject
+     */
+    'response_format': AssistantsApiResponseFormatOption;
+}
+
+export const RunObjectObjectEnum = {
+    ThreadRun: 'thread.run'
+} as const;
+
+export type RunObjectObjectEnum = typeof RunObjectObjectEnum[keyof typeof RunObjectObjectEnum];
+export const RunObjectStatusEnum = {
+    Queued: 'queued',
+    InProgress: 'in_progress',
+    RequiresAction: 'requires_action',
+    Cancelling: 'cancelling',
+    Cancelled: 'cancelled',
+    Failed: 'failed',
+    Completed: 'completed',
+    Expired: 'expired'
+} as const;
+
+export type RunObjectStatusEnum = typeof RunObjectStatusEnum[keyof typeof RunObjectStatusEnum];
+
+/**
+ * Details on why the run is incomplete. Will be `null` if the run is not incomplete.
+ * @export
+ * @interface RunObjectIncompleteDetails
+ */
+export interface RunObjectIncompleteDetails {
+    /**
+     * The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run.
+     * @type {string}
+     * @memberof RunObjectIncompleteDetails
+     */
+    'reason'?: RunObjectIncompleteDetailsReasonEnum;
+}
+
+export const RunObjectIncompleteDetailsReasonEnum = {
+    CompletionTokens: 'max_completion_tokens',
+    PromptTokens: 'max_prompt_tokens'
+} as const;
+
+export type RunObjectIncompleteDetailsReasonEnum = typeof RunObjectIncompleteDetailsReasonEnum[keyof typeof RunObjectIncompleteDetailsReasonEnum];
+
+/**
+ * The last error associated with this run. Will be `null` if there are no errors.
+ * @export
+ * @interface RunObjectLastError
+ */
+export interface RunObjectLastError {
+    /**
+     * One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`.
+     * @type {string}
+     * @memberof RunObjectLastError
+     */
+    'code': RunObjectLastErrorCodeEnum;
+    /**
+     * A human-readable description of the error.
+     * @type {string}
+     * @memberof RunObjectLastError
+     */
+    'message': string;
+}
+
+export const RunObjectLastErrorCodeEnum = {
+    ServerError: 'server_error',
+    RateLimitExceeded: 'rate_limit_exceeded',
+    InvalidPrompt: 'invalid_prompt'
+} as const;
+
+export type RunObjectLastErrorCodeEnum = typeof RunObjectLastErrorCodeEnum[keyof typeof RunObjectLastErrorCodeEnum];
+
+/**
+ * Details on the action required to continue the run. Will be `null` if no action is required.
+ * @export
+ * @interface RunObjectRequiredAction
+ */
+export interface RunObjectRequiredAction {
+    /**
+     * For now, this is always `submit_tool_outputs`.
+     * @type {string}
+     * @memberof RunObjectRequiredAction
+     */
+    'type': RunObjectRequiredActionTypeEnum;
+    /**
+     * 
+     * @type {RunObjectRequiredActionSubmitToolOutputs}
+     * @memberof RunObjectRequiredAction
+     */
+    'submit_tool_outputs': RunObjectRequiredActionSubmitToolOutputs;
+}
+
+export const RunObjectRequiredActionTypeEnum = {
+    SubmitToolOutputs: 'submit_tool_outputs'
+} as const;
+
+export type RunObjectRequiredActionTypeEnum = typeof RunObjectRequiredActionTypeEnum[keyof typeof RunObjectRequiredActionTypeEnum];
+
+/**
+ * Details on the tool outputs needed for this run to continue.
+ * @export
+ * @interface RunObjectRequiredActionSubmitToolOutputs
+ */
+export interface RunObjectRequiredActionSubmitToolOutputs {
+    /**
+     * A list of the relevant tool calls.
+     * @type {Array<RunToolCallObject>}
+     * @memberof RunObjectRequiredActionSubmitToolOutputs
+     */
+    'tool_calls': Array<RunToolCallObject>;
+}
+/**
+ * Usage statistics related to the run step. This value will be `null` while the run step\'s status is `in_progress`.
+ * @export
+ * @interface RunStepCompletionUsage
+ */
+export interface RunStepCompletionUsage {
+    /**
+     * Number of completion tokens used over the course of the run step.
+     * @type {number}
+     * @memberof RunStepCompletionUsage
+     */
+    'completion_tokens': number;
+    /**
+     * Number of prompt tokens used over the course of the run step.
+     * @type {number}
+     * @memberof RunStepCompletionUsage
+     */
+    'prompt_tokens': number;
+    /**
+     * Total number of tokens used (prompt + completion).
+     * @type {number}
+     * @memberof RunStepCompletionUsage
+     */
+    'total_tokens': number;
+}
+/**
+ * Represents a run step delta i.e. any changed fields on a run step during streaming. 
+ * @export
+ * @interface RunStepDeltaObject
+ */
+export interface RunStepDeltaObject {
+    /**
+     * The identifier of the run step, which can be referenced in API endpoints.
+     * @type {string}
+     * @memberof RunStepDeltaObject
+     */
+    'id': string;
+    /**
+     * The object type, which is always `thread.run.step.delta`.
+     * @type {string}
+     * @memberof RunStepDeltaObject
+     */
+    'object': RunStepDeltaObjectObjectEnum;
+    /**
+     * 
+     * @type {RunStepDeltaObjectDelta}
+     * @memberof RunStepDeltaObject
+     */
+    'delta': RunStepDeltaObjectDelta;
+}
+
+export const RunStepDeltaObjectObjectEnum = {
+    ThreadRunStepDelta: 'thread.run.step.delta'
+} as const;
+
+export type RunStepDeltaObjectObjectEnum = typeof RunStepDeltaObjectObjectEnum[keyof typeof RunStepDeltaObjectObjectEnum];
+
+/**
+ * The delta containing the fields that have changed on the run step.
+ * @export
+ * @interface RunStepDeltaObjectDelta
+ */
+export interface RunStepDeltaObjectDelta {
+    /**
+     * 
+     * @type {RunStepDeltaObjectDeltaStepDetails}
+     * @memberof RunStepDeltaObjectDelta
+     */
+    'step_details'?: RunStepDeltaObjectDeltaStepDetails;
+}
+/**
+ * @type RunStepDeltaObjectDeltaStepDetails
+ * The details of the run step.
  * @export
  */
-export const OpenAIApiAxiosParamCreator = function (configuration?: Configuration) {
+export type RunStepDeltaObjectDeltaStepDetails = RunStepDeltaStepDetailsMessageCreationObject | RunStepDeltaStepDetailsToolCallsObject;
+
+/**
+ * Details of the message creation by the run step.
+ * @export
+ * @interface RunStepDeltaStepDetailsMessageCreationObject
+ */
+export interface RunStepDeltaStepDetailsMessageCreationObject {
+    /**
+     * Always `message_creation`.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsMessageCreationObject
+     */
+    'type': RunStepDeltaStepDetailsMessageCreationObjectTypeEnum;
+    /**
+     * 
+     * @type {RunStepDeltaStepDetailsMessageCreationObjectMessageCreation}
+     * @memberof RunStepDeltaStepDetailsMessageCreationObject
+     */
+    'message_creation'?: RunStepDeltaStepDetailsMessageCreationObjectMessageCreation;
+}
+
+export const RunStepDeltaStepDetailsMessageCreationObjectTypeEnum = {
+    MessageCreation: 'message_creation'
+} as const;
+
+export type RunStepDeltaStepDetailsMessageCreationObjectTypeEnum = typeof RunStepDeltaStepDetailsMessageCreationObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsMessageCreationObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface RunStepDeltaStepDetailsMessageCreationObjectMessageCreation
+ */
+export interface RunStepDeltaStepDetailsMessageCreationObjectMessageCreation {
+    /**
+     * The ID of the message that was created by this run step.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsMessageCreationObjectMessageCreation
+     */
+    'message_id'?: string;
+}
+/**
+ * Details of the Code Interpreter tool call the run step was involved in.
+ * @export
+ * @interface RunStepDeltaStepDetailsToolCallsCodeObject
+ */
+export interface RunStepDeltaStepDetailsToolCallsCodeObject {
+    /**
+     * The index of the tool call in the tool calls array.
+     * @type {number}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeObject
+     */
+    'index': number;
+    /**
+     * The ID of the tool call.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeObject
+     */
+    'id'?: string;
+    /**
+     * The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeObject
+     */
+    'type': RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum;
+    /**
+     * 
+     * @type {RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeObject
+     */
+    'code_interpreter'?: RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter;
+}
+
+export const RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum = {
+    CodeInterpreter: 'code_interpreter'
+} as const;
+
+export type RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum];
+
+/**
+ * The Code Interpreter tool call definition.
+ * @export
+ * @interface RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+ */
+export interface RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter {
+    /**
+     * The input to the Code Interpreter tool call.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+     */
+    'input'?: string;
+    /**
+     * The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
+     * @type {Array<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+     */
+    'outputs'?: Array<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>;
+}
+/**
+ * @type RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+ * @export
+ */
+export type RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner = RunStepDeltaStepDetailsToolCallsCodeOutputImageObject | RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject;
+
+/**
+ * 
+ * @export
+ * @interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
+ */
+export interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
+    /**
+     * The index of the output in the outputs array.
+     * @type {number}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
+     */
+    'index': number;
+    /**
+     * Always `image`.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
+     */
+    'type': RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum;
+    /**
+     * 
+     * @type {RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
+     */
+    'image'?: RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage;
+}
+
+export const RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum = {
+    Image: 'image'
+} as const;
+
+export type RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage
+ */
+export interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage {
+    /**
+     * The [file](/docs/api-reference/files) ID of the image.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage
+     */
+    'file_id'?: string;
+}
+/**
+ * Text output from the Code Interpreter tool call as part of a run step.
+ * @export
+ * @interface RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+ */
+export interface RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
+    /**
+     * The index of the output in the outputs array.
+     * @type {number}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+     */
+    'index': number;
+    /**
+     * Always `logs`.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+     */
+    'type': RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum;
+    /**
+     * The text output from the Code Interpreter tool call.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+     */
+    'logs'?: string;
+}
+
+export const RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = {
+    Logs: 'logs'
+} as const;
+
+export type RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface RunStepDeltaStepDetailsToolCallsFunctionObject
+ */
+export interface RunStepDeltaStepDetailsToolCallsFunctionObject {
+    /**
+     * The index of the tool call in the tool calls array.
+     * @type {number}
+     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObject
+     */
+    'index': number;
+    /**
+     * The ID of the tool call object.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObject
+     */
+    'id'?: string;
+    /**
+     * The type of tool call. This is always going to be `function` for this type of tool call.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObject
+     */
+    'type': RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum;
+    /**
+     * 
+     * @type {RunStepDeltaStepDetailsToolCallsFunctionObjectFunction}
+     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObject
+     */
+    'function'?: RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
+}
+
+export const RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum = {
+    Function: 'function'
+} as const;
+
+export type RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum];
+
+/**
+ * The definition of the function that was called.
+ * @export
+ * @interface RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+ */
+export interface RunStepDeltaStepDetailsToolCallsFunctionObjectFunction {
+    /**
+     * The name of the function.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+     */
+    'name'?: string;
+    /**
+     * The arguments passed to the function.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+     */
+    'arguments'?: string;
+    /**
+     * The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+     */
+    'output'?: string | null;
+}
+/**
+ * Details of the tool call.
+ * @export
+ * @interface RunStepDeltaStepDetailsToolCallsObject
+ */
+export interface RunStepDeltaStepDetailsToolCallsObject {
+    /**
+     * Always `tool_calls`.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsObject
+     */
+    'type': RunStepDeltaStepDetailsToolCallsObjectTypeEnum;
+    /**
+     * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+     * @type {Array<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>}
+     * @memberof RunStepDeltaStepDetailsToolCallsObject
+     */
+    'tool_calls'?: Array<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>;
+}
+
+export const RunStepDeltaStepDetailsToolCallsObjectTypeEnum = {
+    ToolCalls: 'tool_calls'
+} as const;
+
+export type RunStepDeltaStepDetailsToolCallsObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsObjectTypeEnum];
+
+/**
+ * @type RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+ * @export
+ */
+export type RunStepDeltaStepDetailsToolCallsObjectToolCallsInner = RunStepDeltaStepDetailsToolCallsCodeObject | RunStepDeltaStepDetailsToolCallsFunctionObject | RunStepDeltaStepDetailsToolCallsRetrievalObject;
+
+/**
+ * 
+ * @export
+ * @interface RunStepDeltaStepDetailsToolCallsRetrievalObject
+ */
+export interface RunStepDeltaStepDetailsToolCallsRetrievalObject {
+    /**
+     * The index of the tool call in the tool calls array.
+     * @type {number}
+     * @memberof RunStepDeltaStepDetailsToolCallsRetrievalObject
+     */
+    'index': number;
+    /**
+     * The ID of the tool call object.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsRetrievalObject
+     */
+    'id'?: string;
+    /**
+     * The type of tool call. This is always going to be `retrieval` for this type of tool call.
+     * @type {string}
+     * @memberof RunStepDeltaStepDetailsToolCallsRetrievalObject
+     */
+    'type': RunStepDeltaStepDetailsToolCallsRetrievalObjectTypeEnum;
+    /**
+     * For now, this is always going to be an empty object.
+     * @type {object}
+     * @memberof RunStepDeltaStepDetailsToolCallsRetrievalObject
+     */
+    'retrieval'?: object;
+}
+
+export const RunStepDeltaStepDetailsToolCallsRetrievalObjectTypeEnum = {
+    Retrieval: 'retrieval'
+} as const;
+
+export type RunStepDeltaStepDetailsToolCallsRetrievalObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsRetrievalObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsRetrievalObjectTypeEnum];
+
+/**
+ * Details of the message creation by the run step.
+ * @export
+ * @interface RunStepDetailsMessageCreationObject
+ */
+export interface RunStepDetailsMessageCreationObject {
+    /**
+     * Always `message_creation`.
+     * @type {string}
+     * @memberof RunStepDetailsMessageCreationObject
+     */
+    'type': RunStepDetailsMessageCreationObjectTypeEnum;
+    /**
+     * 
+     * @type {RunStepDetailsMessageCreationObjectMessageCreation}
+     * @memberof RunStepDetailsMessageCreationObject
+     */
+    'message_creation': RunStepDetailsMessageCreationObjectMessageCreation;
+}
+
+export const RunStepDetailsMessageCreationObjectTypeEnum = {
+    MessageCreation: 'message_creation'
+} as const;
+
+export type RunStepDetailsMessageCreationObjectTypeEnum = typeof RunStepDetailsMessageCreationObjectTypeEnum[keyof typeof RunStepDetailsMessageCreationObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface RunStepDetailsMessageCreationObjectMessageCreation
+ */
+export interface RunStepDetailsMessageCreationObjectMessageCreation {
+    /**
+     * The ID of the message that was created by this run step.
+     * @type {string}
+     * @memberof RunStepDetailsMessageCreationObjectMessageCreation
+     */
+    'message_id': string;
+}
+/**
+ * Details of the Code Interpreter tool call the run step was involved in.
+ * @export
+ * @interface RunStepDetailsToolCallsCodeObject
+ */
+export interface RunStepDetailsToolCallsCodeObject {
+    /**
+     * The ID of the tool call.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsCodeObject
+     */
+    'id': string;
+    /**
+     * The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsCodeObject
+     */
+    'type': RunStepDetailsToolCallsCodeObjectTypeEnum;
+    /**
+     * 
+     * @type {RunStepDetailsToolCallsCodeObjectCodeInterpreter}
+     * @memberof RunStepDetailsToolCallsCodeObject
+     */
+    'code_interpreter': RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+}
+
+export const RunStepDetailsToolCallsCodeObjectTypeEnum = {
+    CodeInterpreter: 'code_interpreter'
+} as const;
+
+export type RunStepDetailsToolCallsCodeObjectTypeEnum = typeof RunStepDetailsToolCallsCodeObjectTypeEnum[keyof typeof RunStepDetailsToolCallsCodeObjectTypeEnum];
+
+/**
+ * The Code Interpreter tool call definition.
+ * @export
+ * @interface RunStepDetailsToolCallsCodeObjectCodeInterpreter
+ */
+export interface RunStepDetailsToolCallsCodeObjectCodeInterpreter {
+    /**
+     * The input to the Code Interpreter tool call.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsCodeObjectCodeInterpreter
+     */
+    'input': string;
+    /**
+     * The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
+     * @type {Array<RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>}
+     * @memberof RunStepDetailsToolCallsCodeObjectCodeInterpreter
+     */
+    'outputs': Array<RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>;
+}
+/**
+ * @type RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+ * @export
+ */
+export type RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner = RunStepDetailsToolCallsCodeOutputImageObject | RunStepDetailsToolCallsCodeOutputLogsObject;
+
+/**
+ * 
+ * @export
+ * @interface RunStepDetailsToolCallsCodeOutputImageObject
+ */
+export interface RunStepDetailsToolCallsCodeOutputImageObject {
+    /**
+     * Always `image`.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsCodeOutputImageObject
+     */
+    'type': RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum;
+    /**
+     * 
+     * @type {RunStepDetailsToolCallsCodeOutputImageObjectImage}
+     * @memberof RunStepDetailsToolCallsCodeOutputImageObject
+     */
+    'image': RunStepDetailsToolCallsCodeOutputImageObjectImage;
+}
+
+export const RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum = {
+    Image: 'image'
+} as const;
+
+export type RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum = typeof RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum[keyof typeof RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface RunStepDetailsToolCallsCodeOutputImageObjectImage
+ */
+export interface RunStepDetailsToolCallsCodeOutputImageObjectImage {
+    /**
+     * The [file](/docs/api-reference/files) ID of the image.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsCodeOutputImageObjectImage
+     */
+    'file_id': string;
+}
+/**
+ * Text output from the Code Interpreter tool call as part of a run step.
+ * @export
+ * @interface RunStepDetailsToolCallsCodeOutputLogsObject
+ */
+export interface RunStepDetailsToolCallsCodeOutputLogsObject {
+    /**
+     * Always `logs`.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsCodeOutputLogsObject
+     */
+    'type': RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum;
+    /**
+     * The text output from the Code Interpreter tool call.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsCodeOutputLogsObject
+     */
+    'logs': string;
+}
+
+export const RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = {
+    Logs: 'logs'
+} as const;
+
+export type RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = typeof RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum[keyof typeof RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface RunStepDetailsToolCallsFunctionObject
+ */
+export interface RunStepDetailsToolCallsFunctionObject {
+    /**
+     * The ID of the tool call object.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsFunctionObject
+     */
+    'id': string;
+    /**
+     * The type of tool call. This is always going to be `function` for this type of tool call.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsFunctionObject
+     */
+    'type': RunStepDetailsToolCallsFunctionObjectTypeEnum;
+    /**
+     * 
+     * @type {RunStepDetailsToolCallsFunctionObjectFunction}
+     * @memberof RunStepDetailsToolCallsFunctionObject
+     */
+    'function': RunStepDetailsToolCallsFunctionObjectFunction;
+}
+
+export const RunStepDetailsToolCallsFunctionObjectTypeEnum = {
+    Function: 'function'
+} as const;
+
+export type RunStepDetailsToolCallsFunctionObjectTypeEnum = typeof RunStepDetailsToolCallsFunctionObjectTypeEnum[keyof typeof RunStepDetailsToolCallsFunctionObjectTypeEnum];
+
+/**
+ * The definition of the function that was called.
+ * @export
+ * @interface RunStepDetailsToolCallsFunctionObjectFunction
+ */
+export interface RunStepDetailsToolCallsFunctionObjectFunction {
+    /**
+     * The name of the function.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsFunctionObjectFunction
+     */
+    'name': string;
+    /**
+     * The arguments passed to the function.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsFunctionObjectFunction
+     */
+    'arguments': string;
+    /**
+     * The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsFunctionObjectFunction
+     */
+    'output': string | null;
+}
+/**
+ * Details of the tool call.
+ * @export
+ * @interface RunStepDetailsToolCallsObject
+ */
+export interface RunStepDetailsToolCallsObject {
+    /**
+     * Always `tool_calls`.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsObject
+     */
+    'type': RunStepDetailsToolCallsObjectTypeEnum;
+    /**
+     * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+     * @type {Array<RunStepDetailsToolCallsObjectToolCallsInner>}
+     * @memberof RunStepDetailsToolCallsObject
+     */
+    'tool_calls': Array<RunStepDetailsToolCallsObjectToolCallsInner>;
+}
+
+export const RunStepDetailsToolCallsObjectTypeEnum = {
+    ToolCalls: 'tool_calls'
+} as const;
+
+export type RunStepDetailsToolCallsObjectTypeEnum = typeof RunStepDetailsToolCallsObjectTypeEnum[keyof typeof RunStepDetailsToolCallsObjectTypeEnum];
+
+/**
+ * @type RunStepDetailsToolCallsObjectToolCallsInner
+ * @export
+ */
+export type RunStepDetailsToolCallsObjectToolCallsInner = RunStepDetailsToolCallsCodeObject | RunStepDetailsToolCallsFunctionObject | RunStepDetailsToolCallsRetrievalObject;
+
+/**
+ * 
+ * @export
+ * @interface RunStepDetailsToolCallsRetrievalObject
+ */
+export interface RunStepDetailsToolCallsRetrievalObject {
+    /**
+     * The ID of the tool call object.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsRetrievalObject
+     */
+    'id': string;
+    /**
+     * The type of tool call. This is always going to be `retrieval` for this type of tool call.
+     * @type {string}
+     * @memberof RunStepDetailsToolCallsRetrievalObject
+     */
+    'type': RunStepDetailsToolCallsRetrievalObjectTypeEnum;
+    /**
+     * For now, this is always going to be an empty object.
+     * @type {object}
+     * @memberof RunStepDetailsToolCallsRetrievalObject
+     */
+    'retrieval': object;
+}
+
+export const RunStepDetailsToolCallsRetrievalObjectTypeEnum = {
+    Retrieval: 'retrieval'
+} as const;
+
+export type RunStepDetailsToolCallsRetrievalObjectTypeEnum = typeof RunStepDetailsToolCallsRetrievalObjectTypeEnum[keyof typeof RunStepDetailsToolCallsRetrievalObjectTypeEnum];
+
+/**
+ * Represents a step in execution of a run. 
+ * @export
+ * @interface RunStepObject
+ */
+export interface RunStepObject {
+    /**
+     * The identifier of the run step, which can be referenced in API endpoints.
+     * @type {string}
+     * @memberof RunStepObject
+     */
+    'id': string;
+    /**
+     * The object type, which is always `thread.run.step`.
+     * @type {string}
+     * @memberof RunStepObject
+     */
+    'object': RunStepObjectObjectEnum;
+    /**
+     * The Unix timestamp (in seconds) for when the run step was created.
+     * @type {number}
+     * @memberof RunStepObject
+     */
+    'created_at': number;
+    /**
+     * The ID of the [assistant](/docs/api-reference/assistants) associated with the run step.
+     * @type {string}
+     * @memberof RunStepObject
+     */
+    'assistant_id': string;
+    /**
+     * The ID of the [thread](/docs/api-reference/threads) that was run.
+     * @type {string}
+     * @memberof RunStepObject
+     */
+    'thread_id': string;
+    /**
+     * The ID of the [run](/docs/api-reference/runs) that this run step is a part of.
+     * @type {string}
+     * @memberof RunStepObject
+     */
+    'run_id': string;
+    /**
+     * The type of run step, which can be either `message_creation` or `tool_calls`.
+     * @type {string}
+     * @memberof RunStepObject
+     */
+    'type': RunStepObjectTypeEnum;
+    /**
+     * The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
+     * @type {string}
+     * @memberof RunStepObject
+     */
+    'status': RunStepObjectStatusEnum;
+    /**
+     * 
+     * @type {RunStepObjectStepDetails}
+     * @memberof RunStepObject
+     */
+    'step_details': RunStepObjectStepDetails;
+    /**
+     * 
+     * @type {RunStepObjectLastError}
+     * @memberof RunStepObject
+     */
+    'last_error': RunStepObjectLastError | null;
+    /**
+     * The Unix timestamp (in seconds) for when the run step expired. A step is considered expired if the parent run is expired.
+     * @type {number}
+     * @memberof RunStepObject
+     */
+    'expired_at': number | null;
+    /**
+     * The Unix timestamp (in seconds) for when the run step was cancelled.
+     * @type {number}
+     * @memberof RunStepObject
+     */
+    'cancelled_at': number | null;
+    /**
+     * The Unix timestamp (in seconds) for when the run step failed.
+     * @type {number}
+     * @memberof RunStepObject
+     */
+    'failed_at': number | null;
+    /**
+     * The Unix timestamp (in seconds) for when the run step completed.
+     * @type {number}
+     * @memberof RunStepObject
+     */
+    'completed_at': number | null;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof RunStepObject
+     */
+    'metadata': object | null;
+    /**
+     * 
+     * @type {RunStepCompletionUsage}
+     * @memberof RunStepObject
+     */
+    'usage': RunStepCompletionUsage | null;
+}
+
+export const RunStepObjectObjectEnum = {
+    ThreadRunStep: 'thread.run.step'
+} as const;
+
+export type RunStepObjectObjectEnum = typeof RunStepObjectObjectEnum[keyof typeof RunStepObjectObjectEnum];
+export const RunStepObjectTypeEnum = {
+    MessageCreation: 'message_creation',
+    ToolCalls: 'tool_calls'
+} as const;
+
+export type RunStepObjectTypeEnum = typeof RunStepObjectTypeEnum[keyof typeof RunStepObjectTypeEnum];
+export const RunStepObjectStatusEnum = {
+    InProgress: 'in_progress',
+    Cancelled: 'cancelled',
+    Failed: 'failed',
+    Completed: 'completed',
+    Expired: 'expired'
+} as const;
+
+export type RunStepObjectStatusEnum = typeof RunStepObjectStatusEnum[keyof typeof RunStepObjectStatusEnum];
+
+/**
+ * The last error associated with this run step. Will be `null` if there are no errors.
+ * @export
+ * @interface RunStepObjectLastError
+ */
+export interface RunStepObjectLastError {
+    /**
+     * One of `server_error` or `rate_limit_exceeded`.
+     * @type {string}
+     * @memberof RunStepObjectLastError
+     */
+    'code': RunStepObjectLastErrorCodeEnum;
+    /**
+     * A human-readable description of the error.
+     * @type {string}
+     * @memberof RunStepObjectLastError
+     */
+    'message': string;
+}
+
+export const RunStepObjectLastErrorCodeEnum = {
+    ServerError: 'server_error',
+    RateLimitExceeded: 'rate_limit_exceeded'
+} as const;
+
+export type RunStepObjectLastErrorCodeEnum = typeof RunStepObjectLastErrorCodeEnum[keyof typeof RunStepObjectLastErrorCodeEnum];
+
+/**
+ * @type RunStepObjectStepDetails
+ * The details of the run step.
+ * @export
+ */
+export type RunStepObjectStepDetails = RunStepDetailsMessageCreationObject | RunStepDetailsToolCallsObject;
+
+/**
+ * @type RunStepStreamEvent
+ * @export
+ */
+export type RunStepStreamEvent = RunStepStreamEventOneOf | RunStepStreamEventOneOf1 | RunStepStreamEventOneOf2 | RunStepStreamEventOneOf3 | RunStepStreamEventOneOf4 | RunStepStreamEventOneOf5 | RunStepStreamEventOneOf6;
+
+/**
+ * Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+ * @export
+ * @interface RunStepStreamEventOneOf
+ */
+export interface RunStepStreamEventOneOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStepStreamEventOneOf
+     */
+    'event': RunStepStreamEventOneOfEventEnum;
+    /**
+     * 
+     * @type {RunStepObject}
+     * @memberof RunStepStreamEventOneOf
+     */
+    'data': RunStepObject;
+}
+
+export const RunStepStreamEventOneOfEventEnum = {
+    ThreadRunStepCreated: 'thread.run.step.created'
+} as const;
+
+export type RunStepStreamEventOneOfEventEnum = typeof RunStepStreamEventOneOfEventEnum[keyof typeof RunStepStreamEventOneOfEventEnum];
+
+/**
+ * Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an `in_progress` state.
+ * @export
+ * @interface RunStepStreamEventOneOf1
+ */
+export interface RunStepStreamEventOneOf1 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStepStreamEventOneOf1
+     */
+    'event': RunStepStreamEventOneOf1EventEnum;
+    /**
+     * 
+     * @type {RunStepObject}
+     * @memberof RunStepStreamEventOneOf1
+     */
+    'data': RunStepObject;
+}
+
+export const RunStepStreamEventOneOf1EventEnum = {
+    ThreadRunStepInProgress: 'thread.run.step.in_progress'
+} as const;
+
+export type RunStepStreamEventOneOf1EventEnum = typeof RunStepStreamEventOneOf1EventEnum[keyof typeof RunStepStreamEventOneOf1EventEnum];
+
+/**
+ * Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.
+ * @export
+ * @interface RunStepStreamEventOneOf2
+ */
+export interface RunStepStreamEventOneOf2 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStepStreamEventOneOf2
+     */
+    'event': RunStepStreamEventOneOf2EventEnum;
+    /**
+     * 
+     * @type {RunStepDeltaObject}
+     * @memberof RunStepStreamEventOneOf2
+     */
+    'data': RunStepDeltaObject;
+}
+
+export const RunStepStreamEventOneOf2EventEnum = {
+    ThreadRunStepDelta: 'thread.run.step.delta'
+} as const;
+
+export type RunStepStreamEventOneOf2EventEnum = typeof RunStepStreamEventOneOf2EventEnum[keyof typeof RunStepStreamEventOneOf2EventEnum];
+
+/**
+ * Occurs when a [run step](/docs/api-reference/runs/step-object) is completed.
+ * @export
+ * @interface RunStepStreamEventOneOf3
+ */
+export interface RunStepStreamEventOneOf3 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStepStreamEventOneOf3
+     */
+    'event': RunStepStreamEventOneOf3EventEnum;
+    /**
+     * 
+     * @type {RunStepObject}
+     * @memberof RunStepStreamEventOneOf3
+     */
+    'data': RunStepObject;
+}
+
+export const RunStepStreamEventOneOf3EventEnum = {
+    ThreadRunStepCompleted: 'thread.run.step.completed'
+} as const;
+
+export type RunStepStreamEventOneOf3EventEnum = typeof RunStepStreamEventOneOf3EventEnum[keyof typeof RunStepStreamEventOneOf3EventEnum];
+
+/**
+ * Occurs when a [run step](/docs/api-reference/runs/step-object) fails.
+ * @export
+ * @interface RunStepStreamEventOneOf4
+ */
+export interface RunStepStreamEventOneOf4 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStepStreamEventOneOf4
+     */
+    'event': RunStepStreamEventOneOf4EventEnum;
+    /**
+     * 
+     * @type {RunStepObject}
+     * @memberof RunStepStreamEventOneOf4
+     */
+    'data': RunStepObject;
+}
+
+export const RunStepStreamEventOneOf4EventEnum = {
+    ThreadRunStepFailed: 'thread.run.step.failed'
+} as const;
+
+export type RunStepStreamEventOneOf4EventEnum = typeof RunStepStreamEventOneOf4EventEnum[keyof typeof RunStepStreamEventOneOf4EventEnum];
+
+/**
+ * Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+ * @export
+ * @interface RunStepStreamEventOneOf5
+ */
+export interface RunStepStreamEventOneOf5 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStepStreamEventOneOf5
+     */
+    'event': RunStepStreamEventOneOf5EventEnum;
+    /**
+     * 
+     * @type {RunStepObject}
+     * @memberof RunStepStreamEventOneOf5
+     */
+    'data': RunStepObject;
+}
+
+export const RunStepStreamEventOneOf5EventEnum = {
+    ThreadRunStepCancelled: 'thread.run.step.cancelled'
+} as const;
+
+export type RunStepStreamEventOneOf5EventEnum = typeof RunStepStreamEventOneOf5EventEnum[keyof typeof RunStepStreamEventOneOf5EventEnum];
+
+/**
+ * Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+ * @export
+ * @interface RunStepStreamEventOneOf6
+ */
+export interface RunStepStreamEventOneOf6 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStepStreamEventOneOf6
+     */
+    'event': RunStepStreamEventOneOf6EventEnum;
+    /**
+     * 
+     * @type {RunStepObject}
+     * @memberof RunStepStreamEventOneOf6
+     */
+    'data': RunStepObject;
+}
+
+export const RunStepStreamEventOneOf6EventEnum = {
+    ThreadRunStepExpired: 'thread.run.step.expired'
+} as const;
+
+export type RunStepStreamEventOneOf6EventEnum = typeof RunStepStreamEventOneOf6EventEnum[keyof typeof RunStepStreamEventOneOf6EventEnum];
+
+/**
+ * @type RunStreamEvent
+ * @export
+ */
+export type RunStreamEvent = RunStreamEventOneOf | RunStreamEventOneOf1 | RunStreamEventOneOf2 | RunStreamEventOneOf3 | RunStreamEventOneOf4 | RunStreamEventOneOf5 | RunStreamEventOneOf6 | RunStreamEventOneOf7 | RunStreamEventOneOf8;
+
+/**
+ * Occurs when a new [run](/docs/api-reference/runs/object) is created.
+ * @export
+ * @interface RunStreamEventOneOf
+ */
+export interface RunStreamEventOneOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStreamEventOneOf
+     */
+    'event': RunStreamEventOneOfEventEnum;
+    /**
+     * 
+     * @type {RunObject}
+     * @memberof RunStreamEventOneOf
+     */
+    'data': RunObject;
+}
+
+export const RunStreamEventOneOfEventEnum = {
+    ThreadRunCreated: 'thread.run.created'
+} as const;
+
+export type RunStreamEventOneOfEventEnum = typeof RunStreamEventOneOfEventEnum[keyof typeof RunStreamEventOneOfEventEnum];
+
+/**
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a `queued` status.
+ * @export
+ * @interface RunStreamEventOneOf1
+ */
+export interface RunStreamEventOneOf1 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStreamEventOneOf1
+     */
+    'event': RunStreamEventOneOf1EventEnum;
+    /**
+     * 
+     * @type {RunObject}
+     * @memberof RunStreamEventOneOf1
+     */
+    'data': RunObject;
+}
+
+export const RunStreamEventOneOf1EventEnum = {
+    ThreadRunQueued: 'thread.run.queued'
+} as const;
+
+export type RunStreamEventOneOf1EventEnum = typeof RunStreamEventOneOf1EventEnum[keyof typeof RunStreamEventOneOf1EventEnum];
+
+/**
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to an `in_progress` status.
+ * @export
+ * @interface RunStreamEventOneOf2
+ */
+export interface RunStreamEventOneOf2 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStreamEventOneOf2
+     */
+    'event': RunStreamEventOneOf2EventEnum;
+    /**
+     * 
+     * @type {RunObject}
+     * @memberof RunStreamEventOneOf2
+     */
+    'data': RunObject;
+}
+
+export const RunStreamEventOneOf2EventEnum = {
+    ThreadRunInProgress: 'thread.run.in_progress'
+} as const;
+
+export type RunStreamEventOneOf2EventEnum = typeof RunStreamEventOneOf2EventEnum[keyof typeof RunStreamEventOneOf2EventEnum];
+
+/**
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a `requires_action` status.
+ * @export
+ * @interface RunStreamEventOneOf3
+ */
+export interface RunStreamEventOneOf3 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStreamEventOneOf3
+     */
+    'event': RunStreamEventOneOf3EventEnum;
+    /**
+     * 
+     * @type {RunObject}
+     * @memberof RunStreamEventOneOf3
+     */
+    'data': RunObject;
+}
+
+export const RunStreamEventOneOf3EventEnum = {
+    ThreadRunRequiresAction: 'thread.run.requires_action'
+} as const;
+
+export type RunStreamEventOneOf3EventEnum = typeof RunStreamEventOneOf3EventEnum[keyof typeof RunStreamEventOneOf3EventEnum];
+
+/**
+ * Occurs when a [run](/docs/api-reference/runs/object) is completed.
+ * @export
+ * @interface RunStreamEventOneOf4
+ */
+export interface RunStreamEventOneOf4 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStreamEventOneOf4
+     */
+    'event': RunStreamEventOneOf4EventEnum;
+    /**
+     * 
+     * @type {RunObject}
+     * @memberof RunStreamEventOneOf4
+     */
+    'data': RunObject;
+}
+
+export const RunStreamEventOneOf4EventEnum = {
+    ThreadRunCompleted: 'thread.run.completed'
+} as const;
+
+export type RunStreamEventOneOf4EventEnum = typeof RunStreamEventOneOf4EventEnum[keyof typeof RunStreamEventOneOf4EventEnum];
+
+/**
+ * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * @export
+ * @interface RunStreamEventOneOf5
+ */
+export interface RunStreamEventOneOf5 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStreamEventOneOf5
+     */
+    'event': RunStreamEventOneOf5EventEnum;
+    /**
+     * 
+     * @type {RunObject}
+     * @memberof RunStreamEventOneOf5
+     */
+    'data': RunObject;
+}
+
+export const RunStreamEventOneOf5EventEnum = {
+    ThreadRunFailed: 'thread.run.failed'
+} as const;
+
+export type RunStreamEventOneOf5EventEnum = typeof RunStreamEventOneOf5EventEnum[keyof typeof RunStreamEventOneOf5EventEnum];
+
+/**
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
+ * @export
+ * @interface RunStreamEventOneOf6
+ */
+export interface RunStreamEventOneOf6 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStreamEventOneOf6
+     */
+    'event': RunStreamEventOneOf6EventEnum;
+    /**
+     * 
+     * @type {RunObject}
+     * @memberof RunStreamEventOneOf6
+     */
+    'data': RunObject;
+}
+
+export const RunStreamEventOneOf6EventEnum = {
+    ThreadRunCancelling: 'thread.run.cancelling'
+} as const;
+
+export type RunStreamEventOneOf6EventEnum = typeof RunStreamEventOneOf6EventEnum[keyof typeof RunStreamEventOneOf6EventEnum];
+
+/**
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * @export
+ * @interface RunStreamEventOneOf7
+ */
+export interface RunStreamEventOneOf7 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStreamEventOneOf7
+     */
+    'event': RunStreamEventOneOf7EventEnum;
+    /**
+     * 
+     * @type {RunObject}
+     * @memberof RunStreamEventOneOf7
+     */
+    'data': RunObject;
+}
+
+export const RunStreamEventOneOf7EventEnum = {
+    ThreadRunCancelled: 'thread.run.cancelled'
+} as const;
+
+export type RunStreamEventOneOf7EventEnum = typeof RunStreamEventOneOf7EventEnum[keyof typeof RunStreamEventOneOf7EventEnum];
+
+/**
+ * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * @export
+ * @interface RunStreamEventOneOf8
+ */
+export interface RunStreamEventOneOf8 {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunStreamEventOneOf8
+     */
+    'event': RunStreamEventOneOf8EventEnum;
+    /**
+     * 
+     * @type {RunObject}
+     * @memberof RunStreamEventOneOf8
+     */
+    'data': RunObject;
+}
+
+export const RunStreamEventOneOf8EventEnum = {
+    ThreadRunExpired: 'thread.run.expired'
+} as const;
+
+export type RunStreamEventOneOf8EventEnum = typeof RunStreamEventOneOf8EventEnum[keyof typeof RunStreamEventOneOf8EventEnum];
+
+/**
+ * Tool call objects
+ * @export
+ * @interface RunToolCallObject
+ */
+export interface RunToolCallObject {
+    /**
+     * The ID of the tool call. This ID must be referenced when you submit the tool outputs in using the [Submit tool outputs to run](/docs/api-reference/runs/submitToolOutputs) endpoint.
+     * @type {string}
+     * @memberof RunToolCallObject
+     */
+    'id': string;
+    /**
+     * The type of tool call the output is required for. For now, this is always `function`.
+     * @type {string}
+     * @memberof RunToolCallObject
+     */
+    'type': RunToolCallObjectTypeEnum;
+    /**
+     * 
+     * @type {RunToolCallObjectFunction}
+     * @memberof RunToolCallObject
+     */
+    'function': RunToolCallObjectFunction;
+}
+
+export const RunToolCallObjectTypeEnum = {
+    Function: 'function'
+} as const;
+
+export type RunToolCallObjectTypeEnum = typeof RunToolCallObjectTypeEnum[keyof typeof RunToolCallObjectTypeEnum];
+
+/**
+ * The function definition.
+ * @export
+ * @interface RunToolCallObjectFunction
+ */
+export interface RunToolCallObjectFunction {
+    /**
+     * The name of the function.
+     * @type {string}
+     * @memberof RunToolCallObjectFunction
+     */
+    'name': string;
+    /**
+     * The arguments that the model expects you to pass to the function.
+     * @type {string}
+     * @memberof RunToolCallObjectFunction
+     */
+    'arguments': string;
+}
+/**
+ * 
+ * @export
+ * @interface SubmitToolOutputsRunRequest
+ */
+export interface SubmitToolOutputsRunRequest {
+    /**
+     * A list of tools for which the outputs are being submitted.
+     * @type {Array<SubmitToolOutputsRunRequestToolOutputsInner>}
+     * @memberof SubmitToolOutputsRunRequest
+     */
+    'tool_outputs': Array<SubmitToolOutputsRunRequestToolOutputsInner>;
+    /**
+     * If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
+     * @type {boolean}
+     * @memberof SubmitToolOutputsRunRequest
+     */
+    'stream'?: boolean | null;
+}
+/**
+ * 
+ * @export
+ * @interface SubmitToolOutputsRunRequestToolOutputsInner
+ */
+export interface SubmitToolOutputsRunRequestToolOutputsInner {
+    /**
+     * The ID of the tool call in the `required_action` object within the run object the output is being submitted for.
+     * @type {string}
+     * @memberof SubmitToolOutputsRunRequestToolOutputsInner
+     */
+    'tool_call_id'?: string;
+    /**
+     * The output of the tool call to be submitted to continue the run.
+     * @type {string}
+     * @memberof SubmitToolOutputsRunRequestToolOutputsInner
+     */
+    'output'?: string;
+}
+/**
+ * Represents a thread that contains [messages](/docs/api-reference/messages).
+ * @export
+ * @interface ThreadObject
+ */
+export interface ThreadObject {
+    /**
+     * The identifier, which can be referenced in API endpoints.
+     * @type {string}
+     * @memberof ThreadObject
+     */
+    'id': string;
+    /**
+     * The object type, which is always `thread`.
+     * @type {string}
+     * @memberof ThreadObject
+     */
+    'object': ThreadObjectObjectEnum;
+    /**
+     * The Unix timestamp (in seconds) for when the thread was created.
+     * @type {number}
+     * @memberof ThreadObject
+     */
+    'created_at': number;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * @type {object}
+     * @memberof ThreadObject
+     */
+    'metadata': object | null;
+}
+
+export const ThreadObjectObjectEnum = {
+    Thread: 'thread'
+} as const;
+
+export type ThreadObjectObjectEnum = typeof ThreadObjectObjectEnum[keyof typeof ThreadObjectObjectEnum];
+
+/**
+ * @type ThreadStreamEvent
+ * @export
+ */
+export type ThreadStreamEvent = ThreadStreamEventOneOf;
+
+/**
+ * Occurs when a new [thread](/docs/api-reference/threads/object) is created.
+ * @export
+ * @interface ThreadStreamEventOneOf
+ */
+export interface ThreadStreamEventOneOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof ThreadStreamEventOneOf
+     */
+    'event': ThreadStreamEventOneOfEventEnum;
+    /**
+     * 
+     * @type {ThreadObject}
+     * @memberof ThreadStreamEventOneOf
+     */
+    'data': ThreadObject;
+}
+
+export const ThreadStreamEventOneOfEventEnum = {
+    ThreadCreated: 'thread.created'
+} as const;
+
+export type ThreadStreamEventOneOfEventEnum = typeof ThreadStreamEventOneOfEventEnum[keyof typeof ThreadStreamEventOneOfEventEnum];
+
+/**
+ * 
+ * @export
+ * @interface TranscriptionSegment
+ */
+export interface TranscriptionSegment {
+    /**
+     * Unique identifier of the segment.
+     * @type {number}
+     * @memberof TranscriptionSegment
+     */
+    'id': number;
+    /**
+     * Seek offset of the segment.
+     * @type {number}
+     * @memberof TranscriptionSegment
+     */
+    'seek': number;
+    /**
+     * Start time of the segment in seconds.
+     * @type {number}
+     * @memberof TranscriptionSegment
+     */
+    'start': number;
+    /**
+     * End time of the segment in seconds.
+     * @type {number}
+     * @memberof TranscriptionSegment
+     */
+    'end': number;
+    /**
+     * Text content of the segment.
+     * @type {string}
+     * @memberof TranscriptionSegment
+     */
+    'text': string;
+    /**
+     * Array of token IDs for the text content.
+     * @type {Array<number>}
+     * @memberof TranscriptionSegment
+     */
+    'tokens': Array<number>;
+    /**
+     * Temperature parameter used for generating the segment.
+     * @type {number}
+     * @memberof TranscriptionSegment
+     */
+    'temperature': number;
+    /**
+     * Average logprob of the segment. If the value is lower than -1, consider the logprobs failed.
+     * @type {number}
+     * @memberof TranscriptionSegment
+     */
+    'avg_logprob': number;
+    /**
+     * Compression ratio of the segment. If the value is greater than 2.4, consider the compression failed.
+     * @type {number}
+     * @memberof TranscriptionSegment
+     */
+    'compression_ratio': number;
+    /**
+     * Probability of no speech in the segment. If the value is higher than 1.0 and the `avg_logprob` is below -1, consider this segment silent.
+     * @type {number}
+     * @memberof TranscriptionSegment
+     */
+    'no_speech_prob': number;
+}
+/**
+ * 
+ * @export
+ * @interface TranscriptionWord
+ */
+export interface TranscriptionWord {
+    /**
+     * The text content of the word.
+     * @type {string}
+     * @memberof TranscriptionWord
+     */
+    'word': string;
+    /**
+     * Start time of the word in seconds.
+     * @type {number}
+     * @memberof TranscriptionWord
+     */
+    'start': number;
+    /**
+     * End time of the word in seconds.
+     * @type {number}
+     * @memberof TranscriptionWord
+     */
+    'end': number;
+}
+/**
+ * 
+ * @export
+ * @interface TruncationObject
+ */
+export interface TruncationObject {
+    /**
+     * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
+     * @type {string}
+     * @memberof TruncationObject
+     */
+    'type'?: TruncationObjectTypeEnum;
+    /**
+     * The number of most recent messages from the thread when constructing the context for the run.
+     * @type {number}
+     * @memberof TruncationObject
+     */
+    'last_messages'?: number | null;
+}
+
+export const TruncationObjectTypeEnum = {
+    Auto: 'auto',
+    LastMessages: 'last_messages'
+} as const;
+
+export type TruncationObjectTypeEnum = typeof TruncationObjectTypeEnum[keyof typeof TruncationObjectTypeEnum];
+
+
+/**
+ * AssistantsApi - axios parameter creator
+ * @export
+ */
+export const AssistantsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Immediately cancel a fine-tune job. 
-         * @param {string} fineTuneId The ID of the fine-tune job to cancel 
+         * @summary Cancels a run that is `in_progress`.
+         * @param {string} threadId The ID of the thread to which this run belongs.
+         * @param {string} runId The ID of the run to cancel.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelFineTune: async (fineTuneId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'fineTuneId' is not null or undefined
-            assertParamExists('cancelFineTune', 'fineTuneId', fineTuneId)
-            const localVarPath = `/fine-tunes/{fine_tune_id}/cancel`
-                .replace(`{${"fine_tune_id"}}`, encodeURIComponent(String(fineTuneId)));
+        cancelRun: async (threadId: string, runId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('cancelRun', 'threadId', threadId)
+            // verify required parameter 'runId' is not null or undefined
+            assertParamExists('cancelRun', 'runId', runId)
+            const localVarPath = `/threads/{thread_id}/runs/{run_id}/cancel`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1738,6 +6855,10 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -1750,6 +6871,2839 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Create an assistant with a model and instructions.
+         * @param {CreateAssistantRequest} createAssistantRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createAssistant: async (createAssistantRequest: CreateAssistantRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createAssistantRequest' is not null or undefined
+            assertParamExists('createAssistant', 'createAssistantRequest', createAssistantRequest)
+            const localVarPath = `/assistants`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createAssistantRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+         * @param {string} assistantId The ID of the assistant for which to create a File. 
+         * @param {CreateAssistantFileRequest} createAssistantFileRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createAssistantFile: async (assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'assistantId' is not null or undefined
+            assertParamExists('createAssistantFile', 'assistantId', assistantId)
+            // verify required parameter 'createAssistantFileRequest' is not null or undefined
+            assertParamExists('createAssistantFile', 'createAssistantFileRequest', createAssistantFileRequest)
+            const localVarPath = `/assistants/{assistant_id}/files`
+                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createAssistantFileRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create a message.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
+         * @param {CreateMessageRequest} createMessageRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createMessage: async (threadId: string, createMessageRequest: CreateMessageRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('createMessage', 'threadId', threadId)
+            // verify required parameter 'createMessageRequest' is not null or undefined
+            assertParamExists('createMessage', 'createMessageRequest', createMessageRequest)
+            const localVarPath = `/threads/{thread_id}/messages`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createMessageRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create a run.
+         * @param {string} threadId The ID of the thread to run.
+         * @param {CreateRunRequest} createRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createRun: async (threadId: string, createRunRequest: CreateRunRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('createRun', 'threadId', threadId)
+            // verify required parameter 'createRunRequest' is not null or undefined
+            assertParamExists('createRun', 'createRunRequest', createRunRequest)
+            const localVarPath = `/threads/{thread_id}/runs`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createRunRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create a thread.
+         * @param {CreateThreadRequest} [createThreadRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createThread: async (createThreadRequest?: CreateThreadRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/threads`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createThreadRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create a thread and run it in one request.
+         * @param {CreateThreadAndRunRequest} createThreadAndRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createThreadAndRun: async (createThreadAndRunRequest: CreateThreadAndRunRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createThreadAndRunRequest' is not null or undefined
+            assertParamExists('createThreadAndRun', 'createThreadAndRunRequest', createThreadAndRunRequest)
+            const localVarPath = `/threads/runs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createThreadAndRunRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete an assistant.
+         * @param {string} assistantId The ID of the assistant to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAssistant: async (assistantId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'assistantId' is not null or undefined
+            assertParamExists('deleteAssistant', 'assistantId', assistantId)
+            const localVarPath = `/assistants/{assistant_id}`
+                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete an assistant file.
+         * @param {string} assistantId The ID of the assistant that the file belongs to.
+         * @param {string} fileId The ID of the file to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAssistantFile: async (assistantId: string, fileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'assistantId' is not null or undefined
+            assertParamExists('deleteAssistantFile', 'assistantId', assistantId)
+            // verify required parameter 'fileId' is not null or undefined
+            assertParamExists('deleteAssistantFile', 'fileId', fileId)
+            const localVarPath = `/assistants/{assistant_id}/files/{file_id}`
+                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)))
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete a thread.
+         * @param {string} threadId The ID of the thread to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteThread: async (threadId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('deleteThread', 'threadId', threadId)
+            const localVarPath = `/threads/{thread_id}`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieves an assistant.
+         * @param {string} assistantId The ID of the assistant to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAssistant: async (assistantId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'assistantId' is not null or undefined
+            assertParamExists('getAssistant', 'assistantId', assistantId)
+            const localVarPath = `/assistants/{assistant_id}`
+                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieves an AssistantFile.
+         * @param {string} assistantId The ID of the assistant who the file belongs to.
+         * @param {string} fileId The ID of the file we\&#39;re getting.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAssistantFile: async (assistantId: string, fileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'assistantId' is not null or undefined
+            assertParamExists('getAssistantFile', 'assistantId', assistantId)
+            // verify required parameter 'fileId' is not null or undefined
+            assertParamExists('getAssistantFile', 'fileId', fileId)
+            const localVarPath = `/assistants/{assistant_id}/files/{file_id}`
+                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)))
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve a message.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
+         * @param {string} messageId The ID of the message to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMessage: async (threadId: string, messageId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('getMessage', 'threadId', threadId)
+            // verify required parameter 'messageId' is not null or undefined
+            assertParamExists('getMessage', 'messageId', messageId)
+            const localVarPath = `/threads/{thread_id}/messages/{message_id}`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieves a message file.
+         * @param {string} threadId The ID of the thread to which the message and File belong.
+         * @param {string} messageId The ID of the message the file belongs to.
+         * @param {string} fileId The ID of the file being retrieved.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMessageFile: async (threadId: string, messageId: string, fileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('getMessageFile', 'threadId', threadId)
+            // verify required parameter 'messageId' is not null or undefined
+            assertParamExists('getMessageFile', 'messageId', messageId)
+            // verify required parameter 'fileId' is not null or undefined
+            assertParamExists('getMessageFile', 'fileId', fileId)
+            const localVarPath = `/threads/{thread_id}/messages/{message_id}/files/{file_id}`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)))
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieves a run.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) that was run.
+         * @param {string} runId The ID of the run to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRun: async (threadId: string, runId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('getRun', 'threadId', threadId)
+            // verify required parameter 'runId' is not null or undefined
+            assertParamExists('getRun', 'runId', runId)
+            const localVarPath = `/threads/{thread_id}/runs/{run_id}`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieves a run step.
+         * @param {string} threadId The ID of the thread to which the run and run step belongs.
+         * @param {string} runId The ID of the run to which the run step belongs.
+         * @param {string} stepId The ID of the run step to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRunStep: async (threadId: string, runId: string, stepId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('getRunStep', 'threadId', threadId)
+            // verify required parameter 'runId' is not null or undefined
+            assertParamExists('getRunStep', 'runId', runId)
+            // verify required parameter 'stepId' is not null or undefined
+            assertParamExists('getRunStep', 'stepId', stepId)
+            const localVarPath = `/threads/{thread_id}/runs/{run_id}/steps/{step_id}`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)))
+                .replace(`{${"step_id"}}`, encodeURIComponent(String(stepId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieves a thread.
+         * @param {string} threadId The ID of the thread to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getThread: async (threadId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('getThread', 'threadId', threadId)
+            const localVarPath = `/threads/{thread_id}`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Returns a list of assistant files.
+         * @param {string} assistantId The ID of the assistant the file belongs to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListAssistantFilesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listAssistantFiles: async (assistantId: string, limit?: number, order?: ListAssistantFilesOrderEnum, after?: string, before?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'assistantId' is not null or undefined
+            assertParamExists('listAssistantFiles', 'assistantId', assistantId)
+            const localVarPath = `/assistants/{assistant_id}/files`
+                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (after !== undefined) {
+                localVarQueryParameter['after'] = after;
+            }
+
+            if (before !== undefined) {
+                localVarQueryParameter['before'] = before;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Returns a list of assistants.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListAssistantsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listAssistants: async (limit?: number, order?: ListAssistantsOrderEnum, after?: string, before?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/assistants`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (after !== undefined) {
+                localVarQueryParameter['after'] = after;
+            }
+
+            if (before !== undefined) {
+                localVarQueryParameter['before'] = before;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Returns a list of message files.
+         * @param {string} threadId The ID of the thread that the message and files belong to.
+         * @param {string} messageId The ID of the message that the files belongs to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListMessageFilesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listMessageFiles: async (threadId: string, messageId: string, limit?: number, order?: ListMessageFilesOrderEnum, after?: string, before?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('listMessageFiles', 'threadId', threadId)
+            // verify required parameter 'messageId' is not null or undefined
+            assertParamExists('listMessageFiles', 'messageId', messageId)
+            const localVarPath = `/threads/{thread_id}/messages/{message_id}/files`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (after !== undefined) {
+                localVarQueryParameter['after'] = after;
+            }
+
+            if (before !== undefined) {
+                localVarQueryParameter['before'] = before;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Returns a list of messages for a given thread.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) the messages belong to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListMessagesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {string} [runId] Filter messages by the run ID that generated them. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listMessages: async (threadId: string, limit?: number, order?: ListMessagesOrderEnum, after?: string, before?: string, runId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('listMessages', 'threadId', threadId)
+            const localVarPath = `/threads/{thread_id}/messages`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (after !== undefined) {
+                localVarQueryParameter['after'] = after;
+            }
+
+            if (before !== undefined) {
+                localVarQueryParameter['before'] = before;
+            }
+
+            if (runId !== undefined) {
+                localVarQueryParameter['run_id'] = runId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Returns a list of run steps belonging to a run.
+         * @param {string} threadId The ID of the thread the run and run steps belong to.
+         * @param {string} runId The ID of the run the run steps belong to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListRunStepsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listRunSteps: async (threadId: string, runId: string, limit?: number, order?: ListRunStepsOrderEnum, after?: string, before?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('listRunSteps', 'threadId', threadId)
+            // verify required parameter 'runId' is not null or undefined
+            assertParamExists('listRunSteps', 'runId', runId)
+            const localVarPath = `/threads/{thread_id}/runs/{run_id}/steps`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (after !== undefined) {
+                localVarQueryParameter['after'] = after;
+            }
+
+            if (before !== undefined) {
+                localVarQueryParameter['before'] = before;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Returns a list of runs belonging to a thread.
+         * @param {string} threadId The ID of the thread the run belongs to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListRunsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listRuns: async (threadId: string, limit?: number, order?: ListRunsOrderEnum, after?: string, before?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('listRuns', 'threadId', threadId)
+            const localVarPath = `/threads/{thread_id}/runs`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (after !== undefined) {
+                localVarQueryParameter['after'] = after;
+            }
+
+            if (before !== undefined) {
+                localVarQueryParameter['before'] = before;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Modifies an assistant.
+         * @param {string} assistantId The ID of the assistant to modify.
+         * @param {ModifyAssistantRequest} modifyAssistantRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modifyAssistant: async (assistantId: string, modifyAssistantRequest: ModifyAssistantRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'assistantId' is not null or undefined
+            assertParamExists('modifyAssistant', 'assistantId', assistantId)
+            // verify required parameter 'modifyAssistantRequest' is not null or undefined
+            assertParamExists('modifyAssistant', 'modifyAssistantRequest', modifyAssistantRequest)
+            const localVarPath = `/assistants/{assistant_id}`
+                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(modifyAssistantRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Modifies a message.
+         * @param {string} threadId The ID of the thread to which this message belongs.
+         * @param {string} messageId The ID of the message to modify.
+         * @param {ModifyMessageRequest} modifyMessageRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modifyMessage: async (threadId: string, messageId: string, modifyMessageRequest: ModifyMessageRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('modifyMessage', 'threadId', threadId)
+            // verify required parameter 'messageId' is not null or undefined
+            assertParamExists('modifyMessage', 'messageId', messageId)
+            // verify required parameter 'modifyMessageRequest' is not null or undefined
+            assertParamExists('modifyMessage', 'modifyMessageRequest', modifyMessageRequest)
+            const localVarPath = `/threads/{thread_id}/messages/{message_id}`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(modifyMessageRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Modifies a run.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) that was run.
+         * @param {string} runId The ID of the run to modify.
+         * @param {ModifyRunRequest} modifyRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modifyRun: async (threadId: string, runId: string, modifyRunRequest: ModifyRunRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('modifyRun', 'threadId', threadId)
+            // verify required parameter 'runId' is not null or undefined
+            assertParamExists('modifyRun', 'runId', runId)
+            // verify required parameter 'modifyRunRequest' is not null or undefined
+            assertParamExists('modifyRun', 'modifyRunRequest', modifyRunRequest)
+            const localVarPath = `/threads/{thread_id}/runs/{run_id}`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(modifyRunRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Modifies a thread.
+         * @param {string} threadId The ID of the thread to modify. Only the &#x60;metadata&#x60; can be modified.
+         * @param {ModifyThreadRequest} modifyThreadRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modifyThread: async (threadId: string, modifyThreadRequest: ModifyThreadRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('modifyThread', 'threadId', threadId)
+            // verify required parameter 'modifyThreadRequest' is not null or undefined
+            assertParamExists('modifyThread', 'modifyThreadRequest', modifyThreadRequest)
+            const localVarPath = `/threads/{thread_id}`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(modifyThreadRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they\'re all completed. All outputs must be submitted in a single request. 
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to which this run belongs.
+         * @param {string} runId The ID of the run that requires the tool output submission.
+         * @param {SubmitToolOutputsRunRequest} submitToolOutputsRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        submitToolOuputsToRun: async (threadId: string, runId: string, submitToolOutputsRunRequest: SubmitToolOutputsRunRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'threadId' is not null or undefined
+            assertParamExists('submitToolOuputsToRun', 'threadId', threadId)
+            // verify required parameter 'runId' is not null or undefined
+            assertParamExists('submitToolOuputsToRun', 'runId', runId)
+            // verify required parameter 'submitToolOutputsRunRequest' is not null or undefined
+            assertParamExists('submitToolOuputsToRun', 'submitToolOutputsRunRequest', submitToolOutputsRunRequest)
+            const localVarPath = `/threads/{thread_id}/runs/{run_id}/submit_tool_outputs`
+                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
+                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(submitToolOutputsRunRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AssistantsApi - functional programming interface
+ * @export
+ */
+export const AssistantsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AssistantsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Cancels a run that is `in_progress`.
+         * @param {string} threadId The ID of the thread to which this run belongs.
+         * @param {string} runId The ID of the run to cancel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cancelRun(threadId: string, runId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RunObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelRun(threadId, runId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.cancelRun']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create an assistant with a model and instructions.
+         * @param {CreateAssistantRequest} createAssistantRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createAssistant(createAssistantRequest: CreateAssistantRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AssistantObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createAssistant(createAssistantRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.createAssistant']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+         * @param {string} assistantId The ID of the assistant for which to create a File. 
+         * @param {CreateAssistantFileRequest} createAssistantFileRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createAssistantFile(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AssistantFileObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createAssistantFile(assistantId, createAssistantFileRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.createAssistantFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create a message.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
+         * @param {CreateMessageRequest} createMessageRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createMessage(threadId: string, createMessageRequest: CreateMessageRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createMessage(threadId, createMessageRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.createMessage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create a run.
+         * @param {string} threadId The ID of the thread to run.
+         * @param {CreateRunRequest} createRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createRun(threadId: string, createRunRequest: CreateRunRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RunObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createRun(threadId, createRunRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.createRun']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create a thread.
+         * @param {CreateThreadRequest} [createThreadRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createThread(createThreadRequest?: CreateThreadRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ThreadObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createThread(createThreadRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.createThread']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create a thread and run it in one request.
+         * @param {CreateThreadAndRunRequest} createThreadAndRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createThreadAndRun(createThreadAndRunRequest: CreateThreadAndRunRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RunObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createThreadAndRun(createThreadAndRunRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.createThreadAndRun']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete an assistant.
+         * @param {string} assistantId The ID of the assistant to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteAssistant(assistantId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteAssistantResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteAssistant(assistantId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.deleteAssistant']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete an assistant file.
+         * @param {string} assistantId The ID of the assistant that the file belongs to.
+         * @param {string} fileId The ID of the file to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteAssistantFile(assistantId: string, fileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteAssistantFileResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteAssistantFile(assistantId, fileId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.deleteAssistantFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete a thread.
+         * @param {string} threadId The ID of the thread to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteThread(threadId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteThreadResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteThread(threadId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.deleteThread']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieves an assistant.
+         * @param {string} assistantId The ID of the assistant to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAssistant(assistantId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AssistantObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAssistant(assistantId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.getAssistant']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieves an AssistantFile.
+         * @param {string} assistantId The ID of the assistant who the file belongs to.
+         * @param {string} fileId The ID of the file we\&#39;re getting.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAssistantFile(assistantId: string, fileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AssistantFileObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAssistantFile(assistantId, fileId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.getAssistantFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve a message.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
+         * @param {string} messageId The ID of the message to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMessage(threadId: string, messageId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMessage(threadId, messageId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.getMessage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieves a message file.
+         * @param {string} threadId The ID of the thread to which the message and File belong.
+         * @param {string} messageId The ID of the message the file belongs to.
+         * @param {string} fileId The ID of the file being retrieved.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMessageFile(threadId: string, messageId: string, fileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageFileObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMessageFile(threadId, messageId, fileId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.getMessageFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieves a run.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) that was run.
+         * @param {string} runId The ID of the run to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRun(threadId: string, runId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RunObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRun(threadId, runId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.getRun']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieves a run step.
+         * @param {string} threadId The ID of the thread to which the run and run step belongs.
+         * @param {string} runId The ID of the run to which the run step belongs.
+         * @param {string} stepId The ID of the run step to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRunStep(threadId: string, runId: string, stepId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RunStepObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRunStep(threadId, runId, stepId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.getRunStep']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieves a thread.
+         * @param {string} threadId The ID of the thread to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getThread(threadId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ThreadObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getThread(threadId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.getThread']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Returns a list of assistant files.
+         * @param {string} assistantId The ID of the assistant the file belongs to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListAssistantFilesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listAssistantFiles(assistantId: string, limit?: number, order?: ListAssistantFilesOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListAssistantFilesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listAssistantFiles(assistantId, limit, order, after, before, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.listAssistantFiles']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Returns a list of assistants.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListAssistantsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listAssistants(limit?: number, order?: ListAssistantsOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListAssistantsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listAssistants(limit, order, after, before, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.listAssistants']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Returns a list of message files.
+         * @param {string} threadId The ID of the thread that the message and files belong to.
+         * @param {string} messageId The ID of the message that the files belongs to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListMessageFilesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listMessageFiles(threadId: string, messageId: string, limit?: number, order?: ListMessageFilesOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMessageFilesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listMessageFiles(threadId, messageId, limit, order, after, before, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.listMessageFiles']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Returns a list of messages for a given thread.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) the messages belong to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListMessagesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {string} [runId] Filter messages by the run ID that generated them. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listMessages(threadId: string, limit?: number, order?: ListMessagesOrderEnum, after?: string, before?: string, runId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMessagesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listMessages(threadId, limit, order, after, before, runId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.listMessages']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Returns a list of run steps belonging to a run.
+         * @param {string} threadId The ID of the thread the run and run steps belong to.
+         * @param {string} runId The ID of the run the run steps belong to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListRunStepsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listRunSteps(threadId: string, runId: string, limit?: number, order?: ListRunStepsOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListRunStepsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listRunSteps(threadId, runId, limit, order, after, before, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.listRunSteps']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Returns a list of runs belonging to a thread.
+         * @param {string} threadId The ID of the thread the run belongs to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListRunsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listRuns(threadId: string, limit?: number, order?: ListRunsOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListRunsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listRuns(threadId, limit, order, after, before, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.listRuns']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Modifies an assistant.
+         * @param {string} assistantId The ID of the assistant to modify.
+         * @param {ModifyAssistantRequest} modifyAssistantRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modifyAssistant(assistantId: string, modifyAssistantRequest: ModifyAssistantRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AssistantObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modifyAssistant(assistantId, modifyAssistantRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.modifyAssistant']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Modifies a message.
+         * @param {string} threadId The ID of the thread to which this message belongs.
+         * @param {string} messageId The ID of the message to modify.
+         * @param {ModifyMessageRequest} modifyMessageRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modifyMessage(threadId: string, messageId: string, modifyMessageRequest: ModifyMessageRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modifyMessage(threadId, messageId, modifyMessageRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.modifyMessage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Modifies a run.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) that was run.
+         * @param {string} runId The ID of the run to modify.
+         * @param {ModifyRunRequest} modifyRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modifyRun(threadId: string, runId: string, modifyRunRequest: ModifyRunRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RunObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modifyRun(threadId, runId, modifyRunRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.modifyRun']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Modifies a thread.
+         * @param {string} threadId The ID of the thread to modify. Only the &#x60;metadata&#x60; can be modified.
+         * @param {ModifyThreadRequest} modifyThreadRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modifyThread(threadId: string, modifyThreadRequest: ModifyThreadRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ThreadObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modifyThread(threadId, modifyThreadRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.modifyThread']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they\'re all completed. All outputs must be submitted in a single request. 
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to which this run belongs.
+         * @param {string} runId The ID of the run that requires the tool output submission.
+         * @param {SubmitToolOutputsRunRequest} submitToolOutputsRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async submitToolOuputsToRun(threadId: string, runId: string, submitToolOutputsRunRequest: SubmitToolOutputsRunRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RunObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitToolOuputsToRun(threadId, runId, submitToolOutputsRunRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AssistantsApi.submitToolOuputsToRun']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * AssistantsApi - factory interface
+ * @export
+ */
+export const AssistantsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AssistantsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Cancels a run that is `in_progress`.
+         * @param {string} threadId The ID of the thread to which this run belongs.
+         * @param {string} runId The ID of the run to cancel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelRun(threadId: string, runId: string, options?: any): AxiosPromise<RunObject> {
+            return localVarFp.cancelRun(threadId, runId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create an assistant with a model and instructions.
+         * @param {CreateAssistantRequest} createAssistantRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createAssistant(createAssistantRequest: CreateAssistantRequest, options?: any): AxiosPromise<AssistantObject> {
+            return localVarFp.createAssistant(createAssistantRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+         * @param {string} assistantId The ID of the assistant for which to create a File. 
+         * @param {CreateAssistantFileRequest} createAssistantFileRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createAssistantFile(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, options?: any): AxiosPromise<AssistantFileObject> {
+            return localVarFp.createAssistantFile(assistantId, createAssistantFileRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create a message.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
+         * @param {CreateMessageRequest} createMessageRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createMessage(threadId: string, createMessageRequest: CreateMessageRequest, options?: any): AxiosPromise<MessageObject> {
+            return localVarFp.createMessage(threadId, createMessageRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create a run.
+         * @param {string} threadId The ID of the thread to run.
+         * @param {CreateRunRequest} createRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createRun(threadId: string, createRunRequest: CreateRunRequest, options?: any): AxiosPromise<RunObject> {
+            return localVarFp.createRun(threadId, createRunRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create a thread.
+         * @param {CreateThreadRequest} [createThreadRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createThread(createThreadRequest?: CreateThreadRequest, options?: any): AxiosPromise<ThreadObject> {
+            return localVarFp.createThread(createThreadRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create a thread and run it in one request.
+         * @param {CreateThreadAndRunRequest} createThreadAndRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createThreadAndRun(createThreadAndRunRequest: CreateThreadAndRunRequest, options?: any): AxiosPromise<RunObject> {
+            return localVarFp.createThreadAndRun(createThreadAndRunRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete an assistant.
+         * @param {string} assistantId The ID of the assistant to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAssistant(assistantId: string, options?: any): AxiosPromise<DeleteAssistantResponse> {
+            return localVarFp.deleteAssistant(assistantId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete an assistant file.
+         * @param {string} assistantId The ID of the assistant that the file belongs to.
+         * @param {string} fileId The ID of the file to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAssistantFile(assistantId: string, fileId: string, options?: any): AxiosPromise<DeleteAssistantFileResponse> {
+            return localVarFp.deleteAssistantFile(assistantId, fileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete a thread.
+         * @param {string} threadId The ID of the thread to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteThread(threadId: string, options?: any): AxiosPromise<DeleteThreadResponse> {
+            return localVarFp.deleteThread(threadId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieves an assistant.
+         * @param {string} assistantId The ID of the assistant to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAssistant(assistantId: string, options?: any): AxiosPromise<AssistantObject> {
+            return localVarFp.getAssistant(assistantId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieves an AssistantFile.
+         * @param {string} assistantId The ID of the assistant who the file belongs to.
+         * @param {string} fileId The ID of the file we\&#39;re getting.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAssistantFile(assistantId: string, fileId: string, options?: any): AxiosPromise<AssistantFileObject> {
+            return localVarFp.getAssistantFile(assistantId, fileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve a message.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
+         * @param {string} messageId The ID of the message to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMessage(threadId: string, messageId: string, options?: any): AxiosPromise<MessageObject> {
+            return localVarFp.getMessage(threadId, messageId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieves a message file.
+         * @param {string} threadId The ID of the thread to which the message and File belong.
+         * @param {string} messageId The ID of the message the file belongs to.
+         * @param {string} fileId The ID of the file being retrieved.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMessageFile(threadId: string, messageId: string, fileId: string, options?: any): AxiosPromise<MessageFileObject> {
+            return localVarFp.getMessageFile(threadId, messageId, fileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieves a run.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) that was run.
+         * @param {string} runId The ID of the run to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRun(threadId: string, runId: string, options?: any): AxiosPromise<RunObject> {
+            return localVarFp.getRun(threadId, runId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieves a run step.
+         * @param {string} threadId The ID of the thread to which the run and run step belongs.
+         * @param {string} runId The ID of the run to which the run step belongs.
+         * @param {string} stepId The ID of the run step to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRunStep(threadId: string, runId: string, stepId: string, options?: any): AxiosPromise<RunStepObject> {
+            return localVarFp.getRunStep(threadId, runId, stepId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieves a thread.
+         * @param {string} threadId The ID of the thread to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getThread(threadId: string, options?: any): AxiosPromise<ThreadObject> {
+            return localVarFp.getThread(threadId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Returns a list of assistant files.
+         * @param {string} assistantId The ID of the assistant the file belongs to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListAssistantFilesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listAssistantFiles(assistantId: string, limit?: number, order?: ListAssistantFilesOrderEnum, after?: string, before?: string, options?: any): AxiosPromise<ListAssistantFilesResponse> {
+            return localVarFp.listAssistantFiles(assistantId, limit, order, after, before, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Returns a list of assistants.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListAssistantsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listAssistants(limit?: number, order?: ListAssistantsOrderEnum, after?: string, before?: string, options?: any): AxiosPromise<ListAssistantsResponse> {
+            return localVarFp.listAssistants(limit, order, after, before, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Returns a list of message files.
+         * @param {string} threadId The ID of the thread that the message and files belong to.
+         * @param {string} messageId The ID of the message that the files belongs to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListMessageFilesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listMessageFiles(threadId: string, messageId: string, limit?: number, order?: ListMessageFilesOrderEnum, after?: string, before?: string, options?: any): AxiosPromise<ListMessageFilesResponse> {
+            return localVarFp.listMessageFiles(threadId, messageId, limit, order, after, before, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Returns a list of messages for a given thread.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) the messages belong to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListMessagesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {string} [runId] Filter messages by the run ID that generated them. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listMessages(threadId: string, limit?: number, order?: ListMessagesOrderEnum, after?: string, before?: string, runId?: string, options?: any): AxiosPromise<ListMessagesResponse> {
+            return localVarFp.listMessages(threadId, limit, order, after, before, runId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Returns a list of run steps belonging to a run.
+         * @param {string} threadId The ID of the thread the run and run steps belong to.
+         * @param {string} runId The ID of the run the run steps belong to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListRunStepsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listRunSteps(threadId: string, runId: string, limit?: number, order?: ListRunStepsOrderEnum, after?: string, before?: string, options?: any): AxiosPromise<ListRunStepsResponse> {
+            return localVarFp.listRunSteps(threadId, runId, limit, order, after, before, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Returns a list of runs belonging to a thread.
+         * @param {string} threadId The ID of the thread the run belongs to.
+         * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+         * @param {ListRunsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+         * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+         * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listRuns(threadId: string, limit?: number, order?: ListRunsOrderEnum, after?: string, before?: string, options?: any): AxiosPromise<ListRunsResponse> {
+            return localVarFp.listRuns(threadId, limit, order, after, before, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Modifies an assistant.
+         * @param {string} assistantId The ID of the assistant to modify.
+         * @param {ModifyAssistantRequest} modifyAssistantRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modifyAssistant(assistantId: string, modifyAssistantRequest: ModifyAssistantRequest, options?: any): AxiosPromise<AssistantObject> {
+            return localVarFp.modifyAssistant(assistantId, modifyAssistantRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Modifies a message.
+         * @param {string} threadId The ID of the thread to which this message belongs.
+         * @param {string} messageId The ID of the message to modify.
+         * @param {ModifyMessageRequest} modifyMessageRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modifyMessage(threadId: string, messageId: string, modifyMessageRequest: ModifyMessageRequest, options?: any): AxiosPromise<MessageObject> {
+            return localVarFp.modifyMessage(threadId, messageId, modifyMessageRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Modifies a run.
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) that was run.
+         * @param {string} runId The ID of the run to modify.
+         * @param {ModifyRunRequest} modifyRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modifyRun(threadId: string, runId: string, modifyRunRequest: ModifyRunRequest, options?: any): AxiosPromise<RunObject> {
+            return localVarFp.modifyRun(threadId, runId, modifyRunRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Modifies a thread.
+         * @param {string} threadId The ID of the thread to modify. Only the &#x60;metadata&#x60; can be modified.
+         * @param {ModifyThreadRequest} modifyThreadRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modifyThread(threadId: string, modifyThreadRequest: ModifyThreadRequest, options?: any): AxiosPromise<ThreadObject> {
+            return localVarFp.modifyThread(threadId, modifyThreadRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they\'re all completed. All outputs must be submitted in a single request. 
+         * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to which this run belongs.
+         * @param {string} runId The ID of the run that requires the tool output submission.
+         * @param {SubmitToolOutputsRunRequest} submitToolOutputsRunRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        submitToolOuputsToRun(threadId: string, runId: string, submitToolOutputsRunRequest: SubmitToolOutputsRunRequest, options?: any): AxiosPromise<RunObject> {
+            return localVarFp.submitToolOuputsToRun(threadId, runId, submitToolOutputsRunRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AssistantsApi - object-oriented interface
+ * @export
+ * @class AssistantsApi
+ * @extends {BaseAPI}
+ */
+export class AssistantsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Cancels a run that is `in_progress`.
+     * @param {string} threadId The ID of the thread to which this run belongs.
+     * @param {string} runId The ID of the run to cancel.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public cancelRun(threadId: string, runId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).cancelRun(threadId, runId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create an assistant with a model and instructions.
+     * @param {CreateAssistantRequest} createAssistantRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public createAssistant(createAssistantRequest: CreateAssistantRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).createAssistant(createAssistantRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+     * @param {string} assistantId The ID of the assistant for which to create a File. 
+     * @param {CreateAssistantFileRequest} createAssistantFileRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public createAssistantFile(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).createAssistantFile(assistantId, createAssistantFileRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create a message.
+     * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
+     * @param {CreateMessageRequest} createMessageRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public createMessage(threadId: string, createMessageRequest: CreateMessageRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).createMessage(threadId, createMessageRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create a run.
+     * @param {string} threadId The ID of the thread to run.
+     * @param {CreateRunRequest} createRunRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public createRun(threadId: string, createRunRequest: CreateRunRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).createRun(threadId, createRunRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create a thread.
+     * @param {CreateThreadRequest} [createThreadRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public createThread(createThreadRequest?: CreateThreadRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).createThread(createThreadRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create a thread and run it in one request.
+     * @param {CreateThreadAndRunRequest} createThreadAndRunRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public createThreadAndRun(createThreadAndRunRequest: CreateThreadAndRunRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).createThreadAndRun(createThreadAndRunRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete an assistant.
+     * @param {string} assistantId The ID of the assistant to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public deleteAssistant(assistantId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).deleteAssistant(assistantId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete an assistant file.
+     * @param {string} assistantId The ID of the assistant that the file belongs to.
+     * @param {string} fileId The ID of the file to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public deleteAssistantFile(assistantId: string, fileId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).deleteAssistantFile(assistantId, fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete a thread.
+     * @param {string} threadId The ID of the thread to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public deleteThread(threadId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).deleteThread(threadId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieves an assistant.
+     * @param {string} assistantId The ID of the assistant to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public getAssistant(assistantId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).getAssistant(assistantId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieves an AssistantFile.
+     * @param {string} assistantId The ID of the assistant who the file belongs to.
+     * @param {string} fileId The ID of the file we\&#39;re getting.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public getAssistantFile(assistantId: string, fileId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).getAssistantFile(assistantId, fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve a message.
+     * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
+     * @param {string} messageId The ID of the message to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public getMessage(threadId: string, messageId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).getMessage(threadId, messageId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieves a message file.
+     * @param {string} threadId The ID of the thread to which the message and File belong.
+     * @param {string} messageId The ID of the message the file belongs to.
+     * @param {string} fileId The ID of the file being retrieved.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public getMessageFile(threadId: string, messageId: string, fileId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).getMessageFile(threadId, messageId, fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieves a run.
+     * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) that was run.
+     * @param {string} runId The ID of the run to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public getRun(threadId: string, runId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).getRun(threadId, runId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieves a run step.
+     * @param {string} threadId The ID of the thread to which the run and run step belongs.
+     * @param {string} runId The ID of the run to which the run step belongs.
+     * @param {string} stepId The ID of the run step to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public getRunStep(threadId: string, runId: string, stepId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).getRunStep(threadId, runId, stepId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieves a thread.
+     * @param {string} threadId The ID of the thread to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public getThread(threadId: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).getThread(threadId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Returns a list of assistant files.
+     * @param {string} assistantId The ID of the assistant the file belongs to.
+     * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param {ListAssistantFilesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public listAssistantFiles(assistantId: string, limit?: number, order?: ListAssistantFilesOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).listAssistantFiles(assistantId, limit, order, after, before, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Returns a list of assistants.
+     * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param {ListAssistantsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public listAssistants(limit?: number, order?: ListAssistantsOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).listAssistants(limit, order, after, before, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Returns a list of message files.
+     * @param {string} threadId The ID of the thread that the message and files belong to.
+     * @param {string} messageId The ID of the message that the files belongs to.
+     * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param {ListMessageFilesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public listMessageFiles(threadId: string, messageId: string, limit?: number, order?: ListMessageFilesOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).listMessageFiles(threadId, messageId, limit, order, after, before, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Returns a list of messages for a given thread.
+     * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) the messages belong to.
+     * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param {ListMessagesOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param {string} [runId] Filter messages by the run ID that generated them. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public listMessages(threadId: string, limit?: number, order?: ListMessagesOrderEnum, after?: string, before?: string, runId?: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).listMessages(threadId, limit, order, after, before, runId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Returns a list of run steps belonging to a run.
+     * @param {string} threadId The ID of the thread the run and run steps belong to.
+     * @param {string} runId The ID of the run the run steps belong to.
+     * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param {ListRunStepsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public listRunSteps(threadId: string, runId: string, limit?: number, order?: ListRunStepsOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).listRunSteps(threadId, runId, limit, order, after, before, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Returns a list of runs belonging to a thread.
+     * @param {string} threadId The ID of the thread the run belongs to.
+     * @param {number} [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param {ListRunsOrderEnum} [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param {string} [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param {string} [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public listRuns(threadId: string, limit?: number, order?: ListRunsOrderEnum, after?: string, before?: string, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).listRuns(threadId, limit, order, after, before, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Modifies an assistant.
+     * @param {string} assistantId The ID of the assistant to modify.
+     * @param {ModifyAssistantRequest} modifyAssistantRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public modifyAssistant(assistantId: string, modifyAssistantRequest: ModifyAssistantRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).modifyAssistant(assistantId, modifyAssistantRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Modifies a message.
+     * @param {string} threadId The ID of the thread to which this message belongs.
+     * @param {string} messageId The ID of the message to modify.
+     * @param {ModifyMessageRequest} modifyMessageRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public modifyMessage(threadId: string, messageId: string, modifyMessageRequest: ModifyMessageRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).modifyMessage(threadId, messageId, modifyMessageRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Modifies a run.
+     * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) that was run.
+     * @param {string} runId The ID of the run to modify.
+     * @param {ModifyRunRequest} modifyRunRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public modifyRun(threadId: string, runId: string, modifyRunRequest: ModifyRunRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).modifyRun(threadId, runId, modifyRunRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Modifies a thread.
+     * @param {string} threadId The ID of the thread to modify. Only the &#x60;metadata&#x60; can be modified.
+     * @param {ModifyThreadRequest} modifyThreadRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public modifyThread(threadId: string, modifyThreadRequest: ModifyThreadRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).modifyThread(threadId, modifyThreadRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they\'re all completed. All outputs must be submitted in a single request. 
+     * @param {string} threadId The ID of the [thread](/docs/api-reference/threads) to which this run belongs.
+     * @param {string} runId The ID of the run that requires the tool output submission.
+     * @param {SubmitToolOutputsRunRequest} submitToolOutputsRunRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssistantsApi
+     */
+    public submitToolOuputsToRun(threadId: string, runId: string, submitToolOutputsRunRequest: SubmitToolOutputsRunRequest, options?: RawAxiosRequestConfig) {
+        return AssistantsApiFp(this.configuration).submitToolOuputsToRun(threadId, runId, submitToolOutputsRunRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const ListAssistantFilesOrderEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ListAssistantFilesOrderEnum = typeof ListAssistantFilesOrderEnum[keyof typeof ListAssistantFilesOrderEnum];
+/**
+ * @export
+ */
+export const ListAssistantsOrderEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ListAssistantsOrderEnum = typeof ListAssistantsOrderEnum[keyof typeof ListAssistantsOrderEnum];
+/**
+ * @export
+ */
+export const ListMessageFilesOrderEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ListMessageFilesOrderEnum = typeof ListMessageFilesOrderEnum[keyof typeof ListMessageFilesOrderEnum];
+/**
+ * @export
+ */
+export const ListMessagesOrderEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ListMessagesOrderEnum = typeof ListMessagesOrderEnum[keyof typeof ListMessagesOrderEnum];
+/**
+ * @export
+ */
+export const ListRunStepsOrderEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ListRunStepsOrderEnum = typeof ListRunStepsOrderEnum[keyof typeof ListRunStepsOrderEnum];
+/**
+ * @export
+ */
+export const ListRunsOrderEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ListRunsOrderEnum = typeof ListRunsOrderEnum[keyof typeof ListRunsOrderEnum];
+
+
+/**
+ * AudioApi - axios parameter creator
+ * @export
+ */
+export const AudioApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Generates audio from the input text.
+         * @param {CreateSpeechRequest} createSpeechRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createSpeech: async (createSpeechRequest: CreateSpeechRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createSpeechRequest' is not null or undefined
+            assertParamExists('createSpeech', 'createSpeechRequest', createSpeechRequest)
+            const localVarPath = `/audio/speech`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createSpeechRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Transcribes audio into the input language.
+         * @param {File} file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
+         * @param {CreateTranscriptionRequestModel} model 
+         * @param {string} [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
+         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
+         * @param {CreateTranscriptionResponseFormatEnum} [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
+         * @param {Array<CreateTranscriptionTimestampGranularitiesEnum>} [timestampGranularities] The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTranscription: async (file: File, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: CreateTranscriptionResponseFormatEnum, temperature?: number, timestampGranularities?: Array<CreateTranscriptionTimestampGranularitiesEnum>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'file' is not null or undefined
+            assertParamExists('createTranscription', 'file', file)
+            // verify required parameter 'model' is not null or undefined
+            assertParamExists('createTranscription', 'model', model)
+            const localVarPath = `/audio/transcriptions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+    
+            if (model !== undefined) { 
+                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
+            }
+    
+            if (language !== undefined) { 
+                localVarFormParams.append('language', language as any);
+            }
+    
+            if (prompt !== undefined) { 
+                localVarFormParams.append('prompt', prompt as any);
+            }
+    
+            if (responseFormat !== undefined) { 
+                localVarFormParams.append('response_format', responseFormat as any);
+            }
+    
+            if (temperature !== undefined) { 
+                localVarFormParams.append('temperature', temperature as any);
+            }
+                if (timestampGranularities) {
+                localVarFormParams.append('timestamp_granularities[]', timestampGranularities.join(COLLECTION_FORMATS.csv));
+            }
+
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Translates audio into English.
+         * @param {File} file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
+         * @param {CreateTranscriptionRequestModel} model 
+         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
+         * @param {string} [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTranslation: async (file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'file' is not null or undefined
+            assertParamExists('createTranslation', 'file', file)
+            // verify required parameter 'model' is not null or undefined
+            assertParamExists('createTranslation', 'model', model)
+            const localVarPath = `/audio/translations`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+    
+            if (model !== undefined) { 
+                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
+            }
+    
+            if (prompt !== undefined) { 
+                localVarFormParams.append('prompt', prompt as any);
+            }
+    
+            if (responseFormat !== undefined) { 
+                localVarFormParams.append('response_format', responseFormat as any);
+            }
+    
+            if (temperature !== undefined) { 
+                localVarFormParams.append('temperature', temperature as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AudioApi - functional programming interface
+ * @export
+ */
+export const AudioApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AudioApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Generates audio from the input text.
+         * @param {CreateSpeechRequest} createSpeechRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createSpeech(createSpeechRequest: CreateSpeechRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<File>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createSpeech(createSpeechRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AudioApi.createSpeech']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Transcribes audio into the input language.
+         * @param {File} file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
+         * @param {CreateTranscriptionRequestModel} model 
+         * @param {string} [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
+         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
+         * @param {CreateTranscriptionResponseFormatEnum} [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
+         * @param {Array<CreateTranscriptionTimestampGranularitiesEnum>} [timestampGranularities] The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createTranscription(file: File, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: CreateTranscriptionResponseFormatEnum, temperature?: number, timestampGranularities?: Array<CreateTranscriptionTimestampGranularitiesEnum>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTranscription200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createTranscription(file, model, language, prompt, responseFormat, temperature, timestampGranularities, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AudioApi.createTranscription']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Translates audio into English.
+         * @param {File} file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
+         * @param {CreateTranscriptionRequestModel} model 
+         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
+         * @param {string} [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createTranslation(file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTranslation200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createTranslation(file, model, prompt, responseFormat, temperature, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AudioApi.createTranslation']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * AudioApi - factory interface
+ * @export
+ */
+export const AudioApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AudioApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Generates audio from the input text.
+         * @param {CreateSpeechRequest} createSpeechRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createSpeech(createSpeechRequest: CreateSpeechRequest, options?: any): AxiosPromise<File> {
+            return localVarFp.createSpeech(createSpeechRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Transcribes audio into the input language.
+         * @param {File} file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
+         * @param {CreateTranscriptionRequestModel} model 
+         * @param {string} [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
+         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
+         * @param {CreateTranscriptionResponseFormatEnum} [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
+         * @param {Array<CreateTranscriptionTimestampGranularitiesEnum>} [timestampGranularities] The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTranscription(file: File, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: CreateTranscriptionResponseFormatEnum, temperature?: number, timestampGranularities?: Array<CreateTranscriptionTimestampGranularitiesEnum>, options?: any): AxiosPromise<CreateTranscription200Response> {
+            return localVarFp.createTranscription(file, model, language, prompt, responseFormat, temperature, timestampGranularities, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Translates audio into English.
+         * @param {File} file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
+         * @param {CreateTranscriptionRequestModel} model 
+         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
+         * @param {string} [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTranslation(file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, options?: any): AxiosPromise<CreateTranslation200Response> {
+            return localVarFp.createTranslation(file, model, prompt, responseFormat, temperature, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AudioApi - object-oriented interface
+ * @export
+ * @class AudioApi
+ * @extends {BaseAPI}
+ */
+export class AudioApi extends BaseAPI {
+    /**
+     * 
+     * @summary Generates audio from the input text.
+     * @param {CreateSpeechRequest} createSpeechRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AudioApi
+     */
+    public createSpeech(createSpeechRequest: CreateSpeechRequest, options?: RawAxiosRequestConfig) {
+        return AudioApiFp(this.configuration).createSpeech(createSpeechRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Transcribes audio into the input language.
+     * @param {File} file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
+     * @param {CreateTranscriptionRequestModel} model 
+     * @param {string} [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
+     * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
+     * @param {CreateTranscriptionResponseFormatEnum} [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+     * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
+     * @param {Array<CreateTranscriptionTimestampGranularitiesEnum>} [timestampGranularities] The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AudioApi
+     */
+    public createTranscription(file: File, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: CreateTranscriptionResponseFormatEnum, temperature?: number, timestampGranularities?: Array<CreateTranscriptionTimestampGranularitiesEnum>, options?: RawAxiosRequestConfig) {
+        return AudioApiFp(this.configuration).createTranscription(file, model, language, prompt, responseFormat, temperature, timestampGranularities, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Translates audio into English.
+     * @param {File} file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
+     * @param {CreateTranscriptionRequestModel} model 
+     * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
+     * @param {string} [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+     * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AudioApi
+     */
+    public createTranslation(file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, options?: RawAxiosRequestConfig) {
+        return AudioApiFp(this.configuration).createTranslation(file, model, prompt, responseFormat, temperature, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const CreateTranscriptionResponseFormatEnum = {
+    Json: 'json',
+    Text: 'text',
+    Srt: 'srt',
+    VerboseJson: 'verbose_json',
+    Vtt: 'vtt'
+} as const;
+export type CreateTranscriptionResponseFormatEnum = typeof CreateTranscriptionResponseFormatEnum[keyof typeof CreateTranscriptionResponseFormatEnum];
+/**
+ * @export
+ */
+export const CreateTranscriptionTimestampGranularitiesEnum = {
+    Word: 'word',
+    Segment: 'segment'
+} as const;
+export type CreateTranscriptionTimestampGranularitiesEnum = typeof CreateTranscriptionTimestampGranularitiesEnum[keyof typeof CreateTranscriptionTimestampGranularitiesEnum];
+
+
+/**
+ * ChatApi - axios parameter creator
+ * @export
+ */
+export const ChatApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
         /**
          * 
          * @summary Creates a model response for the given chat conversation.
@@ -1772,6 +9726,10 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1786,6 +9744,80 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * ChatApi - functional programming interface
+ * @export
+ */
+export const ChatApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ChatApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Creates a model response for the given chat conversation.
+         * @param {CreateChatCompletionRequest} createChatCompletionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createChatCompletion(createChatCompletionRequest: CreateChatCompletionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateChatCompletionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createChatCompletion(createChatCompletionRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ChatApi.createChatCompletion']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ChatApi - factory interface
+ * @export
+ */
+export const ChatApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ChatApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Creates a model response for the given chat conversation.
+         * @param {CreateChatCompletionRequest} createChatCompletionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createChatCompletion(createChatCompletionRequest: CreateChatCompletionRequest, options?: any): AxiosPromise<CreateChatCompletionResponse> {
+            return localVarFp.createChatCompletion(createChatCompletionRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ChatApi - object-oriented interface
+ * @export
+ * @class ChatApi
+ * @extends {BaseAPI}
+ */
+export class ChatApi extends BaseAPI {
+    /**
+     * 
+     * @summary Creates a model response for the given chat conversation.
+     * @param {CreateChatCompletionRequest} createChatCompletionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChatApi
+     */
+    public createChatCompletion(createChatCompletionRequest: CreateChatCompletionRequest, options?: RawAxiosRequestConfig) {
+        return ChatApiFp(this.configuration).createChatCompletion(createChatCompletionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * CompletionsApi - axios parameter creator
+ * @export
+ */
+export const CompletionsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
         /**
          * 
          * @summary Creates a completion for the provided prompt and parameters.
@@ -1808,6 +9840,10 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1822,42 +9858,80 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * CompletionsApi - functional programming interface
+ * @export
+ */
+export const CompletionsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CompletionsApiAxiosParamCreator(configuration)
+    return {
         /**
          * 
-         * @summary Creates a new edit for the provided input, instruction, and parameters.
-         * @param {CreateEditRequest} createEditRequest 
+         * @summary Creates a completion for the provided prompt and parameters.
+         * @param {CreateCompletionRequest} createCompletionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createEdit: async (createEditRequest: CreateEditRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'createEditRequest' is not null or undefined
-            assertParamExists('createEdit', 'createEditRequest', createEditRequest)
-            const localVarPath = `/edits`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createEditRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+        async createCompletion(createCompletionRequest: CreateCompletionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCompletionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createCompletion(createCompletionRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompletionsApi.createCompletion']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+    }
+};
+
+/**
+ * CompletionsApi - factory interface
+ * @export
+ */
+export const CompletionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CompletionsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Creates a completion for the provided prompt and parameters.
+         * @param {CreateCompletionRequest} createCompletionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createCompletion(createCompletionRequest: CreateCompletionRequest, options?: any): AxiosPromise<CreateCompletionResponse> {
+            return localVarFp.createCompletion(createCompletionRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CompletionsApi - object-oriented interface
+ * @export
+ * @class CompletionsApi
+ * @extends {BaseAPI}
+ */
+export class CompletionsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Creates a completion for the provided prompt and parameters.
+     * @param {CreateCompletionRequest} createCompletionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompletionsApi
+     */
+    public createCompletion(createCompletionRequest: CreateCompletionRequest, options?: RawAxiosRequestConfig) {
+        return CompletionsApiFp(this.configuration).createCompletion(createCompletionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * EmbeddingsApi - axios parameter creator
+ * @export
+ */
+export const EmbeddingsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
         /**
          * 
          * @summary Creates an embedding vector representing the input text.
@@ -1880,6 +9954,10 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1894,15 +9972,89 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * EmbeddingsApi - functional programming interface
+ * @export
+ */
+export const EmbeddingsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = EmbeddingsApiAxiosParamCreator(configuration)
+    return {
         /**
          * 
-         * @summary Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
-         * @param {File} file Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.  If the &#x60;purpose&#x60; is set to \\\&quot;fine-tune\\\&quot;, each line is a JSON record with \\\&quot;prompt\\\&quot; and \\\&quot;completion\\\&quot; fields representing your [training examples](/docs/guides/fine-tuning/prepare-training-data). 
-         * @param {string} purpose The intended purpose of the uploaded documents.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tunes). This allows us to validate the format of the uploaded file. 
+         * @summary Creates an embedding vector representing the input text.
+         * @param {CreateEmbeddingRequest} createEmbeddingRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFile: async (file: File, purpose: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        async createEmbedding(createEmbeddingRequest: CreateEmbeddingRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateEmbeddingResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createEmbedding(createEmbeddingRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EmbeddingsApi.createEmbedding']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * EmbeddingsApi - factory interface
+ * @export
+ */
+export const EmbeddingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = EmbeddingsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Creates an embedding vector representing the input text.
+         * @param {CreateEmbeddingRequest} createEmbeddingRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createEmbedding(createEmbeddingRequest: CreateEmbeddingRequest, options?: any): AxiosPromise<CreateEmbeddingResponse> {
+            return localVarFp.createEmbedding(createEmbeddingRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * EmbeddingsApi - object-oriented interface
+ * @export
+ * @class EmbeddingsApi
+ * @extends {BaseAPI}
+ */
+export class EmbeddingsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Creates an embedding vector representing the input text.
+     * @param {CreateEmbeddingRequest} createEmbeddingRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EmbeddingsApi
+     */
+    public createEmbedding(createEmbeddingRequest: CreateEmbeddingRequest, options?: RawAxiosRequestConfig) {
+        return EmbeddingsApiFp(this.configuration).createEmbedding(createEmbeddingRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * FilesApi - axios parameter creator
+ * @export
+ */
+export const FilesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+         * @param {File} file The File object (not file name) to be uploaded. 
+         * @param {CreateFilePurposeEnum} purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createFile: async (file: File, purpose: CreateFilePurposeEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'file' is not null or undefined
             assertParamExists('createFile', 'file', file)
             // verify required parameter 'purpose' is not null or undefined
@@ -1919,6 +10071,10 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
             if (file !== undefined) { 
@@ -1944,15 +10100,394 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @summary Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-         * @param {CreateFineTuneRequest} createFineTuneRequest 
+         * @summary Delete a file.
+         * @param {string} fileId The ID of the file to use for this request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFineTune: async (createFineTuneRequest: CreateFineTuneRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'createFineTuneRequest' is not null or undefined
-            assertParamExists('createFineTune', 'createFineTuneRequest', createFineTuneRequest)
-            const localVarPath = `/fine-tunes`;
+        deleteFile: async (fileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fileId' is not null or undefined
+            assertParamExists('deleteFile', 'fileId', fileId)
+            const localVarPath = `/files/{file_id}`
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Returns the contents of the specified file.
+         * @param {string} fileId The ID of the file to use for this request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadFile: async (fileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fileId' is not null or undefined
+            assertParamExists('downloadFile', 'fileId', fileId)
+            const localVarPath = `/files/{file_id}/content`
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Returns a list of files that belong to the user\'s organization.
+         * @param {string} [purpose] Only return files with the given purpose.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listFiles: async (purpose?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/files`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (purpose !== undefined) {
+                localVarQueryParameter['purpose'] = purpose;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Returns information about a specific file.
+         * @param {string} fileId The ID of the file to use for this request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveFile: async (fileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fileId' is not null or undefined
+            assertParamExists('retrieveFile', 'fileId', fileId)
+            const localVarPath = `/files/{file_id}`
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * FilesApi - functional programming interface
+ * @export
+ */
+export const FilesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = FilesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+         * @param {File} file The File object (not file name) to be uploaded. 
+         * @param {CreateFilePurposeEnum} purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createFile(file: File, purpose: CreateFilePurposeEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenAIFile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createFile(file, purpose, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FilesApi.createFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete a file.
+         * @param {string} fileId The ID of the file to use for this request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteFile(fileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteFileResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteFile(fileId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FilesApi.deleteFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Returns the contents of the specified file.
+         * @param {string} fileId The ID of the file to use for this request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async downloadFile(fileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.downloadFile(fileId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FilesApi.downloadFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Returns a list of files that belong to the user\'s organization.
+         * @param {string} [purpose] Only return files with the given purpose.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listFiles(purpose?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListFilesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listFiles(purpose, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FilesApi.listFiles']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Returns information about a specific file.
+         * @param {string} fileId The ID of the file to use for this request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveFile(fileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenAIFile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveFile(fileId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FilesApi.retrieveFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * FilesApi - factory interface
+ * @export
+ */
+export const FilesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = FilesApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+         * @param {File} file The File object (not file name) to be uploaded. 
+         * @param {CreateFilePurposeEnum} purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createFile(file: File, purpose: CreateFilePurposeEnum, options?: any): AxiosPromise<OpenAIFile> {
+            return localVarFp.createFile(file, purpose, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete a file.
+         * @param {string} fileId The ID of the file to use for this request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteFile(fileId: string, options?: any): AxiosPromise<DeleteFileResponse> {
+            return localVarFp.deleteFile(fileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Returns the contents of the specified file.
+         * @param {string} fileId The ID of the file to use for this request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadFile(fileId: string, options?: any): AxiosPromise<string> {
+            return localVarFp.downloadFile(fileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Returns a list of files that belong to the user\'s organization.
+         * @param {string} [purpose] Only return files with the given purpose.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listFiles(purpose?: string, options?: any): AxiosPromise<ListFilesResponse> {
+            return localVarFp.listFiles(purpose, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Returns information about a specific file.
+         * @param {string} fileId The ID of the file to use for this request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveFile(fileId: string, options?: any): AxiosPromise<OpenAIFile> {
+            return localVarFp.retrieveFile(fileId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * FilesApi - object-oriented interface
+ * @export
+ * @class FilesApi
+ * @extends {BaseAPI}
+ */
+export class FilesApi extends BaseAPI {
+    /**
+     * 
+     * @summary Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * @param {File} file The File object (not file name) to be uploaded. 
+     * @param {CreateFilePurposeEnum} purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FilesApi
+     */
+    public createFile(file: File, purpose: CreateFilePurposeEnum, options?: RawAxiosRequestConfig) {
+        return FilesApiFp(this.configuration).createFile(file, purpose, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete a file.
+     * @param {string} fileId The ID of the file to use for this request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FilesApi
+     */
+    public deleteFile(fileId: string, options?: RawAxiosRequestConfig) {
+        return FilesApiFp(this.configuration).deleteFile(fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Returns the contents of the specified file.
+     * @param {string} fileId The ID of the file to use for this request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FilesApi
+     */
+    public downloadFile(fileId: string, options?: RawAxiosRequestConfig) {
+        return FilesApiFp(this.configuration).downloadFile(fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Returns a list of files that belong to the user\'s organization.
+     * @param {string} [purpose] Only return files with the given purpose.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FilesApi
+     */
+    public listFiles(purpose?: string, options?: RawAxiosRequestConfig) {
+        return FilesApiFp(this.configuration).listFiles(purpose, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Returns information about a specific file.
+     * @param {string} fileId The ID of the file to use for this request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FilesApi
+     */
+    public retrieveFile(fileId: string, options?: RawAxiosRequestConfig) {
+        return FilesApiFp(this.configuration).retrieveFile(fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const CreateFilePurposeEnum = {
+    FineTune: 'fine-tune',
+    Assistants: 'assistants'
+} as const;
+export type CreateFilePurposeEnum = typeof CreateFilePurposeEnum[keyof typeof CreateFilePurposeEnum];
+
+
+/**
+ * FineTuningApi - axios parameter creator
+ * @export
+ */
+export const FineTuningApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Immediately cancel a fine-tune job. 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job to cancel. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelFineTuningJob: async (fineTuningJobId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fineTuningJobId' is not null or undefined
+            assertParamExists('cancelFineTuningJob', 'fineTuningJobId', fineTuningJobId)
+            const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}/cancel`
+                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1964,6 +10499,47 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+         * @param {CreateFineTuningJobRequest} createFineTuningJobRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createFineTuningJob: async (createFineTuningJobRequest: CreateFineTuningJobRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createFineTuningJobRequest' is not null or undefined
+            assertParamExists('createFineTuningJob', 'createFineTuningJobRequest', createFineTuningJobRequest)
+            const localVarPath = `/fine_tuning/jobs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1971,13 +10547,455 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createFineTuneRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createFineTuningJobRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Get status updates for a fine-tuning job. 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job to get events for. 
+         * @param {string} [after] Identifier for the last event from the previous pagination request.
+         * @param {number} [limit] Number of events to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listFineTuningEvents: async (fineTuningJobId: string, after?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fineTuningJobId' is not null or undefined
+            assertParamExists('listFineTuningEvents', 'fineTuningJobId', fineTuningJobId)
+            const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}/events`
+                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (after !== undefined) {
+                localVarQueryParameter['after'] = after;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List checkpoints for a fine-tuning job. 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job to get checkpoints for. 
+         * @param {string} [after] Identifier for the last checkpoint ID from the previous pagination request.
+         * @param {number} [limit] Number of checkpoints to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listFineTuningJobCheckpoints: async (fineTuningJobId: string, after?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fineTuningJobId' is not null or undefined
+            assertParamExists('listFineTuningJobCheckpoints', 'fineTuningJobId', fineTuningJobId)
+            const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints`
+                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (after !== undefined) {
+                localVarQueryParameter['after'] = after;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List your organization\'s fine-tuning jobs 
+         * @param {string} [after] Identifier for the last job from the previous pagination request.
+         * @param {number} [limit] Number of fine-tuning jobs to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listPaginatedFineTuningJobs: async (after?: string, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/fine_tuning/jobs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (after !== undefined) {
+                localVarQueryParameter['after'] = after;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveFineTuningJob: async (fineTuningJobId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fineTuningJobId' is not null or undefined
+            assertParamExists('retrieveFineTuningJob', 'fineTuningJobId', fineTuningJobId)
+            const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}`
+                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * FineTuningApi - functional programming interface
+ * @export
+ */
+export const FineTuningApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = FineTuningApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Immediately cancel a fine-tune job. 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job to cancel. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cancelFineTuningJob(fineTuningJobId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FineTuningJob>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelFineTuningJob(fineTuningJobId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FineTuningApi.cancelFineTuningJob']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+         * @param {CreateFineTuningJobRequest} createFineTuningJobRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createFineTuningJob(createFineTuningJobRequest: CreateFineTuningJobRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FineTuningJob>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createFineTuningJob(createFineTuningJobRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FineTuningApi.createFineTuningJob']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get status updates for a fine-tuning job. 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job to get events for. 
+         * @param {string} [after] Identifier for the last event from the previous pagination request.
+         * @param {number} [limit] Number of events to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listFineTuningEvents(fineTuningJobId: string, after?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListFineTuningJobEventsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listFineTuningEvents(fineTuningJobId, after, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FineTuningApi.listFineTuningEvents']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary List checkpoints for a fine-tuning job. 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job to get checkpoints for. 
+         * @param {string} [after] Identifier for the last checkpoint ID from the previous pagination request.
+         * @param {number} [limit] Number of checkpoints to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listFineTuningJobCheckpoints(fineTuningJobId: string, after?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListFineTuningJobCheckpointsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listFineTuningJobCheckpoints(fineTuningJobId, after, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FineTuningApi.listFineTuningJobCheckpoints']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary List your organization\'s fine-tuning jobs 
+         * @param {string} [after] Identifier for the last job from the previous pagination request.
+         * @param {number} [limit] Number of fine-tuning jobs to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listPaginatedFineTuningJobs(after?: string, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListPaginatedFineTuningJobsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listPaginatedFineTuningJobs(after, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FineTuningApi.listPaginatedFineTuningJobs']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveFineTuningJob(fineTuningJobId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FineTuningJob>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveFineTuningJob(fineTuningJobId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FineTuningApi.retrieveFineTuningJob']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * FineTuningApi - factory interface
+ * @export
+ */
+export const FineTuningApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = FineTuningApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Immediately cancel a fine-tune job. 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job to cancel. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelFineTuningJob(fineTuningJobId: string, options?: any): AxiosPromise<FineTuningJob> {
+            return localVarFp.cancelFineTuningJob(fineTuningJobId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+         * @param {CreateFineTuningJobRequest} createFineTuningJobRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createFineTuningJob(createFineTuningJobRequest: CreateFineTuningJobRequest, options?: any): AxiosPromise<FineTuningJob> {
+            return localVarFp.createFineTuningJob(createFineTuningJobRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get status updates for a fine-tuning job. 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job to get events for. 
+         * @param {string} [after] Identifier for the last event from the previous pagination request.
+         * @param {number} [limit] Number of events to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listFineTuningEvents(fineTuningJobId: string, after?: string, limit?: number, options?: any): AxiosPromise<ListFineTuningJobEventsResponse> {
+            return localVarFp.listFineTuningEvents(fineTuningJobId, after, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List checkpoints for a fine-tuning job. 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job to get checkpoints for. 
+         * @param {string} [after] Identifier for the last checkpoint ID from the previous pagination request.
+         * @param {number} [limit] Number of checkpoints to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listFineTuningJobCheckpoints(fineTuningJobId: string, after?: string, limit?: number, options?: any): AxiosPromise<ListFineTuningJobCheckpointsResponse> {
+            return localVarFp.listFineTuningJobCheckpoints(fineTuningJobId, after, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List your organization\'s fine-tuning jobs 
+         * @param {string} [after] Identifier for the last job from the previous pagination request.
+         * @param {number} [limit] Number of fine-tuning jobs to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listPaginatedFineTuningJobs(after?: string, limit?: number, options?: any): AxiosPromise<ListPaginatedFineTuningJobsResponse> {
+            return localVarFp.listPaginatedFineTuningJobs(after, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+         * @param {string} fineTuningJobId The ID of the fine-tuning job. 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveFineTuningJob(fineTuningJobId: string, options?: any): AxiosPromise<FineTuningJob> {
+            return localVarFp.retrieveFineTuningJob(fineTuningJobId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * FineTuningApi - object-oriented interface
+ * @export
+ * @class FineTuningApi
+ * @extends {BaseAPI}
+ */
+export class FineTuningApi extends BaseAPI {
+    /**
+     * 
+     * @summary Immediately cancel a fine-tune job. 
+     * @param {string} fineTuningJobId The ID of the fine-tuning job to cancel. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FineTuningApi
+     */
+    public cancelFineTuningJob(fineTuningJobId: string, options?: RawAxiosRequestConfig) {
+        return FineTuningApiFp(this.configuration).cancelFineTuningJob(fineTuningJobId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+     * @param {CreateFineTuningJobRequest} createFineTuningJobRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FineTuningApi
+     */
+    public createFineTuningJob(createFineTuningJobRequest: CreateFineTuningJobRequest, options?: RawAxiosRequestConfig) {
+        return FineTuningApiFp(this.configuration).createFineTuningJob(createFineTuningJobRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get status updates for a fine-tuning job. 
+     * @param {string} fineTuningJobId The ID of the fine-tuning job to get events for. 
+     * @param {string} [after] Identifier for the last event from the previous pagination request.
+     * @param {number} [limit] Number of events to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FineTuningApi
+     */
+    public listFineTuningEvents(fineTuningJobId: string, after?: string, limit?: number, options?: RawAxiosRequestConfig) {
+        return FineTuningApiFp(this.configuration).listFineTuningEvents(fineTuningJobId, after, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List checkpoints for a fine-tuning job. 
+     * @param {string} fineTuningJobId The ID of the fine-tuning job to get checkpoints for. 
+     * @param {string} [after] Identifier for the last checkpoint ID from the previous pagination request.
+     * @param {number} [limit] Number of checkpoints to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FineTuningApi
+     */
+    public listFineTuningJobCheckpoints(fineTuningJobId: string, after?: string, limit?: number, options?: RawAxiosRequestConfig) {
+        return FineTuningApiFp(this.configuration).listFineTuningJobCheckpoints(fineTuningJobId, after, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List your organization\'s fine-tuning jobs 
+     * @param {string} [after] Identifier for the last job from the previous pagination request.
+     * @param {number} [limit] Number of fine-tuning jobs to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FineTuningApi
+     */
+    public listPaginatedFineTuningJobs(after?: string, limit?: number, options?: RawAxiosRequestConfig) {
+        return FineTuningApiFp(this.configuration).listPaginatedFineTuningJobs(after, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+     * @param {string} fineTuningJobId The ID of the fine-tuning job. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FineTuningApi
+     */
+    public retrieveFineTuningJob(fineTuningJobId: string, options?: RawAxiosRequestConfig) {
+        return FineTuningApiFp(this.configuration).retrieveFineTuningJob(fineTuningJobId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * ImagesApi - axios parameter creator
+ * @export
+ */
+export const ImagesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
         /**
          * 
          * @summary Creates an image given a prompt.
@@ -2000,6 +11018,10 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -2020,14 +11042,15 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {File} image The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
          * @param {string} prompt A text description of the desired image(s). The maximum length is 1000 characters.
          * @param {File} [mask] An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;.
+         * @param {CreateImageEditRequestModel | null} [model] 
          * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
          * @param {CreateImageEditSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-         * @param {CreateImageEditResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
+         * @param {CreateImageEditResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
          * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createImageEdit: async (image: File, prompt: string, mask?: File, n?: number | null, size?: CreateImageEditSizeEnum, responseFormat?: CreateImageEditResponseFormatEnum, user?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createImageEdit: async (image: File, prompt: string, mask?: File, model?: CreateImageEditRequestModel | null, n?: number | null, size?: CreateImageEditSizeEnum, responseFormat?: CreateImageEditResponseFormatEnum, user?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'image' is not null or undefined
             assertParamExists('createImageEdit', 'image', image)
             // verify required parameter 'prompt' is not null or undefined
@@ -2045,17 +11068,25 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
             if (image !== undefined) { 
                 localVarFormParams.append('image', image as any);
+            }
+    
+            if (prompt !== undefined) { 
+                localVarFormParams.append('prompt', prompt as any);
             }
     
             if (mask !== undefined) { 
                 localVarFormParams.append('mask', mask as any);
             }
     
-            if (prompt !== undefined) { 
-                localVarFormParams.append('prompt', prompt as any);
+            if (model !== undefined) { 
+                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
             }
     
             if (n !== undefined) { 
@@ -2091,14 +11122,15 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
          * 
          * @summary Creates a variation of a given image.
          * @param {File} image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
-         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
+         * @param {CreateImageEditRequestModel | null} [model] 
+         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.
+         * @param {CreateImageVariationResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
          * @param {CreateImageVariationSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-         * @param {CreateImageVariationResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
          * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createImageVariation: async (image: File, n?: number | null, size?: CreateImageVariationSizeEnum, responseFormat?: CreateImageVariationResponseFormatEnum, user?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createImageVariation: async (image: File, model?: CreateImageEditRequestModel | null, n?: number | null, responseFormat?: CreateImageVariationResponseFormatEnum, size?: CreateImageVariationSizeEnum, user?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'image' is not null or undefined
             assertParamExists('createImageVariation', 'image', image)
             const localVarPath = `/images/variations`;
@@ -2114,21 +11146,29 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
             if (image !== undefined) { 
                 localVarFormParams.append('image', image as any);
+            }
+    
+            if (model !== undefined) { 
+                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
             }
     
             if (n !== undefined) { 
                 localVarFormParams.append('n', n as any);
             }
     
-            if (size !== undefined) { 
-                localVarFormParams.append('size', size as any);
-            }
-    
             if (responseFormat !== undefined) { 
                 localVarFormParams.append('response_format', responseFormat as any);
+            }
+    
+            if (size !== undefined) { 
+                localVarFormParams.append('size', size as any);
             }
     
             if (user !== undefined) { 
@@ -2148,210 +11188,223 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * ImagesApi - functional programming interface
+ * @export
+ */
+export const ImagesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ImagesApiAxiosParamCreator(configuration)
+    return {
         /**
          * 
-         * @summary Classifies if text violates OpenAI\'s Content Policy
-         * @param {CreateModerationRequest} createModerationRequest 
+         * @summary Creates an image given a prompt.
+         * @param {CreateImageRequest} createImageRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createModeration: async (createModerationRequest: CreateModerationRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'createModerationRequest' is not null or undefined
-            assertParamExists('createModeration', 'createModerationRequest', createModerationRequest)
-            const localVarPath = `/moderations`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createModerationRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+        async createImage(createImageRequest: CreateImageRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImagesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createImage(createImageRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ImagesApi.createImage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Transcribes audio into the input language.
-         * @param {File} file The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. 
-         * @param {CreateTranscriptionRequestModel} model 
-         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
-         * @param {string} [responseFormat] The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. 
-         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
-         * @param {string} [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
+         * @summary Creates an edited or extended image given an original image and a prompt.
+         * @param {File} image The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
+         * @param {string} prompt A text description of the desired image(s). The maximum length is 1000 characters.
+         * @param {File} [mask] An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;.
+         * @param {CreateImageEditRequestModel | null} [model] 
+         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
+         * @param {CreateImageEditSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
+         * @param {CreateImageEditResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
+         * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createTranscription: async (file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, language?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('createTranscription', 'file', file)
-            // verify required parameter 'model' is not null or undefined
-            assertParamExists('createTranscription', 'model', model)
-            const localVarPath = `/audio/transcriptions`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
-    
-            if (model !== undefined) { 
-                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
-            }
-    
-            if (prompt !== undefined) { 
-                localVarFormParams.append('prompt', prompt as any);
-            }
-    
-            if (responseFormat !== undefined) { 
-                localVarFormParams.append('response_format', responseFormat as any);
-            }
-    
-            if (temperature !== undefined) { 
-                localVarFormParams.append('temperature', temperature as any);
-            }
-    
-            if (language !== undefined) { 
-                localVarFormParams.append('language', language as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+        async createImageEdit(image: File, prompt: string, mask?: File, model?: CreateImageEditRequestModel | null, n?: number | null, size?: CreateImageEditSizeEnum, responseFormat?: CreateImageEditResponseFormatEnum, user?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImagesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createImageEdit(image, prompt, mask, model, n, size, responseFormat, user, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ImagesApi.createImageEdit']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Translates audio into English.
-         * @param {File} file The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. 
-         * @param {CreateTranscriptionRequestModel} model 
-         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
-         * @param {string} [responseFormat] The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. 
-         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
+         * @summary Creates a variation of a given image.
+         * @param {File} image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
+         * @param {CreateImageEditRequestModel | null} [model] 
+         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.
+         * @param {CreateImageVariationResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
+         * @param {CreateImageVariationSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
+         * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createTranslation: async (file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('createTranslation', 'file', file)
-            // verify required parameter 'model' is not null or undefined
-            assertParamExists('createTranslation', 'model', model)
-            const localVarPath = `/audio/translations`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
-    
-            if (model !== undefined) { 
-                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
-            }
-    
-            if (prompt !== undefined) { 
-                localVarFormParams.append('prompt', prompt as any);
-            }
-    
-            if (responseFormat !== undefined) { 
-                localVarFormParams.append('response_format', responseFormat as any);
-            }
-    
-            if (temperature !== undefined) { 
-                localVarFormParams.append('temperature', temperature as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+        async createImageVariation(image: File, model?: CreateImageEditRequestModel | null, n?: number | null, responseFormat?: CreateImageVariationResponseFormatEnum, size?: CreateImageVariationSizeEnum, user?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImagesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createImageVariation(image, model, n, responseFormat, size, user, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ImagesApi.createImageVariation']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+    }
+};
+
+/**
+ * ImagesApi - factory interface
+ * @export
+ */
+export const ImagesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ImagesApiFp(configuration)
+    return {
         /**
          * 
-         * @summary Delete a file.
-         * @param {string} fileId The ID of the file to use for this request
+         * @summary Creates an image given a prompt.
+         * @param {CreateImageRequest} createImageRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFile: async (fileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'fileId' is not null or undefined
-            assertParamExists('deleteFile', 'fileId', fileId)
-            const localVarPath = `/files/{file_id}`
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+        createImage(createImageRequest: CreateImageRequest, options?: any): AxiosPromise<ImagesResponse> {
+            return localVarFp.createImage(createImageRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Delete a fine-tuned model. You must have the Owner role in your organization.
+         * @summary Creates an edited or extended image given an original image and a prompt.
+         * @param {File} image The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
+         * @param {string} prompt A text description of the desired image(s). The maximum length is 1000 characters.
+         * @param {File} [mask] An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;.
+         * @param {CreateImageEditRequestModel | null} [model] 
+         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
+         * @param {CreateImageEditSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
+         * @param {CreateImageEditResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
+         * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createImageEdit(image: File, prompt: string, mask?: File, model?: CreateImageEditRequestModel | null, n?: number | null, size?: CreateImageEditSizeEnum, responseFormat?: CreateImageEditResponseFormatEnum, user?: string, options?: any): AxiosPromise<ImagesResponse> {
+            return localVarFp.createImageEdit(image, prompt, mask, model, n, size, responseFormat, user, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Creates a variation of a given image.
+         * @param {File} image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
+         * @param {CreateImageEditRequestModel | null} [model] 
+         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.
+         * @param {CreateImageVariationResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
+         * @param {CreateImageVariationSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
+         * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createImageVariation(image: File, model?: CreateImageEditRequestModel | null, n?: number | null, responseFormat?: CreateImageVariationResponseFormatEnum, size?: CreateImageVariationSizeEnum, user?: string, options?: any): AxiosPromise<ImagesResponse> {
+            return localVarFp.createImageVariation(image, model, n, responseFormat, size, user, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ImagesApi - object-oriented interface
+ * @export
+ * @class ImagesApi
+ * @extends {BaseAPI}
+ */
+export class ImagesApi extends BaseAPI {
+    /**
+     * 
+     * @summary Creates an image given a prompt.
+     * @param {CreateImageRequest} createImageRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ImagesApi
+     */
+    public createImage(createImageRequest: CreateImageRequest, options?: RawAxiosRequestConfig) {
+        return ImagesApiFp(this.configuration).createImage(createImageRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Creates an edited or extended image given an original image and a prompt.
+     * @param {File} image The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
+     * @param {string} prompt A text description of the desired image(s). The maximum length is 1000 characters.
+     * @param {File} [mask] An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;.
+     * @param {CreateImageEditRequestModel | null} [model] 
+     * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
+     * @param {CreateImageEditSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
+     * @param {CreateImageEditResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
+     * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ImagesApi
+     */
+    public createImageEdit(image: File, prompt: string, mask?: File, model?: CreateImageEditRequestModel | null, n?: number | null, size?: CreateImageEditSizeEnum, responseFormat?: CreateImageEditResponseFormatEnum, user?: string, options?: RawAxiosRequestConfig) {
+        return ImagesApiFp(this.configuration).createImageEdit(image, prompt, mask, model, n, size, responseFormat, user, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Creates a variation of a given image.
+     * @param {File} image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
+     * @param {CreateImageEditRequestModel | null} [model] 
+     * @param {number | null} [n] The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.
+     * @param {CreateImageVariationResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
+     * @param {CreateImageVariationSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
+     * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ImagesApi
+     */
+    public createImageVariation(image: File, model?: CreateImageEditRequestModel | null, n?: number | null, responseFormat?: CreateImageVariationResponseFormatEnum, size?: CreateImageVariationSizeEnum, user?: string, options?: RawAxiosRequestConfig) {
+        return ImagesApiFp(this.configuration).createImageVariation(image, model, n, responseFormat, size, user, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const CreateImageEditSizeEnum = {
+    _256x256: '256x256',
+    _512x512: '512x512',
+    _1024x1024: '1024x1024'
+} as const;
+export type CreateImageEditSizeEnum = typeof CreateImageEditSizeEnum[keyof typeof CreateImageEditSizeEnum];
+/**
+ * @export
+ */
+export const CreateImageEditResponseFormatEnum = {
+    Url: 'url',
+    B64Json: 'b64_json'
+} as const;
+export type CreateImageEditResponseFormatEnum = typeof CreateImageEditResponseFormatEnum[keyof typeof CreateImageEditResponseFormatEnum];
+/**
+ * @export
+ */
+export const CreateImageVariationResponseFormatEnum = {
+    Url: 'url',
+    B64Json: 'b64_json'
+} as const;
+export type CreateImageVariationResponseFormatEnum = typeof CreateImageVariationResponseFormatEnum[keyof typeof CreateImageVariationResponseFormatEnum];
+/**
+ * @export
+ */
+export const CreateImageVariationSizeEnum = {
+    _256x256: '256x256',
+    _512x512: '512x512',
+    _1024x1024: '1024x1024'
+} as const;
+export type CreateImageVariationSizeEnum = typeof CreateImageVariationSizeEnum[keyof typeof CreateImageVariationSizeEnum];
+
+
+/**
+ * ModelsApi - axios parameter creator
+ * @export
+ */
+export const ModelsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
          * @param {string} model The model to delete
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2372,138 +11425,9 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Returns the contents of the specified file
-         * @param {string} fileId The ID of the file to use for this request
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        downloadFile: async (fileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'fileId' is not null or undefined
-            assertParamExists('downloadFile', 'fileId', fileId)
-            const localVarPath = `/files/{file_id}/content`
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Returns a list of files that belong to the user\'s organization.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listFiles: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/files`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get fine-grained status updates for a fine-tune job. 
-         * @param {string} fineTuneId The ID of the fine-tune job to get events for. 
-         * @param {boolean} [stream] Whether to stream events for the fine-tune job. If set to true, events will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available. The stream will terminate with a &#x60;data: [DONE]&#x60; message when the job is finished (succeeded, cancelled, or failed).  If set to false, only events generated so far will be returned. 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listFineTuneEvents: async (fineTuneId: string, stream?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'fineTuneId' is not null or undefined
-            assertParamExists('listFineTuneEvents', 'fineTuneId', fineTuneId)
-            const localVarPath = `/fine-tunes/{fine_tune_id}/events`
-                .replace(`{${"fine_tune_id"}}`, encodeURIComponent(String(fineTuneId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (stream !== undefined) {
-                localVarQueryParameter['stream'] = stream;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary List your organization\'s fine-tuning jobs 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listFineTunes: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/fine-tunes`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -2535,73 +11459,9 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Returns information about a specific file.
-         * @param {string} fileId The ID of the file to use for this request
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        retrieveFile: async (fileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'fileId' is not null or undefined
-            assertParamExists('retrieveFile', 'fileId', fileId)
-            const localVarPath = `/files/{file_id}`
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-         * @param {string} fineTuneId The ID of the fine-tune job 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        retrieveFineTune: async (fineTuneId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'fineTuneId' is not null or undefined
-            assertParamExists('retrieveFineTune', 'fineTuneId', fineTuneId)
-            const localVarPath = `/fine-tunes/{fine_tune_id}`
-                .replace(`{${"fine_tune_id"}}`, encodeURIComponent(String(fineTuneId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -2637,6 +11497,10 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2652,217 +11516,15 @@ export const OpenAIApiAxiosParamCreator = function (configuration?: Configuratio
 };
 
 /**
- * OpenAIApi - functional programming interface
+ * ModelsApi - functional programming interface
  * @export
  */
-export const OpenAIApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = OpenAIApiAxiosParamCreator(configuration)
+export const ModelsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ModelsApiAxiosParamCreator(configuration)
     return {
         /**
          * 
-         * @summary Immediately cancel a fine-tune job. 
-         * @param {string} fineTuneId The ID of the fine-tune job to cancel 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async cancelFineTune(fineTuneId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FineTune>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelFineTune(fineTuneId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.cancelFineTune']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Creates a model response for the given chat conversation.
-         * @param {CreateChatCompletionRequest} createChatCompletionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createChatCompletion(createChatCompletionRequest: CreateChatCompletionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateChatCompletionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createChatCompletion(createChatCompletionRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createChatCompletion']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Creates a completion for the provided prompt and parameters.
-         * @param {CreateCompletionRequest} createCompletionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createCompletion(createCompletionRequest: CreateCompletionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCompletionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createCompletion(createCompletionRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createCompletion']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Creates a new edit for the provided input, instruction, and parameters.
-         * @param {CreateEditRequest} createEditRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createEdit(createEditRequest: CreateEditRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateEditResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createEdit(createEditRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createEdit']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Creates an embedding vector representing the input text.
-         * @param {CreateEmbeddingRequest} createEmbeddingRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createEmbedding(createEmbeddingRequest: CreateEmbeddingRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateEmbeddingResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createEmbedding(createEmbeddingRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createEmbedding']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
-         * @param {File} file Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.  If the &#x60;purpose&#x60; is set to \\\&quot;fine-tune\\\&quot;, each line is a JSON record with \\\&quot;prompt\\\&quot; and \\\&quot;completion\\\&quot; fields representing your [training examples](/docs/guides/fine-tuning/prepare-training-data). 
-         * @param {string} purpose The intended purpose of the uploaded documents.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tunes). This allows us to validate the format of the uploaded file. 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createFile(file: File, purpose: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenAIFile>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createFile(file, purpose, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createFile']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-         * @param {CreateFineTuneRequest} createFineTuneRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createFineTune(createFineTuneRequest: CreateFineTuneRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FineTune>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createFineTune(createFineTuneRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createFineTune']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Creates an image given a prompt.
-         * @param {CreateImageRequest} createImageRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createImage(createImageRequest: CreateImageRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImagesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createImage(createImageRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createImage']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Creates an edited or extended image given an original image and a prompt.
-         * @param {File} image The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
-         * @param {string} prompt A text description of the desired image(s). The maximum length is 1000 characters.
-         * @param {File} [mask] An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;.
-         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
-         * @param {CreateImageEditSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-         * @param {CreateImageEditResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
-         * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createImageEdit(image: File, prompt: string, mask?: File, n?: number | null, size?: CreateImageEditSizeEnum, responseFormat?: CreateImageEditResponseFormatEnum, user?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImagesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createImageEdit(image, prompt, mask, n, size, responseFormat, user, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createImageEdit']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Creates a variation of a given image.
-         * @param {File} image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
-         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
-         * @param {CreateImageVariationSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-         * @param {CreateImageVariationResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
-         * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createImageVariation(image: File, n?: number | null, size?: CreateImageVariationSizeEnum, responseFormat?: CreateImageVariationResponseFormatEnum, user?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImagesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createImageVariation(image, n, size, responseFormat, user, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createImageVariation']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Classifies if text violates OpenAI\'s Content Policy
-         * @param {CreateModerationRequest} createModerationRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createModeration(createModerationRequest: CreateModerationRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateModerationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createModeration(createModerationRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createModeration']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Transcribes audio into the input language.
-         * @param {File} file The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. 
-         * @param {CreateTranscriptionRequestModel} model 
-         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
-         * @param {string} [responseFormat] The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. 
-         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
-         * @param {string} [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createTranscription(file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, language?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTranscriptionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createTranscription(file, model, prompt, responseFormat, temperature, language, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createTranscription']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Translates audio into English.
-         * @param {File} file The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. 
-         * @param {CreateTranscriptionRequestModel} model 
-         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
-         * @param {string} [responseFormat] The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. 
-         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createTranslation(file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTranslationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createTranslation(file, model, prompt, responseFormat, temperature, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.createTranslation']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Delete a file.
-         * @param {string} fileId The ID of the file to use for this request
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async deleteFile(fileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteFileResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteFile(fileId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.deleteFile']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Delete a fine-tuned model. You must have the Owner role in your organization.
+         * @summary Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
          * @param {string} model The model to delete
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2870,58 +11532,7 @@ export const OpenAIApiFp = function(configuration?: Configuration) {
         async deleteModel(model: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteModelResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteModel(model, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.deleteModel']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Returns the contents of the specified file
-         * @param {string} fileId The ID of the file to use for this request
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async downloadFile(fileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.downloadFile(fileId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.downloadFile']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Returns a list of files that belong to the user\'s organization.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async listFiles(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListFilesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listFiles(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.listFiles']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get fine-grained status updates for a fine-tune job. 
-         * @param {string} fineTuneId The ID of the fine-tune job to get events for. 
-         * @param {boolean} [stream] Whether to stream events for the fine-tune job. If set to true, events will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available. The stream will terminate with a &#x60;data: [DONE]&#x60; message when the job is finished (succeeded, cancelled, or failed).  If set to false, only events generated so far will be returned. 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async listFineTuneEvents(fineTuneId: string, stream?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListFineTuneEventsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listFineTuneEvents(fineTuneId, stream, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.listFineTuneEvents']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary List your organization\'s fine-tuning jobs 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async listFineTunes(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListFineTunesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listFineTunes(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.listFineTunes']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ModelsApi.deleteModel']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -2933,33 +11544,7 @@ export const OpenAIApiFp = function(configuration?: Configuration) {
         async listModels(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListModelsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listModels(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.listModels']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Returns information about a specific file.
-         * @param {string} fileId The ID of the file to use for this request
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async retrieveFile(fileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenAIFile>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveFile(fileId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.retrieveFile']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-         * @param {string} fineTuneId The ID of the fine-tune job 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async retrieveFineTune(fineTuneId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FineTune>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveFineTune(fineTuneId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.retrieveFineTune']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ModelsApi.listModels']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -2972,182 +11557,22 @@ export const OpenAIApiFp = function(configuration?: Configuration) {
         async retrieveModel(model: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Model>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveModel(model, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OpenAIApi.retrieveModel']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ModelsApi.retrieveModel']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * OpenAIApi - factory interface
+ * ModelsApi - factory interface
  * @export
  */
-export const OpenAIApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = OpenAIApiFp(configuration)
+export const ModelsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ModelsApiFp(configuration)
     return {
         /**
          * 
-         * @summary Immediately cancel a fine-tune job. 
-         * @param {string} fineTuneId The ID of the fine-tune job to cancel 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        cancelFineTune(fineTuneId: string, options?: any): AxiosPromise<FineTune> {
-            return localVarFp.cancelFineTune(fineTuneId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Creates a model response for the given chat conversation.
-         * @param {CreateChatCompletionRequest} createChatCompletionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createChatCompletion(createChatCompletionRequest: CreateChatCompletionRequest, options?: any): AxiosPromise<CreateChatCompletionResponse> {
-            return localVarFp.createChatCompletion(createChatCompletionRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Creates a completion for the provided prompt and parameters.
-         * @param {CreateCompletionRequest} createCompletionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createCompletion(createCompletionRequest: CreateCompletionRequest, options?: any): AxiosPromise<CreateCompletionResponse> {
-            return localVarFp.createCompletion(createCompletionRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Creates a new edit for the provided input, instruction, and parameters.
-         * @param {CreateEditRequest} createEditRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createEdit(createEditRequest: CreateEditRequest, options?: any): AxiosPromise<CreateEditResponse> {
-            return localVarFp.createEdit(createEditRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Creates an embedding vector representing the input text.
-         * @param {CreateEmbeddingRequest} createEmbeddingRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createEmbedding(createEmbeddingRequest: CreateEmbeddingRequest, options?: any): AxiosPromise<CreateEmbeddingResponse> {
-            return localVarFp.createEmbedding(createEmbeddingRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
-         * @param {File} file Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.  If the &#x60;purpose&#x60; is set to \\\&quot;fine-tune\\\&quot;, each line is a JSON record with \\\&quot;prompt\\\&quot; and \\\&quot;completion\\\&quot; fields representing your [training examples](/docs/guides/fine-tuning/prepare-training-data). 
-         * @param {string} purpose The intended purpose of the uploaded documents.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tunes). This allows us to validate the format of the uploaded file. 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createFile(file: File, purpose: string, options?: any): AxiosPromise<OpenAIFile> {
-            return localVarFp.createFile(file, purpose, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-         * @param {CreateFineTuneRequest} createFineTuneRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createFineTune(createFineTuneRequest: CreateFineTuneRequest, options?: any): AxiosPromise<FineTune> {
-            return localVarFp.createFineTune(createFineTuneRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Creates an image given a prompt.
-         * @param {CreateImageRequest} createImageRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createImage(createImageRequest: CreateImageRequest, options?: any): AxiosPromise<ImagesResponse> {
-            return localVarFp.createImage(createImageRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Creates an edited or extended image given an original image and a prompt.
-         * @param {File} image The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
-         * @param {string} prompt A text description of the desired image(s). The maximum length is 1000 characters.
-         * @param {File} [mask] An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;.
-         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
-         * @param {CreateImageEditSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-         * @param {CreateImageEditResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
-         * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createImageEdit(image: File, prompt: string, mask?: File, n?: number | null, size?: CreateImageEditSizeEnum, responseFormat?: CreateImageEditResponseFormatEnum, user?: string, options?: any): AxiosPromise<ImagesResponse> {
-            return localVarFp.createImageEdit(image, prompt, mask, n, size, responseFormat, user, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Creates a variation of a given image.
-         * @param {File} image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
-         * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
-         * @param {CreateImageVariationSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-         * @param {CreateImageVariationResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
-         * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createImageVariation(image: File, n?: number | null, size?: CreateImageVariationSizeEnum, responseFormat?: CreateImageVariationResponseFormatEnum, user?: string, options?: any): AxiosPromise<ImagesResponse> {
-            return localVarFp.createImageVariation(image, n, size, responseFormat, user, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Classifies if text violates OpenAI\'s Content Policy
-         * @param {CreateModerationRequest} createModerationRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createModeration(createModerationRequest: CreateModerationRequest, options?: any): AxiosPromise<CreateModerationResponse> {
-            return localVarFp.createModeration(createModerationRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Transcribes audio into the input language.
-         * @param {File} file The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. 
-         * @param {CreateTranscriptionRequestModel} model 
-         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
-         * @param {string} [responseFormat] The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. 
-         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
-         * @param {string} [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createTranscription(file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, language?: string, options?: any): AxiosPromise<CreateTranscriptionResponse> {
-            return localVarFp.createTranscription(file, model, prompt, responseFormat, temperature, language, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Translates audio into English.
-         * @param {File} file The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. 
-         * @param {CreateTranscriptionRequestModel} model 
-         * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
-         * @param {string} [responseFormat] The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. 
-         * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createTranslation(file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, options?: any): AxiosPromise<CreateTranslationResponse> {
-            return localVarFp.createTranslation(file, model, prompt, responseFormat, temperature, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Delete a file.
-         * @param {string} fileId The ID of the file to use for this request
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteFile(fileId: string, options?: any): AxiosPromise<DeleteFileResponse> {
-            return localVarFp.deleteFile(fileId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Delete a fine-tuned model. You must have the Owner role in your organization.
+         * @summary Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
          * @param {string} model The model to delete
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3157,71 +11582,12 @@ export const OpenAIApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @summary Returns the contents of the specified file
-         * @param {string} fileId The ID of the file to use for this request
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        downloadFile(fileId: string, options?: any): AxiosPromise<string> {
-            return localVarFp.downloadFile(fileId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Returns a list of files that belong to the user\'s organization.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listFiles(options?: any): AxiosPromise<ListFilesResponse> {
-            return localVarFp.listFiles(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get fine-grained status updates for a fine-tune job. 
-         * @param {string} fineTuneId The ID of the fine-tune job to get events for. 
-         * @param {boolean} [stream] Whether to stream events for the fine-tune job. If set to true, events will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available. The stream will terminate with a &#x60;data: [DONE]&#x60; message when the job is finished (succeeded, cancelled, or failed).  If set to false, only events generated so far will be returned. 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listFineTuneEvents(fineTuneId: string, stream?: boolean, options?: any): AxiosPromise<ListFineTuneEventsResponse> {
-            return localVarFp.listFineTuneEvents(fineTuneId, stream, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary List your organization\'s fine-tuning jobs 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listFineTunes(options?: any): AxiosPromise<ListFineTunesResponse> {
-            return localVarFp.listFineTunes(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary Lists the currently available models, and provides basic information about each one such as the owner and availability.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         listModels(options?: any): AxiosPromise<ListModelsResponse> {
             return localVarFp.listModels(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Returns information about a specific file.
-         * @param {string} fileId The ID of the file to use for this request
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        retrieveFile(fileId: string, options?: any): AxiosPromise<OpenAIFile> {
-            return localVarFp.retrieveFile(fileId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-         * @param {string} fineTuneId The ID of the fine-tune job 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        retrieveFineTune(fineTuneId: string, options?: any): AxiosPromise<FineTune> {
-            return localVarFp.retrieveFineTune(fineTuneId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3237,257 +11603,22 @@ export const OpenAIApiFactory = function (configuration?: Configuration, basePat
 };
 
 /**
- * OpenAIApi - object-oriented interface
+ * ModelsApi - object-oriented interface
  * @export
- * @class OpenAIApi
+ * @class ModelsApi
  * @extends {BaseAPI}
  */
-export class OpenAIApi extends BaseAPI {
+export class ModelsApi extends BaseAPI {
     /**
      * 
-     * @summary Immediately cancel a fine-tune job. 
-     * @param {string} fineTuneId The ID of the fine-tune job to cancel 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public cancelFineTune(fineTuneId: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).cancelFineTune(fineTuneId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Creates a model response for the given chat conversation.
-     * @param {CreateChatCompletionRequest} createChatCompletionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createChatCompletion(createChatCompletionRequest: CreateChatCompletionRequest, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createChatCompletion(createChatCompletionRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Creates a completion for the provided prompt and parameters.
-     * @param {CreateCompletionRequest} createCompletionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createCompletion(createCompletionRequest: CreateCompletionRequest, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createCompletion(createCompletionRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Creates a new edit for the provided input, instruction, and parameters.
-     * @param {CreateEditRequest} createEditRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createEdit(createEditRequest: CreateEditRequest, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createEdit(createEditRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Creates an embedding vector representing the input text.
-     * @param {CreateEmbeddingRequest} createEmbeddingRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createEmbedding(createEmbeddingRequest: CreateEmbeddingRequest, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createEmbedding(createEmbeddingRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
-     * @param {File} file Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.  If the &#x60;purpose&#x60; is set to \\\&quot;fine-tune\\\&quot;, each line is a JSON record with \\\&quot;prompt\\\&quot; and \\\&quot;completion\\\&quot; fields representing your [training examples](/docs/guides/fine-tuning/prepare-training-data). 
-     * @param {string} purpose The intended purpose of the uploaded documents.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tunes). This allows us to validate the format of the uploaded file. 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createFile(file: File, purpose: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createFile(file, purpose, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-     * @param {CreateFineTuneRequest} createFineTuneRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createFineTune(createFineTuneRequest: CreateFineTuneRequest, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createFineTune(createFineTuneRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Creates an image given a prompt.
-     * @param {CreateImageRequest} createImageRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createImage(createImageRequest: CreateImageRequest, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createImage(createImageRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Creates an edited or extended image given an original image and a prompt.
-     * @param {File} image The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
-     * @param {string} prompt A text description of the desired image(s). The maximum length is 1000 characters.
-     * @param {File} [mask] An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;.
-     * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
-     * @param {CreateImageEditSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-     * @param {CreateImageEditResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
-     * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createImageEdit(image: File, prompt: string, mask?: File, n?: number | null, size?: CreateImageEditSizeEnum, responseFormat?: CreateImageEditResponseFormatEnum, user?: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createImageEdit(image, prompt, mask, n, size, responseFormat, user, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Creates a variation of a given image.
-     * @param {File} image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
-     * @param {number | null} [n] The number of images to generate. Must be between 1 and 10.
-     * @param {CreateImageVariationSizeEnum} [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-     * @param {CreateImageVariationResponseFormatEnum} [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
-     * @param {string} [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createImageVariation(image: File, n?: number | null, size?: CreateImageVariationSizeEnum, responseFormat?: CreateImageVariationResponseFormatEnum, user?: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createImageVariation(image, n, size, responseFormat, user, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Classifies if text violates OpenAI\'s Content Policy
-     * @param {CreateModerationRequest} createModerationRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createModeration(createModerationRequest: CreateModerationRequest, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createModeration(createModerationRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Transcribes audio into the input language.
-     * @param {File} file The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. 
-     * @param {CreateTranscriptionRequestModel} model 
-     * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
-     * @param {string} [responseFormat] The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. 
-     * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
-     * @param {string} [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createTranscription(file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, language?: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createTranscription(file, model, prompt, responseFormat, temperature, language, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Translates audio into English.
-     * @param {File} file The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm. 
-     * @param {CreateTranscriptionRequestModel} model 
-     * @param {string} [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
-     * @param {string} [responseFormat] The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. 
-     * @param {number} [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public createTranslation(file: File, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).createTranslation(file, model, prompt, responseFormat, temperature, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Delete a file.
-     * @param {string} fileId The ID of the file to use for this request
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public deleteFile(fileId: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).deleteFile(fileId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Delete a fine-tuned model. You must have the Owner role in your organization.
+     * @summary Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
      * @param {string} model The model to delete
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OpenAIApi
+     * @memberof ModelsApi
      */
     public deleteModel(model: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).deleteModel(model, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Returns the contents of the specified file
-     * @param {string} fileId The ID of the file to use for this request
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public downloadFile(fileId: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).downloadFile(fileId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Returns a list of files that belong to the user\'s organization.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public listFiles(options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).listFiles(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get fine-grained status updates for a fine-tune job. 
-     * @param {string} fineTuneId The ID of the fine-tune job to get events for. 
-     * @param {boolean} [stream] Whether to stream events for the fine-tune job. If set to true, events will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available. The stream will terminate with a &#x60;data: [DONE]&#x60; message when the job is finished (succeeded, cancelled, or failed).  If set to false, only events generated so far will be returned. 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public listFineTuneEvents(fineTuneId: string, stream?: boolean, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).listFineTuneEvents(fineTuneId, stream, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary List your organization\'s fine-tuning jobs 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public listFineTunes(options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).listFineTunes(options).then((request) => request(this.axios, this.basePath));
+        return ModelsApiFp(this.configuration).deleteModel(model, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3495,34 +11626,10 @@ export class OpenAIApi extends BaseAPI {
      * @summary Lists the currently available models, and provides basic information about each one such as the owner and availability.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OpenAIApi
+     * @memberof ModelsApi
      */
     public listModels(options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).listModels(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Returns information about a specific file.
-     * @param {string} fileId The ID of the file to use for this request
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public retrieveFile(fileId: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).retrieveFile(fileId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-     * @param {string} fineTuneId The ID of the fine-tune job 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OpenAIApi
-     */
-    public retrieveFineTune(fineTuneId: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).retrieveFineTune(fineTuneId, options).then((request) => request(this.axios, this.basePath));
+        return ModelsApiFp(this.configuration).listModels(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3531,46 +11638,126 @@ export class OpenAIApi extends BaseAPI {
      * @param {string} model The ID of the model to use for this request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OpenAIApi
+     * @memberof ModelsApi
      */
     public retrieveModel(model: string, options?: RawAxiosRequestConfig) {
-        return OpenAIApiFp(this.configuration).retrieveModel(model, options).then((request) => request(this.axios, this.basePath));
+        return ModelsApiFp(this.configuration).retrieveModel(model, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
+
+
 /**
+ * ModerationsApi - axios parameter creator
  * @export
  */
-export const CreateImageEditSizeEnum = {
-    _256x256: '256x256',
-    _512x512: '512x512',
-    _1024x1024: '1024x1024'
-} as const;
-export type CreateImageEditSizeEnum = typeof CreateImageEditSizeEnum[keyof typeof CreateImageEditSizeEnum];
+export const ModerationsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Classifies if text is potentially harmful.
+         * @param {CreateModerationRequest} createModerationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createModeration: async (createModerationRequest: CreateModerationRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createModerationRequest' is not null or undefined
+            assertParamExists('createModeration', 'createModerationRequest', createModerationRequest)
+            const localVarPath = `/moderations`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createModerationRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
 /**
+ * ModerationsApi - functional programming interface
  * @export
  */
-export const CreateImageEditResponseFormatEnum = {
-    Url: 'url',
-    B64Json: 'b64_json'
-} as const;
-export type CreateImageEditResponseFormatEnum = typeof CreateImageEditResponseFormatEnum[keyof typeof CreateImageEditResponseFormatEnum];
+export const ModerationsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ModerationsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Classifies if text is potentially harmful.
+         * @param {CreateModerationRequest} createModerationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createModeration(createModerationRequest: CreateModerationRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateModerationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createModeration(createModerationRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ModerationsApi.createModeration']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
 /**
+ * ModerationsApi - factory interface
  * @export
  */
-export const CreateImageVariationSizeEnum = {
-    _256x256: '256x256',
-    _512x512: '512x512',
-    _1024x1024: '1024x1024'
-} as const;
-export type CreateImageVariationSizeEnum = typeof CreateImageVariationSizeEnum[keyof typeof CreateImageVariationSizeEnum];
+export const ModerationsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ModerationsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Classifies if text is potentially harmful.
+         * @param {CreateModerationRequest} createModerationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createModeration(createModerationRequest: CreateModerationRequest, options?: any): AxiosPromise<CreateModerationResponse> {
+            return localVarFp.createModeration(createModerationRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
 /**
+ * ModerationsApi - object-oriented interface
  * @export
+ * @class ModerationsApi
+ * @extends {BaseAPI}
  */
-export const CreateImageVariationResponseFormatEnum = {
-    Url: 'url',
-    B64Json: 'b64_json'
-} as const;
-export type CreateImageVariationResponseFormatEnum = typeof CreateImageVariationResponseFormatEnum[keyof typeof CreateImageVariationResponseFormatEnum];
+export class ModerationsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Classifies if text is potentially harmful.
+     * @param {CreateModerationRequest} createModerationRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ModerationsApi
+     */
+    public createModeration(createModerationRequest: CreateModerationRequest, options?: RawAxiosRequestConfig) {
+        return ModerationsApiFp(this.configuration).createModeration(createModerationRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 

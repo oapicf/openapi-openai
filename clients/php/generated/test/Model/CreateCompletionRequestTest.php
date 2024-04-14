@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -99,9 +99,45 @@ class CreateCompletionRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "suffix"
+     * Test attribute "best_of"
      */
-    public function testPropertySuffix()
+    public function testPropertyBestOf()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "echo"
+     */
+    public function testPropertyEcho()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "frequency_penalty"
+     */
+    public function testPropertyFrequencyPenalty()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "logit_bias"
+     */
+    public function testPropertyLogitBias()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "logprobs"
+     */
+    public function testPropertyLogprobs()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -111,6 +147,60 @@ class CreateCompletionRequestTest extends TestCase
      * Test attribute "max_tokens"
      */
     public function testPropertyMaxTokens()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "n"
+     */
+    public function testPropertyN()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "presence_penalty"
+     */
+    public function testPropertyPresencePenalty()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "seed"
+     */
+    public function testPropertySeed()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "stop"
+     */
+    public function testPropertyStop()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "stream"
+     */
+    public function testPropertyStream()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "suffix"
+     */
+    public function testPropertySuffix()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -129,87 +219,6 @@ class CreateCompletionRequestTest extends TestCase
      * Test attribute "top_p"
      */
     public function testPropertyTopP()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "n"
-     */
-    public function testPropertyN()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "stream"
-     */
-    public function testPropertyStream()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "logprobs"
-     */
-    public function testPropertyLogprobs()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "echo"
-     */
-    public function testPropertyEcho()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "stop"
-     */
-    public function testPropertyStop()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "presence_penalty"
-     */
-    public function testPropertyPresencePenalty()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "frequency_penalty"
-     */
-    public function testPropertyFrequencyPenalty()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "best_of"
-     */
-    public function testPropertyBestOf()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "logit_bias"
-     */
-    public function testPropertyLogitBias()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

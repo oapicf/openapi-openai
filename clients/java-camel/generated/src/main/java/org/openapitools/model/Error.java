@@ -18,16 +18,16 @@ import javax.annotation.Generated;
  * Error
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-16T01:13:12.257183065Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-04-14T13:40:33.442815767Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Error {
 
-  private String type;
+  private JsonNullable<String> code = JsonNullable.<String>undefined();
 
   private String message;
 
   private JsonNullable<String> param = JsonNullable.<String>undefined();
 
-  private JsonNullable<String> code = JsonNullable.<String>undefined();
+  private String type;
 
   public Error() {
     super();
@@ -36,31 +36,31 @@ public class Error {
   /**
    * Constructor with only required parameters
    */
-  public Error(String type, String message, String param, String code) {
-    this.type = type;
+  public Error(String code, String message, String param, String type) {
+    this.code = JsonNullable.of(code);
     this.message = message;
     this.param = JsonNullable.of(param);
-    this.code = JsonNullable.of(code);
+    this.type = type;
   }
 
-  public Error type(String type) {
-    this.type = type;
+  public Error code(String code) {
+    this.code = JsonNullable.of(code);
     return this;
   }
 
   /**
-   * Get type
-   * @return type
+   * Get code
+   * @return code
   */
   @NotNull 
-  @Schema(name = "type", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("type")
-  public String getType() {
-    return type;
+  @Schema(name = "code", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("code")
+  public JsonNullable<String> getCode() {
+    return code;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setCode(JsonNullable<String> code) {
+    this.code = code;
   }
 
   public Error message(String message) {
@@ -103,24 +103,24 @@ public class Error {
     this.param = param;
   }
 
-  public Error code(String code) {
-    this.code = JsonNullable.of(code);
+  public Error type(String type) {
+    this.type = type;
     return this;
   }
 
   /**
-   * Get code
-   * @return code
+   * Get type
+   * @return type
   */
   @NotNull 
-  @Schema(name = "code", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("code")
-  public JsonNullable<String> getCode() {
-    return code;
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("type")
+  public String getType() {
+    return type;
   }
 
-  public void setCode(JsonNullable<String> code) {
-    this.code = code;
+  public void setType(String type) {
+    this.type = type;
   }
 
   @Override
@@ -132,25 +132,25 @@ public class Error {
       return false;
     }
     Error error = (Error) o;
-    return Objects.equals(this.type, error.type) &&
+    return Objects.equals(this.code, error.code) &&
         Objects.equals(this.message, error.message) &&
         Objects.equals(this.param, error.param) &&
-        Objects.equals(this.code, error.code);
+        Objects.equals(this.type, error.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, message, param, code);
+    return Objects.hash(code, message, param, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    param: ").append(toIndentedString(param)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

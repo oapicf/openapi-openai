@@ -8,10 +8,10 @@ The class is defined in **[Error.java](../../src/main/java/org/openapitools/mode
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | `String` |  | 
+**code** | `String` |  | 
 **message** | `String` |  | 
 **param** | `String` |  | 
-**code** | `String` |  | 
+**type** | `String` |  | 
 
 
 

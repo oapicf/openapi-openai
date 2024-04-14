@@ -1,10 +1,22 @@
 const utils = require('../utils/utils');
-const ChatCompletionRequestMessage_function_call = require('../models/ChatCompletionRequestMessage_function_call');
+const ChatCompletionMessageToolCallChunk = require('../models/ChatCompletionMessageToolCallChunk');
+const ChatCompletionStreamResponseDelta_function_call = require('../models/ChatCompletionStreamResponseDelta_function_call');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
+            {
+                key: `${keyPrefix}content`,
+                label: `The contents of the chunk message. - [${labelPrefix}content]`,
+                type: 'string',
+            },
+            ...ChatCompletionStreamResponseDelta_function_call.fields(`${keyPrefix}function_call`, isInput),
+            {
+                key: `${keyPrefix}tool_calls`,
+                label: `[${labelPrefix}tool_calls]`,
+                children: ChatCompletionMessageToolCallChunk.fields(`${keyPrefix}tool_calls${!isInput ? '[]' : ''}`, isInput, true), 
+            },
             {
                 key: `${keyPrefix}role`,
                 label: `The role of the author of this message. - [${labelPrefix}role]`,
@@ -13,23 +25,18 @@ module.exports = {
                     'system',
                     'user',
                     'assistant',
-                    'function',
+                    'tool',
                 ],
             },
-            {
-                key: `${keyPrefix}content`,
-                label: `The contents of the chunk message. - [${labelPrefix}content]`,
-                type: 'string',
-            },
-            ...ChatCompletionRequestMessage_function_call.fields(`${keyPrefix}function_call`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'role': bundle.inputData?.[`${keyPrefix}role`],
             'content': bundle.inputData?.[`${keyPrefix}content`],
-            'function_call': utils.removeIfEmpty(ChatCompletionRequestMessage_function_call.mapping(bundle, `${keyPrefix}function_call`)),
+            'function_call': utils.removeIfEmpty(ChatCompletionStreamResponseDelta_function_call.mapping(bundle, `${keyPrefix}function_call`)),
+            'tool_calls': utils.childMapping(bundle.inputData?.[`${keyPrefix}tool_calls`], `${keyPrefix}tool_calls`, ChatCompletionMessageToolCallChunk),
+            'role': bundle.inputData?.[`${keyPrefix}role`],
         }
     },
 }

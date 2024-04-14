@@ -6,29 +6,29 @@
 
 -type openapi_open_ai_file() ::
     #{ 'id' := binary(),
-       'object' := binary(),
        'bytes' := integer(),
        'created_at' := integer(),
        'filename' := binary(),
+       'object' := binary(),
        'purpose' := binary(),
-       'status' => binary(),
-       'status_details' => maps:map()
+       'status' := binary(),
+       'status_details' => binary()
      }.
 
 encode(#{ 'id' := Id,
-          'object' := Object,
           'bytes' := Bytes,
           'created_at' := CreatedAt,
           'filename' := Filename,
+          'object' := Object,
           'purpose' := Purpose,
           'status' := Status,
           'status_details' := StatusDetails
         }) ->
     #{ 'id' => Id,
-       'object' => Object,
        'bytes' => Bytes,
        'created_at' => CreatedAt,
        'filename' => Filename,
+       'object' => Object,
        'purpose' => Purpose,
        'status' => Status,
        'status_details' => StatusDetails

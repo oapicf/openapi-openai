@@ -1,6 +1,34 @@
 #tag Module
 Protected Module Models
+	#tag Method, Flags = &h21
+		Protected Function ChatCompletionRoleToString(value As ChatCompletionRole) As String
+		  Select Case value
+		    Case ChatCompletionRole.System
+		      Return "system"
+		    Case ChatCompletionRole.User
+		      Return "user"
+		    Case ChatCompletionRole.Assistant
+		      Return "assistant"
+		    Case ChatCompletionRole.Tool
+		      Return "tool"
+		    Case ChatCompletionRole.Escapedfunction
+		      Return "function"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
+
+	#tag Enum, Name = ChatCompletionRole, Type = Integer, Flags = &h1
+		
+		System
+		User
+		Assistant
+		Tool
+		Escapedfunction
+		
+	#tag EndEnum
 
 
 	#tag ViewBehavior

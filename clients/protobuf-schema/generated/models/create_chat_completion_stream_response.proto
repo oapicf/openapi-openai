@@ -1,7 +1,7 @@
 /*
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
 
@@ -18,14 +18,26 @@ import public "models/create_chat_completion_stream_response_choices_inner.proto
 
 message CreateChatCompletionStreamResponse {
 
+  // A unique identifier for the chat completion. Each chunk has the same ID.
   string id = 3355;
 
-  string object = 486497474;
+  // A list of chat completion choices. Can be more than one if `n` is greater than 1.
+  repeated CreateChatCompletionStreamResponseChoicesInner choices = 214849267;
 
+  // The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
   int32 created = 491683561;
 
+  // The model to generate the completion.
   string model = 104069929;
 
-  repeated CreateChatCompletionStreamResponseChoicesInner choices = 214849267;
+  // This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+  string system_fingerprint = 319231278;
+
+  // The object type, which is always `chat.completion.chunk`.
+  enum ObjectEnum {
+    ObjectEnum_CHAT_COMPLETION_CHUNK = 0;
+  }
+
+  ObjectEnum object = 486497474;
 
 }

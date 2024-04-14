@@ -13,36 +13,48 @@ import javax.validation.Valid;
 /**
  * ListFilesResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ListFilesResponse   {
-  @JsonProperty("object")
-  @NotNull
-
-  private String _object;
-
   @JsonProperty("data")
   @NotNull
 @Valid
 
   private List<@Valid OpenAIFile> data = new ArrayList<>();
 
-  public ListFilesResponse _object(String _object) {
-    this._object = _object;
-    return this;
+  /**
+   * Gets or Sets _object
+   */
+  public enum ObjectEnum {
+    LIST("list");
+
+    private final String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
   }
 
-   /**
-   * Get _object
-   * @return _object
-  **/
-  public String getObject() {
-    return _object;
-  }
+  @JsonProperty("object")
+  @NotNull
 
-  public void setObject(String _object) {
-    this._object = _object;
-  }
+  private ObjectEnum _object;
 
   public ListFilesResponse data(List<@Valid OpenAIFile> data) {
     this.data = data;
@@ -69,6 +81,23 @@ public class ListFilesResponse   {
     this.data = data;
   }
 
+  public ListFilesResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * Get _object
+   * @return _object
+  **/
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -79,13 +108,13 @@ public class ListFilesResponse   {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(_object, listFilesResponse._object) &&
-        Objects.equals(data, listFilesResponse.data);
+    return Objects.equals(data, listFilesResponse.data) &&
+        Objects.equals(_object, listFilesResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_object, data);
+    return Objects.hash(data, _object);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -94,8 +123,8 @@ public class ListFilesResponse   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

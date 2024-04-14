@@ -2,11 +2,11 @@ package models
 
 type CreateCompletionResponseChoicesInnerLogprobs struct {
 
-	Tokens []string `json:"tokens,omitempty"`
+	TextOffset []int32 `json:"text_offset,omitempty"`
 
 	TokenLogprobs []float32 `json:"token_logprobs,omitempty"`
 
-	TopLogprobs []map[string]interface{} `json:"top_logprobs,omitempty"`
+	Tokens []string `json:"tokens,omitempty"`
 
-	TextOffset []int32 `json:"text_offset,omitempty"`
+	TopLogprobs []map[string]float32 `json:"top_logprobs,omitempty"`
 }

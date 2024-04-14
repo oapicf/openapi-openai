@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -19,10 +19,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ImagesResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesResponse   {
   private @Valid Integer created;
-  private @Valid List<@Valid ImagesResponseDataInner> data = new ArrayList<>();
+  private @Valid List<@Valid Image> data = new ArrayList<>();
 
   /**
    **/
@@ -46,7 +46,7 @@ public class ImagesResponse   {
 
   /**
    **/
-  public ImagesResponse data(List<@Valid ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<@Valid Image> data) {
     this.data = data;
     return this;
   }
@@ -55,16 +55,16 @@ public class ImagesResponse   {
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("data")
   @NotNull
-  public List<ImagesResponseDataInner> getData() {
+  public List<Image> getData() {
     return data;
   }
 
   @JsonProperty("data")
-  public void setData(List<@Valid ImagesResponseDataInner> data) {
+  public void setData(List<@Valid Image> data) {
     this.data = data;
   }
 
-  public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse addDataItem(Image dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -73,7 +73,7 @@ public class ImagesResponse   {
     return this;
   }
 
-  public ImagesResponse removeDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse removeDataItem(Image dataItem) {
     if (dataItem != null && this.data != null) {
       this.data.remove(dataItem);
     }

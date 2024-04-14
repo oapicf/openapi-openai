@@ -12,8 +12,8 @@
     "model": "properties",
     "children": [
       {"model": "id" },
-      {"model": "object" },
       {"model": "created" },
+      {"model": "object" },
       {"model": "owned_by" },
     ]
   }]

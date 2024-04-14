@@ -16,8 +16,9 @@ void main() {
   // final instance = CreateCompletionResponseChoicesInner();
 
   group('test CreateCompletionResponseChoicesInner', () {
-    // String text
-    test('to test the property `text`', () async {
+    // The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+    // String finishReason
+    test('to test the property `finishReason`', () async {
       // TODO
     });
 
@@ -31,8 +32,8 @@ void main() {
       // TODO
     });
 
-    // String finishReason
-    test('to test the property `finishReason`', () async {
+    // String text
+    test('to test the property `text`', () async {
       // TODO
     });
 

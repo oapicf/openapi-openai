@@ -9,14 +9,12 @@ import org.openapitools.vertxweb.server.model.CreateCompletionResponseChoicesInn
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateCompletionResponseChoicesInner   {
   
-  private String text;
-  private Integer index;
-  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
 
 
   public enum FinishReasonEnum {
     STOP("stop"),
-    LENGTH("length");
+    LENGTH("length"),
+    CONTENT_FILTER("content_filter");
 
     private String value;
 
@@ -32,25 +30,28 @@ public class CreateCompletionResponseChoicesInner   {
   }
 
   private FinishReasonEnum finishReason;
+  private Integer index;
+  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
+  private String text;
 
   public CreateCompletionResponseChoicesInner () {
 
   }
 
-  public CreateCompletionResponseChoicesInner (String text, Integer index, CreateCompletionResponseChoicesInnerLogprobs logprobs, FinishReasonEnum finishReason) {
-    this.text = text;
+  public CreateCompletionResponseChoicesInner (FinishReasonEnum finishReason, Integer index, CreateCompletionResponseChoicesInnerLogprobs logprobs, String text) {
+    this.finishReason = finishReason;
     this.index = index;
     this.logprobs = logprobs;
-    this.finishReason = finishReason;
+    this.text = text;
   }
 
     
-  @JsonProperty("text")
-  public String getText() {
-    return text;
+  @JsonProperty("finish_reason")
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
   }
-  public void setText(String text) {
-    this.text = text;
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
   }
 
     
@@ -72,12 +73,12 @@ public class CreateCompletionResponseChoicesInner   {
   }
 
     
-  @JsonProperty("finish_reason")
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  @JsonProperty("text")
+  public String getText() {
+    return text;
   }
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -90,15 +91,15 @@ public class CreateCompletionResponseChoicesInner   {
       return false;
     }
     CreateCompletionResponseChoicesInner createCompletionResponseChoicesInner = (CreateCompletionResponseChoicesInner) o;
-    return Objects.equals(text, createCompletionResponseChoicesInner.text) &&
+    return Objects.equals(finishReason, createCompletionResponseChoicesInner.finishReason) &&
         Objects.equals(index, createCompletionResponseChoicesInner.index) &&
         Objects.equals(logprobs, createCompletionResponseChoicesInner.logprobs) &&
-        Objects.equals(finishReason, createCompletionResponseChoicesInner.finishReason);
+        Objects.equals(text, createCompletionResponseChoicesInner.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, index, logprobs, finishReason);
+    return Objects.hash(finishReason, index, logprobs, text);
   }
 
   @Override
@@ -106,10 +107,10 @@ public class CreateCompletionResponseChoicesInner   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInner {\n");
     
-    sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

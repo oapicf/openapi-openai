@@ -23,6 +23,7 @@ resourceTypes {
         object {
           type =  string
           description = ""
+          enum = ["file"]
           optional = true
         }
         deleted {

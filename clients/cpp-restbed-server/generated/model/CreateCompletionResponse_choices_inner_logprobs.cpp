@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -62,11 +62,11 @@ ptree CreateCompletionResponse_choices_inner_logprobs::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	// generate tree for Tokens
+	// generate tree for Text_offset
     tmp_node.clear();
-	if (!m_Tokens.empty()) {
-        tmp_node = toPt(m_Tokens);
-		pt.add_child("tokens", tmp_node);
+	if (!m_Text_offset.empty()) {
+        tmp_node = toPt(m_Text_offset);
+		pt.add_child("text_offset", tmp_node);
 		tmp_node.clear();
 	}
 	// generate tree for Token_logprobs
@@ -76,18 +76,18 @@ ptree CreateCompletionResponse_choices_inner_logprobs::toPropertyTree() const
 		pt.add_child("token_logprobs", tmp_node);
 		tmp_node.clear();
 	}
+	// generate tree for Tokens
+    tmp_node.clear();
+	if (!m_Tokens.empty()) {
+        tmp_node = toPt(m_Tokens);
+		pt.add_child("tokens", tmp_node);
+		tmp_node.clear();
+	}
 	// generate tree for Top_logprobs
     tmp_node.clear();
 	if (!m_Top_logprobs.empty()) {
         tmp_node = toPt(m_Top_logprobs);
 		pt.add_child("top_logprobs", tmp_node);
-		tmp_node.clear();
-	}
-	// generate tree for Text_offset
-    tmp_node.clear();
-	if (!m_Text_offset.empty()) {
-        tmp_node = toPt(m_Text_offset);
-		pt.add_child("text_offset", tmp_node);
 		tmp_node.clear();
 	}
 	return pt;
@@ -96,32 +96,32 @@ ptree CreateCompletionResponse_choices_inner_logprobs::toPropertyTree() const
 void CreateCompletionResponse_choices_inner_logprobs::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	// push all items of Tokens into member
-	if (pt.get_child_optional("tokens")) {
-        m_Tokens = fromPt<std::vector<std::string>>(pt.get_child("tokens"));
+	// push all items of Text_offset into member
+	if (pt.get_child_optional("text_offset")) {
+        m_Text_offset = fromPt<std::vector<int32_t>>(pt.get_child("text_offset"));
 	}
 	// push all items of Token_logprobs into member
 	if (pt.get_child_optional("token_logprobs")) {
         m_Token_logprobs = fromPt<std::vector<double>>(pt.get_child("token_logprobs"));
 	}
+	// push all items of Tokens into member
+	if (pt.get_child_optional("tokens")) {
+        m_Tokens = fromPt<std::vector<std::string>>(pt.get_child("tokens"));
+	}
 	// push all items of Top_logprobs into member
 	if (pt.get_child_optional("top_logprobs")) {
-        m_Top_logprobs = fromPt<std::vector<std::string>>(pt.get_child("top_logprobs"));
-	}
-	// push all items of Text_offset into member
-	if (pt.get_child_optional("text_offset")) {
-        m_Text_offset = fromPt<std::vector<int32_t>>(pt.get_child("text_offset"));
+        m_Top_logprobs = fromPt<std::vector<std::map<std::string, double>>>(pt.get_child("top_logprobs"));
 	}
 }
 
-std::vector<std::string> CreateCompletionResponse_choices_inner_logprobs::getTokens() const
+std::vector<int32_t> CreateCompletionResponse_choices_inner_logprobs::getTextOffset() const
 {
-    return m_Tokens;
+    return m_Text_offset;
 }
 
-void CreateCompletionResponse_choices_inner_logprobs::setTokens(std::vector<std::string> value)
+void CreateCompletionResponse_choices_inner_logprobs::setTextOffset(std::vector<int32_t> value)
 {
-    m_Tokens = value;
+    m_Text_offset = value;
 }
 
 
@@ -136,25 +136,25 @@ void CreateCompletionResponse_choices_inner_logprobs::setTokenLogprobs(std::vect
 }
 
 
-std::vector<std::string> CreateCompletionResponse_choices_inner_logprobs::getTopLogprobs() const
+std::vector<std::string> CreateCompletionResponse_choices_inner_logprobs::getTokens() const
+{
+    return m_Tokens;
+}
+
+void CreateCompletionResponse_choices_inner_logprobs::setTokens(std::vector<std::string> value)
+{
+    m_Tokens = value;
+}
+
+
+std::vector<std::map<std::string, double>> CreateCompletionResponse_choices_inner_logprobs::getTopLogprobs() const
 {
     return m_Top_logprobs;
 }
 
-void CreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(std::vector<std::string> value)
+void CreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(std::vector<std::map<std::string, double>> value)
 {
     m_Top_logprobs = value;
-}
-
-
-std::vector<int32_t> CreateCompletionResponse_choices_inner_logprobs::getTextOffset() const
-{
-    return m_Text_offset;
-}
-
-void CreateCompletionResponse_choices_inner_logprobs::setTextOffset(std::vector<int32_t> value)
-{
-    m_Text_offset = value;
 }
 
 

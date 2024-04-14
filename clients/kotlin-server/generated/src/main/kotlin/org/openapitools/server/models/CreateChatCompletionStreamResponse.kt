@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -14,18 +14,35 @@ package org.openapitools.server.models
 import org.openapitools.server.models.CreateChatCompletionStreamResponseChoicesInner
 
 /**
- * 
- * @param id 
- * @param `object` 
- * @param created 
- * @param model 
- * @param choices 
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+ * @param id A unique identifier for the chat completion. Each chunk has the same ID.
+ * @param choices A list of chat completion choices. Can be more than one if `n` is greater than 1.
+ * @param created The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+ * @param model The model to generate the completion.
+ * @param `object` The object type, which is always `chat.completion.chunk`.
+ * @param systemFingerprint This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  */
 data class CreateChatCompletionStreamResponse(
+    /* A unique identifier for the chat completion. Each chunk has the same ID. */
     val id: kotlin.String,
-    val `object`: kotlin.String,
+    /* A list of chat completion choices. Can be more than one if `n` is greater than 1. */
+    val choices: kotlin.collections.List<CreateChatCompletionStreamResponseChoicesInner>,
+    /* The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. */
     val created: kotlin.Int,
+    /* The model to generate the completion. */
     val model: kotlin.String,
-    val choices: kotlin.collections.List<CreateChatCompletionStreamResponseChoicesInner>
+    /* The object type, which is always `chat.completion.chunk`. */
+    val `object`: CreateChatCompletionStreamResponse.`Object`,
+    /* This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
+    val systemFingerprint: kotlin.String? = null
 ) 
+{
+    /**
+    * The object type, which is always `chat.completion.chunk`.
+    * Values: chatPeriodCompletionPeriodChunk
+    */
+    enum class `Object`(val value: kotlin.String){
+        chatPeriodCompletionPeriodChunk("chat.completion.chunk");
+    }
+}
 

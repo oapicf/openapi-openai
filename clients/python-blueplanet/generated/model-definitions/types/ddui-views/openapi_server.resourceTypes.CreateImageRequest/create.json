@@ -12,9 +12,12 @@
     "model": "properties",
     "children": [
       {"model": "prompt" },
+      {"model": "model" },
       {"model": "n" },
-      {"model": "size" },
+      {"model": "quality" },
       {"model": "response_format" },
+      {"model": "size" },
+      {"model": "style" },
       {"model": "user" },
     ]
   }]

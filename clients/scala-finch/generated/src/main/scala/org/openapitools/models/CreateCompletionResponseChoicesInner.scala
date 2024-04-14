@@ -9,15 +9,15 @@ import org.openapitools.models.CreateCompletionResponseChoicesInnerLogprobs
 
 /**
  * 
- * @param text 
+ * @param finishUnderscorereason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
  * @param index 
  * @param logprobs 
- * @param finishUnderscorereason 
+ * @param text 
  */
-case class CreateCompletionResponseChoicesInner(text: String,
+case class CreateCompletionResponseChoicesInner(finishUnderscorereason: String,
                 index: Int,
                 logprobs: CreateCompletionResponseChoicesInnerLogprobs,
-                finishUnderscorereason: String
+                text: String
                 )
 
 object CreateCompletionResponseChoicesInner {

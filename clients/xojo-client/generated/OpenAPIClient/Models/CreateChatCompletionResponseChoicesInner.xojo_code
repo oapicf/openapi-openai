@@ -2,7 +2,18 @@
 Protected Class CreateChatCompletionResponseChoicesInner
 
 	#tag Property, Flags = &h0
-		index As Xoson.O.OptionalInteger
+		#tag Note
+			The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+		#tag EndNote
+		finish_reason As String
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The index of the choice in the list of choices.
+		#tag EndNote
+		index As Integer
 	#tag EndProperty
 
 
@@ -12,7 +23,7 @@ Protected Class CreateChatCompletionResponseChoicesInner
 
 
 	#tag Property, Flags = &h0
-		finish_reason As Xoson.O.OptionalString
+		logprobs As OpenAPIClient.Models.CreateChatCompletionResponseChoicesInnerLogprobs
 	#tag EndProperty
 
 
@@ -20,6 +31,8 @@ Protected Class CreateChatCompletionResponseChoicesInner
         
         Stop
         Length
+        ToolCalls
+        ContentFilter
         FunctionCall
         
     #tag EndEnum
@@ -33,6 +46,10 @@ Protected Class CreateChatCompletionResponseChoicesInner
 		      Return "stop"
 		    Case Finish_reasonEnum.Length
 		      Return "length"
+		    Case Finish_reasonEnum.ToolCalls
+		      Return "tool_calls"
+		    Case Finish_reasonEnum.ContentFilter
+		      Return "content_filter"
 		    Case Finish_reasonEnum.FunctionCall
 		      Return "function_call"
 		    
@@ -89,6 +106,14 @@ Protected Class CreateChatCompletionResponseChoicesInner
 			Group="Behavior"
 			InitialValue=""
 			Type="ChatCompletionResponseMessage"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="logprobs"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="CreateChatCompletionResponseChoicesInnerLogprobs"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

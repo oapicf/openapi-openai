@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,6 +37,8 @@ use JMS\Serializer\Annotation\SerializedName;
 /**
  * Class representing the CreateCompletionResponse model.
  *
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint).
+ *
  * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
@@ -44,6 +46,8 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateCompletionResponse 
 {
         /**
+     * A unique identifier for the completion.
+     *
      * @var string|null
      * @SerializedName("id")
      * @Assert\NotNull()
@@ -53,33 +57,8 @@ class CreateCompletionResponse
     protected ?string $id = null;
 
     /**
-     * @var string|null
-     * @SerializedName("object")
-     * @Assert\NotNull()
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected ?string $object = null;
-
-    /**
-     * @var int|null
-     * @SerializedName("created")
-     * @Assert\NotNull()
-     * @Assert\Type("int")
-     * @Type("int")
-     */
-    protected ?int $created = null;
-
-    /**
-     * @var string|null
-     * @SerializedName("model")
-     * @Assert\NotNull()
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected ?string $model = null;
-
-    /**
+     * The list of completion choices the model generated for the input prompt.
+     *
      * @var CreateCompletionResponseChoicesInner[]|null
      * @SerializedName("choices")
      * @Assert\NotNull()
@@ -92,12 +71,56 @@ class CreateCompletionResponse
     protected ?array $choices = null;
 
     /**
-     * @var CreateCompletionResponseUsage|null
-     * @SerializedName("usage")
-     * @Assert\Type("OpenAPI\Server\Model\CreateCompletionResponseUsage")
-     * @Type("OpenAPI\Server\Model\CreateCompletionResponseUsage")
+     * The Unix timestamp (in seconds) of when the completion was created.
+     *
+     * @var int|null
+     * @SerializedName("created")
+     * @Assert\NotNull()
+     * @Assert\Type("int")
+     * @Type("int")
      */
-    protected ?CreateCompletionResponseUsage $usage = null;
+    protected ?int $created = null;
+
+    /**
+     * The model used for completion.
+     *
+     * @var string|null
+     * @SerializedName("model")
+     * @Assert\NotNull()
+     * @Assert\Type("string")
+     * @Type("string")
+     */
+    protected ?string $model = null;
+
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism.
+     *
+     * @var string|null
+     * @SerializedName("system_fingerprint")
+     * @Assert\Type("string")
+     * @Type("string")
+     */
+    protected ?string $systemFingerprint = null;
+
+    /**
+     * The object type, which is always \&quot;text_completion\&quot;
+     *
+     * @var string|null
+     * @SerializedName("object")
+     * @Assert\NotNull()
+     * @Assert\Choice({ "text_completion" })
+     * @Assert\Type("string")
+     * @Type("string")
+     */
+    protected ?string $object = null;
+
+    /**
+     * @var CompletionUsage|null
+     * @SerializedName("usage")
+     * @Assert\Type("OpenAPI\Server\Model\CompletionUsage")
+     * @Type("OpenAPI\Server\Model\CompletionUsage")
+     */
+    protected ?CompletionUsage $usage = null;
 
     /**
      * Constructor
@@ -107,10 +130,11 @@ class CreateCompletionResponse
     {
         if (is_array($data)) {
             $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
-            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
+            $this->choices = array_key_exists('choices', $data) ? $data['choices'] : $this->choices;
             $this->created = array_key_exists('created', $data) ? $data['created'] : $this->created;
             $this->model = array_key_exists('model', $data) ? $data['model'] : $this->model;
-            $this->choices = array_key_exists('choices', $data) ? $data['choices'] : $this->choices;
+            $this->systemFingerprint = array_key_exists('systemFingerprint', $data) ? $data['systemFingerprint'] : $this->systemFingerprint;
+            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
             $this->usage = array_key_exists('usage', $data) ? $data['usage'] : $this->usage;
         }
     }
@@ -130,7 +154,7 @@ class CreateCompletionResponse
     /**
      * Sets id.
      *
-     * @param string|null $id
+     * @param string|null $id  A unique identifier for the completion.
      *
      * @return $this
      */
@@ -142,27 +166,27 @@ class CreateCompletionResponse
     }
 
     /**
-     * Gets object.
+     * Gets choices.
      *
-     * @return string|null
+     * @return CreateCompletionResponseChoicesInner[]|null
      */
-    public function getObject(): ?string
+    public function getChoices(): ?array
     {
-        return $this->object;
+        return $this->choices;
     }
 
 
 
     /**
-     * Sets object.
+     * Sets choices.
      *
-     * @param string|null $object
+     * @param CreateCompletionResponseChoicesInner[]|null $choices  The list of completion choices the model generated for the input prompt.
      *
      * @return $this
      */
-    public function setObject(?string $object): self
+    public function setChoices(?array $choices): self
     {
-        $this->object = $object;
+        $this->choices = $choices;
 
         return $this;
     }
@@ -182,7 +206,7 @@ class CreateCompletionResponse
     /**
      * Sets created.
      *
-     * @param int|null $created
+     * @param int|null $created  The Unix timestamp (in seconds) of when the completion was created.
      *
      * @return $this
      */
@@ -208,7 +232,7 @@ class CreateCompletionResponse
     /**
      * Sets model.
      *
-     * @param string|null $model
+     * @param string|null $model  The model used for completion.
      *
      * @return $this
      */
@@ -220,27 +244,53 @@ class CreateCompletionResponse
     }
 
     /**
-     * Gets choices.
+     * Gets systemFingerprint.
      *
-     * @return CreateCompletionResponseChoicesInner[]|null
+     * @return string|null
      */
-    public function getChoices(): ?array
+    public function getSystemFingerprint(): ?string
     {
-        return $this->choices;
+        return $this->systemFingerprint;
     }
 
 
 
     /**
-     * Sets choices.
+     * Sets systemFingerprint.
      *
-     * @param CreateCompletionResponseChoicesInner[]|null $choices
+     * @param string|null $systemFingerprint  This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
      *
      * @return $this
      */
-    public function setChoices(?array $choices): self
+    public function setSystemFingerprint(?string $systemFingerprint = null): self
     {
-        $this->choices = $choices;
+        $this->systemFingerprint = $systemFingerprint;
+
+        return $this;
+    }
+
+    /**
+     * Gets object.
+     *
+     * @return string|null
+     */
+    public function getObject(): ?string
+    {
+        return $this->object;
+    }
+
+
+
+    /**
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always \"text_completion\"
+     *
+     * @return $this
+     */
+    public function setObject(?string $object): self
+    {
+        $this->object = $object;
 
         return $this;
     }
@@ -248,9 +298,9 @@ class CreateCompletionResponse
     /**
      * Gets usage.
      *
-     * @return CreateCompletionResponseUsage|null
+     * @return CompletionUsage|null
      */
-    public function getUsage(): ?CreateCompletionResponseUsage
+    public function getUsage(): ?CompletionUsage
     {
         return $this->usage;
     }
@@ -260,11 +310,11 @@ class CreateCompletionResponse
     /**
      * Sets usage.
      *
-     * @param CreateCompletionResponseUsage|null $usage
+     * @param CompletionUsage|null $usage
      *
      * @return $this
      */
-    public function setUsage(?CreateCompletionResponseUsage $usage = null): self
+    public function setUsage(?CompletionUsage $usage = null): self
     {
         $this->usage = $usage;
 

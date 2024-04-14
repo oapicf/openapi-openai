@@ -7,36 +7,39 @@
 #' @title ListFilesResponse
 #' @description ListFilesResponse Class
 #' @format An \code{R6Class} generator object
-#' @field object  character
 #' @field data  list(\link{OpenAIFile})
+#' @field object  character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 ListFilesResponse <- R6::R6Class(
   "ListFilesResponse",
   public = list(
-    `object` = NULL,
     `data` = NULL,
+    `object` = NULL,
     #' Initialize a new ListFilesResponse class.
     #'
     #' @description
     #' Initialize a new ListFilesResponse class.
     #'
-    #' @param object object
     #' @param data data
+    #' @param object object
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`object`, `data`, ...) {
-      if (!missing(`object`)) {
-        if (!(is.character(`object`) && length(`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
-        }
-        self$`object` <- `object`
-      }
+    initialize = function(`data`, `object`, ...) {
       if (!missing(`data`)) {
         stopifnot(is.vector(`data`), length(`data`) != 0)
         sapply(`data`, function(x) stopifnot(R6::is.R6(x)))
         self$`data` <- `data`
+      }
+      if (!missing(`object`)) {
+        if (!(`object` %in% c("list"))) {
+          stop(paste("Error! \"", `object`, "\" cannot be assigned to `object`. Must be \"list\".", sep = ""))
+        }
+        if (!(is.character(`object`) && length(`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
+        }
+        self$`object` <- `object`
       }
     },
     #' To JSON string
@@ -48,13 +51,13 @@ ListFilesResponse <- R6::R6Class(
     #' @export
     toJSON = function() {
       ListFilesResponseObject <- list()
-      if (!is.null(self$`object`)) {
-        ListFilesResponseObject[["object"]] <-
-          self$`object`
-      }
       if (!is.null(self$`data`)) {
         ListFilesResponseObject[["data"]] <-
           lapply(self$`data`, function(x) x$toJSON())
+      }
+      if (!is.null(self$`object`)) {
+        ListFilesResponseObject[["object"]] <-
+          self$`object`
       }
       ListFilesResponseObject
     },
@@ -68,11 +71,14 @@ ListFilesResponse <- R6::R6Class(
     #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`object`)) {
-        self$`object` <- this_object$`object`
-      }
       if (!is.null(this_object$`data`)) {
         self$`data` <- ApiClient$new()$deserializeObj(this_object$`data`, "array[OpenAIFile]", loadNamespace("openapi"))
+      }
+      if (!is.null(this_object$`object`)) {
+        if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("list"))) {
+          stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"list\".", sep = ""))
+        }
+        self$`object` <- this_object$`object`
       }
       self
     },
@@ -85,20 +91,20 @@ ListFilesResponse <- R6::R6Class(
     #' @export
     toJSONString = function() {
       jsoncontent <- c(
-        if (!is.null(self$`object`)) {
-          sprintf(
-          '"object":
-            "%s"
-                    ',
-          self$`object`
-          )
-        },
         if (!is.null(self$`data`)) {
           sprintf(
           '"data":
           [%s]
 ',
           paste(sapply(self$`data`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
+          )
+        },
+        if (!is.null(self$`object`)) {
+          sprintf(
+          '"object":
+            "%s"
+                    ',
+          self$`object`
           )
         }
       )
@@ -115,8 +121,11 @@ ListFilesResponse <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`object` <- this_object$`object`
       self$`data` <- ApiClient$new()$deserializeObj(this_object$`data`, "array[OpenAIFile]", loadNamespace("openapi"))
+      if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("list"))) {
+        stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"list\".", sep = ""))
+      }
+      self$`object` <- this_object$`object`
       self
     },
     #' Validate JSON input with respect to ListFilesResponse
@@ -128,6 +137,13 @@ ListFilesResponse <- R6::R6Class(
     #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
+      # check the required field `data`
+      if (!is.null(input_json$`data`)) {
+        stopifnot(is.vector(input_json$`data`), length(input_json$`data`) != 0)
+        tmp <- sapply(input_json$`data`, function(x) stopifnot(R6::is.R6(x)))
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for ListFilesResponse: the required field `data` is missing."))
+      }
       # check the required field `object`
       if (!is.null(input_json$`object`)) {
         if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
@@ -135,13 +151,6 @@ ListFilesResponse <- R6::R6Class(
         }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for ListFilesResponse: the required field `object` is missing."))
-      }
-      # check the required field `data`
-      if (!is.null(input_json$`data`)) {
-        stopifnot(is.vector(input_json$`data`), length(input_json$`data`) != 0)
-        tmp <- sapply(input_json$`data`, function(x) stopifnot(R6::is.R6(x)))
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for ListFilesResponse: the required field `data` is missing."))
       }
     },
     #' To string (JSON format)
@@ -162,13 +171,13 @@ ListFilesResponse <- R6::R6Class(
     #' @return true if the values in all fields are valid.
     #' @export
     isValid = function() {
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
+      # check if the required `data` is null
+      if (is.null(self$`data`)) {
         return(FALSE)
       }
 
-      # check if the required `data` is null
-      if (is.null(self$`data`)) {
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
         return(FALSE)
       }
 
@@ -183,14 +192,14 @@ ListFilesResponse <- R6::R6Class(
     #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
-        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
-      }
-
       # check if the required `data` is null
       if (is.null(self$`data`)) {
         invalid_fields["data"] <- "Non-nullable required field `data` cannot be null."
+      }
+
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
+        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
       }
 
       invalid_fields

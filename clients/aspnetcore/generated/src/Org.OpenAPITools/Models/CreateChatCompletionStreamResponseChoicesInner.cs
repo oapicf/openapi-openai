@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,21 +27,23 @@ namespace Org.OpenAPITools.Models
     public partial class CreateChatCompletionStreamResponseChoicesInner : IEquatable<CreateChatCompletionStreamResponseChoicesInner>
     {
         /// <summary>
-        /// Gets or Sets Index
-        /// </summary>
-        [DataMember(Name="index", EmitDefaultValue=true)]
-        public int Index { get; set; }
-
-        /// <summary>
         /// Gets or Sets Delta
         /// </summary>
+        [Required]
         [DataMember(Name="delta", EmitDefaultValue=false)]
         public ChatCompletionStreamResponseDelta Delta { get; set; }
 
+        /// <summary>
+        /// Gets or Sets Logprobs
+        /// </summary>
+        [DataMember(Name="logprobs", EmitDefaultValue=true)]
+        public CreateChatCompletionResponseChoicesInnerLogprobs Logprobs { get; set; }
+
 
         /// <summary>
-        /// Gets or Sets FinishReason
+        /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
         /// </summary>
+        /// <value>The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. </value>
         [TypeConverter(typeof(CustomEnumConverter<FinishReasonEnum>))]
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum FinishReasonEnum
@@ -60,17 +62,39 @@ namespace Org.OpenAPITools.Models
             LengthEnum = 2,
             
             /// <summary>
+            /// Enum ToolCallsEnum for tool_calls
+            /// </summary>
+            [EnumMember(Value = "tool_calls")]
+            ToolCallsEnum = 3,
+            
+            /// <summary>
+            /// Enum ContentFilterEnum for content_filter
+            /// </summary>
+            [EnumMember(Value = "content_filter")]
+            ContentFilterEnum = 4,
+            
+            /// <summary>
             /// Enum FunctionCallEnum for function_call
             /// </summary>
             [EnumMember(Value = "function_call")]
-            FunctionCallEnum = 3
+            FunctionCallEnum = 5
         }
 
         /// <summary>
-        /// Gets or Sets FinishReason
+        /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
         /// </summary>
+        /// <value>The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. </value>
+        [Required]
         [DataMember(Name="finish_reason", EmitDefaultValue=true)]
-        public FinishReasonEnum FinishReason { get; set; }
+        public FinishReasonEnum? FinishReason { get; set; }
+
+        /// <summary>
+        /// The index of the choice in the list of choices.
+        /// </summary>
+        /// <value>The index of the choice in the list of choices.</value>
+        [Required]
+        [DataMember(Name="index", EmitDefaultValue=true)]
+        public int Index { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,9 +104,10 @@ namespace Org.OpenAPITools.Models
         {
             var sb = new StringBuilder();
             sb.Append("class CreateChatCompletionStreamResponseChoicesInner {\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("  Delta: ").Append(Delta).Append("\n");
+            sb.Append("  Logprobs: ").Append(Logprobs).Append("\n");
             sb.Append("  FinishReason: ").Append(FinishReason).Append("\n");
+            sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -120,19 +145,24 @@ namespace Org.OpenAPITools.Models
 
             return 
                 (
-                    Index == other.Index ||
-                    
-                    Index.Equals(other.Index)
-                ) && 
-                (
                     Delta == other.Delta ||
                     Delta != null &&
                     Delta.Equals(other.Delta)
                 ) && 
                 (
+                    Logprobs == other.Logprobs ||
+                    Logprobs != null &&
+                    Logprobs.Equals(other.Logprobs)
+                ) && 
+                (
                     FinishReason == other.FinishReason ||
                     
                     FinishReason.Equals(other.FinishReason)
+                ) && 
+                (
+                    Index == other.Index ||
+                    
+                    Index.Equals(other.Index)
                 );
         }
 
@@ -146,12 +176,14 @@ namespace Org.OpenAPITools.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    
-                    hashCode = hashCode * 59 + Index.GetHashCode();
                     if (Delta != null)
                     hashCode = hashCode * 59 + Delta.GetHashCode();
+                    if (Logprobs != null)
+                    hashCode = hashCode * 59 + Logprobs.GetHashCode();
                     
                     hashCode = hashCode * 59 + FinishReason.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + Index.GetHashCode();
                 return hashCode;
             }
         }

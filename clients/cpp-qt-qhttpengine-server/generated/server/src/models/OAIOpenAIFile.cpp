@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,9 +37,6 @@ void OAIOpenAIFile::initializeModel() {
     m_id_isSet = false;
     m_id_isValid = false;
 
-    m_object_isSet = false;
-    m_object_isValid = false;
-
     m_bytes_isSet = false;
     m_bytes_isValid = false;
 
@@ -48,6 +45,9 @@ void OAIOpenAIFile::initializeModel() {
 
     m_filename_isSet = false;
     m_filename_isValid = false;
+
+    m_object_isSet = false;
+    m_object_isValid = false;
 
     m_purpose_isSet = false;
     m_purpose_isValid = false;
@@ -71,9 +71,6 @@ void OAIOpenAIFile::fromJsonObject(QJsonObject json) {
     m_id_isValid = ::OpenAPI::fromJsonValue(id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
-    m_object_isValid = ::OpenAPI::fromJsonValue(object, json[QString("object")]);
-    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
-
     m_bytes_isValid = ::OpenAPI::fromJsonValue(bytes, json[QString("bytes")]);
     m_bytes_isSet = !json[QString("bytes")].isNull() && m_bytes_isValid;
 
@@ -82,6 +79,9 @@ void OAIOpenAIFile::fromJsonObject(QJsonObject json) {
 
     m_filename_isValid = ::OpenAPI::fromJsonValue(filename, json[QString("filename")]);
     m_filename_isSet = !json[QString("filename")].isNull() && m_filename_isValid;
+
+    m_object_isValid = ::OpenAPI::fromJsonValue(object, json[QString("object")]);
+    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
 
     m_purpose_isValid = ::OpenAPI::fromJsonValue(purpose, json[QString("purpose")]);
     m_purpose_isSet = !json[QString("purpose")].isNull() && m_purpose_isValid;
@@ -105,9 +105,6 @@ QJsonObject OAIOpenAIFile::asJsonObject() const {
     if (m_id_isSet) {
         obj.insert(QString("id"), ::OpenAPI::toJsonValue(id));
     }
-    if (m_object_isSet) {
-        obj.insert(QString("object"), ::OpenAPI::toJsonValue(object));
-    }
     if (m_bytes_isSet) {
         obj.insert(QString("bytes"), ::OpenAPI::toJsonValue(bytes));
     }
@@ -116,6 +113,9 @@ QJsonObject OAIOpenAIFile::asJsonObject() const {
     }
     if (m_filename_isSet) {
         obj.insert(QString("filename"), ::OpenAPI::toJsonValue(filename));
+    }
+    if (m_object_isSet) {
+        obj.insert(QString("object"), ::OpenAPI::toJsonValue(object));
     }
     if (m_purpose_isSet) {
         obj.insert(QString("purpose"), ::OpenAPI::toJsonValue(purpose));
@@ -143,22 +143,6 @@ bool OAIOpenAIFile::is_id_Set() const{
 
 bool OAIOpenAIFile::is_id_Valid() const{
     return m_id_isValid;
-}
-
-QString OAIOpenAIFile::getObject() const {
-    return object;
-}
-void OAIOpenAIFile::setObject(const QString &object) {
-    this->object = object;
-    this->m_object_isSet = true;
-}
-
-bool OAIOpenAIFile::is_object_Set() const{
-    return m_object_isSet;
-}
-
-bool OAIOpenAIFile::is_object_Valid() const{
-    return m_object_isValid;
 }
 
 qint32 OAIOpenAIFile::getBytes() const {
@@ -209,6 +193,22 @@ bool OAIOpenAIFile::is_filename_Valid() const{
     return m_filename_isValid;
 }
 
+QString OAIOpenAIFile::getObject() const {
+    return object;
+}
+void OAIOpenAIFile::setObject(const QString &object) {
+    this->object = object;
+    this->m_object_isSet = true;
+}
+
+bool OAIOpenAIFile::is_object_Set() const{
+    return m_object_isSet;
+}
+
+bool OAIOpenAIFile::is_object_Valid() const{
+    return m_object_isValid;
+}
+
 QString OAIOpenAIFile::getPurpose() const {
     return purpose;
 }
@@ -241,10 +241,10 @@ bool OAIOpenAIFile::is_status_Valid() const{
     return m_status_isValid;
 }
 
-OAIObject OAIOpenAIFile::getStatusDetails() const {
+QString OAIOpenAIFile::getStatusDetails() const {
     return status_details;
 }
-void OAIOpenAIFile::setStatusDetails(const OAIObject &status_details) {
+void OAIOpenAIFile::setStatusDetails(const QString &status_details) {
     this->status_details = status_details;
     this->m_status_details_isSet = true;
 }
@@ -265,11 +265,6 @@ bool OAIOpenAIFile::isSet() const {
             break;
         }
 
-        if (m_object_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_bytes_isSet) {
             isObjectUpdated = true;
             break;
@@ -281,6 +276,11 @@ bool OAIOpenAIFile::isSet() const {
         }
 
         if (m_filename_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_object_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -305,7 +305,7 @@ bool OAIOpenAIFile::isSet() const {
 
 bool OAIOpenAIFile::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_object_isValid && m_bytes_isValid && m_created_at_isValid && m_filename_isValid && m_purpose_isValid && true;
+    return m_id_isValid && m_bytes_isValid && m_created_at_isValid && m_filename_isValid && m_object_isValid && m_purpose_isValid && m_status_isValid && true;
 }
 
 } // namespace OpenAPI

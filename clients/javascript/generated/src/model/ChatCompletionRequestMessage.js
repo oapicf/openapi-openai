@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,31 +12,121 @@
  */
 
 import ApiClient from '../ApiClient';
-import ChatCompletionRequestMessageFunctionCall from './ChatCompletionRequestMessageFunctionCall';
+import ChatCompletionMessageToolCall from './ChatCompletionMessageToolCall';
+import ChatCompletionRequestAssistantMessage from './ChatCompletionRequestAssistantMessage';
+import ChatCompletionRequestAssistantMessageFunctionCall from './ChatCompletionRequestAssistantMessageFunctionCall';
+import ChatCompletionRequestFunctionMessage from './ChatCompletionRequestFunctionMessage';
+import ChatCompletionRequestSystemMessage from './ChatCompletionRequestSystemMessage';
+import ChatCompletionRequestToolMessage from './ChatCompletionRequestToolMessage';
+import ChatCompletionRequestUserMessage from './ChatCompletionRequestUserMessage';
 
 /**
  * The ChatCompletionRequestMessage model module.
  * @module model/ChatCompletionRequestMessage
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class ChatCompletionRequestMessage {
     /**
      * Constructs a new <code>ChatCompletionRequestMessage</code>.
      * @alias module:model/ChatCompletionRequestMessage
-     * @param role {module:model/ChatCompletionRequestMessage.RoleEnum} The role of the messages author. One of `system`, `user`, `assistant`, or `function`.
+     * @param {(module:model/ChatCompletionRequestAssistantMessage|module:model/ChatCompletionRequestFunctionMessage|module:model/ChatCompletionRequestSystemMessage|module:model/ChatCompletionRequestToolMessage|module:model/ChatCompletionRequestUserMessage)} instance The actual instance to initialize ChatCompletionRequestMessage.
      */
-    constructor(role) { 
-        
-        ChatCompletionRequestMessage.initialize(this, role);
-    }
+    constructor(instance = null) {
+        if (instance === null) {
+            this.actualInstance = null;
+            return;
+        }
+        var match = 0;
+        var errorMessages = [];
+        try {
+            if (typeof instance === "ChatCompletionRequestSystemMessage") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                ChatCompletionRequestSystemMessage.validateJSON(instance); // throw an exception if no match
+                // create ChatCompletionRequestSystemMessage from JS object
+                this.actualInstance = ChatCompletionRequestSystemMessage.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into ChatCompletionRequestSystemMessage
+            errorMessages.push("Failed to construct ChatCompletionRequestSystemMessage: " + err)
+        }
 
-    /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
-     */
-    static initialize(obj, role) { 
-        obj['role'] = role;
+        try {
+            if (typeof instance === "ChatCompletionRequestUserMessage") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                ChatCompletionRequestUserMessage.validateJSON(instance); // throw an exception if no match
+                // create ChatCompletionRequestUserMessage from JS object
+                this.actualInstance = ChatCompletionRequestUserMessage.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into ChatCompletionRequestUserMessage
+            errorMessages.push("Failed to construct ChatCompletionRequestUserMessage: " + err)
+        }
+
+        try {
+            if (typeof instance === "ChatCompletionRequestAssistantMessage") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                ChatCompletionRequestAssistantMessage.validateJSON(instance); // throw an exception if no match
+                // create ChatCompletionRequestAssistantMessage from JS object
+                this.actualInstance = ChatCompletionRequestAssistantMessage.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into ChatCompletionRequestAssistantMessage
+            errorMessages.push("Failed to construct ChatCompletionRequestAssistantMessage: " + err)
+        }
+
+        try {
+            if (typeof instance === "ChatCompletionRequestToolMessage") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                ChatCompletionRequestToolMessage.validateJSON(instance); // throw an exception if no match
+                // create ChatCompletionRequestToolMessage from JS object
+                this.actualInstance = ChatCompletionRequestToolMessage.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into ChatCompletionRequestToolMessage
+            errorMessages.push("Failed to construct ChatCompletionRequestToolMessage: " + err)
+        }
+
+        try {
+            if (typeof instance === "ChatCompletionRequestFunctionMessage") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                ChatCompletionRequestFunctionMessage.validateJSON(instance); // throw an exception if no match
+                // create ChatCompletionRequestFunctionMessage from JS object
+                this.actualInstance = ChatCompletionRequestFunctionMessage.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into ChatCompletionRequestFunctionMessage
+            errorMessages.push("Failed to construct ChatCompletionRequestFunctionMessage: " + err)
+        }
+
+        if (match > 1) {
+            throw new Error("Multiple matches found constructing `ChatCompletionRequestMessage` with oneOf schemas ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage. Input: " + JSON.stringify(instance));
+        } else if (match === 0) {
+            this.actualInstance = null; // clear the actual instance in case there are multiple matches
+            throw new Error("No match found constructing `ChatCompletionRequestMessage` with oneOf schemas ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage. Details: " +
+                            errorMessages.join(", "));
+        } else { // only 1 match
+            // the input is valid
+        }
     }
 
     /**
@@ -47,122 +137,80 @@ class ChatCompletionRequestMessage {
      * @return {module:model/ChatCompletionRequestMessage} The populated <code>ChatCompletionRequestMessage</code> instance.
      */
     static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new ChatCompletionRequestMessage();
-
-            if (data.hasOwnProperty('role')) {
-                obj['role'] = ApiClient.convertToType(data['role'], 'String');
-            }
-            if (data.hasOwnProperty('content')) {
-                obj['content'] = ApiClient.convertToType(data['content'], 'String');
-            }
-            if (data.hasOwnProperty('name')) {
-                obj['name'] = ApiClient.convertToType(data['name'], 'String');
-            }
-            if (data.hasOwnProperty('function_call')) {
-                obj['function_call'] = ChatCompletionRequestMessageFunctionCall.constructFromObject(data['function_call']);
-            }
-        }
-        return obj;
+        return new ChatCompletionRequestMessage(data);
     }
 
     /**
-     * Validates the JSON data with respect to <code>ChatCompletionRequestMessage</code>.
-     * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ChatCompletionRequestMessage</code>.
+     * Gets the actual instance, which can be <code>ChatCompletionRequestAssistantMessage</code>, <code>ChatCompletionRequestFunctionMessage</code>, <code>ChatCompletionRequestSystemMessage</code>, <code>ChatCompletionRequestToolMessage</code>, <code>ChatCompletionRequestUserMessage</code>.
+     * @return {(module:model/ChatCompletionRequestAssistantMessage|module:model/ChatCompletionRequestFunctionMessage|module:model/ChatCompletionRequestSystemMessage|module:model/ChatCompletionRequestToolMessage|module:model/ChatCompletionRequestUserMessage)} The actual instance.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of ChatCompletionRequestMessage.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
-        }
-        // ensure the json data is a string
-        if (data['role'] && !(typeof data['role'] === 'string' || data['role'] instanceof String)) {
-            throw new Error("Expected the field `role` to be a primitive type in the JSON string but got " + data['role']);
-        }
-        // ensure the json data is a string
-        if (data['content'] && !(typeof data['content'] === 'string' || data['content'] instanceof String)) {
-            throw new Error("Expected the field `content` to be a primitive type in the JSON string but got " + data['content']);
-        }
-        // ensure the json data is a string
-        if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
-            throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
-        }
-        // validate the optional field `function_call`
-        if (data['function_call']) { // data not null
-          ChatCompletionRequestMessageFunctionCall.validateJSON(data['function_call']);
-        }
-
-        return true;
+    getActualInstance() {
+        return this.actualInstance;
     }
 
+    /**
+     * Sets the actual instance, which can be <code>ChatCompletionRequestAssistantMessage</code>, <code>ChatCompletionRequestFunctionMessage</code>, <code>ChatCompletionRequestSystemMessage</code>, <code>ChatCompletionRequestToolMessage</code>, <code>ChatCompletionRequestUserMessage</code>.
+     * @param {(module:model/ChatCompletionRequestAssistantMessage|module:model/ChatCompletionRequestFunctionMessage|module:model/ChatCompletionRequestSystemMessage|module:model/ChatCompletionRequestToolMessage|module:model/ChatCompletionRequestUserMessage)} obj The actual instance.
+     */
+    setActualInstance(obj) {
+       this.actualInstance = ChatCompletionRequestMessage.constructFromObject(obj).getActualInstance();
+    }
 
+    /**
+     * Returns the JSON representation of the actual instance.
+     * @return {string}
+     */
+    toJSON = function(){
+        return this.getActualInstance();
+    }
+
+    /**
+     * Create an instance of ChatCompletionRequestMessage from a JSON string.
+     * @param {string} json_string JSON string.
+     * @return {module:model/ChatCompletionRequestMessage} An instance of ChatCompletionRequestMessage.
+     */
+    static fromJSON = function(json_string){
+        return ChatCompletionRequestMessage.constructFromObject(JSON.parse(json_string));
+    }
 }
 
-ChatCompletionRequestMessage.RequiredProperties = ["role"];
-
 /**
- * The role of the messages author. One of `system`, `user`, `assistant`, or `function`.
- * @member {module:model/ChatCompletionRequestMessage.RoleEnum} role
- */
-ChatCompletionRequestMessage.prototype['role'] = undefined;
-
-/**
- * The contents of the message. `content` is required for all messages except assistant messages with function calls.
+ * The contents of the function message.
  * @member {String} content
  */
 ChatCompletionRequestMessage.prototype['content'] = undefined;
 
 /**
- * The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
+ * The role of the messages author, in this case `function`.
+ * @member {module:model/ChatCompletionRequestMessage.RoleEnum} role
+ */
+ChatCompletionRequestMessage.prototype['role'] = undefined;
+
+/**
+ * The name of the function to call.
  * @member {String} name
  */
 ChatCompletionRequestMessage.prototype['name'] = undefined;
 
 /**
- * @member {module:model/ChatCompletionRequestMessageFunctionCall} function_call
+ * The tool calls generated by the model, such as function calls.
+ * @member {Array.<module:model/ChatCompletionMessageToolCall>} tool_calls
+ */
+ChatCompletionRequestMessage.prototype['tool_calls'] = undefined;
+
+/**
+ * @member {module:model/ChatCompletionRequestAssistantMessageFunctionCall} function_call
  */
 ChatCompletionRequestMessage.prototype['function_call'] = undefined;
 
-
-
-
-
 /**
- * Allowed values for the <code>role</code> property.
- * @enum {String}
- * @readonly
+ * Tool call that this message is responding to.
+ * @member {String} tool_call_id
  */
-ChatCompletionRequestMessage['RoleEnum'] = {
-
-    /**
-     * value: "system"
-     * @const
-     */
-    "system": "system",
-
-    /**
-     * value: "user"
-     * @const
-     */
-    "user": "user",
-
-    /**
-     * value: "assistant"
-     * @const
-     */
-    "assistant": "assistant",
-
-    /**
-     * value: "function"
-     * @const
-     */
-    "function": "function"
-};
+ChatCompletionRequestMessage.prototype['tool_call_id'] = undefined;
 
 
+ChatCompletionRequestMessage.OneOf = ["ChatCompletionRequestAssistantMessage", "ChatCompletionRequestFunctionMessage", "ChatCompletionRequestSystemMessage", "ChatCompletionRequestToolMessage", "ChatCompletionRequestUserMessage"];
 
 export default ChatCompletionRequestMessage;
 

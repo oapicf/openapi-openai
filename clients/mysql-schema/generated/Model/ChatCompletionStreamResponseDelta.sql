@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `ChatCompletionStreamResponseDelta`
 --
-SELECT `role`, `content`, `function_call` FROM `ChatCompletionStreamResponseDelta` WHERE 1;
+SELECT `content`, `function_call`, `tool_calls`, `role` FROM `ChatCompletionStreamResponseDelta` WHERE 1;
 
 --
 -- INSERT template for table `ChatCompletionStreamResponseDelta`
 --
-INSERT INTO `ChatCompletionStreamResponseDelta`(`role`, `content`, `function_call`) VALUES (?, ?, ?);
+INSERT INTO `ChatCompletionStreamResponseDelta`(`content`, `function_call`, `tool_calls`, `role`) VALUES (?, ?, ?, ?);
 
 --
 -- UPDATE template for table `ChatCompletionStreamResponseDelta`
 --
-UPDATE `ChatCompletionStreamResponseDelta` SET `role` = ?, `content` = ?, `function_call` = ? WHERE 1;
+UPDATE `ChatCompletionStreamResponseDelta` SET `content` = ?, `function_call` = ?, `tool_calls` = ?, `role` = ? WHERE 1;
 
 --
 -- DELETE template for table `ChatCompletionStreamResponseDelta`

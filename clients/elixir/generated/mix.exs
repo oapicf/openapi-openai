@@ -10,7 +10,7 @@ defmodule OpenAIAPI.Mixfile do
       start_permanent: Mix.env() == :prod,
       package: package(),
       description: """
-      APIs for sampling from and fine-tuning language models
+      The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
       """,
       deps: deps()
     ]

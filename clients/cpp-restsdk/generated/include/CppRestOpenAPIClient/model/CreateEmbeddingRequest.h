@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -59,6 +59,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    std::shared_ptr<CreateEmbeddingRequest_input> getInput() const;
+    bool inputIsSet() const;
+    void unsetInput();
+
+    void setInput(const std::shared_ptr<CreateEmbeddingRequest_input>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     std::shared_ptr<CreateEmbeddingRequest_model> getModel() const;
     bool modelIsSet() const;
     void unsetModel();
@@ -66,13 +75,22 @@ public:
     void setModel(const std::shared_ptr<CreateEmbeddingRequest_model>& value);
 
     /// <summary>
-    /// 
+    /// The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
     /// </summary>
-    std::shared_ptr<CreateEmbeddingRequest_input> getInput() const;
-    bool inputIsSet() const;
-    void unsetInput();
+    utility::string_t getEncodingFormat() const;
+    bool encodingFormatIsSet() const;
+    void unsetEncoding_format();
 
-    void setInput(const std::shared_ptr<CreateEmbeddingRequest_input>& value);
+    void setEncodingFormat(const utility::string_t& value);
+
+    /// <summary>
+    /// The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. 
+    /// </summary>
+    int32_t getDimensions() const;
+    bool dimensionsIsSet() const;
+    void unsetDimensions();
+
+    void setDimensions(int32_t value);
 
     /// <summary>
     /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
@@ -85,10 +103,14 @@ public:
 
 
 protected:
-    std::shared_ptr<CreateEmbeddingRequest_model> m_Model;
-    bool m_ModelIsSet;
     std::shared_ptr<CreateEmbeddingRequest_input> m_Input;
     bool m_InputIsSet;
+    std::shared_ptr<CreateEmbeddingRequest_model> m_Model;
+    bool m_ModelIsSet;
+    utility::string_t m_Encoding_format;
+    bool m_Encoding_formatIsSet;
+    int32_t m_Dimensions;
+    bool m_DimensionsIsSet;
     utility::string_t m_User;
     bool m_UserIsSet;
 };

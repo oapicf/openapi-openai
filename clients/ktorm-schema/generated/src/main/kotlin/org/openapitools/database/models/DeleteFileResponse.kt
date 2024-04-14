@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -25,7 +25,7 @@ import .*
  */
 object DeleteFileResponses : BaseTable<DeleteFileResponse>("DeleteFileResponse") {
     val id = text("id")
-    val object = text("object")
+    val object = text("object").transform({ DeleteFileResponse.Object.valueOf(it) }, { it.value })
     val deleted = boolean("deleted")
 
     /**
@@ -33,7 +33,7 @@ object DeleteFileResponses : BaseTable<DeleteFileResponse>("DeleteFileResponse")
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = DeleteFileResponse(
         id = row[id] ?: "" /* kotlin.String */,
-        object = row[object] ?: "" /* kotlin.String */,
+        object = row[object] ?: DeleteFileResponse.Object.valueOf("") /* kotlin.String */,
         deleted = row[deleted] ?: false /* kotlin.Boolean */
     )
 

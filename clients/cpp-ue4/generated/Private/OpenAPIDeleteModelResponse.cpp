@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,8 +24,8 @@ void OpenAPIDeleteModelResponse::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("id")); WriteJsonValue(Writer, Id);
-	Writer->WriteIdentifierPrefix(TEXT("object")); WriteJsonValue(Writer, Object);
 	Writer->WriteIdentifierPrefix(TEXT("deleted")); WriteJsonValue(Writer, Deleted);
+	Writer->WriteIdentifierPrefix(TEXT("object")); WriteJsonValue(Writer, Object);
 	Writer->WriteObjectEnd();
 }
 
@@ -38,8 +38,8 @@ bool OpenAPIDeleteModelResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("id"), Id);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("object"), Object);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("deleted"), Deleted);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("object"), Object);
 
 	return ParseSuccess;
 }

@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -13,222 +13,191 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
-// checks if the ChatCompletionRequestMessage type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ChatCompletionRequestMessage{}
-
-// ChatCompletionRequestMessage struct for ChatCompletionRequestMessage
+// ChatCompletionRequestMessage - struct for ChatCompletionRequestMessage
 type ChatCompletionRequestMessage struct {
-	// The role of the messages author. One of `system`, `user`, `assistant`, or `function`.
-	Role string `json:"role"`
-	// The contents of the message. `content` is required for all messages except assistant messages with function calls.
-	Content *string `json:"content,omitempty"`
-	// The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
-	Name *string `json:"name,omitempty"`
-	FunctionCall *ChatCompletionRequestMessageFunctionCall `json:"function_call,omitempty"`
+	ChatCompletionRequestAssistantMessage *ChatCompletionRequestAssistantMessage
+	ChatCompletionRequestFunctionMessage *ChatCompletionRequestFunctionMessage
+	ChatCompletionRequestSystemMessage *ChatCompletionRequestSystemMessage
+	ChatCompletionRequestToolMessage *ChatCompletionRequestToolMessage
+	ChatCompletionRequestUserMessage *ChatCompletionRequestUserMessage
 }
 
-type _ChatCompletionRequestMessage ChatCompletionRequestMessage
-
-// NewChatCompletionRequestMessage instantiates a new ChatCompletionRequestMessage object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewChatCompletionRequestMessage(role string) *ChatCompletionRequestMessage {
-	this := ChatCompletionRequestMessage{}
-	this.Role = role
-	return &this
-}
-
-// NewChatCompletionRequestMessageWithDefaults instantiates a new ChatCompletionRequestMessage object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewChatCompletionRequestMessageWithDefaults() *ChatCompletionRequestMessage {
-	this := ChatCompletionRequestMessage{}
-	return &this
-}
-
-// GetRole returns the Role field value
-func (o *ChatCompletionRequestMessage) GetRole() string {
-	if o == nil {
-		var ret string
-		return ret
+// ChatCompletionRequestAssistantMessageAsChatCompletionRequestMessage is a convenience function that returns ChatCompletionRequestAssistantMessage wrapped in ChatCompletionRequestMessage
+func ChatCompletionRequestAssistantMessageAsChatCompletionRequestMessage(v *ChatCompletionRequestAssistantMessage) ChatCompletionRequestMessage {
+	return ChatCompletionRequestMessage{
+		ChatCompletionRequestAssistantMessage: v,
 	}
-
-	return o.Role
 }
 
-// GetRoleOk returns a tuple with the Role field value
-// and a boolean to check if the value has been set.
-func (o *ChatCompletionRequestMessage) GetRoleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
+// ChatCompletionRequestFunctionMessageAsChatCompletionRequestMessage is a convenience function that returns ChatCompletionRequestFunctionMessage wrapped in ChatCompletionRequestMessage
+func ChatCompletionRequestFunctionMessageAsChatCompletionRequestMessage(v *ChatCompletionRequestFunctionMessage) ChatCompletionRequestMessage {
+	return ChatCompletionRequestMessage{
+		ChatCompletionRequestFunctionMessage: v,
 	}
-	return &o.Role, true
 }
 
-// SetRole sets field value
-func (o *ChatCompletionRequestMessage) SetRole(v string) {
-	o.Role = v
-}
-
-// GetContent returns the Content field value if set, zero value otherwise.
-func (o *ChatCompletionRequestMessage) GetContent() string {
-	if o == nil || IsNil(o.Content) {
-		var ret string
-		return ret
+// ChatCompletionRequestSystemMessageAsChatCompletionRequestMessage is a convenience function that returns ChatCompletionRequestSystemMessage wrapped in ChatCompletionRequestMessage
+func ChatCompletionRequestSystemMessageAsChatCompletionRequestMessage(v *ChatCompletionRequestSystemMessage) ChatCompletionRequestMessage {
+	return ChatCompletionRequestMessage{
+		ChatCompletionRequestSystemMessage: v,
 	}
-	return *o.Content
 }
 
-// GetContentOk returns a tuple with the Content field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChatCompletionRequestMessage) GetContentOk() (*string, bool) {
-	if o == nil || IsNil(o.Content) {
-		return nil, false
+// ChatCompletionRequestToolMessageAsChatCompletionRequestMessage is a convenience function that returns ChatCompletionRequestToolMessage wrapped in ChatCompletionRequestMessage
+func ChatCompletionRequestToolMessageAsChatCompletionRequestMessage(v *ChatCompletionRequestToolMessage) ChatCompletionRequestMessage {
+	return ChatCompletionRequestMessage{
+		ChatCompletionRequestToolMessage: v,
 	}
-	return o.Content, true
 }
 
-// HasContent returns a boolean if a field has been set.
-func (o *ChatCompletionRequestMessage) HasContent() bool {
-	if o != nil && !IsNil(o.Content) {
-		return true
+// ChatCompletionRequestUserMessageAsChatCompletionRequestMessage is a convenience function that returns ChatCompletionRequestUserMessage wrapped in ChatCompletionRequestMessage
+func ChatCompletionRequestUserMessageAsChatCompletionRequestMessage(v *ChatCompletionRequestUserMessage) ChatCompletionRequestMessage {
+	return ChatCompletionRequestMessage{
+		ChatCompletionRequestUserMessage: v,
 	}
-
-	return false
 }
 
-// SetContent gets a reference to the given string and assigns it to the Content field.
-func (o *ChatCompletionRequestMessage) SetContent(v string) {
-	o.Content = &v
-}
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *ChatCompletionRequestMessage) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChatCompletionRequestMessage) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *ChatCompletionRequestMessage) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ChatCompletionRequestMessage) SetName(v string) {
-	o.Name = &v
-}
-
-// GetFunctionCall returns the FunctionCall field value if set, zero value otherwise.
-func (o *ChatCompletionRequestMessage) GetFunctionCall() ChatCompletionRequestMessageFunctionCall {
-	if o == nil || IsNil(o.FunctionCall) {
-		var ret ChatCompletionRequestMessageFunctionCall
-		return ret
-	}
-	return *o.FunctionCall
-}
-
-// GetFunctionCallOk returns a tuple with the FunctionCall field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChatCompletionRequestMessage) GetFunctionCallOk() (*ChatCompletionRequestMessageFunctionCall, bool) {
-	if o == nil || IsNil(o.FunctionCall) {
-		return nil, false
-	}
-	return o.FunctionCall, true
-}
-
-// HasFunctionCall returns a boolean if a field has been set.
-func (o *ChatCompletionRequestMessage) HasFunctionCall() bool {
-	if o != nil && !IsNil(o.FunctionCall) {
-		return true
-	}
-
-	return false
-}
-
-// SetFunctionCall gets a reference to the given ChatCompletionRequestMessageFunctionCall and assigns it to the FunctionCall field.
-func (o *ChatCompletionRequestMessage) SetFunctionCall(v ChatCompletionRequestMessageFunctionCall) {
-	o.FunctionCall = &v
-}
-
-func (o ChatCompletionRequestMessage) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o ChatCompletionRequestMessage) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	toSerialize["role"] = o.Role
-	if !IsNil(o.Content) {
-		toSerialize["content"] = o.Content
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.FunctionCall) {
-		toSerialize["function_call"] = o.FunctionCall
-	}
-	return toSerialize, nil
-}
-
-func (o *ChatCompletionRequestMessage) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"role",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *ChatCompletionRequestMessage) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into ChatCompletionRequestAssistantMessage
+	err = newStrictDecoder(data).Decode(&dst.ChatCompletionRequestAssistantMessage)
+	if err == nil {
+		jsonChatCompletionRequestAssistantMessage, _ := json.Marshal(dst.ChatCompletionRequestAssistantMessage)
+		if string(jsonChatCompletionRequestAssistantMessage) == "{}" { // empty struct
+			dst.ChatCompletionRequestAssistantMessage = nil
+		} else {
+			match++
 		}
+	} else {
+		dst.ChatCompletionRequestAssistantMessage = nil
 	}
 
-	varChatCompletionRequestMessage := _ChatCompletionRequestMessage{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChatCompletionRequestMessage)
-
-	if err != nil {
-		return err
+	// try to unmarshal data into ChatCompletionRequestFunctionMessage
+	err = newStrictDecoder(data).Decode(&dst.ChatCompletionRequestFunctionMessage)
+	if err == nil {
+		jsonChatCompletionRequestFunctionMessage, _ := json.Marshal(dst.ChatCompletionRequestFunctionMessage)
+		if string(jsonChatCompletionRequestFunctionMessage) == "{}" { // empty struct
+			dst.ChatCompletionRequestFunctionMessage = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ChatCompletionRequestFunctionMessage = nil
 	}
 
-	*o = ChatCompletionRequestMessage(varChatCompletionRequestMessage)
+	// try to unmarshal data into ChatCompletionRequestSystemMessage
+	err = newStrictDecoder(data).Decode(&dst.ChatCompletionRequestSystemMessage)
+	if err == nil {
+		jsonChatCompletionRequestSystemMessage, _ := json.Marshal(dst.ChatCompletionRequestSystemMessage)
+		if string(jsonChatCompletionRequestSystemMessage) == "{}" { // empty struct
+			dst.ChatCompletionRequestSystemMessage = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ChatCompletionRequestSystemMessage = nil
+	}
 
-	return err
+	// try to unmarshal data into ChatCompletionRequestToolMessage
+	err = newStrictDecoder(data).Decode(&dst.ChatCompletionRequestToolMessage)
+	if err == nil {
+		jsonChatCompletionRequestToolMessage, _ := json.Marshal(dst.ChatCompletionRequestToolMessage)
+		if string(jsonChatCompletionRequestToolMessage) == "{}" { // empty struct
+			dst.ChatCompletionRequestToolMessage = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ChatCompletionRequestToolMessage = nil
+	}
+
+	// try to unmarshal data into ChatCompletionRequestUserMessage
+	err = newStrictDecoder(data).Decode(&dst.ChatCompletionRequestUserMessage)
+	if err == nil {
+		jsonChatCompletionRequestUserMessage, _ := json.Marshal(dst.ChatCompletionRequestUserMessage)
+		if string(jsonChatCompletionRequestUserMessage) == "{}" { // empty struct
+			dst.ChatCompletionRequestUserMessage = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ChatCompletionRequestUserMessage = nil
+	}
+
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.ChatCompletionRequestAssistantMessage = nil
+		dst.ChatCompletionRequestFunctionMessage = nil
+		dst.ChatCompletionRequestSystemMessage = nil
+		dst.ChatCompletionRequestToolMessage = nil
+		dst.ChatCompletionRequestUserMessage = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(ChatCompletionRequestMessage)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(ChatCompletionRequestMessage)")
+	}
+}
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src ChatCompletionRequestMessage) MarshalJSON() ([]byte, error) {
+	if src.ChatCompletionRequestAssistantMessage != nil {
+		return json.Marshal(&src.ChatCompletionRequestAssistantMessage)
+	}
+
+	if src.ChatCompletionRequestFunctionMessage != nil {
+		return json.Marshal(&src.ChatCompletionRequestFunctionMessage)
+	}
+
+	if src.ChatCompletionRequestSystemMessage != nil {
+		return json.Marshal(&src.ChatCompletionRequestSystemMessage)
+	}
+
+	if src.ChatCompletionRequestToolMessage != nil {
+		return json.Marshal(&src.ChatCompletionRequestToolMessage)
+	}
+
+	if src.ChatCompletionRequestUserMessage != nil {
+		return json.Marshal(&src.ChatCompletionRequestUserMessage)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *ChatCompletionRequestMessage) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.ChatCompletionRequestAssistantMessage != nil {
+		return obj.ChatCompletionRequestAssistantMessage
+	}
+
+	if obj.ChatCompletionRequestFunctionMessage != nil {
+		return obj.ChatCompletionRequestFunctionMessage
+	}
+
+	if obj.ChatCompletionRequestSystemMessage != nil {
+		return obj.ChatCompletionRequestSystemMessage
+	}
+
+	if obj.ChatCompletionRequestToolMessage != nil {
+		return obj.ChatCompletionRequestToolMessage
+	}
+
+	if obj.ChatCompletionRequestUserMessage != nil {
+		return obj.ChatCompletionRequestUserMessage
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableChatCompletionRequestMessage struct {

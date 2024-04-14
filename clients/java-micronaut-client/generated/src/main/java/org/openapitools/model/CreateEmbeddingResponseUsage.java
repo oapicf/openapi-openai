@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,14 +23,14 @@ import io.micronaut.core.annotation.*;
 import javax.annotation.Generated;
 
 /**
- * CreateEmbeddingResponseUsage
+ * The usage information for the request.
  */
 @JsonPropertyOrder({
   CreateEmbeddingResponseUsage.JSON_PROPERTY_PROMPT_TOKENS,
   CreateEmbeddingResponseUsage.JSON_PROPERTY_TOTAL_TOKENS
 })
 @JsonTypeName("CreateEmbeddingResponse_usage")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-03-16T01:12:32.706318857Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-14T13:37:52.123317469Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateEmbeddingResponseUsage {
     public static final String JSON_PROPERTY_PROMPT_TOKENS = "prompt_tokens";
@@ -50,7 +50,7 @@ public class CreateEmbeddingResponseUsage {
     }
 
     /**
-     * Get promptTokens
+     * The number of tokens used by the prompt.
      * @return promptTokens
      **/
     @NotNull
@@ -72,7 +72,7 @@ public class CreateEmbeddingResponseUsage {
     }
 
     /**
-     * Get totalTokens
+     * The total number of tokens used by the request.
      * @return totalTokens
      **/
     @NotNull

@@ -19,13 +19,16 @@ import javax.validation.Valid;
 */
 @Path("/embeddings")
 @Api(description = "the embeddings API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class EmbeddingsApi {
 
     @POST
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Creates an embedding vector representing the input text.", notes = "", response = CreateEmbeddingResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Creates an embedding vector representing the input text.", notes = "", response = CreateEmbeddingResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Embeddings" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateEmbeddingResponse.class)
     })

@@ -18,13 +18,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("CreateModerationResponse_results_inner")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponseResultsInner   {
   private @Valid Boolean flagged;
   private @Valid CreateModerationResponseResultsInnerCategories categories;
   private @Valid CreateModerationResponseResultsInnerCategoryScores categoryScores;
 
   /**
+   * Whether any of the below categories are flagged.
    **/
   public CreateModerationResponseResultsInner flagged(Boolean flagged) {
     this.flagged = flagged;
@@ -32,7 +33,7 @@ public class CreateModerationResponseResultsInner   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Whether any of the below categories are flagged.")
   @JsonProperty("flagged")
   @NotNull
   public Boolean getFlagged() {

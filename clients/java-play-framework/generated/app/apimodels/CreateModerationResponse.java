@@ -11,9 +11,9 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * CreateModerationResponse
+ * Represents if a given text input is potentially harmful.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateModerationResponse   {
   @JsonProperty("id")
@@ -38,7 +38,7 @@ public class CreateModerationResponse   {
   }
 
    /**
-   * Get id
+   * The unique identifier for the moderation request.
    * @return id
   **/
   public String getId() {
@@ -55,7 +55,7 @@ public class CreateModerationResponse   {
   }
 
    /**
-   * Get model
+   * The model used to generate the moderation results.
    * @return model
   **/
   public String getModel() {
@@ -80,7 +80,7 @@ public class CreateModerationResponse   {
   }
 
    /**
-   * Get results
+   * A list of moderation objects.
    * @return results
   **/
   public List<@Valid CreateModerationResponseResultsInner> getResults() {

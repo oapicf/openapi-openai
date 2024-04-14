@@ -5,8 +5,8 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** |  |  |
-| **object** | **String** |  |  |
 | **deleted** | **Boolean** |  |  |
+| **object** | **String** |  |  |
 
 ## Example
 
@@ -15,8 +15,8 @@ require 'openapi_openai'
 
 instance = OpenApiOpenAIClient::DeleteModelResponse.new(
   id: null,
-  object: null,
-  deleted: null
+  deleted: null,
+  object: null
 )
 ```
 

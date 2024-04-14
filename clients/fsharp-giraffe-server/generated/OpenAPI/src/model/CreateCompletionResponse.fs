@@ -2,20 +2,24 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open OpenAPI.Model.CompletionUsage
 open OpenAPI.Model.CreateCompletionResponseChoicesInner
-open OpenAPI.Model.CreateCompletionResponseUsage
 
 module CreateCompletionResponse =
 
   //#region CreateCompletionResponse
 
+  //#region enums
+  type ObjectEnum = TextCompletionEnum of string  
+  //#endregion
 
   type CreateCompletionResponse = {
     Id : string;
-    Object : string;
+    Choices : CreateCompletionResponseChoicesInner[];
     Created : int;
     Model : string;
-    Choices : CreateCompletionResponseChoicesInner[];
-    Usage : CreateCompletionResponseUsage;
+    SystemFingerprint : string;
+    Object : ObjectEnum;
+    Usage : CompletionUsage;
   }
   //#endregion

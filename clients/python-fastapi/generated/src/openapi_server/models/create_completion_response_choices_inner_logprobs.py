@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -32,11 +32,11 @@ class CreateCompletionResponseChoicesInnerLogprobs(BaseModel):
     """
     CreateCompletionResponseChoicesInnerLogprobs
     """ # noqa: E501
-    tokens: Optional[List[StrictStr]] = None
-    token_logprobs: Optional[List[Union[StrictFloat, StrictInt]]] = None
-    top_logprobs: Optional[List[Dict[str, Any]]] = None
     text_offset: Optional[List[StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["tokens", "token_logprobs", "top_logprobs", "text_offset"]
+    token_logprobs: Optional[List[Union[StrictFloat, StrictInt]]] = None
+    tokens: Optional[List[StrictStr]] = None
+    top_logprobs: Optional[List[Dict[str, Union[StrictFloat, StrictInt]]]] = None
+    __properties: ClassVar[List[str]] = ["text_offset", "token_logprobs", "tokens", "top_logprobs"]
 
     model_config = {
         "populate_by_name": True,
@@ -87,10 +87,10 @@ class CreateCompletionResponseChoicesInnerLogprobs(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "tokens": obj.get("tokens"),
+            "text_offset": obj.get("text_offset"),
             "token_logprobs": obj.get("token_logprobs"),
-            "top_logprobs": obj.get("top_logprobs"),
-            "text_offset": obj.get("text_offset")
+            "tokens": obj.get("tokens"),
+            "top_logprobs": obj.get("top_logprobs")
         })
         return _obj
 

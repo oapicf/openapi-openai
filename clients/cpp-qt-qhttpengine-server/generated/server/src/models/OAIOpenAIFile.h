@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * OAIOpenAIFile.h
  *
- * 
+ * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
 
 #ifndef OAIOpenAIFile_H
@@ -21,7 +21,6 @@
 
 #include <QJsonObject>
 
-#include "OAIObject.h"
 #include <QString>
 
 #include "OAIEnum.h"
@@ -45,11 +44,6 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    QString getObject() const;
-    void setObject(const QString &object);
-    bool is_object_Set() const;
-    bool is_object_Valid() const;
-
     qint32 getBytes() const;
     void setBytes(const qint32 &bytes);
     bool is_bytes_Set() const;
@@ -65,6 +59,11 @@ public:
     bool is_filename_Set() const;
     bool is_filename_Valid() const;
 
+    QString getObject() const;
+    void setObject(const QString &object);
+    bool is_object_Set() const;
+    bool is_object_Valid() const;
+
     QString getPurpose() const;
     void setPurpose(const QString &purpose);
     bool is_purpose_Set() const;
@@ -75,8 +74,8 @@ public:
     bool is_status_Set() const;
     bool is_status_Valid() const;
 
-    OAIObject getStatusDetails() const;
-    void setStatusDetails(const OAIObject &status_details);
+    QString getStatusDetails() const;
+    void setStatusDetails(const QString &status_details);
     bool is_status_details_Set() const;
     bool is_status_details_Valid() const;
 
@@ -90,10 +89,6 @@ private:
     bool m_id_isSet;
     bool m_id_isValid;
 
-    QString object;
-    bool m_object_isSet;
-    bool m_object_isValid;
-
     qint32 bytes;
     bool m_bytes_isSet;
     bool m_bytes_isValid;
@@ -106,6 +101,10 @@ private:
     bool m_filename_isSet;
     bool m_filename_isValid;
 
+    QString object;
+    bool m_object_isSet;
+    bool m_object_isValid;
+
     QString purpose;
     bool m_purpose_isSet;
     bool m_purpose_isValid;
@@ -114,7 +113,7 @@ private:
     bool m_status_isSet;
     bool m_status_isValid;
 
-    OAIObject status_details;
+    QString status_details;
     bool m_status_details_isSet;
     bool m_status_details_isValid;
 };

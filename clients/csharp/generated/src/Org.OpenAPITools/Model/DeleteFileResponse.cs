@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -33,6 +33,25 @@ namespace Org.OpenAPITools.Model
     public partial class DeleteFileResponse : IValidatableObject
     {
         /// <summary>
+        /// Defines VarObject
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            /// <summary>
+            /// Enum File for value: file
+            /// </summary>
+            [EnumMember(Value = "file")]
+            File = 1
+        }
+
+
+        /// <summary>
+        /// Gets or Sets VarObject
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public ObjectEnum VarObject { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="DeleteFileResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -43,7 +62,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="id">id (required).</param>
         /// <param name="varObject">varObject (required).</param>
         /// <param name="deleted">deleted (required).</param>
-        public DeleteFileResponse(string id = default(string), string varObject = default(string), bool deleted = default(bool))
+        public DeleteFileResponse(string id = default(string), ObjectEnum varObject = default(ObjectEnum), bool deleted = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -51,11 +70,6 @@ namespace Org.OpenAPITools.Model
                 throw new ArgumentNullException("id is a required property for DeleteFileResponse and cannot be null");
             }
             this.Id = id;
-            // to ensure "varObject" is required (not null)
-            if (varObject == null)
-            {
-                throw new ArgumentNullException("varObject is a required property for DeleteFileResponse and cannot be null");
-            }
             this.VarObject = varObject;
             this.Deleted = deleted;
         }
@@ -65,12 +79,6 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets VarObject
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string VarObject { get; set; }
 
         /// <summary>
         /// Gets or Sets Deleted

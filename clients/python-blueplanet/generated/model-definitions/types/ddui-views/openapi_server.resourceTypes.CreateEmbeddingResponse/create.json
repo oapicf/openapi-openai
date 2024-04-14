@@ -11,9 +11,9 @@
     "label": "Details",
     "model": "properties",
     "children": [
-      {"model": "object" },
-      {"model": "model" },
       {"model": "data" },
+      {"model": "model" },
+      {"model": "object" },
       {"model": "usage" },
     ]
   }]

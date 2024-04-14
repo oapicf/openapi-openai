@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -16,15 +16,15 @@ Please update as you see appropriate
 describe("list_files_response", function()
   local openapiclient_list_files_response = require "openapiclient.model.list_files_response"
 
-  -- unit tests for the property 'object'
-  describe("property object test", function()
+  -- unit tests for the property 'data'
+  describe("property data test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for the property 'data'
-  describe("property data test", function()
+  -- unit tests for the property 'object'
+  describe("property object test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

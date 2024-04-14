@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -17,33 +17,91 @@ module OpenAPIClient
     include JSON::Serializable
 
     # Required properties
-    @[JSON::Field(key: "model", type: CreateEmbeddingRequestModel, nillable: false, emit_null: false)]
-    property model : CreateEmbeddingRequestModel
-
     @[JSON::Field(key: "input", type: CreateEmbeddingRequestInput, nillable: false, emit_null: false)]
     property input : CreateEmbeddingRequestInput
 
+    @[JSON::Field(key: "model", type: CreateEmbeddingRequestModel, nillable: false, emit_null: false)]
+    property model : CreateEmbeddingRequestModel
+
     # Optional properties
+    # The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+    @[JSON::Field(key: "encoding_format", type: String?, default: "float", nillable: true, emit_null: false)]
+    property encoding_format : String?
+
+    # The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+    @[JSON::Field(key: "dimensions", type: Int32?, nillable: true, emit_null: false)]
+    property dimensions : Int32?
+
     # A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
     @[JSON::Field(key: "user", type: String?, nillable: true, emit_null: false)]
     property user : String?
 
+    class EnumAttributeValidator
+      getter datatype : String
+      getter allowable_values : Array(String)
+
+      def initialize(datatype, allowable_values)
+        @datatype = datatype
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.includes?(value)
+      end
+    end
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@model : CreateEmbeddingRequestModel, @input : CreateEmbeddingRequestInput, @user : String?)
+    def initialize(@input : CreateEmbeddingRequestInput, @model : CreateEmbeddingRequestModel, @encoding_format : String?, @dimensions : Int32?, @user : String?)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array(String).new
+      if !@dimensions.nil? && @dimensions < 1
+        invalid_properties.push("invalid value for \"dimensions\", must be greater than or equal to 1.")
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      encoding_format_validator = EnumAttributeValidator.new("String", ["float", "base64"])
+      return false unless encoding_format_validator.valid?(@encoding_format)
+      return false if !@dimensions.nil? && @dimensions < 1
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] encoding_format Object to be assigned
+    def encoding_format=(encoding_format)
+      validator = EnumAttributeValidator.new("String", ["float", "base64"])
+      unless validator.valid?(encoding_format)
+        raise ArgumentError.new("invalid value for \"encoding_format\", must be one of #{validator.allowable_values}.")
+      end
+      @encoding_format = encoding_format
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] dimensions Value to be assigned
+    def dimensions=(dimensions)
+      if !dimensions.nil? && dimensions < 1
+        raise ArgumentError.new("invalid value for \"dimensions\", must be greater than or equal to 1.")
+      end
+
+      @dimensions = dimensions
     end
 
     # Checks equality by comparing each attribute.
@@ -51,8 +109,10 @@ module OpenAPIClient
     def ==(o)
       return true if self.same?(o)
       self.class == o.class &&
-          model == o.model &&
           input == o.input &&
+          model == o.model &&
+          encoding_format == o.encoding_format &&
+          dimensions == o.dimensions &&
           user == o.user
     end
 
@@ -65,7 +125,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [model, input, user].hash
+      [input, model, encoding_format, dimensions, user].hash
     end
 
     # Builds the object from hash

@@ -23,17 +23,18 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param text 
+ * @param finishReason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
  * @param index 
  * @param logprobs 
- * @param finishReason 
+ * @param text 
  */
 
 
 data class CreateCompletionResponseChoicesInner (
 
-    @Json(name = "text")
-    val text: kotlin.String,
+    /* The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.  */
+    @Json(name = "finish_reason")
+    val finishReason: CreateCompletionResponseChoicesInner.FinishReason,
 
     @Json(name = "index")
     val index: kotlin.Int,
@@ -41,20 +42,21 @@ data class CreateCompletionResponseChoicesInner (
     @Json(name = "logprobs")
     val logprobs: CreateCompletionResponseChoicesInnerLogprobs?,
 
-    @Json(name = "finish_reason")
-    val finishReason: CreateCompletionResponseChoicesInner.FinishReason
+    @Json(name = "text")
+    val text: kotlin.String
 
 ) {
 
     /**
-     * 
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
      *
-     * Values: stop,length
+     * Values: stop,length,content_filter
      */
     @JsonClass(generateAdapter = false)
     enum class FinishReason(val value: kotlin.String) {
         @Json(name = "stop") stop("stop"),
-        @Json(name = "length") length("length");
+        @Json(name = "length") length("length"),
+        @Json(name = "content_filter") content_filter("content_filter");
     }
 }
 

@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Object** | **string** |  | 
-**Bytes** | **int32** |  | 
-**CreatedAt** | **int32** |  | 
-**Filename** | **string** |  | 
-**Purpose** | **string** |  | 
-**Status** | Pointer to **string** |  | [optional] 
-**StatusDetails** | Pointer to **map[string]interface{}** |  | [optional] 
+**Id** | **string** | The file identifier, which can be referenced in the API endpoints. | 
+**Bytes** | **int32** | The size of the file, in bytes. | 
+**CreatedAt** | **int32** | The Unix timestamp (in seconds) for when the file was created. | 
+**Filename** | **string** | The name of the file. | 
+**Object** | **string** | The object type, which is always &#x60;file&#x60;. | 
+**Purpose** | **string** | The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;. | 
+**Status** | **string** | Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;. | 
+**StatusDetails** | Pointer to **string** | Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;. | [optional] 
 
 ## Methods
 
 ### NewOpenAIFile
 
-`func NewOpenAIFile(id string, object string, bytes int32, createdAt int32, filename string, purpose string, ) *OpenAIFile`
+`func NewOpenAIFile(id string, bytes int32, createdAt int32, filename string, object string, purpose string, status string, ) *OpenAIFile`
 
 NewOpenAIFile instantiates a new OpenAIFile object
 This constructor will assign default values to properties that have it defined,
@@ -50,26 +50,6 @@ and a boolean to check if the value has been set.
 `func (o *OpenAIFile) SetId(v string)`
 
 SetId sets Id field to given value.
-
-
-### GetObject
-
-`func (o *OpenAIFile) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *OpenAIFile) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *OpenAIFile) SetObject(v string)`
-
-SetObject sets Object field to given value.
 
 
 ### GetBytes
@@ -132,6 +112,26 @@ and a boolean to check if the value has been set.
 SetFilename sets Filename field to given value.
 
 
+### GetObject
+
+`func (o *OpenAIFile) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *OpenAIFile) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *OpenAIFile) SetObject(v string)`
+
+SetObject sets Object field to given value.
+
+
 ### GetPurpose
 
 `func (o *OpenAIFile) GetPurpose() string`
@@ -171,28 +171,23 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-### HasStatus
-
-`func (o *OpenAIFile) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetStatusDetails
 
-`func (o *OpenAIFile) GetStatusDetails() map[string]interface{}`
+`func (o *OpenAIFile) GetStatusDetails() string`
 
 GetStatusDetails returns the StatusDetails field if non-nil, zero value otherwise.
 
 ### GetStatusDetailsOk
 
-`func (o *OpenAIFile) GetStatusDetailsOk() (*map[string]interface{}, bool)`
+`func (o *OpenAIFile) GetStatusDetailsOk() (*string, bool)`
 
 GetStatusDetailsOk returns a tuple with the StatusDetails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatusDetails
 
-`func (o *OpenAIFile) SetStatusDetails(v map[string]interface{})`
+`func (o *OpenAIFile) SetStatusDetails(v string)`
 
 SetStatusDetails sets StatusDetails field to given value.
 
@@ -202,16 +197,6 @@ SetStatusDetails sets StatusDetails field to given value.
 
 HasStatusDetails returns a boolean if a field has been set.
 
-### SetStatusDetailsNil
-
-`func (o *OpenAIFile) SetStatusDetailsNil(b bool)`
-
- SetStatusDetailsNil sets the value for StatusDetails to be an explicit nil
-
-### UnsetStatusDetails
-`func (o *OpenAIFile) UnsetStatusDetails()`
-
-UnsetStatusDetails ensures that no value is present for StatusDetails, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

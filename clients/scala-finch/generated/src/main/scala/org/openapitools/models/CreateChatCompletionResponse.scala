@@ -5,25 +5,27 @@ import io.finch.circe._
 import io.circe.generic.semiauto._
 import io.circe.java8.time._
 import org.openapitools._
+import org.openapitools.models.CompletionUsage
 import org.openapitools.models.CreateChatCompletionResponseChoicesInner
-import org.openapitools.models.CreateCompletionResponseUsage
 import scala.collection.immutable.Seq
 
 /**
- * 
- * @param id 
- * @param _object 
- * @param created 
- * @param model 
- * @param choices 
+ * Represents a chat completion response returned by model, based on the provided input.
+ * @param id A unique identifier for the chat completion.
+ * @param choices A list of chat completion choices. Can be more than one if `n` is greater than 1.
+ * @param created The Unix timestamp (in seconds) of when the chat completion was created.
+ * @param model The model used for the chat completion.
+ * @param systemUnderscorefingerprint This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+ * @param _object The object type, which is always `chat.completion`.
  * @param usage 
  */
 case class CreateChatCompletionResponse(id: String,
-                _object: String,
+                choices: Seq[CreateChatCompletionResponseChoicesInner],
                 created: Int,
                 model: String,
-                choices: Seq[CreateChatCompletionResponseChoicesInner],
-                usage: Option[CreateCompletionResponseUsage]
+                systemUnderscorefingerprint: Option[String],
+                _object: String,
+                usage: Option[CompletionUsage]
                 )
 
 object CreateChatCompletionResponse {

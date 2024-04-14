@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `ListFilesResponse`
 --
-SELECT `object`, `data` FROM `ListFilesResponse` WHERE 1;
+SELECT `data`, `object` FROM `ListFilesResponse` WHERE 1;
 
 --
 -- INSERT template for table `ListFilesResponse`
 --
-INSERT INTO `ListFilesResponse`(`object`, `data`) VALUES (?, ?);
+INSERT INTO `ListFilesResponse`(`data`, `object`) VALUES (?, ?);
 
 --
 -- UPDATE template for table `ListFilesResponse`
 --
-UPDATE `ListFilesResponse` SET `object` = ?, `data` = ? WHERE 1;
+UPDATE `ListFilesResponse` SET `data` = ?, `object` = ? WHERE 1;
 
 --
 -- DELETE template for table `ListFilesResponse`

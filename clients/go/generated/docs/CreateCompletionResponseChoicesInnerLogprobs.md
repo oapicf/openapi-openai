@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tokens** | Pointer to **[]string** |  | [optional] 
-**TokenLogprobs** | Pointer to **[]float32** |  | [optional] 
-**TopLogprobs** | Pointer to **[]map[string]interface{}** |  | [optional] 
 **TextOffset** | Pointer to **[]int32** |  | [optional] 
+**TokenLogprobs** | Pointer to **[]float32** |  | [optional] 
+**Tokens** | Pointer to **[]string** |  | [optional] 
+**TopLogprobs** | Pointer to **[]map[string]float32** |  | [optional] 
 
 ## Methods
 
@@ -28,30 +28,30 @@ NewCreateCompletionResponseChoicesInnerLogprobsWithDefaults instantiates a new C
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTokens
+### GetTextOffset
 
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokens() []string`
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTextOffset() []int32`
 
-GetTokens returns the Tokens field if non-nil, zero value otherwise.
+GetTextOffset returns the TextOffset field if non-nil, zero value otherwise.
 
-### GetTokensOk
+### GetTextOffsetOk
 
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokensOk() (*[]string, bool)`
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTextOffsetOk() (*[]int32, bool)`
 
-GetTokensOk returns a tuple with the Tokens field if it's non-nil, zero value otherwise
+GetTextOffsetOk returns a tuple with the TextOffset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTokens
+### SetTextOffset
 
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTokens(v []string)`
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTextOffset(v []int32)`
 
-SetTokens sets Tokens field to given value.
+SetTextOffset sets TextOffset field to given value.
 
-### HasTokens
+### HasTextOffset
 
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTokens() bool`
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTextOffset() bool`
 
-HasTokens returns a boolean if a field has been set.
+HasTextOffset returns a boolean if a field has been set.
 
 ### GetTokenLogprobs
 
@@ -78,22 +78,47 @@ SetTokenLogprobs sets TokenLogprobs field to given value.
 
 HasTokenLogprobs returns a boolean if a field has been set.
 
+### GetTokens
+
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokens() []string`
+
+GetTokens returns the Tokens field if non-nil, zero value otherwise.
+
+### GetTokensOk
+
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokensOk() (*[]string, bool)`
+
+GetTokensOk returns a tuple with the Tokens field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokens
+
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTokens(v []string)`
+
+SetTokens sets Tokens field to given value.
+
+### HasTokens
+
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTokens() bool`
+
+HasTokens returns a boolean if a field has been set.
+
 ### GetTopLogprobs
 
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTopLogprobs() []map[string]interface{}`
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTopLogprobs() []map[string]float32`
 
 GetTopLogprobs returns the TopLogprobs field if non-nil, zero value otherwise.
 
 ### GetTopLogprobsOk
 
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTopLogprobsOk() (*[]map[string]interface{}, bool)`
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTopLogprobsOk() (*[]map[string]float32, bool)`
 
 GetTopLogprobsOk returns a tuple with the TopLogprobs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTopLogprobs
 
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTopLogprobs(v []map[string]interface{})`
+`func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTopLogprobs(v []map[string]float32)`
 
 SetTopLogprobs sets TopLogprobs field to given value.
 
@@ -102,31 +127,6 @@ SetTopLogprobs sets TopLogprobs field to given value.
 `func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTopLogprobs() bool`
 
 HasTopLogprobs returns a boolean if a field has been set.
-
-### GetTextOffset
-
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTextOffset() []int32`
-
-GetTextOffset returns the TextOffset field if non-nil, zero value otherwise.
-
-### GetTextOffsetOk
-
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTextOffsetOk() (*[]int32, bool)`
-
-GetTextOffsetOk returns a tuple with the TextOffset field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTextOffset
-
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTextOffset(v []int32)`
-
-SetTextOffset sets TextOffset field to given value.
-
-### HasTextOffset
-
-`func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTextOffset() bool`
-
-HasTextOffset returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

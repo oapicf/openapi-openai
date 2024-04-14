@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -54,14 +54,14 @@
       //expect(instance).to.be.a(OpenapiOpenai.ChatCompletionRequestMessage);
     });
 
-    it('should have the property role (base name: "role")', function() {
-      // uncomment below and update the code to test the property role
+    it('should have the property content (base name: "content")', function() {
+      // uncomment below and update the code to test the property content
       //var instance = new OpenapiOpenai.ChatCompletionRequestMessage();
       //expect(instance).to.be();
     });
 
-    it('should have the property content (base name: "content")', function() {
-      // uncomment below and update the code to test the property content
+    it('should have the property role (base name: "role")', function() {
+      // uncomment below and update the code to test the property role
       //var instance = new OpenapiOpenai.ChatCompletionRequestMessage();
       //expect(instance).to.be();
     });
@@ -72,8 +72,20 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property toolCalls (base name: "tool_calls")', function() {
+      // uncomment below and update the code to test the property toolCalls
+      //var instance = new OpenapiOpenai.ChatCompletionRequestMessage();
+      //expect(instance).to.be();
+    });
+
     it('should have the property functionCall (base name: "function_call")', function() {
       // uncomment below and update the code to test the property functionCall
+      //var instance = new OpenapiOpenai.ChatCompletionRequestMessage();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property toolCallId (base name: "tool_call_id")', function() {
+      // uncomment below and update the code to test the property toolCallId
       //var instance = new OpenapiOpenai.ChatCompletionRequestMessage();
       //expect(instance).to.be();
     });

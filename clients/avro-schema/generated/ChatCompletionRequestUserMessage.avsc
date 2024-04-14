@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ChatCompletionRequestUserMessage",
+  "fields": [
+    {
+      "name": "content",
+      "type": "model.ChatCompletionRequestUserMessageContent",
+      "doc": ""
+    },
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "ChatCompletionRequestUserMessage_role",
+        "symbols": [
+          "user"
+        ]
+      },
+      "doc": "The role of the messages author, in this case `user`."
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "An optional name for the participant. Provides the model information to differentiate between participants of the same role.",
+      "default": null
+    }
+  ]
+
+}

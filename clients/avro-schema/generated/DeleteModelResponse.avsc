@@ -10,13 +10,13 @@
       "doc": ""
     },
     {
-      "name": "object",
-      "type": "string",
+      "name": "deleted",
+      "type": "boolean",
       "doc": ""
     },
     {
-      "name": "deleted",
-      "type": "boolean",
+      "name": "object",
+      "type": "string",
       "doc": ""
     }
   ]

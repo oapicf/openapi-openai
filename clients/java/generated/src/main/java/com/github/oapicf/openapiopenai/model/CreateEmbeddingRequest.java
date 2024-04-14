@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -51,15 +51,75 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateEmbeddingRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateEmbeddingRequest {
+  public static final String SERIALIZED_NAME_INPUT = "input";
+  @SerializedName(SERIALIZED_NAME_INPUT)
+  private CreateEmbeddingRequestInput input;
+
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
   private CreateEmbeddingRequestModel model;
 
-  public static final String SERIALIZED_NAME_INPUT = "input";
-  @SerializedName(SERIALIZED_NAME_INPUT)
-  private CreateEmbeddingRequestInput input;
+  /**
+   * The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
+   */
+  @JsonAdapter(EncodingFormatEnum.Adapter.class)
+  public enum EncodingFormatEnum {
+    FLOAT("float"),
+    
+    BASE64("base64");
+
+    private String value;
+
+    EncodingFormatEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static EncodingFormatEnum fromValue(String value) {
+      for (EncodingFormatEnum b : EncodingFormatEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<EncodingFormatEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final EncodingFormatEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public EncodingFormatEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return EncodingFormatEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      EncodingFormatEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_ENCODING_FORMAT = "encoding_format";
+  @SerializedName(SERIALIZED_NAME_ENCODING_FORMAT)
+  private EncodingFormatEnum encodingFormat = EncodingFormatEnum.FLOAT;
+
+  public static final String SERIALIZED_NAME_DIMENSIONS = "dimensions";
+  @SerializedName(SERIALIZED_NAME_DIMENSIONS)
+  private Integer dimensions;
 
   public static final String SERIALIZED_NAME_USER = "user";
   @SerializedName(SERIALIZED_NAME_USER)
@@ -67,6 +127,25 @@ public class CreateEmbeddingRequest {
 
   public CreateEmbeddingRequest() {
   }
+
+  public CreateEmbeddingRequest input(CreateEmbeddingRequestInput input) {
+    this.input = input;
+    return this;
+  }
+
+   /**
+   * Get input
+   * @return input
+  **/
+  @javax.annotation.Nonnull
+  public CreateEmbeddingRequestInput getInput() {
+    return input;
+  }
+
+  public void setInput(CreateEmbeddingRequestInput input) {
+    this.input = input;
+  }
+
 
   public CreateEmbeddingRequest model(CreateEmbeddingRequestModel model) {
     this.model = model;
@@ -87,22 +166,42 @@ public class CreateEmbeddingRequest {
   }
 
 
-  public CreateEmbeddingRequest input(CreateEmbeddingRequestInput input) {
-    this.input = input;
+  public CreateEmbeddingRequest encodingFormat(EncodingFormatEnum encodingFormat) {
+    this.encodingFormat = encodingFormat;
     return this;
   }
 
    /**
-   * Get input
-   * @return input
+   * The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
+   * @return encodingFormat
   **/
-  @javax.annotation.Nonnull
-  public CreateEmbeddingRequestInput getInput() {
-    return input;
+  @javax.annotation.Nullable
+  public EncodingFormatEnum getEncodingFormat() {
+    return encodingFormat;
   }
 
-  public void setInput(CreateEmbeddingRequestInput input) {
-    this.input = input;
+  public void setEncodingFormat(EncodingFormatEnum encodingFormat) {
+    this.encodingFormat = encodingFormat;
+  }
+
+
+  public CreateEmbeddingRequest dimensions(Integer dimensions) {
+    this.dimensions = dimensions;
+    return this;
+  }
+
+   /**
+   * The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. 
+   * minimum: 1
+   * @return dimensions
+  **/
+  @javax.annotation.Nullable
+  public Integer getDimensions() {
+    return dimensions;
+  }
+
+  public void setDimensions(Integer dimensions) {
+    this.dimensions = dimensions;
   }
 
 
@@ -135,22 +234,26 @@ public class CreateEmbeddingRequest {
       return false;
     }
     CreateEmbeddingRequest createEmbeddingRequest = (CreateEmbeddingRequest) o;
-    return Objects.equals(this.model, createEmbeddingRequest.model) &&
-        Objects.equals(this.input, createEmbeddingRequest.input) &&
+    return Objects.equals(this.input, createEmbeddingRequest.input) &&
+        Objects.equals(this.model, createEmbeddingRequest.model) &&
+        Objects.equals(this.encodingFormat, createEmbeddingRequest.encodingFormat) &&
+        Objects.equals(this.dimensions, createEmbeddingRequest.dimensions) &&
         Objects.equals(this.user, createEmbeddingRequest.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, input, user);
+    return Objects.hash(input, model, encodingFormat, dimensions, user);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateEmbeddingRequest {\n");
-    sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    input: ").append(toIndentedString(input)).append("\n");
+    sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    encodingFormat: ").append(toIndentedString(encodingFormat)).append("\n");
+    sb.append("    dimensions: ").append(toIndentedString(dimensions)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -174,14 +277,16 @@ public class CreateEmbeddingRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("model");
     openapiFields.add("input");
+    openapiFields.add("model");
+    openapiFields.add("encoding_format");
+    openapiFields.add("dimensions");
     openapiFields.add("user");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("model");
     openapiRequiredFields.add("input");
+    openapiRequiredFields.add("model");
   }
 
  /**
@@ -212,10 +317,17 @@ public class CreateEmbeddingRequest {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `model`
-      CreateEmbeddingRequestModel.validateJsonElement(jsonObj.get("model"));
       // validate the required field `input`
       CreateEmbeddingRequestInput.validateJsonElement(jsonObj.get("input"));
+      // validate the required field `model`
+      CreateEmbeddingRequestModel.validateJsonElement(jsonObj.get("model"));
+      if ((jsonObj.get("encoding_format") != null && !jsonObj.get("encoding_format").isJsonNull()) && !jsonObj.get("encoding_format").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `encoding_format` to be a primitive type in the JSON string but got `%s`", jsonObj.get("encoding_format").toString()));
+      }
+      // validate the optional field `encoding_format`
+      if (jsonObj.get("encoding_format") != null && !jsonObj.get("encoding_format").isJsonNull()) {
+        EncodingFormatEnum.validateJsonElement(jsonObj.get("encoding_format"));
+      }
       if ((jsonObj.get("user") != null && !jsonObj.get("user").isJsonNull()) && !jsonObj.get("user").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `user` to be a primitive type in the JSON string but got `%s`", jsonObj.get("user").toString()));
       }

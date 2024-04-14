@@ -23,14 +23,14 @@ delete_model_response_t* instantiate_delete_model_response(int include_optional)
   if (include_optional) {
     delete_model_response = delete_model_response_create(
       "0",
-      "0",
-      1
+      1,
+      "0"
     );
   } else {
     delete_model_response = delete_model_response_create(
       "0",
-      "0",
-      1
+      1,
+      "0"
     );
   }
 

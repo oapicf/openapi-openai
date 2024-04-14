@@ -1,7 +1,7 @@
 /*
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
 
@@ -19,7 +19,11 @@ message DeleteFileResponse {
 
   string id = 3355;
 
-  string object = 486497474;
+  enum ObjectEnum {
+    ObjectEnum_FILE = 0;
+  }
+
+  ObjectEnum object = 486497474;
 
   bool deleted = 476721179;
 

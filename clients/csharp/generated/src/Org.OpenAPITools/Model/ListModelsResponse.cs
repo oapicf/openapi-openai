@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -33,6 +33,25 @@ namespace Org.OpenAPITools.Model
     public partial class ListModelsResponse : IValidatableObject
     {
         /// <summary>
+        /// Defines VarObject
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            /// <summary>
+            /// Enum List for value: list
+            /// </summary>
+            [EnumMember(Value = "list")]
+            List = 1
+        }
+
+
+        /// <summary>
+        /// Gets or Sets VarObject
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public ObjectEnum VarObject { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ListModelsResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -42,13 +61,8 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="varObject">varObject (required).</param>
         /// <param name="data">data (required).</param>
-        public ListModelsResponse(string varObject = default(string), List<Model> data = default(List<Model>))
+        public ListModelsResponse(ObjectEnum varObject = default(ObjectEnum), List<Model> data = default(List<Model>))
         {
-            // to ensure "varObject" is required (not null)
-            if (varObject == null)
-            {
-                throw new ArgumentNullException("varObject is a required property for ListModelsResponse and cannot be null");
-            }
             this.VarObject = varObject;
             // to ensure "data" is required (not null)
             if (data == null)
@@ -57,12 +71,6 @@ namespace Org.OpenAPITools.Model
             }
             this.Data = data;
         }
-
-        /// <summary>
-        /// Gets or Sets VarObject
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string VarObject { get; set; }
 
         /// <summary>
         /// Gets or Sets Data

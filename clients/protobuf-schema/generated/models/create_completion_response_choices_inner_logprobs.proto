@@ -1,7 +1,7 @@
 /*
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
 
@@ -14,16 +14,15 @@ syntax = "proto3";
 
 package openapitools;
 
-import public "models/todo_object_mapping.proto";
 
 message CreateCompletionResponseChoicesInnerLogprobs {
 
-  repeated string tokens = 331315815;
+  repeated int32 text_offset = 279027740;
 
   repeated float token_logprobs = 246623873;
 
-  repeated TODO_OBJECT_MAPPING top_logprobs = 170176167;
+  repeated string tokens = 331315815;
 
-  repeated int32 text_offset = 279027740;
+  repeated map<string, float> top_logprobs = 170176167;
 
 }

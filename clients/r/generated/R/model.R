@@ -1,16 +1,16 @@
 #' Create a new Model
 #'
 #' @description
-#' Model Class
+#' Describes an OpenAI model offering that can be used with the API.
 #'
 #' @docType class
 #' @title Model
 #' @description Model Class
 #' @format An \code{R6Class} generator object
-#' @field id  character
-#' @field object  character
-#' @field created  integer
-#' @field owned_by  character
+#' @field id The model identifier, which can be referenced in the API endpoints. character
+#' @field created The Unix timestamp (in seconds) when the model was created. integer
+#' @field object The object type, which is always \"model\". character
+#' @field owned_by The organization that owns the model. character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -18,38 +18,41 @@ Model <- R6::R6Class(
   "Model",
   public = list(
     `id` = NULL,
-    `object` = NULL,
     `created` = NULL,
+    `object` = NULL,
     `owned_by` = NULL,
     #' Initialize a new Model class.
     #'
     #' @description
     #' Initialize a new Model class.
     #'
-    #' @param id id
-    #' @param object object
-    #' @param created created
-    #' @param owned_by owned_by
+    #' @param id The model identifier, which can be referenced in the API endpoints.
+    #' @param created The Unix timestamp (in seconds) when the model was created.
+    #' @param object The object type, which is always \"model\".
+    #' @param owned_by The organization that owns the model.
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`id`, `object`, `created`, `owned_by`, ...) {
+    initialize = function(`id`, `created`, `object`, `owned_by`, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
         }
         self$`id` <- `id`
       }
-      if (!missing(`object`)) {
-        if (!(is.character(`object`) && length(`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
-        }
-        self$`object` <- `object`
-      }
       if (!missing(`created`)) {
         if (!(is.numeric(`created`) && length(`created`) == 1)) {
           stop(paste("Error! Invalid data for `created`. Must be an integer:", `created`))
         }
         self$`created` <- `created`
+      }
+      if (!missing(`object`)) {
+        if (!(`object` %in% c("model"))) {
+          stop(paste("Error! \"", `object`, "\" cannot be assigned to `object`. Must be \"model\".", sep = ""))
+        }
+        if (!(is.character(`object`) && length(`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
+        }
+        self$`object` <- `object`
       }
       if (!missing(`owned_by`)) {
         if (!(is.character(`owned_by`) && length(`owned_by`) == 1)) {
@@ -71,13 +74,13 @@ Model <- R6::R6Class(
         ModelObject[["id"]] <-
           self$`id`
       }
-      if (!is.null(self$`object`)) {
-        ModelObject[["object"]] <-
-          self$`object`
-      }
       if (!is.null(self$`created`)) {
         ModelObject[["created"]] <-
           self$`created`
+      }
+      if (!is.null(self$`object`)) {
+        ModelObject[["object"]] <-
+          self$`object`
       }
       if (!is.null(self$`owned_by`)) {
         ModelObject[["owned_by"]] <-
@@ -98,11 +101,14 @@ Model <- R6::R6Class(
       if (!is.null(this_object$`id`)) {
         self$`id` <- this_object$`id`
       }
-      if (!is.null(this_object$`object`)) {
-        self$`object` <- this_object$`object`
-      }
       if (!is.null(this_object$`created`)) {
         self$`created` <- this_object$`created`
+      }
+      if (!is.null(this_object$`object`)) {
+        if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("model"))) {
+          stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"model\".", sep = ""))
+        }
+        self$`object` <- this_object$`object`
       }
       if (!is.null(this_object$`owned_by`)) {
         self$`owned_by` <- this_object$`owned_by`
@@ -126,20 +132,20 @@ Model <- R6::R6Class(
           self$`id`
           )
         },
-        if (!is.null(self$`object`)) {
-          sprintf(
-          '"object":
-            "%s"
-                    ',
-          self$`object`
-          )
-        },
         if (!is.null(self$`created`)) {
           sprintf(
           '"created":
             %d
                     ',
           self$`created`
+          )
+        },
+        if (!is.null(self$`object`)) {
+          sprintf(
+          '"object":
+            "%s"
+                    ',
+          self$`object`
           )
         },
         if (!is.null(self$`owned_by`)) {
@@ -165,8 +171,11 @@ Model <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`id` <- this_object$`id`
-      self$`object` <- this_object$`object`
       self$`created` <- this_object$`created`
+      if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("model"))) {
+        stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"model\".", sep = ""))
+      }
+      self$`object` <- this_object$`object`
       self$`owned_by` <- this_object$`owned_by`
       self
     },
@@ -187,14 +196,6 @@ Model <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for Model: the required field `id` is missing."))
       }
-      # check the required field `object`
-      if (!is.null(input_json$`object`)) {
-        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
-        }
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for Model: the required field `object` is missing."))
-      }
       # check the required field `created`
       if (!is.null(input_json$`created`)) {
         if (!(is.numeric(input_json$`created`) && length(input_json$`created`) == 1)) {
@@ -202,6 +203,14 @@ Model <- R6::R6Class(
         }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for Model: the required field `created` is missing."))
+      }
+      # check the required field `object`
+      if (!is.null(input_json$`object`)) {
+        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for Model: the required field `object` is missing."))
       }
       # check the required field `owned_by`
       if (!is.null(input_json$`owned_by`)) {
@@ -235,13 +244,13 @@ Model <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
+      # check if the required `created` is null
+      if (is.null(self$`created`)) {
         return(FALSE)
       }
 
-      # check if the required `created` is null
-      if (is.null(self$`created`)) {
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
         return(FALSE)
       }
 
@@ -266,14 +275,14 @@ Model <- R6::R6Class(
         invalid_fields["id"] <- "Non-nullable required field `id` cannot be null."
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
-        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
-      }
-
       # check if the required `created` is null
       if (is.null(self$`created`)) {
         invalid_fields["created"] <- "Non-nullable required field `created` cannot be null."
+      }
+
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
+        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
       }
 
       # check if the required `owned_by` is null

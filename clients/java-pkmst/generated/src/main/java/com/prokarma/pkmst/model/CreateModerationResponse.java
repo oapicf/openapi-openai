@@ -15,10 +15,11 @@ import java.util.List;
  *
  */
 /**
- * CreateModerationResponse
+ * Represents if a given text input is potentially harmful.
  */
+@ApiModel(description = "Represents if a given text input is potentially harmful.")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-16T01:12:49.513446343Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-04-14T13:39:11.640510243Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponse   {
   @JsonProperty("id")
   private String id;
@@ -36,10 +37,10 @@ public class CreateModerationResponse   {
   }
 
    /**
-   * Get id
+   * The unique identifier for the moderation request.
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier for the moderation request.")
   public String getId() {
     return id;
   }
@@ -54,10 +55,10 @@ public class CreateModerationResponse   {
   }
 
    /**
-   * Get model
+   * The model used to generate the moderation results.
    * @return model
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model used to generate the moderation results.")
   public String getModel() {
     return model;
   }
@@ -80,10 +81,10 @@ public class CreateModerationResponse   {
   }
 
    /**
-   * Get results
+   * A list of moderation objects.
    * @return results
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A list of moderation objects.")
   public List<CreateModerationResponseResultsInner> getResults() {
     return results;
   }

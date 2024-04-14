@@ -6,6 +6,7 @@ goog.provide('API.Client.CreateModerationResponse_results_inner');
 API.Client.CreateModerationResponseResultsInner = function() {}
 
 /**
+ * Whether any of the below categories are flagged.
  * @type {!boolean}
  * @export
  */

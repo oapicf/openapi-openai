@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,17 +15,38 @@ package openapi
 
 type CreateChatCompletionResponseChoicesInner struct {
 
-	Index int32 `json:"index,omitempty"`
+	// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+	FinishReason string `json:"finish_reason"`
 
-	Message ChatCompletionResponseMessage `json:"message,omitempty"`
+	// The index of the choice in the list of choices.
+	Index int32 `json:"index"`
 
-	FinishReason string `json:"finish_reason,omitempty"`
+	Message ChatCompletionResponseMessage `json:"message"`
+
+	Logprobs *CreateChatCompletionResponseChoicesInnerLogprobs `json:"logprobs"`
 }
 
 // AssertCreateChatCompletionResponseChoicesInnerRequired checks if the required fields are not zero-ed
 func AssertCreateChatCompletionResponseChoicesInnerRequired(obj CreateChatCompletionResponseChoicesInner) error {
+	elements := map[string]interface{}{
+		"finish_reason": obj.FinishReason,
+		"index": obj.Index,
+		"message": obj.Message,
+		"logprobs": obj.Logprobs,
+	}
+	for name, el := range elements {
+		if isZero := IsZeroValue(el); isZero {
+			return &RequiredError{Field: name}
+		}
+	}
+
 	if err := AssertChatCompletionResponseMessageRequired(obj.Message); err != nil {
 		return err
+	}
+	if obj.Logprobs != nil {
+		if err := AssertCreateChatCompletionResponseChoicesInnerLogprobsRequired(*obj.Logprobs); err != nil {
+			return err
+		}
 	}
 	return nil
 }

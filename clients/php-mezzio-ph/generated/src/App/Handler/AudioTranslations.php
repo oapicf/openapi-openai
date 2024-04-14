@@ -24,9 +24,9 @@ class AudioTranslations
      *
      * @throws PHException\HttpCode 501 if the method is not implemented
      *
-     * @return \App\DTO\CreateTranslationResponse
+     * @return \App\DTO\CreateTranslation200Response
      */
-    public function createTranslation(ServerRequestInterface $request): \App\DTO\CreateTranslationResponse
+    public function createTranslation(ServerRequestInterface $request): \App\DTO\CreateTranslation200Response
     {
         //TODO implement method
         throw new PHException\HttpCode(501, "Not implemented");

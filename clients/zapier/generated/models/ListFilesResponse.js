@@ -6,23 +6,26 @@ module.exports = {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
+                key: `${keyPrefix}data`,
+                label: `[${labelPrefix}data]`,
+                children: OpenAIFile.fields(`${keyPrefix}data${!isInput ? '[]' : ''}`, isInput, true), 
+            },
+            {
                 key: `${keyPrefix}object`,
                 label: `[${labelPrefix}object]`,
                 required: true,
                 type: 'string',
-            },
-            {
-                key: `${keyPrefix}data`,
-                label: `[${labelPrefix}data]`,
-                children: OpenAIFile.fields(`${keyPrefix}data${!isInput ? '[]' : ''}`, isInput, true), 
+                choices: [
+                    'list',
+                ],
             },
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'object': bundle.inputData?.[`${keyPrefix}object`],
             'data': utils.childMapping(bundle.inputData?.[`${keyPrefix}data`], `${keyPrefix}data`, OpenAIFile),
+            'object': bundle.inputData?.[`${keyPrefix}object`],
         }
     },
 }

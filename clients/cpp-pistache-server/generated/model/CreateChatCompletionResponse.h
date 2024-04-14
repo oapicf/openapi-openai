@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -12,7 +12,7 @@
 /*
  * CreateChatCompletionResponse.h
  *
- * 
+ * Represents a chat completion response returned by model, based on the provided input.
  */
 
 #ifndef CreateChatCompletionResponse_H_
@@ -21,7 +21,7 @@
 
 #include "CreateChatCompletionResponse_choices_inner.h"
 #include <string>
-#include "CreateCompletionResponse_usage.h"
+#include "CompletionUsage.h"
 #include <vector>
 #include <nlohmann/json.hpp>
 
@@ -29,7 +29,7 @@ namespace org::openapitools::server::model
 {
 
 /// <summary>
-/// 
+/// Represents a chat completion response returned by model, based on the provided input.
 /// </summary>
 class  CreateChatCompletionResponse
 {
@@ -62,35 +62,42 @@ public:
     /// CreateChatCompletionResponse members
 
     /// <summary>
-    /// 
+    /// A unique identifier for the chat completion.
     /// </summary>
     std::string getId() const;
     void setId(std::string const& value);
     /// <summary>
-    /// 
+    /// A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
+    /// </summary>
+    std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> getChoices() const;
+    void setChoices(std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> const& value);
+    /// <summary>
+    /// The Unix timestamp (in seconds) of when the chat completion was created.
+    /// </summary>
+    int32_t getCreated() const;
+    void setCreated(int32_t const value);
+    /// <summary>
+    /// The model used for the chat completion.
+    /// </summary>
+    std::string getModel() const;
+    void setModel(std::string const& value);
+    /// <summary>
+    /// This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
+    /// </summary>
+    std::string getSystemFingerprint() const;
+    void setSystemFingerprint(std::string const& value);
+    bool systemFingerprintIsSet() const;
+    void unsetSystem_fingerprint();
+    /// <summary>
+    /// The object type, which is always &#x60;chat.completion&#x60;.
     /// </summary>
     std::string getObject() const;
     void setObject(std::string const& value);
     /// <summary>
     /// 
     /// </summary>
-    int32_t getCreated() const;
-    void setCreated(int32_t const value);
-    /// <summary>
-    /// 
-    /// </summary>
-    std::string getModel() const;
-    void setModel(std::string const& value);
-    /// <summary>
-    /// 
-    /// </summary>
-    std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> getChoices() const;
-    void setChoices(std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> const& value);
-    /// <summary>
-    /// 
-    /// </summary>
-    org::openapitools::server::model::CreateCompletionResponse_usage getUsage() const;
-    void setUsage(org::openapitools::server::model::CreateCompletionResponse_usage const& value);
+    org::openapitools::server::model::CompletionUsage getUsage() const;
+    void setUsage(org::openapitools::server::model::CompletionUsage const& value);
     bool usageIsSet() const;
     void unsetUsage();
 
@@ -99,15 +106,17 @@ public:
 protected:
     std::string m_Id;
 
-    std::string m_object;
+    std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> m_Choices;
 
     int32_t m_Created;
 
     std::string m_Model;
 
-    std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> m_Choices;
+    std::string m_System_fingerprint;
+    bool m_System_fingerprintIsSet;
+    std::string m_object;
 
-    org::openapitools::server::model::CreateCompletionResponse_usage m_Usage;
+    org::openapitools::server::model::CompletionUsage m_Usage;
     bool m_UsageIsSet;
     
 };

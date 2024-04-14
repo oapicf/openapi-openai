@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,7 @@ describe OpenAPIClient::CreateCompletionResponseChoicesInnerLogprobs do
       #expect(instance).to be_instance_of(OpenAPIClient::CreateCompletionResponseChoicesInnerLogprobs)
     end
   end
-  describe "test attribute 'tokens'" do
+  describe "test attribute 'text_offset'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end
@@ -35,13 +35,13 @@ describe OpenAPIClient::CreateCompletionResponseChoicesInnerLogprobs do
     end
   end
 
-  describe "test attribute 'top_logprobs'" do
+  describe "test attribute 'tokens'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end
   end
 
-  describe "test attribute 'text_offset'" do
+  describe "test attribute 'top_logprobs'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end

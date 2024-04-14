@@ -5,15 +5,21 @@
   "name": "ListFilesResponse",
   "fields": [
     {
-      "name": "object",
-      "type": "string",
-      "doc": ""
-    },
-    {
       "name": "data",
       "type": {
         "type": "array",
         "items": "model.OpenAIFile"
+      },
+      "doc": ""
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ListFilesResponse_object",
+        "symbols": [
+          "list"
+        ]
       },
       "doc": ""
     }

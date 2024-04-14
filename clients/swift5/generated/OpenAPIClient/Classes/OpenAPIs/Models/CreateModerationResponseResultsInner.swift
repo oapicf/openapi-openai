@@ -12,6 +12,7 @@ import AnyCodable
 
 public struct CreateModerationResponseResultsInner: Codable, JSONEncodable, Hashable {
 
+    /** Whether any of the below categories are flagged. */
     public var flagged: Bool
     public var categories: CreateModerationResponseResultsInnerCategories
     public var categoryScores: CreateModerationResponseResultsInnerCategoryScores

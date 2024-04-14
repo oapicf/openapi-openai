@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -76,7 +76,7 @@ namespace Org.OpenAPITools
                     {
                         Title = "OpenAI API",
                         Description = "OpenAI API (ASP.NET Core 3.1)",
-                        TermsOfService = new Uri("https://github.com/openapitools/openapi-generator"),
+                        TermsOfService = new Uri("https://openai.com/policies/terms-of-use"),
                         Contact = new OpenApiContact
                         {
                             Name = "Cliffano Subagio",
@@ -86,7 +86,7 @@ namespace Org.OpenAPITools
                         License = new OpenApiLicense
                         {
                             Name = "NoLicense",
-                            Url = new Uri("http://localhost")
+                            Url = new Uri("https://github.com/openai/openai-openapi/blob/master/LICENSE")
                         },
                         Version = "2.0.0",
                     });

@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Deletes the association between the assistant and the file, but does not delete the [File](/docs/api-reference/files) object itself.",
+  "name": "DeleteAssistantFileResponse",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "deleted",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "DeleteAssistantFileResponse_object",
+        "symbols": [
+          "assistant.file.deleted"
+        ]
+      },
+      "doc": ""
+    }
+  ]
+
+}

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,19 +24,23 @@ import io.micronaut.core.annotation.*;
 import javax.annotation.Generated;
 
 /**
- * CreateModerationResponseResultsInnerCategoryScores
+ * A list of the categories along with their scores as predicted by model.
  */
 @JsonPropertyOrder({
   CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_HATE,
   CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_HATE_THREATENING,
+  CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_HARASSMENT,
+  CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_HARASSMENT_THREATENING,
   CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_SELF_HARM,
+  CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_SELF_HARM_INTENT,
+  CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_SELF_HARM_INSTRUCTIONS,
   CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_SEXUAL,
   CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_SEXUAL_MINORS,
   CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_VIOLENCE,
   CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_VIOLENCE_GRAPHIC
 })
 @JsonTypeName("CreateModerationResponse_results_inner_category_scores")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-03-16T01:12:32.706318857Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-14T13:37:52.123317469Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateModerationResponseResultsInnerCategoryScores {
     public static final String JSON_PROPERTY_HATE = "hate";
@@ -45,8 +49,20 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     public static final String JSON_PROPERTY_HATE_THREATENING = "hate/threatening";
     private BigDecimal hateThreatening;
 
+    public static final String JSON_PROPERTY_HARASSMENT = "harassment";
+    private BigDecimal harassment;
+
+    public static final String JSON_PROPERTY_HARASSMENT_THREATENING = "harassment/threatening";
+    private BigDecimal harassmentThreatening;
+
     public static final String JSON_PROPERTY_SELF_HARM = "self-harm";
     private BigDecimal selfHarm;
+
+    public static final String JSON_PROPERTY_SELF_HARM_INTENT = "self-harm/intent";
+    private BigDecimal selfHarmIntent;
+
+    public static final String JSON_PROPERTY_SELF_HARM_INSTRUCTIONS = "self-harm/instructions";
+    private BigDecimal selfHarmInstructions;
 
     public static final String JSON_PROPERTY_SEXUAL = "sexual";
     private BigDecimal sexual;
@@ -60,10 +76,14 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     public static final String JSON_PROPERTY_VIOLENCE_GRAPHIC = "violence/graphic";
     private BigDecimal violenceGraphic;
 
-    public CreateModerationResponseResultsInnerCategoryScores(BigDecimal hate, BigDecimal hateThreatening, BigDecimal selfHarm, BigDecimal sexual, BigDecimal sexualMinors, BigDecimal violence, BigDecimal violenceGraphic) {
+    public CreateModerationResponseResultsInnerCategoryScores(BigDecimal hate, BigDecimal hateThreatening, BigDecimal harassment, BigDecimal harassmentThreatening, BigDecimal selfHarm, BigDecimal selfHarmIntent, BigDecimal selfHarmInstructions, BigDecimal sexual, BigDecimal sexualMinors, BigDecimal violence, BigDecimal violenceGraphic) {
         this.hate = hate;
         this.hateThreatening = hateThreatening;
+        this.harassment = harassment;
+        this.harassmentThreatening = harassmentThreatening;
         this.selfHarm = selfHarm;
+        this.selfHarmIntent = selfHarmIntent;
+        this.selfHarmInstructions = selfHarmInstructions;
         this.sexual = sexual;
         this.sexualMinors = sexualMinors;
         this.violence = violence;
@@ -76,7 +96,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     }
 
     /**
-     * Get hate
+     * The score for the category &#39;hate&#39;.
      * @return hate
      **/
     @NotNull
@@ -98,7 +118,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     }
 
     /**
-     * Get hateThreatening
+     * The score for the category &#39;hate/threatening&#39;.
      * @return hateThreatening
      **/
     @NotNull
@@ -114,13 +134,57 @@ public class CreateModerationResponseResultsInnerCategoryScores {
         this.hateThreatening = hateThreatening;
     }
 
+    public CreateModerationResponseResultsInnerCategoryScores harassment(BigDecimal harassment) {
+        this.harassment = harassment;
+        return this;
+    }
+
+    /**
+     * The score for the category &#39;harassment&#39;.
+     * @return harassment
+     **/
+    @NotNull
+    @JsonProperty(JSON_PROPERTY_HARASSMENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public BigDecimal getHarassment() {
+        return harassment;
+    }
+
+    @JsonProperty(JSON_PROPERTY_HARASSMENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setHarassment(BigDecimal harassment) {
+        this.harassment = harassment;
+    }
+
+    public CreateModerationResponseResultsInnerCategoryScores harassmentThreatening(BigDecimal harassmentThreatening) {
+        this.harassmentThreatening = harassmentThreatening;
+        return this;
+    }
+
+    /**
+     * The score for the category &#39;harassment/threatening&#39;.
+     * @return harassmentThreatening
+     **/
+    @NotNull
+    @JsonProperty(JSON_PROPERTY_HARASSMENT_THREATENING)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public BigDecimal getHarassmentThreatening() {
+        return harassmentThreatening;
+    }
+
+    @JsonProperty(JSON_PROPERTY_HARASSMENT_THREATENING)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setHarassmentThreatening(BigDecimal harassmentThreatening) {
+        this.harassmentThreatening = harassmentThreatening;
+    }
+
     public CreateModerationResponseResultsInnerCategoryScores selfHarm(BigDecimal selfHarm) {
         this.selfHarm = selfHarm;
         return this;
     }
 
     /**
-     * Get selfHarm
+     * The score for the category &#39;self-harm&#39;.
      * @return selfHarm
      **/
     @NotNull
@@ -136,13 +200,57 @@ public class CreateModerationResponseResultsInnerCategoryScores {
         this.selfHarm = selfHarm;
     }
 
+    public CreateModerationResponseResultsInnerCategoryScores selfHarmIntent(BigDecimal selfHarmIntent) {
+        this.selfHarmIntent = selfHarmIntent;
+        return this;
+    }
+
+    /**
+     * The score for the category &#39;self-harm/intent&#39;.
+     * @return selfHarmIntent
+     **/
+    @NotNull
+    @JsonProperty(JSON_PROPERTY_SELF_HARM_INTENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public BigDecimal getSelfHarmIntent() {
+        return selfHarmIntent;
+    }
+
+    @JsonProperty(JSON_PROPERTY_SELF_HARM_INTENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setSelfHarmIntent(BigDecimal selfHarmIntent) {
+        this.selfHarmIntent = selfHarmIntent;
+    }
+
+    public CreateModerationResponseResultsInnerCategoryScores selfHarmInstructions(BigDecimal selfHarmInstructions) {
+        this.selfHarmInstructions = selfHarmInstructions;
+        return this;
+    }
+
+    /**
+     * The score for the category &#39;self-harm/instructions&#39;.
+     * @return selfHarmInstructions
+     **/
+    @NotNull
+    @JsonProperty(JSON_PROPERTY_SELF_HARM_INSTRUCTIONS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public BigDecimal getSelfHarmInstructions() {
+        return selfHarmInstructions;
+    }
+
+    @JsonProperty(JSON_PROPERTY_SELF_HARM_INSTRUCTIONS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setSelfHarmInstructions(BigDecimal selfHarmInstructions) {
+        this.selfHarmInstructions = selfHarmInstructions;
+    }
+
     public CreateModerationResponseResultsInnerCategoryScores sexual(BigDecimal sexual) {
         this.sexual = sexual;
         return this;
     }
 
     /**
-     * Get sexual
+     * The score for the category &#39;sexual&#39;.
      * @return sexual
      **/
     @NotNull
@@ -164,7 +272,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     }
 
     /**
-     * Get sexualMinors
+     * The score for the category &#39;sexual/minors&#39;.
      * @return sexualMinors
      **/
     @NotNull
@@ -186,7 +294,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     }
 
     /**
-     * Get violence
+     * The score for the category &#39;violence&#39;.
      * @return violence
      **/
     @NotNull
@@ -208,7 +316,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     }
 
     /**
-     * Get violenceGraphic
+     * The score for the category &#39;violence/graphic&#39;.
      * @return violenceGraphic
      **/
     @NotNull
@@ -235,7 +343,11 @@ public class CreateModerationResponseResultsInnerCategoryScores {
         CreateModerationResponseResultsInnerCategoryScores createModerationResponseResultsInnerCategoryScores = (CreateModerationResponseResultsInnerCategoryScores) o;
         return Objects.equals(this.hate, createModerationResponseResultsInnerCategoryScores.hate) &&
             Objects.equals(this.hateThreatening, createModerationResponseResultsInnerCategoryScores.hateThreatening) &&
+            Objects.equals(this.harassment, createModerationResponseResultsInnerCategoryScores.harassment) &&
+            Objects.equals(this.harassmentThreatening, createModerationResponseResultsInnerCategoryScores.harassmentThreatening) &&
             Objects.equals(this.selfHarm, createModerationResponseResultsInnerCategoryScores.selfHarm) &&
+            Objects.equals(this.selfHarmIntent, createModerationResponseResultsInnerCategoryScores.selfHarmIntent) &&
+            Objects.equals(this.selfHarmInstructions, createModerationResponseResultsInnerCategoryScores.selfHarmInstructions) &&
             Objects.equals(this.sexual, createModerationResponseResultsInnerCategoryScores.sexual) &&
             Objects.equals(this.sexualMinors, createModerationResponseResultsInnerCategoryScores.sexualMinors) &&
             Objects.equals(this.violence, createModerationResponseResultsInnerCategoryScores.violence) &&
@@ -244,7 +356,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
 
     @Override
     public int hashCode() {
-        return Objects.hash(hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic);
+        return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
     }
 
     @Override
@@ -253,7 +365,11 @@ public class CreateModerationResponseResultsInnerCategoryScores {
         sb.append("class CreateModerationResponseResultsInnerCategoryScores {\n");
         sb.append("    hate: ").append(toIndentedString(hate)).append("\n");
         sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
+        sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
+        sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
         sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
+        sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
+        sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");
         sb.append("    sexual: ").append(toIndentedString(sexual)).append("\n");
         sb.append("    sexualMinors: ").append(toIndentedString(sexualMinors)).append("\n");
         sb.append("    violence: ").append(toIndentedString(violence)).append("\n");

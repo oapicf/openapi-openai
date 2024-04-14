@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class CreateEmbeddingResponseUsage {
-    
+    /* The number of tokens used by the prompt. */
     Integer promptTokens
-    
+    /* The total number of tokens used by the request. */
     Integer totalTokens
 }

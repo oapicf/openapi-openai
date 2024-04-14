@@ -29,7 +29,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the models API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-16T01:13:37.006745963Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-04-14T13:41:51.736364282Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ModelsApi  {
 
     @Inject ModelsApiService service;
@@ -38,7 +38,9 @@ public class ModelsApi  {
     @Path("/{model}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Delete a fine-tuned model. You must have the Owner role in your organization.", notes = "", response = DeleteModelResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.", notes = "", response = DeleteModelResponse.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Models", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = DeleteModelResponse.class) })
     public Response deleteModel( @PathParam("model") String model,@Context SecurityContext securityContext)
@@ -49,7 +51,9 @@ public class ModelsApi  {
     
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Lists the currently available models, and provides basic information about each one such as the owner and availability.", notes = "", response = ListModelsResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Lists the currently available models, and provides basic information about each one such as the owner and availability.", notes = "", response = ListModelsResponse.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Models", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = ListModelsResponse.class) })
     public Response listModels(@Context SecurityContext securityContext)
@@ -60,7 +64,9 @@ public class ModelsApi  {
     @Path("/{model}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Retrieves a model instance, providing basic information about the model such as the owner and permissioning.", notes = "", response = Model.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Retrieves a model instance, providing basic information about the model such as the owner and permissioning.", notes = "", response = Model.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Models", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = Model.class) })
     public Response retrieveModel( @PathParam("model") String model,@Context SecurityContext securityContext)

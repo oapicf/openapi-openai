@@ -16,8 +16,8 @@ void main() {
   // final instance = Error();
 
   group('test Error', () {
-    // String type
-    test('to test the property `type`', () async {
+    // String code
+    test('to test the property `code`', () async {
       // TODO
     });
 
@@ -31,8 +31,8 @@ void main() {
       // TODO
     });
 
-    // String code
-    test('to test the property `code`', () async {
+    // String type
+    test('to test the property `type`', () async {
       // TODO
     });
 

@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -20,7 +20,7 @@ class CREATE_MODERATION_RESPONSE_RESULTS_INNER
 feature --Access
 
     flagged: BOOLEAN
-      
+      -- Whether any of the below categories are flagged.
     categories: detachable CREATE_MODERATION_RESPONSE_RESULTS_INNER_CATEGORIES
       
     category_scores: detachable CREATE_MODERATION_RESPONSE_RESULTS_INNER_CATEGORY_SCORES

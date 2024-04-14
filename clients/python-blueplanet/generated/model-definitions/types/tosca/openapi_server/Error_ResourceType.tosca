@@ -15,7 +15,7 @@ resourceTypes {
     description = Error
     derivedFrom = Root
     properties {
-        type {
+        code {
           type =  string
           description = ""
           optional = true
@@ -30,7 +30,7 @@ resourceTypes {
           description = ""
           optional = true
         }
-        code {
+        type {
           type =  string
           description = ""
           optional = true

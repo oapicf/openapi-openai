@@ -37,11 +37,43 @@ public class CreateModerationResponseResultsInnerCategoriesTest {
     }
 
     /**
+     * Test the property 'harassment'
+     */
+    @Test
+    public void harassmentTest() {
+        // TODO: test harassment
+    }
+
+    /**
+     * Test the property 'harassmentThreatening'
+     */
+    @Test
+    public void harassmentThreateningTest() {
+        // TODO: test harassmentThreatening
+    }
+
+    /**
      * Test the property 'selfHarm'
      */
     @Test
     public void selfHarmTest() {
         // TODO: test selfHarm
+    }
+
+    /**
+     * Test the property 'selfHarmIntent'
+     */
+    @Test
+    public void selfHarmIntentTest() {
+        // TODO: test selfHarmIntent
+    }
+
+    /**
+     * Test the property 'selfHarmInstructions'
+     */
+    @Test
+    public void selfHarmInstructionsTest() {
+        // TODO: test selfHarmInstructions
     }
 
     /**

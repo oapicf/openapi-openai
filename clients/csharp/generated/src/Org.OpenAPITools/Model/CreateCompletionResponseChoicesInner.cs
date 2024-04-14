@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -33,8 +33,9 @@ namespace Org.OpenAPITools.Model
     public partial class CreateCompletionResponseChoicesInner : IValidatableObject
     {
         /// <summary>
-        /// Defines FinishReason
+        /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
         /// </summary>
+        /// <value>The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum FinishReasonEnum
         {
@@ -48,13 +49,20 @@ namespace Org.OpenAPITools.Model
             /// Enum Length for value: length
             /// </summary>
             [EnumMember(Value = "length")]
-            Length = 2
+            Length = 2,
+
+            /// <summary>
+            /// Enum ContentFilter for value: content_filter
+            /// </summary>
+            [EnumMember(Value = "content_filter")]
+            ContentFilter = 3
         }
 
 
         /// <summary>
-        /// Gets or Sets FinishReason
+        /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
         /// </summary>
+        /// <value>The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. </value>
         [DataMember(Name = "finish_reason", IsRequired = true, EmitDefaultValue = true)]
         public FinishReasonEnum FinishReason { get; set; }
         /// <summary>
@@ -65,18 +73,13 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCompletionResponseChoicesInner" /> class.
         /// </summary>
-        /// <param name="text">text (required).</param>
+        /// <param name="finishReason">The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters.  (required).</param>
         /// <param name="index">index (required).</param>
         /// <param name="logprobs">logprobs (required).</param>
-        /// <param name="finishReason">finishReason (required).</param>
-        public CreateCompletionResponseChoicesInner(string text = default(string), int index = default(int), CreateCompletionResponseChoicesInnerLogprobs logprobs = default(CreateCompletionResponseChoicesInnerLogprobs), FinishReasonEnum finishReason = default(FinishReasonEnum))
+        /// <param name="text">text (required).</param>
+        public CreateCompletionResponseChoicesInner(FinishReasonEnum finishReason = default(FinishReasonEnum), int index = default(int), CreateCompletionResponseChoicesInnerLogprobs logprobs = default(CreateCompletionResponseChoicesInnerLogprobs), string text = default(string))
         {
-            // to ensure "text" is required (not null)
-            if (text == null)
-            {
-                throw new ArgumentNullException("text is a required property for CreateCompletionResponseChoicesInner and cannot be null");
-            }
-            this.Text = text;
+            this.FinishReason = finishReason;
             this.Index = index;
             // to ensure "logprobs" is required (not null)
             if (logprobs == null)
@@ -84,14 +87,13 @@ namespace Org.OpenAPITools.Model
                 throw new ArgumentNullException("logprobs is a required property for CreateCompletionResponseChoicesInner and cannot be null");
             }
             this.Logprobs = logprobs;
-            this.FinishReason = finishReason;
+            // to ensure "text" is required (not null)
+            if (text == null)
+            {
+                throw new ArgumentNullException("text is a required property for CreateCompletionResponseChoicesInner and cannot be null");
+            }
+            this.Text = text;
         }
-
-        /// <summary>
-        /// Gets or Sets Text
-        /// </summary>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
-        public string Text { get; set; }
 
         /// <summary>
         /// Gets or Sets Index
@@ -106,6 +108,12 @@ namespace Org.OpenAPITools.Model
         public CreateCompletionResponseChoicesInnerLogprobs Logprobs { get; set; }
 
         /// <summary>
+        /// Gets or Sets Text
+        /// </summary>
+        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
+        public string Text { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -113,10 +121,10 @@ namespace Org.OpenAPITools.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateCompletionResponseChoicesInner {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("  FinishReason: ").Append(FinishReason).Append("\n");
             sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("  Logprobs: ").Append(Logprobs).Append("\n");
-            sb.Append("  FinishReason: ").Append(FinishReason).Append("\n");
+            sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

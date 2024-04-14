@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,12 +13,34 @@
 import { RequestFile } from './models';
 import { CreateChatCompletionStreamResponseChoicesInner } from './createChatCompletionStreamResponseChoicesInner';
 
+/**
+* Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+*/
 export class CreateChatCompletionStreamResponse {
+    /**
+    * A unique identifier for the chat completion. Each chunk has the same ID.
+    */
     'id': string;
-    'object': string;
-    'created': number;
-    'model': string;
+    /**
+    * A list of chat completion choices. Can be more than one if `n` is greater than 1.
+    */
     'choices': Array<CreateChatCompletionStreamResponseChoicesInner>;
+    /**
+    * The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+    */
+    'created': number;
+    /**
+    * The model to generate the completion.
+    */
+    'model': string;
+    /**
+    * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+    */
+    'systemFingerprint'?: string;
+    /**
+    * The object type, which is always `chat.completion.chunk`.
+    */
+    'object': CreateChatCompletionStreamResponse.ObjectEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -29,9 +51,9 @@ export class CreateChatCompletionStreamResponse {
             "type": "string"
         },
         {
-            "name": "object",
-            "baseName": "object",
-            "type": "string"
+            "name": "choices",
+            "baseName": "choices",
+            "type": "Array<CreateChatCompletionStreamResponseChoicesInner>"
         },
         {
             "name": "created",
@@ -44,9 +66,14 @@ export class CreateChatCompletionStreamResponse {
             "type": "string"
         },
         {
-            "name": "choices",
-            "baseName": "choices",
-            "type": "Array<CreateChatCompletionStreamResponseChoicesInner>"
+            "name": "systemFingerprint",
+            "baseName": "system_fingerprint",
+            "type": "string"
+        },
+        {
+            "name": "object",
+            "baseName": "object",
+            "type": "CreateChatCompletionStreamResponse.ObjectEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -54,3 +81,8 @@ export class CreateChatCompletionStreamResponse {
     }
 }
 
+export namespace CreateChatCompletionStreamResponse {
+    export enum ObjectEnum {
+        ChatCompletionChunk = <any> 'chat.completion.chunk'
+    }
+}

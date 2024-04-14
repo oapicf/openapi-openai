@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,22 +27,22 @@ import javax.validation.Valid;
  */
 @JsonPropertyOrder({
   DeleteModelResponse.JSON_PROPERTY_ID,
-  DeleteModelResponse.JSON_PROPERTY_OBJECT,
-  DeleteModelResponse.JSON_PROPERTY_DELETED
+  DeleteModelResponse.JSON_PROPERTY_DELETED,
+  DeleteModelResponse.JSON_PROPERTY_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DeleteModelResponse   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
   private String id;
 
-  public static final String JSON_PROPERTY_OBJECT = "object";
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  private String _object;
-
   public static final String JSON_PROPERTY_DELETED = "deleted";
   @JsonProperty(JSON_PROPERTY_DELETED)
   private Boolean deleted;
+
+  public static final String JSON_PROPERTY_OBJECT = "object";
+  @JsonProperty(JSON_PROPERTY_OBJECT)
+  private String _object;
 
   public DeleteModelResponse id(String id) {
     this.id = id;
@@ -62,26 +62,6 @@ public class DeleteModelResponse   {
 
   public void setId(String id) {
     this.id = id;
-  }
-
-  public DeleteModelResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-  /**
-   * Get _object
-   * @return _object
-   **/
-  @JsonProperty(value = "object")
-  @ApiModelProperty(required = true, value = "")
-  @NotNull 
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
   }
 
   public DeleteModelResponse deleted(Boolean deleted) {
@@ -104,6 +84,26 @@ public class DeleteModelResponse   {
     this.deleted = deleted;
   }
 
+  public DeleteModelResponse _object(String _object) {
+    this._object = _object;
+    return this;
+  }
+
+  /**
+   * Get _object
+   * @return _object
+   **/
+  @JsonProperty(value = "object")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull 
+  public String getObject() {
+    return _object;
+  }
+
+  public void setObject(String _object) {
+    this._object = _object;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -115,13 +115,13 @@ public class DeleteModelResponse   {
     }
     DeleteModelResponse deleteModelResponse = (DeleteModelResponse) o;
     return Objects.equals(this.id, deleteModelResponse.id) &&
-        Objects.equals(this._object, deleteModelResponse._object) &&
-        Objects.equals(this.deleted, deleteModelResponse.deleted);
+        Objects.equals(this.deleted, deleteModelResponse.deleted) &&
+        Objects.equals(this._object, deleteModelResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, deleted);
+    return Objects.hash(id, deleted, _object);
   }
 
   @Override
@@ -130,8 +130,8 @@ public class DeleteModelResponse   {
     sb.append("class DeleteModelResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

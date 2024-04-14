@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -21,9 +21,10 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_server.models.chat_completion_stream_response_delta import ChatCompletionStreamResponseDelta
+from openapi_server.models.create_chat_completion_response_choices_inner_logprobs import CreateChatCompletionResponseChoicesInnerLogprobs
 try:
     from typing import Self
 except ImportError:
@@ -33,10 +34,11 @@ class CreateChatCompletionStreamResponseChoicesInner(BaseModel):
     """
     CreateChatCompletionStreamResponseChoicesInner
     """ # noqa: E501
-    index: Optional[StrictInt] = None
-    delta: Optional[ChatCompletionStreamResponseDelta] = None
-    finish_reason: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["index", "delta", "finish_reason"]
+    delta: ChatCompletionStreamResponseDelta
+    logprobs: Optional[CreateChatCompletionResponseChoicesInnerLogprobs] = None
+    finish_reason: Optional[StrictStr] = Field(description="The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ")
+    index: StrictInt = Field(description="The index of the choice in the list of choices.")
+    __properties: ClassVar[List[str]] = ["delta", "logprobs", "finish_reason", "index"]
 
     @field_validator('finish_reason')
     def finish_reason_validate_enum(cls, value):
@@ -44,8 +46,8 @@ class CreateChatCompletionStreamResponseChoicesInner(BaseModel):
         if value is None:
             return value
 
-        if value not in ('stop', 'length', 'function_call'):
-            raise ValueError("must be one of enum values ('stop', 'length', 'function_call')")
+        if value not in ('stop', 'length', 'tool_calls', 'content_filter', 'function_call'):
+            raise ValueError("must be one of enum values ('stop', 'length', 'tool_calls', 'content_filter', 'function_call')")
         return value
 
     model_config = {
@@ -88,6 +90,19 @@ class CreateChatCompletionStreamResponseChoicesInner(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of delta
         if self.delta:
             _dict['delta'] = self.delta.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of logprobs
+        if self.logprobs:
+            _dict['logprobs'] = self.logprobs.to_dict()
+        # set to None if logprobs (nullable) is None
+        # and model_fields_set contains the field
+        if self.logprobs is None and "logprobs" in self.model_fields_set:
+            _dict['logprobs'] = None
+
+        # set to None if finish_reason (nullable) is None
+        # and model_fields_set contains the field
+        if self.finish_reason is None and "finish_reason" in self.model_fields_set:
+            _dict['finish_reason'] = None
+
         return _dict
 
     @classmethod
@@ -100,9 +115,10 @@ class CreateChatCompletionStreamResponseChoicesInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "index": obj.get("index"),
             "delta": ChatCompletionStreamResponseDelta.from_dict(obj.get("delta")) if obj.get("delta") is not None else None,
-            "finish_reason": obj.get("finish_reason")
+            "logprobs": CreateChatCompletionResponseChoicesInnerLogprobs.from_dict(obj.get("logprobs")) if obj.get("logprobs") is not None else None,
+            "finish_reason": obj.get("finish_reason"),
+            "index": obj.get("index")
         })
         return _obj
 

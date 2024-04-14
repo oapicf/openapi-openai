@@ -26,10 +26,10 @@ class CreateCompletionResponseChoicesInnerTest : ShouldSpec() {
         // uncomment below to create an instance of CreateCompletionResponseChoicesInner
         //val modelInstance = CreateCompletionResponseChoicesInner()
 
-        // to test the property `text`
-        should("test text") {
+        // to test the property `finishReason` - The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+        should("test finishReason") {
             // uncomment below to test the property
-            //modelInstance.text shouldBe ("TODO")
+            //modelInstance.finishReason shouldBe ("TODO")
         }
 
         // to test the property `index`
@@ -44,10 +44,10 @@ class CreateCompletionResponseChoicesInnerTest : ShouldSpec() {
             //modelInstance.logprobs shouldBe ("TODO")
         }
 
-        // to test the property `finishReason`
-        should("test finishReason") {
+        // to test the property `text`
+        should("test text") {
             // uncomment below to test the property
-            //modelInstance.finishReason shouldBe ("TODO")
+            //modelInstance.text shouldBe ("TODO")
         }
 
     }

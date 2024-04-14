@@ -10,11 +10,12 @@
 
 -type openapi_create_chat_completion_response() ::
   [ {'id', binary() }
-  | {'object', binary() }
+  | {'choices', list(openapi_create_chat_completion_response_choices_inner:openapi_create_chat_completion_response_choices_inner()) }
   | {'created', integer() }
   | {'model', binary() }
-  | {'choices', list(openapi_create_chat_completion_response_choices_inner:openapi_create_chat_completion_response_choices_inner()) }
-  | {'usage', openapi_create_completion_response_usage:openapi_create_completion_response_usage() }
+  | {'system_fingerprint', binary() }
+  | {'object', binary() }
+  | {'usage', openapi_completion_usage:openapi_completion_usage() }
   ].
 
 
@@ -23,11 +24,12 @@ openapi_create_chat_completion_response() ->
 
 openapi_create_chat_completion_response(Fields) ->
   Default = [ {'id', binary() }
-            , {'object', binary() }
+            , {'choices', list(openapi_create_chat_completion_response_choices_inner:openapi_create_chat_completion_response_choices_inner()) }
             , {'created', integer() }
             , {'model', binary() }
-            , {'choices', list(openapi_create_chat_completion_response_choices_inner:openapi_create_chat_completion_response_choices_inner()) }
-            , {'usage', openapi_create_completion_response_usage:openapi_create_completion_response_usage() }
+            , {'system_fingerprint', binary() }
+            , {'object', elements([<<"chat.completion">>]) }
+            , {'usage', openapi_completion_usage:openapi_completion_usage() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

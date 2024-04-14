@@ -12,15 +12,23 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, hate=None, hate_threatening=None, self_harm=None, sexual=None, sexual_minors=None, violence=None, violence_graphic=None):  # noqa: E501
+    def __init__(self, hate=None, hate_threatening=None, harassment=None, harassment_threatening=None, self_harm=None, self_harm_intent=None, self_harm_instructions=None, sexual=None, sexual_minors=None, violence=None, violence_graphic=None):  # noqa: E501
         """CreateModerationResponseResultsInnerCategoryScores - a model defined in OpenAPI
 
         :param hate: The hate of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
         :type hate: float
         :param hate_threatening: The hate_threatening of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
         :type hate_threatening: float
+        :param harassment: The harassment of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
+        :type harassment: float
+        :param harassment_threatening: The harassment_threatening of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
+        :type harassment_threatening: float
         :param self_harm: The self_harm of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
         :type self_harm: float
+        :param self_harm_intent: The self_harm_intent of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
+        :type self_harm_intent: float
+        :param self_harm_instructions: The self_harm_instructions of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
+        :type self_harm_instructions: float
         :param sexual: The sexual of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
         :type sexual: float
         :param sexual_minors: The sexual_minors of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
@@ -33,7 +41,11 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
         self.openapi_types = {
             'hate': float,
             'hate_threatening': float,
+            'harassment': float,
+            'harassment_threatening': float,
             'self_harm': float,
+            'self_harm_intent': float,
+            'self_harm_instructions': float,
             'sexual': float,
             'sexual_minors': float,
             'violence': float,
@@ -43,7 +55,11 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
         self.attribute_map = {
             'hate': 'hate',
             'hate_threatening': 'hate/threatening',
+            'harassment': 'harassment',
+            'harassment_threatening': 'harassment/threatening',
             'self_harm': 'self-harm',
+            'self_harm_intent': 'self-harm/intent',
+            'self_harm_instructions': 'self-harm/instructions',
             'sexual': 'sexual',
             'sexual_minors': 'sexual/minors',
             'violence': 'violence',
@@ -52,7 +68,11 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
 
         self._hate = hate
         self._hate_threatening = hate_threatening
+        self._harassment = harassment
+        self._harassment_threatening = harassment_threatening
         self._self_harm = self_harm
+        self._self_harm_intent = self_harm_intent
+        self._self_harm_instructions = self_harm_instructions
         self._sexual = sexual
         self._sexual_minors = sexual_minors
         self._violence = violence
@@ -73,6 +93,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def hate(self) -> float:
         """Gets the hate of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'hate'.  # noqa: E501
 
         :return: The hate of this CreateModerationResponseResultsInnerCategoryScores.
         :rtype: float
@@ -83,6 +104,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def hate(self, hate: float):
         """Sets the hate of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'hate'.  # noqa: E501
 
         :param hate: The hate of this CreateModerationResponseResultsInnerCategoryScores.
         :type hate: float
@@ -96,6 +118,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def hate_threatening(self) -> float:
         """Gets the hate_threatening of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'hate/threatening'.  # noqa: E501
 
         :return: The hate_threatening of this CreateModerationResponseResultsInnerCategoryScores.
         :rtype: float
@@ -106,6 +129,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def hate_threatening(self, hate_threatening: float):
         """Sets the hate_threatening of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'hate/threatening'.  # noqa: E501
 
         :param hate_threatening: The hate_threatening of this CreateModerationResponseResultsInnerCategoryScores.
         :type hate_threatening: float
@@ -116,9 +140,60 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
         self._hate_threatening = hate_threatening
 
     @property
+    def harassment(self) -> float:
+        """Gets the harassment of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'harassment'.  # noqa: E501
+
+        :return: The harassment of this CreateModerationResponseResultsInnerCategoryScores.
+        :rtype: float
+        """
+        return self._harassment
+
+    @harassment.setter
+    def harassment(self, harassment: float):
+        """Sets the harassment of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'harassment'.  # noqa: E501
+
+        :param harassment: The harassment of this CreateModerationResponseResultsInnerCategoryScores.
+        :type harassment: float
+        """
+        if harassment is None:
+            raise ValueError("Invalid value for `harassment`, must not be `None`")  # noqa: E501
+
+        self._harassment = harassment
+
+    @property
+    def harassment_threatening(self) -> float:
+        """Gets the harassment_threatening of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'harassment/threatening'.  # noqa: E501
+
+        :return: The harassment_threatening of this CreateModerationResponseResultsInnerCategoryScores.
+        :rtype: float
+        """
+        return self._harassment_threatening
+
+    @harassment_threatening.setter
+    def harassment_threatening(self, harassment_threatening: float):
+        """Sets the harassment_threatening of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'harassment/threatening'.  # noqa: E501
+
+        :param harassment_threatening: The harassment_threatening of this CreateModerationResponseResultsInnerCategoryScores.
+        :type harassment_threatening: float
+        """
+        if harassment_threatening is None:
+            raise ValueError("Invalid value for `harassment_threatening`, must not be `None`")  # noqa: E501
+
+        self._harassment_threatening = harassment_threatening
+
+    @property
     def self_harm(self) -> float:
         """Gets the self_harm of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'self-harm'.  # noqa: E501
 
         :return: The self_harm of this CreateModerationResponseResultsInnerCategoryScores.
         :rtype: float
@@ -129,6 +204,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def self_harm(self, self_harm: float):
         """Sets the self_harm of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'self-harm'.  # noqa: E501
 
         :param self_harm: The self_harm of this CreateModerationResponseResultsInnerCategoryScores.
         :type self_harm: float
@@ -139,9 +215,60 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
         self._self_harm = self_harm
 
     @property
+    def self_harm_intent(self) -> float:
+        """Gets the self_harm_intent of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'self-harm/intent'.  # noqa: E501
+
+        :return: The self_harm_intent of this CreateModerationResponseResultsInnerCategoryScores.
+        :rtype: float
+        """
+        return self._self_harm_intent
+
+    @self_harm_intent.setter
+    def self_harm_intent(self, self_harm_intent: float):
+        """Sets the self_harm_intent of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'self-harm/intent'.  # noqa: E501
+
+        :param self_harm_intent: The self_harm_intent of this CreateModerationResponseResultsInnerCategoryScores.
+        :type self_harm_intent: float
+        """
+        if self_harm_intent is None:
+            raise ValueError("Invalid value for `self_harm_intent`, must not be `None`")  # noqa: E501
+
+        self._self_harm_intent = self_harm_intent
+
+    @property
+    def self_harm_instructions(self) -> float:
+        """Gets the self_harm_instructions of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'self-harm/instructions'.  # noqa: E501
+
+        :return: The self_harm_instructions of this CreateModerationResponseResultsInnerCategoryScores.
+        :rtype: float
+        """
+        return self._self_harm_instructions
+
+    @self_harm_instructions.setter
+    def self_harm_instructions(self, self_harm_instructions: float):
+        """Sets the self_harm_instructions of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'self-harm/instructions'.  # noqa: E501
+
+        :param self_harm_instructions: The self_harm_instructions of this CreateModerationResponseResultsInnerCategoryScores.
+        :type self_harm_instructions: float
+        """
+        if self_harm_instructions is None:
+            raise ValueError("Invalid value for `self_harm_instructions`, must not be `None`")  # noqa: E501
+
+        self._self_harm_instructions = self_harm_instructions
+
+    @property
     def sexual(self) -> float:
         """Gets the sexual of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'sexual'.  # noqa: E501
 
         :return: The sexual of this CreateModerationResponseResultsInnerCategoryScores.
         :rtype: float
@@ -152,6 +279,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def sexual(self, sexual: float):
         """Sets the sexual of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'sexual'.  # noqa: E501
 
         :param sexual: The sexual of this CreateModerationResponseResultsInnerCategoryScores.
         :type sexual: float
@@ -165,6 +293,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def sexual_minors(self) -> float:
         """Gets the sexual_minors of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'sexual/minors'.  # noqa: E501
 
         :return: The sexual_minors of this CreateModerationResponseResultsInnerCategoryScores.
         :rtype: float
@@ -175,6 +304,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def sexual_minors(self, sexual_minors: float):
         """Sets the sexual_minors of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'sexual/minors'.  # noqa: E501
 
         :param sexual_minors: The sexual_minors of this CreateModerationResponseResultsInnerCategoryScores.
         :type sexual_minors: float
@@ -188,6 +318,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def violence(self) -> float:
         """Gets the violence of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'violence'.  # noqa: E501
 
         :return: The violence of this CreateModerationResponseResultsInnerCategoryScores.
         :rtype: float
@@ -198,6 +329,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def violence(self, violence: float):
         """Sets the violence of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'violence'.  # noqa: E501
 
         :param violence: The violence of this CreateModerationResponseResultsInnerCategoryScores.
         :type violence: float
@@ -211,6 +343,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def violence_graphic(self) -> float:
         """Gets the violence_graphic of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'violence/graphic'.  # noqa: E501
 
         :return: The violence_graphic of this CreateModerationResponseResultsInnerCategoryScores.
         :rtype: float
@@ -221,6 +354,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     def violence_graphic(self, violence_graphic: float):
         """Sets the violence_graphic of this CreateModerationResponseResultsInnerCategoryScores.
 
+        The score for the category 'violence/graphic'.  # noqa: E501
 
         :param violence_graphic: The violence_graphic of this CreateModerationResponseResultsInnerCategoryScores.
         :type violence_graphic: float

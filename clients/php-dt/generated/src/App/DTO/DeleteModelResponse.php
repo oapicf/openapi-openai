@@ -14,15 +14,15 @@ class DeleteModelResponse
     public ?string $id = null;
 
     /**
-     * @DTA\Data(field="object")
-     * @DTA\Validator(name="Scalar", options={"type":"string"})
-     */
-    public ?string $object = null;
-
-    /**
      * @DTA\Data(field="deleted")
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
      */
     public ?bool $deleted = null;
+
+    /**
+     * @DTA\Data(field="object")
+     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     */
+    public ?string $object = null;
 
 }

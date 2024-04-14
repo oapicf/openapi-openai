@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,8 +17,8 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
-import org.openapitools.model.CreateCompletionResponseUsage;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -28,25 +28,27 @@ import javax.annotation.Generated;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
- * CreateChatCompletionResponse
+ * Represents a chat completion response returned by model, based on the provided input.
  */
+@Schema(name = "CreateChatCompletionResponse", description = "Represents a chat completion response returned by model, based on the provided input.")
 @JsonPropertyOrder({
   CreateChatCompletionResponse.JSON_PROPERTY_ID,
-  CreateChatCompletionResponse.JSON_PROPERTY_OBJECT,
+  CreateChatCompletionResponse.JSON_PROPERTY_CHOICES,
   CreateChatCompletionResponse.JSON_PROPERTY_CREATED,
   CreateChatCompletionResponse.JSON_PROPERTY_MODEL,
-  CreateChatCompletionResponse.JSON_PROPERTY_CHOICES,
+  CreateChatCompletionResponse.JSON_PROPERTY_SYSTEM_FINGERPRINT,
+  CreateChatCompletionResponse.JSON_PROPERTY_OBJECT,
   CreateChatCompletionResponse.JSON_PROPERTY_USAGE
 })
 @JsonTypeName("CreateChatCompletionResponse")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-03-16T01:12:38.762786439Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-04-14T13:38:24.957235058Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateChatCompletionResponse {
     public static final String JSON_PROPERTY_ID = "id";
     private String id;
 
-    public static final String JSON_PROPERTY_OBJECT = "object";
-    private String _object;
+    public static final String JSON_PROPERTY_CHOICES = "choices";
+    private List<@Valid CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
 
     public static final String JSON_PROPERTY_CREATED = "created";
     private Integer created;
@@ -54,18 +56,53 @@ public class CreateChatCompletionResponse {
     public static final String JSON_PROPERTY_MODEL = "model";
     private String model;
 
-    public static final String JSON_PROPERTY_CHOICES = "choices";
-    private List<@Valid CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
+    public static final String JSON_PROPERTY_SYSTEM_FINGERPRINT = "system_fingerprint";
+    private String systemFingerprint;
+
+    /**
+     * The object type, which is always &#x60;chat.completion&#x60;.
+     */
+    public enum ObjectEnum {
+        CHAT_COMPLETION("chat.completion");
+
+        private String value;
+
+        ObjectEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static ObjectEnum fromValue(String value) {
+            for (ObjectEnum b : ObjectEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
+    public static final String JSON_PROPERTY_OBJECT = "object";
+    private ObjectEnum _object;
 
     public static final String JSON_PROPERTY_USAGE = "usage";
-    private CreateCompletionResponseUsage usage;
+    private CompletionUsage usage;
 
-    public CreateChatCompletionResponse(String id, String _object, Integer created, String model, List<@Valid CreateChatCompletionResponseChoicesInner> choices) {
+    public CreateChatCompletionResponse(String id, List<@Valid CreateChatCompletionResponseChoicesInner> choices, Integer created, String model, ObjectEnum _object) {
         this.id = id;
-        this._object = _object;
+        this.choices = choices;
         this.created = created;
         this.model = model;
-        this.choices = choices;
+        this._object = _object;
     }
 
     public CreateChatCompletionResponse id(String id) {
@@ -74,11 +111,11 @@ public class CreateChatCompletionResponse {
     }
 
     /**
-     * Get id
+     * A unique identifier for the chat completion.
      * @return id
      **/
     @NotNull
-    @Schema(name = "id", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "id", description = "A unique identifier for the chat completion.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public String getId() {
@@ -91,27 +128,32 @@ public class CreateChatCompletionResponse {
         this.id = id;
     }
 
-    public CreateChatCompletionResponse _object(String _object) {
-        this._object = _object;
+    public CreateChatCompletionResponse choices(List<@Valid CreateChatCompletionResponseChoicesInner> choices) {
+        this.choices = choices;
+        return this;
+    }
+
+    public CreateChatCompletionResponse addChoicesItem(CreateChatCompletionResponseChoicesInner choicesItem) {
+        this.choices.add(choicesItem);
         return this;
     }
 
     /**
-     * Get _object
-     * @return _object
+     * A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
+     * @return choices
      **/
     @NotNull
-    @Schema(name = "object", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonProperty(JSON_PROPERTY_OBJECT)
+    @Schema(name = "choices", description = "A list of chat completion choices. Can be more than one if `n` is greater than 1.", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(JSON_PROPERTY_CHOICES)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public String getObject() {
-        return _object;
+    public List<@Valid CreateChatCompletionResponseChoicesInner> getChoices() {
+        return choices;
     }
 
-    @JsonProperty(JSON_PROPERTY_OBJECT)
+    @JsonProperty(JSON_PROPERTY_CHOICES)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setObject(String _object) {
-        this._object = _object;
+    public void setChoices(List<@Valid CreateChatCompletionResponseChoicesInner> choices) {
+        this.choices = choices;
     }
 
     public CreateChatCompletionResponse created(Integer created) {
@@ -120,11 +162,11 @@ public class CreateChatCompletionResponse {
     }
 
     /**
-     * Get created
+     * The Unix timestamp (in seconds) of when the chat completion was created.
      * @return created
      **/
     @NotNull
-    @Schema(name = "created", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "created", description = "The Unix timestamp (in seconds) of when the chat completion was created.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_CREATED)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public Integer getCreated() {
@@ -143,11 +185,11 @@ public class CreateChatCompletionResponse {
     }
 
     /**
-     * Get model
+     * The model used for the chat completion.
      * @return model
      **/
     @NotNull
-    @Schema(name = "model", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "model", description = "The model used for the chat completion.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_MODEL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public String getModel() {
@@ -160,35 +202,53 @@ public class CreateChatCompletionResponse {
         this.model = model;
     }
 
-    public CreateChatCompletionResponse choices(List<@Valid CreateChatCompletionResponseChoicesInner> choices) {
-        this.choices = choices;
-        return this;
-    }
-
-    public CreateChatCompletionResponse addChoicesItem(CreateChatCompletionResponseChoicesInner choicesItem) {
-        this.choices.add(choicesItem);
+    public CreateChatCompletionResponse systemFingerprint(String systemFingerprint) {
+        this.systemFingerprint = systemFingerprint;
         return this;
     }
 
     /**
-     * Get choices
-     * @return choices
+     * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
+     * @return systemFingerprint
+     **/
+    @Nullable
+    @Schema(name = "system_fingerprint", description = "This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_SYSTEM_FINGERPRINT)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getSystemFingerprint() {
+        return systemFingerprint;
+    }
+
+    @JsonProperty(JSON_PROPERTY_SYSTEM_FINGERPRINT)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setSystemFingerprint(String systemFingerprint) {
+        this.systemFingerprint = systemFingerprint;
+    }
+
+    public CreateChatCompletionResponse _object(ObjectEnum _object) {
+        this._object = _object;
+        return this;
+    }
+
+    /**
+     * The object type, which is always &#x60;chat.completion&#x60;.
+     * @return _object
      **/
     @NotNull
-    @Schema(name = "choices", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonProperty(JSON_PROPERTY_CHOICES)
+    @Schema(name = "object", description = "The object type, which is always `chat.completion`.", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(JSON_PROPERTY_OBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<@Valid CreateChatCompletionResponseChoicesInner> getChoices() {
-        return choices;
+    public ObjectEnum getObject() {
+        return _object;
     }
 
-    @JsonProperty(JSON_PROPERTY_CHOICES)
+    @JsonProperty(JSON_PROPERTY_OBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setChoices(List<@Valid CreateChatCompletionResponseChoicesInner> choices) {
-        this.choices = choices;
+    public void setObject(ObjectEnum _object) {
+        this._object = _object;
     }
 
-    public CreateChatCompletionResponse usage(CreateCompletionResponseUsage usage) {
+    public CreateChatCompletionResponse usage(CompletionUsage usage) {
         this.usage = usage;
         return this;
     }
@@ -202,13 +262,13 @@ public class CreateChatCompletionResponse {
     @Schema(name = "usage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_USAGE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public CreateCompletionResponseUsage getUsage() {
+    public CompletionUsage getUsage() {
         return usage;
     }
 
     @JsonProperty(JSON_PROPERTY_USAGE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setUsage(CreateCompletionResponseUsage usage) {
+    public void setUsage(CompletionUsage usage) {
         this.usage = usage;
     }
 
@@ -222,16 +282,17 @@ public class CreateChatCompletionResponse {
         }
         CreateChatCompletionResponse createChatCompletionResponse = (CreateChatCompletionResponse) o;
         return Objects.equals(this.id, createChatCompletionResponse.id) &&
-            Objects.equals(this._object, createChatCompletionResponse._object) &&
+            Objects.equals(this.choices, createChatCompletionResponse.choices) &&
             Objects.equals(this.created, createChatCompletionResponse.created) &&
             Objects.equals(this.model, createChatCompletionResponse.model) &&
-            Objects.equals(this.choices, createChatCompletionResponse.choices) &&
+            Objects.equals(this.systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
+            Objects.equals(this._object, createChatCompletionResponse._object) &&
             Objects.equals(this.usage, createChatCompletionResponse.usage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, _object, created, model, choices, usage);
+        return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
     }
 
     @Override
@@ -239,10 +300,11 @@ public class CreateChatCompletionResponse {
         StringBuilder sb = new StringBuilder();
         sb.append("class CreateChatCompletionResponse {\n");
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
-        sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+        sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
         sb.append("    created: ").append(toIndentedString(created)).append("\n");
         sb.append("    model: ").append(toIndentedString(model)).append("\n");
-        sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
+        sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
+        sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
         sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
         sb.append("}");
         return sb.toString();

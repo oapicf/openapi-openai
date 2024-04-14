@@ -24,13 +24,13 @@ void
 OpenAIFile::__init()
 {
 	//id = std::string();
-	//object = std::string();
 	//bytes = int(0);
 	//created_at = int(0);
 	//filename = std::string();
+	//object = std::string();
 	//purpose = std::string();
 	//status = std::string();
-	//status_details = null;
+	//status_details = std::string();
 }
 
 void
@@ -40,11 +40,6 @@ OpenAIFile::__cleanup()
 	//
 	//delete id;
 	//id = NULL;
-	//}
-	//if(object != NULL) {
-	//
-	//delete object;
-	//object = NULL;
 	//}
 	//if(bytes != NULL) {
 	//
@@ -60,6 +55,11 @@ OpenAIFile::__cleanup()
 	//
 	//delete filename;
 	//filename = NULL;
+	//}
+	//if(object != NULL) {
+	//
+	//delete object;
+	//object = NULL;
 	//}
 	//if(purpose != NULL) {
 	//
@@ -91,17 +91,6 @@ OpenAIFile::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&id, node, "std::string", "");
-		} else {
-			
-		}
-	}
-	const gchar *objectKey = "object";
-	node = json_object_get_member(pJsonObject, objectKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&object, node, "std::string", "");
 		} else {
 			
 		}
@@ -139,6 +128,17 @@ OpenAIFile::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *objectKey = "object";
+	node = json_object_get_member(pJsonObject, objectKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&object, node, "std::string", "");
+		} else {
+			
+		}
+	}
 	const gchar *purposeKey = "purpose";
 	node = json_object_get_member(pJsonObject, purposeKey);
 	if (node !=NULL) {
@@ -170,9 +170,6 @@ OpenAIFile::fromJson(char* jsonStr)
 			jsonToValue(&status_details, node, "std::string", "");
 		} else {
 			
-			std::string* obj = static_cast<std::string*> (&status_details);
-			obj->fromJson(json_to_string(node, false));
-			
 		}
 	}
 }
@@ -196,15 +193,6 @@ OpenAIFile::toJson()
 	}
 	const gchar *idKey = "id";
 	json_object_set_member(pJsonObject, idKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getObject();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *objectKey = "object";
-	json_object_set_member(pJsonObject, objectKey, node);
 	if (isprimitive("int")) {
 		int obj = getBytes();
 		node = converttoJson(&obj, "int", "");
@@ -233,6 +221,15 @@ OpenAIFile::toJson()
 	const gchar *filenameKey = "filename";
 	json_object_set_member(pJsonObject, filenameKey, node);
 	if (isprimitive("std::string")) {
+		std::string obj = getObject();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *objectKey = "object";
+	json_object_set_member(pJsonObject, objectKey, node);
+	if (isprimitive("std::string")) {
 		std::string obj = getPurpose();
 		node = converttoJson(&obj, "std::string", "");
 	}
@@ -256,11 +253,6 @@ OpenAIFile::toJson()
 	}
 	else {
 		
-		std::string obj = static_cast<std::string> (getStatusDetails());
-		GError *mygerror;
-		mygerror = NULL;
-		node = json_from_string(obj.toJson(), &mygerror);
-		
 	}
 	const gchar *status_detailsKey = "status_details";
 	json_object_set_member(pJsonObject, status_detailsKey, node);
@@ -282,18 +274,6 @@ void
 OpenAIFile::setId(std::string  id)
 {
 	this->id = id;
-}
-
-std::string
-OpenAIFile::getObject()
-{
-	return object;
-}
-
-void
-OpenAIFile::setObject(std::string  object)
-{
-	this->object = object;
 }
 
 int
@@ -330,6 +310,18 @@ void
 OpenAIFile::setFilename(std::string  filename)
 {
 	this->filename = filename;
+}
+
+std::string
+OpenAIFile::getObject()
+{
+	return object;
+}
+
+void
+OpenAIFile::setObject(std::string  object)
+{
+	this->object = object;
 }
 
 std::string

@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,70 +13,70 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * The `File` object represents a document that has been uploaded to OpenAI.
  * @export
  * @interface OpenAIFile
  */
 export interface OpenAIFile  {
     /**
-     * 
+     * The file identifier, which can be referenced in the API endpoints.
      * @type {string}
      * @memberof OpenAIFile
      */
     id: string;
     /**
-     * 
-     * @type {string}
-     * @memberof OpenAIFile
-     */
-    object: string;
-    /**
-     * 
+     * The size of the file, in bytes.
      * @type {number}
      * @memberof OpenAIFile
      */
     bytes: number;
     /**
-     * 
+     * The Unix timestamp (in seconds) for when the file was created.
      * @type {number}
      * @memberof OpenAIFile
      */
     createdAt: number;
     /**
-     * 
+     * The name of the file.
      * @type {string}
      * @memberof OpenAIFile
      */
     filename: string;
     /**
-     * 
+     * The object type, which is always `file`.
      * @type {string}
      * @memberof OpenAIFile
      */
-    purpose: string;
+    object: OpenAIFileObjectEnum;
     /**
-     * 
+     * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
      * @type {string}
      * @memberof OpenAIFile
      */
-    status?: string;
+    purpose: OpenAIFilePurposeEnum;
     /**
-     * 
-     * @type {object}
+     * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+     * @type {string}
      * @memberof OpenAIFile
      */
-    statusDetails?: object;
+    status: OpenAIFileStatusEnum;
+    /**
+     * Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
+     * @type {string}
+     * @memberof OpenAIFile
+     */
+    statusDetails?: string;
 }
 
 export function OpenAIFileFromJSON(json: any): OpenAIFile {
     return {
         'id': json['id'],
-        'object': json['object'],
         'bytes': json['bytes'],
         'createdAt': json['created_at'],
         'filename': json['filename'],
+        'object': json['object'],
         'purpose': json['purpose'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
+        'status': json['status'],
         'statusDetails': !exists(json, 'status_details') ? undefined : json['status_details'],
     };
 }
@@ -87,14 +87,41 @@ export function OpenAIFileToJSON(value?: OpenAIFile): any {
     }
     return {
         'id': value.id,
-        'object': value.object,
         'bytes': value.bytes,
         'created_at': value.createdAt,
         'filename': value.filename,
+        'object': value.object,
         'purpose': value.purpose,
         'status': value.status,
         'status_details': value.statusDetails,
     };
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum OpenAIFileObjectEnum {
+    File = 'file'
+}
+/**
+* @export
+* @enum {string}
+*/
+export enum OpenAIFilePurposeEnum {
+    FineTune = 'fine-tune',
+    FineTuneResults = 'fine-tune-results',
+    Assistants = 'assistants',
+    AssistantsOutput = 'assistants_output'
+}
+/**
+* @export
+* @enum {string}
+*/
+export enum OpenAIFileStatusEnum {
+    Uploaded = 'uploaded',
+    Processed = 'processed',
+    Error = 'error'
 }
 
 

@@ -5,8 +5,17 @@ context("Test CreateChatCompletionResponseChoicesInner")
 
 model_instance <- CreateChatCompletionResponseChoicesInner$new()
 
+test_that("finish_reason", {
+  # tests for the property `finish_reason` (character)
+  # The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`finish_reason`, "EXPECTED_RESULT")
+})
+
 test_that("index", {
   # tests for the property `index` (integer)
+  # The index of the choice in the list of choices.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`index`, "EXPECTED_RESULT")
@@ -19,9 +28,9 @@ test_that("message", {
   #expect_equal(model.instance$`message`, "EXPECTED_RESULT")
 })
 
-test_that("finish_reason", {
-  # tests for the property `finish_reason` (character)
+test_that("logprobs", {
+  # tests for the property `logprobs` (CreateChatCompletionResponseChoicesInnerLogprobs)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`finish_reason`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`logprobs`, "EXPECTED_RESULT")
 })

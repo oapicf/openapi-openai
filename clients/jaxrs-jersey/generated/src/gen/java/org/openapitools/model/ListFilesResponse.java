@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,6 +16,7 @@ package org.openapitools.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -30,38 +31,47 @@ import javax.validation.Valid;
  * ListFilesResponse
  */
 @JsonPropertyOrder({
-  ListFilesResponse.JSON_PROPERTY_OBJECT,
-  ListFilesResponse.JSON_PROPERTY_DATA
+  ListFilesResponse.JSON_PROPERTY_DATA,
+  ListFilesResponse.JSON_PROPERTY_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ListFilesResponse   {
-  public static final String JSON_PROPERTY_OBJECT = "object";
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  private String _object;
-
   public static final String JSON_PROPERTY_DATA = "data";
   @JsonProperty(JSON_PROPERTY_DATA)
   private List<@Valid OpenAIFile> data = new ArrayList<>();
 
-  public ListFilesResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
   /**
-   * Get _object
-   * @return _object
-   **/
-  @JsonProperty(value = "object")
-  @ApiModelProperty(required = true, value = "")
-  @NotNull 
-  public String getObject() {
-    return _object;
+   * Gets or Sets _object
+   */
+  public enum ObjectEnum {
+    LIST("list");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
   }
 
-  public void setObject(String _object) {
-    this._object = _object;
-  }
+  public static final String JSON_PROPERTY_OBJECT = "object";
+  @JsonProperty(JSON_PROPERTY_OBJECT)
+  private ObjectEnum _object;
 
   public ListFilesResponse data(List<@Valid OpenAIFile> data) {
     this.data = data;
@@ -91,6 +101,26 @@ public class ListFilesResponse   {
     this.data = data;
   }
 
+  public ListFilesResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  /**
+   * Get _object
+   * @return _object
+   **/
+  @JsonProperty(value = "object")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull 
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -101,13 +131,13 @@ public class ListFilesResponse   {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(this._object, listFilesResponse._object) &&
-        Objects.equals(this.data, listFilesResponse.data);
+    return Objects.equals(this.data, listFilesResponse.data) &&
+        Objects.equals(this._object, listFilesResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_object, data);
+    return Objects.hash(data, _object);
   }
 
   @Override
@@ -115,8 +145,8 @@ public class ListFilesResponse   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

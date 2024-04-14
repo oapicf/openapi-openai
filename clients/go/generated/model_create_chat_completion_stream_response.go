@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -20,13 +20,20 @@ import (
 // checks if the CreateChatCompletionStreamResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateChatCompletionStreamResponse{}
 
-// CreateChatCompletionStreamResponse struct for CreateChatCompletionStreamResponse
+// CreateChatCompletionStreamResponse Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
 type CreateChatCompletionStreamResponse struct {
+	// A unique identifier for the chat completion. Each chunk has the same ID.
 	Id string `json:"id"`
-	Object string `json:"object"`
-	Created int32 `json:"created"`
-	Model string `json:"model"`
+	// A list of chat completion choices. Can be more than one if `n` is greater than 1.
 	Choices []CreateChatCompletionStreamResponseChoicesInner `json:"choices"`
+	// The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+	Created int32 `json:"created"`
+	// The model to generate the completion.
+	Model string `json:"model"`
+	// This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+	SystemFingerprint *string `json:"system_fingerprint,omitempty"`
+	// The object type, which is always `chat.completion.chunk`.
+	Object string `json:"object"`
 }
 
 type _CreateChatCompletionStreamResponse CreateChatCompletionStreamResponse
@@ -35,13 +42,13 @@ type _CreateChatCompletionStreamResponse CreateChatCompletionStreamResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateChatCompletionStreamResponse(id string, object string, created int32, model string, choices []CreateChatCompletionStreamResponseChoicesInner) *CreateChatCompletionStreamResponse {
+func NewCreateChatCompletionStreamResponse(id string, choices []CreateChatCompletionStreamResponseChoicesInner, created int32, model string, object string) *CreateChatCompletionStreamResponse {
 	this := CreateChatCompletionStreamResponse{}
 	this.Id = id
-	this.Object = object
+	this.Choices = choices
 	this.Created = created
 	this.Model = model
-	this.Choices = choices
+	this.Object = object
 	return &this
 }
 
@@ -77,28 +84,28 @@ func (o *CreateChatCompletionStreamResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetObject returns the Object field value
-func (o *CreateChatCompletionStreamResponse) GetObject() string {
+// GetChoices returns the Choices field value
+func (o *CreateChatCompletionStreamResponse) GetChoices() []CreateChatCompletionStreamResponseChoicesInner {
 	if o == nil {
-		var ret string
+		var ret []CreateChatCompletionStreamResponseChoicesInner
 		return ret
 	}
 
-	return o.Object
+	return o.Choices
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetChoicesOk returns a tuple with the Choices field value
 // and a boolean to check if the value has been set.
-func (o *CreateChatCompletionStreamResponse) GetObjectOk() (*string, bool) {
+func (o *CreateChatCompletionStreamResponse) GetChoicesOk() ([]CreateChatCompletionStreamResponseChoicesInner, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Choices, true
 }
 
-// SetObject sets field value
-func (o *CreateChatCompletionStreamResponse) SetObject(v string) {
-	o.Object = v
+// SetChoices sets field value
+func (o *CreateChatCompletionStreamResponse) SetChoices(v []CreateChatCompletionStreamResponseChoicesInner) {
+	o.Choices = v
 }
 
 // GetCreated returns the Created field value
@@ -149,28 +156,60 @@ func (o *CreateChatCompletionStreamResponse) SetModel(v string) {
 	o.Model = v
 }
 
-// GetChoices returns the Choices field value
-func (o *CreateChatCompletionStreamResponse) GetChoices() []CreateChatCompletionStreamResponseChoicesInner {
+// GetSystemFingerprint returns the SystemFingerprint field value if set, zero value otherwise.
+func (o *CreateChatCompletionStreamResponse) GetSystemFingerprint() string {
+	if o == nil || IsNil(o.SystemFingerprint) {
+		var ret string
+		return ret
+	}
+	return *o.SystemFingerprint
+}
+
+// GetSystemFingerprintOk returns a tuple with the SystemFingerprint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateChatCompletionStreamResponse) GetSystemFingerprintOk() (*string, bool) {
+	if o == nil || IsNil(o.SystemFingerprint) {
+		return nil, false
+	}
+	return o.SystemFingerprint, true
+}
+
+// HasSystemFingerprint returns a boolean if a field has been set.
+func (o *CreateChatCompletionStreamResponse) HasSystemFingerprint() bool {
+	if o != nil && !IsNil(o.SystemFingerprint) {
+		return true
+	}
+
+	return false
+}
+
+// SetSystemFingerprint gets a reference to the given string and assigns it to the SystemFingerprint field.
+func (o *CreateChatCompletionStreamResponse) SetSystemFingerprint(v string) {
+	o.SystemFingerprint = &v
+}
+
+// GetObject returns the Object field value
+func (o *CreateChatCompletionStreamResponse) GetObject() string {
 	if o == nil {
-		var ret []CreateChatCompletionStreamResponseChoicesInner
+		var ret string
 		return ret
 	}
 
-	return o.Choices
+	return o.Object
 }
 
-// GetChoicesOk returns a tuple with the Choices field value
+// GetObjectOk returns a tuple with the Object field value
 // and a boolean to check if the value has been set.
-func (o *CreateChatCompletionStreamResponse) GetChoicesOk() ([]CreateChatCompletionStreamResponseChoicesInner, bool) {
+func (o *CreateChatCompletionStreamResponse) GetObjectOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Choices, true
+	return &o.Object, true
 }
 
-// SetChoices sets field value
-func (o *CreateChatCompletionStreamResponse) SetChoices(v []CreateChatCompletionStreamResponseChoicesInner) {
-	o.Choices = v
+// SetObject sets field value
+func (o *CreateChatCompletionStreamResponse) SetObject(v string) {
+	o.Object = v
 }
 
 func (o CreateChatCompletionStreamResponse) MarshalJSON() ([]byte, error) {
@@ -184,10 +223,13 @@ func (o CreateChatCompletionStreamResponse) MarshalJSON() ([]byte, error) {
 func (o CreateChatCompletionStreamResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	toSerialize["object"] = o.Object
+	toSerialize["choices"] = o.Choices
 	toSerialize["created"] = o.Created
 	toSerialize["model"] = o.Model
-	toSerialize["choices"] = o.Choices
+	if !IsNil(o.SystemFingerprint) {
+		toSerialize["system_fingerprint"] = o.SystemFingerprint
+	}
+	toSerialize["object"] = o.Object
 	return toSerialize, nil
 }
 
@@ -197,10 +239,10 @@ func (o *CreateChatCompletionStreamResponse) UnmarshalJSON(data []byte) (err err
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
-		"object",
+		"choices",
 		"created",
 		"model",
-		"choices",
+		"object",
 	}
 
 	allProperties := make(map[string]interface{})

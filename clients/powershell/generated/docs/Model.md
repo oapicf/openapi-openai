@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** |  | 
-**Object** | **String** |  | 
-**Created** | **Int32** |  | 
-**OwnedBy** | **String** |  | 
+**Id** | **String** | The model identifier, which can be referenced in the API endpoints. | 
+**Created** | **Int32** | The Unix timestamp (in seconds) when the model was created. | 
+**Object** | **String** | The object type, which is always &quot;&quot;model&quot;&quot;. | 
+**OwnedBy** | **String** | The organization that owns the model. | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $Model = Initialize-PSOpenAPIToolsModel  -Id null `
- -Object null `
  -Created null `
+ -Object null `
  -OwnedBy null
 ```
 

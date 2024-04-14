@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -37,9 +37,12 @@ class TestCreateImageRequest(unittest.TestCase):
         if include_optional:
             return CreateImageRequest(
                 prompt = 'A cute baby sea otter',
+                model = dall-e-3,
                 n = 1,
-                size = '1024x1024',
+                quality = 'standard',
                 response_format = 'url',
+                size = '1024x1024',
+                style = 'vivid',
                 user = 'user-1234'
             )
         else:

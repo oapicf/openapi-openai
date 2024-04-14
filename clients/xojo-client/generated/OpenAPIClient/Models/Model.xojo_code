@@ -2,26 +2,55 @@
 Protected Class Model
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The model identifier, which can be referenced in the API endpoints.
+		#tag EndNote
 		id As String
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		object As String
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
+		#tag Note
+			The Unix timestamp (in seconds) when the model was created.
+		#tag EndNote
 		created As Integer
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The object type, which is always "model".
+		#tag EndNote
+		object As String
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The organization that owns the model.
+		#tag EndNote
 		owned_by As String
 	#tag EndProperty
 
 
+    #tag Enum, Name = ObjectEnum, Type = Integer, Flags = &h0
+        
+        Model
+        
+    #tag EndEnum
 
+
+	#tag Method, Flags = &h0
+		Shared Function ObjectEnumToString(value As ObjectEnum) As String
+		  Select Case value
+		    
+		    Case ObjectEnum.Model
+		      Return "model"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 
 	#tag ViewBehavior
@@ -59,14 +88,6 @@ Protected Class Model
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="id"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="object"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

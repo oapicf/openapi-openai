@@ -17,13 +17,13 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param flagged 
+ * @param flagged Whether any of the below categories are flagged.
  * @param categories 
  * @param categoryScores 
  */
 data class CreateModerationResponseResultsInner(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(example = "null", required = true, description = "Whether any of the below categories are flagged.")
     @get:JsonProperty("flagged", required = true) val flagged: kotlin.Boolean,
 
     @field:Valid

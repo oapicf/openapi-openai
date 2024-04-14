@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -26,31 +26,11 @@ namespace Org.OpenAPITools.Models
     [DataContract]
     public partial class CreateCompletionResponseChoicesInner : IEquatable<CreateCompletionResponseChoicesInner>
     {
-        /// <summary>
-        /// Gets or Sets Text
-        /// </summary>
-        [Required]
-        [DataMember(Name="text", EmitDefaultValue=false)]
-        public string Text { get; set; }
 
         /// <summary>
-        /// Gets or Sets Index
+        /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
         /// </summary>
-        [Required]
-        [DataMember(Name="index", EmitDefaultValue=true)]
-        public int Index { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Logprobs
-        /// </summary>
-        [Required]
-        [DataMember(Name="logprobs", EmitDefaultValue=true)]
-        public CreateCompletionResponseChoicesInnerLogprobs Logprobs { get; set; }
-
-
-        /// <summary>
-        /// Gets or Sets FinishReason
-        /// </summary>
+        /// <value>The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. </value>
         [TypeConverter(typeof(CustomEnumConverter<FinishReasonEnum>))]
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum FinishReasonEnum
@@ -66,15 +46,43 @@ namespace Org.OpenAPITools.Models
             /// Enum LengthEnum for length
             /// </summary>
             [EnumMember(Value = "length")]
-            LengthEnum = 2
+            LengthEnum = 2,
+            
+            /// <summary>
+            /// Enum ContentFilterEnum for content_filter
+            /// </summary>
+            [EnumMember(Value = "content_filter")]
+            ContentFilterEnum = 3
         }
 
         /// <summary>
-        /// Gets or Sets FinishReason
+        /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
         /// </summary>
+        /// <value>The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. </value>
         [Required]
         [DataMember(Name="finish_reason", EmitDefaultValue=true)]
         public FinishReasonEnum FinishReason { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Index
+        /// </summary>
+        [Required]
+        [DataMember(Name="index", EmitDefaultValue=true)]
+        public int Index { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Logprobs
+        /// </summary>
+        [Required]
+        [DataMember(Name="logprobs", EmitDefaultValue=true)]
+        public CreateCompletionResponseChoicesInnerLogprobs Logprobs { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Text
+        /// </summary>
+        [Required]
+        [DataMember(Name="text", EmitDefaultValue=false)]
+        public string Text { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,10 +92,10 @@ namespace Org.OpenAPITools.Models
         {
             var sb = new StringBuilder();
             sb.Append("class CreateCompletionResponseChoicesInner {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("  FinishReason: ").Append(FinishReason).Append("\n");
             sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("  Logprobs: ").Append(Logprobs).Append("\n");
-            sb.Append("  FinishReason: ").Append(FinishReason).Append("\n");
+            sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -125,9 +133,9 @@ namespace Org.OpenAPITools.Models
 
             return 
                 (
-                    Text == other.Text ||
-                    Text != null &&
-                    Text.Equals(other.Text)
+                    FinishReason == other.FinishReason ||
+                    
+                    FinishReason.Equals(other.FinishReason)
                 ) && 
                 (
                     Index == other.Index ||
@@ -140,9 +148,9 @@ namespace Org.OpenAPITools.Models
                     Logprobs.Equals(other.Logprobs)
                 ) && 
                 (
-                    FinishReason == other.FinishReason ||
-                    
-                    FinishReason.Equals(other.FinishReason)
+                    Text == other.Text ||
+                    Text != null &&
+                    Text.Equals(other.Text)
                 );
         }
 
@@ -156,14 +164,14 @@ namespace Org.OpenAPITools.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Text != null)
-                    hashCode = hashCode * 59 + Text.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + FinishReason.GetHashCode();
                     
                     hashCode = hashCode * 59 + Index.GetHashCode();
                     if (Logprobs != null)
                     hashCode = hashCode * 59 + Logprobs.GetHashCode();
-                    
-                    hashCode = hashCode * 59 + FinishReason.GetHashCode();
+                    if (Text != null)
+                    hashCode = hashCode * 59 + Text.GetHashCode();
                 return hashCode;
             }
         }

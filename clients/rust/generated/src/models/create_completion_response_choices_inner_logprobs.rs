@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,23 +12,23 @@ use crate::models;
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateCompletionResponseChoicesInnerLogprobs {
-    #[serde(rename = "tokens", skip_serializing_if = "Option::is_none")]
-    pub tokens: Option<Vec<String>>,
-    #[serde(rename = "token_logprobs", skip_serializing_if = "Option::is_none")]
-    pub token_logprobs: Option<Vec<f64>>,
-    #[serde(rename = "top_logprobs", skip_serializing_if = "Option::is_none")]
-    pub top_logprobs: Option<Vec<serde_json::Value>>,
     #[serde(rename = "text_offset", skip_serializing_if = "Option::is_none")]
     pub text_offset: Option<Vec<i32>>,
+    #[serde(rename = "token_logprobs", skip_serializing_if = "Option::is_none")]
+    pub token_logprobs: Option<Vec<f64>>,
+    #[serde(rename = "tokens", skip_serializing_if = "Option::is_none")]
+    pub tokens: Option<Vec<String>>,
+    #[serde(rename = "top_logprobs", skip_serializing_if = "Option::is_none")]
+    pub top_logprobs: Option<Vec<std::collections::HashMap<String, f64>>>,
 }
 
 impl CreateCompletionResponseChoicesInnerLogprobs {
     pub fn new() -> CreateCompletionResponseChoicesInnerLogprobs {
         CreateCompletionResponseChoicesInnerLogprobs {
-            tokens: None,
-            token_logprobs: None,
-            top_logprobs: None,
             text_offset: None,
+            token_logprobs: None,
+            tokens: None,
+            top_logprobs: None,
         }
     }
 }

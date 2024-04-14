@@ -8,12 +8,16 @@ module CreateChatCompletionStreamResponse =
 
   //#region CreateChatCompletionStreamResponse
 
+  //#region enums
+  type ObjectEnum = ChatCompletionChunkEnum of string  
+  //#endregion
 
   type CreateChatCompletionStreamResponse = {
     Id : string;
-    Object : string;
+    Choices : CreateChatCompletionStreamResponseChoicesInner[];
     Created : int;
     Model : string;
-    Choices : CreateChatCompletionStreamResponseChoicesInner[];
+    SystemFingerprint : string;
+    Object : ObjectEnum;
   }
   //#endregion

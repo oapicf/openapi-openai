@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -91,10 +91,10 @@ bool OAIImagesResponse::is_created_Valid() const{
     return m_created_isValid;
 }
 
-QList<OAIImagesResponse_data_inner> OAIImagesResponse::getData() const {
+QList<OAIImage> OAIImagesResponse::getData() const {
     return m_data;
 }
-void OAIImagesResponse::setData(const QList<OAIImagesResponse_data_inner> &data) {
+void OAIImagesResponse::setData(const QList<OAIImage> &data) {
     m_data = data;
     m_data_isSet = true;
 }

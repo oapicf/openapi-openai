@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -18,20 +18,20 @@ import .*
 
 
 /**
- * 
- * @param promptTokens 
- * @param totalTokens 
+ * The usage information for the request.
+ * @param promptTokens The number of tokens used by the prompt.
+ * @param totalTokens The total number of tokens used by the request.
  */
 object CreateEmbeddingResponseUsages : BaseTable<CreateEmbeddingResponseUsage>("CreateEmbeddingResponse_usage") {
-    val promptTokens = int("prompt_tokens")
-    val totalTokens = int("total_tokens")
+    val promptTokens = int("prompt_tokens") /* The number of tokens used by the prompt. */
+    val totalTokens = int("total_tokens") /* The total number of tokens used by the request. */
 
     /**
      * Create an entity of type CreateEmbeddingResponseUsage from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = CreateEmbeddingResponseUsage(
-        promptTokens = row[promptTokens] ?: 0 /* kotlin.Int */,
-        totalTokens = row[totalTokens] ?: 0 /* kotlin.Int */
+        promptTokens = row[promptTokens] ?: 0 /* kotlin.Int */ /* The number of tokens used by the prompt. */,
+        totalTokens = row[totalTokens] ?: 0 /* kotlin.Int */ /* The total number of tokens used by the request. */
     )
 
     /**

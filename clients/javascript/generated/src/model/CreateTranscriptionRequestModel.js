@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,108 +12,4 @@
  */
 
 import ApiClient from '../ApiClient';
-
-/**
- * The CreateTranscriptionRequestModel model module.
- * @module model/CreateTranscriptionRequestModel
- * @version 0.9.0-pre.0
- */
-class CreateTranscriptionRequestModel {
-    /**
-     * Constructs a new <code>CreateTranscriptionRequestModel</code>.
-     * ID of the model to use. Only &#x60;whisper-1&#x60; is currently available. 
-     * @alias module:model/CreateTranscriptionRequestModel
-     * @param {(module:model/String)} instance The actual instance to initialize CreateTranscriptionRequestModel.
-     */
-    constructor(instance = null) {
-        if (instance === null) {
-            this.actualInstance = null;
-            return;
-        }
-        var match = 0;
-        var errorMessages = [];
-        try {
-            // validate string
-            if (!(typeof instance === 'string')) {
-                throw new Error("Invalid value. Must be string. Input: " + JSON.stringify(instance));
-            }
-            this.actualInstance = instance;
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into String
-            errorMessages.push("Failed to construct String: " + err)
-        }
-
-        try {
-            // validate string
-            if (!(typeof instance === 'string')) {
-                throw new Error("Invalid value. Must be string. Input: " + JSON.stringify(instance));
-            }
-            this.actualInstance = instance;
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into String
-            errorMessages.push("Failed to construct String: " + err)
-        }
-
-        if (match > 1) {
-            throw new Error("Multiple matches found constructing `CreateTranscriptionRequestModel` with oneOf schemas String. Input: " + JSON.stringify(instance));
-        } else if (match === 0) {
-            this.actualInstance = null; // clear the actual instance in case there are multiple matches
-            throw new Error("No match found constructing `CreateTranscriptionRequestModel` with oneOf schemas String. Details: " +
-                            errorMessages.join(", "));
-        } else { // only 1 match
-            // the input is valid
-        }
-    }
-
-    /**
-     * Constructs a <code>CreateTranscriptionRequestModel</code> from a plain JavaScript object, optionally creating a new instance.
-     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-     * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/CreateTranscriptionRequestModel} obj Optional instance to populate.
-     * @return {module:model/CreateTranscriptionRequestModel} The populated <code>CreateTranscriptionRequestModel</code> instance.
-     */
-    static constructFromObject(data, obj) {
-        return new CreateTranscriptionRequestModel(data);
-    }
-
-    /**
-     * Gets the actual instance, which can be <code>String</code>.
-     * @return {(module:model/String)} The actual instance.
-     */
-    getActualInstance() {
-        return this.actualInstance;
-    }
-
-    /**
-     * Sets the actual instance, which can be <code>String</code>.
-     * @param {(module:model/String)} obj The actual instance.
-     */
-    setActualInstance(obj) {
-       this.actualInstance = CreateTranscriptionRequestModel.constructFromObject(obj).getActualInstance();
-    }
-
-    /**
-     * Returns the JSON representation of the actual instance.
-     * @return {string}
-     */
-    toJSON = function(){
-        return this.getActualInstance();
-    }
-
-    /**
-     * Create an instance of CreateTranscriptionRequestModel from a JSON string.
-     * @param {string} json_string JSON string.
-     * @return {module:model/CreateTranscriptionRequestModel} An instance of CreateTranscriptionRequestModel.
-     */
-    static fromJSON = function(json_string){
-        return CreateTranscriptionRequestModel.constructFromObject(JSON.parse(json_string));
-    }
-}
-
-
-CreateTranscriptionRequestModel.OneOf = ["String"];
-
-export default CreateTranscriptionRequestModel;
-
+// TODO: add anyof model support

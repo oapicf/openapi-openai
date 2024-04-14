@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,9 +11,9 @@
  */
 
 /**
- * Controls how the model responds to function calls. &quot;none&quot; means the model does not call a function, and responds to the end-user. &quot;auto&quot; means the model can pick between an end-user or calling a function.  Specifying a particular function via &#x60;{&quot;name&quot;:\ &quot;my_function&quot;}&#x60; forces the model to call that function. &quot;none&quot; is the default when no functions are present. &quot;auto&quot; is the default if functions are present.
+ * Deprecated in favor of &#x60;tool_choice&#x60;.\n\nControls which (if any) function is called by the model.\n&#x60;none&#x60; means the model will not call a function and instead generates a message.\n&#x60;auto&#x60; means the model can pick between generating a message or calling a function.\nSpecifying a particular function via &#x60;{&quot;name&quot;: &quot;my_function&quot;}&#x60; forces the model to call that function.\n\n&#x60;none&#x60; is the default when no functions are present. &#x60;auto&#x60; is the default if functions are present.\n
  */
-public class OASCreateChatCompletionRequestFuncti implements OASCreateChatCompletionRequestFuncti {
+public class OASCreateChatCompletionRequestFuncti implements OASChatCompletionFunctionCallOption {
     /**
      * The name of the function to call.
      * @return name

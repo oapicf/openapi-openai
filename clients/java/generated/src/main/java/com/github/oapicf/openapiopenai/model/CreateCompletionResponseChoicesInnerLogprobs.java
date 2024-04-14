@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,6 +24,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,51 +53,51 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateCompletionResponseChoicesInnerLogprobs
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateCompletionResponseChoicesInnerLogprobs {
-  public static final String SERIALIZED_NAME_TOKENS = "tokens";
-  @SerializedName(SERIALIZED_NAME_TOKENS)
-  private List<String> tokens;
+  public static final String SERIALIZED_NAME_TEXT_OFFSET = "text_offset";
+  @SerializedName(SERIALIZED_NAME_TEXT_OFFSET)
+  private List<Integer> textOffset;
 
   public static final String SERIALIZED_NAME_TOKEN_LOGPROBS = "token_logprobs";
   @SerializedName(SERIALIZED_NAME_TOKEN_LOGPROBS)
   private List<BigDecimal> tokenLogprobs;
 
+  public static final String SERIALIZED_NAME_TOKENS = "tokens";
+  @SerializedName(SERIALIZED_NAME_TOKENS)
+  private List<String> tokens;
+
   public static final String SERIALIZED_NAME_TOP_LOGPROBS = "top_logprobs";
   @SerializedName(SERIALIZED_NAME_TOP_LOGPROBS)
-  private List<Object> topLogprobs;
-
-  public static final String SERIALIZED_NAME_TEXT_OFFSET = "text_offset";
-  @SerializedName(SERIALIZED_NAME_TEXT_OFFSET)
-  private List<Integer> textOffset;
+  private List<Map<String, BigDecimal>> topLogprobs;
 
   public CreateCompletionResponseChoicesInnerLogprobs() {
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs tokens(List<String> tokens) {
-    this.tokens = tokens;
+  public CreateCompletionResponseChoicesInnerLogprobs textOffset(List<Integer> textOffset) {
+    this.textOffset = textOffset;
     return this;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs addTokensItem(String tokensItem) {
-    if (this.tokens == null) {
-      this.tokens = new ArrayList<>();
+  public CreateCompletionResponseChoicesInnerLogprobs addTextOffsetItem(Integer textOffsetItem) {
+    if (this.textOffset == null) {
+      this.textOffset = new ArrayList<>();
     }
-    this.tokens.add(tokensItem);
+    this.textOffset.add(textOffsetItem);
     return this;
   }
 
    /**
-   * Get tokens
-   * @return tokens
+   * Get textOffset
+   * @return textOffset
   **/
   @javax.annotation.Nullable
-  public List<String> getTokens() {
-    return tokens;
+  public List<Integer> getTextOffset() {
+    return textOffset;
   }
 
-  public void setTokens(List<String> tokens) {
-    this.tokens = tokens;
+  public void setTextOffset(List<Integer> textOffset) {
+    this.textOffset = textOffset;
   }
 
 
@@ -127,12 +128,39 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
   }
 
 
-  public CreateCompletionResponseChoicesInnerLogprobs topLogprobs(List<Object> topLogprobs) {
+  public CreateCompletionResponseChoicesInnerLogprobs tokens(List<String> tokens) {
+    this.tokens = tokens;
+    return this;
+  }
+
+  public CreateCompletionResponseChoicesInnerLogprobs addTokensItem(String tokensItem) {
+    if (this.tokens == null) {
+      this.tokens = new ArrayList<>();
+    }
+    this.tokens.add(tokensItem);
+    return this;
+  }
+
+   /**
+   * Get tokens
+   * @return tokens
+  **/
+  @javax.annotation.Nullable
+  public List<String> getTokens() {
+    return tokens;
+  }
+
+  public void setTokens(List<String> tokens) {
+    this.tokens = tokens;
+  }
+
+
+  public CreateCompletionResponseChoicesInnerLogprobs topLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
     this.topLogprobs = topLogprobs;
     return this;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs addTopLogprobsItem(Object topLogprobsItem) {
+  public CreateCompletionResponseChoicesInnerLogprobs addTopLogprobsItem(Map<String, BigDecimal> topLogprobsItem) {
     if (this.topLogprobs == null) {
       this.topLogprobs = new ArrayList<>();
     }
@@ -145,39 +173,12 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
    * @return topLogprobs
   **/
   @javax.annotation.Nullable
-  public List<Object> getTopLogprobs() {
+  public List<Map<String, BigDecimal>> getTopLogprobs() {
     return topLogprobs;
   }
 
-  public void setTopLogprobs(List<Object> topLogprobs) {
+  public void setTopLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
     this.topLogprobs = topLogprobs;
-  }
-
-
-  public CreateCompletionResponseChoicesInnerLogprobs textOffset(List<Integer> textOffset) {
-    this.textOffset = textOffset;
-    return this;
-  }
-
-  public CreateCompletionResponseChoicesInnerLogprobs addTextOffsetItem(Integer textOffsetItem) {
-    if (this.textOffset == null) {
-      this.textOffset = new ArrayList<>();
-    }
-    this.textOffset.add(textOffsetItem);
-    return this;
-  }
-
-   /**
-   * Get textOffset
-   * @return textOffset
-  **/
-  @javax.annotation.Nullable
-  public List<Integer> getTextOffset() {
-    return textOffset;
-  }
-
-  public void setTextOffset(List<Integer> textOffset) {
-    this.textOffset = textOffset;
   }
 
 
@@ -191,25 +192,25 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
       return false;
     }
     CreateCompletionResponseChoicesInnerLogprobs createCompletionResponseChoicesInnerLogprobs = (CreateCompletionResponseChoicesInnerLogprobs) o;
-    return Objects.equals(this.tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+    return Objects.equals(this.textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset) &&
         Objects.equals(this.tokenLogprobs, createCompletionResponseChoicesInnerLogprobs.tokenLogprobs) &&
-        Objects.equals(this.topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs) &&
-        Objects.equals(this.textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset);
+        Objects.equals(this.tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+        Objects.equals(this.topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tokens, tokenLogprobs, topLogprobs, textOffset);
+    return Objects.hash(textOffset, tokenLogprobs, tokens, topLogprobs);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInnerLogprobs {\n");
-    sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
-    sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
-    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("    textOffset: ").append(toIndentedString(textOffset)).append("\n");
+    sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
+    sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
+    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -232,10 +233,10 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("tokens");
-    openapiFields.add("token_logprobs");
-    openapiFields.add("top_logprobs");
     openapiFields.add("text_offset");
+    openapiFields.add("token_logprobs");
+    openapiFields.add("tokens");
+    openapiFields.add("top_logprobs");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -263,20 +264,20 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the optional json data is an array if present
-      if (jsonObj.get("tokens") != null && !jsonObj.get("tokens").isJsonNull() && !jsonObj.get("tokens").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tokens` to be an array in the JSON string but got `%s`", jsonObj.get("tokens").toString()));
+      if (jsonObj.get("text_offset") != null && !jsonObj.get("text_offset").isJsonNull() && !jsonObj.get("text_offset").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `text_offset` to be an array in the JSON string but got `%s`", jsonObj.get("text_offset").toString()));
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("token_logprobs") != null && !jsonObj.get("token_logprobs").isJsonNull() && !jsonObj.get("token_logprobs").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `token_logprobs` to be an array in the JSON string but got `%s`", jsonObj.get("token_logprobs").toString()));
       }
       // ensure the optional json data is an array if present
-      if (jsonObj.get("top_logprobs") != null && !jsonObj.get("top_logprobs").isJsonNull() && !jsonObj.get("top_logprobs").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `top_logprobs` to be an array in the JSON string but got `%s`", jsonObj.get("top_logprobs").toString()));
+      if (jsonObj.get("tokens") != null && !jsonObj.get("tokens").isJsonNull() && !jsonObj.get("tokens").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokens` to be an array in the JSON string but got `%s`", jsonObj.get("tokens").toString()));
       }
       // ensure the optional json data is an array if present
-      if (jsonObj.get("text_offset") != null && !jsonObj.get("text_offset").isJsonNull() && !jsonObj.get("text_offset").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `text_offset` to be an array in the JSON string but got `%s`", jsonObj.get("text_offset").toString()));
+      if (jsonObj.get("top_logprobs") != null && !jsonObj.get("top_logprobs").isJsonNull() && !jsonObj.get("top_logprobs").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `top_logprobs` to be an array in the JSON string but got `%s`", jsonObj.get("top_logprobs").toString()));
       }
   }
 

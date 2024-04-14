@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -14,15 +14,15 @@ package org.openapitools.server.models
 
 /**
  * 
- * @param type 
+ * @param code 
  * @param message 
  * @param `param` 
- * @param code 
+ * @param type 
  */
 data class Error(
-    val type: kotlin.String,
+    val code: kotlin.String,
     val message: kotlin.String,
     val `param`: kotlin.String,
-    val code: kotlin.String
+    val type: kotlin.String
 ) 
 

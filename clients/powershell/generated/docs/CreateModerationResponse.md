@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** |  | 
-**Model** | **String** |  | 
-**Results** | [**CreateModerationResponseResultsInner[]**](CreateModerationResponseResultsInner.md) |  | 
+**Id** | **String** | The unique identifier for the moderation request. | 
+**Model** | **String** | The model used to generate the moderation results. | 
+**Results** | [**CreateModerationResponseResultsInner[]**](CreateModerationResponseResultsInner.md) | A list of moderation objects. | 
 
 ## Examples
 

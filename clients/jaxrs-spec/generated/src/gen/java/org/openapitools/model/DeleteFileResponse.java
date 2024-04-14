@@ -15,10 +15,57 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("DeleteFileResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DeleteFileResponse   {
   private @Valid String id;
-  private @Valid String _object;
+  public enum ObjectEnum {
+
+    FILE(String.valueOf("file"));
+
+
+    private String value;
+
+    ObjectEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static ObjectEnum fromString(String s) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private @Valid ObjectEnum _object;
   private @Valid Boolean deleted;
 
   /**
@@ -43,7 +90,7 @@ public class DeleteFileResponse   {
 
   /**
    **/
-  public DeleteFileResponse _object(String _object) {
+  public DeleteFileResponse _object(ObjectEnum _object) {
     this._object = _object;
     return this;
   }
@@ -52,12 +99,12 @@ public class DeleteFileResponse   {
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("object")
   @NotNull
-  public String getObject() {
+  public ObjectEnum getObject() {
     return _object;
   }
 
   @JsonProperty("object")
-  public void setObject(String _object) {
+  public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 

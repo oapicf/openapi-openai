@@ -1,0 +1,62 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "TranscriptionSegment",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int",
+      "doc": "Unique identifier of the segment."
+    },
+    {
+      "name": "seek",
+      "type": "int",
+      "doc": "Seek offset of the segment."
+    },
+    {
+      "name": "start",
+      "type": "float",
+      "doc": "Start time of the segment in seconds."
+    },
+    {
+      "name": "end",
+      "type": "float",
+      "doc": "End time of the segment in seconds."
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "doc": "Text content of the segment."
+    },
+    {
+      "name": "tokens",
+      "type": {
+        "type": "array",
+        "items": "int"
+      },
+      "doc": "Array of token IDs for the text content."
+    },
+    {
+      "name": "temperature",
+      "type": "float",
+      "doc": "Temperature parameter used for generating the segment."
+    },
+    {
+      "name": "avg_logprob",
+      "type": "float",
+      "doc": "Average logprob of the segment. If the value is lower than -1, consider the logprobs failed."
+    },
+    {
+      "name": "compression_ratio",
+      "type": "float",
+      "doc": "Compression ratio of the segment. If the value is greater than 2.4, consider the compression failed."
+    },
+    {
+      "name": "no_speech_prob",
+      "type": "float",
+      "doc": "Probability of no speech in the segment. If the value is higher than 1.0 and the `avg_logprob` is below -1, consider this segment silent."
+    }
+  ]
+
+}

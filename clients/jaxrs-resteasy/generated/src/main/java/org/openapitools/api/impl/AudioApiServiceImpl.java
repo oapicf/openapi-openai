@@ -7,9 +7,10 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 
 import java.math.BigDecimal;
+import org.openapitools.model.CreateSpeechRequest;
+import org.openapitools.model.CreateTranscription200Response;
 import org.openapitools.model.CreateTranscriptionRequestModel;
-import org.openapitools.model.CreateTranscriptionResponse;
-import org.openapitools.model.CreateTranslationResponse;
+import org.openapitools.model.CreateTranslation200Response;
 import java.io.File;
 
 import java.util.List;
@@ -24,8 +25,13 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-16T01:13:37.006745963Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-04-14T13:41:51.736364282Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class AudioApiServiceImpl implements AudioApiService {
+      public Response createSpeech(CreateSpeechRequest createSpeechRequest,SecurityContext securityContext)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+  }
       public Response createTranscription(MultipartFormDataInput input,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!

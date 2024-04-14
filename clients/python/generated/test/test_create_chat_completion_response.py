@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -37,42 +37,93 @@ class TestCreateChatCompletionResponse(unittest.TestCase):
         if include_optional:
             return CreateChatCompletionResponse(
                 id = '',
-                object = '',
-                created = 56,
-                model = '',
                 choices = [
                     openapiopenai.models.create_chat_completion_response_choices_inner.CreateChatCompletionResponse_choices_inner(
+                        finish_reason = 'stop', 
                         index = 56, 
                         message = openapiopenai.models.chat_completion_response_message.ChatCompletionResponseMessage(
-                            role = 'system', 
                             content = '', 
-                            function_call = openapiopenai.models.chat_completion_request_message_function_call.ChatCompletionRequestMessage_function_call(
-                                name = '', 
-                                arguments = '', ), ), 
-                        finish_reason = 'stop', )
+                            tool_calls = [
+                                openapiopenai.models.chat_completion_message_tool_call.ChatCompletionMessageToolCall(
+                                    id = '', 
+                                    type = 'function', 
+                                    function = openapiopenai.models.chat_completion_message_tool_call_function.ChatCompletionMessageToolCall_function(
+                                        name = '', 
+                                        arguments = '', ), )
+                                ], 
+                            role = 'assistant', 
+                            function_call = openapiopenai.models.chat_completion_request_assistant_message_function_call.ChatCompletionRequestAssistantMessage_function_call(
+                                arguments = '', 
+                                name = '', ), ), 
+                        logprobs = openapiopenai.models.create_chat_completion_response_choices_inner_logprobs.CreateChatCompletionResponse_choices_inner_logprobs(
+                            content = [
+                                openapiopenai.models.chat_completion_token_logprob.ChatCompletionTokenLogprob(
+                                    token = '', 
+                                    logprob = 1.337, 
+                                    bytes = [
+                                        56
+                                        ], 
+                                    top_logprobs = [
+                                        openapiopenai.models.chat_completion_token_logprob_top_logprobs_inner.ChatCompletionTokenLogprob_top_logprobs_inner(
+                                            token = '', 
+                                            logprob = 1.337, 
+                                            bytes = [
+                                                56
+                                                ], )
+                                        ], )
+                                ], ), )
                     ],
-                usage = openapiopenai.models.create_completion_response_usage.CreateCompletionResponse_usage(
-                    prompt_tokens = 56, 
+                created = 56,
+                model = '',
+                system_fingerprint = '',
+                object = 'chat.completion',
+                usage = openapiopenai.models.completion_usage.CompletionUsage(
                     completion_tokens = 56, 
+                    prompt_tokens = 56, 
                     total_tokens = 56, )
             )
         else:
             return CreateChatCompletionResponse(
                 id = '',
-                object = '',
-                created = 56,
-                model = '',
                 choices = [
                     openapiopenai.models.create_chat_completion_response_choices_inner.CreateChatCompletionResponse_choices_inner(
+                        finish_reason = 'stop', 
                         index = 56, 
                         message = openapiopenai.models.chat_completion_response_message.ChatCompletionResponseMessage(
-                            role = 'system', 
                             content = '', 
-                            function_call = openapiopenai.models.chat_completion_request_message_function_call.ChatCompletionRequestMessage_function_call(
-                                name = '', 
-                                arguments = '', ), ), 
-                        finish_reason = 'stop', )
+                            tool_calls = [
+                                openapiopenai.models.chat_completion_message_tool_call.ChatCompletionMessageToolCall(
+                                    id = '', 
+                                    type = 'function', 
+                                    function = openapiopenai.models.chat_completion_message_tool_call_function.ChatCompletionMessageToolCall_function(
+                                        name = '', 
+                                        arguments = '', ), )
+                                ], 
+                            role = 'assistant', 
+                            function_call = openapiopenai.models.chat_completion_request_assistant_message_function_call.ChatCompletionRequestAssistantMessage_function_call(
+                                arguments = '', 
+                                name = '', ), ), 
+                        logprobs = openapiopenai.models.create_chat_completion_response_choices_inner_logprobs.CreateChatCompletionResponse_choices_inner_logprobs(
+                            content = [
+                                openapiopenai.models.chat_completion_token_logprob.ChatCompletionTokenLogprob(
+                                    token = '', 
+                                    logprob = 1.337, 
+                                    bytes = [
+                                        56
+                                        ], 
+                                    top_logprobs = [
+                                        openapiopenai.models.chat_completion_token_logprob_top_logprobs_inner.ChatCompletionTokenLogprob_top_logprobs_inner(
+                                            token = '', 
+                                            logprob = 1.337, 
+                                            bytes = [
+                                                56
+                                                ], )
+                                        ], )
+                                ], ), )
                     ],
+                created = 56,
+                model = '',
+                object = 'chat.completion',
         )
         """
 

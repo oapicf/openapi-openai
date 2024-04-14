@@ -10,12 +10,16 @@ import org.openapitools.models.CreateEmbeddingRequestModel
 
 /**
  * 
- * @param model 
  * @param input 
+ * @param model 
+ * @param encodingUnderscoreformat The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+ * @param dimensions The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
  * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
  */
-case class CreateEmbeddingRequest(model: CreateEmbeddingRequestModel,
-                input: CreateEmbeddingRequestInput,
+case class CreateEmbeddingRequest(input: CreateEmbeddingRequestInput,
+                model: CreateEmbeddingRequestModel,
+                encodingUnderscoreformat: Option[String],
+                dimensions: Option[Int],
                 user: Option[String]
                 )
 

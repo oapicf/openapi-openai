@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,33 +16,54 @@ import type {
 } from './';
 
 /**
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
  * @export
  * @interface CreateChatCompletionStreamResponse
  */
 export interface CreateChatCompletionStreamResponse {
     /**
+     * A unique identifier for the chat completion. Each chunk has the same ID.
      * @type {string}
      * @memberof CreateChatCompletionStreamResponse
      */
     id: string;
     /**
-     * @type {string}
+     * A list of chat completion choices. Can be more than one if `n` is greater than 1.
+     * @type {Array<CreateChatCompletionStreamResponseChoicesInner>}
      * @memberof CreateChatCompletionStreamResponse
      */
-    object: string;
+    choices: Array<CreateChatCompletionStreamResponseChoicesInner>;
     /**
+     * The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
      * @type {number}
      * @memberof CreateChatCompletionStreamResponse
      */
     created: number;
     /**
+     * The model to generate the completion.
      * @type {string}
      * @memberof CreateChatCompletionStreamResponse
      */
     model: string;
     /**
-     * @type {Array<CreateChatCompletionStreamResponseChoicesInner>}
+     * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+     * @type {string}
      * @memberof CreateChatCompletionStreamResponse
      */
-    choices: Array<CreateChatCompletionStreamResponseChoicesInner>;
+    system_fingerprint?: string;
+    /**
+     * The object type, which is always `chat.completion.chunk`.
+     * @type {string}
+     * @memberof CreateChatCompletionStreamResponse
+     */
+    object: CreateChatCompletionStreamResponseObjectEnum;
 }
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum CreateChatCompletionStreamResponseObjectEnum {
+    ChatCompletionChunk = 'chat.completion.chunk'
+}
+

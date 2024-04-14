@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -36,16 +36,28 @@ class TestChatCompletionRequestMessage(unittest.TestCase):
         model = ChatCompletionRequestMessage()
         if include_optional:
             return ChatCompletionRequestMessage(
-                role = 'system',
                 content = '',
+                role = 'function',
                 name = '',
-                function_call = openapiopenai.models.chat_completion_request_message_function_call.ChatCompletionRequestMessage_function_call(
-                    name = '', 
-                    arguments = '', )
+                tool_calls = [
+                    openapiopenai.models.chat_completion_message_tool_call.ChatCompletionMessageToolCall(
+                        id = '', 
+                        type = 'function', 
+                        function = openapiopenai.models.chat_completion_message_tool_call_function.ChatCompletionMessageToolCall_function(
+                            name = '', 
+                            arguments = '', ), )
+                    ],
+                function_call = openapiopenai.models.chat_completion_request_assistant_message_function_call.ChatCompletionRequestAssistantMessage_function_call(
+                    arguments = '', 
+                    name = '', ),
+                tool_call_id = ''
             )
         else:
             return ChatCompletionRequestMessage(
-                role = 'system',
+                content = '',
+                role = 'function',
+                name = '',
+                tool_call_id = '',
         )
         """
 

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -22,6 +22,7 @@
 
 
 #include <string>
+#include <map>
 #include <vector>
 #include <memory>
 #include <vector>
@@ -61,8 +62,8 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<std::string> getTokens() const;
-    void setTokens(std::vector<std::string> value);
+    std::vector<int32_t> getTextOffset() const;
+    void setTextOffset(std::vector<int32_t> value);
 
     /// <summary>
     /// 
@@ -73,20 +74,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<std::string> getTopLogprobs() const;
-    void setTopLogprobs(std::vector<std::string> value);
+    std::vector<std::string> getTokens() const;
+    void setTokens(std::vector<std::string> value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::vector<int32_t> getTextOffset() const;
-    void setTextOffset(std::vector<int32_t> value);
+    std::vector<std::map<std::string, double>> getTopLogprobs() const;
+    void setTopLogprobs(std::vector<std::map<std::string, double>> value);
 
 protected:
-    std::vector<std::string> m_Tokens;
-    std::vector<double> m_Token_logprobs;
-    std::vector<std::string> m_Top_logprobs;
     std::vector<int32_t> m_Text_offset;
+    std::vector<double> m_Token_logprobs;
+    std::vector<std::string> m_Tokens;
+    std::vector<std::map<std::string, double>> m_Top_logprobs;
 };
 
 std::vector<CreateCompletionResponse_choices_inner_logprobs> createCreateCompletionResponse_choices_inner_logprobsVectorFromJsonString(const std::string& json);

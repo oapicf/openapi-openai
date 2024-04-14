@@ -5,9 +5,8 @@
 ## Properties
 Name | Mapping | SQL Type | Default | Type | Description | Notes
 ---- | ------- | -------- | ------- | ---- | ----------- | -----
-**object** | object | text NOT NULL |  | **kotlin.String** |  | 
 **data** | `One-To-Many` | `----` | `----`  | [**kotlin.Array&lt;OpenAIFile&gt;**](OpenAIFile.md) |  | 
-
+**object** | object | text NOT NULL |  | [**object**](#Object) |  | 
 
 
 # **Table `ListFilesResponseOpenAIFile`**
@@ -18,6 +17,7 @@ Name | Mapping | SQL Type | Default | Type | Description | Notes
 ---- | ------- | -------- | ------- | ---- | ----------- | -----
 listFilesResponse | listFilesResponse | long | | kotlin.Long | Primary Key | *one*
 openAIFile | openAIFile | long | | kotlin.Long | Foreign Key | *many*
+
 
 
 

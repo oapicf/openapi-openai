@@ -73,6 +73,7 @@ private class OASCreateCompletionResponseTest {
     private static void maintainRenamedProperties() {
         OASCreateCompletionResponse createCompletionResponse = new OASCreateCompletionResponse();
         Map<String, String> x-property-mappings = createCompletionResponse.getx-property-mappings();
+        System.assertEquals('systemFingerprint', x-property-mappings.get('system_fingerprint'));
         System.assertEquals('r_object', x-property-mappings.get('object'));
     }
 
@@ -81,9 +82,10 @@ private class OASCreateCompletionResponseTest {
         OASCreateCompletionResponse createCompletionResponse = new OASCreateCompletionResponse();
         System.assertEquals(new List<OASCreateCompletionResponseChoicesIn>(), createCompletionResponse.choices);
         System.assertEquals(null, createCompletionResponse.id);
-        System.assertEquals(null, createCompletionResponse.r_object);
         System.assertEquals(null, createCompletionResponse.created);
         System.assertEquals(null, createCompletionResponse.model);
+        System.assertEquals(null, createCompletionResponse.systemFingerprint);
+        System.assertEquals(null, createCompletionResponse.r_object);
         System.assertEquals(null, createCompletionResponse.usage);
     }
 }

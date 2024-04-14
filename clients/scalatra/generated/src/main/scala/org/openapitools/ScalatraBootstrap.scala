@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,7 +20,16 @@ class ScalatraBootstrap extends LifeCycle {
 
   override def init(context: ServletContext) {
     try {
-      context mount (new OpenAIApi, "/v1/OpenAI/*")
+      context mount (new AssistantsApi, "/v1/Assistants/*")
+      context mount (new AudioApi, "/v1/Audio/*")
+      context mount (new ChatApi, "/v1/Chat/*")
+      context mount (new CompletionsApi, "/v1/Completions/*")
+      context mount (new EmbeddingsApi, "/v1/Embeddings/*")
+      context mount (new FilesApi, "/v1/Files/*")
+      context mount (new FineTuningApi, "/v1/FineTuning/*")
+      context mount (new ImagesApi, "/v1/Images/*")
+      context mount (new ModelsApi, "/v1/Models/*")
+      context mount (new ModerationsApi, "/v1/Moderations/*")
       context mount (new ResourcesApp, "/api-docs/*")
     } catch {
       case e: Throwable => e.printStackTrace()

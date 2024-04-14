@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -19,23 +19,23 @@ class CREATE_COMPLETION_RESPONSE_CHOICES_INNER
 
 feature --Access
 
-    text: detachable STRING_32
-      
+    finish_reason: detachable STRING_32
+      -- The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
     index: INTEGER_32
       
     logprobs: detachable CREATE_COMPLETION_RESPONSE_CHOICES_INNER_LOGPROBS
       
-    finish_reason: detachable STRING_32
+    text: detachable STRING_32
       
 
 feature -- Change Element
 
-    set_text (a_name: like text)
-        -- Set 'text' with 'a_name'.
+    set_finish_reason (a_name: like finish_reason)
+        -- Set 'finish_reason' with 'a_name'.
       do
-        text := a_name
+        finish_reason := a_name
       ensure
-        text_set: text = a_name
+        finish_reason_set: finish_reason = a_name
       end
 
     set_index (a_name: like index)
@@ -54,12 +54,12 @@ feature -- Change Element
         logprobs_set: logprobs = a_name
       end
 
-    set_finish_reason (a_name: like finish_reason)
-        -- Set 'finish_reason' with 'a_name'.
+    set_text (a_name: like text)
+        -- Set 'text' with 'a_name'.
       do
-        finish_reason := a_name
+        text := a_name
       ensure
-        finish_reason_set: finish_reason = a_name
+        text_set: text = a_name
       end
 
 
@@ -70,9 +70,9 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass CREATE_COMPLETION_RESPONSE_CHOICES_INNER%N")
-        if attached text as l_text then
-          Result.append ("%Ntext:")
-          Result.append (l_text.out)
+        if attached finish_reason as l_finish_reason then
+          Result.append ("%Nfinish_reason:")
+          Result.append (l_finish_reason.out)
           Result.append ("%N")
         end
         if attached index as l_index then
@@ -85,9 +85,9 @@ feature -- Change Element
           Result.append (l_logprobs.out)
           Result.append ("%N")
         end
-        if attached finish_reason as l_finish_reason then
-          Result.append ("%Nfinish_reason:")
-          Result.append (l_finish_reason.out)
+        if attached text as l_text then
+          Result.append ("%Ntext:")
+          Result.append (l_text.out)
           Result.append ("%N")
         end
       end

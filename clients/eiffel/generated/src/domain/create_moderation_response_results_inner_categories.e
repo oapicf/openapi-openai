@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -20,19 +20,27 @@ class CREATE_MODERATION_RESPONSE_RESULTS_INNER_CATEGORIES
 feature --Access
 
     hate: BOOLEAN
-      
+      -- Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
     hate_threatening: BOOLEAN
-      
+      -- Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
+    harassment: BOOLEAN
+      -- Content that expresses, incites, or promotes harassing language towards any target.
+    harassment_threatening: BOOLEAN
+      -- Harassment content that also includes violence or serious harm towards any target.
     self_harm: BOOLEAN
-      
+      -- Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
+    self_harm_intent: BOOLEAN
+      -- Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+    self_harm_instructions: BOOLEAN
+      -- Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
     sexual: BOOLEAN
-      
+      -- Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
     sexual_minors: BOOLEAN
-      
+      -- Sexual content that includes an individual who is under 18 years old.
     violence: BOOLEAN
-      
+      -- Content that depicts death, violence, or physical injury.
     violence_graphic: BOOLEAN
-      
+      -- Content that depicts death, violence, or physical injury in graphic detail.
 
 feature -- Change Element
 
@@ -52,12 +60,44 @@ feature -- Change Element
         hate_threatening_set: hate_threatening = a_name
       end
 
+    set_harassment (a_name: like harassment)
+        -- Set 'harassment' with 'a_name'.
+      do
+        harassment := a_name
+      ensure
+        harassment_set: harassment = a_name
+      end
+
+    set_harassment_threatening (a_name: like harassment_threatening)
+        -- Set 'harassment_threatening' with 'a_name'.
+      do
+        harassment_threatening := a_name
+      ensure
+        harassment_threatening_set: harassment_threatening = a_name
+      end
+
     set_self_harm (a_name: like self_harm)
         -- Set 'self_harm' with 'a_name'.
       do
         self_harm := a_name
       ensure
         self_harm_set: self_harm = a_name
+      end
+
+    set_self_harm_intent (a_name: like self_harm_intent)
+        -- Set 'self_harm_intent' with 'a_name'.
+      do
+        self_harm_intent := a_name
+      ensure
+        self_harm_intent_set: self_harm_intent = a_name
+      end
+
+    set_self_harm_instructions (a_name: like self_harm_instructions)
+        -- Set 'self_harm_instructions' with 'a_name'.
+      do
+        self_harm_instructions := a_name
+      ensure
+        self_harm_instructions_set: self_harm_instructions = a_name
       end
 
     set_sexual (a_name: like sexual)
@@ -110,9 +150,29 @@ feature -- Change Element
           Result.append (l_hate_threatening.out)
           Result.append ("%N")
         end
+        if attached harassment as l_harassment then
+          Result.append ("%Nharassment:")
+          Result.append (l_harassment.out)
+          Result.append ("%N")
+        end
+        if attached harassment_threatening as l_harassment_threatening then
+          Result.append ("%Nharassment_threatening:")
+          Result.append (l_harassment_threatening.out)
+          Result.append ("%N")
+        end
         if attached self_harm as l_self_harm then
           Result.append ("%Nself_harm:")
           Result.append (l_self_harm.out)
+          Result.append ("%N")
+        end
+        if attached self_harm_intent as l_self_harm_intent then
+          Result.append ("%Nself_harm_intent:")
+          Result.append (l_self_harm_intent.out)
+          Result.append ("%N")
+        end
+        if attached self_harm_instructions as l_self_harm_instructions then
+          Result.append ("%Nself_harm_instructions:")
+          Result.append (l_self_harm_instructions.out)
           Result.append ("%N")
         end
         if attached sexual as l_sexual then

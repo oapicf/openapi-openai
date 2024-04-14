@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -26,9 +26,19 @@ import com.fasterxml.jackson.annotation.JsonInclude
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class DeleteFileResponse (
     @SerializedName("id") private val _id: kotlin.String?,
-    @SerializedName("`object`") private val _`object`: kotlin.String?,
+    @SerializedName("`object`") private val _`object`: DeleteFileResponse.&#x60;Object&#x60;?,
     @SerializedName("deleted") private val _deleted: kotlin.Boolean?
 ) {
+
+    /**
+    * 
+    * Values: file
+    */
+    enum class &#x60;Object&#x60;(val value: kotlin.String){
+    
+        file("file");
+    
+    }
 
         val id get() = _id ?: throw IllegalArgumentException("id is required")
                     

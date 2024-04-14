@@ -1,18 +1,18 @@
 {
   "namespace": "model",
   "type": "record",
-  "doc": "",
+  "doc": "Represents if a given text input is potentially harmful.",
   "name": "CreateModerationResponse",
   "fields": [
     {
       "name": "id",
       "type": "string",
-      "doc": ""
+      "doc": "The unique identifier for the moderation request."
     },
     {
       "name": "model",
       "type": "string",
-      "doc": ""
+      "doc": "The model used to generate the moderation results."
     },
     {
       "name": "results",
@@ -20,7 +20,7 @@
         "type": "array",
         "items": "model.CreateModerationResponseResultsInner"
       },
-      "doc": ""
+      "doc": "A list of moderation objects."
     }
   ]
 

@@ -16,18 +16,26 @@
 typedef struct delete_file_response_t delete_file_response_t;
 
 
+// Enum OBJECT for delete_file_response
+
+typedef enum  { openai_api_delete_file_response_OBJECT_NULL = 0, openai_api_delete_file_response_OBJECT_file } openai_api_delete_file_response_OBJECT_e;
+
+char* delete_file_response_object_ToString(openai_api_delete_file_response_OBJECT_e object);
+
+openai_api_delete_file_response_OBJECT_e delete_file_response_object_FromString(char* object);
+
 
 
 typedef struct delete_file_response_t {
     char *id; // string
-    char *object; // string
+    openai_api_delete_file_response_OBJECT_e object; //enum
     int deleted; //boolean
 
 } delete_file_response_t;
 
 delete_file_response_t *delete_file_response_create(
     char *id,
-    char *object,
+    openai_api_delete_file_response_OBJECT_e object,
     int deleted
 );
 

@@ -12,10 +12,10 @@ module Model =
   type Model = {
     [<JsonProperty(PropertyName = "id")>]
     Id : string;
-    [<JsonProperty(PropertyName = "object")>]
-    Object : string;
     [<JsonProperty(PropertyName = "created")>]
     Created : int;
+    [<JsonProperty(PropertyName = "object")>]
+    Object : string;
     [<JsonProperty(PropertyName = "owned_by")>]
     OwnedBy : string;
   }

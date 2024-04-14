@@ -4,9 +4,26 @@
 #include "list_models_response.h"
 
 
+char* list_models_response_object_ToString(openai_api_list_models_response_OBJECT_e object) {
+    char* objectArray[] =  { "NULL", "list" };
+    return objectArray[object];
+}
+
+openai_api_list_models_response_OBJECT_e list_models_response_object_FromString(char* object){
+    int stringToReturn = 0;
+    char *objectArray[] =  { "NULL", "list" };
+    size_t sizeofArray = sizeof(objectArray) / sizeof(objectArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(object, objectArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 list_models_response_t *list_models_response_create(
-    char *object,
+    openai_api_list_models_response_OBJECT_e object,
     list_t *data
     ) {
     list_models_response_t *list_models_response_local_var = malloc(sizeof(list_models_response_t));
@@ -25,10 +42,6 @@ void list_models_response_free(list_models_response_t *list_models_response) {
         return ;
     }
     listEntry_t *listEntry;
-    if (list_models_response->object) {
-        free(list_models_response->object);
-        list_models_response->object = NULL;
-    }
     if (list_models_response->data) {
         list_ForEach(listEntry, list_models_response->data) {
             model_free(listEntry->data);
@@ -43,11 +56,12 @@ cJSON *list_models_response_convertToJSON(list_models_response_t *list_models_re
     cJSON *item = cJSON_CreateObject();
 
     // list_models_response->object
-    if (!list_models_response->object) {
+    if (openai_api_list_models_response_OBJECT_NULL == list_models_response->object) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "object", list_models_response->object) == NULL) {
-    goto fail; //String
+    if(cJSON_AddStringToObject(item, "object", objectlist_models_response_ToString(list_models_response->object)) == NULL)
+    {
+    goto fail; //Enum
     }
 
 
@@ -92,11 +106,13 @@ list_models_response_t *list_models_response_parseFromJSON(cJSON *list_models_re
         goto end;
     }
 
+    openai_api_list_models_response_OBJECT_e objectVariable;
     
     if(!cJSON_IsString(object))
     {
-    goto end; //String
+    goto end; //Enum
     }
+    objectVariable = list_models_response_object_FromString(object->valuestring);
 
     // list_models_response->data
     cJSON *data = cJSON_GetObjectItemCaseSensitive(list_models_responseJSON, "data");
@@ -124,7 +140,7 @@ list_models_response_t *list_models_response_parseFromJSON(cJSON *list_models_re
 
 
     list_models_response_local_var = list_models_response_create (
-        strdup(object->valuestring),
+        objectVariable,
         dataList
         );
 

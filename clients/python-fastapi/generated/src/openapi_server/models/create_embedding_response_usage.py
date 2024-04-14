@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
 try:
     from typing import Self
@@ -30,10 +30,10 @@ except ImportError:
 
 class CreateEmbeddingResponseUsage(BaseModel):
     """
-    CreateEmbeddingResponseUsage
+    The usage information for the request.
     """ # noqa: E501
-    prompt_tokens: StrictInt
-    total_tokens: StrictInt
+    prompt_tokens: StrictInt = Field(description="The number of tokens used by the prompt.")
+    total_tokens: StrictInt = Field(description="The total number of tokens used by the request.")
     __properties: ClassVar[List[str]] = ["prompt_tokens", "total_tokens"]
 
     model_config = {

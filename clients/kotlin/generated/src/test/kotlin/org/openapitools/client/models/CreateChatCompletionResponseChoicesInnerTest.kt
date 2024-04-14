@@ -20,13 +20,20 @@ import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.CreateChatCompletionResponseChoicesInner
 import org.openapitools.client.models.ChatCompletionResponseMessage
+import org.openapitools.client.models.CreateChatCompletionResponseChoicesInnerLogprobs
 
 class CreateChatCompletionResponseChoicesInnerTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of CreateChatCompletionResponseChoicesInner
         //val modelInstance = CreateChatCompletionResponseChoicesInner()
 
-        // to test the property `index`
+        // to test the property `finishReason` - The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+        should("test finishReason") {
+            // uncomment below to test the property
+            //modelInstance.finishReason shouldBe ("TODO")
+        }
+
+        // to test the property `index` - The index of the choice in the list of choices.
         should("test index") {
             // uncomment below to test the property
             //modelInstance.index shouldBe ("TODO")
@@ -38,10 +45,10 @@ class CreateChatCompletionResponseChoicesInnerTest : ShouldSpec() {
             //modelInstance.message shouldBe ("TODO")
         }
 
-        // to test the property `finishReason`
-        should("test finishReason") {
+        // to test the property `logprobs`
+        should("test logprobs") {
             // uncomment below to test the property
-            //modelInstance.finishReason shouldBe ("TODO")
+            //modelInstance.logprobs shouldBe ("TODO")
         }
 
     }

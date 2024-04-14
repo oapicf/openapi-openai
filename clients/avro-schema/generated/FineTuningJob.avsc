@@ -1,0 +1,113 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ",
+  "name": "FineTuningJob",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The object identifier, which can be referenced in the API endpoints."
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the fine-tuning job was created."
+    },
+    {
+      "name": "error",
+      "type": "model.FineTuningJobError",
+      "doc": ""
+    },
+    {
+      "name": "fine_tuned_model",
+      "type": "string",
+      "doc": "The name of the fine-tuned model that is being created. The value will be null if the fine-tuning job is still running."
+    },
+    {
+      "name": "finished_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running."
+    },
+    {
+      "name": "hyperparameters",
+      "type": "model.FineTuningJobHyperparameters",
+      "doc": ""
+    },
+    {
+      "name": "model",
+      "type": "string",
+      "doc": "The base model that is being fine-tuned."
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "FineTuningJob_object",
+        "symbols": [
+          "fine_tuning.job"
+        ]
+      },
+      "doc": "The object type, which is always \"fine_tuning.job\"."
+    },
+    {
+      "name": "organization_id",
+      "type": "string",
+      "doc": "The organization that owns the fine-tuning job."
+    },
+    {
+      "name": "result_files",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": "The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents)."
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "FineTuningJob_status",
+        "symbols": [
+          "validating_files",
+          "queued",
+          "running",
+          "succeeded",
+          "failed",
+          "cancelled"
+        ]
+      },
+      "doc": "The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`."
+    },
+    {
+      "name": "trained_tokens",
+      "type": "int",
+      "doc": "The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running."
+    },
+    {
+      "name": "training_file",
+      "type": "string",
+      "doc": "The file ID used for training. You can retrieve the training data with the [Files API](/docs/api-reference/files/retrieve-contents)."
+    },
+    {
+      "name": "validation_file",
+      "type": "string",
+      "doc": "The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents)."
+    },
+    {
+      "name": "integrations",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.FineTuningJobIntegrationsInner"
+      }],
+      "doc": "A list of integrations to enable for this fine-tuning job.",
+      "default": null
+    },
+    {
+      "name": "seed",
+      "type": "int",
+      "doc": "The seed used for the fine-tuning job."
+    }
+  ]
+
+}

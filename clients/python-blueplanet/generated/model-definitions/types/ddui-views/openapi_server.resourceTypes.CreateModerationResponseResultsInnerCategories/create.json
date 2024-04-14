@@ -13,7 +13,11 @@
     "children": [
       {"model": "hate" },
       {"model": "hate_threatening" },
+      {"model": "harassment" },
+      {"model": "harassment_threatening" },
       {"model": "self_harm" },
+      {"model": "self_harm_intent" },
+      {"model": "self_harm_instructions" },
       {"model": "sexual" },
       {"model": "sexual_minors" },
       {"model": "violence" },

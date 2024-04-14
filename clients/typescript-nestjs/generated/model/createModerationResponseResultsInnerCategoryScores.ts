@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,13 +11,53 @@
  */
 
 
+/**
+ * A list of the categories along with their scores as predicted by model.
+ */
 export interface CreateModerationResponseResultsInnerCategoryScores { 
+    /**
+     * The score for the category \'hate\'.
+     */
     hate: number;
+    /**
+     * The score for the category \'hate/threatening\'.
+     */
     hate_threatening: number;
+    /**
+     * The score for the category \'harassment\'.
+     */
+    harassment: number;
+    /**
+     * The score for the category \'harassment/threatening\'.
+     */
+    harassment_threatening: number;
+    /**
+     * The score for the category \'self-harm\'.
+     */
     self_harm: number;
+    /**
+     * The score for the category \'self-harm/intent\'.
+     */
+    self_harm_intent: number;
+    /**
+     * The score for the category \'self-harm/instructions\'.
+     */
+    self_harm_instructions: number;
+    /**
+     * The score for the category \'sexual\'.
+     */
     sexual: number;
+    /**
+     * The score for the category \'sexual/minors\'.
+     */
     sexual_minors: number;
+    /**
+     * The score for the category \'violence\'.
+     */
     violence: number;
+    /**
+     * The score for the category \'violence/graphic\'.
+     */
     violence_graphic: number;
 }
 

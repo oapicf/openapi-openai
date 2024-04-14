@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,14 +24,8 @@ inline FString ToString(const OpenAPIChatCompletionResponseMessage::RoleEnum& Va
 {
 	switch (Value)
 	{
-	case OpenAPIChatCompletionResponseMessage::RoleEnum::System:
-		return TEXT("system");
-	case OpenAPIChatCompletionResponseMessage::RoleEnum::User:
-		return TEXT("user");
 	case OpenAPIChatCompletionResponseMessage::RoleEnum::Assistant:
 		return TEXT("assistant");
-	case OpenAPIChatCompletionResponseMessage::RoleEnum::Function:
-		return TEXT("function");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIChatCompletionResponseMessage::RoleEnum Value (%d)"), (int)Value);
@@ -46,10 +40,7 @@ FString OpenAPIChatCompletionResponseMessage::EnumToString(const OpenAPIChatComp
 inline bool FromString(const FString& EnumAsString, OpenAPIChatCompletionResponseMessage::RoleEnum& Value)
 {
 	static TMap<FString, OpenAPIChatCompletionResponseMessage::RoleEnum> StringToEnum = { 
-		{ TEXT("system"), OpenAPIChatCompletionResponseMessage::RoleEnum::System },
-		{ TEXT("user"), OpenAPIChatCompletionResponseMessage::RoleEnum::User },
-		{ TEXT("assistant"), OpenAPIChatCompletionResponseMessage::RoleEnum::Assistant },
-		{ TEXT("function"), OpenAPIChatCompletionResponseMessage::RoleEnum::Function }, };
+		{ TEXT("assistant"), OpenAPIChatCompletionResponseMessage::RoleEnum::Assistant }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -82,11 +73,12 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIChat
 void OpenAPIChatCompletionResponseMessage::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("role")); WriteJsonValue(Writer, Role);
-	if (Content.IsSet())
+	Writer->WriteIdentifierPrefix(TEXT("content")); WriteJsonValue(Writer, Content);
+	if (ToolCalls.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("content")); WriteJsonValue(Writer, Content.GetValue());
+		Writer->WriteIdentifierPrefix(TEXT("tool_calls")); WriteJsonValue(Writer, ToolCalls.GetValue());
 	}
+	Writer->WriteIdentifierPrefix(TEXT("role")); WriteJsonValue(Writer, Role);
 	if (FunctionCall.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("function_call")); WriteJsonValue(Writer, FunctionCall.GetValue());
@@ -102,8 +94,9 @@ bool OpenAPIChatCompletionResponseMessage::FromJson(const TSharedPtr<FJsonValue>
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("role"), Role);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("content"), Content);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("tool_calls"), ToolCalls);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("role"), Role);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("function_call"), FunctionCall);
 
 	return ParseSuccess;

@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -18,27 +18,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param type 
+ * @param code 
  * @param message 
  * @param &#x60;param&#x60; 
- * @param code 
+ * @param type 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Error (
-    @SerializedName("type") private val _type: kotlin.String?,
+    @SerializedName("code") private val _code: kotlin.String?,
     @SerializedName("message") private val _message: kotlin.String?,
     @SerializedName("`param`") private val _`param`: kotlin.String?,
-    @SerializedName("code") private val _code: kotlin.String?
+    @SerializedName("type") private val _type: kotlin.String?
 ) {
 
-        val type get() = _type ?: throw IllegalArgumentException("type is required")
+        val code get() = _code ?: throw IllegalArgumentException("code is required")
                     
         val message get() = _message ?: throw IllegalArgumentException("message is required")
                     
         val `param` get() = _`param` ?: throw IllegalArgumentException("`param` is required")
                     
-        val code get() = _code ?: throw IllegalArgumentException("code is required")
+        val type get() = _type ?: throw IllegalArgumentException("type is required")
                     
 }
 

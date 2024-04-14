@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
-from app.openapi_server.models.images_response_data_inner import ImagesResponseDataInner  # noqa: F401,E501
+from app.openapi_server.models.image import Image  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -16,17 +16,17 @@ class ImagesResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, created: int=None, data: List[ImagesResponseDataInner]=None):  # noqa: E501
+    def __init__(self, created: int=None, data: List[Image]=None):  # noqa: E501
         """ImagesResponse - a model defined in Swagger
 
         :param created: The created of this ImagesResponse.  # noqa: E501
         :type created: int
         :param data: The data of this ImagesResponse.  # noqa: E501
-        :type data: List[ImagesResponseDataInner]
+        :type data: List[Image]
         """
         self.swagger_types = {
             'created': int,
-            'data': List[ImagesResponseDataInner]
+            'data': List[Image]
         }
 
         self.attribute_map = {
@@ -72,22 +72,22 @@ class ImagesResponse(Model):
         self._created = created
 
     @property
-    def data(self) -> List[ImagesResponseDataInner]:
+    def data(self) -> List[Image]:
         """Gets the data of this ImagesResponse.
 
 
         :return: The data of this ImagesResponse.
-        :rtype: List[ImagesResponseDataInner]
+        :rtype: List[Image]
         """
         return self._data
 
     @data.setter
-    def data(self, data: List[ImagesResponseDataInner]):
+    def data(self, data: List[Image]):
         """Sets the data of this ImagesResponse.
 
 
         :param data: The data of this ImagesResponse.
-        :type data: List[ImagesResponseDataInner]
+        :type data: List[Image]
         """
         if data is None:
             raise ValueError("Invalid value for `data`, must not be `None`")  # noqa: E501

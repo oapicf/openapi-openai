@@ -1,5 +1,5 @@
 const utils = require('../utils/utils');
-const ImagesResponse_data_inner = require('../models/ImagesResponse_data_inner');
+const Image = require('../models/Image');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -14,7 +14,7 @@ module.exports = {
             {
                 key: `${keyPrefix}data`,
                 label: `[${labelPrefix}data]`,
-                children: ImagesResponse_data_inner.fields(`${keyPrefix}data${!isInput ? '[]' : ''}`, isInput, true), 
+                children: Image.fields(`${keyPrefix}data${!isInput ? '[]' : ''}`, isInput, true), 
             },
         ]
     },
@@ -22,7 +22,7 @@ module.exports = {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'created': bundle.inputData?.[`${keyPrefix}created`],
-            'data': utils.childMapping(bundle.inputData?.[`${keyPrefix}data`], `${keyPrefix}data`, ImagesResponse_data_inner),
+            'data': utils.childMapping(bundle.inputData?.[`${keyPrefix}data`], `${keyPrefix}data`, Image),
         }
     },
 }

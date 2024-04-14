@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,7 +20,7 @@ namespace OpenAPI
 /*
  * OpenAPIModel
  *
- * 
+ * Describes an OpenAI model offering that can be used with the API.
  */
 class OPENAPI_API OpenAPIModel : public Model
 {
@@ -29,9 +29,20 @@ public:
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 	void WriteJson(JsonWriter& Writer) const final;
 
+	/* The model identifier, which can be referenced in the API endpoints. */
 	FString Id;
-	FString Object;
+	/* The Unix timestamp (in seconds) when the model was created. */
 	int32 Created = 0;
+	enum class ObjectEnum
+	{
+		Model,
+  	};
+
+	static FString EnumToString(const ObjectEnum& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, ObjectEnum& EnumValue);
+	/* The object type, which is always \"model\". */
+	ObjectEnum Object;
+	/* The organization that owns the model. */
 	FString OwnedBy;
 };
 

@@ -15,53 +15,53 @@ class OpenAIFile(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, object: str=None, bytes: int=None, created_at: int=None, filename: str=None, purpose: str=None, status: str=None, status_details: object=None):  # noqa: E501
+    def __init__(self, id: str=None, bytes: int=None, created_at: int=None, filename: str=None, object: str=None, purpose: str=None, status: str=None, status_details: str=None):  # noqa: E501
         """OpenAIFile - a model defined in Swagger
 
         :param id: The id of this OpenAIFile.  # noqa: E501
         :type id: str
-        :param object: The object of this OpenAIFile.  # noqa: E501
-        :type object: str
         :param bytes: The bytes of this OpenAIFile.  # noqa: E501
         :type bytes: int
         :param created_at: The created_at of this OpenAIFile.  # noqa: E501
         :type created_at: int
         :param filename: The filename of this OpenAIFile.  # noqa: E501
         :type filename: str
+        :param object: The object of this OpenAIFile.  # noqa: E501
+        :type object: str
         :param purpose: The purpose of this OpenAIFile.  # noqa: E501
         :type purpose: str
         :param status: The status of this OpenAIFile.  # noqa: E501
         :type status: str
         :param status_details: The status_details of this OpenAIFile.  # noqa: E501
-        :type status_details: object
+        :type status_details: str
         """
         self.swagger_types = {
             'id': str,
-            'object': str,
             'bytes': int,
             'created_at': int,
             'filename': str,
+            'object': str,
             'purpose': str,
             'status': str,
-            'status_details': object
+            'status_details': str
         }
 
         self.attribute_map = {
             'id': 'id',
-            'object': 'object',
             'bytes': 'bytes',
             'created_at': 'created_at',
             'filename': 'filename',
+            'object': 'object',
             'purpose': 'purpose',
             'status': 'status',
             'status_details': 'status_details'
         }
 
         self._id = id
-        self._object = object
         self._bytes = bytes
         self._created_at = created_at
         self._filename = filename
+        self._object = object
         self._purpose = purpose
         self._status = status
         self._status_details = status_details
@@ -81,6 +81,7 @@ class OpenAIFile(Model):
     def id(self) -> str:
         """Gets the id of this OpenAIFile.
 
+        The file identifier, which can be referenced in the API endpoints.  # noqa: E501
 
         :return: The id of this OpenAIFile.
         :rtype: str
@@ -91,6 +92,7 @@ class OpenAIFile(Model):
     def id(self, id: str):
         """Sets the id of this OpenAIFile.
 
+        The file identifier, which can be referenced in the API endpoints.  # noqa: E501
 
         :param id: The id of this OpenAIFile.
         :type id: str
@@ -101,32 +103,10 @@ class OpenAIFile(Model):
         self._id = id
 
     @property
-    def object(self) -> str:
-        """Gets the object of this OpenAIFile.
-
-
-        :return: The object of this OpenAIFile.
-        :rtype: str
-        """
-        return self._object
-
-    @object.setter
-    def object(self, object: str):
-        """Sets the object of this OpenAIFile.
-
-
-        :param object: The object of this OpenAIFile.
-        :type object: str
-        """
-        if object is None:
-            raise ValueError("Invalid value for `object`, must not be `None`")  # noqa: E501
-
-        self._object = object
-
-    @property
     def bytes(self) -> int:
         """Gets the bytes of this OpenAIFile.
 
+        The size of the file, in bytes.  # noqa: E501
 
         :return: The bytes of this OpenAIFile.
         :rtype: int
@@ -137,6 +117,7 @@ class OpenAIFile(Model):
     def bytes(self, bytes: int):
         """Sets the bytes of this OpenAIFile.
 
+        The size of the file, in bytes.  # noqa: E501
 
         :param bytes: The bytes of this OpenAIFile.
         :type bytes: int
@@ -150,6 +131,7 @@ class OpenAIFile(Model):
     def created_at(self) -> int:
         """Gets the created_at of this OpenAIFile.
 
+        The Unix timestamp (in seconds) for when the file was created.  # noqa: E501
 
         :return: The created_at of this OpenAIFile.
         :rtype: int
@@ -160,6 +142,7 @@ class OpenAIFile(Model):
     def created_at(self, created_at: int):
         """Sets the created_at of this OpenAIFile.
 
+        The Unix timestamp (in seconds) for when the file was created.  # noqa: E501
 
         :param created_at: The created_at of this OpenAIFile.
         :type created_at: int
@@ -173,6 +156,7 @@ class OpenAIFile(Model):
     def filename(self) -> str:
         """Gets the filename of this OpenAIFile.
 
+        The name of the file.  # noqa: E501
 
         :return: The filename of this OpenAIFile.
         :rtype: str
@@ -183,6 +167,7 @@ class OpenAIFile(Model):
     def filename(self, filename: str):
         """Sets the filename of this OpenAIFile.
 
+        The name of the file.  # noqa: E501
 
         :param filename: The filename of this OpenAIFile.
         :type filename: str
@@ -193,9 +178,39 @@ class OpenAIFile(Model):
         self._filename = filename
 
     @property
+    def object(self) -> str:
+        """Gets the object of this OpenAIFile.
+
+        The object type, which is always `file`.  # noqa: E501
+
+        :return: The object of this OpenAIFile.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object: str):
+        """Sets the object of this OpenAIFile.
+
+        The object type, which is always `file`.  # noqa: E501
+
+        :param object: The object of this OpenAIFile.
+        :type object: str
+        """
+        allowed_values = ["file"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
+
+        self._object = object
+
+    @property
     def purpose(self) -> str:
         """Gets the purpose of this OpenAIFile.
 
+        The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.  # noqa: E501
 
         :return: The purpose of this OpenAIFile.
         :rtype: str
@@ -206,12 +221,17 @@ class OpenAIFile(Model):
     def purpose(self, purpose: str):
         """Sets the purpose of this OpenAIFile.
 
+        The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.  # noqa: E501
 
         :param purpose: The purpose of this OpenAIFile.
         :type purpose: str
         """
-        if purpose is None:
-            raise ValueError("Invalid value for `purpose`, must not be `None`")  # noqa: E501
+        allowed_values = ["fine-tune", "fine-tune-results", "assistants", "assistants_output"]  # noqa: E501
+        if purpose not in allowed_values:
+            raise ValueError(
+                "Invalid value for `purpose` ({0}), must be one of {1}"
+                .format(purpose, allowed_values)
+            )
 
         self._purpose = purpose
 
@@ -219,6 +239,7 @@ class OpenAIFile(Model):
     def status(self) -> str:
         """Gets the status of this OpenAIFile.
 
+        Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.  # noqa: E501
 
         :return: The status of this OpenAIFile.
         :rtype: str
@@ -229,30 +250,39 @@ class OpenAIFile(Model):
     def status(self, status: str):
         """Sets the status of this OpenAIFile.
 
+        Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.  # noqa: E501
 
         :param status: The status of this OpenAIFile.
         :type status: str
         """
+        allowed_values = ["uploaded", "processed", "error"]  # noqa: E501
+        if status not in allowed_values:
+            raise ValueError(
+                "Invalid value for `status` ({0}), must be one of {1}"
+                .format(status, allowed_values)
+            )
 
         self._status = status
 
     @property
-    def status_details(self) -> object:
+    def status_details(self) -> str:
         """Gets the status_details of this OpenAIFile.
 
+        Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.  # noqa: E501
 
         :return: The status_details of this OpenAIFile.
-        :rtype: object
+        :rtype: str
         """
         return self._status_details
 
     @status_details.setter
-    def status_details(self, status_details: object):
+    def status_details(self, status_details: str):
         """Sets the status_details of this OpenAIFile.
 
+        Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.  # noqa: E501
 
         :param status_details: The status_details of this OpenAIFile.
-        :type status_details: object
+        :type status_details: str
         """
 
         self._status_details = status_details

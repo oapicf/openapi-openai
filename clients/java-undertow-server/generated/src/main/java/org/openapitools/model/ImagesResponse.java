@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI document version: 2.0.0
  * Maintained by: blah+oapicf@cliffano.com
@@ -18,17 +18,17 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 
 
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2024-03-16T01:12:58.923191288Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2024-04-14T13:39:44.119769156Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesResponse   {
   
   private Integer created;
-  private List<ImagesResponseDataInner> data = new ArrayList<>();
+  private List<Image> data = new ArrayList<>();
 
   /**
    */
@@ -49,7 +49,7 @@ public class ImagesResponse   {
 
   /**
    */
-  public ImagesResponse data(List<ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<Image> data) {
     this.data = data;
     return this;
   }
@@ -57,10 +57,10 @@ public class ImagesResponse   {
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("data")
-  public List<ImagesResponseDataInner> getData() {
+  public List<Image> getData() {
     return data;
   }
-  public void setData(List<ImagesResponseDataInner> data) {
+  public void setData(List<Image> data) {
     this.data = data;
   }
 

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -34,7 +34,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateModerationResponseResultsInner.JSON_PROPERTY_CATEGORY_SCORES
 })
 @JsonTypeName("CreateModerationResponse_results_inner")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-03-16T01:12:38.762786439Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-04-14T13:38:24.957235058Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateModerationResponseResultsInner {
     public static final String JSON_PROPERTY_FLAGGED = "flagged";
@@ -58,11 +58,11 @@ public class CreateModerationResponseResultsInner {
     }
 
     /**
-     * Get flagged
+     * Whether any of the below categories are flagged.
      * @return flagged
      **/
     @NotNull
-    @Schema(name = "flagged", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "flagged", description = "Whether any of the below categories are flagged.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_FLAGGED)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public Boolean getFlagged() {

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * OAIModel.h
  *
- * 
+ * Describes an OpenAI model offering that can be used with the API.
  */
 
 #ifndef OAIModel_H
@@ -44,15 +44,15 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    QString getObject() const;
-    void setObject(const QString &object);
-    bool is_object_Set() const;
-    bool is_object_Valid() const;
-
     qint32 getCreated() const;
     void setCreated(const qint32 &created);
     bool is_created_Set() const;
     bool is_created_Valid() const;
+
+    QString getObject() const;
+    void setObject(const QString &object);
+    bool is_object_Set() const;
+    bool is_object_Valid() const;
 
     QString getOwnedBy() const;
     void setOwnedBy(const QString &owned_by);
@@ -69,13 +69,13 @@ private:
     bool m_id_isSet;
     bool m_id_isValid;
 
-    QString m_object;
-    bool m_object_isSet;
-    bool m_object_isValid;
-
     qint32 m_created;
     bool m_created_isSet;
     bool m_created_isValid;
+
+    QString m_object;
+    bool m_object_isSet;
+    bool m_object_isValid;
 
     QString m_owned_by;
     bool m_owned_by_isSet;

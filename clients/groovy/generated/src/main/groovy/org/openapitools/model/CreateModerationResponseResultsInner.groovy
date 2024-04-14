@@ -8,7 +8,7 @@ import org.openapitools.model.CreateModerationResponseResultsInnerCategoryScores
 
 @Canonical
 class CreateModerationResponseResultsInner {
-    
+    /* Whether any of the below categories are flagged. */
     Boolean flagged
     
     CreateModerationResponseResultsInnerCategories categories

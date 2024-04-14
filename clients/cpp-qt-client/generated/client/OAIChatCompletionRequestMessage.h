@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,14 +21,22 @@
 
 #include <QJsonObject>
 
-#include "OAIChatCompletionRequestMessage_function_call.h"
+#include "OAIChatCompletionMessageToolCall.h"
+#include "OAIChatCompletionRequestAssistantMessage.h"
+#include "OAIChatCompletionRequestAssistantMessage_function_call.h"
+#include "OAIChatCompletionRequestFunctionMessage.h"
+#include "OAIChatCompletionRequestSystemMessage.h"
+#include "OAIChatCompletionRequestToolMessage.h"
+#include "OAIChatCompletionRequestUserMessage.h"
+#include <QList>
 #include <QString>
 
 #include "OAIEnum.h"
 #include "OAIObject.h"
 
 namespace OpenAPI {
-class OAIChatCompletionRequestMessage_function_call;
+class OAIChatCompletionMessageToolCall;
+class OAIChatCompletionRequestAssistantMessage_function_call;
 
 class OAIChatCompletionRequestMessage : public OAIObject {
 public:
@@ -41,25 +49,35 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    QString getRole() const;
-    void setRole(const QString &role);
-    bool is_role_Set() const;
-    bool is_role_Valid() const;
-
     QString getContent() const;
     void setContent(const QString &content);
     bool is_content_Set() const;
     bool is_content_Valid() const;
+
+    QString getRole() const;
+    void setRole(const QString &role);
+    bool is_role_Set() const;
+    bool is_role_Valid() const;
 
     QString getName() const;
     void setName(const QString &name);
     bool is_name_Set() const;
     bool is_name_Valid() const;
 
-    OAIChatCompletionRequestMessage_function_call getFunctionCall() const;
-    void setFunctionCall(const OAIChatCompletionRequestMessage_function_call &function_call);
-    bool is_function_call_Set() const;
-    bool is_function_call_Valid() const;
+    QList<OAIChatCompletionMessageToolCall> getToolCalls() const;
+    void setToolCalls(const QList<OAIChatCompletionMessageToolCall> &tool_calls);
+    bool is_tool_calls_Set() const;
+    bool is_tool_calls_Valid() const;
+
+    Q_DECL_DEPRECATED OAIChatCompletionRequestAssistantMessage_function_call getFunctionCall() const;
+    Q_DECL_DEPRECATED void setFunctionCall(const OAIChatCompletionRequestAssistantMessage_function_call &function_call);
+    Q_DECL_DEPRECATED bool is_function_call_Set() const;
+    Q_DECL_DEPRECATED bool is_function_call_Valid() const;
+
+    QString getToolCallId() const;
+    void setToolCallId(const QString &tool_call_id);
+    bool is_tool_call_id_Set() const;
+    bool is_tool_call_id_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -67,21 +85,29 @@ public:
 private:
     void initializeModel();
 
-    QString m_role;
-    bool m_role_isSet;
-    bool m_role_isValid;
-
     QString m_content;
     bool m_content_isSet;
     bool m_content_isValid;
+
+    QString m_role;
+    bool m_role_isSet;
+    bool m_role_isValid;
 
     QString m_name;
     bool m_name_isSet;
     bool m_name_isValid;
 
-    OAIChatCompletionRequestMessage_function_call m_function_call;
+    QList<OAIChatCompletionMessageToolCall> m_tool_calls;
+    bool m_tool_calls_isSet;
+    bool m_tool_calls_isValid;
+
+    OAIChatCompletionRequestAssistantMessage_function_call m_function_call;
     bool m_function_call_isSet;
     bool m_function_call_isValid;
+
+    QString m_tool_call_id;
+    bool m_tool_call_id_isSet;
+    bool m_tool_call_id_isValid;
 };
 
 } // namespace OpenAPI

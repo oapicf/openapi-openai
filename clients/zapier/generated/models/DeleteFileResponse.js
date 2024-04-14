@@ -15,6 +15,9 @@ module.exports = {
                 label: `[${labelPrefix}object]`,
                 required: true,
                 type: 'string',
+                choices: [
+                    'file',
+                ],
             },
             {
                 key: `${keyPrefix}deleted`,

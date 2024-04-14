@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,13 +24,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * CreateEmbeddingResponseUsage
+ * The usage information for the request.
  */
+@ApiModel(description = "The usage information for the request.")
 @JsonPropertyOrder({
   CreateEmbeddingResponseUsage.JSON_PROPERTY_PROMPT_TOKENS,
   CreateEmbeddingResponseUsage.JSON_PROPERTY_TOTAL_TOKENS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateEmbeddingResponseUsage   {
   public static final String JSON_PROPERTY_PROMPT_TOKENS = "prompt_tokens";
   @JsonProperty(JSON_PROPERTY_PROMPT_TOKENS)
@@ -46,11 +47,11 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   /**
-   * Get promptTokens
+   * The number of tokens used by the prompt.
    * @return promptTokens
    **/
   @JsonProperty(value = "prompt_tokens")
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The number of tokens used by the prompt.")
   @NotNull 
   public Integer getPromptTokens() {
     return promptTokens;
@@ -66,11 +67,11 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   /**
-   * Get totalTokens
+   * The total number of tokens used by the request.
    * @return totalTokens
    **/
   @JsonProperty(value = "total_tokens")
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The total number of tokens used by the request.")
   @NotNull 
   public Integer getTotalTokens() {
     return totalTokens;

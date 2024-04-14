@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -48,9 +48,9 @@ import java.util.Set;
 import com.github.oapicf.openapiopenai.JSON;
 
 /**
- * CreateModerationResponseResultsInnerCategoryScores
+ * A list of the categories along with their scores as predicted by model.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponseResultsInnerCategoryScores {
   public static final String SERIALIZED_NAME_HATE = "hate";
   @SerializedName(SERIALIZED_NAME_HATE)
@@ -60,9 +60,25 @@ public class CreateModerationResponseResultsInnerCategoryScores {
   @SerializedName(SERIALIZED_NAME_HATE_THREATENING)
   private BigDecimal hateThreatening;
 
+  public static final String SERIALIZED_NAME_HARASSMENT = "harassment";
+  @SerializedName(SERIALIZED_NAME_HARASSMENT)
+  private BigDecimal harassment;
+
+  public static final String SERIALIZED_NAME_HARASSMENT_THREATENING = "harassment/threatening";
+  @SerializedName(SERIALIZED_NAME_HARASSMENT_THREATENING)
+  private BigDecimal harassmentThreatening;
+
   public static final String SERIALIZED_NAME_SELF_HARM = "self-harm";
   @SerializedName(SERIALIZED_NAME_SELF_HARM)
   private BigDecimal selfHarm;
+
+  public static final String SERIALIZED_NAME_SELF_HARM_INTENT = "self-harm/intent";
+  @SerializedName(SERIALIZED_NAME_SELF_HARM_INTENT)
+  private BigDecimal selfHarmIntent;
+
+  public static final String SERIALIZED_NAME_SELF_HARM_INSTRUCTIONS = "self-harm/instructions";
+  @SerializedName(SERIALIZED_NAME_SELF_HARM_INSTRUCTIONS)
+  private BigDecimal selfHarmInstructions;
 
   public static final String SERIALIZED_NAME_SEXUAL = "sexual";
   @SerializedName(SERIALIZED_NAME_SEXUAL)
@@ -89,7 +105,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
   }
 
    /**
-   * Get hate
+   * The score for the category &#39;hate&#39;.
    * @return hate
   **/
   @javax.annotation.Nonnull
@@ -108,7 +124,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
   }
 
    /**
-   * Get hateThreatening
+   * The score for the category &#39;hate/threatening&#39;.
    * @return hateThreatening
   **/
   @javax.annotation.Nonnull
@@ -121,13 +137,51 @@ public class CreateModerationResponseResultsInnerCategoryScores {
   }
 
 
+  public CreateModerationResponseResultsInnerCategoryScores harassment(BigDecimal harassment) {
+    this.harassment = harassment;
+    return this;
+  }
+
+   /**
+   * The score for the category &#39;harassment&#39;.
+   * @return harassment
+  **/
+  @javax.annotation.Nonnull
+  public BigDecimal getHarassment() {
+    return harassment;
+  }
+
+  public void setHarassment(BigDecimal harassment) {
+    this.harassment = harassment;
+  }
+
+
+  public CreateModerationResponseResultsInnerCategoryScores harassmentThreatening(BigDecimal harassmentThreatening) {
+    this.harassmentThreatening = harassmentThreatening;
+    return this;
+  }
+
+   /**
+   * The score for the category &#39;harassment/threatening&#39;.
+   * @return harassmentThreatening
+  **/
+  @javax.annotation.Nonnull
+  public BigDecimal getHarassmentThreatening() {
+    return harassmentThreatening;
+  }
+
+  public void setHarassmentThreatening(BigDecimal harassmentThreatening) {
+    this.harassmentThreatening = harassmentThreatening;
+  }
+
+
   public CreateModerationResponseResultsInnerCategoryScores selfHarm(BigDecimal selfHarm) {
     this.selfHarm = selfHarm;
     return this;
   }
 
    /**
-   * Get selfHarm
+   * The score for the category &#39;self-harm&#39;.
    * @return selfHarm
   **/
   @javax.annotation.Nonnull
@@ -140,13 +194,51 @@ public class CreateModerationResponseResultsInnerCategoryScores {
   }
 
 
+  public CreateModerationResponseResultsInnerCategoryScores selfHarmIntent(BigDecimal selfHarmIntent) {
+    this.selfHarmIntent = selfHarmIntent;
+    return this;
+  }
+
+   /**
+   * The score for the category &#39;self-harm/intent&#39;.
+   * @return selfHarmIntent
+  **/
+  @javax.annotation.Nonnull
+  public BigDecimal getSelfHarmIntent() {
+    return selfHarmIntent;
+  }
+
+  public void setSelfHarmIntent(BigDecimal selfHarmIntent) {
+    this.selfHarmIntent = selfHarmIntent;
+  }
+
+
+  public CreateModerationResponseResultsInnerCategoryScores selfHarmInstructions(BigDecimal selfHarmInstructions) {
+    this.selfHarmInstructions = selfHarmInstructions;
+    return this;
+  }
+
+   /**
+   * The score for the category &#39;self-harm/instructions&#39;.
+   * @return selfHarmInstructions
+  **/
+  @javax.annotation.Nonnull
+  public BigDecimal getSelfHarmInstructions() {
+    return selfHarmInstructions;
+  }
+
+  public void setSelfHarmInstructions(BigDecimal selfHarmInstructions) {
+    this.selfHarmInstructions = selfHarmInstructions;
+  }
+
+
   public CreateModerationResponseResultsInnerCategoryScores sexual(BigDecimal sexual) {
     this.sexual = sexual;
     return this;
   }
 
    /**
-   * Get sexual
+   * The score for the category &#39;sexual&#39;.
    * @return sexual
   **/
   @javax.annotation.Nonnull
@@ -165,7 +257,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
   }
 
    /**
-   * Get sexualMinors
+   * The score for the category &#39;sexual/minors&#39;.
    * @return sexualMinors
   **/
   @javax.annotation.Nonnull
@@ -184,7 +276,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
   }
 
    /**
-   * Get violence
+   * The score for the category &#39;violence&#39;.
    * @return violence
   **/
   @javax.annotation.Nonnull
@@ -203,7 +295,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
   }
 
    /**
-   * Get violenceGraphic
+   * The score for the category &#39;violence/graphic&#39;.
    * @return violenceGraphic
   **/
   @javax.annotation.Nonnull
@@ -228,7 +320,11 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     CreateModerationResponseResultsInnerCategoryScores createModerationResponseResultsInnerCategoryScores = (CreateModerationResponseResultsInnerCategoryScores) o;
     return Objects.equals(this.hate, createModerationResponseResultsInnerCategoryScores.hate) &&
         Objects.equals(this.hateThreatening, createModerationResponseResultsInnerCategoryScores.hateThreatening) &&
+        Objects.equals(this.harassment, createModerationResponseResultsInnerCategoryScores.harassment) &&
+        Objects.equals(this.harassmentThreatening, createModerationResponseResultsInnerCategoryScores.harassmentThreatening) &&
         Objects.equals(this.selfHarm, createModerationResponseResultsInnerCategoryScores.selfHarm) &&
+        Objects.equals(this.selfHarmIntent, createModerationResponseResultsInnerCategoryScores.selfHarmIntent) &&
+        Objects.equals(this.selfHarmInstructions, createModerationResponseResultsInnerCategoryScores.selfHarmInstructions) &&
         Objects.equals(this.sexual, createModerationResponseResultsInnerCategoryScores.sexual) &&
         Objects.equals(this.sexualMinors, createModerationResponseResultsInnerCategoryScores.sexualMinors) &&
         Objects.equals(this.violence, createModerationResponseResultsInnerCategoryScores.violence) &&
@@ -237,7 +333,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic);
+    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
   }
 
   @Override
@@ -246,7 +342,11 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     sb.append("class CreateModerationResponseResultsInnerCategoryScores {\n");
     sb.append("    hate: ").append(toIndentedString(hate)).append("\n");
     sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
+    sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
+    sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
     sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
+    sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
+    sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");
     sb.append("    sexual: ").append(toIndentedString(sexual)).append("\n");
     sb.append("    sexualMinors: ").append(toIndentedString(sexualMinors)).append("\n");
     sb.append("    violence: ").append(toIndentedString(violence)).append("\n");
@@ -275,7 +375,11 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     openapiFields = new HashSet<String>();
     openapiFields.add("hate");
     openapiFields.add("hate/threatening");
+    openapiFields.add("harassment");
+    openapiFields.add("harassment/threatening");
     openapiFields.add("self-harm");
+    openapiFields.add("self-harm/intent");
+    openapiFields.add("self-harm/instructions");
     openapiFields.add("sexual");
     openapiFields.add("sexual/minors");
     openapiFields.add("violence");
@@ -285,7 +389,11 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("hate");
     openapiRequiredFields.add("hate/threatening");
+    openapiRequiredFields.add("harassment");
+    openapiRequiredFields.add("harassment/threatening");
     openapiRequiredFields.add("self-harm");
+    openapiRequiredFields.add("self-harm/intent");
+    openapiRequiredFields.add("self-harm/instructions");
     openapiRequiredFields.add("sexual");
     openapiRequiredFields.add("sexual/minors");
     openapiRequiredFields.add("violence");

@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -19,23 +19,23 @@ class ERROR
 
 feature --Access
 
-    type: detachable STRING_32
+    code: detachable STRING_32
       
     message: detachable STRING_32
       
     param: detachable STRING_32
       
-    code: detachable STRING_32
+    type: detachable STRING_32
       
 
 feature -- Change Element
 
-    set_type (a_name: like type)
-        -- Set 'type' with 'a_name'.
+    set_code (a_name: like code)
+        -- Set 'code' with 'a_name'.
       do
-        type := a_name
+        code := a_name
       ensure
-        type_set: type = a_name
+        code_set: code = a_name
       end
 
     set_message (a_name: like message)
@@ -54,12 +54,12 @@ feature -- Change Element
         param_set: param = a_name
       end
 
-    set_code (a_name: like code)
-        -- Set 'code' with 'a_name'.
+    set_type (a_name: like type)
+        -- Set 'type' with 'a_name'.
       do
-        code := a_name
+        type := a_name
       ensure
-        code_set: code = a_name
+        type_set: type = a_name
       end
 
 
@@ -70,9 +70,9 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass ERROR%N")
-        if attached type as l_type then
-          Result.append ("%Ntype:")
-          Result.append (l_type.out)
+        if attached code as l_code then
+          Result.append ("%Ncode:")
+          Result.append (l_code.out)
           Result.append ("%N")
         end
         if attached message as l_message then
@@ -85,9 +85,9 @@ feature -- Change Element
           Result.append (l_param.out)
           Result.append ("%N")
         end
-        if attached code as l_code then
-          Result.append ("%Ncode:")
-          Result.append (l_code.out)
+        if attached type as l_type then
+          Result.append ("%Ntype:")
+          Result.append (l_type.out)
           Result.append ("%N")
         end
       end

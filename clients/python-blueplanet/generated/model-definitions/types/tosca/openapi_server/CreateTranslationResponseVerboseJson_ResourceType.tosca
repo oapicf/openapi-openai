@@ -1,0 +1,52 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateTranslationResponseVerboseJson"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateTranslationResponseVerboseJson"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  TranscriptionSegment = openapi_server.resourceTypes.TranscriptionSegment
+}
+resourceTypes {
+
+  CreateTranslationResponseVerboseJson {
+    title = CreateTranslationResponseVerboseJson
+    description = CreateTranslationResponseVerboseJson
+    derivedFrom = Root
+    properties {
+        language {
+          type =  string
+          description = "The language of the output translation (always &#x60;english&#x60;)."
+          optional = true
+        }
+        duration {
+          type =  string
+          description = "The duration of the input audio."
+          optional = true
+        }
+        text {
+          type =  string
+          description = "The translated text."
+          optional = true
+        }
+        segments {
+          type = array
+          items.type = TranscriptionSegment
+          description = "Segments of the translated text and their corresponding details."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateTranslationResponseVerboseJson {
+    title = CreateTranslationResponseVerboseJson
+    description = CreateTranslationResponseVerboseJson
+    implements = openapi_server.resourceTypes.CreateTranslationResponseVerboseJson
+
+  }
+}

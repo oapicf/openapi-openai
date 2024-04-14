@@ -10,44 +10,44 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ChatCompletionRequestMessage: Codable, JSONEncodable, Hashable {
-
-    public enum Role: String, Codable, CaseIterable {
-        case system = "system"
-        case user = "user"
-        case assistant = "assistant"
-        case function = "function"
-    }
-    /** The role of the messages author. One of `system`, `user`, `assistant`, or `function`. */
-    public var role: Role
-    /** The contents of the message. `content` is required for all messages except assistant messages with function calls. */
-    public var content: String?
-    /** The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters. */
-    public var name: String?
-    public var functionCall: ChatCompletionRequestMessageFunctionCall?
-
-    public init(role: Role, content: String? = nil, name: String? = nil, functionCall: ChatCompletionRequestMessageFunctionCall? = nil) {
-        self.role = role
-        self.content = content
-        self.name = name
-        self.functionCall = functionCall
-    }
-
-    public enum CodingKeys: String, CodingKey, CaseIterable {
-        case role
-        case content
-        case name
-        case functionCall = "function_call"
-    }
-
-    // Encodable protocol methods
+public enum ChatCompletionRequestMessage: Codable, JSONEncodable, Hashable {
+    case typeChatCompletionRequestAssistantMessage(ChatCompletionRequestAssistantMessage)
+    case typeChatCompletionRequestFunctionMessage(ChatCompletionRequestFunctionMessage)
+    case typeChatCompletionRequestSystemMessage(ChatCompletionRequestSystemMessage)
+    case typeChatCompletionRequestToolMessage(ChatCompletionRequestToolMessage)
+    case typeChatCompletionRequestUserMessage(ChatCompletionRequestUserMessage)
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(role, forKey: .role)
-        try container.encodeIfPresent(content, forKey: .content)
-        try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(functionCall, forKey: .functionCall)
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .typeChatCompletionRequestAssistantMessage(let value):
+            try container.encode(value)
+        case .typeChatCompletionRequestFunctionMessage(let value):
+            try container.encode(value)
+        case .typeChatCompletionRequestSystemMessage(let value):
+            try container.encode(value)
+        case .typeChatCompletionRequestToolMessage(let value):
+            try container.encode(value)
+        case .typeChatCompletionRequestUserMessage(let value):
+            try container.encode(value)
+        }
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(ChatCompletionRequestAssistantMessage.self) {
+            self = .typeChatCompletionRequestAssistantMessage(value)
+        } else if let value = try? container.decode(ChatCompletionRequestFunctionMessage.self) {
+            self = .typeChatCompletionRequestFunctionMessage(value)
+        } else if let value = try? container.decode(ChatCompletionRequestSystemMessage.self) {
+            self = .typeChatCompletionRequestSystemMessage(value)
+        } else if let value = try? container.decode(ChatCompletionRequestToolMessage.self) {
+            self = .typeChatCompletionRequestToolMessage(value)
+        } else if let value = try? container.decode(ChatCompletionRequestUserMessage.self) {
+            self = .typeChatCompletionRequestUserMessage(value)
+        } else {
+            throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of ChatCompletionRequestMessage"))
+        }
     }
 }
 

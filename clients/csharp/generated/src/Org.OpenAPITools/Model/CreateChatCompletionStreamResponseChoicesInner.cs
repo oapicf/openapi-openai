@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -33,8 +33,9 @@ namespace Org.OpenAPITools.Model
     public partial class CreateChatCompletionStreamResponseChoicesInner : IValidatableObject
     {
         /// <summary>
-        /// Defines FinishReason
+        /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
         /// </summary>
+        /// <value>The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum FinishReasonEnum
         {
@@ -51,42 +52,74 @@ namespace Org.OpenAPITools.Model
             Length = 2,
 
             /// <summary>
+            /// Enum ToolCalls for value: tool_calls
+            /// </summary>
+            [EnumMember(Value = "tool_calls")]
+            ToolCalls = 3,
+
+            /// <summary>
+            /// Enum ContentFilter for value: content_filter
+            /// </summary>
+            [EnumMember(Value = "content_filter")]
+            ContentFilter = 4,
+
+            /// <summary>
             /// Enum FunctionCall for value: function_call
             /// </summary>
             [EnumMember(Value = "function_call")]
-            FunctionCall = 3
+            FunctionCall = 5
         }
 
 
         /// <summary>
-        /// Gets or Sets FinishReason
+        /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
         /// </summary>
-        [DataMember(Name = "finish_reason", EmitDefaultValue = false)]
-        public FinishReasonEnum? FinishReason { get; set; }
+        /// <value>The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. </value>
+        [DataMember(Name = "finish_reason", IsRequired = true, EmitDefaultValue = true)]
+        public FinishReasonEnum FinishReason { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateChatCompletionStreamResponseChoicesInner" /> class.
         /// </summary>
-        /// <param name="index">index.</param>
-        /// <param name="delta">delta.</param>
-        /// <param name="finishReason">finishReason.</param>
-        public CreateChatCompletionStreamResponseChoicesInner(int index = default(int), ChatCompletionStreamResponseDelta delta = default(ChatCompletionStreamResponseDelta), FinishReasonEnum? finishReason = default(FinishReasonEnum?))
+        [JsonConstructorAttribute]
+        protected CreateChatCompletionStreamResponseChoicesInner() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateChatCompletionStreamResponseChoicesInner" /> class.
+        /// </summary>
+        /// <param name="delta">delta (required).</param>
+        /// <param name="logprobs">logprobs.</param>
+        /// <param name="finishReason">The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function.  (required).</param>
+        /// <param name="index">The index of the choice in the list of choices. (required).</param>
+        public CreateChatCompletionStreamResponseChoicesInner(ChatCompletionStreamResponseDelta delta = default(ChatCompletionStreamResponseDelta), CreateChatCompletionResponseChoicesInnerLogprobs logprobs = default(CreateChatCompletionResponseChoicesInnerLogprobs), FinishReasonEnum finishReason = default(FinishReasonEnum), int index = default(int))
         {
-            this.Index = index;
+            // to ensure "delta" is required (not null)
+            if (delta == null)
+            {
+                throw new ArgumentNullException("delta is a required property for CreateChatCompletionStreamResponseChoicesInner and cannot be null");
+            }
             this.Delta = delta;
             this.FinishReason = finishReason;
+            this.Index = index;
+            this.Logprobs = logprobs;
         }
-
-        /// <summary>
-        /// Gets or Sets Index
-        /// </summary>
-        [DataMember(Name = "index", EmitDefaultValue = false)]
-        public int Index { get; set; }
 
         /// <summary>
         /// Gets or Sets Delta
         /// </summary>
-        [DataMember(Name = "delta", EmitDefaultValue = false)]
+        [DataMember(Name = "delta", IsRequired = true, EmitDefaultValue = true)]
         public ChatCompletionStreamResponseDelta Delta { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Logprobs
+        /// </summary>
+        [DataMember(Name = "logprobs", EmitDefaultValue = true)]
+        public CreateChatCompletionResponseChoicesInnerLogprobs Logprobs { get; set; }
+
+        /// <summary>
+        /// The index of the choice in the list of choices.
+        /// </summary>
+        /// <value>The index of the choice in the list of choices.</value>
+        [DataMember(Name = "index", IsRequired = true, EmitDefaultValue = true)]
+        public int Index { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -96,9 +129,10 @@ namespace Org.OpenAPITools.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateChatCompletionStreamResponseChoicesInner {\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("  Delta: ").Append(Delta).Append("\n");
+            sb.Append("  Logprobs: ").Append(Logprobs).Append("\n");
             sb.Append("  FinishReason: ").Append(FinishReason).Append("\n");
+            sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

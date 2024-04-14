@@ -10,7 +10,7 @@ import org.openapitools.models.CreateModerationResponseResultsInnerCategoryScore
 
 /**
  * 
- * @param flagged 
+ * @param flagged Whether any of the below categories are flagged.
  * @param categories 
  * @param categoryUnderscorescores 
  */

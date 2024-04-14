@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -40,7 +40,7 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateModerationResponseResultsInner" /> class.
         /// </summary>
-        /// <param name="flagged">flagged (required).</param>
+        /// <param name="flagged">Whether any of the below categories are flagged. (required).</param>
         /// <param name="categories">categories (required).</param>
         /// <param name="categoryScores">categoryScores (required).</param>
         public CreateModerationResponseResultsInner(bool flagged = default(bool), CreateModerationResponseResultsInnerCategories categories = default(CreateModerationResponseResultsInnerCategories), CreateModerationResponseResultsInnerCategoryScores categoryScores = default(CreateModerationResponseResultsInnerCategoryScores))
@@ -61,8 +61,9 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// Gets or Sets Flagged
+        /// Whether any of the below categories are flagged.
         /// </summary>
+        /// <value>Whether any of the below categories are flagged.</value>
         [DataMember(Name = "flagged", IsRequired = true, EmitDefaultValue = true)]
         public bool Flagged { get; set; }
 

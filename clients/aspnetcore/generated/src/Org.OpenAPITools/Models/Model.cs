@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,35 +21,56 @@ using Org.OpenAPITools.Converters;
 namespace Org.OpenAPITools.Models
 { 
     /// <summary>
-    /// 
+    /// Describes an OpenAI model offering that can be used with the API.
     /// </summary>
     [DataContract]
     public partial class Model : IEquatable<Model>
     {
         /// <summary>
-        /// Gets or Sets Id
+        /// The model identifier, which can be referenced in the API endpoints.
         /// </summary>
+        /// <value>The model identifier, which can be referenced in the API endpoints.</value>
         [Required]
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarObject
+        /// The Unix timestamp (in seconds) when the model was created.
         /// </summary>
-        [Required]
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string VarObject { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Created
-        /// </summary>
+        /// <value>The Unix timestamp (in seconds) when the model was created.</value>
         [Required]
         [DataMember(Name="created", EmitDefaultValue=true)]
         public int Created { get; set; }
 
+
         /// <summary>
-        /// Gets or Sets OwnedBy
+        /// The object type, which is always \"model\".
         /// </summary>
+        /// <value>The object type, which is always \"model\".</value>
+        [TypeConverter(typeof(CustomEnumConverter<ObjectEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            
+            /// <summary>
+            /// Enum ModelEnum for model
+            /// </summary>
+            [EnumMember(Value = "model")]
+            ModelEnum = 1
+        }
+
+        /// <summary>
+        /// The object type, which is always \&quot;model\&quot;.
+        /// </summary>
+        /// <value>The object type, which is always \&quot;model\&quot;.</value>
+        [Required]
+        [DataMember(Name="object", EmitDefaultValue=true)]
+        public ObjectEnum VarObject { get; set; }
+
+        /// <summary>
+        /// The organization that owns the model.
+        /// </summary>
+        /// <value>The organization that owns the model.</value>
         [Required]
         [DataMember(Name="owned_by", EmitDefaultValue=false)]
         public string OwnedBy { get; set; }
@@ -63,8 +84,8 @@ namespace Org.OpenAPITools.Models
             var sb = new StringBuilder();
             sb.Append("class Model {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  OwnedBy: ").Append(OwnedBy).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -108,14 +129,14 @@ namespace Org.OpenAPITools.Models
                     Id.Equals(other.Id)
                 ) && 
                 (
-                    VarObject == other.VarObject ||
-                    VarObject != null &&
-                    VarObject.Equals(other.VarObject)
-                ) && 
-                (
                     Created == other.Created ||
                     
                     Created.Equals(other.Created)
+                ) && 
+                (
+                    VarObject == other.VarObject ||
+                    
+                    VarObject.Equals(other.VarObject)
                 ) && 
                 (
                     OwnedBy == other.OwnedBy ||
@@ -136,10 +157,10 @@ namespace Org.OpenAPITools.Models
                 // Suitable nullity checks etc, of course :)
                     if (Id != null)
                     hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (VarObject != null)
-                    hashCode = hashCode * 59 + VarObject.GetHashCode();
                     
                     hashCode = hashCode * 59 + Created.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + VarObject.GetHashCode();
                     if (OwnedBy != null)
                     hashCode = hashCode * 59 + OwnedBy.GetHashCode();
                 return hashCode;

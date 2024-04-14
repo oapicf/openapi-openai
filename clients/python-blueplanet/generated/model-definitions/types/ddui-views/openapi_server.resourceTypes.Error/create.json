@@ -11,10 +11,10 @@
     "label": "Details",
     "model": "properties",
     "children": [
-      {"model": "type" },
+      {"model": "code" },
       {"model": "message" },
       {"model": "param" },
-      {"model": "code" },
+      {"model": "type" },
     ]
   }]
 }

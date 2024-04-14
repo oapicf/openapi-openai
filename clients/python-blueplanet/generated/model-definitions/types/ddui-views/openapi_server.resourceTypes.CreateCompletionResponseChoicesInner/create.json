@@ -11,10 +11,10 @@
     "label": "Details",
     "model": "properties",
     "children": [
-      {"model": "text" },
+      {"model": "finish_reason" },
       {"model": "index" },
       {"model": "logprobs" },
-      {"model": "finish_reason" },
+      {"model": "text" },
     ]
   }]
 }

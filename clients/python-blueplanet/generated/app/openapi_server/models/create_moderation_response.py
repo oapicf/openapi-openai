@@ -57,6 +57,7 @@ class CreateModerationResponse(Model):
     def id(self) -> str:
         """Gets the id of this CreateModerationResponse.
 
+        The unique identifier for the moderation request.  # noqa: E501
 
         :return: The id of this CreateModerationResponse.
         :rtype: str
@@ -67,6 +68,7 @@ class CreateModerationResponse(Model):
     def id(self, id: str):
         """Sets the id of this CreateModerationResponse.
 
+        The unique identifier for the moderation request.  # noqa: E501
 
         :param id: The id of this CreateModerationResponse.
         :type id: str
@@ -80,6 +82,7 @@ class CreateModerationResponse(Model):
     def model(self) -> str:
         """Gets the model of this CreateModerationResponse.
 
+        The model used to generate the moderation results.  # noqa: E501
 
         :return: The model of this CreateModerationResponse.
         :rtype: str
@@ -90,6 +93,7 @@ class CreateModerationResponse(Model):
     def model(self, model: str):
         """Sets the model of this CreateModerationResponse.
 
+        The model used to generate the moderation results.  # noqa: E501
 
         :param model: The model of this CreateModerationResponse.
         :type model: str
@@ -103,6 +107,7 @@ class CreateModerationResponse(Model):
     def results(self) -> List[CreateModerationResponseResultsInner]:
         """Gets the results of this CreateModerationResponse.
 
+        A list of moderation objects.  # noqa: E501
 
         :return: The results of this CreateModerationResponse.
         :rtype: List[CreateModerationResponseResultsInner]
@@ -113,6 +118,7 @@ class CreateModerationResponse(Model):
     def results(self, results: List[CreateModerationResponseResultsInner]):
         """Sets the results of this CreateModerationResponse.
 
+        A list of moderation objects.  # noqa: E501
 
         :param results: The results of this CreateModerationResponse.
         :type results: List[CreateModerationResponseResultsInner]

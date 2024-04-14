@@ -15,32 +15,32 @@ class CreateCompletionResponseChoicesInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, text: str=None, index: int=None, logprobs: CreateCompletionResponseChoicesInnerLogprobs=None, finish_reason: str=None):
+    def __init__(self, finish_reason: str=None, index: int=None, logprobs: CreateCompletionResponseChoicesInnerLogprobs=None, text: str=None):
         """CreateCompletionResponseChoicesInner - a model defined in OpenAPI
 
-        :param text: The text of this CreateCompletionResponseChoicesInner.
+        :param finish_reason: The finish_reason of this CreateCompletionResponseChoicesInner.
         :param index: The index of this CreateCompletionResponseChoicesInner.
         :param logprobs: The logprobs of this CreateCompletionResponseChoicesInner.
-        :param finish_reason: The finish_reason of this CreateCompletionResponseChoicesInner.
+        :param text: The text of this CreateCompletionResponseChoicesInner.
         """
         self.openapi_types = {
-            'text': str,
+            'finish_reason': str,
             'index': int,
             'logprobs': CreateCompletionResponseChoicesInnerLogprobs,
-            'finish_reason': str
+            'text': str
         }
 
         self.attribute_map = {
-            'text': 'text',
+            'finish_reason': 'finish_reason',
             'index': 'index',
             'logprobs': 'logprobs',
-            'finish_reason': 'finish_reason'
+            'text': 'text'
         }
 
-        self._text = text
+        self._finish_reason = finish_reason
         self._index = index
         self._logprobs = logprobs
-        self._finish_reason = finish_reason
+        self._text = text
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'CreateCompletionResponseChoicesInner':
@@ -52,27 +52,33 @@ class CreateCompletionResponseChoicesInner(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def text(self):
-        """Gets the text of this CreateCompletionResponseChoicesInner.
+    def finish_reason(self):
+        """Gets the finish_reason of this CreateCompletionResponseChoicesInner.
 
+        The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
 
-        :return: The text of this CreateCompletionResponseChoicesInner.
+        :return: The finish_reason of this CreateCompletionResponseChoicesInner.
         :rtype: str
         """
-        return self._text
+        return self._finish_reason
 
-    @text.setter
-    def text(self, text):
-        """Sets the text of this CreateCompletionResponseChoicesInner.
+    @finish_reason.setter
+    def finish_reason(self, finish_reason):
+        """Sets the finish_reason of this CreateCompletionResponseChoicesInner.
 
+        The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
 
-        :param text: The text of this CreateCompletionResponseChoicesInner.
-        :type text: str
+        :param finish_reason: The finish_reason of this CreateCompletionResponseChoicesInner.
+        :type finish_reason: str
         """
-        if text is None:
-            raise ValueError("Invalid value for `text`, must not be `None`")
+        allowed_values = ["stop", "length", "content_filter"]  # noqa: E501
+        if finish_reason not in allowed_values:
+            raise ValueError(
+                "Invalid value for `finish_reason` ({0}), must be one of {1}"
+                .format(finish_reason, allowed_values)
+            )
 
-        self._text = text
+        self._finish_reason = finish_reason
 
     @property
     def index(self):
@@ -121,28 +127,24 @@ class CreateCompletionResponseChoicesInner(Model):
         self._logprobs = logprobs
 
     @property
-    def finish_reason(self):
-        """Gets the finish_reason of this CreateCompletionResponseChoicesInner.
+    def text(self):
+        """Gets the text of this CreateCompletionResponseChoicesInner.
 
 
-        :return: The finish_reason of this CreateCompletionResponseChoicesInner.
+        :return: The text of this CreateCompletionResponseChoicesInner.
         :rtype: str
         """
-        return self._finish_reason
+        return self._text
 
-    @finish_reason.setter
-    def finish_reason(self, finish_reason):
-        """Sets the finish_reason of this CreateCompletionResponseChoicesInner.
+    @text.setter
+    def text(self, text):
+        """Sets the text of this CreateCompletionResponseChoicesInner.
 
 
-        :param finish_reason: The finish_reason of this CreateCompletionResponseChoicesInner.
-        :type finish_reason: str
+        :param text: The text of this CreateCompletionResponseChoicesInner.
+        :type text: str
         """
-        allowed_values = ["stop", "length"]  # noqa: E501
-        if finish_reason not in allowed_values:
-            raise ValueError(
-                "Invalid value for `finish_reason` ({0}), must be one of {1}"
-                .format(finish_reason, allowed_values)
-            )
+        if text is None:
+            raise ValueError("Invalid value for `text`, must not be `None`")
 
-        self._finish_reason = finish_reason
+        self._text = text

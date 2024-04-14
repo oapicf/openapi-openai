@@ -20,28 +20,43 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Describes an OpenAI model offering that can be used with the API.
  *
- * @param id 
- * @param `object` 
- * @param created 
- * @param ownedBy 
+ * @param id The model identifier, which can be referenced in the API endpoints.
+ * @param created The Unix timestamp (in seconds) when the model was created.
+ * @param `object` The object type, which is always \"model\".
+ * @param ownedBy The organization that owns the model.
  */
 
 
 data class Model (
 
+    /* The model identifier, which can be referenced in the API endpoints. */
     @Json(name = "id")
     val id: kotlin.String,
 
-    @Json(name = "object")
-    val `object`: kotlin.String,
-
+    /* The Unix timestamp (in seconds) when the model was created. */
     @Json(name = "created")
     val created: kotlin.Int,
 
+    /* The object type, which is always \"model\". */
+    @Json(name = "object")
+    val `object`: Model.`Object`,
+
+    /* The organization that owns the model. */
     @Json(name = "owned_by")
     val ownedBy: kotlin.String
 
-)
+) {
+
+    /**
+     * The object type, which is always \"model\".
+     *
+     * Values: model
+     */
+    @JsonClass(generateAdapter = false)
+    enum class `Object`(val value: kotlin.String) {
+        @Json(name = "model") model("model");
+    }
+}
 

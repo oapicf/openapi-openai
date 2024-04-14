@@ -7,7 +7,7 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
-  CreateChatCompletionRequestFunctionCallOneOf = openapi_server.resourceTypes.CreateChatCompletionRequestFunctionCallOneOf
+  ChatCompletionFunctionCallOption = openapi_server.resourceTypes.ChatCompletionFunctionCallOption
 }
 resourceTypes {
 

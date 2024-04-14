@@ -8,8 +8,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
-**`object`** | **String** |  | 
+**`object`** | [**`Object`**](#`Object`) |  | 
 **deleted** | **Boolean** |  | 
+
+
+## Enum: `Object`
+Allowed values: [file]
+
 
 
 

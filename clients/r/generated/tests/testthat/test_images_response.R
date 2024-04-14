@@ -13,7 +13,7 @@ test_that("created", {
 })
 
 test_that("data", {
-  # tests for the property `data` (array[ImagesResponseDataInner])
+  # tests for the property `data` (array[Image])
 
   # uncomment below to test the property
   #expect_equal(model.instance$`data`, "EXPECTED_RESULT")

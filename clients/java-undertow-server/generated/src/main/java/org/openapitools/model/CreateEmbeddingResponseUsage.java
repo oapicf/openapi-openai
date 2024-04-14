@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI document version: 2.0.0
  * Maintained by: blah+oapicf@cliffano.com
@@ -18,15 +18,19 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
+/**
+ * The usage information for the request.
+ */
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2024-03-16T01:12:58.923191288Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@ApiModel(description = "The usage information for the request.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2024-04-14T13:39:44.119769156Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateEmbeddingResponseUsage   {
   
   private Integer promptTokens;
   private Integer totalTokens;
 
   /**
+   * The number of tokens used by the prompt.
    */
   public CreateEmbeddingResponseUsage promptTokens(Integer promptTokens) {
     this.promptTokens = promptTokens;
@@ -34,7 +38,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The number of tokens used by the prompt.")
   @JsonProperty("prompt_tokens")
   public Integer getPromptTokens() {
     return promptTokens;
@@ -44,6 +48,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   /**
+   * The total number of tokens used by the request.
    */
   public CreateEmbeddingResponseUsage totalTokens(Integer totalTokens) {
     this.totalTokens = totalTokens;
@@ -51,7 +56,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The total number of tokens used by the request.")
   @JsonProperty("total_tokens")
   public Integer getTotalTokens() {
     return totalTokens;

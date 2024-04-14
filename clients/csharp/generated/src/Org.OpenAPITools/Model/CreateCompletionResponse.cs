@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,11 +27,32 @@ using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// CreateCompletionResponse
+    /// Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
     /// </summary>
     [DataContract(Name = "CreateCompletionResponse")]
     public partial class CreateCompletionResponse : IValidatableObject
     {
+        /// <summary>
+        /// The object type, which is always \&quot;text_completion\&quot;
+        /// </summary>
+        /// <value>The object type, which is always \&quot;text_completion\&quot;</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            /// <summary>
+            /// Enum TextCompletion for value: text_completion
+            /// </summary>
+            [EnumMember(Value = "text_completion")]
+            TextCompletion = 1
+        }
+
+
+        /// <summary>
+        /// The object type, which is always \&quot;text_completion\&quot;
+        /// </summary>
+        /// <value>The object type, which is always \&quot;text_completion\&quot;</value>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public ObjectEnum VarObject { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCompletionResponse" /> class.
         /// </summary>
@@ -40,13 +61,14 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCompletionResponse" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="varObject">varObject (required).</param>
-        /// <param name="created">created (required).</param>
-        /// <param name="model">model (required).</param>
-        /// <param name="choices">choices (required).</param>
+        /// <param name="id">A unique identifier for the completion. (required).</param>
+        /// <param name="choices">The list of completion choices the model generated for the input prompt. (required).</param>
+        /// <param name="created">The Unix timestamp (in seconds) of when the completion was created. (required).</param>
+        /// <param name="model">The model used for completion. (required).</param>
+        /// <param name="systemFingerprint">This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. .</param>
+        /// <param name="varObject">The object type, which is always \&quot;text_completion\&quot; (required).</param>
         /// <param name="usage">usage.</param>
-        public CreateCompletionResponse(string id = default(string), string varObject = default(string), int created = default(int), string model = default(string), List<CreateCompletionResponseChoicesInner> choices = default(List<CreateCompletionResponseChoicesInner>), CreateCompletionResponseUsage usage = default(CreateCompletionResponseUsage))
+        public CreateCompletionResponse(string id = default(string), List<CreateCompletionResponseChoicesInner> choices = default(List<CreateCompletionResponseChoicesInner>), int created = default(int), string model = default(string), string systemFingerprint = default(string), ObjectEnum varObject = default(ObjectEnum), CompletionUsage usage = default(CompletionUsage))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -54,12 +76,12 @@ namespace Org.OpenAPITools.Model
                 throw new ArgumentNullException("id is a required property for CreateCompletionResponse and cannot be null");
             }
             this.Id = id;
-            // to ensure "varObject" is required (not null)
-            if (varObject == null)
+            // to ensure "choices" is required (not null)
+            if (choices == null)
             {
-                throw new ArgumentNullException("varObject is a required property for CreateCompletionResponse and cannot be null");
+                throw new ArgumentNullException("choices is a required property for CreateCompletionResponse and cannot be null");
             }
-            this.VarObject = varObject;
+            this.Choices = choices;
             this.Created = created;
             // to ensure "model" is required (not null)
             if (model == null)
@@ -67,50 +89,51 @@ namespace Org.OpenAPITools.Model
                 throw new ArgumentNullException("model is a required property for CreateCompletionResponse and cannot be null");
             }
             this.Model = model;
-            // to ensure "choices" is required (not null)
-            if (choices == null)
-            {
-                throw new ArgumentNullException("choices is a required property for CreateCompletionResponse and cannot be null");
-            }
-            this.Choices = choices;
+            this.VarObject = varObject;
+            this.SystemFingerprint = systemFingerprint;
             this.Usage = usage;
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// A unique identifier for the completion.
         /// </summary>
+        /// <value>A unique identifier for the completion.</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarObject
+        /// The list of completion choices the model generated for the input prompt.
         /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string VarObject { get; set; }
+        /// <value>The list of completion choices the model generated for the input prompt.</value>
+        [DataMember(Name = "choices", IsRequired = true, EmitDefaultValue = true)]
+        public List<CreateCompletionResponseChoicesInner> Choices { get; set; }
 
         /// <summary>
-        /// Gets or Sets Created
+        /// The Unix timestamp (in seconds) of when the completion was created.
         /// </summary>
+        /// <value>The Unix timestamp (in seconds) of when the completion was created.</value>
         [DataMember(Name = "created", IsRequired = true, EmitDefaultValue = true)]
         public int Created { get; set; }
 
         /// <summary>
-        /// Gets or Sets Model
+        /// The model used for completion.
         /// </summary>
+        /// <value>The model used for completion.</value>
         [DataMember(Name = "model", IsRequired = true, EmitDefaultValue = true)]
         public string Model { get; set; }
 
         /// <summary>
-        /// Gets or Sets Choices
+        /// This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
         /// </summary>
-        [DataMember(Name = "choices", IsRequired = true, EmitDefaultValue = true)]
-        public List<CreateCompletionResponseChoicesInner> Choices { get; set; }
+        /// <value>This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. </value>
+        [DataMember(Name = "system_fingerprint", EmitDefaultValue = false)]
+        public string SystemFingerprint { get; set; }
 
         /// <summary>
         /// Gets or Sets Usage
         /// </summary>
         [DataMember(Name = "usage", EmitDefaultValue = false)]
-        public CreateCompletionResponseUsage Usage { get; set; }
+        public CompletionUsage Usage { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -121,10 +144,11 @@ namespace Org.OpenAPITools.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateCompletionResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
+            sb.Append("  Choices: ").Append(Choices).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Model: ").Append(Model).Append("\n");
-            sb.Append("  Choices: ").Append(Choices).Append("\n");
+            sb.Append("  SystemFingerprint: ").Append(SystemFingerprint).Append("\n");
+            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  Usage: ").Append(Usage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

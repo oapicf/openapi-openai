@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,12 +25,17 @@ CreateImageRequest::CreateImageRequest()
 {
     m_Prompt = utility::conversions::to_string_t("");
     m_PromptIsSet = false;
+    m_ModelIsSet = false;
     m_n = 0;
     m_nIsSet = false;
-    m_Size = utility::conversions::to_string_t("");
-    m_SizeIsSet = false;
+    m_Quality = utility::conversions::to_string_t("");
+    m_QualityIsSet = false;
     m_Response_format = utility::conversions::to_string_t("");
     m_Response_formatIsSet = false;
+    m_Size = utility::conversions::to_string_t("");
+    m_SizeIsSet = false;
+    m_Style = utility::conversions::to_string_t("");
+    m_StyleIsSet = false;
     m_User = utility::conversions::to_string_t("");
     m_UserIsSet = false;
 }
@@ -53,17 +58,29 @@ web::json::value CreateImageRequest::toJson() const
     {
         val[utility::conversions::to_string_t(U("prompt"))] = ModelBase::toJson(m_Prompt);
     }
+    if(m_ModelIsSet)
+    {
+        val[utility::conversions::to_string_t(U("model"))] = ModelBase::toJson(m_Model);
+    }
     if(m_nIsSet)
     {
         val[utility::conversions::to_string_t(U("n"))] = ModelBase::toJson(m_n);
+    }
+    if(m_QualityIsSet)
+    {
+        val[utility::conversions::to_string_t(U("quality"))] = ModelBase::toJson(m_Quality);
+    }
+    if(m_Response_formatIsSet)
+    {
+        val[utility::conversions::to_string_t(U("response_format"))] = ModelBase::toJson(m_Response_format);
     }
     if(m_SizeIsSet)
     {
         val[utility::conversions::to_string_t(U("size"))] = ModelBase::toJson(m_Size);
     }
-    if(m_Response_formatIsSet)
+    if(m_StyleIsSet)
     {
-        val[utility::conversions::to_string_t(U("response_format"))] = ModelBase::toJson(m_Response_format);
+        val[utility::conversions::to_string_t(U("style"))] = ModelBase::toJson(m_Style);
     }
     if(m_UserIsSet)
     {
@@ -87,6 +104,16 @@ bool CreateImageRequest::fromJson(const web::json::value& val)
             setPrompt(refVal_setPrompt);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("model"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("model")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<CreateImageRequest_model> refVal_setModel;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setModel);
+            setModel(refVal_setModel);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("n"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("n")));
@@ -95,6 +122,26 @@ bool CreateImageRequest::fromJson(const web::json::value& val)
             int32_t refVal_setN;
             ok &= ModelBase::fromJson(fieldValue, refVal_setN);
             setN(refVal_setN);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("quality"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("quality")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setQuality;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setQuality);
+            setQuality(refVal_setQuality);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("response_format"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("response_format")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setResponseFormat;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setResponseFormat);
+            setResponseFormat(refVal_setResponseFormat);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("size"))))
@@ -107,14 +154,14 @@ bool CreateImageRequest::fromJson(const web::json::value& val)
             setSize(refVal_setSize);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("response_format"))))
+    if(val.has_field(utility::conversions::to_string_t(U("style"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("response_format")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("style")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setResponseFormat;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setResponseFormat);
-            setResponseFormat(refVal_setResponseFormat);
+            utility::string_t refVal_setStyle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStyle);
+            setStyle(refVal_setStyle);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("user"))))
@@ -141,17 +188,29 @@ void CreateImageRequest::toMultipart(std::shared_ptr<MultipartFormData> multipar
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("prompt")), m_Prompt));
     }
+    if(m_ModelIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("model")), m_Model));
+    }
     if(m_nIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("n")), m_n));
+    }
+    if(m_QualityIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("quality")), m_Quality));
+    }
+    if(m_Response_formatIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("response_format")), m_Response_format));
     }
     if(m_SizeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("size")), m_Size));
     }
-    if(m_Response_formatIsSet)
+    if(m_StyleIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("response_format")), m_Response_format));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("style")), m_Style));
     }
     if(m_UserIsSet)
     {
@@ -174,11 +233,29 @@ bool CreateImageRequest::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("prompt"))), refVal_setPrompt );
         setPrompt(refVal_setPrompt);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("model"))))
+    {
+        std::shared_ptr<CreateImageRequest_model> refVal_setModel;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("model"))), refVal_setModel );
+        setModel(refVal_setModel);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("n"))))
     {
         int32_t refVal_setN;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("n"))), refVal_setN );
         setN(refVal_setN);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("quality"))))
+    {
+        utility::string_t refVal_setQuality;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("quality"))), refVal_setQuality );
+        setQuality(refVal_setQuality);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("response_format"))))
+    {
+        utility::string_t refVal_setResponseFormat;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("response_format"))), refVal_setResponseFormat );
+        setResponseFormat(refVal_setResponseFormat);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("size"))))
     {
@@ -186,11 +263,11 @@ bool CreateImageRequest::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("size"))), refVal_setSize );
         setSize(refVal_setSize);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("response_format"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("style"))))
     {
-        utility::string_t refVal_setResponseFormat;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("response_format"))), refVal_setResponseFormat );
-        setResponseFormat(refVal_setResponseFormat);
+        utility::string_t refVal_setStyle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("style"))), refVal_setStyle );
+        setStyle(refVal_setStyle);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("user"))))
     {
@@ -221,6 +298,26 @@ void CreateImageRequest::unsetPrompt()
 {
     m_PromptIsSet = false;
 }
+std::shared_ptr<CreateImageRequest_model> CreateImageRequest::getModel() const
+{
+    return m_Model;
+}
+
+void CreateImageRequest::setModel(const std::shared_ptr<CreateImageRequest_model>& value)
+{
+    m_Model = value;
+    m_ModelIsSet = true;
+}
+
+bool CreateImageRequest::modelIsSet() const
+{
+    return m_ModelIsSet;
+}
+
+void CreateImageRequest::unsetModel()
+{
+    m_ModelIsSet = false;
+}
 int32_t CreateImageRequest::getN() const
 {
     return m_n;
@@ -240,6 +337,46 @@ bool CreateImageRequest::NIsSet() const
 void CreateImageRequest::unsetn()
 {
     m_nIsSet = false;
+}
+utility::string_t CreateImageRequest::getQuality() const
+{
+    return m_Quality;
+}
+
+void CreateImageRequest::setQuality(const utility::string_t& value)
+{
+    m_Quality = value;
+    m_QualityIsSet = true;
+}
+
+bool CreateImageRequest::qualityIsSet() const
+{
+    return m_QualityIsSet;
+}
+
+void CreateImageRequest::unsetQuality()
+{
+    m_QualityIsSet = false;
+}
+utility::string_t CreateImageRequest::getResponseFormat() const
+{
+    return m_Response_format;
+}
+
+void CreateImageRequest::setResponseFormat(const utility::string_t& value)
+{
+    m_Response_format = value;
+    m_Response_formatIsSet = true;
+}
+
+bool CreateImageRequest::responseFormatIsSet() const
+{
+    return m_Response_formatIsSet;
+}
+
+void CreateImageRequest::unsetResponse_format()
+{
+    m_Response_formatIsSet = false;
 }
 utility::string_t CreateImageRequest::getSize() const
 {
@@ -261,25 +398,25 @@ void CreateImageRequest::unsetSize()
 {
     m_SizeIsSet = false;
 }
-utility::string_t CreateImageRequest::getResponseFormat() const
+utility::string_t CreateImageRequest::getStyle() const
 {
-    return m_Response_format;
+    return m_Style;
 }
 
-void CreateImageRequest::setResponseFormat(const utility::string_t& value)
+void CreateImageRequest::setStyle(const utility::string_t& value)
 {
-    m_Response_format = value;
-    m_Response_formatIsSet = true;
+    m_Style = value;
+    m_StyleIsSet = true;
 }
 
-bool CreateImageRequest::responseFormatIsSet() const
+bool CreateImageRequest::styleIsSet() const
 {
-    return m_Response_formatIsSet;
+    return m_StyleIsSet;
 }
 
-void CreateImageRequest::unsetResponse_format()
+void CreateImageRequest::unsetStyle()
 {
-    m_Response_formatIsSet = false;
+    m_StyleIsSet = false;
 }
 utility::string_t CreateImageRequest::getUser() const
 {

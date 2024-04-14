@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,7 @@ var _ MappedNullable = &ImagesResponse{}
 // ImagesResponse struct for ImagesResponse
 type ImagesResponse struct {
 	Created int32 `json:"created"`
-	Data []ImagesResponseDataInner `json:"data"`
+	Data []Image `json:"data"`
 }
 
 type _ImagesResponse ImagesResponse
@@ -32,7 +32,7 @@ type _ImagesResponse ImagesResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImagesResponse(created int32, data []ImagesResponseDataInner) *ImagesResponse {
+func NewImagesResponse(created int32, data []Image) *ImagesResponse {
 	this := ImagesResponse{}
 	this.Created = created
 	this.Data = data
@@ -72,9 +72,9 @@ func (o *ImagesResponse) SetCreated(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *ImagesResponse) GetData() []ImagesResponseDataInner {
+func (o *ImagesResponse) GetData() []Image {
 	if o == nil {
-		var ret []ImagesResponseDataInner
+		var ret []Image
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *ImagesResponse) GetData() []ImagesResponseDataInner {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ImagesResponse) GetDataOk() ([]ImagesResponseDataInner, bool) {
+func (o *ImagesResponse) GetDataOk() ([]Image, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *ImagesResponse) GetDataOk() ([]ImagesResponseDataInner, bool) {
 }
 
 // SetData sets field value
-func (o *ImagesResponse) SetData(v []ImagesResponseDataInner) {
+func (o *ImagesResponse) SetData(v []Image) {
 	o.Data = v
 }
 

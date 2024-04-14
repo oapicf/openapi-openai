@@ -78,6 +78,7 @@ module CustomHandlers =
         ]
         body [] [
             h1 [] [ str "Welcome" ]
+            a [_href "/login-with-ApiKeyAuth"] [ str "Login with ApiKeyAuth" ]
         ]
     ]
 
@@ -89,6 +90,7 @@ module CustomHandlers =
     GET >=>
       choose [
         route "/login" >=> redirectToLogin
+        route "/login-with-ApiKeyAuth" >=> challenge "ApiKeyAuth"
         route "/logout" >=> logout
       ]
   ]

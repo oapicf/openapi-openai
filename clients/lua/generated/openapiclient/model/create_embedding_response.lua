@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,11 +19,11 @@ local function cast_create_embedding_response(t)
 	return setmetatable(t, create_embedding_response_mt)
 end
 
-local function new_create_embedding_response(object, model, data, usage)
+local function new_create_embedding_response(data, model, object, usage)
 	return cast_create_embedding_response({
-		["object"] = object;
-		["model"] = model;
 		["data"] = data;
+		["model"] = model;
+		["object"] = object;
 		["usage"] = usage;
 	})
 end

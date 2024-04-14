@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -60,10 +60,10 @@ public:
     /// CreateCompletionResponse_choices_inner members
 
     /// <summary>
-    /// 
+    /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
     /// </summary>
-    std::string getText() const;
-    void setText(std::string value);
+    std::string getFinishReason() const;
+    void setFinishReason(std::string value);
 
     /// <summary>
     /// 
@@ -80,14 +80,14 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::string getFinishReason() const;
-    void setFinishReason(std::string value);
+    std::string getText() const;
+    void setText(std::string value);
 
 protected:
-    std::string m_Text = "";
+    std::string m_Finish_reason = "";
     int32_t m_Index = 0;
     CreateCompletionResponse_choices_inner_logprobs m_Logprobs;
-    std::string m_Finish_reason = "";
+    std::string m_Text = "";
 };
 
 std::vector<CreateCompletionResponse_choices_inner> createCreateCompletionResponse_choices_innerVectorFromJsonString(const std::string& json);

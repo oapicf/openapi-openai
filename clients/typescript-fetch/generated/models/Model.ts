@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,44 +14,54 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * Describes an OpenAI model offering that can be used with the API.
  * @export
  * @interface Model
  */
 export interface Model {
     /**
-     * 
+     * The model identifier, which can be referenced in the API endpoints.
      * @type {string}
      * @memberof Model
      */
     id: string;
     /**
-     * 
-     * @type {string}
-     * @memberof Model
-     */
-    object: string;
-    /**
-     * 
+     * The Unix timestamp (in seconds) when the model was created.
      * @type {number}
      * @memberof Model
      */
     created: number;
     /**
-     * 
+     * The object type, which is always "model".
+     * @type {string}
+     * @memberof Model
+     */
+    object: ModelObjectEnum;
+    /**
+     * The organization that owns the model.
      * @type {string}
      * @memberof Model
      */
     ownedBy: string;
 }
 
+
+/**
+ * @export
+ */
+export const ModelObjectEnum = {
+    Model: 'model'
+} as const;
+export type ModelObjectEnum = typeof ModelObjectEnum[keyof typeof ModelObjectEnum];
+
+
 /**
  * Check if a given object implements the Model interface.
  */
 export function instanceOfModel(value: object): boolean {
     if (!('id' in value)) return false;
-    if (!('object' in value)) return false;
     if (!('created' in value)) return false;
+    if (!('object' in value)) return false;
     if (!('ownedBy' in value)) return false;
     return true;
 }
@@ -67,8 +77,8 @@ export function ModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mod
     return {
         
         'id': json['id'],
-        'object': json['object'],
         'created': json['created'],
+        'object': json['object'],
         'ownedBy': json['owned_by'],
     };
 }
@@ -80,8 +90,8 @@ export function ModelToJSON(value?: Model | null): any {
     return {
         
         'id': value['id'],
-        'object': value['object'],
         'created': value['created'],
+        'object': value['object'],
         'owned_by': value['ownedBy'],
     };
 }

@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -36,17 +36,19 @@ class TestCreateCompletionResponseChoicesInnerLogprobs(unittest.TestCase):
         model = CreateCompletionResponseChoicesInnerLogprobs()
         if include_optional:
             return CreateCompletionResponseChoicesInnerLogprobs(
-                tokens = [
-                    ''
+                text_offset = [
+                    56
                     ],
                 token_logprobs = [
                     1.337
                     ],
-                top_logprobs = [
-                    None
+                tokens = [
+                    ''
                     ],
-                text_offset = [
-                    56
+                top_logprobs = [
+                    {
+                        'key' : 1.337
+                        }
                     ]
             )
         else:

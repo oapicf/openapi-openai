@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -19,22 +19,16 @@ class CREATE_CHAT_COMPLETION_STREAM_RESPONSE_CHOICES_INNER
 
 feature --Access
 
-    index: INTEGER_32
-      
     delta: detachable CHAT_COMPLETION_STREAM_RESPONSE_DELTA
       
-    finish_reason: detachable STRING_32
+    logprobs: detachable CREATE_CHAT_COMPLETION_RESPONSE_CHOICES_INNER_LOGPROBS
       
+    finish_reason: detachable STRING_32
+      -- The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+    index: INTEGER_32
+      -- The index of the choice in the list of choices.
 
 feature -- Change Element
-
-    set_index (a_name: like index)
-        -- Set 'index' with 'a_name'.
-      do
-        index := a_name
-      ensure
-        index_set: index = a_name
-      end
 
     set_delta (a_name: like delta)
         -- Set 'delta' with 'a_name'.
@@ -42,6 +36,14 @@ feature -- Change Element
         delta := a_name
       ensure
         delta_set: delta = a_name
+      end
+
+    set_logprobs (a_name: like logprobs)
+        -- Set 'logprobs' with 'a_name'.
+      do
+        logprobs := a_name
+      ensure
+        logprobs_set: logprobs = a_name
       end
 
     set_finish_reason (a_name: like finish_reason)
@@ -52,6 +54,14 @@ feature -- Change Element
         finish_reason_set: finish_reason = a_name
       end
 
+    set_index (a_name: like index)
+        -- Set 'index' with 'a_name'.
+      do
+        index := a_name
+      ensure
+        index_set: index = a_name
+      end
+
 
  feature -- Status Report
 
@@ -60,19 +70,24 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass CREATE_CHAT_COMPLETION_STREAM_RESPONSE_CHOICES_INNER%N")
-        if attached index as l_index then
-          Result.append ("%Nindex:")
-          Result.append (l_index.out)
-          Result.append ("%N")
-        end
         if attached delta as l_delta then
           Result.append ("%Ndelta:")
           Result.append (l_delta.out)
           Result.append ("%N")
         end
+        if attached logprobs as l_logprobs then
+          Result.append ("%Nlogprobs:")
+          Result.append (l_logprobs.out)
+          Result.append ("%N")
+        end
         if attached finish_reason as l_finish_reason then
           Result.append ("%Nfinish_reason:")
           Result.append (l_finish_reason.out)
+          Result.append ("%N")
+        end
+        if attached index as l_index then
+          Result.append ("%Nindex:")
+          Result.append (l_index.out)
           Result.append ("%N")
         end
       end

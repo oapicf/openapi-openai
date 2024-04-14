@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.vertxweb.server.model.CreateModerationResponseResultsInner;
 
+/**
+ * Represents if a given text input is potentially harmful.
+ **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateModerationResponse   {
   

@@ -17,15 +17,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param text 
+ * @param finishReason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
  * @param index 
  * @param logprobs 
- * @param finishReason 
+ * @param text 
  */
 data class CreateCompletionResponseChoicesInner(
 
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("text", required = true) val text: kotlin.String,
+    @Schema(example = "null", required = true, description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. ")
+    @get:JsonProperty("finish_reason", required = true) val finishReason: CreateCompletionResponseChoicesInner.FinishReason,
 
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("index", required = true) val index: kotlin.Int,
@@ -35,17 +35,18 @@ data class CreateCompletionResponseChoicesInner(
     @get:JsonProperty("logprobs", required = true) val logprobs: CreateCompletionResponseChoicesInnerLogprobs?,
 
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("finish_reason", required = true) val finishReason: CreateCompletionResponseChoicesInner.FinishReason
+    @get:JsonProperty("text", required = true) val text: kotlin.String
 ) {
 
     /**
-    * 
-    * Values: stop,length
+    * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+    * Values: stop,length,content_filter
     */
     enum class FinishReason(val value: kotlin.String) {
 
         @JsonProperty("stop") stop("stop"),
-        @JsonProperty("length") length("length")
+        @JsonProperty("length") length("length"),
+        @JsonProperty("content_filter") content_filter("content_filter")
     }
 
 }

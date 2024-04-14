@@ -81,7 +81,10 @@ auth_with_prefix(Cfg, Key, Token) ->
 
 update_params_with_auth(Cfg, Headers, QS) ->
     AuthSettings = maps:get(auth, Cfg, #{}),
-    Auths = #{ },
+    Auths = #{ 'ApiKeyAuth' =>
+                #{type => 'http',
+                  key => <<"Authorization">>,
+                  in => header}},
 
     maps:fold(fun(AuthName, #{type := _Type,
                               in := In,

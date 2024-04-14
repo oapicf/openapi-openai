@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,15 +12,28 @@
 
 import { RequestFile } from './models';
 import { ChatCompletionResponseMessage } from './chatCompletionResponseMessage';
+import { CreateChatCompletionResponseChoicesInnerLogprobs } from './createChatCompletionResponseChoicesInnerLogprobs';
 
 export class CreateChatCompletionResponseChoicesInner {
-    'index'?: number;
-    'message'?: ChatCompletionResponseMessage;
-    'finishReason'?: CreateChatCompletionResponseChoicesInner.FinishReasonEnum;
+    /**
+    * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+    */
+    'finishReason': CreateChatCompletionResponseChoicesInner.FinishReasonEnum;
+    /**
+    * The index of the choice in the list of choices.
+    */
+    'index': number;
+    'message': ChatCompletionResponseMessage;
+    'logprobs': CreateChatCompletionResponseChoicesInnerLogprobs | null;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "finishReason",
+            "baseName": "finish_reason",
+            "type": "CreateChatCompletionResponseChoicesInner.FinishReasonEnum"
+        },
         {
             "name": "index",
             "baseName": "index",
@@ -32,9 +45,9 @@ export class CreateChatCompletionResponseChoicesInner {
             "type": "ChatCompletionResponseMessage"
         },
         {
-            "name": "finishReason",
-            "baseName": "finish_reason",
-            "type": "CreateChatCompletionResponseChoicesInner.FinishReasonEnum"
+            "name": "logprobs",
+            "baseName": "logprobs",
+            "type": "CreateChatCompletionResponseChoicesInnerLogprobs"
         }    ];
 
     static getAttributeTypeMap() {
@@ -46,6 +59,8 @@ export namespace CreateChatCompletionResponseChoicesInner {
     export enum FinishReasonEnum {
         Stop = <any> 'stop',
         Length = <any> 'length',
+        ToolCalls = <any> 'tool_calls',
+        ContentFilter = <any> 'content_filter',
         FunctionCall = <any> 'function_call'
     }
 }

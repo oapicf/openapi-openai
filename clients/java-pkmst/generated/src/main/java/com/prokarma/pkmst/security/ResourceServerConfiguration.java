@@ -31,9 +31,63 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     //configure security for the http methods
         http.
         anonymous().disable()
-        .requestMatchers().antMatchers(HttpMethod.GET, "/OpenAI/**")
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Assistants/**")
         .and().authorizeRequests()
-        .antMatchers(HttpMethod.GET, "/OpenAI/**").access("hasRole('ADMIN')")
+        .antMatchers(HttpMethod.GET, "/Assistants/**").access("hasRole('ADMIN')")
+        .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.
+        anonymous().disable()
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Audio/**")
+        .and().authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/Audio/**").access("hasRole('ADMIN')")
+        .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.
+        anonymous().disable()
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Chat/**")
+        .and().authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/Chat/**").access("hasRole('ADMIN')")
+        .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.
+        anonymous().disable()
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Completions/**")
+        .and().authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/Completions/**").access("hasRole('ADMIN')")
+        .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.
+        anonymous().disable()
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Embeddings/**")
+        .and().authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/Embeddings/**").access("hasRole('ADMIN')")
+        .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.
+        anonymous().disable()
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Fine-tuning/**")
+        .and().authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/Fine-tuning/**").access("hasRole('ADMIN')")
+        .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.
+        anonymous().disable()
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Files/**")
+        .and().authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/Files/**").access("hasRole('ADMIN')")
+        .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.
+        anonymous().disable()
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Images/**")
+        .and().authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/Images/**").access("hasRole('ADMIN')")
+        .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.
+        anonymous().disable()
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Models/**")
+        .and().authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/Models/**").access("hasRole('ADMIN')")
+        .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.
+        anonymous().disable()
+        .requestMatchers().antMatchers(HttpMethod.GET, "/Moderations/**")
+        .and().authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/Moderations/**").access("hasRole('ADMIN')")
         .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 

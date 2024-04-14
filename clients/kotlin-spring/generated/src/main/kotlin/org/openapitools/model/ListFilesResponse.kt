@@ -2,6 +2,7 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.OpenAIFile
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -16,18 +17,27 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;object&#x60; 
  * @param &#x60;data&#x60; 
+ * @param &#x60;object&#x60; 
  */
 data class ListFilesResponse(
 
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("object", required = true) val `object`: kotlin.String,
-
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<OpenAIFile>
+    @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<OpenAIFile>,
+
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("object", required = true) val `object`: ListFilesResponse.`Object`
 ) {
+
+    /**
+    * 
+    * Values: list
+    */
+    enum class `Object`(val value: kotlin.String) {
+
+        @JsonProperty("list") list("list")
+    }
 
 }
 

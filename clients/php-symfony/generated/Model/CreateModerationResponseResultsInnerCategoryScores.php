@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,6 +37,8 @@ use JMS\Serializer\Annotation\SerializedName;
 /**
  * Class representing the CreateModerationResponseResultsInnerCategoryScores model.
  *
+ * A list of the categories along with their scores as predicted by model.
+ *
  * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
@@ -44,6 +46,8 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateModerationResponseResultsInnerCategoryScores 
 {
         /**
+     * The score for the category &#39;hate&#39;.
+     *
      * @var float|null
      * @SerializedName("hate")
      * @Assert\NotNull()
@@ -53,6 +57,8 @@ class CreateModerationResponseResultsInnerCategoryScores
     protected ?float $hate = null;
 
     /**
+     * The score for the category &#39;hate/threatening&#39;.
+     *
      * @var float|null
      * @SerializedName("hate/threatening")
      * @Assert\NotNull()
@@ -62,6 +68,30 @@ class CreateModerationResponseResultsInnerCategoryScores
     protected ?float $hateThreatening = null;
 
     /**
+     * The score for the category &#39;harassment&#39;.
+     *
+     * @var float|null
+     * @SerializedName("harassment")
+     * @Assert\NotNull()
+     * @Assert\Type("float")
+     * @Type("float")
+     */
+    protected ?float $harassment = null;
+
+    /**
+     * The score for the category &#39;harassment/threatening&#39;.
+     *
+     * @var float|null
+     * @SerializedName("harassment/threatening")
+     * @Assert\NotNull()
+     * @Assert\Type("float")
+     * @Type("float")
+     */
+    protected ?float $harassmentThreatening = null;
+
+    /**
+     * The score for the category &#39;self-harm&#39;.
+     *
      * @var float|null
      * @SerializedName("self-harm")
      * @Assert\NotNull()
@@ -71,6 +101,30 @@ class CreateModerationResponseResultsInnerCategoryScores
     protected ?float $selfHarm = null;
 
     /**
+     * The score for the category &#39;self-harm/intent&#39;.
+     *
+     * @var float|null
+     * @SerializedName("self-harm/intent")
+     * @Assert\NotNull()
+     * @Assert\Type("float")
+     * @Type("float")
+     */
+    protected ?float $selfHarmIntent = null;
+
+    /**
+     * The score for the category &#39;self-harm/instructions&#39;.
+     *
+     * @var float|null
+     * @SerializedName("self-harm/instructions")
+     * @Assert\NotNull()
+     * @Assert\Type("float")
+     * @Type("float")
+     */
+    protected ?float $selfHarmInstructions = null;
+
+    /**
+     * The score for the category &#39;sexual&#39;.
+     *
      * @var float|null
      * @SerializedName("sexual")
      * @Assert\NotNull()
@@ -80,6 +134,8 @@ class CreateModerationResponseResultsInnerCategoryScores
     protected ?float $sexual = null;
 
     /**
+     * The score for the category &#39;sexual/minors&#39;.
+     *
      * @var float|null
      * @SerializedName("sexual/minors")
      * @Assert\NotNull()
@@ -89,6 +145,8 @@ class CreateModerationResponseResultsInnerCategoryScores
     protected ?float $sexualMinors = null;
 
     /**
+     * The score for the category &#39;violence&#39;.
+     *
      * @var float|null
      * @SerializedName("violence")
      * @Assert\NotNull()
@@ -98,6 +156,8 @@ class CreateModerationResponseResultsInnerCategoryScores
     protected ?float $violence = null;
 
     /**
+     * The score for the category &#39;violence/graphic&#39;.
+     *
      * @var float|null
      * @SerializedName("violence/graphic")
      * @Assert\NotNull()
@@ -115,7 +175,11 @@ class CreateModerationResponseResultsInnerCategoryScores
         if (is_array($data)) {
             $this->hate = array_key_exists('hate', $data) ? $data['hate'] : $this->hate;
             $this->hateThreatening = array_key_exists('hateThreatening', $data) ? $data['hateThreatening'] : $this->hateThreatening;
+            $this->harassment = array_key_exists('harassment', $data) ? $data['harassment'] : $this->harassment;
+            $this->harassmentThreatening = array_key_exists('harassmentThreatening', $data) ? $data['harassmentThreatening'] : $this->harassmentThreatening;
             $this->selfHarm = array_key_exists('selfHarm', $data) ? $data['selfHarm'] : $this->selfHarm;
+            $this->selfHarmIntent = array_key_exists('selfHarmIntent', $data) ? $data['selfHarmIntent'] : $this->selfHarmIntent;
+            $this->selfHarmInstructions = array_key_exists('selfHarmInstructions', $data) ? $data['selfHarmInstructions'] : $this->selfHarmInstructions;
             $this->sexual = array_key_exists('sexual', $data) ? $data['sexual'] : $this->sexual;
             $this->sexualMinors = array_key_exists('sexualMinors', $data) ? $data['sexualMinors'] : $this->sexualMinors;
             $this->violence = array_key_exists('violence', $data) ? $data['violence'] : $this->violence;
@@ -138,7 +202,7 @@ class CreateModerationResponseResultsInnerCategoryScores
     /**
      * Sets hate.
      *
-     * @param float|null $hate
+     * @param float|null $hate  The score for the category 'hate'.
      *
      * @return $this
      */
@@ -164,13 +228,65 @@ class CreateModerationResponseResultsInnerCategoryScores
     /**
      * Sets hateThreatening.
      *
-     * @param float|null $hateThreatening
+     * @param float|null $hateThreatening  The score for the category 'hate/threatening'.
      *
      * @return $this
      */
     public function setHateThreatening(?float $hateThreatening): self
     {
         $this->hateThreatening = $hateThreatening;
+
+        return $this;
+    }
+
+    /**
+     * Gets harassment.
+     *
+     * @return float|null
+     */
+    public function getHarassment(): ?float
+    {
+        return $this->harassment;
+    }
+
+
+
+    /**
+     * Sets harassment.
+     *
+     * @param float|null $harassment  The score for the category 'harassment'.
+     *
+     * @return $this
+     */
+    public function setHarassment(?float $harassment): self
+    {
+        $this->harassment = $harassment;
+
+        return $this;
+    }
+
+    /**
+     * Gets harassmentThreatening.
+     *
+     * @return float|null
+     */
+    public function getHarassmentThreatening(): ?float
+    {
+        return $this->harassmentThreatening;
+    }
+
+
+
+    /**
+     * Sets harassmentThreatening.
+     *
+     * @param float|null $harassmentThreatening  The score for the category 'harassment/threatening'.
+     *
+     * @return $this
+     */
+    public function setHarassmentThreatening(?float $harassmentThreatening): self
+    {
+        $this->harassmentThreatening = $harassmentThreatening;
 
         return $this;
     }
@@ -190,13 +306,65 @@ class CreateModerationResponseResultsInnerCategoryScores
     /**
      * Sets selfHarm.
      *
-     * @param float|null $selfHarm
+     * @param float|null $selfHarm  The score for the category 'self-harm'.
      *
      * @return $this
      */
     public function setSelfHarm(?float $selfHarm): self
     {
         $this->selfHarm = $selfHarm;
+
+        return $this;
+    }
+
+    /**
+     * Gets selfHarmIntent.
+     *
+     * @return float|null
+     */
+    public function getSelfHarmIntent(): ?float
+    {
+        return $this->selfHarmIntent;
+    }
+
+
+
+    /**
+     * Sets selfHarmIntent.
+     *
+     * @param float|null $selfHarmIntent  The score for the category 'self-harm/intent'.
+     *
+     * @return $this
+     */
+    public function setSelfHarmIntent(?float $selfHarmIntent): self
+    {
+        $this->selfHarmIntent = $selfHarmIntent;
+
+        return $this;
+    }
+
+    /**
+     * Gets selfHarmInstructions.
+     *
+     * @return float|null
+     */
+    public function getSelfHarmInstructions(): ?float
+    {
+        return $this->selfHarmInstructions;
+    }
+
+
+
+    /**
+     * Sets selfHarmInstructions.
+     *
+     * @param float|null $selfHarmInstructions  The score for the category 'self-harm/instructions'.
+     *
+     * @return $this
+     */
+    public function setSelfHarmInstructions(?float $selfHarmInstructions): self
+    {
+        $this->selfHarmInstructions = $selfHarmInstructions;
 
         return $this;
     }
@@ -216,7 +384,7 @@ class CreateModerationResponseResultsInnerCategoryScores
     /**
      * Sets sexual.
      *
-     * @param float|null $sexual
+     * @param float|null $sexual  The score for the category 'sexual'.
      *
      * @return $this
      */
@@ -242,7 +410,7 @@ class CreateModerationResponseResultsInnerCategoryScores
     /**
      * Sets sexualMinors.
      *
-     * @param float|null $sexualMinors
+     * @param float|null $sexualMinors  The score for the category 'sexual/minors'.
      *
      * @return $this
      */
@@ -268,7 +436,7 @@ class CreateModerationResponseResultsInnerCategoryScores
     /**
      * Sets violence.
      *
-     * @param float|null $violence
+     * @param float|null $violence  The score for the category 'violence'.
      *
      * @return $this
      */
@@ -294,7 +462,7 @@ class CreateModerationResponseResultsInnerCategoryScores
     /**
      * Sets violenceGraphic.
      *
-     * @param float|null $violenceGraphic
+     * @param float|null $violenceGraphic  The score for the category 'violence/graphic'.
      *
      * @return $this
      */

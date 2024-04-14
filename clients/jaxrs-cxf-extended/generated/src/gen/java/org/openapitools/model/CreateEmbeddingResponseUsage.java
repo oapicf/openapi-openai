@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import io.swagger.annotations.ApiModel;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -9,15 +10,26 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+/**
+ * The usage information for the request.
+ */
+@ApiModel(description="The usage information for the request.")
+
 public class CreateEmbeddingResponseUsage  {
   
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The number of tokens used by the prompt.
+  */
+  @ApiModelProperty(required = true, value = "The number of tokens used by the prompt.")
   private Integer promptTokens;
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The total number of tokens used by the request.
+  */
+  @ApiModelProperty(required = true, value = "The total number of tokens used by the request.")
   private Integer totalTokens;
  /**
-  * Get promptTokens
+  * The number of tokens used by the prompt.
   * @return promptTokens
   */
   @JsonProperty("prompt_tokens")
@@ -42,7 +54,7 @@ public class CreateEmbeddingResponseUsage  {
   }
 
  /**
-  * Get totalTokens
+  * The total number of tokens used by the request.
   * @return totalTokens
   */
   @JsonProperty("total_tokens")

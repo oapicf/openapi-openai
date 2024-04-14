@@ -8,3 +8,12 @@ Name | Type | Description | Notes
 **data** | [**[Model]**](Model.md) |  | 
 
 
+
+## Enum: ObjectEnum
+
+
+* `list` (value: `"list"`)
+
+
+
+

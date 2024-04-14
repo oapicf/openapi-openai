@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,18 +13,18 @@
 import { RequestFile } from './models';
 
 export class CreateCompletionResponseChoicesInnerLogprobs {
-    'tokens'?: Array<string>;
-    'tokenLogprobs'?: Array<number>;
-    'topLogprobs'?: Array<object>;
     'textOffset'?: Array<number>;
+    'tokenLogprobs'?: Array<number>;
+    'tokens'?: Array<string>;
+    'topLogprobs'?: Array<{ [key: string]: number; }>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "tokens",
-            "baseName": "tokens",
-            "type": "Array<string>"
+            "name": "textOffset",
+            "baseName": "text_offset",
+            "type": "Array<number>"
         },
         {
             "name": "tokenLogprobs",
@@ -32,14 +32,14 @@ export class CreateCompletionResponseChoicesInnerLogprobs {
             "type": "Array<number>"
         },
         {
-            "name": "topLogprobs",
-            "baseName": "top_logprobs",
-            "type": "Array<object>"
+            "name": "tokens",
+            "baseName": "tokens",
+            "type": "Array<string>"
         },
         {
-            "name": "textOffset",
-            "baseName": "text_offset",
-            "type": "Array<number>"
+            "name": "topLogprobs",
+            "baseName": "top_logprobs",
+            "type": "Array<{ [key: string]: number; }>"
         }    ];
 
     static getAttributeTypeMap() {

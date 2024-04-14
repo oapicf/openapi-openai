@@ -3,7 +3,7 @@
 
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -22,13 +22,17 @@
 
 @interface OAIModel : OAIObject
 
-
+/* The model identifier, which can be referenced in the API endpoints. 
+ */
 @property(nonatomic) NSString* _id;
-
-@property(nonatomic) NSString* object;
-
+/* The Unix timestamp (in seconds) when the model was created. 
+ */
 @property(nonatomic) NSNumber* created;
-
+/* The object type, which is always \"model\". 
+ */
+@property(nonatomic) NSString* object;
+/* The organization that owns the model. 
+ */
 @property(nonatomic) NSString* ownedBy;
 
 @end

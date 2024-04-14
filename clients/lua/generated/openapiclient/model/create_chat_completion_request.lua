@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,22 +19,28 @@ local function cast_create_chat_completion_request(t)
 	return setmetatable(t, create_chat_completion_request_mt)
 end
 
-local function new_create_chat_completion_request(model, messages, functions, function_call, temperature, top_p, n, stream, stop, max_tokens, presence_penalty, frequency_penalty, logit_bias, user)
+local function new_create_chat_completion_request(messages, model, frequency_penalty, logit_bias, logprobs, top_logprobs, max_tokens, n, presence_penalty, response_format, seed, stop, stream, temperature, top_p, tools, tool_choice, user, function_call, functions)
 	return cast_create_chat_completion_request({
-		["model"] = model;
 		["messages"] = messages;
-		["functions"] = functions;
-		["function_call"] = function_call;
-		["temperature"] = temperature;
-		["top_p"] = top_p;
-		["n"] = n;
-		["stream"] = stream;
-		["stop"] = stop;
-		["max_tokens"] = max_tokens;
-		["presence_penalty"] = presence_penalty;
+		["model"] = model;
 		["frequency_penalty"] = frequency_penalty;
 		["logit_bias"] = logit_bias;
+		["logprobs"] = logprobs;
+		["top_logprobs"] = top_logprobs;
+		["max_tokens"] = max_tokens;
+		["n"] = n;
+		["presence_penalty"] = presence_penalty;
+		["response_format"] = response_format;
+		["seed"] = seed;
+		["stop"] = stop;
+		["stream"] = stream;
+		["temperature"] = temperature;
+		["top_p"] = top_p;
+		["tools"] = tools;
+		["tool_choice"] = tool_choice;
 		["user"] = user;
+		["function_call"] = function_call;
+		["functions"] = functions;
 	})
 end
 

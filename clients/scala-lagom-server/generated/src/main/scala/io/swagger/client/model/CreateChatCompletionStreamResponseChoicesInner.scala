@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,9 +14,11 @@ package io.swagger.client.model
 import play.api.libs.json._
 
 case class CreateChatCompletionStreamResponseChoicesInner (
-                  index: Option[Int],
-                  delta: Option[ChatCompletionStreamResponseDelta],
-                  finishReason:  Option[CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum.CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum]
+                  delta: ChatCompletionStreamResponseDelta,
+                  logprobs: Option[CreateChatCompletionResponseChoicesInnerLogprobs],
+                  finishReason:  Option[CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum.CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum],
+            /* The index of the choice in the list of choices. */
+                  index: Int
 )
 
 object CreateChatCompletionStreamResponseChoicesInner {
@@ -24,7 +26,7 @@ implicit val format: Format[CreateChatCompletionStreamResponseChoicesInner] = Js
 }
 
 object CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum extends Enumeration {
-  val   stop, length, function_call = Value
+  val   stop, length, tool_calls, content_filter, function_call = Value
   type CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = Value
   implicit val format: Format[Value] = Format(Reads.enumNameReads(this), Writes.enumNameWrites[CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum.type])
 }

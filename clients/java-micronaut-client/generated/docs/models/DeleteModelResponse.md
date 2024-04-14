@@ -9,8 +9,8 @@ The class is defined in **[DeleteModelResponse.java](../../src/main/java/org/ope
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | `String` |  | 
-**_object** | `String` |  | 
 **deleted** | `Boolean` |  | 
+**_object** | `String` |  | 
 
 
 

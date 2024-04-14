@@ -17,16 +17,24 @@ typedef struct list_models_response_t list_models_response_t;
 
 #include "model.h"
 
+// Enum OBJECT for list_models_response
+
+typedef enum  { openai_api_list_models_response_OBJECT_NULL = 0, openai_api_list_models_response_OBJECT_list } openai_api_list_models_response_OBJECT_e;
+
+char* list_models_response_object_ToString(openai_api_list_models_response_OBJECT_e object);
+
+openai_api_list_models_response_OBJECT_e list_models_response_object_FromString(char* object);
+
 
 
 typedef struct list_models_response_t {
-    char *object; // string
+    openai_api_list_models_response_OBJECT_e object; //enum
     list_t *data; //nonprimitive container
 
 } list_models_response_t;
 
 list_models_response_t *list_models_response_create(
-    char *object,
+    openai_api_list_models_response_OBJECT_e object,
     list_t *data
 );
 

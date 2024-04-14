@@ -7,8 +7,10 @@
 #' @title CreateEmbeddingRequest
 #' @description CreateEmbeddingRequest Class
 #' @format An \code{R6Class} generator object
-#' @field model  \link{CreateEmbeddingRequestModel}
 #' @field input  \link{CreateEmbeddingRequestInput}
+#' @field model  \link{CreateEmbeddingRequestModel}
+#' @field encoding_format The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/). character [optional]
+#' @field dimensions The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. integer [optional]
 #' @field user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -16,27 +18,46 @@
 CreateEmbeddingRequest <- R6::R6Class(
   "CreateEmbeddingRequest",
   public = list(
-    `model` = NULL,
     `input` = NULL,
+    `model` = NULL,
+    `encoding_format` = NULL,
+    `dimensions` = NULL,
     `user` = NULL,
     #' Initialize a new CreateEmbeddingRequest class.
     #'
     #' @description
     #' Initialize a new CreateEmbeddingRequest class.
     #'
-    #' @param model model
     #' @param input input
+    #' @param model model
+    #' @param encoding_format The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).. Default to "float".
+    #' @param dimensions The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.
     #' @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`model`, `input`, `user` = NULL, ...) {
+    initialize = function(`input`, `model`, `encoding_format` = "float", `dimensions` = NULL, `user` = NULL, ...) {
+      if (!missing(`input`)) {
+        stopifnot(R6::is.R6(`input`))
+        self$`input` <- `input`
+      }
       if (!missing(`model`)) {
         stopifnot(R6::is.R6(`model`))
         self$`model` <- `model`
       }
-      if (!missing(`input`)) {
-        stopifnot(R6::is.R6(`input`))
-        self$`input` <- `input`
+      if (!is.null(`encoding_format`)) {
+        if (!(`encoding_format` %in% c("float", "base64"))) {
+          stop(paste("Error! \"", `encoding_format`, "\" cannot be assigned to `encoding_format`. Must be \"float\", \"base64\".", sep = ""))
+        }
+        if (!(is.character(`encoding_format`) && length(`encoding_format`) == 1)) {
+          stop(paste("Error! Invalid data for `encoding_format`. Must be a string:", `encoding_format`))
+        }
+        self$`encoding_format` <- `encoding_format`
+      }
+      if (!is.null(`dimensions`)) {
+        if (!(is.numeric(`dimensions`) && length(`dimensions`) == 1)) {
+          stop(paste("Error! Invalid data for `dimensions`. Must be an integer:", `dimensions`))
+        }
+        self$`dimensions` <- `dimensions`
       }
       if (!is.null(`user`)) {
         if (!(is.character(`user`) && length(`user`) == 1)) {
@@ -54,13 +75,21 @@ CreateEmbeddingRequest <- R6::R6Class(
     #' @export
     toJSON = function() {
       CreateEmbeddingRequestObject <- list()
+      if (!is.null(self$`input`)) {
+        CreateEmbeddingRequestObject[["input"]] <-
+          self$`input`$toJSON()
+      }
       if (!is.null(self$`model`)) {
         CreateEmbeddingRequestObject[["model"]] <-
           self$`model`$toJSON()
       }
-      if (!is.null(self$`input`)) {
-        CreateEmbeddingRequestObject[["input"]] <-
-          self$`input`$toJSON()
+      if (!is.null(self$`encoding_format`)) {
+        CreateEmbeddingRequestObject[["encoding_format"]] <-
+          self$`encoding_format`
+      }
+      if (!is.null(self$`dimensions`)) {
+        CreateEmbeddingRequestObject[["dimensions"]] <-
+          self$`dimensions`
       }
       if (!is.null(self$`user`)) {
         CreateEmbeddingRequestObject[["user"]] <-
@@ -78,15 +107,24 @@ CreateEmbeddingRequest <- R6::R6Class(
     #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`input`)) {
+        `input_object` <- CreateEmbeddingRequestInput$new()
+        `input_object`$fromJSON(jsonlite::toJSON(this_object$`input`, auto_unbox = TRUE, digits = NA))
+        self$`input` <- `input_object`
+      }
       if (!is.null(this_object$`model`)) {
         `model_object` <- CreateEmbeddingRequestModel$new()
         `model_object`$fromJSON(jsonlite::toJSON(this_object$`model`, auto_unbox = TRUE, digits = NA))
         self$`model` <- `model_object`
       }
-      if (!is.null(this_object$`input`)) {
-        `input_object` <- CreateEmbeddingRequestInput$new()
-        `input_object`$fromJSON(jsonlite::toJSON(this_object$`input`, auto_unbox = TRUE, digits = NA))
-        self$`input` <- `input_object`
+      if (!is.null(this_object$`encoding_format`)) {
+        if (!is.null(this_object$`encoding_format`) && !(this_object$`encoding_format` %in% c("float", "base64"))) {
+          stop(paste("Error! \"", this_object$`encoding_format`, "\" cannot be assigned to `encoding_format`. Must be \"float\", \"base64\".", sep = ""))
+        }
+        self$`encoding_format` <- this_object$`encoding_format`
+      }
+      if (!is.null(this_object$`dimensions`)) {
+        self$`dimensions` <- this_object$`dimensions`
       }
       if (!is.null(this_object$`user`)) {
         self$`user` <- this_object$`user`
@@ -102,6 +140,14 @@ CreateEmbeddingRequest <- R6::R6Class(
     #' @export
     toJSONString = function() {
       jsoncontent <- c(
+        if (!is.null(self$`input`)) {
+          sprintf(
+          '"input":
+          %s
+          ',
+          jsonlite::toJSON(self$`input`$toJSON(), auto_unbox = TRUE, digits = NA)
+          )
+        },
         if (!is.null(self$`model`)) {
           sprintf(
           '"model":
@@ -110,12 +156,20 @@ CreateEmbeddingRequest <- R6::R6Class(
           jsonlite::toJSON(self$`model`$toJSON(), auto_unbox = TRUE, digits = NA)
           )
         },
-        if (!is.null(self$`input`)) {
+        if (!is.null(self$`encoding_format`)) {
           sprintf(
-          '"input":
-          %s
-          ',
-          jsonlite::toJSON(self$`input`$toJSON(), auto_unbox = TRUE, digits = NA)
+          '"encoding_format":
+            "%s"
+                    ',
+          self$`encoding_format`
+          )
+        },
+        if (!is.null(self$`dimensions`)) {
+          sprintf(
+          '"dimensions":
+            %d
+                    ',
+          self$`dimensions`
           )
         },
         if (!is.null(self$`user`)) {
@@ -140,8 +194,13 @@ CreateEmbeddingRequest <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`model` <- CreateEmbeddingRequestModel$new()$fromJSON(jsonlite::toJSON(this_object$`model`, auto_unbox = TRUE, digits = NA))
       self$`input` <- CreateEmbeddingRequestInput$new()$fromJSON(jsonlite::toJSON(this_object$`input`, auto_unbox = TRUE, digits = NA))
+      self$`model` <- CreateEmbeddingRequestModel$new()$fromJSON(jsonlite::toJSON(this_object$`model`, auto_unbox = TRUE, digits = NA))
+      if (!is.null(this_object$`encoding_format`) && !(this_object$`encoding_format` %in% c("float", "base64"))) {
+        stop(paste("Error! \"", this_object$`encoding_format`, "\" cannot be assigned to `encoding_format`. Must be \"float\", \"base64\".", sep = ""))
+      }
+      self$`encoding_format` <- this_object$`encoding_format`
+      self$`dimensions` <- this_object$`dimensions`
       self$`user` <- this_object$`user`
       self
     },
@@ -154,17 +213,17 @@ CreateEmbeddingRequest <- R6::R6Class(
     #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
-      # check the required field `model`
-      if (!is.null(input_json$`model`)) {
-        stopifnot(R6::is.R6(input_json$`model`))
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for CreateEmbeddingRequest: the required field `model` is missing."))
-      }
       # check the required field `input`
       if (!is.null(input_json$`input`)) {
         stopifnot(R6::is.R6(input_json$`input`))
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateEmbeddingRequest: the required field `input` is missing."))
+      }
+      # check the required field `model`
+      if (!is.null(input_json$`model`)) {
+        stopifnot(R6::is.R6(input_json$`model`))
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateEmbeddingRequest: the required field `model` is missing."))
       }
     },
     #' To string (JSON format)
@@ -185,13 +244,17 @@ CreateEmbeddingRequest <- R6::R6Class(
     #' @return true if the values in all fields are valid.
     #' @export
     isValid = function() {
+      # check if the required `input` is null
+      if (is.null(self$`input`)) {
+        return(FALSE)
+      }
+
       # check if the required `model` is null
       if (is.null(self$`model`)) {
         return(FALSE)
       }
 
-      # check if the required `input` is null
-      if (is.null(self$`input`)) {
+      if (self$`dimensions` < 1) {
         return(FALSE)
       }
 
@@ -206,14 +269,18 @@ CreateEmbeddingRequest <- R6::R6Class(
     #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
+      # check if the required `input` is null
+      if (is.null(self$`input`)) {
+        invalid_fields["input"] <- "Non-nullable required field `input` cannot be null."
+      }
+
       # check if the required `model` is null
       if (is.null(self$`model`)) {
         invalid_fields["model"] <- "Non-nullable required field `model` cannot be null."
       }
 
-      # check if the required `input` is null
-      if (is.null(self$`input`)) {
-        invalid_fields["input"] <- "Non-nullable required field `input` cannot be null."
+      if (self$`dimensions` < 1) {
+        invalid_fields["dimensions"] <- "Invalid value for `dimensions`, must be bigger than or equal to 1."
       }
 
       invalid_fields

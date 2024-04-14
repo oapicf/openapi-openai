@@ -8,7 +8,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}flagged`,
-                label: `[${labelPrefix}flagged]`,
+                label: `Whether any of the below categories are flagged. - [${labelPrefix}flagged]`,
                 required: true,
                 type: 'boolean',
             },

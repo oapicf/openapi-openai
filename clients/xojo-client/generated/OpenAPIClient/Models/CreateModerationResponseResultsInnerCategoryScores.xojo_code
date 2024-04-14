@@ -2,36 +2,89 @@
 Protected Class CreateModerationResponseResultsInnerCategoryScores
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'hate'.
+		#tag EndNote
 		hate As Double
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'hate/threatening'.
+		#tag EndNote
 		hate_threatening As Double
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'harassment'.
+		#tag EndNote
+		harassment As Double
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'harassment/threatening'.
+		#tag EndNote
+		harassment_threatening As Double
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'self-harm'.
+		#tag EndNote
 		self_harm As Double
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'self-harm/intent'.
+		#tag EndNote
+		self_harm_intent As Double
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'self-harm/instructions'.
+		#tag EndNote
+		self_harm_instructions As Double
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'sexual'.
+		#tag EndNote
 		sexual As Double
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'sexual/minors'.
+		#tag EndNote
 		sexual_minors As Double
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'violence'.
+		#tag EndNote
 		violence As Double
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'violence/graphic'.
+		#tag EndNote
 		violence_graphic As Double
 	#tag EndProperty
 
@@ -89,7 +142,39 @@ Protected Class CreateModerationResponseResultsInnerCategoryScores
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="harassment"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="harassment_threatening"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="self_harm"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="self_harm_intent"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="self_harm_instructions"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

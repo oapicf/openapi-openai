@@ -16,7 +16,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class FilesFileIdContent
 {
     /**
-     * Returns the contents of the specified file
+     * Returns the contents of the specified file.
      * @PHA\Get()
      * TODO check if producer is valid, if it has correct priority and if it can be moved to class annotation
      * @PHA\Producer(name=PHProducer\Transfer::class, mediaType="application/json")

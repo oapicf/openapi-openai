@@ -16,6 +16,7 @@ void main() {
   // final instance = CreateModerationResponseResultsInner();
 
   group('test CreateModerationResponseResultsInner', () {
+    // Whether any of the below categories are flagged.
     // bool flagged
     test('to test the property `flagged`', () async {
       // TODO

@@ -7,37 +7,37 @@
 #' @title Error
 #' @description Error Class
 #' @format An \code{R6Class} generator object
-#' @field type  character
+#' @field code  character
 #' @field message  character
 #' @field param  character
-#' @field code  character
+#' @field type  character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 Error <- R6::R6Class(
   "Error",
   public = list(
-    `type` = NULL,
+    `code` = NULL,
     `message` = NULL,
     `param` = NULL,
-    `code` = NULL,
+    `type` = NULL,
     #' Initialize a new Error class.
     #'
     #' @description
     #' Initialize a new Error class.
     #'
-    #' @param type type
+    #' @param code code
     #' @param message message
     #' @param param param
-    #' @param code code
+    #' @param type type
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`type`, `message`, `param`, `code`, ...) {
-      if (!missing(`type`)) {
-        if (!(is.character(`type`) && length(`type`) == 1)) {
-          stop(paste("Error! Invalid data for `type`. Must be a string:", `type`))
+    initialize = function(`code`, `message`, `param`, `type`, ...) {
+      if (!missing(`code`)) {
+        if (!(is.character(`code`) && length(`code`) == 1)) {
+          stop(paste("Error! Invalid data for `code`. Must be a string:", `code`))
         }
-        self$`type` <- `type`
+        self$`code` <- `code`
       }
       if (!missing(`message`)) {
         if (!(is.character(`message`) && length(`message`) == 1)) {
@@ -51,11 +51,11 @@ Error <- R6::R6Class(
         }
         self$`param` <- `param`
       }
-      if (!missing(`code`)) {
-        if (!(is.character(`code`) && length(`code`) == 1)) {
-          stop(paste("Error! Invalid data for `code`. Must be a string:", `code`))
+      if (!missing(`type`)) {
+        if (!(is.character(`type`) && length(`type`) == 1)) {
+          stop(paste("Error! Invalid data for `type`. Must be a string:", `type`))
         }
-        self$`code` <- `code`
+        self$`type` <- `type`
       }
     },
     #' To JSON string
@@ -67,9 +67,9 @@ Error <- R6::R6Class(
     #' @export
     toJSON = function() {
       ErrorObject <- list()
-      if (!is.null(self$`type`)) {
-        ErrorObject[["type"]] <-
-          self$`type`
+      if (!is.null(self$`code`)) {
+        ErrorObject[["code"]] <-
+          self$`code`
       }
       if (!is.null(self$`message`)) {
         ErrorObject[["message"]] <-
@@ -79,9 +79,9 @@ Error <- R6::R6Class(
         ErrorObject[["param"]] <-
           self$`param`
       }
-      if (!is.null(self$`code`)) {
-        ErrorObject[["code"]] <-
-          self$`code`
+      if (!is.null(self$`type`)) {
+        ErrorObject[["type"]] <-
+          self$`type`
       }
       ErrorObject
     },
@@ -95,8 +95,8 @@ Error <- R6::R6Class(
     #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`type`)) {
-        self$`type` <- this_object$`type`
+      if (!is.null(this_object$`code`)) {
+        self$`code` <- this_object$`code`
       }
       if (!is.null(this_object$`message`)) {
         self$`message` <- this_object$`message`
@@ -104,8 +104,8 @@ Error <- R6::R6Class(
       if (!is.null(this_object$`param`)) {
         self$`param` <- this_object$`param`
       }
-      if (!is.null(this_object$`code`)) {
-        self$`code` <- this_object$`code`
+      if (!is.null(this_object$`type`)) {
+        self$`type` <- this_object$`type`
       }
       self
     },
@@ -118,12 +118,12 @@ Error <- R6::R6Class(
     #' @export
     toJSONString = function() {
       jsoncontent <- c(
-        if (!is.null(self$`type`)) {
+        if (!is.null(self$`code`)) {
           sprintf(
-          '"type":
+          '"code":
             "%s"
                     ',
-          self$`type`
+          self$`code`
           )
         },
         if (!is.null(self$`message`)) {
@@ -142,12 +142,12 @@ Error <- R6::R6Class(
           self$`param`
           )
         },
-        if (!is.null(self$`code`)) {
+        if (!is.null(self$`type`)) {
           sprintf(
-          '"code":
+          '"type":
             "%s"
                     ',
-          self$`code`
+          self$`type`
           )
         }
       )
@@ -164,10 +164,10 @@ Error <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`type` <- this_object$`type`
+      self$`code` <- this_object$`code`
       self$`message` <- this_object$`message`
       self$`param` <- this_object$`param`
-      self$`code` <- this_object$`code`
+      self$`type` <- this_object$`type`
       self
     },
     #' Validate JSON input with respect to Error
@@ -179,13 +179,13 @@ Error <- R6::R6Class(
     #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
-      # check the required field `type`
-      if (!is.null(input_json$`type`)) {
-        if (!(is.character(input_json$`type`) && length(input_json$`type`) == 1)) {
-          stop(paste("Error! Invalid data for `type`. Must be a string:", input_json$`type`))
+      # check the required field `code`
+      if (!is.null(input_json$`code`)) {
+        if (!(is.character(input_json$`code`) && length(input_json$`code`) == 1)) {
+          stop(paste("Error! Invalid data for `code`. Must be a string:", input_json$`code`))
         }
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for Error: the required field `type` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for Error: the required field `code` is missing."))
       }
       # check the required field `message`
       if (!is.null(input_json$`message`)) {
@@ -203,13 +203,13 @@ Error <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for Error: the required field `param` is missing."))
       }
-      # check the required field `code`
-      if (!is.null(input_json$`code`)) {
-        if (!(is.character(input_json$`code`) && length(input_json$`code`) == 1)) {
-          stop(paste("Error! Invalid data for `code`. Must be a string:", input_json$`code`))
+      # check the required field `type`
+      if (!is.null(input_json$`type`)) {
+        if (!(is.character(input_json$`type`) && length(input_json$`type`) == 1)) {
+          stop(paste("Error! Invalid data for `type`. Must be a string:", input_json$`type`))
         }
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for Error: the required field `code` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for Error: the required field `type` is missing."))
       }
     },
     #' To string (JSON format)
@@ -230,13 +230,13 @@ Error <- R6::R6Class(
     #' @return true if the values in all fields are valid.
     #' @export
     isValid = function() {
-      # check if the required `type` is null
-      if (is.null(self$`type`)) {
+      # check if the required `message` is null
+      if (is.null(self$`message`)) {
         return(FALSE)
       }
 
-      # check if the required `message` is null
-      if (is.null(self$`message`)) {
+      # check if the required `type` is null
+      if (is.null(self$`type`)) {
         return(FALSE)
       }
 
@@ -251,14 +251,14 @@ Error <- R6::R6Class(
     #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
-      # check if the required `type` is null
-      if (is.null(self$`type`)) {
-        invalid_fields["type"] <- "Non-nullable required field `type` cannot be null."
-      }
-
       # check if the required `message` is null
       if (is.null(self$`message`)) {
         invalid_fields["message"] <- "Non-nullable required field `message` cannot be null."
+      }
+
+      # check if the required `type` is null
+      if (is.null(self$`type`)) {
+        invalid_fields["type"] <- "Non-nullable required field `type` cannot be null."
       }
 
       invalid_fields

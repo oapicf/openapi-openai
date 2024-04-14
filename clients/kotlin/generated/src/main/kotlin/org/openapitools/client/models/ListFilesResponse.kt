@@ -23,18 +23,29 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param `object` 
  * @param `data` 
+ * @param `object` 
  */
 
 
 data class ListFilesResponse (
 
-    @Json(name = "object")
-    val `object`: kotlin.String,
-
     @Json(name = "data")
-    val `data`: kotlin.collections.List<OpenAIFile>
+    val `data`: kotlin.collections.List<OpenAIFile>,
 
-)
+    @Json(name = "object")
+    val `object`: ListFilesResponse.`Object`
+
+) {
+
+    /**
+     * 
+     *
+     * Values: list
+     */
+    @JsonClass(generateAdapter = false)
+    enum class `Object`(val value: kotlin.String) {
+        @Json(name = "list") list("list");
+    }
+}
 

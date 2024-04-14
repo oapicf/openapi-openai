@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -16,8 +16,8 @@ Please update as you see appropriate
 describe("error", function()
   local openapiclient_error = require "openapiclient.model.error"
 
-  -- unit tests for the property 'type'
-  describe("property type test", function()
+  -- unit tests for the property 'code'
+  describe("property code test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
@@ -37,8 +37,8 @@ describe("error", function()
     end)
   end)
 
-  -- unit tests for the property 'code'
-  describe("property code test", function()
+  -- unit tests for the property 'type'
+  describe("property type test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

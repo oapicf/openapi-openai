@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -63,21 +63,44 @@ ptree CreateChatCompletionResponse_choices_inner::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
+	pt.put("finish_reason", m_Finish_reason);
 	pt.put("index", m_Index);
 	pt.add_child("message", m_Message.toPropertyTree());
-	pt.put("finish_reason", m_Finish_reason);
+	pt.add_child("logprobs", m_Logprobs.toPropertyTree());
 	return pt;
 }
 
 void CreateChatCompletionResponse_choices_inner::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
+	setFinishReason(pt.get("finish_reason", ""));
 	m_Index = pt.get("index", 0);
 	if (pt.get_child_optional("message")) {
         m_Message = fromPt<ChatCompletionResponseMessage>(pt.get_child("message"));
 	}
-	setFinishReason(pt.get("finish_reason", ""));
+	if (pt.get_child_optional("logprobs")) {
+        m_Logprobs = fromPt<CreateChatCompletionResponse_choices_inner_logprobs>(pt.get_child("logprobs"));
+	}
 }
+
+std::string CreateChatCompletionResponse_choices_inner::getFinishReason() const
+{
+    return m_Finish_reason;
+}
+
+void CreateChatCompletionResponse_choices_inner::setFinishReason(std::string value)
+{
+    static const std::array<std::string, 5> allowedValues = {
+        "stop", "length", "tool_calls", "content_filter", "function_call"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Finish_reason = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
+}
+
 
 int32_t CreateChatCompletionResponse_choices_inner::getIndex() const
 {
@@ -101,22 +124,14 @@ void CreateChatCompletionResponse_choices_inner::setMessage(ChatCompletionRespon
 }
 
 
-std::string CreateChatCompletionResponse_choices_inner::getFinishReason() const
+CreateChatCompletionResponse_choices_inner_logprobs CreateChatCompletionResponse_choices_inner::getLogprobs() const
 {
-    return m_Finish_reason;
+    return m_Logprobs;
 }
 
-void CreateChatCompletionResponse_choices_inner::setFinishReason(std::string value)
+void CreateChatCompletionResponse_choices_inner::setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs value)
 {
-    static const std::array<std::string, 3> allowedValues = {
-        "stop", "length", "function_call"
-    };
-
-    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
-		m_Finish_reason = value;
-	} else {
-		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
-	}
+    m_Logprobs = value;
 }
 
 

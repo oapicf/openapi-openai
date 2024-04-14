@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,9 +13,9 @@ package org.openapitools.client.model
 
 
 case class CreateCompletionResponseChoicesInnerLogprobs(
-  tokens: Option[Seq[String]] = None,
+  textOffset: Option[Seq[Int]] = None,
   tokenLogprobs: Option[Seq[Double]] = None,
-  topLogprobs: Option[Seq[Any]] = None,
-  textOffset: Option[Seq[Int]] = None
+  tokens: Option[Seq[String]] = None,
+  topLogprobs: Option[Seq[Map[String, Double]]] = None
 )
 

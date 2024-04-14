@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tokens** | **List[str]** |  | [optional] 
-**token_logprobs** | **List[float]** |  | [optional] 
-**top_logprobs** | **List[object]** |  | [optional] 
 **text_offset** | **List[int]** |  | [optional] 
+**token_logprobs** | **List[float]** |  | [optional] 
+**tokens** | **List[str]** |  | [optional] 
+**top_logprobs** | **List[Dict[str, float]]** |  | [optional] 
 
 ## Example
 

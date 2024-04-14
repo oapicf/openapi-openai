@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,10 +21,17 @@ public class OASDeleteFileResponse implements OAS.MappedProperties {
     public String id { get; set; }
 
     /**
+     * Gets or Sets r_object
+     */
+    public enum RObjectEnum {
+        FILE
+    }
+
+    /**
      * Get r_object
      * @return r_object
      */
-    public String r_object { get; set; }
+    public RObjectEnum r_object { get; set; }
 
     /**
      * Get deleted
@@ -43,7 +50,7 @@ public class OASDeleteFileResponse implements OAS.MappedProperties {
     public static OASDeleteFileResponse getExample() {
         OASDeleteFileResponse deleteFileResponse = new OASDeleteFileResponse();
           deleteFileResponse.id = '';
-          deleteFileResponse.r_object = '';
+          deleteFileResponse.r_object = RObjectEnum.FILE;
           deleteFileResponse.deleted = true;
         return deleteFileResponse;
     }

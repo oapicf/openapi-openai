@@ -1,24 +1,55 @@
 # OpenApiOpenAIClient::ChatCompletionRequestMessage
 
-## Properties
+## Class instance methods
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **role** | **String** | The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;. |  |
-| **content** | **String** | The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls. | [optional] |
-| **name** | **String** | The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters. | [optional] |
-| **function_call** | [**ChatCompletionRequestMessageFunctionCall**](ChatCompletionRequestMessageFunctionCall.md) |  | [optional] |
+### `openapi_one_of`
 
-## Example
+Returns the list of classes defined in oneOf.
+
+#### Example
 
 ```ruby
 require 'openapi_openai'
 
-instance = OpenApiOpenAIClient::ChatCompletionRequestMessage.new(
-  role: null,
-  content: null,
-  name: null,
-  function_call: null
-)
+OpenApiOpenAIClient::ChatCompletionRequestMessage.openapi_one_of
+# =>
+# [
+#   :'ChatCompletionRequestAssistantMessage',
+#   :'ChatCompletionRequestFunctionMessage',
+#   :'ChatCompletionRequestSystemMessage',
+#   :'ChatCompletionRequestToolMessage',
+#   :'ChatCompletionRequestUserMessage'
+# ]
 ```
+
+### build
+
+Find the appropriate object from the `openapi_one_of` list and casts the data into it.
+
+#### Example
+
+```ruby
+require 'openapi_openai'
+
+OpenApiOpenAIClient::ChatCompletionRequestMessage.build(data)
+# => #<ChatCompletionRequestAssistantMessage:0x00007fdd4aab02a0>
+
+OpenApiOpenAIClient::ChatCompletionRequestMessage.build(data_that_doesnt_match)
+# => nil
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| **data** | **Mixed** | data to be matched against the list of oneOf items |
+
+#### Return type
+
+- `ChatCompletionRequestAssistantMessage`
+- `ChatCompletionRequestFunctionMessage`
+- `ChatCompletionRequestSystemMessage`
+- `ChatCompletionRequestToolMessage`
+- `ChatCompletionRequestUserMessage`
+- `nil` (if no type matches)
 

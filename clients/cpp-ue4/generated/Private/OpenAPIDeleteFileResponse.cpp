@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -19,6 +19,56 @@
 
 namespace OpenAPI
 {
+
+inline FString ToString(const OpenAPIDeleteFileResponse::ObjectEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPIDeleteFileResponse::ObjectEnum::File:
+		return TEXT("file");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIDeleteFileResponse::ObjectEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPIDeleteFileResponse::EnumToString(const OpenAPIDeleteFileResponse::ObjectEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPIDeleteFileResponse::ObjectEnum& Value)
+{
+	static TMap<FString, OpenAPIDeleteFileResponse::ObjectEnum> StringToEnum = { 
+		{ TEXT("file"), OpenAPIDeleteFileResponse::ObjectEnum::File }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPIDeleteFileResponse::EnumFromString(const FString& EnumAsString, OpenAPIDeleteFileResponse::ObjectEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPIDeleteFileResponse::ObjectEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIDeleteFileResponse::ObjectEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
 
 void OpenAPIDeleteFileResponse::WriteJson(JsonWriter& Writer) const
 {

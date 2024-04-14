@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -36,14 +36,16 @@ class TestCreateEmbeddingRequest(unittest.TestCase):
         model = CreateEmbeddingRequest()
         if include_optional:
             return CreateEmbeddingRequest(
-                model = text-embedding-ada-002,
                 input = The quick brown fox jumped over the lazy dog,
+                model = text-embedding-3-small,
+                encoding_format = 'float',
+                dimensions = 1,
                 user = 'user-1234'
             )
         else:
             return CreateEmbeddingRequest(
-                model = text-embedding-ada-002,
                 input = The quick brown fox jumped over the lazy dog,
+                model = text-embedding-3-small,
         )
         """
 

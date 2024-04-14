@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -62,7 +62,6 @@ ptree CreateChatCompletionRequest::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.add_child("model", m_Model.toPropertyTree());
 	// generate tree for Messages
     tmp_node.clear();
 	if (!m_Messages.empty()) {
@@ -70,6 +69,35 @@ ptree CreateChatCompletionRequest::toPropertyTree() const
 		pt.add_child("messages", tmp_node);
 		tmp_node.clear();
 	}
+	pt.add_child("model", m_Model.toPropertyTree());
+	pt.put("frequency_penalty", m_Frequency_penalty);
+	// generate tree for Logit_bias
+    if (!m_Logit_bias.empty()) {
+        tmp_node = toPt(m_Logit_bias);
+        pt.add_child("logit_bias", tmp_node);
+    }
+    tmp_node.clear();
+	pt.put("logprobs", m_Logprobs);
+	pt.put("top_logprobs", m_Top_logprobs);
+	pt.put("max_tokens", m_Max_tokens);
+	pt.put("n", m_n);
+	pt.put("presence_penalty", m_Presence_penalty);
+	pt.add_child("response_format", m_Response_format.toPropertyTree());
+	pt.put("seed", m_Seed);
+	pt.add_child("stop", m_Stop.toPropertyTree());
+	pt.put("stream", m_Stream);
+	pt.put("temperature", m_Temperature);
+	pt.put("top_p", m_Top_p);
+	// generate tree for Tools
+    tmp_node.clear();
+	if (!m_Tools.empty()) {
+        tmp_node = toPt(m_Tools);
+		pt.add_child("tools", tmp_node);
+		tmp_node.clear();
+	}
+	pt.add_child("tool_choice", m_Tool_choice.toPropertyTree());
+	pt.put("user", m_User);
+	pt.add_child("function_call", m_Function_call.toPropertyTree());
 	// generate tree for Functions
     tmp_node.clear();
 	if (!m_Functions.empty()) {
@@ -77,59 +105,54 @@ ptree CreateChatCompletionRequest::toPropertyTree() const
 		pt.add_child("functions", tmp_node);
 		tmp_node.clear();
 	}
-	pt.add_child("function_call", m_Function_call.toPropertyTree());
-	pt.put("temperature", m_Temperature);
-	pt.put("top_p", m_Top_p);
-	pt.put("n", m_n);
-	pt.put("stream", m_Stream);
-	pt.add_child("stop", m_Stop.toPropertyTree());
-	pt.put("max_tokens", m_Max_tokens);
-	pt.put("presence_penalty", m_Presence_penalty);
-	pt.put("frequency_penalty", m_Frequency_penalty);
-	pt.put("user", m_User);
 	return pt;
 }
 
 void CreateChatCompletionRequest::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	if (pt.get_child_optional("model")) {
-        m_Model = fromPt<CreateChatCompletionRequest_model>(pt.get_child("model"));
-	}
 	// push all items of Messages into member
 	if (pt.get_child_optional("messages")) {
         m_Messages = fromPt<std::vector<ChatCompletionRequestMessage>>(pt.get_child("messages"));
+	}
+	if (pt.get_child_optional("model")) {
+        m_Model = fromPt<CreateChatCompletionRequest_model>(pt.get_child("model"));
+	}
+	m_Frequency_penalty = pt.get("frequency_penalty", 0);
+    if (pt.get_child_optional("logit_bias")) {
+        m_Logit_bias = fromPt<std::map<std::string, int32_t>>(pt.get_child("logit_bias"));
+    }
+	m_Logprobs = pt.get("logprobs", false);
+	m_Top_logprobs = pt.get("top_logprobs", 0);
+	m_Max_tokens = pt.get("max_tokens", 0);
+	m_n = pt.get("n", 1);
+	m_Presence_penalty = pt.get("presence_penalty", 0);
+	if (pt.get_child_optional("response_format")) {
+        m_Response_format = fromPt<CreateChatCompletionRequest_response_format>(pt.get_child("response_format"));
+	}
+	m_Seed = pt.get("seed", 0);
+	if (pt.get_child_optional("stop")) {
+        m_Stop = fromPt<CreateChatCompletionRequest_stop>(pt.get_child("stop"));
+	}
+	m_Stream = pt.get("stream", false);
+	m_Temperature = pt.get("temperature", 1);
+	m_Top_p = pt.get("top_p", 1);
+	// push all items of Tools into member
+	if (pt.get_child_optional("tools")) {
+        m_Tools = fromPt<std::vector<ChatCompletionTool>>(pt.get_child("tools"));
+	}
+	if (pt.get_child_optional("tool_choice")) {
+        m_Tool_choice = fromPt<ChatCompletionToolChoiceOption>(pt.get_child("tool_choice"));
+	}
+	m_User = pt.get("user", "");
+	if (pt.get_child_optional("function_call")) {
+        m_Function_call = fromPt<CreateChatCompletionRequest_function_call>(pt.get_child("function_call"));
 	}
 	// push all items of Functions into member
 	if (pt.get_child_optional("functions")) {
         m_Functions = fromPt<std::vector<ChatCompletionFunctions>>(pt.get_child("functions"));
 	}
-	if (pt.get_child_optional("function_call")) {
-        m_Function_call = fromPt<CreateChatCompletionRequest_function_call>(pt.get_child("function_call"));
-	}
-	m_Temperature = pt.get("temperature", 1);
-	m_Top_p = pt.get("top_p", 1);
-	m_n = pt.get("n", 1);
-	m_Stream = pt.get("stream", false);
-	if (pt.get_child_optional("stop")) {
-        m_Stop = fromPt<CreateChatCompletionRequest_stop>(pt.get_child("stop"));
-	}
-	m_Max_tokens = pt.get("max_tokens", 0);
-	m_Presence_penalty = pt.get("presence_penalty", 0);
-	m_Frequency_penalty = pt.get("frequency_penalty", 0);
-	m_User = pt.get("user", "");
 }
-
-CreateChatCompletionRequest_model CreateChatCompletionRequest::getModel() const
-{
-    return m_Model;
-}
-
-void CreateChatCompletionRequest::setModel(CreateChatCompletionRequest_model value)
-{
-    m_Model = value;
-}
-
 
 std::vector<ChatCompletionRequestMessage> CreateChatCompletionRequest::getMessages() const
 {
@@ -142,25 +165,135 @@ void CreateChatCompletionRequest::setMessages(std::vector<ChatCompletionRequestM
 }
 
 
-std::vector<ChatCompletionFunctions> CreateChatCompletionRequest::getFunctions() const
+CreateChatCompletionRequest_model CreateChatCompletionRequest::getModel() const
 {
-    return m_Functions;
+    return m_Model;
 }
 
-void CreateChatCompletionRequest::setFunctions(std::vector<ChatCompletionFunctions> value)
+void CreateChatCompletionRequest::setModel(CreateChatCompletionRequest_model value)
 {
-    m_Functions = value;
+    m_Model = value;
 }
 
 
-CreateChatCompletionRequest_function_call CreateChatCompletionRequest::getFunctionCall() const
+double CreateChatCompletionRequest::getFrequencyPenalty() const
 {
-    return m_Function_call;
+    return m_Frequency_penalty;
 }
 
-void CreateChatCompletionRequest::setFunctionCall(CreateChatCompletionRequest_function_call value)
+void CreateChatCompletionRequest::setFrequencyPenalty(double value)
 {
-    m_Function_call = value;
+    m_Frequency_penalty = value;
+}
+
+
+std::map<std::string, int32_t> CreateChatCompletionRequest::getLogitBias() const
+{
+    return m_Logit_bias;
+}
+
+void CreateChatCompletionRequest::setLogitBias(std::map<std::string, int32_t> value)
+{
+    m_Logit_bias = value;
+}
+
+
+bool CreateChatCompletionRequest::isLogprobs() const
+{
+    return m_Logprobs;
+}
+
+void CreateChatCompletionRequest::setLogprobs(bool value)
+{
+    m_Logprobs = value;
+}
+
+
+int32_t CreateChatCompletionRequest::getTopLogprobs() const
+{
+    return m_Top_logprobs;
+}
+
+void CreateChatCompletionRequest::setTopLogprobs(int32_t value)
+{
+    m_Top_logprobs = value;
+}
+
+
+int32_t CreateChatCompletionRequest::getMaxTokens() const
+{
+    return m_Max_tokens;
+}
+
+void CreateChatCompletionRequest::setMaxTokens(int32_t value)
+{
+    m_Max_tokens = value;
+}
+
+
+int32_t CreateChatCompletionRequest::getN() const
+{
+    return m_n;
+}
+
+void CreateChatCompletionRequest::setN(int32_t value)
+{
+    m_n = value;
+}
+
+
+double CreateChatCompletionRequest::getPresencePenalty() const
+{
+    return m_Presence_penalty;
+}
+
+void CreateChatCompletionRequest::setPresencePenalty(double value)
+{
+    m_Presence_penalty = value;
+}
+
+
+CreateChatCompletionRequest_response_format CreateChatCompletionRequest::getResponseFormat() const
+{
+    return m_Response_format;
+}
+
+void CreateChatCompletionRequest::setResponseFormat(CreateChatCompletionRequest_response_format value)
+{
+    m_Response_format = value;
+}
+
+
+int32_t CreateChatCompletionRequest::getSeed() const
+{
+    return m_Seed;
+}
+
+void CreateChatCompletionRequest::setSeed(int32_t value)
+{
+    m_Seed = value;
+}
+
+
+CreateChatCompletionRequest_stop CreateChatCompletionRequest::getStop() const
+{
+    return m_Stop;
+}
+
+void CreateChatCompletionRequest::setStop(CreateChatCompletionRequest_stop value)
+{
+    m_Stop = value;
+}
+
+
+bool CreateChatCompletionRequest::isStream() const
+{
+    return m_Stream;
+}
+
+void CreateChatCompletionRequest::setStream(bool value)
+{
+    m_Stream = value;
 }
 
 
@@ -186,80 +319,25 @@ void CreateChatCompletionRequest::setTopP(double value)
 }
 
 
-int32_t CreateChatCompletionRequest::getN() const
+std::vector<ChatCompletionTool> CreateChatCompletionRequest::getTools() const
 {
-    return m_n;
+    return m_Tools;
 }
 
-void CreateChatCompletionRequest::setN(int32_t value)
+void CreateChatCompletionRequest::setTools(std::vector<ChatCompletionTool> value)
 {
-    m_n = value;
-}
-
-
-bool CreateChatCompletionRequest::isStream() const
-{
-    return m_Stream;
-}
-
-void CreateChatCompletionRequest::setStream(bool value)
-{
-    m_Stream = value;
+    m_Tools = value;
 }
 
 
-CreateChatCompletionRequest_stop CreateChatCompletionRequest::getStop() const
+ChatCompletionToolChoiceOption CreateChatCompletionRequest::getToolChoice() const
 {
-    return m_Stop;
+    return m_Tool_choice;
 }
 
-void CreateChatCompletionRequest::setStop(CreateChatCompletionRequest_stop value)
+void CreateChatCompletionRequest::setToolChoice(ChatCompletionToolChoiceOption value)
 {
-    m_Stop = value;
-}
-
-
-int32_t CreateChatCompletionRequest::getMaxTokens() const
-{
-    return m_Max_tokens;
-}
-
-void CreateChatCompletionRequest::setMaxTokens(int32_t value)
-{
-    m_Max_tokens = value;
-}
-
-
-double CreateChatCompletionRequest::getPresencePenalty() const
-{
-    return m_Presence_penalty;
-}
-
-void CreateChatCompletionRequest::setPresencePenalty(double value)
-{
-    m_Presence_penalty = value;
-}
-
-
-double CreateChatCompletionRequest::getFrequencyPenalty() const
-{
-    return m_Frequency_penalty;
-}
-
-void CreateChatCompletionRequest::setFrequencyPenalty(double value)
-{
-    m_Frequency_penalty = value;
-}
-
-
-std::string CreateChatCompletionRequest::getLogitBias() const
-{
-    return m_Logit_bias;
-}
-
-void CreateChatCompletionRequest::setLogitBias(std::string value)
-{
-    m_Logit_bias = value;
+    m_Tool_choice = value;
 }
 
 
@@ -271,6 +349,28 @@ std::string CreateChatCompletionRequest::getUser() const
 void CreateChatCompletionRequest::setUser(std::string value)
 {
     m_User = value;
+}
+
+
+CreateChatCompletionRequest_function_call CreateChatCompletionRequest::getFunctionCall() const
+{
+    return m_Function_call;
+}
+
+void CreateChatCompletionRequest::setFunctionCall(CreateChatCompletionRequest_function_call value)
+{
+    m_Function_call = value;
+}
+
+
+std::vector<ChatCompletionFunctions> CreateChatCompletionRequest::getFunctions() const
+{
+    return m_Functions;
+}
+
+void CreateChatCompletionRequest::setFunctions(std::vector<ChatCompletionFunctions> value)
+{
+    m_Functions = value;
 }
 
 

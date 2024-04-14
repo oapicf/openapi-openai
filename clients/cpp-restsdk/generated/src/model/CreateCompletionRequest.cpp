@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,30 +25,32 @@ CreateCompletionRequest::CreateCompletionRequest()
 {
     m_ModelIsSet = false;
     m_PromptIsSet = false;
-    m_Suffix = utility::conversions::to_string_t("");
-    m_SuffixIsSet = false;
+    m_Best_of = 0;
+    m_Best_ofIsSet = false;
+    m_Echo = false;
+    m_EchoIsSet = false;
+    m_Frequency_penalty = 0.0;
+    m_Frequency_penaltyIsSet = false;
+    m_Logit_biasIsSet = false;
+    m_Logprobs = 0;
+    m_LogprobsIsSet = false;
     m_Max_tokens = 0;
     m_Max_tokensIsSet = false;
+    m_n = 0;
+    m_nIsSet = false;
+    m_Presence_penalty = 0.0;
+    m_Presence_penaltyIsSet = false;
+    m_Seed = 0;
+    m_SeedIsSet = false;
+    m_StopIsSet = false;
+    m_Stream = false;
+    m_StreamIsSet = false;
+    m_Suffix = utility::conversions::to_string_t("");
+    m_SuffixIsSet = false;
     m_Temperature = 0.0;
     m_TemperatureIsSet = false;
     m_Top_p = 0.0;
     m_Top_pIsSet = false;
-    m_n = 0;
-    m_nIsSet = false;
-    m_Stream = false;
-    m_StreamIsSet = false;
-    m_Logprobs = 0;
-    m_LogprobsIsSet = false;
-    m_Echo = false;
-    m_EchoIsSet = false;
-    m_StopIsSet = false;
-    m_Presence_penalty = 0.0;
-    m_Presence_penaltyIsSet = false;
-    m_Frequency_penalty = 0.0;
-    m_Frequency_penaltyIsSet = false;
-    m_Best_of = 0;
-    m_Best_ofIsSet = false;
-    m_Logit_biasIsSet = false;
     m_User = utility::conversions::to_string_t("");
     m_UserIsSet = false;
 }
@@ -75,13 +77,53 @@ web::json::value CreateCompletionRequest::toJson() const
     {
         val[utility::conversions::to_string_t(U("prompt"))] = ModelBase::toJson(m_Prompt);
     }
-    if(m_SuffixIsSet)
+    if(m_Best_ofIsSet)
     {
-        val[utility::conversions::to_string_t(U("suffix"))] = ModelBase::toJson(m_Suffix);
+        val[utility::conversions::to_string_t(U("best_of"))] = ModelBase::toJson(m_Best_of);
+    }
+    if(m_EchoIsSet)
+    {
+        val[utility::conversions::to_string_t(U("echo"))] = ModelBase::toJson(m_Echo);
+    }
+    if(m_Frequency_penaltyIsSet)
+    {
+        val[utility::conversions::to_string_t(U("frequency_penalty"))] = ModelBase::toJson(m_Frequency_penalty);
+    }
+    if(m_Logit_biasIsSet)
+    {
+        val[utility::conversions::to_string_t(U("logit_bias"))] = ModelBase::toJson(m_Logit_bias);
+    }
+    if(m_LogprobsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("logprobs"))] = ModelBase::toJson(m_Logprobs);
     }
     if(m_Max_tokensIsSet)
     {
         val[utility::conversions::to_string_t(U("max_tokens"))] = ModelBase::toJson(m_Max_tokens);
+    }
+    if(m_nIsSet)
+    {
+        val[utility::conversions::to_string_t(U("n"))] = ModelBase::toJson(m_n);
+    }
+    if(m_Presence_penaltyIsSet)
+    {
+        val[utility::conversions::to_string_t(U("presence_penalty"))] = ModelBase::toJson(m_Presence_penalty);
+    }
+    if(m_SeedIsSet)
+    {
+        val[utility::conversions::to_string_t(U("seed"))] = ModelBase::toJson(m_Seed);
+    }
+    if(m_StopIsSet)
+    {
+        val[utility::conversions::to_string_t(U("stop"))] = ModelBase::toJson(m_Stop);
+    }
+    if(m_StreamIsSet)
+    {
+        val[utility::conversions::to_string_t(U("stream"))] = ModelBase::toJson(m_Stream);
+    }
+    if(m_SuffixIsSet)
+    {
+        val[utility::conversions::to_string_t(U("suffix"))] = ModelBase::toJson(m_Suffix);
     }
     if(m_TemperatureIsSet)
     {
@@ -90,42 +132,6 @@ web::json::value CreateCompletionRequest::toJson() const
     if(m_Top_pIsSet)
     {
         val[utility::conversions::to_string_t(U("top_p"))] = ModelBase::toJson(m_Top_p);
-    }
-    if(m_nIsSet)
-    {
-        val[utility::conversions::to_string_t(U("n"))] = ModelBase::toJson(m_n);
-    }
-    if(m_StreamIsSet)
-    {
-        val[utility::conversions::to_string_t(U("stream"))] = ModelBase::toJson(m_Stream);
-    }
-    if(m_LogprobsIsSet)
-    {
-        val[utility::conversions::to_string_t(U("logprobs"))] = ModelBase::toJson(m_Logprobs);
-    }
-    if(m_EchoIsSet)
-    {
-        val[utility::conversions::to_string_t(U("echo"))] = ModelBase::toJson(m_Echo);
-    }
-    if(m_StopIsSet)
-    {
-        val[utility::conversions::to_string_t(U("stop"))] = ModelBase::toJson(m_Stop);
-    }
-    if(m_Presence_penaltyIsSet)
-    {
-        val[utility::conversions::to_string_t(U("presence_penalty"))] = ModelBase::toJson(m_Presence_penalty);
-    }
-    if(m_Frequency_penaltyIsSet)
-    {
-        val[utility::conversions::to_string_t(U("frequency_penalty"))] = ModelBase::toJson(m_Frequency_penalty);
-    }
-    if(m_Best_ofIsSet)
-    {
-        val[utility::conversions::to_string_t(U("best_of"))] = ModelBase::toJson(m_Best_of);
-    }
-    if(m_Logit_biasIsSet)
-    {
-        val[utility::conversions::to_string_t(U("logit_bias"))] = ModelBase::toJson(m_Logit_bias);
     }
     if(m_UserIsSet)
     {
@@ -159,14 +165,54 @@ bool CreateCompletionRequest::fromJson(const web::json::value& val)
             setPrompt(refVal_setPrompt);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("suffix"))))
+    if(val.has_field(utility::conversions::to_string_t(U("best_of"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("suffix")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("best_of")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setSuffix;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setSuffix);
-            setSuffix(refVal_setSuffix);
+            int32_t refVal_setBestOf;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBestOf);
+            setBestOf(refVal_setBestOf);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("echo"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("echo")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setEcho;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setEcho);
+            setEcho(refVal_setEcho);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("frequency_penalty"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("frequency_penalty")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setFrequencyPenalty;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFrequencyPenalty);
+            setFrequencyPenalty(refVal_setFrequencyPenalty);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("logit_bias"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("logit_bias")));
+        if(!fieldValue.is_null())
+        {
+            std::map<utility::string_t, int32_t> refVal_setLogitBias;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setLogitBias);
+            setLogitBias(refVal_setLogitBias);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("logprobs"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("logprobs")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setLogprobs;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setLogprobs);
+            setLogprobs(refVal_setLogprobs);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("max_tokens"))))
@@ -177,6 +223,66 @@ bool CreateCompletionRequest::fromJson(const web::json::value& val)
             int32_t refVal_setMaxTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxTokens);
             setMaxTokens(refVal_setMaxTokens);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("n"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("n")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setN;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setN);
+            setN(refVal_setN);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("presence_penalty"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("presence_penalty")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setPresencePenalty;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPresencePenalty);
+            setPresencePenalty(refVal_setPresencePenalty);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("seed"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("seed")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setSeed;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSeed);
+            setSeed(refVal_setSeed);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("stop"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("stop")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<CreateCompletionRequest_stop> refVal_setStop;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStop);
+            setStop(refVal_setStop);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("stream"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("stream")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setStream;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStream);
+            setStream(refVal_setStream);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("suffix"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("suffix")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSuffix;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSuffix);
+            setSuffix(refVal_setSuffix);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("temperature"))))
@@ -197,96 +303,6 @@ bool CreateCompletionRequest::fromJson(const web::json::value& val)
             double refVal_setTopP;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTopP);
             setTopP(refVal_setTopP);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("n"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("n")));
-        if(!fieldValue.is_null())
-        {
-            int32_t refVal_setN;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setN);
-            setN(refVal_setN);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("stream"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("stream")));
-        if(!fieldValue.is_null())
-        {
-            bool refVal_setStream;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setStream);
-            setStream(refVal_setStream);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("logprobs"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("logprobs")));
-        if(!fieldValue.is_null())
-        {
-            int32_t refVal_setLogprobs;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setLogprobs);
-            setLogprobs(refVal_setLogprobs);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("echo"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("echo")));
-        if(!fieldValue.is_null())
-        {
-            bool refVal_setEcho;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEcho);
-            setEcho(refVal_setEcho);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("stop"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("stop")));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<CreateCompletionRequest_stop> refVal_setStop;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setStop);
-            setStop(refVal_setStop);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("presence_penalty"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("presence_penalty")));
-        if(!fieldValue.is_null())
-        {
-            double refVal_setPresencePenalty;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPresencePenalty);
-            setPresencePenalty(refVal_setPresencePenalty);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("frequency_penalty"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("frequency_penalty")));
-        if(!fieldValue.is_null())
-        {
-            double refVal_setFrequencyPenalty;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFrequencyPenalty);
-            setFrequencyPenalty(refVal_setFrequencyPenalty);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("best_of"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("best_of")));
-        if(!fieldValue.is_null())
-        {
-            int32_t refVal_setBestOf;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBestOf);
-            setBestOf(refVal_setBestOf);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("logit_bias"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("logit_bias")));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<Object> refVal_setLogitBias;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setLogitBias);
-            setLogitBias(refVal_setLogitBias);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("user"))))
@@ -317,13 +333,53 @@ void CreateCompletionRequest::toMultipart(std::shared_ptr<MultipartFormData> mul
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("prompt")), m_Prompt));
     }
-    if(m_SuffixIsSet)
+    if(m_Best_ofIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("suffix")), m_Suffix));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("best_of")), m_Best_of));
+    }
+    if(m_EchoIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("echo")), m_Echo));
+    }
+    if(m_Frequency_penaltyIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("frequency_penalty")), m_Frequency_penalty));
+    }
+    if(m_Logit_biasIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logit_bias")), m_Logit_bias));
+    }
+    if(m_LogprobsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logprobs")), m_Logprobs));
     }
     if(m_Max_tokensIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("max_tokens")), m_Max_tokens));
+    }
+    if(m_nIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("n")), m_n));
+    }
+    if(m_Presence_penaltyIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("presence_penalty")), m_Presence_penalty));
+    }
+    if(m_SeedIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("seed")), m_Seed));
+    }
+    if(m_StopIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("stop")), m_Stop));
+    }
+    if(m_StreamIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("stream")), m_Stream));
+    }
+    if(m_SuffixIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("suffix")), m_Suffix));
     }
     if(m_TemperatureIsSet)
     {
@@ -332,42 +388,6 @@ void CreateCompletionRequest::toMultipart(std::shared_ptr<MultipartFormData> mul
     if(m_Top_pIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("top_p")), m_Top_p));
-    }
-    if(m_nIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("n")), m_n));
-    }
-    if(m_StreamIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("stream")), m_Stream));
-    }
-    if(m_LogprobsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logprobs")), m_Logprobs));
-    }
-    if(m_EchoIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("echo")), m_Echo));
-    }
-    if(m_StopIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("stop")), m_Stop));
-    }
-    if(m_Presence_penaltyIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("presence_penalty")), m_Presence_penalty));
-    }
-    if(m_Frequency_penaltyIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("frequency_penalty")), m_Frequency_penalty));
-    }
-    if(m_Best_ofIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("best_of")), m_Best_of));
-    }
-    if(m_Logit_biasIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logit_bias")), m_Logit_bias));
     }
     if(m_UserIsSet)
     {
@@ -396,17 +416,77 @@ bool CreateCompletionRequest::fromMultiPart(std::shared_ptr<MultipartFormData> m
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("prompt"))), refVal_setPrompt );
         setPrompt(refVal_setPrompt);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("suffix"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("best_of"))))
     {
-        utility::string_t refVal_setSuffix;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("suffix"))), refVal_setSuffix );
-        setSuffix(refVal_setSuffix);
+        int32_t refVal_setBestOf;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("best_of"))), refVal_setBestOf );
+        setBestOf(refVal_setBestOf);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("echo"))))
+    {
+        bool refVal_setEcho;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("echo"))), refVal_setEcho );
+        setEcho(refVal_setEcho);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("frequency_penalty"))))
+    {
+        double refVal_setFrequencyPenalty;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("frequency_penalty"))), refVal_setFrequencyPenalty );
+        setFrequencyPenalty(refVal_setFrequencyPenalty);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("logit_bias"))))
+    {
+        std::map<utility::string_t, int32_t> refVal_setLogitBias;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logit_bias"))), refVal_setLogitBias );
+        setLogitBias(refVal_setLogitBias);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("logprobs"))))
+    {
+        int32_t refVal_setLogprobs;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logprobs"))), refVal_setLogprobs );
+        setLogprobs(refVal_setLogprobs);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("max_tokens"))))
     {
         int32_t refVal_setMaxTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("max_tokens"))), refVal_setMaxTokens );
         setMaxTokens(refVal_setMaxTokens);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("n"))))
+    {
+        int32_t refVal_setN;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("n"))), refVal_setN );
+        setN(refVal_setN);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("presence_penalty"))))
+    {
+        double refVal_setPresencePenalty;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("presence_penalty"))), refVal_setPresencePenalty );
+        setPresencePenalty(refVal_setPresencePenalty);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("seed"))))
+    {
+        int32_t refVal_setSeed;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("seed"))), refVal_setSeed );
+        setSeed(refVal_setSeed);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("stop"))))
+    {
+        std::shared_ptr<CreateCompletionRequest_stop> refVal_setStop;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stop"))), refVal_setStop );
+        setStop(refVal_setStop);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("stream"))))
+    {
+        bool refVal_setStream;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stream"))), refVal_setStream );
+        setStream(refVal_setStream);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("suffix"))))
+    {
+        utility::string_t refVal_setSuffix;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("suffix"))), refVal_setSuffix );
+        setSuffix(refVal_setSuffix);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("temperature"))))
     {
@@ -419,60 +499,6 @@ bool CreateCompletionRequest::fromMultiPart(std::shared_ptr<MultipartFormData> m
         double refVal_setTopP;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("top_p"))), refVal_setTopP );
         setTopP(refVal_setTopP);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("n"))))
-    {
-        int32_t refVal_setN;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("n"))), refVal_setN );
-        setN(refVal_setN);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("stream"))))
-    {
-        bool refVal_setStream;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stream"))), refVal_setStream );
-        setStream(refVal_setStream);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("logprobs"))))
-    {
-        int32_t refVal_setLogprobs;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logprobs"))), refVal_setLogprobs );
-        setLogprobs(refVal_setLogprobs);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("echo"))))
-    {
-        bool refVal_setEcho;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("echo"))), refVal_setEcho );
-        setEcho(refVal_setEcho);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("stop"))))
-    {
-        std::shared_ptr<CreateCompletionRequest_stop> refVal_setStop;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stop"))), refVal_setStop );
-        setStop(refVal_setStop);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("presence_penalty"))))
-    {
-        double refVal_setPresencePenalty;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("presence_penalty"))), refVal_setPresencePenalty );
-        setPresencePenalty(refVal_setPresencePenalty);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("frequency_penalty"))))
-    {
-        double refVal_setFrequencyPenalty;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("frequency_penalty"))), refVal_setFrequencyPenalty );
-        setFrequencyPenalty(refVal_setFrequencyPenalty);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("best_of"))))
-    {
-        int32_t refVal_setBestOf;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("best_of"))), refVal_setBestOf );
-        setBestOf(refVal_setBestOf);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("logit_bias"))))
-    {
-        std::shared_ptr<Object> refVal_setLogitBias;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logit_bias"))), refVal_setLogitBias );
-        setLogitBias(refVal_setLogitBias);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("user"))))
     {
@@ -523,25 +549,105 @@ void CreateCompletionRequest::unsetPrompt()
 {
     m_PromptIsSet = false;
 }
-utility::string_t CreateCompletionRequest::getSuffix() const
+int32_t CreateCompletionRequest::getBestOf() const
 {
-    return m_Suffix;
+    return m_Best_of;
 }
 
-void CreateCompletionRequest::setSuffix(const utility::string_t& value)
+void CreateCompletionRequest::setBestOf(int32_t value)
 {
-    m_Suffix = value;
-    m_SuffixIsSet = true;
+    m_Best_of = value;
+    m_Best_ofIsSet = true;
 }
 
-bool CreateCompletionRequest::suffixIsSet() const
+bool CreateCompletionRequest::bestOfIsSet() const
 {
-    return m_SuffixIsSet;
+    return m_Best_ofIsSet;
 }
 
-void CreateCompletionRequest::unsetSuffix()
+void CreateCompletionRequest::unsetBest_of()
 {
-    m_SuffixIsSet = false;
+    m_Best_ofIsSet = false;
+}
+bool CreateCompletionRequest::isEcho() const
+{
+    return m_Echo;
+}
+
+void CreateCompletionRequest::setEcho(bool value)
+{
+    m_Echo = value;
+    m_EchoIsSet = true;
+}
+
+bool CreateCompletionRequest::echoIsSet() const
+{
+    return m_EchoIsSet;
+}
+
+void CreateCompletionRequest::unsetEcho()
+{
+    m_EchoIsSet = false;
+}
+double CreateCompletionRequest::getFrequencyPenalty() const
+{
+    return m_Frequency_penalty;
+}
+
+void CreateCompletionRequest::setFrequencyPenalty(double value)
+{
+    m_Frequency_penalty = value;
+    m_Frequency_penaltyIsSet = true;
+}
+
+bool CreateCompletionRequest::frequencyPenaltyIsSet() const
+{
+    return m_Frequency_penaltyIsSet;
+}
+
+void CreateCompletionRequest::unsetFrequency_penalty()
+{
+    m_Frequency_penaltyIsSet = false;
+}
+std::map<utility::string_t, int32_t>& CreateCompletionRequest::getLogitBias()
+{
+    return m_Logit_bias;
+}
+
+void CreateCompletionRequest::setLogitBias(std::map<utility::string_t, int32_t> value)
+{
+    m_Logit_bias = value;
+    m_Logit_biasIsSet = true;
+}
+
+bool CreateCompletionRequest::logitBiasIsSet() const
+{
+    return m_Logit_biasIsSet;
+}
+
+void CreateCompletionRequest::unsetLogit_bias()
+{
+    m_Logit_biasIsSet = false;
+}
+int32_t CreateCompletionRequest::getLogprobs() const
+{
+    return m_Logprobs;
+}
+
+void CreateCompletionRequest::setLogprobs(int32_t value)
+{
+    m_Logprobs = value;
+    m_LogprobsIsSet = true;
+}
+
+bool CreateCompletionRequest::logprobsIsSet() const
+{
+    return m_LogprobsIsSet;
+}
+
+void CreateCompletionRequest::unsetLogprobs()
+{
+    m_LogprobsIsSet = false;
 }
 int32_t CreateCompletionRequest::getMaxTokens() const
 {
@@ -562,6 +668,126 @@ bool CreateCompletionRequest::maxTokensIsSet() const
 void CreateCompletionRequest::unsetMax_tokens()
 {
     m_Max_tokensIsSet = false;
+}
+int32_t CreateCompletionRequest::getN() const
+{
+    return m_n;
+}
+
+void CreateCompletionRequest::setN(int32_t value)
+{
+    m_n = value;
+    m_nIsSet = true;
+}
+
+bool CreateCompletionRequest::NIsSet() const
+{
+    return m_nIsSet;
+}
+
+void CreateCompletionRequest::unsetn()
+{
+    m_nIsSet = false;
+}
+double CreateCompletionRequest::getPresencePenalty() const
+{
+    return m_Presence_penalty;
+}
+
+void CreateCompletionRequest::setPresencePenalty(double value)
+{
+    m_Presence_penalty = value;
+    m_Presence_penaltyIsSet = true;
+}
+
+bool CreateCompletionRequest::presencePenaltyIsSet() const
+{
+    return m_Presence_penaltyIsSet;
+}
+
+void CreateCompletionRequest::unsetPresence_penalty()
+{
+    m_Presence_penaltyIsSet = false;
+}
+int32_t CreateCompletionRequest::getSeed() const
+{
+    return m_Seed;
+}
+
+void CreateCompletionRequest::setSeed(int32_t value)
+{
+    m_Seed = value;
+    m_SeedIsSet = true;
+}
+
+bool CreateCompletionRequest::seedIsSet() const
+{
+    return m_SeedIsSet;
+}
+
+void CreateCompletionRequest::unsetSeed()
+{
+    m_SeedIsSet = false;
+}
+std::shared_ptr<CreateCompletionRequest_stop> CreateCompletionRequest::getStop() const
+{
+    return m_Stop;
+}
+
+void CreateCompletionRequest::setStop(const std::shared_ptr<CreateCompletionRequest_stop>& value)
+{
+    m_Stop = value;
+    m_StopIsSet = true;
+}
+
+bool CreateCompletionRequest::stopIsSet() const
+{
+    return m_StopIsSet;
+}
+
+void CreateCompletionRequest::unsetStop()
+{
+    m_StopIsSet = false;
+}
+bool CreateCompletionRequest::isStream() const
+{
+    return m_Stream;
+}
+
+void CreateCompletionRequest::setStream(bool value)
+{
+    m_Stream = value;
+    m_StreamIsSet = true;
+}
+
+bool CreateCompletionRequest::streamIsSet() const
+{
+    return m_StreamIsSet;
+}
+
+void CreateCompletionRequest::unsetStream()
+{
+    m_StreamIsSet = false;
+}
+utility::string_t CreateCompletionRequest::getSuffix() const
+{
+    return m_Suffix;
+}
+
+void CreateCompletionRequest::setSuffix(const utility::string_t& value)
+{
+    m_Suffix = value;
+    m_SuffixIsSet = true;
+}
+
+bool CreateCompletionRequest::suffixIsSet() const
+{
+    return m_SuffixIsSet;
+}
+
+void CreateCompletionRequest::unsetSuffix()
+{
+    m_SuffixIsSet = false;
 }
 double CreateCompletionRequest::getTemperature() const
 {
@@ -602,186 +828,6 @@ bool CreateCompletionRequest::topPIsSet() const
 void CreateCompletionRequest::unsetTop_p()
 {
     m_Top_pIsSet = false;
-}
-int32_t CreateCompletionRequest::getN() const
-{
-    return m_n;
-}
-
-void CreateCompletionRequest::setN(int32_t value)
-{
-    m_n = value;
-    m_nIsSet = true;
-}
-
-bool CreateCompletionRequest::NIsSet() const
-{
-    return m_nIsSet;
-}
-
-void CreateCompletionRequest::unsetn()
-{
-    m_nIsSet = false;
-}
-bool CreateCompletionRequest::isStream() const
-{
-    return m_Stream;
-}
-
-void CreateCompletionRequest::setStream(bool value)
-{
-    m_Stream = value;
-    m_StreamIsSet = true;
-}
-
-bool CreateCompletionRequest::streamIsSet() const
-{
-    return m_StreamIsSet;
-}
-
-void CreateCompletionRequest::unsetStream()
-{
-    m_StreamIsSet = false;
-}
-int32_t CreateCompletionRequest::getLogprobs() const
-{
-    return m_Logprobs;
-}
-
-void CreateCompletionRequest::setLogprobs(int32_t value)
-{
-    m_Logprobs = value;
-    m_LogprobsIsSet = true;
-}
-
-bool CreateCompletionRequest::logprobsIsSet() const
-{
-    return m_LogprobsIsSet;
-}
-
-void CreateCompletionRequest::unsetLogprobs()
-{
-    m_LogprobsIsSet = false;
-}
-bool CreateCompletionRequest::isEcho() const
-{
-    return m_Echo;
-}
-
-void CreateCompletionRequest::setEcho(bool value)
-{
-    m_Echo = value;
-    m_EchoIsSet = true;
-}
-
-bool CreateCompletionRequest::echoIsSet() const
-{
-    return m_EchoIsSet;
-}
-
-void CreateCompletionRequest::unsetEcho()
-{
-    m_EchoIsSet = false;
-}
-std::shared_ptr<CreateCompletionRequest_stop> CreateCompletionRequest::getStop() const
-{
-    return m_Stop;
-}
-
-void CreateCompletionRequest::setStop(const std::shared_ptr<CreateCompletionRequest_stop>& value)
-{
-    m_Stop = value;
-    m_StopIsSet = true;
-}
-
-bool CreateCompletionRequest::stopIsSet() const
-{
-    return m_StopIsSet;
-}
-
-void CreateCompletionRequest::unsetStop()
-{
-    m_StopIsSet = false;
-}
-double CreateCompletionRequest::getPresencePenalty() const
-{
-    return m_Presence_penalty;
-}
-
-void CreateCompletionRequest::setPresencePenalty(double value)
-{
-    m_Presence_penalty = value;
-    m_Presence_penaltyIsSet = true;
-}
-
-bool CreateCompletionRequest::presencePenaltyIsSet() const
-{
-    return m_Presence_penaltyIsSet;
-}
-
-void CreateCompletionRequest::unsetPresence_penalty()
-{
-    m_Presence_penaltyIsSet = false;
-}
-double CreateCompletionRequest::getFrequencyPenalty() const
-{
-    return m_Frequency_penalty;
-}
-
-void CreateCompletionRequest::setFrequencyPenalty(double value)
-{
-    m_Frequency_penalty = value;
-    m_Frequency_penaltyIsSet = true;
-}
-
-bool CreateCompletionRequest::frequencyPenaltyIsSet() const
-{
-    return m_Frequency_penaltyIsSet;
-}
-
-void CreateCompletionRequest::unsetFrequency_penalty()
-{
-    m_Frequency_penaltyIsSet = false;
-}
-int32_t CreateCompletionRequest::getBestOf() const
-{
-    return m_Best_of;
-}
-
-void CreateCompletionRequest::setBestOf(int32_t value)
-{
-    m_Best_of = value;
-    m_Best_ofIsSet = true;
-}
-
-bool CreateCompletionRequest::bestOfIsSet() const
-{
-    return m_Best_ofIsSet;
-}
-
-void CreateCompletionRequest::unsetBest_of()
-{
-    m_Best_ofIsSet = false;
-}
-std::shared_ptr<Object> CreateCompletionRequest::getLogitBias() const
-{
-    return m_Logit_bias;
-}
-
-void CreateCompletionRequest::setLogitBias(const std::shared_ptr<Object>& value)
-{
-    m_Logit_bias = value;
-    m_Logit_biasIsSet = true;
-}
-
-bool CreateCompletionRequest::logitBiasIsSet() const
-{
-    return m_Logit_biasIsSet;
-}
-
-void CreateCompletionRequest::unsetLogit_bias()
-{
-    m_Logit_biasIsSet = false;
 }
 utility::string_t CreateCompletionRequest::getUser() const
 {

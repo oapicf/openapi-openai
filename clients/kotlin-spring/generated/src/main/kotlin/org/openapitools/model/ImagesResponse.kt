@@ -2,7 +2,7 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
-import org.openapitools.model.ImagesResponseDataInner
+import org.openapitools.model.Image
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -26,7 +26,7 @@ data class ImagesResponse(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<ImagesResponseDataInner>
+    @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<Image>
 ) {
 
 }

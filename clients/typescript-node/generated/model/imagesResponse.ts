@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,11 +11,11 @@
  */
 
 import { RequestFile } from './models';
-import { ImagesResponseDataInner } from './imagesResponseDataInner';
+import { Image } from './image';
 
 export class ImagesResponse {
     'created': number;
-    'data': Array<ImagesResponseDataInner>;
+    'data': Array<Image>;
 
     static discriminator: string | undefined = undefined;
 
@@ -28,7 +28,7 @@ export class ImagesResponse {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<ImagesResponseDataInner>"
+            "type": "Array<Image>"
         }    ];
 
     static getAttributeTypeMap() {

@@ -8,8 +8,11 @@ from typing import List, Dict  # noqa: F401
 from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.chat_completion_functions import ChatCompletionFunctions  # noqa: F401,E501
 from app.openapi_server.models.chat_completion_request_message import ChatCompletionRequestMessage  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_tool import ChatCompletionTool  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_tool_choice_option import ChatCompletionToolChoiceOption  # noqa: F401,E501
 from app.openapi_server.models.create_chat_completion_request_function_call import CreateChatCompletionRequestFunctionCall  # noqa: F401,E501
 from app.openapi_server.models.create_chat_completion_request_model import CreateChatCompletionRequestModel  # noqa: F401,E501
+from app.openapi_server.models.create_chat_completion_request_response_format import CreateChatCompletionRequestResponseFormat  # noqa: F401,E501
 from app.openapi_server.models.create_chat_completion_request_stop import CreateChatCompletionRequestStop  # noqa: F401,E501
 from openapi_server import util
 
@@ -20,86 +23,116 @@ class CreateChatCompletionRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, model: CreateChatCompletionRequestModel=None, messages: List[ChatCompletionRequestMessage]=None, functions: List[ChatCompletionFunctions]=None, function_call: CreateChatCompletionRequestFunctionCall=None, temperature: float=1, top_p: float=1, n: int=1, stream: bool=False, stop: CreateChatCompletionRequestStop=None, max_tokens: int=None, presence_penalty: float=0, frequency_penalty: float=0, logit_bias: object=None, user: str=None):  # noqa: E501
+    def __init__(self, messages: List[ChatCompletionRequestMessage]=None, model: CreateChatCompletionRequestModel=None, frequency_penalty: float=0, logit_bias: Dict[str, int]=None, logprobs: bool=False, top_logprobs: int=None, max_tokens: int=None, n: int=1, presence_penalty: float=0, response_format: CreateChatCompletionRequestResponseFormat=None, seed: int=None, stop: CreateChatCompletionRequestStop=None, stream: bool=False, temperature: float=1, top_p: float=1, tools: List[ChatCompletionTool]=None, tool_choice: ChatCompletionToolChoiceOption=None, user: str=None, function_call: CreateChatCompletionRequestFunctionCall=None, functions: List[ChatCompletionFunctions]=None):  # noqa: E501
         """CreateChatCompletionRequest - a model defined in Swagger
 
-        :param model: The model of this CreateChatCompletionRequest.  # noqa: E501
-        :type model: CreateChatCompletionRequestModel
         :param messages: The messages of this CreateChatCompletionRequest.  # noqa: E501
         :type messages: List[ChatCompletionRequestMessage]
-        :param functions: The functions of this CreateChatCompletionRequest.  # noqa: E501
-        :type functions: List[ChatCompletionFunctions]
-        :param function_call: The function_call of this CreateChatCompletionRequest.  # noqa: E501
-        :type function_call: CreateChatCompletionRequestFunctionCall
+        :param model: The model of this CreateChatCompletionRequest.  # noqa: E501
+        :type model: CreateChatCompletionRequestModel
+        :param frequency_penalty: The frequency_penalty of this CreateChatCompletionRequest.  # noqa: E501
+        :type frequency_penalty: float
+        :param logit_bias: The logit_bias of this CreateChatCompletionRequest.  # noqa: E501
+        :type logit_bias: Dict[str, int]
+        :param logprobs: The logprobs of this CreateChatCompletionRequest.  # noqa: E501
+        :type logprobs: bool
+        :param top_logprobs: The top_logprobs of this CreateChatCompletionRequest.  # noqa: E501
+        :type top_logprobs: int
+        :param max_tokens: The max_tokens of this CreateChatCompletionRequest.  # noqa: E501
+        :type max_tokens: int
+        :param n: The n of this CreateChatCompletionRequest.  # noqa: E501
+        :type n: int
+        :param presence_penalty: The presence_penalty of this CreateChatCompletionRequest.  # noqa: E501
+        :type presence_penalty: float
+        :param response_format: The response_format of this CreateChatCompletionRequest.  # noqa: E501
+        :type response_format: CreateChatCompletionRequestResponseFormat
+        :param seed: The seed of this CreateChatCompletionRequest.  # noqa: E501
+        :type seed: int
+        :param stop: The stop of this CreateChatCompletionRequest.  # noqa: E501
+        :type stop: CreateChatCompletionRequestStop
+        :param stream: The stream of this CreateChatCompletionRequest.  # noqa: E501
+        :type stream: bool
         :param temperature: The temperature of this CreateChatCompletionRequest.  # noqa: E501
         :type temperature: float
         :param top_p: The top_p of this CreateChatCompletionRequest.  # noqa: E501
         :type top_p: float
-        :param n: The n of this CreateChatCompletionRequest.  # noqa: E501
-        :type n: int
-        :param stream: The stream of this CreateChatCompletionRequest.  # noqa: E501
-        :type stream: bool
-        :param stop: The stop of this CreateChatCompletionRequest.  # noqa: E501
-        :type stop: CreateChatCompletionRequestStop
-        :param max_tokens: The max_tokens of this CreateChatCompletionRequest.  # noqa: E501
-        :type max_tokens: int
-        :param presence_penalty: The presence_penalty of this CreateChatCompletionRequest.  # noqa: E501
-        :type presence_penalty: float
-        :param frequency_penalty: The frequency_penalty of this CreateChatCompletionRequest.  # noqa: E501
-        :type frequency_penalty: float
-        :param logit_bias: The logit_bias of this CreateChatCompletionRequest.  # noqa: E501
-        :type logit_bias: object
+        :param tools: The tools of this CreateChatCompletionRequest.  # noqa: E501
+        :type tools: List[ChatCompletionTool]
+        :param tool_choice: The tool_choice of this CreateChatCompletionRequest.  # noqa: E501
+        :type tool_choice: ChatCompletionToolChoiceOption
         :param user: The user of this CreateChatCompletionRequest.  # noqa: E501
         :type user: str
+        :param function_call: The function_call of this CreateChatCompletionRequest.  # noqa: E501
+        :type function_call: CreateChatCompletionRequestFunctionCall
+        :param functions: The functions of this CreateChatCompletionRequest.  # noqa: E501
+        :type functions: List[ChatCompletionFunctions]
         """
         self.swagger_types = {
-            'model': CreateChatCompletionRequestModel,
             'messages': List[ChatCompletionRequestMessage],
-            'functions': List[ChatCompletionFunctions],
-            'function_call': CreateChatCompletionRequestFunctionCall,
+            'model': CreateChatCompletionRequestModel,
+            'frequency_penalty': float,
+            'logit_bias': Dict[str, int],
+            'logprobs': bool,
+            'top_logprobs': int,
+            'max_tokens': int,
+            'n': int,
+            'presence_penalty': float,
+            'response_format': CreateChatCompletionRequestResponseFormat,
+            'seed': int,
+            'stop': CreateChatCompletionRequestStop,
+            'stream': bool,
             'temperature': float,
             'top_p': float,
-            'n': int,
-            'stream': bool,
-            'stop': CreateChatCompletionRequestStop,
-            'max_tokens': int,
-            'presence_penalty': float,
-            'frequency_penalty': float,
-            'logit_bias': object,
-            'user': str
+            'tools': List[ChatCompletionTool],
+            'tool_choice': ChatCompletionToolChoiceOption,
+            'user': str,
+            'function_call': CreateChatCompletionRequestFunctionCall,
+            'functions': List[ChatCompletionFunctions]
         }
 
         self.attribute_map = {
-            'model': 'model',
             'messages': 'messages',
-            'functions': 'functions',
-            'function_call': 'function_call',
-            'temperature': 'temperature',
-            'top_p': 'top_p',
-            'n': 'n',
-            'stream': 'stream',
-            'stop': 'stop',
-            'max_tokens': 'max_tokens',
-            'presence_penalty': 'presence_penalty',
+            'model': 'model',
             'frequency_penalty': 'frequency_penalty',
             'logit_bias': 'logit_bias',
-            'user': 'user'
+            'logprobs': 'logprobs',
+            'top_logprobs': 'top_logprobs',
+            'max_tokens': 'max_tokens',
+            'n': 'n',
+            'presence_penalty': 'presence_penalty',
+            'response_format': 'response_format',
+            'seed': 'seed',
+            'stop': 'stop',
+            'stream': 'stream',
+            'temperature': 'temperature',
+            'top_p': 'top_p',
+            'tools': 'tools',
+            'tool_choice': 'tool_choice',
+            'user': 'user',
+            'function_call': 'function_call',
+            'functions': 'functions'
         }
 
-        self._model = model
         self._messages = messages
-        self._functions = functions
-        self._function_call = function_call
-        self._temperature = temperature
-        self._top_p = top_p
-        self._n = n
-        self._stream = stream
-        self._stop = stop
-        self._max_tokens = max_tokens
-        self._presence_penalty = presence_penalty
+        self._model = model
         self._frequency_penalty = frequency_penalty
         self._logit_bias = logit_bias
+        self._logprobs = logprobs
+        self._top_logprobs = top_logprobs
+        self._max_tokens = max_tokens
+        self._n = n
+        self._presence_penalty = presence_penalty
+        self._response_format = response_format
+        self._seed = seed
+        self._stop = stop
+        self._stream = stream
+        self._temperature = temperature
+        self._top_p = top_p
+        self._tools = tools
+        self._tool_choice = tool_choice
         self._user = user
+        self._function_call = function_call
+        self._functions = functions
 
     @classmethod
     def from_dict(cls, dikt) -> 'CreateChatCompletionRequest':
@@ -111,6 +144,33 @@ class CreateChatCompletionRequest(Model):
         :rtype: CreateChatCompletionRequest
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def messages(self) -> List[ChatCompletionRequestMessage]:
+        """Gets the messages of this CreateChatCompletionRequest.
+
+        A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).  # noqa: E501
+
+        :return: The messages of this CreateChatCompletionRequest.
+        :rtype: List[ChatCompletionRequestMessage]
+        """
+        return self._messages
+
+    @messages.setter
+    def messages(self, messages: List[ChatCompletionRequestMessage]):
+        """Sets the messages of this CreateChatCompletionRequest.
+
+        A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).  # noqa: E501
+
+        :param messages: The messages of this CreateChatCompletionRequest.
+        :type messages: List[ChatCompletionRequestMessage]
+        """
+        if messages is None:
+            raise ValueError("Invalid value for `messages`, must not be `None`")  # noqa: E501
+        if messages is not None and len(messages) < 1:
+            raise ValueError("Invalid value for `messages`, number of items must be greater than or equal to `1`")  # noqa: E501
+
+        self._messages = messages
 
     @property
     def model(self) -> CreateChatCompletionRequestModel:
@@ -136,77 +196,273 @@ class CreateChatCompletionRequest(Model):
         self._model = model
 
     @property
-    def messages(self) -> List[ChatCompletionRequestMessage]:
-        """Gets the messages of this CreateChatCompletionRequest.
+    def frequency_penalty(self) -> float:
+        """Gets the frequency_penalty of this CreateChatCompletionRequest.
 
-        A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).  # noqa: E501
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)   # noqa: E501
 
-        :return: The messages of this CreateChatCompletionRequest.
-        :rtype: List[ChatCompletionRequestMessage]
+        :return: The frequency_penalty of this CreateChatCompletionRequest.
+        :rtype: float
         """
-        return self._messages
+        return self._frequency_penalty
 
-    @messages.setter
-    def messages(self, messages: List[ChatCompletionRequestMessage]):
-        """Sets the messages of this CreateChatCompletionRequest.
+    @frequency_penalty.setter
+    def frequency_penalty(self, frequency_penalty: float):
+        """Sets the frequency_penalty of this CreateChatCompletionRequest.
 
-        A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).  # noqa: E501
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)   # noqa: E501
 
-        :param messages: The messages of this CreateChatCompletionRequest.
-        :type messages: List[ChatCompletionRequestMessage]
+        :param frequency_penalty: The frequency_penalty of this CreateChatCompletionRequest.
+        :type frequency_penalty: float
         """
-        if messages is None:
-            raise ValueError("Invalid value for `messages`, must not be `None`")  # noqa: E501
-        if messages is not None and len(messages) < 1:
-            raise ValueError("Invalid value for `messages`, number of items must be greater than or equal to `1`")  # noqa: E501
+        if frequency_penalty is not None and frequency_penalty > 2:  # noqa: E501
+            raise ValueError("Invalid value for `frequency_penalty`, must be a value less than or equal to `2`")  # noqa: E501
+        if frequency_penalty is not None and frequency_penalty < -2:  # noqa: E501
+            raise ValueError("Invalid value for `frequency_penalty`, must be a value greater than or equal to `-2`")  # noqa: E501
 
-        self._messages = messages
+        self._frequency_penalty = frequency_penalty
 
     @property
-    def functions(self) -> List[ChatCompletionFunctions]:
-        """Gets the functions of this CreateChatCompletionRequest.
+    def logit_bias(self) -> Dict[str, int]:
+        """Gets the logit_bias of this CreateChatCompletionRequest.
 
-        A list of functions the model may generate JSON inputs for.  # noqa: E501
+        Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.   # noqa: E501
 
-        :return: The functions of this CreateChatCompletionRequest.
-        :rtype: List[ChatCompletionFunctions]
+        :return: The logit_bias of this CreateChatCompletionRequest.
+        :rtype: Dict[str, int]
         """
-        return self._functions
+        return self._logit_bias
 
-    @functions.setter
-    def functions(self, functions: List[ChatCompletionFunctions]):
-        """Sets the functions of this CreateChatCompletionRequest.
+    @logit_bias.setter
+    def logit_bias(self, logit_bias: Dict[str, int]):
+        """Sets the logit_bias of this CreateChatCompletionRequest.
 
-        A list of functions the model may generate JSON inputs for.  # noqa: E501
+        Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.   # noqa: E501
 
-        :param functions: The functions of this CreateChatCompletionRequest.
-        :type functions: List[ChatCompletionFunctions]
+        :param logit_bias: The logit_bias of this CreateChatCompletionRequest.
+        :type logit_bias: Dict[str, int]
         """
-        if functions is not None and len(functions) < 1:
-            raise ValueError("Invalid value for `functions`, number of items must be greater than or equal to `1`")  # noqa: E501
 
-        self._functions = functions
+        self._logit_bias = logit_bias
 
     @property
-    def function_call(self) -> CreateChatCompletionRequestFunctionCall:
-        """Gets the function_call of this CreateChatCompletionRequest.
+    def logprobs(self) -> bool:
+        """Gets the logprobs of this CreateChatCompletionRequest.
 
+        Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.  # noqa: E501
 
-        :return: The function_call of this CreateChatCompletionRequest.
-        :rtype: CreateChatCompletionRequestFunctionCall
+        :return: The logprobs of this CreateChatCompletionRequest.
+        :rtype: bool
         """
-        return self._function_call
+        return self._logprobs
 
-    @function_call.setter
-    def function_call(self, function_call: CreateChatCompletionRequestFunctionCall):
-        """Sets the function_call of this CreateChatCompletionRequest.
+    @logprobs.setter
+    def logprobs(self, logprobs: bool):
+        """Sets the logprobs of this CreateChatCompletionRequest.
 
+        Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.  # noqa: E501
 
-        :param function_call: The function_call of this CreateChatCompletionRequest.
-        :type function_call: CreateChatCompletionRequestFunctionCall
+        :param logprobs: The logprobs of this CreateChatCompletionRequest.
+        :type logprobs: bool
         """
 
-        self._function_call = function_call
+        self._logprobs = logprobs
+
+    @property
+    def top_logprobs(self) -> int:
+        """Gets the top_logprobs of this CreateChatCompletionRequest.
+
+        An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.  # noqa: E501
+
+        :return: The top_logprobs of this CreateChatCompletionRequest.
+        :rtype: int
+        """
+        return self._top_logprobs
+
+    @top_logprobs.setter
+    def top_logprobs(self, top_logprobs: int):
+        """Sets the top_logprobs of this CreateChatCompletionRequest.
+
+        An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.  # noqa: E501
+
+        :param top_logprobs: The top_logprobs of this CreateChatCompletionRequest.
+        :type top_logprobs: int
+        """
+        if top_logprobs is not None and top_logprobs > 20:  # noqa: E501
+            raise ValueError("Invalid value for `top_logprobs`, must be a value less than or equal to `20`")  # noqa: E501
+        if top_logprobs is not None and top_logprobs < 0:  # noqa: E501
+            raise ValueError("Invalid value for `top_logprobs`, must be a value greater than or equal to `0`")  # noqa: E501
+
+        self._top_logprobs = top_logprobs
+
+    @property
+    def max_tokens(self) -> int:
+        """Gets the max_tokens of this CreateChatCompletionRequest.
+
+        The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens.   # noqa: E501
+
+        :return: The max_tokens of this CreateChatCompletionRequest.
+        :rtype: int
+        """
+        return self._max_tokens
+
+    @max_tokens.setter
+    def max_tokens(self, max_tokens: int):
+        """Sets the max_tokens of this CreateChatCompletionRequest.
+
+        The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens.   # noqa: E501
+
+        :param max_tokens: The max_tokens of this CreateChatCompletionRequest.
+        :type max_tokens: int
+        """
+
+        self._max_tokens = max_tokens
+
+    @property
+    def n(self) -> int:
+        """Gets the n of this CreateChatCompletionRequest.
+
+        How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.  # noqa: E501
+
+        :return: The n of this CreateChatCompletionRequest.
+        :rtype: int
+        """
+        return self._n
+
+    @n.setter
+    def n(self, n: int):
+        """Sets the n of this CreateChatCompletionRequest.
+
+        How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.  # noqa: E501
+
+        :param n: The n of this CreateChatCompletionRequest.
+        :type n: int
+        """
+        if n is not None and n > 128:  # noqa: E501
+            raise ValueError("Invalid value for `n`, must be a value less than or equal to `128`")  # noqa: E501
+        if n is not None and n < 1:  # noqa: E501
+            raise ValueError("Invalid value for `n`, must be a value greater than or equal to `1`")  # noqa: E501
+
+        self._n = n
+
+    @property
+    def presence_penalty(self) -> float:
+        """Gets the presence_penalty of this CreateChatCompletionRequest.
+
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)   # noqa: E501
+
+        :return: The presence_penalty of this CreateChatCompletionRequest.
+        :rtype: float
+        """
+        return self._presence_penalty
+
+    @presence_penalty.setter
+    def presence_penalty(self, presence_penalty: float):
+        """Sets the presence_penalty of this CreateChatCompletionRequest.
+
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)   # noqa: E501
+
+        :param presence_penalty: The presence_penalty of this CreateChatCompletionRequest.
+        :type presence_penalty: float
+        """
+        if presence_penalty is not None and presence_penalty > 2:  # noqa: E501
+            raise ValueError("Invalid value for `presence_penalty`, must be a value less than or equal to `2`")  # noqa: E501
+        if presence_penalty is not None and presence_penalty < -2:  # noqa: E501
+            raise ValueError("Invalid value for `presence_penalty`, must be a value greater than or equal to `-2`")  # noqa: E501
+
+        self._presence_penalty = presence_penalty
+
+    @property
+    def response_format(self) -> CreateChatCompletionRequestResponseFormat:
+        """Gets the response_format of this CreateChatCompletionRequest.
+
+
+        :return: The response_format of this CreateChatCompletionRequest.
+        :rtype: CreateChatCompletionRequestResponseFormat
+        """
+        return self._response_format
+
+    @response_format.setter
+    def response_format(self, response_format: CreateChatCompletionRequestResponseFormat):
+        """Sets the response_format of this CreateChatCompletionRequest.
+
+
+        :param response_format: The response_format of this CreateChatCompletionRequest.
+        :type response_format: CreateChatCompletionRequestResponseFormat
+        """
+
+        self._response_format = response_format
+
+    @property
+    def seed(self) -> int:
+        """Gets the seed of this CreateChatCompletionRequest.
+
+        This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.   # noqa: E501
+
+        :return: The seed of this CreateChatCompletionRequest.
+        :rtype: int
+        """
+        return self._seed
+
+    @seed.setter
+    def seed(self, seed: int):
+        """Sets the seed of this CreateChatCompletionRequest.
+
+        This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.   # noqa: E501
+
+        :param seed: The seed of this CreateChatCompletionRequest.
+        :type seed: int
+        """
+        if seed is not None and seed > 9223372036854775807:  # noqa: E501
+            raise ValueError("Invalid value for `seed`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
+        if seed is not None and seed < -9223372036854775808:  # noqa: E501
+            raise ValueError("Invalid value for `seed`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
+
+        self._seed = seed
+
+    @property
+    def stop(self) -> CreateChatCompletionRequestStop:
+        """Gets the stop of this CreateChatCompletionRequest.
+
+
+        :return: The stop of this CreateChatCompletionRequest.
+        :rtype: CreateChatCompletionRequestStop
+        """
+        return self._stop
+
+    @stop.setter
+    def stop(self, stop: CreateChatCompletionRequestStop):
+        """Sets the stop of this CreateChatCompletionRequest.
+
+
+        :param stop: The stop of this CreateChatCompletionRequest.
+        :type stop: CreateChatCompletionRequestStop
+        """
+
+        self._stop = stop
+
+    @property
+    def stream(self) -> bool:
+        """Gets the stream of this CreateChatCompletionRequest.
+
+        If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).   # noqa: E501
+
+        :return: The stream of this CreateChatCompletionRequest.
+        :rtype: bool
+        """
+        return self._stream
+
+    @stream.setter
+    def stream(self, stream: bool):
+        """Sets the stream of this CreateChatCompletionRequest.
+
+        If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).   # noqa: E501
+
+        :param stream: The stream of this CreateChatCompletionRequest.
+        :type stream: bool
+        """
+
+        self._stream = stream
 
     @property
     def temperature(self) -> float:
@@ -263,175 +519,48 @@ class CreateChatCompletionRequest(Model):
         self._top_p = top_p
 
     @property
-    def n(self) -> int:
-        """Gets the n of this CreateChatCompletionRequest.
+    def tools(self) -> List[ChatCompletionTool]:
+        """Gets the tools of this CreateChatCompletionRequest.
 
-        How many chat completion choices to generate for each input message.  # noqa: E501
+        A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.   # noqa: E501
 
-        :return: The n of this CreateChatCompletionRequest.
-        :rtype: int
+        :return: The tools of this CreateChatCompletionRequest.
+        :rtype: List[ChatCompletionTool]
         """
-        return self._n
+        return self._tools
 
-    @n.setter
-    def n(self, n: int):
-        """Sets the n of this CreateChatCompletionRequest.
+    @tools.setter
+    def tools(self, tools: List[ChatCompletionTool]):
+        """Sets the tools of this CreateChatCompletionRequest.
 
-        How many chat completion choices to generate for each input message.  # noqa: E501
+        A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.   # noqa: E501
 
-        :param n: The n of this CreateChatCompletionRequest.
-        :type n: int
+        :param tools: The tools of this CreateChatCompletionRequest.
+        :type tools: List[ChatCompletionTool]
         """
-        if n is not None and n > 128:  # noqa: E501
-            raise ValueError("Invalid value for `n`, must be a value less than or equal to `128`")  # noqa: E501
-        if n is not None and n < 1:  # noqa: E501
-            raise ValueError("Invalid value for `n`, must be a value greater than or equal to `1`")  # noqa: E501
 
-        self._n = n
+        self._tools = tools
 
     @property
-    def stream(self) -> bool:
-        """Gets the stream of this CreateChatCompletionRequest.
+    def tool_choice(self) -> ChatCompletionToolChoiceOption:
+        """Gets the tool_choice of this CreateChatCompletionRequest.
 
-        If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb).   # noqa: E501
 
-        :return: The stream of this CreateChatCompletionRequest.
-        :rtype: bool
+        :return: The tool_choice of this CreateChatCompletionRequest.
+        :rtype: ChatCompletionToolChoiceOption
         """
-        return self._stream
+        return self._tool_choice
 
-    @stream.setter
-    def stream(self, stream: bool):
-        """Sets the stream of this CreateChatCompletionRequest.
+    @tool_choice.setter
+    def tool_choice(self, tool_choice: ChatCompletionToolChoiceOption):
+        """Sets the tool_choice of this CreateChatCompletionRequest.
 
-        If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb).   # noqa: E501
 
-        :param stream: The stream of this CreateChatCompletionRequest.
-        :type stream: bool
+        :param tool_choice: The tool_choice of this CreateChatCompletionRequest.
+        :type tool_choice: ChatCompletionToolChoiceOption
         """
 
-        self._stream = stream
-
-    @property
-    def stop(self) -> CreateChatCompletionRequestStop:
-        """Gets the stop of this CreateChatCompletionRequest.
-
-
-        :return: The stop of this CreateChatCompletionRequest.
-        :rtype: CreateChatCompletionRequestStop
-        """
-        return self._stop
-
-    @stop.setter
-    def stop(self, stop: CreateChatCompletionRequestStop):
-        """Sets the stop of this CreateChatCompletionRequest.
-
-
-        :param stop: The stop of this CreateChatCompletionRequest.
-        :type stop: CreateChatCompletionRequestStop
-        """
-
-        self._stop = stop
-
-    @property
-    def max_tokens(self) -> int:
-        """Gets the max_tokens of this CreateChatCompletionRequest.
-
-        The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens.   # noqa: E501
-
-        :return: The max_tokens of this CreateChatCompletionRequest.
-        :rtype: int
-        """
-        return self._max_tokens
-
-    @max_tokens.setter
-    def max_tokens(self, max_tokens: int):
-        """Sets the max_tokens of this CreateChatCompletionRequest.
-
-        The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens.   # noqa: E501
-
-        :param max_tokens: The max_tokens of this CreateChatCompletionRequest.
-        :type max_tokens: int
-        """
-
-        self._max_tokens = max_tokens
-
-    @property
-    def presence_penalty(self) -> float:
-        """Gets the presence_penalty of this CreateChatCompletionRequest.
-
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details)   # noqa: E501
-
-        :return: The presence_penalty of this CreateChatCompletionRequest.
-        :rtype: float
-        """
-        return self._presence_penalty
-
-    @presence_penalty.setter
-    def presence_penalty(self, presence_penalty: float):
-        """Sets the presence_penalty of this CreateChatCompletionRequest.
-
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details)   # noqa: E501
-
-        :param presence_penalty: The presence_penalty of this CreateChatCompletionRequest.
-        :type presence_penalty: float
-        """
-        if presence_penalty is not None and presence_penalty > 2:  # noqa: E501
-            raise ValueError("Invalid value for `presence_penalty`, must be a value less than or equal to `2`")  # noqa: E501
-        if presence_penalty is not None and presence_penalty < -2:  # noqa: E501
-            raise ValueError("Invalid value for `presence_penalty`, must be a value greater than or equal to `-2`")  # noqa: E501
-
-        self._presence_penalty = presence_penalty
-
-    @property
-    def frequency_penalty(self) -> float:
-        """Gets the frequency_penalty of this CreateChatCompletionRequest.
-
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details)   # noqa: E501
-
-        :return: The frequency_penalty of this CreateChatCompletionRequest.
-        :rtype: float
-        """
-        return self._frequency_penalty
-
-    @frequency_penalty.setter
-    def frequency_penalty(self, frequency_penalty: float):
-        """Sets the frequency_penalty of this CreateChatCompletionRequest.
-
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details)   # noqa: E501
-
-        :param frequency_penalty: The frequency_penalty of this CreateChatCompletionRequest.
-        :type frequency_penalty: float
-        """
-        if frequency_penalty is not None and frequency_penalty > 2:  # noqa: E501
-            raise ValueError("Invalid value for `frequency_penalty`, must be a value less than or equal to `2`")  # noqa: E501
-        if frequency_penalty is not None and frequency_penalty < -2:  # noqa: E501
-            raise ValueError("Invalid value for `frequency_penalty`, must be a value greater than or equal to `-2`")  # noqa: E501
-
-        self._frequency_penalty = frequency_penalty
-
-    @property
-    def logit_bias(self) -> object:
-        """Gets the logit_bias of this CreateChatCompletionRequest.
-
-        Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.   # noqa: E501
-
-        :return: The logit_bias of this CreateChatCompletionRequest.
-        :rtype: object
-        """
-        return self._logit_bias
-
-    @logit_bias.setter
-    def logit_bias(self, logit_bias: object):
-        """Sets the logit_bias of this CreateChatCompletionRequest.
-
-        Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.   # noqa: E501
-
-        :param logit_bias: The logit_bias of this CreateChatCompletionRequest.
-        :type logit_bias: object
-        """
-
-        self._logit_bias = logit_bias
+        self._tool_choice = tool_choice
 
     @property
     def user(self) -> str:
@@ -455,3 +584,51 @@ class CreateChatCompletionRequest(Model):
         """
 
         self._user = user
+
+    @property
+    def function_call(self) -> CreateChatCompletionRequestFunctionCall:
+        """Gets the function_call of this CreateChatCompletionRequest.
+
+
+        :return: The function_call of this CreateChatCompletionRequest.
+        :rtype: CreateChatCompletionRequestFunctionCall
+        """
+        return self._function_call
+
+    @function_call.setter
+    def function_call(self, function_call: CreateChatCompletionRequestFunctionCall):
+        """Sets the function_call of this CreateChatCompletionRequest.
+
+
+        :param function_call: The function_call of this CreateChatCompletionRequest.
+        :type function_call: CreateChatCompletionRequestFunctionCall
+        """
+
+        self._function_call = function_call
+
+    @property
+    def functions(self) -> List[ChatCompletionFunctions]:
+        """Gets the functions of this CreateChatCompletionRequest.
+
+        Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for.   # noqa: E501
+
+        :return: The functions of this CreateChatCompletionRequest.
+        :rtype: List[ChatCompletionFunctions]
+        """
+        return self._functions
+
+    @functions.setter
+    def functions(self, functions: List[ChatCompletionFunctions]):
+        """Sets the functions of this CreateChatCompletionRequest.
+
+        Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for.   # noqa: E501
+
+        :param functions: The functions of this CreateChatCompletionRequest.
+        :type functions: List[ChatCompletionFunctions]
+        """
+        if functions is not None and len(functions) > 128:
+            raise ValueError("Invalid value for `functions`, number of items must be less than or equal to `128`")  # noqa: E501
+        if functions is not None and len(functions) < 1:
+            raise ValueError("Invalid value for `functions`, number of items must be greater than or equal to `1`")  # noqa: E501
+
+        self._functions = functions

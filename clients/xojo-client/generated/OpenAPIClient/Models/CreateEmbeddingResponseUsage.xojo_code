@@ -2,11 +2,17 @@
 Protected Class CreateEmbeddingResponseUsage
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The number of tokens used by the prompt.
+		#tag EndNote
 		prompt_tokens As Integer
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The total number of tokens used by the request.
+		#tag EndNote
 		total_tokens As Integer
 	#tag EndProperty
 

@@ -3,8 +3,8 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.CreateEmbeddingResponseDataInner;
 import org.openapitools.model.CreateEmbeddingResponseUsage;
+import org.openapitools.model.Embedding;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -25,11 +25,11 @@ public class CreateEmbeddingResponseTest {
     }
 
     /**
-     * Test the property '_object'
+     * Test the property 'data'
      */
     @Test
-    public void _objectTest() {
-        // TODO: test _object
+    public void dataTest() {
+        // TODO: test data
     }
 
     /**
@@ -41,11 +41,11 @@ public class CreateEmbeddingResponseTest {
     }
 
     /**
-     * Test the property 'data'
+     * Test the property '_object'
      */
     @Test
-    public void dataTest() {
-        // TODO: test data
+    public void _objectTest() {
+        // TODO: test _object
     }
 
     /**

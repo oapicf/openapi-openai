@@ -17,17 +17,17 @@ class DeleteModelResponse
     public $id;
 
     /**
-     * @DTA\Data(field="object")
-     * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
-     */
-    public $object;
-
-    /**
      * @DTA\Data(field="deleted")
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
      * @var bool|null
      */
     public $deleted;
+
+    /**
+     * @DTA\Data(field="object")
+     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     * @var string|null
+     */
+    public $object;
 
 }

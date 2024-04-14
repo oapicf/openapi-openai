@@ -4,7 +4,7 @@ package org.openapitools.client.model
 
 case class ImagesResponse (
     _created: Integer,
-    _data: List[ImagesResponseDataInner]
+    _data: List[Image]
 )
 object ImagesResponse {
     def toStringBody(var_created: Object, var_data: Object) =

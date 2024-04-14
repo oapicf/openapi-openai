@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <regex>
+#include <algorithm>
 #include <boost/lexical_cast.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -63,8 +64,8 @@ ptree Model::toPropertyTree() const
 	ptree pt;
 	ptree tmp_node;
 	pt.put("id", m_Id);
-	pt.put("object", m_object);
 	pt.put("created", m_Created);
+	pt.put("object", m_object);
 	pt.put("owned_by", m_Owned_by);
 	return pt;
 }
@@ -73,8 +74,8 @@ void Model::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
 	m_Id = pt.get("id", "");
-	m_object = pt.get("object", "");
 	m_Created = pt.get("created", 0);
+	setObject(pt.get("object", ""));
 	m_Owned_by = pt.get("owned_by", "");
 }
 
@@ -89,17 +90,6 @@ void Model::setId(std::string value)
 }
 
 
-std::string Model::getObject() const
-{
-    return m_object;
-}
-
-void Model::setObject(std::string value)
-{
-    m_object = value;
-}
-
-
 int32_t Model::getCreated() const
 {
     return m_Created;
@@ -108,6 +98,25 @@ int32_t Model::getCreated() const
 void Model::setCreated(int32_t value)
 {
     m_Created = value;
+}
+
+
+std::string Model::getObject() const
+{
+    return m_object;
+}
+
+void Model::setObject(std::string value)
+{
+    static const std::array<std::string, 1> allowedValues = {
+        "model"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_object = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 

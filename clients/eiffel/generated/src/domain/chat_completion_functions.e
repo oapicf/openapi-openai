@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -19,22 +19,14 @@ class CHAT_COMPLETION_FUNCTIONS
 
 feature --Access
 
+    description: detachable STRING_32
+      -- A description of what the function does, used by the model to choose when and how to call the function.
     name: detachable STRING_32
       -- The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
-    description: detachable STRING_32
-      -- The description of what the function does.
     parameters: detachable STRING_TABLE [ANY]
-      -- The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+      -- The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
 
 feature -- Change Element
-
-    set_name (a_name: like name)
-        -- Set 'name' with 'a_name'.
-      do
-        name := a_name
-      ensure
-        name_set: name = a_name
-      end
 
     set_description (a_name: like description)
         -- Set 'description' with 'a_name'.
@@ -42,6 +34,14 @@ feature -- Change Element
         description := a_name
       ensure
         description_set: description = a_name
+      end
+
+    set_name (a_name: like name)
+        -- Set 'name' with 'a_name'.
+      do
+        name := a_name
+      ensure
+        name_set: name = a_name
       end
 
     set_parameters (a_name: like parameters)
@@ -60,14 +60,14 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass CHAT_COMPLETION_FUNCTIONS%N")
-        if attached name as l_name then
-          Result.append ("%Nname:")
-          Result.append (l_name.out)
-          Result.append ("%N")
-        end
         if attached description as l_description then
           Result.append ("%Ndescription:")
           Result.append (l_description.out)
+          Result.append ("%N")
+        end
+        if attached name as l_name then
+          Result.append ("%Nname:")
+          Result.append (l_name.out)
           Result.append ("%N")
         end
         if attached parameters as l_parameters then

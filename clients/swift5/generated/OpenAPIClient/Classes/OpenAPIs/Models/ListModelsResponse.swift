@@ -12,10 +12,13 @@ import AnyCodable
 
 public struct ListModelsResponse: Codable, JSONEncodable, Hashable {
 
-    public var object: String
+    public enum Object: String, Codable, CaseIterable {
+        case list = "list"
+    }
+    public var object: Object
     public var data: [Model]
 
-    public init(object: String, data: [Model]) {
+    public init(object: Object, data: [Model]) {
         self.object = object
         self.data = data
     }

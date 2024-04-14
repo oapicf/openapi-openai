@@ -20,15 +20,15 @@ typedef struct delete_model_response_t delete_model_response_t;
 
 typedef struct delete_model_response_t {
     char *id; // string
-    char *object; // string
     int deleted; //boolean
+    char *object; // string
 
 } delete_model_response_t;
 
 delete_model_response_t *delete_model_response_create(
     char *id,
-    char *object,
-    int deleted
+    int deleted,
+    char *object
 );
 
 void delete_model_response_free(delete_model_response_t *delete_model_response);

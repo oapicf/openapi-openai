@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,10 +20,10 @@ import { exists, mapValues } from '../runtime';
 export interface CreateCompletionResponseChoicesInnerLogprobs  {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<number>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    tokens?: Array<string>;
+    textOffset?: Array<number>;
     /**
      * 
      * @type {Array<number>}
@@ -32,24 +32,24 @@ export interface CreateCompletionResponseChoicesInnerLogprobs  {
     tokenLogprobs?: Array<number>;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    topLogprobs?: Array<object>;
+    tokens?: Array<string>;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<{ [key: string]: number; }>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    textOffset?: Array<number>;
+    topLogprobs?: Array<{ [key: string]: number; }>;
 }
 
 export function CreateCompletionResponseChoicesInnerLogprobsFromJSON(json: any): CreateCompletionResponseChoicesInnerLogprobs {
     return {
-        'tokens': !exists(json, 'tokens') ? undefined : json['tokens'],
-        'tokenLogprobs': !exists(json, 'token_logprobs') ? undefined : json['token_logprobs'],
-        'topLogprobs': !exists(json, 'top_logprobs') ? undefined : json['top_logprobs'],
         'textOffset': !exists(json, 'text_offset') ? undefined : json['text_offset'],
+        'tokenLogprobs': !exists(json, 'token_logprobs') ? undefined : json['token_logprobs'],
+        'tokens': !exists(json, 'tokens') ? undefined : json['tokens'],
+        'topLogprobs': !exists(json, 'top_logprobs') ? undefined : json['top_logprobs'],
     };
 }
 
@@ -58,10 +58,10 @@ export function CreateCompletionResponseChoicesInnerLogprobsToJSON(value?: Creat
         return undefined;
     }
     return {
-        'tokens': value.tokens,
-        'token_logprobs': value.tokenLogprobs,
-        'top_logprobs': value.topLogprobs,
         'text_offset': value.textOffset,
+        'token_logprobs': value.tokenLogprobs,
+        'tokens': value.tokens,
+        'top_logprobs': value.topLogprobs,
     };
 }
 

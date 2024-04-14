@@ -17,22 +17,26 @@
 create_chat_completion_stream_response_choices_inner_t* instantiate_create_chat_completion_stream_response_choices_inner(int include_optional);
 
 #include "test_chat_completion_stream_response_delta.c"
+#include "test_create_chat_completion_response_choices_inner_logprobs.c"
 
 
 create_chat_completion_stream_response_choices_inner_t* instantiate_create_chat_completion_stream_response_choices_inner(int include_optional) {
   create_chat_completion_stream_response_choices_inner_t* create_chat_completion_stream_response_choices_inner = NULL;
   if (include_optional) {
     create_chat_completion_stream_response_choices_inner = create_chat_completion_stream_response_choices_inner_create(
-      56,
        // false, not to have infinite recursion
       instantiate_chat_completion_stream_response_delta(0),
-      openai_api_create_chat_completion_stream_response_choices_inner_FINISHREASON_stop
+       // false, not to have infinite recursion
+      instantiate_create_chat_completion_response_choices_inner_logprobs(0),
+      openai_api_create_chat_completion_stream_response_choices_inner_FINISHREASON_stop,
+      56
     );
   } else {
     create_chat_completion_stream_response_choices_inner = create_chat_completion_stream_response_choices_inner_create(
-      56,
       NULL,
-      openai_api_create_chat_completion_stream_response_choices_inner_FINISHREASON_stop
+      NULL,
+      openai_api_create_chat_completion_stream_response_choices_inner_FINISHREASON_stop,
+      56
     );
   }
 

@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Occurs when a [message](/docs/api-reference/messages/object) is created.",
+  "name": "MessageStreamEventOneOf",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "MessageStreamEventOneOf_event",
+        "symbols": [
+          "thread.message.created"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.MessageObject",
+      "doc": ""
+    }
+  ]
+
+}

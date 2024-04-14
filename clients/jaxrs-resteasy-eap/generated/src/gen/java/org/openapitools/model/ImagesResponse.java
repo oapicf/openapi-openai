@@ -9,16 +9,16 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-16T01:13:41.666812110Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-04-14T13:42:04.201119898Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesResponse   {
   
   private Integer created;
-  private List<@Valid ImagesResponseDataInner> data = new ArrayList<>();
+  private List<@Valid Image> data = new ArrayList<>();
 
   /**
    **/
@@ -39,10 +39,10 @@ public class ImagesResponse   {
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("data")
   @NotNull
-  public List<@Valid ImagesResponseDataInner> getData() {
+  public List<@Valid Image> getData() {
     return data;
   }
-  public void setData(List<@Valid ImagesResponseDataInner> data) {
+  public void setData(List<@Valid Image> data) {
     this.data = data;
   }
 

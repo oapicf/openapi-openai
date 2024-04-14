@@ -26,19 +26,19 @@ class CreateModerationResponseTest : ShouldSpec() {
         // uncomment below to create an instance of CreateModerationResponse
         //val modelInstance = CreateModerationResponse()
 
-        // to test the property `id`
+        // to test the property `id` - The unique identifier for the moderation request.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")
         }
 
-        // to test the property `model`
+        // to test the property `model` - The model used to generate the moderation results.
         should("test model") {
             // uncomment below to test the property
             //modelInstance.model shouldBe ("TODO")
         }
 
-        // to test the property `results`
+        // to test the property `results` - A list of moderation objects.
         should("test results") {
             // uncomment below to test the property
             //modelInstance.results shouldBe ("TODO")

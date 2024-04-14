@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -49,11 +49,11 @@ public class CreateChatCompletionStreamResponseTest {
     }
 
     /**
-     * Test the property '_object'
+     * Test the property 'choices'
      */
     @Test
-    public void _objectTest() {
-        // TODO: test _object
+    public void choicesTest() {
+        // TODO: test choices
     }
 
     /**
@@ -73,11 +73,19 @@ public class CreateChatCompletionStreamResponseTest {
     }
 
     /**
-     * Test the property 'choices'
+     * Test the property 'systemFingerprint'
      */
     @Test
-    public void choicesTest() {
-        // TODO: test choices
+    public void systemFingerprintTest() {
+        // TODO: test systemFingerprint
+    }
+
+    /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
     }
 
 }

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <regex>
+#include <algorithm>
 #include <boost/lexical_cast.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -62,8 +63,10 @@ ptree CreateEmbeddingRequest::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.add_child("model", m_Model.toPropertyTree());
 	pt.add_child("input", m_Input.toPropertyTree());
+	pt.add_child("model", m_Model.toPropertyTree());
+	pt.put("encoding_format", m_Encoding_format);
+	pt.put("dimensions", m_Dimensions);
 	pt.put("user", m_User);
 	return pt;
 }
@@ -71,14 +74,27 @@ ptree CreateEmbeddingRequest::toPropertyTree() const
 void CreateEmbeddingRequest::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	if (pt.get_child_optional("model")) {
-        m_Model = fromPt<CreateEmbeddingRequest_model>(pt.get_child("model"));
-	}
 	if (pt.get_child_optional("input")) {
         m_Input = fromPt<CreateEmbeddingRequest_input>(pt.get_child("input"));
 	}
+	if (pt.get_child_optional("model")) {
+        m_Model = fromPt<CreateEmbeddingRequest_model>(pt.get_child("model"));
+	}
+	setEncodingFormat(pt.get("encoding_format", "float"));
+	m_Dimensions = pt.get("dimensions", 0);
 	m_User = pt.get("user", "");
 }
+
+CreateEmbeddingRequest_input CreateEmbeddingRequest::getInput() const
+{
+    return m_Input;
+}
+
+void CreateEmbeddingRequest::setInput(CreateEmbeddingRequest_input value)
+{
+    m_Input = value;
+}
+
 
 CreateEmbeddingRequest_model CreateEmbeddingRequest::getModel() const
 {
@@ -91,14 +107,33 @@ void CreateEmbeddingRequest::setModel(CreateEmbeddingRequest_model value)
 }
 
 
-CreateEmbeddingRequest_input CreateEmbeddingRequest::getInput() const
+std::string CreateEmbeddingRequest::getEncodingFormat() const
 {
-    return m_Input;
+    return m_Encoding_format;
 }
 
-void CreateEmbeddingRequest::setInput(CreateEmbeddingRequest_input value)
+void CreateEmbeddingRequest::setEncodingFormat(std::string value)
 {
-    m_Input = value;
+    static const std::array<std::string, 2> allowedValues = {
+        "float", "base64"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Encoding_format = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
+}
+
+
+int32_t CreateEmbeddingRequest::getDimensions() const
+{
+    return m_Dimensions;
+}
+
+void CreateEmbeddingRequest::setDimensions(int32_t value)
+{
+    m_Dimensions = value;
 }
 
 

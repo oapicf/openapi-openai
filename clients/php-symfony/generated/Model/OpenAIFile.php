@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,6 +37,8 @@ use JMS\Serializer\Annotation\SerializedName;
 /**
  * Class representing the OpenAIFile model.
  *
+ * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
+ *
  * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
@@ -44,6 +46,8 @@ use JMS\Serializer\Annotation\SerializedName;
 class OpenAIFile 
 {
         /**
+     * The file identifier, which can be referenced in the API endpoints.
+     *
      * @var string|null
      * @SerializedName("id")
      * @Assert\NotNull()
@@ -53,15 +57,8 @@ class OpenAIFile
     protected ?string $id = null;
 
     /**
-     * @var string|null
-     * @SerializedName("object")
-     * @Assert\NotNull()
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected ?string $object = null;
-
-    /**
+     * The size of the file, in bytes.
+     *
      * @var int|null
      * @SerializedName("bytes")
      * @Assert\NotNull()
@@ -71,6 +68,8 @@ class OpenAIFile
     protected ?int $bytes = null;
 
     /**
+     * The Unix timestamp (in seconds) for when the file was created.
+     *
      * @var int|null
      * @SerializedName("created_at")
      * @Assert\NotNull()
@@ -80,6 +79,8 @@ class OpenAIFile
     protected ?int $createdAt = null;
 
     /**
+     * The name of the file.
+     *
      * @var string|null
      * @SerializedName("filename")
      * @Assert\NotNull()
@@ -89,29 +90,50 @@ class OpenAIFile
     protected ?string $filename = null;
 
     /**
+     * The object type, which is always &#x60;file&#x60;.
+     *
+     * @var string|null
+     * @SerializedName("object")
+     * @Assert\NotNull()
+     * @Assert\Choice({ "file" })
+     * @Assert\Type("string")
+     * @Type("string")
+     */
+    protected ?string $object = null;
+
+    /**
+     * The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
+     *
      * @var string|null
      * @SerializedName("purpose")
      * @Assert\NotNull()
+     * @Assert\Choice({ "fine-tune", "fine-tune-results", "assistants", "assistants_output" })
      * @Assert\Type("string")
      * @Type("string")
      */
     protected ?string $purpose = null;
 
     /**
+     * Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.
+     *
      * @var string|null
      * @SerializedName("status")
+     * @Assert\NotNull()
+     * @Assert\Choice({ "uploaded", "processed", "error" })
      * @Assert\Type("string")
      * @Type("string")
      */
     protected ?string $status = null;
 
     /**
-     * @var array|null
+     * Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;.
+     *
+     * @var string|null
      * @SerializedName("status_details")
-     * @Assert\Type("array")
-     * @Type("array")
+     * @Assert\Type("string")
+     * @Type("string")
      */
-    protected ?array $statusDetails = null;
+    protected ?string $statusDetails = null;
 
     /**
      * Constructor
@@ -121,10 +143,10 @@ class OpenAIFile
     {
         if (is_array($data)) {
             $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
-            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
             $this->bytes = array_key_exists('bytes', $data) ? $data['bytes'] : $this->bytes;
             $this->createdAt = array_key_exists('createdAt', $data) ? $data['createdAt'] : $this->createdAt;
             $this->filename = array_key_exists('filename', $data) ? $data['filename'] : $this->filename;
+            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
             $this->purpose = array_key_exists('purpose', $data) ? $data['purpose'] : $this->purpose;
             $this->status = array_key_exists('status', $data) ? $data['status'] : $this->status;
             $this->statusDetails = array_key_exists('statusDetails', $data) ? $data['statusDetails'] : $this->statusDetails;
@@ -146,39 +168,13 @@ class OpenAIFile
     /**
      * Sets id.
      *
-     * @param string|null $id
+     * @param string|null $id  The file identifier, which can be referenced in the API endpoints.
      *
      * @return $this
      */
     public function setId(?string $id): self
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets object.
-     *
-     * @return string|null
-     */
-    public function getObject(): ?string
-    {
-        return $this->object;
-    }
-
-
-
-    /**
-     * Sets object.
-     *
-     * @param string|null $object
-     *
-     * @return $this
-     */
-    public function setObject(?string $object): self
-    {
-        $this->object = $object;
 
         return $this;
     }
@@ -198,7 +194,7 @@ class OpenAIFile
     /**
      * Sets bytes.
      *
-     * @param int|null $bytes
+     * @param int|null $bytes  The size of the file, in bytes.
      *
      * @return $this
      */
@@ -224,7 +220,7 @@ class OpenAIFile
     /**
      * Sets createdAt.
      *
-     * @param int|null $createdAt
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the file was created.
      *
      * @return $this
      */
@@ -250,13 +246,39 @@ class OpenAIFile
     /**
      * Sets filename.
      *
-     * @param string|null $filename
+     * @param string|null $filename  The name of the file.
      *
      * @return $this
      */
     public function setFilename(?string $filename): self
     {
         $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Gets object.
+     *
+     * @return string|null
+     */
+    public function getObject(): ?string
+    {
+        return $this->object;
+    }
+
+
+
+    /**
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `file`.
+     *
+     * @return $this
+     */
+    public function setObject(?string $object): self
+    {
+        $this->object = $object;
 
         return $this;
     }
@@ -276,7 +298,7 @@ class OpenAIFile
     /**
      * Sets purpose.
      *
-     * @param string|null $purpose
+     * @param string|null $purpose  The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
      *
      * @return $this
      */
@@ -302,11 +324,11 @@ class OpenAIFile
     /**
      * Sets status.
      *
-     * @param string|null $status
+     * @param string|null $status  Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
      *
      * @return $this
      */
-    public function setStatus(?string $status = null): self
+    public function setStatus(?string $status): self
     {
         $this->status = $status;
 
@@ -316,9 +338,9 @@ class OpenAIFile
     /**
      * Gets statusDetails.
      *
-     * @return array|null
+     * @return string|null
      */
-    public function getStatusDetails(): ?array
+    public function getStatusDetails(): ?string
     {
         return $this->statusDetails;
     }
@@ -328,11 +350,11 @@ class OpenAIFile
     /**
      * Sets statusDetails.
      *
-     * @param array|null $statusDetails
+     * @param string|null $statusDetails  Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
      *
      * @return $this
      */
-    public function setStatusDetails(?array $statusDetails = null): self
+    public function setStatusDetails(?string $statusDetails = null): self
     {
         $this->statusDetails = $statusDetails;
 

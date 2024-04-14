@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -21,9 +21,9 @@ namespace org::openapitools::server::model
 
 ChatCompletionFunctions::ChatCompletionFunctions()
 {
-    m_Name = "";
     m_Description = "";
     m_DescriptionIsSet = false;
+    m_Name = "";
     m_ParametersIsSet = false;
     
 }
@@ -56,11 +56,11 @@ bool ChatCompletionFunctions::operator==(const ChatCompletionFunctions& rhs) con
     return
     
     
-    (getName() == rhs.getName())
-     &&
-    
     
     ((!descriptionIsSet() && !rhs.descriptionIsSet()) || (descriptionIsSet() && rhs.descriptionIsSet() && getDescription() == rhs.getDescription())) &&
+    
+    (getName() == rhs.getName())
+     &&
     
     
     ((!parametersIsSet() && !rhs.parametersIsSet()) || (parametersIsSet() && rhs.parametersIsSet() && getParameters() == rhs.getParameters()))
@@ -76,9 +76,9 @@ bool ChatCompletionFunctions::operator!=(const ChatCompletionFunctions& rhs) con
 void to_json(nlohmann::json& j, const ChatCompletionFunctions& o)
 {
     j = nlohmann::json::object();
-    j["name"] = o.m_Name;
     if(o.descriptionIsSet())
         j["description"] = o.m_Description;
+    j["name"] = o.m_Name;
     if(o.parametersIsSet() || !o.m_Parameters.empty())
         j["parameters"] = o.m_Parameters;
     
@@ -86,12 +86,12 @@ void to_json(nlohmann::json& j, const ChatCompletionFunctions& o)
 
 void from_json(const nlohmann::json& j, ChatCompletionFunctions& o)
 {
-    j.at("name").get_to(o.m_Name);
     if(j.find("description") != j.end())
     {
         j.at("description").get_to(o.m_Description);
         o.m_DescriptionIsSet = true;
     } 
+    j.at("name").get_to(o.m_Name);
     if(j.find("parameters") != j.end())
     {
         j.at("parameters").get_to(o.m_Parameters);
@@ -100,14 +100,6 @@ void from_json(const nlohmann::json& j, ChatCompletionFunctions& o)
     
 }
 
-std::string ChatCompletionFunctions::getName() const
-{
-    return m_Name;
-}
-void ChatCompletionFunctions::setName(std::string const& value)
-{
-    m_Name = value;
-}
 std::string ChatCompletionFunctions::getDescription() const
 {
     return m_Description;
@@ -124,6 +116,14 @@ bool ChatCompletionFunctions::descriptionIsSet() const
 void ChatCompletionFunctions::unsetDescription()
 {
     m_DescriptionIsSet = false;
+}
+std::string ChatCompletionFunctions::getName() const
+{
+    return m_Name;
+}
+void ChatCompletionFunctions::setName(std::string const& value)
+{
+    m_Name = value;
 }
 std::map<std::string, org::openapitools::server::model::nlohmann::json> ChatCompletionFunctions::getParameters() const
 {

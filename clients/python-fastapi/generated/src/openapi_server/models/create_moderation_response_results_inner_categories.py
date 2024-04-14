@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -30,16 +30,20 @@ except ImportError:
 
 class CreateModerationResponseResultsInnerCategories(BaseModel):
     """
-    CreateModerationResponseResultsInnerCategories
+    A list of the categories, and whether they are flagged or not.
     """ # noqa: E501
-    hate: StrictBool
-    hate_threatening: StrictBool = Field(alias="hate/threatening")
-    self_harm: StrictBool = Field(alias="self-harm")
-    sexual: StrictBool
-    sexual_minors: StrictBool = Field(alias="sexual/minors")
-    violence: StrictBool
-    violence_graphic: StrictBool = Field(alias="violence/graphic")
-    __properties: ClassVar[List[str]] = ["hate", "hate/threatening", "self-harm", "sexual", "sexual/minors", "violence", "violence/graphic"]
+    hate: StrictBool = Field(description="Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.")
+    hate_threatening: StrictBool = Field(description="Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.", alias="hate/threatening")
+    harassment: StrictBool = Field(description="Content that expresses, incites, or promotes harassing language towards any target.")
+    harassment_threatening: StrictBool = Field(description="Harassment content that also includes violence or serious harm towards any target.", alias="harassment/threatening")
+    self_harm: StrictBool = Field(description="Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.", alias="self-harm")
+    self_harm_intent: StrictBool = Field(description="Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.", alias="self-harm/intent")
+    self_harm_instructions: StrictBool = Field(description="Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.", alias="self-harm/instructions")
+    sexual: StrictBool = Field(description="Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).")
+    sexual_minors: StrictBool = Field(description="Sexual content that includes an individual who is under 18 years old.", alias="sexual/minors")
+    violence: StrictBool = Field(description="Content that depicts death, violence, or physical injury.")
+    violence_graphic: StrictBool = Field(description="Content that depicts death, violence, or physical injury in graphic detail.", alias="violence/graphic")
+    __properties: ClassVar[List[str]] = ["hate", "hate/threatening", "harassment", "harassment/threatening", "self-harm", "self-harm/intent", "self-harm/instructions", "sexual", "sexual/minors", "violence", "violence/graphic"]
 
     model_config = {
         "populate_by_name": True,
@@ -92,7 +96,11 @@ class CreateModerationResponseResultsInnerCategories(BaseModel):
         _obj = cls.model_validate({
             "hate": obj.get("hate"),
             "hate/threatening": obj.get("hate/threatening"),
+            "harassment": obj.get("harassment"),
+            "harassment/threatening": obj.get("harassment/threatening"),
             "self-harm": obj.get("self-harm"),
+            "self-harm/intent": obj.get("self-harm/intent"),
+            "self-harm/instructions": obj.get("self-harm/instructions"),
             "sexual": obj.get("sexual"),
             "sexual/minors": obj.get("sexual/minors"),
             "violence": obj.get("violence"),

@@ -21,7 +21,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-03-16T01:13:26.699737416Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-04-14T13:41:22.441879330Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FilesApiServiceImpl implements FilesApiService {
       @Override
       public Response createFile(InputStream _fileInputStream, Attachment _fileDetail, String purpose, SecurityContext securityContext) {
@@ -39,7 +39,7 @@ public class FilesApiServiceImpl implements FilesApiService {
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response listFiles(SecurityContext securityContext) {
+      public Response listFiles(String purpose, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }

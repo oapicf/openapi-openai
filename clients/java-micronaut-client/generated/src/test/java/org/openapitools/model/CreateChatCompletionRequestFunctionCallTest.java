@@ -1,7 +1,7 @@
 package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.openapitools.model.CreateChatCompletionRequestFunctionCallOneOf;
+import org.openapitools.model.ChatCompletionFunctionCallOption;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;

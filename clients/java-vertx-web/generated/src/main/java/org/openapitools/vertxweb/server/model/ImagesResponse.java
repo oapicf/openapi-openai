@@ -6,19 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.vertxweb.server.model.ImagesResponseDataInner;
+import org.openapitools.vertxweb.server.model.Image;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ImagesResponse   {
   
   private Integer created;
-  private List<ImagesResponseDataInner> data = new ArrayList<>();
+  private List<Image> data = new ArrayList<>();
 
   public ImagesResponse () {
 
   }
 
-  public ImagesResponse (Integer created, List<ImagesResponseDataInner> data) {
+  public ImagesResponse (Integer created, List<Image> data) {
     this.created = created;
     this.data = data;
   }
@@ -34,10 +34,10 @@ public class ImagesResponse   {
 
     
   @JsonProperty("data")
-  public List<ImagesResponseDataInner> getData() {
+  public List<Image> getData() {
     return data;
   }
-  public void setData(List<ImagesResponseDataInner> data) {
+  public void setData(List<Image> data) {
     this.data = data;
   }
 

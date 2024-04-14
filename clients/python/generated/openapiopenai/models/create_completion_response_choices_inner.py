@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from openapiopenai.models.create_completion_response_choices_inner_logprobs import CreateCompletionResponseChoicesInnerLogprobs
 from typing import Optional, Set
@@ -28,17 +28,17 @@ class CreateCompletionResponseChoicesInner(BaseModel):
     """
     CreateCompletionResponseChoicesInner
     """ # noqa: E501
-    text: StrictStr
+    finish_reason: StrictStr = Field(description="The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. ")
     index: StrictInt
     logprobs: Optional[CreateCompletionResponseChoicesInnerLogprobs]
-    finish_reason: StrictStr
-    __properties: ClassVar[List[str]] = ["text", "index", "logprobs", "finish_reason"]
+    text: StrictStr
+    __properties: ClassVar[List[str]] = ["finish_reason", "index", "logprobs", "text"]
 
     @field_validator('finish_reason')
     def finish_reason_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['stop', 'length']):
-            raise ValueError("must be one of enum values ('stop', 'length')")
+        if value not in set(['stop', 'length', 'content_filter']):
+            raise ValueError("must be one of enum values ('stop', 'length', 'content_filter')")
         return value
 
     model_config = ConfigDict(
@@ -100,10 +100,10 @@ class CreateCompletionResponseChoicesInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "text": obj.get("text"),
+            "finish_reason": obj.get("finish_reason"),
             "index": obj.get("index"),
             "logprobs": CreateCompletionResponseChoicesInnerLogprobs.from_dict(obj["logprobs"]) if obj.get("logprobs") is not None else None,
-            "finish_reason": obj.get("finish_reason")
+            "text": obj.get("text")
         })
         return _obj
 

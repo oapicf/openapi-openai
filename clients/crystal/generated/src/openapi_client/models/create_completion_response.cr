@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -13,32 +13,65 @@ require "json"
 require "time"
 
 module OpenAPIClient
+  # Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
   class CreateCompletionResponse
     include JSON::Serializable
 
     # Required properties
+    # A unique identifier for the completion.
     @[JSON::Field(key: "id", type: String, nillable: false, emit_null: false)]
     property id : String
 
-    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
-    property object : String
-
-    @[JSON::Field(key: "created", type: Int32, nillable: false, emit_null: false)]
-    property created : Int32
-
-    @[JSON::Field(key: "model", type: String, nillable: false, emit_null: false)]
-    property model : String
-
+    # The list of completion choices the model generated for the input prompt.
     @[JSON::Field(key: "choices", type: Array(CreateCompletionResponseChoicesInner), nillable: false, emit_null: false)]
     property choices : Array(CreateCompletionResponseChoicesInner)
 
+    # The Unix timestamp (in seconds) of when the completion was created.
+    @[JSON::Field(key: "created", type: Int32, nillable: false, emit_null: false)]
+    property created : Int32
+
+    # The model used for completion.
+    @[JSON::Field(key: "model", type: String, nillable: false, emit_null: false)]
+    property model : String
+
+    # The object type, which is always \"text_completion\"
+    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
+    property object : String
+
     # Optional properties
-    @[JSON::Field(key: "usage", type: CreateCompletionResponseUsage?, nillable: true, emit_null: false)]
-    property usage : CreateCompletionResponseUsage?
+    # This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+    @[JSON::Field(key: "system_fingerprint", type: String?, nillable: true, emit_null: false)]
+    property system_fingerprint : String?
+
+    @[JSON::Field(key: "usage", type: CompletionUsage?, nillable: true, emit_null: false)]
+    property usage : CompletionUsage?
+
+    class EnumAttributeValidator
+      getter datatype : String
+      getter allowable_values : Array(String)
+
+      def initialize(datatype, allowable_values)
+        @datatype = datatype
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.includes?(value)
+      end
+    end
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@id : String, @object : String, @created : Int32, @model : String, @choices : Array(CreateCompletionResponseChoicesInner), @usage : CreateCompletionResponseUsage?)
+    def initialize(@id : String, @choices : Array(CreateCompletionResponseChoicesInner), @created : Int32, @model : String, @object : String, @system_fingerprint : String?, @usage : CompletionUsage?)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -51,7 +84,19 @@ module OpenAPIClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      object_validator = EnumAttributeValidator.new("String", ["text_completion"])
+      return false unless object_validator.valid?(@object)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] object Object to be assigned
+    def object=(object)
+      validator = EnumAttributeValidator.new("String", ["text_completion"])
+      unless validator.valid?(object)
+        raise ArgumentError.new("invalid value for \"object\", must be one of #{validator.allowable_values}.")
+      end
+      @object = object
     end
 
     # Checks equality by comparing each attribute.
@@ -60,10 +105,11 @@ module OpenAPIClient
       return true if self.same?(o)
       self.class == o.class &&
           id == o.id &&
-          object == o.object &&
+          choices == o.choices &&
           created == o.created &&
           model == o.model &&
-          choices == o.choices &&
+          system_fingerprint == o.system_fingerprint &&
+          object == o.object &&
           usage == o.usage
     end
 
@@ -76,7 +122,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, object, created, model, choices, usage].hash
+      [id, choices, created, model, system_fingerprint, object, usage].hash
     end
 
     # Builds the object from hash

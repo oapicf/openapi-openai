@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -10,32 +10,55 @@
 
 use crate::models;
 
+/// CreateCompletionResponse : Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateCompletionResponse {
+    /// A unique identifier for the completion.
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "object")]
-    pub object: String,
-    #[serde(rename = "created")]
-    pub created: i32,
-    #[serde(rename = "model")]
-    pub model: String,
+    /// The list of completion choices the model generated for the input prompt.
     #[serde(rename = "choices")]
     pub choices: Vec<models::CreateCompletionResponseChoicesInner>,
+    /// The Unix timestamp (in seconds) of when the completion was created.
+    #[serde(rename = "created")]
+    pub created: i32,
+    /// The model used for completion.
+    #[serde(rename = "model")]
+    pub model: String,
+    /// This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+    #[serde(rename = "system_fingerprint", skip_serializing_if = "Option::is_none")]
+    pub system_fingerprint: Option<String>,
+    /// The object type, which is always \"text_completion\"
+    #[serde(rename = "object")]
+    pub object: Object,
     #[serde(rename = "usage", skip_serializing_if = "Option::is_none")]
-    pub usage: Option<Box<models::CreateCompletionResponseUsage>>,
+    pub usage: Option<Box<models::CompletionUsage>>,
 }
 
 impl CreateCompletionResponse {
-    pub fn new(id: String, object: String, created: i32, model: String, choices: Vec<models::CreateCompletionResponseChoicesInner>) -> CreateCompletionResponse {
+    /// Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
+    pub fn new(id: String, choices: Vec<models::CreateCompletionResponseChoicesInner>, created: i32, model: String, object: Object) -> CreateCompletionResponse {
         CreateCompletionResponse {
             id,
-            object,
+            choices,
             created,
             model,
-            choices,
+            system_fingerprint: None,
+            object,
             usage: None,
         }
+    }
+}
+/// The object type, which is always \"text_completion\"
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Object {
+    #[serde(rename = "text_completion")]
+    TextCompletion,
+}
+
+impl Default for Object {
+    fn default() -> Object {
+        Self::TextCompletion
     }
 }
 

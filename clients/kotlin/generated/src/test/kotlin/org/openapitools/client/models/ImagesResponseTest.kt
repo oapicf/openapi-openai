@@ -19,7 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.ImagesResponse
-import org.openapitools.client.models.ImagesResponseDataInner
+import org.openapitools.client.models.Image
 
 class ImagesResponseTest : ShouldSpec() {
     init {

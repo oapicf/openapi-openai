@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt
 from typing import Any, ClassVar, Dict, List
-from openapi_server.models.images_response_data_inner import ImagesResponseDataInner
+from openapi_server.models.image import Image
 try:
     from typing import Self
 except ImportError:
@@ -34,7 +34,7 @@ class ImagesResponse(BaseModel):
     ImagesResponse
     """ # noqa: E501
     created: StrictInt
-    data: List[ImagesResponseDataInner]
+    data: List[Image]
     __properties: ClassVar[List[str]] = ["created", "data"]
 
     model_config = {
@@ -94,7 +94,7 @@ class ImagesResponse(BaseModel):
 
         _obj = cls.model_validate({
             "created": obj.get("created"),
-            "data": [ImagesResponseDataInner.from_dict(_item) for _item in obj.get("data")] if obj.get("data") is not None else None
+            "data": [Image.from_dict(_item) for _item in obj.get("data")] if obj.get("data") is not None else None
         })
         return _obj
 

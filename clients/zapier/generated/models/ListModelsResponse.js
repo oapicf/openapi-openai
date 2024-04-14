@@ -10,6 +10,9 @@ module.exports = {
                 label: `[${labelPrefix}object]`,
                 required: true,
                 type: 'string',
+                choices: [
+                    'list',
+                ],
             },
             {
                 key: `${keyPrefix}data`,

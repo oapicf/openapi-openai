@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,8 +12,17 @@
 
 import { HttpFile } from '../http/http';
 
+/**
+* The usage information for the request.
+*/
 export class CreateEmbeddingResponseUsage {
+    /**
+    * The number of tokens used by the prompt.
+    */
     'promptTokens': number;
+    /**
+    * The total number of tokens used by the request.
+    */
     'totalTokens': number;
 
     static readonly discriminator: string | undefined = undefined;

@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -38,19 +38,22 @@ class TestCreateCompletionRequest(unittest.TestCase):
             return CreateCompletionRequest(
                 model = None,
                 prompt = None,
-                suffix = 'test.',
+                best_of = 0,
+                echo = True,
+                frequency_penalty = -2,
+                logit_bias = {
+                    'key' : 56
+                    },
+                logprobs = 0,
                 max_tokens = 16,
+                n = 1,
+                presence_penalty = -2,
+                seed = -9223372036854775808,
+                stop = None,
+                stream = True,
+                suffix = 'test.',
                 temperature = 1,
                 top_p = 1,
-                n = 1,
-                stream = True,
-                logprobs = 0,
-                echo = True,
-                stop = None,
-                presence_penalty = -2,
-                frequency_penalty = -2,
-                best_of = 0,
-                logit_bias = None,
                 user = 'user-1234'
             )
         else:

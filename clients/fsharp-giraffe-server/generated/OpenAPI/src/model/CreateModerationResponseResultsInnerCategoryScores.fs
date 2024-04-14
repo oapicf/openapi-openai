@@ -11,7 +11,11 @@ module CreateModerationResponseResultsInnerCategoryScores =
   type CreateModerationResponse_results_inner_category_scores = {
     Hate : decimal;
     HateThreatening : decimal;
+    Harassment : decimal;
+    HarassmentThreatening : decimal;
     SelfHarm : decimal;
+    SelfHarmIntent : decimal;
+    SelfHarmInstructions : decimal;
     Sexual : decimal;
     SexualMinors : decimal;
     Violence : decimal;

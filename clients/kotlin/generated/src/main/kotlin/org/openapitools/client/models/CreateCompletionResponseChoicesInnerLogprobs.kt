@@ -22,26 +22,26 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param tokens 
- * @param tokenLogprobs 
- * @param topLogprobs 
  * @param textOffset 
+ * @param tokenLogprobs 
+ * @param tokens 
+ * @param topLogprobs 
  */
 
 
 data class CreateCompletionResponseChoicesInnerLogprobs (
 
-    @Json(name = "tokens")
-    val tokens: kotlin.collections.List<kotlin.String>? = null,
+    @Json(name = "text_offset")
+    val textOffset: kotlin.collections.List<kotlin.Int>? = null,
 
     @Json(name = "token_logprobs")
     val tokenLogprobs: kotlin.collections.List<java.math.BigDecimal>? = null,
 
-    @Json(name = "top_logprobs")
-    val topLogprobs: kotlin.collections.List<kotlin.Any>? = null,
+    @Json(name = "tokens")
+    val tokens: kotlin.collections.List<kotlin.String>? = null,
 
-    @Json(name = "text_offset")
-    val textOffset: kotlin.collections.List<kotlin.Int>? = null
+    @Json(name = "top_logprobs")
+    val topLogprobs: kotlin.collections.List<kotlin.collections.Map<kotlin.String, java.math.BigDecimal>>? = null
 
 )
 

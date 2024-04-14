@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 
 
 #include <string>
+#include "CreateChatCompletionResponse_choices_inner_logprobs.h"
 #include "ChatCompletionStreamResponseDelta.h"
 #include <nlohmann/json.hpp>
 
@@ -62,34 +63,37 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int32_t getIndex() const;
-    void setIndex(int32_t const value);
-    bool indexIsSet() const;
-    void unsetIndex();
+    org::openapitools::server::model::ChatCompletionStreamResponseDelta getDelta() const;
+    void setDelta(org::openapitools::server::model::ChatCompletionStreamResponseDelta const& value);
     /// <summary>
     /// 
     /// </summary>
-    org::openapitools::server::model::ChatCompletionStreamResponseDelta getDelta() const;
-    void setDelta(org::openapitools::server::model::ChatCompletionStreamResponseDelta const& value);
-    bool deltaIsSet() const;
-    void unsetDelta();
+    org::openapitools::server::model::CreateChatCompletionResponse_choices_inner_logprobs getLogprobs() const;
+    void setLogprobs(org::openapitools::server::model::CreateChatCompletionResponse_choices_inner_logprobs const& value);
+    bool logprobsIsSet() const;
+    void unsetLogprobs();
     /// <summary>
-    /// 
+    /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
     /// </summary>
     std::string getFinishReason() const;
     void setFinishReason(std::string const& value);
-    bool finishReasonIsSet() const;
-    void unsetFinish_reason();
+    /// <summary>
+    /// The index of the choice in the list of choices.
+    /// </summary>
+    int32_t getIndex() const;
+    void setIndex(int32_t const value);
 
     friend  void to_json(nlohmann::json& j, const CreateChatCompletionStreamResponse_choices_inner& o);
     friend  void from_json(const nlohmann::json& j, CreateChatCompletionStreamResponse_choices_inner& o);
 protected:
-    int32_t m_Index;
-    bool m_IndexIsSet;
     org::openapitools::server::model::ChatCompletionStreamResponseDelta m_Delta;
-    bool m_DeltaIsSet;
+
+    org::openapitools::server::model::CreateChatCompletionResponse_choices_inner_logprobs m_Logprobs;
+    bool m_LogprobsIsSet;
     std::string m_Finish_reason;
-    bool m_Finish_reasonIsSet;
+
+    int32_t m_Index;
+
     
 };
 

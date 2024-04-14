@@ -1,14 +1,14 @@
 #' Create a new CreateEmbeddingResponseUsage
 #'
 #' @description
-#' CreateEmbeddingResponseUsage Class
+#' The usage information for the request.
 #'
 #' @docType class
 #' @title CreateEmbeddingResponseUsage
 #' @description CreateEmbeddingResponseUsage Class
 #' @format An \code{R6Class} generator object
-#' @field prompt_tokens  integer
-#' @field total_tokens  integer
+#' @field prompt_tokens The number of tokens used by the prompt. integer
+#' @field total_tokens The total number of tokens used by the request. integer
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -22,8 +22,8 @@ CreateEmbeddingResponseUsage <- R6::R6Class(
     #' @description
     #' Initialize a new CreateEmbeddingResponseUsage class.
     #'
-    #' @param prompt_tokens prompt_tokens
-    #' @param total_tokens total_tokens
+    #' @param prompt_tokens The number of tokens used by the prompt.
+    #' @param total_tokens The total number of tokens used by the request.
     #' @param ... Other optional arguments.
     #' @export
     initialize = function(`prompt_tokens`, `total_tokens`, ...) {

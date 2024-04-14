@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <regex>
+#include <algorithm>
 #include <boost/lexical_cast.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -72,7 +73,7 @@ void DeleteFileResponse::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
 	m_Id = pt.get("id", "");
-	m_object = pt.get("object", "");
+	setObject(pt.get("object", ""));
 	m_Deleted = pt.get("deleted", false);
 }
 
@@ -94,7 +95,15 @@ std::string DeleteFileResponse::getObject() const
 
 void DeleteFileResponse::setObject(std::string value)
 {
-    m_object = value;
+    static const std::array<std::string, 1> allowedValues = {
+        "file"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_object = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 

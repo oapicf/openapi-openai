@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -22,10 +22,11 @@ var _ MappedNullable = &CreateCompletionResponseChoicesInner{}
 
 // CreateCompletionResponseChoicesInner struct for CreateCompletionResponseChoicesInner
 type CreateCompletionResponseChoicesInner struct {
-	Text string `json:"text"`
+	// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+	FinishReason string `json:"finish_reason"`
 	Index int32 `json:"index"`
 	Logprobs NullableCreateCompletionResponseChoicesInnerLogprobs `json:"logprobs"`
-	FinishReason string `json:"finish_reason"`
+	Text string `json:"text"`
 }
 
 type _CreateCompletionResponseChoicesInner CreateCompletionResponseChoicesInner
@@ -34,12 +35,12 @@ type _CreateCompletionResponseChoicesInner CreateCompletionResponseChoicesInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateCompletionResponseChoicesInner(text string, index int32, logprobs NullableCreateCompletionResponseChoicesInnerLogprobs, finishReason string) *CreateCompletionResponseChoicesInner {
+func NewCreateCompletionResponseChoicesInner(finishReason string, index int32, logprobs NullableCreateCompletionResponseChoicesInnerLogprobs, text string) *CreateCompletionResponseChoicesInner {
 	this := CreateCompletionResponseChoicesInner{}
-	this.Text = text
+	this.FinishReason = finishReason
 	this.Index = index
 	this.Logprobs = logprobs
-	this.FinishReason = finishReason
+	this.Text = text
 	return &this
 }
 
@@ -51,28 +52,28 @@ func NewCreateCompletionResponseChoicesInnerWithDefaults() *CreateCompletionResp
 	return &this
 }
 
-// GetText returns the Text field value
-func (o *CreateCompletionResponseChoicesInner) GetText() string {
+// GetFinishReason returns the FinishReason field value
+func (o *CreateCompletionResponseChoicesInner) GetFinishReason() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Text
+	return o.FinishReason
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetFinishReasonOk returns a tuple with the FinishReason field value
 // and a boolean to check if the value has been set.
-func (o *CreateCompletionResponseChoicesInner) GetTextOk() (*string, bool) {
+func (o *CreateCompletionResponseChoicesInner) GetFinishReasonOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Text, true
+	return &o.FinishReason, true
 }
 
-// SetText sets field value
-func (o *CreateCompletionResponseChoicesInner) SetText(v string) {
-	o.Text = v
+// SetFinishReason sets field value
+func (o *CreateCompletionResponseChoicesInner) SetFinishReason(v string) {
+	o.FinishReason = v
 }
 
 // GetIndex returns the Index field value
@@ -125,28 +126,28 @@ func (o *CreateCompletionResponseChoicesInner) SetLogprobs(v CreateCompletionRes
 	o.Logprobs.Set(&v)
 }
 
-// GetFinishReason returns the FinishReason field value
-func (o *CreateCompletionResponseChoicesInner) GetFinishReason() string {
+// GetText returns the Text field value
+func (o *CreateCompletionResponseChoicesInner) GetText() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.FinishReason
+	return o.Text
 }
 
-// GetFinishReasonOk returns a tuple with the FinishReason field value
+// GetTextOk returns a tuple with the Text field value
 // and a boolean to check if the value has been set.
-func (o *CreateCompletionResponseChoicesInner) GetFinishReasonOk() (*string, bool) {
+func (o *CreateCompletionResponseChoicesInner) GetTextOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FinishReason, true
+	return &o.Text, true
 }
 
-// SetFinishReason sets field value
-func (o *CreateCompletionResponseChoicesInner) SetFinishReason(v string) {
-	o.FinishReason = v
+// SetText sets field value
+func (o *CreateCompletionResponseChoicesInner) SetText(v string) {
+	o.Text = v
 }
 
 func (o CreateCompletionResponseChoicesInner) MarshalJSON() ([]byte, error) {
@@ -159,10 +160,10 @@ func (o CreateCompletionResponseChoicesInner) MarshalJSON() ([]byte, error) {
 
 func (o CreateCompletionResponseChoicesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["text"] = o.Text
+	toSerialize["finish_reason"] = o.FinishReason
 	toSerialize["index"] = o.Index
 	toSerialize["logprobs"] = o.Logprobs.Get()
-	toSerialize["finish_reason"] = o.FinishReason
+	toSerialize["text"] = o.Text
 	return toSerialize, nil
 }
 
@@ -171,10 +172,10 @@ func (o *CreateCompletionResponseChoicesInner) UnmarshalJSON(data []byte) (err e
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"text",
+		"finish_reason",
 		"index",
 		"logprobs",
-		"finish_reason",
+		"text",
 	}
 
 	allProperties := make(map[string]interface{})

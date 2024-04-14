@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -50,16 +50,18 @@ import com.github.oapicf.openapiopenai.JSON;
 
 /**
  * ChatCompletionFunctions
+ * @deprecated
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Deprecated
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ChatCompletionFunctions {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
   public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
   @SerializedName(SERIALIZED_NAME_PARAMETERS)
@@ -67,6 +69,25 @@ public class ChatCompletionFunctions {
 
   public ChatCompletionFunctions() {
   }
+
+  public ChatCompletionFunctions description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * A description of what the function does, used by the model to choose when and how to call the function.
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
 
   public ChatCompletionFunctions name(String name) {
     this.name = name;
@@ -87,25 +108,6 @@ public class ChatCompletionFunctions {
   }
 
 
-  public ChatCompletionFunctions description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * The description of what the function does.
-   * @return description
-  **/
-  @javax.annotation.Nullable
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
   public ChatCompletionFunctions parameters(Map<String, Object> parameters) {
     this.parameters = parameters;
     return this;
@@ -120,7 +122,7 @@ public class ChatCompletionFunctions {
   }
 
    /**
-   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
    * @return parameters
   **/
   @javax.annotation.Nullable
@@ -143,22 +145,22 @@ public class ChatCompletionFunctions {
       return false;
     }
     ChatCompletionFunctions chatCompletionFunctions = (ChatCompletionFunctions) o;
-    return Objects.equals(this.name, chatCompletionFunctions.name) &&
-        Objects.equals(this.description, chatCompletionFunctions.description) &&
+    return Objects.equals(this.description, chatCompletionFunctions.description) &&
+        Objects.equals(this.name, chatCompletionFunctions.name) &&
         Objects.equals(this.parameters, chatCompletionFunctions.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, parameters);
+    return Objects.hash(description, name, parameters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChatCompletionFunctions {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -182,8 +184,8 @@ public class ChatCompletionFunctions {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
     openapiFields.add("description");
+    openapiFields.add("name");
     openapiFields.add("parameters");
 
     // a set of required properties/fields (JSON key names)
@@ -219,11 +221,11 @@ public class ChatCompletionFunctions {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if (!jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
   }
 

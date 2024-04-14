@@ -10,11 +10,11 @@ import java.util.Arrays;
 @Canonical
 class CreateCompletionResponseChoicesInnerLogprobs {
     
-    List<String> tokens
+    List<Integer> textOffset
     
     List<BigDecimal> tokenLogprobs
     
-    List<Object> topLogprobs
+    List<String> tokens
     
-    List<Integer> textOffset
+    List<Map<String, BigDecimal>> topLogprobs
 }

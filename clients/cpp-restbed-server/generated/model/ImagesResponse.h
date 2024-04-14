@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@
 
 
 
-#include "ImagesResponse_data_inner.h"
+#include "Image.h"
 #include <vector>
 #include <memory>
 #include <vector>
@@ -67,12 +67,12 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<ImagesResponse_data_inner> getData() const;
-    void setData(std::vector<ImagesResponse_data_inner> value);
+    std::vector<Image> getData() const;
+    void setData(std::vector<Image> value);
 
 protected:
     int32_t m_Created = 0;
-    std::vector<ImagesResponse_data_inner> m_Data;
+    std::vector<Image> m_Data;
 };
 
 std::vector<ImagesResponse> createImagesResponseVectorFromJsonString(const std::string& json);

@@ -15,11 +15,17 @@
 
 typedef struct chat_completion_request_message_t chat_completion_request_message_t;
 
-#include "chat_completion_request_message_function_call.h"
+#include "chat_completion_message_tool_call.h"
+#include "chat_completion_request_assistant_message.h"
+#include "chat_completion_request_assistant_message_function_call.h"
+#include "chat_completion_request_function_message.h"
+#include "chat_completion_request_system_message.h"
+#include "chat_completion_request_tool_message.h"
+#include "chat_completion_request_user_message.h"
 
 // Enum ROLE for chat_completion_request_message
 
-typedef enum  { openai_api_chat_completion_request_message_ROLE_NULL = 0, openai_api_chat_completion_request_message_ROLE_system, openai_api_chat_completion_request_message_ROLE_user, openai_api_chat_completion_request_message_ROLE_assistant, openai_api_chat_completion_request_message_ROLE_function } openai_api_chat_completion_request_message_ROLE_e;
+typedef enum  { openai_api_chat_completion_request_message_ROLE_NULL = 0, openai_api_chat_completion_request_message_ROLE_function } openai_api_chat_completion_request_message_ROLE_e;
 
 char* chat_completion_request_message_role_ToString(openai_api_chat_completion_request_message_ROLE_e role);
 
@@ -28,18 +34,22 @@ openai_api_chat_completion_request_message_ROLE_e chat_completion_request_messag
 
 
 typedef struct chat_completion_request_message_t {
-    openai_api_chat_completion_request_message_ROLE_e role; //enum
     char *content; // string
+    openai_api_chat_completion_request_message_ROLE_e role; //enum
     char *name; // string
-    struct chat_completion_request_message_function_call_t *function_call; //model
+    list_t *tool_calls; //nonprimitive container
+    struct chat_completion_request_assistant_message_function_call_t *function_call; //model
+    char *tool_call_id; // string
 
 } chat_completion_request_message_t;
 
 chat_completion_request_message_t *chat_completion_request_message_create(
-    openai_api_chat_completion_request_message_ROLE_e role,
     char *content,
+    openai_api_chat_completion_request_message_ROLE_e role,
     char *name,
-    chat_completion_request_message_function_call_t *function_call
+    list_t *tool_calls,
+    chat_completion_request_assistant_message_function_call_t *function_call,
+    char *tool_call_id
 );
 
 void chat_completion_request_message_free(chat_completion_request_message_t *chat_completion_request_message);

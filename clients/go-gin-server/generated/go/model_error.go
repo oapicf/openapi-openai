@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,11 +12,11 @@ package openapi
 
 type Error struct {
 
-	Type string `json:"type"`
+	Code *string `json:"code"`
 
 	Message string `json:"message"`
 
 	Param *string `json:"param"`
 
-	Code *string `json:"code"`
+	Type string `json:"type"`
 }

@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -23,13 +23,13 @@ import .*
  * @param data 
  */
 object ListModelsResponses : BaseTable<ListModelsResponse>("ListModelsResponse") {
-    val object = text("object")
+    val object = text("object").transform({ ListModelsResponse.Object.valueOf(it) }, { it.value })
 
     /**
      * Create an entity of type ListModelsResponse from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = ListModelsResponse(
-        object = row[object] ?: "" /* kotlin.String */,
+        object = row[object] ?: ListModelsResponse.Object.valueOf("") /* kotlin.String */,
         data = emptyList() /* kotlin.Array<Model> */
     )
 

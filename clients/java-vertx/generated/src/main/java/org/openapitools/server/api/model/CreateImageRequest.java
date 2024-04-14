@@ -5,22 +5,23 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.server.api.model.CreateImageRequestModel;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateImageRequest   {
   
   private String prompt;
+  private CreateImageRequestModel model = dall-e-2;
   private Integer n = 1;
 
 
-  public enum SizeEnum {
-    _256X256("256x256"),
-    _512X512("512x512"),
-    _1024X1024("1024x1024");
+  public enum QualityEnum {
+    STANDARD("standard"),
+    HD("hd");
 
     private String value;
 
-    SizeEnum(String value) {
+    QualityEnum(String value) {
       this.value = value;
     }
 
@@ -31,7 +32,7 @@ public class CreateImageRequest   {
     }
   }
 
-  private SizeEnum size = SizeEnum._1024X1024;
+  private QualityEnum quality = QualityEnum.STANDARD;
 
 
   public enum ResponseFormatEnum {
@@ -52,17 +53,63 @@ public class CreateImageRequest   {
   }
 
   private ResponseFormatEnum responseFormat = ResponseFormatEnum.URL;
+
+
+  public enum SizeEnum {
+    _256X256("256x256"),
+    _512X512("512x512"),
+    _1024X1024("1024x1024"),
+    _1792X1024("1792x1024"),
+    _1024X1792("1024x1792");
+
+    private String value;
+
+    SizeEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private SizeEnum size = SizeEnum._1024X1024;
+
+
+  public enum StyleEnum {
+    VIVID("vivid"),
+    NATURAL("natural");
+
+    private String value;
+
+    StyleEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private StyleEnum style = StyleEnum.VIVID;
   private String user;
 
   public CreateImageRequest () {
 
   }
 
-  public CreateImageRequest (String prompt, Integer n, SizeEnum size, ResponseFormatEnum responseFormat, String user) {
+  public CreateImageRequest (String prompt, CreateImageRequestModel model, Integer n, QualityEnum quality, ResponseFormatEnum responseFormat, SizeEnum size, StyleEnum style, String user) {
     this.prompt = prompt;
+    this.model = model;
     this.n = n;
-    this.size = size;
+    this.quality = quality;
     this.responseFormat = responseFormat;
+    this.size = size;
+    this.style = style;
     this.user = user;
   }
 
@@ -76,12 +123,39 @@ public class CreateImageRequest   {
   }
 
     
+  @JsonProperty("model")
+  public CreateImageRequestModel getModel() {
+    return model;
+  }
+  public void setModel(CreateImageRequestModel model) {
+    this.model = model;
+  }
+
+    
   @JsonProperty("n")
   public Integer getN() {
     return n;
   }
   public void setN(Integer n) {
     this.n = n;
+  }
+
+    
+  @JsonProperty("quality")
+  public QualityEnum getQuality() {
+    return quality;
+  }
+  public void setQuality(QualityEnum quality) {
+    this.quality = quality;
+  }
+
+    
+  @JsonProperty("response_format")
+  public ResponseFormatEnum getResponseFormat() {
+    return responseFormat;
+  }
+  public void setResponseFormat(ResponseFormatEnum responseFormat) {
+    this.responseFormat = responseFormat;
   }
 
     
@@ -94,12 +168,12 @@ public class CreateImageRequest   {
   }
 
     
-  @JsonProperty("response_format")
-  public ResponseFormatEnum getResponseFormat() {
-    return responseFormat;
+  @JsonProperty("style")
+  public StyleEnum getStyle() {
+    return style;
   }
-  public void setResponseFormat(ResponseFormatEnum responseFormat) {
-    this.responseFormat = responseFormat;
+  public void setStyle(StyleEnum style) {
+    this.style = style;
   }
 
     
@@ -122,15 +196,18 @@ public class CreateImageRequest   {
     }
     CreateImageRequest createImageRequest = (CreateImageRequest) o;
     return Objects.equals(prompt, createImageRequest.prompt) &&
+        Objects.equals(model, createImageRequest.model) &&
         Objects.equals(n, createImageRequest.n) &&
-        Objects.equals(size, createImageRequest.size) &&
+        Objects.equals(quality, createImageRequest.quality) &&
         Objects.equals(responseFormat, createImageRequest.responseFormat) &&
+        Objects.equals(size, createImageRequest.size) &&
+        Objects.equals(style, createImageRequest.style) &&
         Objects.equals(user, createImageRequest.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(prompt, n, size, responseFormat, user);
+    return Objects.hash(prompt, model, n, quality, responseFormat, size, style, user);
   }
 
   @Override
@@ -139,9 +216,12 @@ public class CreateImageRequest   {
     sb.append("class CreateImageRequest {\n");
     
     sb.append("    prompt: ").append(toIndentedString(prompt)).append("\n");
+    sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    n: ").append(toIndentedString(n)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    quality: ").append(toIndentedString(quality)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    style: ").append(toIndentedString(style)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("}");
     return sb.toString();

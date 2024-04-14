@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -16,16 +16,16 @@ import (
 	"fmt"
 )
 
-// CreateChatCompletionRequestFunctionCall - Controls how the model responds to function calls. \"none\" means the model does not call a function, and responds to the end-user. \"auto\" means the model can pick between an end-user or calling a function.  Specifying a particular function via `{\"name\":\\ \"my_function\"}` forces the model to call that function. \"none\" is the default when no functions are present. \"auto\" is the default if functions are present.
+// CreateChatCompletionRequestFunctionCall - Deprecated in favor of `tool_choice`.  Controls which (if any) function is called by the model. `none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. Specifying a particular function via `{\"name\": \"my_function\"}` forces the model to call that function.  `none` is the default when no functions are present. `auto` is the default if functions are present. 
 type CreateChatCompletionRequestFunctionCall struct {
-	CreateChatCompletionRequestFunctionCallOneOf *CreateChatCompletionRequestFunctionCallOneOf
+	ChatCompletionFunctionCallOption *ChatCompletionFunctionCallOption
 	String *string
 }
 
-// CreateChatCompletionRequestFunctionCallOneOfAsCreateChatCompletionRequestFunctionCall is a convenience function that returns CreateChatCompletionRequestFunctionCallOneOf wrapped in CreateChatCompletionRequestFunctionCall
-func CreateChatCompletionRequestFunctionCallOneOfAsCreateChatCompletionRequestFunctionCall(v *CreateChatCompletionRequestFunctionCallOneOf) CreateChatCompletionRequestFunctionCall {
+// ChatCompletionFunctionCallOptionAsCreateChatCompletionRequestFunctionCall is a convenience function that returns ChatCompletionFunctionCallOption wrapped in CreateChatCompletionRequestFunctionCall
+func ChatCompletionFunctionCallOptionAsCreateChatCompletionRequestFunctionCall(v *ChatCompletionFunctionCallOption) CreateChatCompletionRequestFunctionCall {
 	return CreateChatCompletionRequestFunctionCall{
-		CreateChatCompletionRequestFunctionCallOneOf: v,
+		ChatCompletionFunctionCallOption: v,
 	}
 }
 
@@ -41,17 +41,17 @@ func StringAsCreateChatCompletionRequestFunctionCall(v *string) CreateChatComple
 func (dst *CreateChatCompletionRequestFunctionCall) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into CreateChatCompletionRequestFunctionCallOneOf
-	err = newStrictDecoder(data).Decode(&dst.CreateChatCompletionRequestFunctionCallOneOf)
+	// try to unmarshal data into ChatCompletionFunctionCallOption
+	err = newStrictDecoder(data).Decode(&dst.ChatCompletionFunctionCallOption)
 	if err == nil {
-		jsonCreateChatCompletionRequestFunctionCallOneOf, _ := json.Marshal(dst.CreateChatCompletionRequestFunctionCallOneOf)
-		if string(jsonCreateChatCompletionRequestFunctionCallOneOf) == "{}" { // empty struct
-			dst.CreateChatCompletionRequestFunctionCallOneOf = nil
+		jsonChatCompletionFunctionCallOption, _ := json.Marshal(dst.ChatCompletionFunctionCallOption)
+		if string(jsonChatCompletionFunctionCallOption) == "{}" { // empty struct
+			dst.ChatCompletionFunctionCallOption = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.CreateChatCompletionRequestFunctionCallOneOf = nil
+		dst.ChatCompletionFunctionCallOption = nil
 	}
 
 	// try to unmarshal data into String
@@ -69,7 +69,7 @@ func (dst *CreateChatCompletionRequestFunctionCall) UnmarshalJSON(data []byte) e
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.CreateChatCompletionRequestFunctionCallOneOf = nil
+		dst.ChatCompletionFunctionCallOption = nil
 		dst.String = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateChatCompletionRequestFunctionCall)")
@@ -82,8 +82,8 @@ func (dst *CreateChatCompletionRequestFunctionCall) UnmarshalJSON(data []byte) e
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CreateChatCompletionRequestFunctionCall) MarshalJSON() ([]byte, error) {
-	if src.CreateChatCompletionRequestFunctionCallOneOf != nil {
-		return json.Marshal(&src.CreateChatCompletionRequestFunctionCallOneOf)
+	if src.ChatCompletionFunctionCallOption != nil {
+		return json.Marshal(&src.ChatCompletionFunctionCallOption)
 	}
 
 	if src.String != nil {
@@ -98,8 +98,8 @@ func (obj *CreateChatCompletionRequestFunctionCall) GetActualInstance() (interfa
 	if obj == nil {
 		return nil
 	}
-	if obj.CreateChatCompletionRequestFunctionCallOneOf != nil {
-		return obj.CreateChatCompletionRequestFunctionCallOneOf
+	if obj.ChatCompletionFunctionCallOption != nil {
+		return obj.ChatCompletionFunctionCallOption
 	}
 
 	if obj.String != nil {

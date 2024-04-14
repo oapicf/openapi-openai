@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,66 +13,73 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CompletionUsage,
+    CompletionUsageFromJSON,
+    CompletionUsageToJSON,
     CreateChatCompletionResponseChoicesInner,
     CreateChatCompletionResponseChoicesInnerFromJSON,
     CreateChatCompletionResponseChoicesInnerToJSON,
-    CreateCompletionResponseUsage,
-    CreateCompletionResponseUsageFromJSON,
-    CreateCompletionResponseUsageToJSON,
 } from './';
 
 /**
- * 
+ * Represents a chat completion response returned by model, based on the provided input.
  * @export
  * @interface CreateChatCompletionResponse
  */
 export interface CreateChatCompletionResponse  {
     /**
-     * 
+     * A unique identifier for the chat completion.
      * @type {string}
      * @memberof CreateChatCompletionResponse
      */
     id: string;
     /**
-     * 
-     * @type {string}
-     * @memberof CreateChatCompletionResponse
-     */
-    object: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateChatCompletionResponse
-     */
-    created: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateChatCompletionResponse
-     */
-    model: string;
-    /**
-     * 
+     * A list of chat completion choices. Can be more than one if `n` is greater than 1.
      * @type {Array<CreateChatCompletionResponseChoicesInner>}
      * @memberof CreateChatCompletionResponse
      */
     choices: Array<CreateChatCompletionResponseChoicesInner>;
     /**
-     * 
-     * @type {CreateCompletionResponseUsage}
+     * The Unix timestamp (in seconds) of when the chat completion was created.
+     * @type {number}
      * @memberof CreateChatCompletionResponse
      */
-    usage?: CreateCompletionResponseUsage;
+    created: number;
+    /**
+     * The model used for the chat completion.
+     * @type {string}
+     * @memberof CreateChatCompletionResponse
+     */
+    model: string;
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+     * @type {string}
+     * @memberof CreateChatCompletionResponse
+     */
+    systemFingerprint?: string;
+    /**
+     * The object type, which is always `chat.completion`.
+     * @type {string}
+     * @memberof CreateChatCompletionResponse
+     */
+    object: CreateChatCompletionResponseObjectEnum;
+    /**
+     * 
+     * @type {CompletionUsage}
+     * @memberof CreateChatCompletionResponse
+     */
+    usage?: CompletionUsage;
 }
 
 export function CreateChatCompletionResponseFromJSON(json: any): CreateChatCompletionResponse {
     return {
         'id': json['id'],
-        'object': json['object'],
+        'choices': (json['choices'] as Array<any>).map(CreateChatCompletionResponseChoicesInnerFromJSON),
         'created': json['created'],
         'model': json['model'],
-        'choices': (json['choices'] as Array<any>).map(CreateChatCompletionResponseChoicesInnerFromJSON),
-        'usage': !exists(json, 'usage') ? undefined : CreateCompletionResponseUsageFromJSON(json['usage']),
+        'systemFingerprint': !exists(json, 'system_fingerprint') ? undefined : json['system_fingerprint'],
+        'object': json['object'],
+        'usage': !exists(json, 'usage') ? undefined : CompletionUsageFromJSON(json['usage']),
     };
 }
 
@@ -82,12 +89,21 @@ export function CreateChatCompletionResponseToJSON(value?: CreateChatCompletionR
     }
     return {
         'id': value.id,
-        'object': value.object,
+        'choices': (value.choices as Array<any>).map(CreateChatCompletionResponseChoicesInnerToJSON),
         'created': value.created,
         'model': value.model,
-        'choices': (value.choices as Array<any>).map(CreateChatCompletionResponseChoicesInnerToJSON),
-        'usage': CreateCompletionResponseUsageToJSON(value.usage),
+        'system_fingerprint': value.systemFingerprint,
+        'object': value.object,
+        'usage': CompletionUsageToJSON(value.usage),
     };
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum CreateChatCompletionResponseObjectEnum {
+    ChatCompletion = 'chat.completion'
 }
 
 

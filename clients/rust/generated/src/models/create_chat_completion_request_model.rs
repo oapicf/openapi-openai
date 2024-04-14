@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,17 +11,15 @@
 use crate::models;
 
 /// CreateChatCompletionRequestModel : ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.
-/// ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateChatCompletionRequestModel {
-    String(String),
-    String(String),
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+pub struct CreateChatCompletionRequestModel {
 }
 
-impl Default for CreateChatCompletionRequestModel {
-    fn default() -> Self {
-        Self::String(Default::default())
+impl CreateChatCompletionRequestModel {
+    /// ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.
+    pub fn new() -> CreateChatCompletionRequestModel {
+        CreateChatCompletionRequestModel {
+        }
     }
 }
 

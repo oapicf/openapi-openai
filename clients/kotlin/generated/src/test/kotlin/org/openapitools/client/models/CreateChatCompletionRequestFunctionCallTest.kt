@@ -19,7 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.CreateChatCompletionRequestFunctionCall
-import org.openapitools.client.models.CreateChatCompletionRequestFunctionCallOneOf
+import org.openapitools.client.models.ChatCompletionFunctionCallOption
 
 class CreateChatCompletionRequestFunctionCallTest : ShouldSpec() {
     init {

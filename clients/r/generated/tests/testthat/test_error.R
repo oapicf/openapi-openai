@@ -5,11 +5,11 @@ context("Test Error")
 
 model_instance <- Error$new()
 
-test_that("type", {
-  # tests for the property `type` (character)
+test_that("code", {
+  # tests for the property `code` (character)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`type`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`code`, "EXPECTED_RESULT")
 })
 
 test_that("message", {
@@ -26,9 +26,9 @@ test_that("param", {
   #expect_equal(model.instance$`param`, "EXPECTED_RESULT")
 })
 
-test_that("code", {
-  # tests for the property `code` (character)
+test_that("type", {
+  # tests for the property `type` (character)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`code`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`type`, "EXPECTED_RESULT")
 })

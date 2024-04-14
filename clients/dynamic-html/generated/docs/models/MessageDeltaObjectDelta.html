@@ -1,0 +1,23 @@
+
+<h2>MessageDeltaObjectDelta</h2>
+<ul class="parameter">
+  <li class="param-required-false">role : String
+    <br/>The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>user</dd>
+            <dd>assistant</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">content : List
+    <br/>The content of the message in array of text and/or images.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">fileUnderscoreids : List
+    <br/>A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+  </li>
+</ul>

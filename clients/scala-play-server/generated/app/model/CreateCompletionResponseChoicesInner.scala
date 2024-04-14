@@ -4,13 +4,14 @@ import play.api.libs.json._
 
 /**
   * Represents the Swagger definition for CreateCompletionResponse_choices_inner.
+  * @param finishReason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-16T01:17:28.392125286Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-04-14T13:53:34.453725706Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 case class CreateCompletionResponseChoicesInner(
-  text: String,
+  finishReason: CreateCompletionResponseChoicesInner.FinishReason.Value,
   index: Int,
   logprobs: CreateCompletionResponseChoicesInnerLogprobs,
-  finishReason: CreateCompletionResponseChoicesInner.FinishReason.Value
+  text: String
 )
 
 object CreateCompletionResponseChoicesInner {
@@ -20,6 +21,7 @@ object CreateCompletionResponseChoicesInner {
   object FinishReason extends Enumeration {
     val Stop = Value("stop")
     val Length = Value("length")
+    val ContentFilter = Value("content_filter")
 
     type FinishReason = Value
     implicit lazy val FinishReasonJsonFormat: Format[Value] = Format(Reads.enumNameReads(this), Writes.enumNameWrites[this.type])

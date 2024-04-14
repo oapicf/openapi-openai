@@ -3,7 +3,7 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
@@ -16,7 +16,7 @@ public class ImagesResponse  {
   private Integer created;
 
   @ApiModelProperty(required = true, value = "")
-  private List<ImagesResponseDataInner> data = new ArrayList<>();
+  private List<Image> data = new ArrayList<>();
  /**
    * Get created
    * @return created
@@ -40,20 +40,20 @@ public class ImagesResponse  {
    * @return data
   **/
   @JsonProperty("data")
-  public List<ImagesResponseDataInner> getData() {
+  public List<Image> getData() {
     return data;
   }
 
-  public void setData(List<ImagesResponseDataInner> data) {
+  public void setData(List<Image> data) {
     this.data = data;
   }
 
-  public ImagesResponse data(List<ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<Image> data) {
     this.data = data;
     return this;
   }
 
-  public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse addDataItem(Image dataItem) {
     this.data.add(dataItem);
     return this;
   }

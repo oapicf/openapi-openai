@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,22 +15,23 @@ package openapi
 
 type CreateCompletionResponseChoicesInner struct {
 
-	Text string `json:"text"`
+	// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+	FinishReason string `json:"finish_reason"`
 
 	Index int32 `json:"index"`
 
 	Logprobs *CreateCompletionResponseChoicesInnerLogprobs `json:"logprobs"`
 
-	FinishReason string `json:"finish_reason"`
+	Text string `json:"text"`
 }
 
 // AssertCreateCompletionResponseChoicesInnerRequired checks if the required fields are not zero-ed
 func AssertCreateCompletionResponseChoicesInnerRequired(obj CreateCompletionResponseChoicesInner) error {
 	elements := map[string]interface{}{
-		"text": obj.Text,
+		"finish_reason": obj.FinishReason,
 		"index": obj.Index,
 		"logprobs": obj.Logprobs,
-		"finish_reason": obj.FinishReason,
+		"text": obj.Text,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

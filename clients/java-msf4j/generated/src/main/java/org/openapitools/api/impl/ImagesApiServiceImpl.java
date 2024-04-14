@@ -3,6 +3,7 @@ package org.openapitools.api.impl;
 import org.openapitools.api.*;
 import org.openapitools.model.*;
 
+import org.openapitools.model.CreateImageEditRequestModel;
 import org.openapitools.model.CreateImageRequest;
 import java.io.File;
 import org.openapitools.model.ImagesResponse;
@@ -18,7 +19,7 @@ import org.wso2.msf4j.formparam.FileInfo;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-16T01:12:44.741883350Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-04-14T13:38:52.193957698Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesApiServiceImpl extends ImagesApiService {
     @Override
     public Response createImage(CreateImageRequest createImageRequest
@@ -30,6 +31,7 @@ public class ImagesApiServiceImpl extends ImagesApiService {
     public Response createImageEdit(InputStream imageInputStream, FileInfo imageDetail
 , String prompt
 , InputStream maskInputStream, FileInfo maskDetail
+, CreateImageEditRequestModel model
 , Integer n
 , String size
 , String responseFormat
@@ -40,9 +42,10 @@ public class ImagesApiServiceImpl extends ImagesApiService {
     }
     @Override
     public Response createImageVariation(InputStream imageInputStream, FileInfo imageDetail
+, CreateImageEditRequestModel model
 , Integer n
-, String size
 , String responseFormat
+, String size
 , String user
  ) throws NotFoundException {
         // do some magic!

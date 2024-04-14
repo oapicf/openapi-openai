@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -33,7 +33,7 @@ import javax.validation.Valid;
   ImagesResponse.JSON_PROPERTY_CREATED,
   ImagesResponse.JSON_PROPERTY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesResponse   {
   public static final String JSON_PROPERTY_CREATED = "created";
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -41,7 +41,7 @@ public class ImagesResponse   {
 
   public static final String JSON_PROPERTY_DATA = "data";
   @JsonProperty(JSON_PROPERTY_DATA)
-  private List<@Valid ImagesResponseDataInner> data = new ArrayList<>();
+  private List<@Valid Image> data = new ArrayList<>();
 
   public ImagesResponse created(Integer created) {
     this.created = created;
@@ -63,12 +63,12 @@ public class ImagesResponse   {
     this.created = created;
   }
 
-  public ImagesResponse data(List<@Valid ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<@Valid Image> data) {
     this.data = data;
     return this;
   }
 
-  public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse addDataItem(Image dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -83,11 +83,11 @@ public class ImagesResponse   {
   @JsonProperty(value = "data")
   @ApiModelProperty(required = true, value = "")
   @NotNull @Valid 
-  public List<@Valid ImagesResponseDataInner> getData() {
+  public List<@Valid Image> getData() {
     return data;
   }
 
-  public void setData(List<@Valid ImagesResponseDataInner> data) {
+  public void setData(List<@Valid Image> data) {
     this.data = data;
   }
 

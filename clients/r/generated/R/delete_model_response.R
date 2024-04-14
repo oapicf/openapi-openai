@@ -8,8 +8,8 @@
 #' @description DeleteModelResponse Class
 #' @format An \code{R6Class} generator object
 #' @field id  character
-#' @field object  character
 #' @field deleted  character
+#' @field object  character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -17,36 +17,36 @@ DeleteModelResponse <- R6::R6Class(
   "DeleteModelResponse",
   public = list(
     `id` = NULL,
-    `object` = NULL,
     `deleted` = NULL,
+    `object` = NULL,
     #' Initialize a new DeleteModelResponse class.
     #'
     #' @description
     #' Initialize a new DeleteModelResponse class.
     #'
     #' @param id id
-    #' @param object object
     #' @param deleted deleted
+    #' @param object object
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`id`, `object`, `deleted`, ...) {
+    initialize = function(`id`, `deleted`, `object`, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
         }
         self$`id` <- `id`
       }
-      if (!missing(`object`)) {
-        if (!(is.character(`object`) && length(`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
-        }
-        self$`object` <- `object`
-      }
       if (!missing(`deleted`)) {
         if (!(is.logical(`deleted`) && length(`deleted`) == 1)) {
           stop(paste("Error! Invalid data for `deleted`. Must be a boolean:", `deleted`))
         }
         self$`deleted` <- `deleted`
+      }
+      if (!missing(`object`)) {
+        if (!(is.character(`object`) && length(`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
+        }
+        self$`object` <- `object`
       }
     },
     #' To JSON string
@@ -62,13 +62,13 @@ DeleteModelResponse <- R6::R6Class(
         DeleteModelResponseObject[["id"]] <-
           self$`id`
       }
-      if (!is.null(self$`object`)) {
-        DeleteModelResponseObject[["object"]] <-
-          self$`object`
-      }
       if (!is.null(self$`deleted`)) {
         DeleteModelResponseObject[["deleted"]] <-
           self$`deleted`
+      }
+      if (!is.null(self$`object`)) {
+        DeleteModelResponseObject[["object"]] <-
+          self$`object`
       }
       DeleteModelResponseObject
     },
@@ -85,11 +85,11 @@ DeleteModelResponse <- R6::R6Class(
       if (!is.null(this_object$`id`)) {
         self$`id` <- this_object$`id`
       }
-      if (!is.null(this_object$`object`)) {
-        self$`object` <- this_object$`object`
-      }
       if (!is.null(this_object$`deleted`)) {
         self$`deleted` <- this_object$`deleted`
+      }
+      if (!is.null(this_object$`object`)) {
+        self$`object` <- this_object$`object`
       }
       self
     },
@@ -110,20 +110,20 @@ DeleteModelResponse <- R6::R6Class(
           self$`id`
           )
         },
-        if (!is.null(self$`object`)) {
-          sprintf(
-          '"object":
-            "%s"
-                    ',
-          self$`object`
-          )
-        },
         if (!is.null(self$`deleted`)) {
           sprintf(
           '"deleted":
             %s
                     ',
           tolower(self$`deleted`)
+          )
+        },
+        if (!is.null(self$`object`)) {
+          sprintf(
+          '"object":
+            "%s"
+                    ',
+          self$`object`
           )
         }
       )
@@ -141,8 +141,8 @@ DeleteModelResponse <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`id` <- this_object$`id`
-      self$`object` <- this_object$`object`
       self$`deleted` <- this_object$`deleted`
+      self$`object` <- this_object$`object`
       self
     },
     #' Validate JSON input with respect to DeleteModelResponse
@@ -162,14 +162,6 @@ DeleteModelResponse <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for DeleteModelResponse: the required field `id` is missing."))
       }
-      # check the required field `object`
-      if (!is.null(input_json$`object`)) {
-        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
-        }
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for DeleteModelResponse: the required field `object` is missing."))
-      }
       # check the required field `deleted`
       if (!is.null(input_json$`deleted`)) {
         if (!(is.logical(input_json$`deleted`) && length(input_json$`deleted`) == 1)) {
@@ -177,6 +169,14 @@ DeleteModelResponse <- R6::R6Class(
         }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for DeleteModelResponse: the required field `deleted` is missing."))
+      }
+      # check the required field `object`
+      if (!is.null(input_json$`object`)) {
+        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for DeleteModelResponse: the required field `object` is missing."))
       }
     },
     #' To string (JSON format)
@@ -202,13 +202,13 @@ DeleteModelResponse <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
+      # check if the required `deleted` is null
+      if (is.null(self$`deleted`)) {
         return(FALSE)
       }
 
-      # check if the required `deleted` is null
-      if (is.null(self$`deleted`)) {
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
         return(FALSE)
       }
 
@@ -228,14 +228,14 @@ DeleteModelResponse <- R6::R6Class(
         invalid_fields["id"] <- "Non-nullable required field `id` cannot be null."
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
-        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
-      }
-
       # check if the required `deleted` is null
       if (is.null(self$`deleted`)) {
         invalid_fields["deleted"] <- "Non-nullable required field `deleted` cannot be null."
+      }
+
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
+        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
       }
 
       invalid_fields

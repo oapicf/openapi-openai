@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -64,18 +64,25 @@ ptree CreateCompletionRequest::toPropertyTree() const
 	ptree tmp_node;
 	pt.add_child("model", m_Model.toPropertyTree());
 	pt.add_child("prompt", m_Prompt.toPropertyTree());
-	pt.put("suffix", m_Suffix);
+	pt.put("best_of", m_Best_of);
+	pt.put("echo", m_Echo);
+	pt.put("frequency_penalty", m_Frequency_penalty);
+	// generate tree for Logit_bias
+    if (!m_Logit_bias.empty()) {
+        tmp_node = toPt(m_Logit_bias);
+        pt.add_child("logit_bias", tmp_node);
+    }
+    tmp_node.clear();
+	pt.put("logprobs", m_Logprobs);
 	pt.put("max_tokens", m_Max_tokens);
+	pt.put("n", m_n);
+	pt.put("presence_penalty", m_Presence_penalty);
+	pt.put("seed", m_Seed);
+	pt.add_child("stop", m_Stop.toPropertyTree());
+	pt.put("stream", m_Stream);
+	pt.put("suffix", m_Suffix);
 	pt.put("temperature", m_Temperature);
 	pt.put("top_p", m_Top_p);
-	pt.put("n", m_n);
-	pt.put("stream", m_Stream);
-	pt.put("logprobs", m_Logprobs);
-	pt.put("echo", m_Echo);
-	pt.add_child("stop", m_Stop.toPropertyTree());
-	pt.put("presence_penalty", m_Presence_penalty);
-	pt.put("frequency_penalty", m_Frequency_penalty);
-	pt.put("best_of", m_Best_of);
 	pt.put("user", m_User);
 	return pt;
 }
@@ -89,20 +96,24 @@ void CreateCompletionRequest::fromPropertyTree(ptree const &pt)
 	if (pt.get_child_optional("prompt")) {
         m_Prompt = fromPt<CreateCompletionRequest_prompt>(pt.get_child("prompt"));
 	}
-	m_Suffix = pt.get("suffix", "");
-	m_Max_tokens = pt.get("max_tokens", 16);
-	m_Temperature = pt.get("temperature", 1);
-	m_Top_p = pt.get("top_p", 1);
-	m_n = pt.get("n", 1);
-	m_Stream = pt.get("stream", false);
-	m_Logprobs = pt.get("logprobs", 0);
+	m_Best_of = pt.get("best_of", 1);
 	m_Echo = pt.get("echo", false);
+	m_Frequency_penalty = pt.get("frequency_penalty", 0);
+    if (pt.get_child_optional("logit_bias")) {
+        m_Logit_bias = fromPt<std::map<std::string, int32_t>>(pt.get_child("logit_bias"));
+    }
+	m_Logprobs = pt.get("logprobs", 0);
+	m_Max_tokens = pt.get("max_tokens", 16);
+	m_n = pt.get("n", 1);
+	m_Presence_penalty = pt.get("presence_penalty", 0);
+	m_Seed = pt.get("seed", 0);
 	if (pt.get_child_optional("stop")) {
         m_Stop = fromPt<CreateCompletionRequest_stop>(pt.get_child("stop"));
 	}
-	m_Presence_penalty = pt.get("presence_penalty", 0);
-	m_Frequency_penalty = pt.get("frequency_penalty", 0);
-	m_Best_of = pt.get("best_of", 1);
+	m_Stream = pt.get("stream", false);
+	m_Suffix = pt.get("suffix", "");
+	m_Temperature = pt.get("temperature", 1);
+	m_Top_p = pt.get("top_p", 1);
 	m_User = pt.get("user", "");
 }
 
@@ -128,14 +139,58 @@ void CreateCompletionRequest::setPrompt(CreateCompletionRequest_prompt value)
 }
 
 
-std::string CreateCompletionRequest::getSuffix() const
+int32_t CreateCompletionRequest::getBestOf() const
 {
-    return m_Suffix;
+    return m_Best_of;
 }
 
-void CreateCompletionRequest::setSuffix(std::string value)
+void CreateCompletionRequest::setBestOf(int32_t value)
 {
-    m_Suffix = value;
+    m_Best_of = value;
+}
+
+
+bool CreateCompletionRequest::isEcho() const
+{
+    return m_Echo;
+}
+
+void CreateCompletionRequest::setEcho(bool value)
+{
+    m_Echo = value;
+}
+
+
+double CreateCompletionRequest::getFrequencyPenalty() const
+{
+    return m_Frequency_penalty;
+}
+
+void CreateCompletionRequest::setFrequencyPenalty(double value)
+{
+    m_Frequency_penalty = value;
+}
+
+
+std::map<std::string, int32_t> CreateCompletionRequest::getLogitBias() const
+{
+    return m_Logit_bias;
+}
+
+void CreateCompletionRequest::setLogitBias(std::map<std::string, int32_t> value)
+{
+    m_Logit_bias = value;
+}
+
+
+int32_t CreateCompletionRequest::getLogprobs() const
+{
+    return m_Logprobs;
+}
+
+void CreateCompletionRequest::setLogprobs(int32_t value)
+{
+    m_Logprobs = value;
 }
 
 
@@ -147,6 +202,72 @@ int32_t CreateCompletionRequest::getMaxTokens() const
 void CreateCompletionRequest::setMaxTokens(int32_t value)
 {
     m_Max_tokens = value;
+}
+
+
+int32_t CreateCompletionRequest::getN() const
+{
+    return m_n;
+}
+
+void CreateCompletionRequest::setN(int32_t value)
+{
+    m_n = value;
+}
+
+
+double CreateCompletionRequest::getPresencePenalty() const
+{
+    return m_Presence_penalty;
+}
+
+void CreateCompletionRequest::setPresencePenalty(double value)
+{
+    m_Presence_penalty = value;
+}
+
+
+int32_t CreateCompletionRequest::getSeed() const
+{
+    return m_Seed;
+}
+
+void CreateCompletionRequest::setSeed(int32_t value)
+{
+    m_Seed = value;
+}
+
+
+CreateCompletionRequest_stop CreateCompletionRequest::getStop() const
+{
+    return m_Stop;
+}
+
+void CreateCompletionRequest::setStop(CreateCompletionRequest_stop value)
+{
+    m_Stop = value;
+}
+
+
+bool CreateCompletionRequest::isStream() const
+{
+    return m_Stream;
+}
+
+void CreateCompletionRequest::setStream(bool value)
+{
+    m_Stream = value;
+}
+
+
+std::string CreateCompletionRequest::getSuffix() const
+{
+    return m_Suffix;
+}
+
+void CreateCompletionRequest::setSuffix(std::string value)
+{
+    m_Suffix = value;
 }
 
 
@@ -169,105 +290,6 @@ double CreateCompletionRequest::getTopP() const
 void CreateCompletionRequest::setTopP(double value)
 {
     m_Top_p = value;
-}
-
-
-int32_t CreateCompletionRequest::getN() const
-{
-    return m_n;
-}
-
-void CreateCompletionRequest::setN(int32_t value)
-{
-    m_n = value;
-}
-
-
-bool CreateCompletionRequest::isStream() const
-{
-    return m_Stream;
-}
-
-void CreateCompletionRequest::setStream(bool value)
-{
-    m_Stream = value;
-}
-
-
-int32_t CreateCompletionRequest::getLogprobs() const
-{
-    return m_Logprobs;
-}
-
-void CreateCompletionRequest::setLogprobs(int32_t value)
-{
-    m_Logprobs = value;
-}
-
-
-bool CreateCompletionRequest::isEcho() const
-{
-    return m_Echo;
-}
-
-void CreateCompletionRequest::setEcho(bool value)
-{
-    m_Echo = value;
-}
-
-
-CreateCompletionRequest_stop CreateCompletionRequest::getStop() const
-{
-    return m_Stop;
-}
-
-void CreateCompletionRequest::setStop(CreateCompletionRequest_stop value)
-{
-    m_Stop = value;
-}
-
-
-double CreateCompletionRequest::getPresencePenalty() const
-{
-    return m_Presence_penalty;
-}
-
-void CreateCompletionRequest::setPresencePenalty(double value)
-{
-    m_Presence_penalty = value;
-}
-
-
-double CreateCompletionRequest::getFrequencyPenalty() const
-{
-    return m_Frequency_penalty;
-}
-
-void CreateCompletionRequest::setFrequencyPenalty(double value)
-{
-    m_Frequency_penalty = value;
-}
-
-
-int32_t CreateCompletionRequest::getBestOf() const
-{
-    return m_Best_of;
-}
-
-void CreateCompletionRequest::setBestOf(int32_t value)
-{
-    m_Best_of = value;
-}
-
-
-std::string CreateCompletionRequest::getLogitBias() const
-{
-    return m_Logit_bias;
-}
-
-void CreateCompletionRequest::setLogitBias(std::string value)
-{
-    m_Logit_bias = value;
 }
 
 

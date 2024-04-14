@@ -29,7 +29,7 @@ import javax.validation.Valid;
 @Api(description = "the files API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-03-16T01:13:26.699737416Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-04-14T13:41:22.441879330Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 
 public class FilesApi  {
 
@@ -42,7 +42,10 @@ public class FilesApi  {
     
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. ", notes = "", response = OpenAIFile.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ", notes = "", response = OpenAIFile.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Files" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = OpenAIFile.class) })
     public Response createFile( @Multipart(value = "file") InputStream _fileInputStream, @Multipart(value = "file" ) Attachment _fileDetail, @Multipart(value = "purpose")  String purpose) {
@@ -53,10 +56,13 @@ public class FilesApi  {
     @Path("/{file_id}")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "Delete a file.", notes = "", response = DeleteFileResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Delete a file.", notes = "", response = DeleteFileResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Files" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = DeleteFileResponse.class) })
-    public Response deleteFile(@ApiParam(value = "The ID of the file to use for this request",required=true) @PathParam("file_id") String fileId) {
+    public Response deleteFile(@ApiParam(value = "The ID of the file to use for this request.",required=true) @PathParam("file_id") String fileId) {
         return delegate.deleteFile(fileId, securityContext);
     }
 
@@ -64,10 +70,13 @@ public class FilesApi  {
     @Path("/{file_id}/content")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "Returns the contents of the specified file", notes = "", response = String.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Returns the contents of the specified file.", notes = "", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Files" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = String.class) })
-    public Response downloadFile(@ApiParam(value = "The ID of the file to use for this request",required=true) @PathParam("file_id") String fileId) {
+    public Response downloadFile(@ApiParam(value = "The ID of the file to use for this request.",required=true) @PathParam("file_id") String fileId) {
         return delegate.downloadFile(fileId, securityContext);
     }
 
@@ -75,21 +84,27 @@ public class FilesApi  {
     
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "Returns a list of files that belong to the user's organization.", notes = "", response = ListFilesResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Returns a list of files that belong to the user's organization.", notes = "", response = ListFilesResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Files" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListFilesResponse.class) })
-    public Response listFiles() {
-        return delegate.listFiles(securityContext);
+    public Response listFiles(@ApiParam(value = "Only return files with the given purpose.")  @QueryParam("purpose") String purpose) {
+        return delegate.listFiles(purpose, securityContext);
     }
 
     @GET
     @Path("/{file_id}")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "Returns information about a specific file.", notes = "", response = OpenAIFile.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Returns information about a specific file.", notes = "", response = OpenAIFile.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Files" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = OpenAIFile.class) })
-    public Response retrieveFile(@ApiParam(value = "The ID of the file to use for this request",required=true) @PathParam("file_id") String fileId) {
+    public Response retrieveFile(@ApiParam(value = "The ID of the file to use for this request.",required=true) @PathParam("file_id") String fileId) {
         return delegate.retrieveFile(fileId, securityContext);
     }
 }

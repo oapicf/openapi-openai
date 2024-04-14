@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * CreateModerationResponse.h
  *
- * 
+ * Represents if a given text input is potentially harmful.
  */
 
 #ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_CreateModerationResponse_H_
@@ -34,7 +34,7 @@ namespace model {
 class CreateModerationResponse_results_inner;
 
 /// <summary>
-/// 
+/// Represents if a given text input is potentially harmful.
 /// </summary>
 class  CreateModerationResponse
     : public ModelBase
@@ -58,7 +58,7 @@ public:
     /// CreateModerationResponse members
 
     /// <summary>
-    /// 
+    /// The unique identifier for the moderation request.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -67,7 +67,7 @@ public:
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// 
+    /// The model used to generate the moderation results.
     /// </summary>
     utility::string_t getModel() const;
     bool modelIsSet() const;
@@ -76,7 +76,7 @@ public:
     void setModel(const utility::string_t& value);
 
     /// <summary>
-    /// 
+    /// A list of moderation objects.
     /// </summary>
     std::vector<std::shared_ptr<CreateModerationResponse_results_inner>>& getResults();
     bool resultsIsSet() const;

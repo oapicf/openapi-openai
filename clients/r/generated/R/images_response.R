@@ -8,7 +8,7 @@
 #' @description ImagesResponse Class
 #' @format An \code{R6Class} generator object
 #' @field created  integer
-#' @field data  list(\link{ImagesResponseDataInner})
+#' @field data  list(\link{Image})
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -72,7 +72,7 @@ ImagesResponse <- R6::R6Class(
         self$`created` <- this_object$`created`
       }
       if (!is.null(this_object$`data`)) {
-        self$`data` <- ApiClient$new()$deserializeObj(this_object$`data`, "array[ImagesResponseDataInner]", loadNamespace("openapi"))
+        self$`data` <- ApiClient$new()$deserializeObj(this_object$`data`, "array[Image]", loadNamespace("openapi"))
       }
       self
     },
@@ -116,7 +116,7 @@ ImagesResponse <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`created` <- this_object$`created`
-      self$`data` <- ApiClient$new()$deserializeObj(this_object$`data`, "array[ImagesResponseDataInner]", loadNamespace("openapi"))
+      self$`data` <- ApiClient$new()$deserializeObj(this_object$`data`, "array[Image]", loadNamespace("openapi"))
       self
     },
     #' Validate JSON input with respect to ImagesResponse

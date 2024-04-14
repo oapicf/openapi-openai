@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,18 +14,21 @@ import { CreateCompletionResponseChoicesInnerLogprobs } from '../models/CreateCo
 import { HttpFile } from '../http/http';
 
 export class CreateCompletionResponseChoicesInner {
-    'text': string;
+    /**
+    * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+    */
+    'finishReason': CreateCompletionResponseChoicesInnerFinishReasonEnum;
     'index': number;
     'logprobs': CreateCompletionResponseChoicesInnerLogprobs | null;
-    'finishReason': CreateCompletionResponseChoicesInnerFinishReasonEnum;
+    'text': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "text",
-            "baseName": "text",
-            "type": "string",
+            "name": "finishReason",
+            "baseName": "finish_reason",
+            "type": "CreateCompletionResponseChoicesInnerFinishReasonEnum",
             "format": ""
         },
         {
@@ -41,9 +44,9 @@ export class CreateCompletionResponseChoicesInner {
             "format": ""
         },
         {
-            "name": "finishReason",
-            "baseName": "finish_reason",
-            "type": "CreateCompletionResponseChoicesInnerFinishReasonEnum",
+            "name": "text",
+            "baseName": "text",
+            "type": "string",
             "format": ""
         }    ];
 
@@ -58,6 +61,7 @@ export class CreateCompletionResponseChoicesInner {
 
 export enum CreateCompletionResponseChoicesInnerFinishReasonEnum {
     Stop = 'stop',
-    Length = 'length'
+    Length = 'length',
+    ContentFilter = 'content_filter'
 }
 

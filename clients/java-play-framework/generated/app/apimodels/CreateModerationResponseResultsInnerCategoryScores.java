@@ -9,9 +9,9 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * CreateModerationResponseResultsInnerCategoryScores
+ * A list of the categories along with their scores as predicted by model.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateModerationResponseResultsInnerCategoryScores   {
   @JsonProperty("hate")
@@ -26,11 +26,35 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
 
   private BigDecimal hateThreatening;
 
+  @JsonProperty("harassment")
+  @NotNull
+@Valid
+
+  private BigDecimal harassment;
+
+  @JsonProperty("harassment/threatening")
+  @NotNull
+@Valid
+
+  private BigDecimal harassmentThreatening;
+
   @JsonProperty("self-harm")
   @NotNull
 @Valid
 
   private BigDecimal selfHarm;
+
+  @JsonProperty("self-harm/intent")
+  @NotNull
+@Valid
+
+  private BigDecimal selfHarmIntent;
+
+  @JsonProperty("self-harm/instructions")
+  @NotNull
+@Valid
+
+  private BigDecimal selfHarmInstructions;
 
   @JsonProperty("sexual")
   @NotNull
@@ -62,7 +86,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
   }
 
    /**
-   * Get hate
+   * The score for the category 'hate'.
    * @return hate
   **/
   public BigDecimal getHate() {
@@ -79,7 +103,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
   }
 
    /**
-   * Get hateThreatening
+   * The score for the category 'hate/threatening'.
    * @return hateThreatening
   **/
   public BigDecimal getHateThreatening() {
@@ -90,13 +114,47 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
     this.hateThreatening = hateThreatening;
   }
 
+  public CreateModerationResponseResultsInnerCategoryScores harassment(BigDecimal harassment) {
+    this.harassment = harassment;
+    return this;
+  }
+
+   /**
+   * The score for the category 'harassment'.
+   * @return harassment
+  **/
+  public BigDecimal getHarassment() {
+    return harassment;
+  }
+
+  public void setHarassment(BigDecimal harassment) {
+    this.harassment = harassment;
+  }
+
+  public CreateModerationResponseResultsInnerCategoryScores harassmentThreatening(BigDecimal harassmentThreatening) {
+    this.harassmentThreatening = harassmentThreatening;
+    return this;
+  }
+
+   /**
+   * The score for the category 'harassment/threatening'.
+   * @return harassmentThreatening
+  **/
+  public BigDecimal getHarassmentThreatening() {
+    return harassmentThreatening;
+  }
+
+  public void setHarassmentThreatening(BigDecimal harassmentThreatening) {
+    this.harassmentThreatening = harassmentThreatening;
+  }
+
   public CreateModerationResponseResultsInnerCategoryScores selfHarm(BigDecimal selfHarm) {
     this.selfHarm = selfHarm;
     return this;
   }
 
    /**
-   * Get selfHarm
+   * The score for the category 'self-harm'.
    * @return selfHarm
   **/
   public BigDecimal getSelfHarm() {
@@ -107,13 +165,47 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
     this.selfHarm = selfHarm;
   }
 
+  public CreateModerationResponseResultsInnerCategoryScores selfHarmIntent(BigDecimal selfHarmIntent) {
+    this.selfHarmIntent = selfHarmIntent;
+    return this;
+  }
+
+   /**
+   * The score for the category 'self-harm/intent'.
+   * @return selfHarmIntent
+  **/
+  public BigDecimal getSelfHarmIntent() {
+    return selfHarmIntent;
+  }
+
+  public void setSelfHarmIntent(BigDecimal selfHarmIntent) {
+    this.selfHarmIntent = selfHarmIntent;
+  }
+
+  public CreateModerationResponseResultsInnerCategoryScores selfHarmInstructions(BigDecimal selfHarmInstructions) {
+    this.selfHarmInstructions = selfHarmInstructions;
+    return this;
+  }
+
+   /**
+   * The score for the category 'self-harm/instructions'.
+   * @return selfHarmInstructions
+  **/
+  public BigDecimal getSelfHarmInstructions() {
+    return selfHarmInstructions;
+  }
+
+  public void setSelfHarmInstructions(BigDecimal selfHarmInstructions) {
+    this.selfHarmInstructions = selfHarmInstructions;
+  }
+
   public CreateModerationResponseResultsInnerCategoryScores sexual(BigDecimal sexual) {
     this.sexual = sexual;
     return this;
   }
 
    /**
-   * Get sexual
+   * The score for the category 'sexual'.
    * @return sexual
   **/
   public BigDecimal getSexual() {
@@ -130,7 +222,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
   }
 
    /**
-   * Get sexualMinors
+   * The score for the category 'sexual/minors'.
    * @return sexualMinors
   **/
   public BigDecimal getSexualMinors() {
@@ -147,7 +239,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
   }
 
    /**
-   * Get violence
+   * The score for the category 'violence'.
    * @return violence
   **/
   public BigDecimal getViolence() {
@@ -164,7 +256,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
   }
 
    /**
-   * Get violenceGraphic
+   * The score for the category 'violence/graphic'.
    * @return violenceGraphic
   **/
   public BigDecimal getViolenceGraphic() {
@@ -187,7 +279,11 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
     CreateModerationResponseResultsInnerCategoryScores createModerationResponseResultsInnerCategoryScores = (CreateModerationResponseResultsInnerCategoryScores) o;
     return Objects.equals(hate, createModerationResponseResultsInnerCategoryScores.hate) &&
         Objects.equals(hateThreatening, createModerationResponseResultsInnerCategoryScores.hateThreatening) &&
+        Objects.equals(harassment, createModerationResponseResultsInnerCategoryScores.harassment) &&
+        Objects.equals(harassmentThreatening, createModerationResponseResultsInnerCategoryScores.harassmentThreatening) &&
         Objects.equals(selfHarm, createModerationResponseResultsInnerCategoryScores.selfHarm) &&
+        Objects.equals(selfHarmIntent, createModerationResponseResultsInnerCategoryScores.selfHarmIntent) &&
+        Objects.equals(selfHarmInstructions, createModerationResponseResultsInnerCategoryScores.selfHarmInstructions) &&
         Objects.equals(sexual, createModerationResponseResultsInnerCategoryScores.sexual) &&
         Objects.equals(sexualMinors, createModerationResponseResultsInnerCategoryScores.sexualMinors) &&
         Objects.equals(violence, createModerationResponseResultsInnerCategoryScores.violence) &&
@@ -196,7 +292,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic);
+    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -207,7 +303,11 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
     
     sb.append("    hate: ").append(toIndentedString(hate)).append("\n");
     sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
+    sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
+    sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
     sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
+    sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
+    sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");
     sb.append("    sexual: ").append(toIndentedString(sexual)).append("\n");
     sb.append("    sexualMinors: ").append(toIndentedString(sexualMinors)).append("\n");
     sb.append("    violence: ").append(toIndentedString(violence)).append("\n");

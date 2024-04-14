@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,23 +17,32 @@ import org.openapitools.client.model.CreateChatCompletionStreamResponseChoicesIn
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
-@ApiModel(description = "")
+/**
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+ **/
+@ApiModel(description = "Represents a streamed chunk of a chat completion response returned by model, based on the provided input.")
 public class CreateChatCompletionStreamResponse {
   
   @SerializedName("id")
   private String id = null;
-  @SerializedName("object")
-  private String _object = null;
+  @SerializedName("choices")
+  private List<CreateChatCompletionStreamResponseChoicesInner> choices = null;
   @SerializedName("created")
   private Integer created = null;
   @SerializedName("model")
   private String model = null;
-  @SerializedName("choices")
-  private List<CreateChatCompletionStreamResponseChoicesInner> choices = null;
+  @SerializedName("system_fingerprint")
+  private String systemFingerprint = null;
+  public enum _objectEnum {
+     chat.completion.chunk, 
+  };
+  @SerializedName("object")
+  private _objectEnum _object = null;
 
   /**
+   * A unique identifier for the chat completion. Each chunk has the same ID.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A unique identifier for the chat completion. Each chunk has the same ID.")
   public String getId() {
     return id;
   }
@@ -42,18 +51,20 @@ public class CreateChatCompletionStreamResponse {
   }
 
   /**
+   * A list of chat completion choices. Can be more than one if `n` is greater than 1.
    **/
-  @ApiModelProperty(required = true, value = "")
-  public String getObject() {
-    return _object;
+  @ApiModelProperty(required = true, value = "A list of chat completion choices. Can be more than one if `n` is greater than 1.")
+  public List<CreateChatCompletionStreamResponseChoicesInner> getChoices() {
+    return choices;
   }
-  public void setObject(String _object) {
-    this._object = _object;
+  public void setChoices(List<CreateChatCompletionStreamResponseChoicesInner> choices) {
+    this.choices = choices;
   }
 
   /**
+   * The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.")
   public Integer getCreated() {
     return created;
   }
@@ -62,8 +73,9 @@ public class CreateChatCompletionStreamResponse {
   }
 
   /**
+   * The model to generate the completion.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model to generate the completion.")
   public String getModel() {
     return model;
   }
@@ -72,13 +84,25 @@ public class CreateChatCompletionStreamResponse {
   }
 
   /**
+   * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
    **/
-  @ApiModelProperty(required = true, value = "")
-  public List<CreateChatCompletionStreamResponseChoicesInner> getChoices() {
-    return choices;
+  @ApiModelProperty(value = "This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ")
+  public String getSystemFingerprint() {
+    return systemFingerprint;
   }
-  public void setChoices(List<CreateChatCompletionStreamResponseChoicesInner> choices) {
-    this.choices = choices;
+  public void setSystemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+  }
+
+  /**
+   * The object type, which is always `chat.completion.chunk`.
+   **/
+  @ApiModelProperty(required = true, value = "The object type, which is always `chat.completion.chunk`.")
+  public _objectEnum getObject() {
+    return _object;
+  }
+  public void setObject(_objectEnum _object) {
+    this._object = _object;
   }
 
 
@@ -92,20 +116,22 @@ public class CreateChatCompletionStreamResponse {
     }
     CreateChatCompletionStreamResponse createChatCompletionStreamResponse = (CreateChatCompletionStreamResponse) o;
     return (this.id == null ? createChatCompletionStreamResponse.id == null : this.id.equals(createChatCompletionStreamResponse.id)) &&
-        (this._object == null ? createChatCompletionStreamResponse._object == null : this._object.equals(createChatCompletionStreamResponse._object)) &&
+        (this.choices == null ? createChatCompletionStreamResponse.choices == null : this.choices.equals(createChatCompletionStreamResponse.choices)) &&
         (this.created == null ? createChatCompletionStreamResponse.created == null : this.created.equals(createChatCompletionStreamResponse.created)) &&
         (this.model == null ? createChatCompletionStreamResponse.model == null : this.model.equals(createChatCompletionStreamResponse.model)) &&
-        (this.choices == null ? createChatCompletionStreamResponse.choices == null : this.choices.equals(createChatCompletionStreamResponse.choices));
+        (this.systemFingerprint == null ? createChatCompletionStreamResponse.systemFingerprint == null : this.systemFingerprint.equals(createChatCompletionStreamResponse.systemFingerprint)) &&
+        (this._object == null ? createChatCompletionStreamResponse._object == null : this._object.equals(createChatCompletionStreamResponse._object));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
     result = 31 * result + (this.id == null ? 0: this.id.hashCode());
-    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
+    result = 31 * result + (this.choices == null ? 0: this.choices.hashCode());
     result = 31 * result + (this.created == null ? 0: this.created.hashCode());
     result = 31 * result + (this.model == null ? 0: this.model.hashCode());
-    result = 31 * result + (this.choices == null ? 0: this.choices.hashCode());
+    result = 31 * result + (this.systemFingerprint == null ? 0: this.systemFingerprint.hashCode());
+    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
     return result;
   }
 
@@ -115,10 +141,11 @@ public class CreateChatCompletionStreamResponse {
     sb.append("class CreateChatCompletionStreamResponse {\n");
     
     sb.append("  id: ").append(id).append("\n");
-    sb.append("  _object: ").append(_object).append("\n");
+    sb.append("  choices: ").append(choices).append("\n");
     sb.append("  created: ").append(created).append("\n");
     sb.append("  model: ").append(model).append("\n");
-    sb.append("  choices: ").append(choices).append("\n");
+    sb.append("  systemFingerprint: ").append(systemFingerprint).append("\n");
+    sb.append("  _object: ").append(_object).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

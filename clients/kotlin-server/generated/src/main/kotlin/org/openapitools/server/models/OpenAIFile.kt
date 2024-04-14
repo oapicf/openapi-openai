@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -13,24 +13,60 @@ package org.openapitools.server.models
 
 
 /**
- * 
- * @param id 
- * @param `object` 
- * @param bytes 
- * @param createdAt 
- * @param filename 
- * @param purpose 
- * @param status 
- * @param statusDetails 
+ * The `File` object represents a document that has been uploaded to OpenAI.
+ * @param id The file identifier, which can be referenced in the API endpoints.
+ * @param bytes The size of the file, in bytes.
+ * @param createdAt The Unix timestamp (in seconds) for when the file was created.
+ * @param filename The name of the file.
+ * @param `object` The object type, which is always `file`.
+ * @param purpose The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+ * @param status Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+ * @param statusDetails Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
  */
 data class OpenAIFile(
+    /* The file identifier, which can be referenced in the API endpoints. */
     val id: kotlin.String,
-    val `object`: kotlin.String,
+    /* The size of the file, in bytes. */
     val bytes: kotlin.Int,
+    /* The Unix timestamp (in seconds) for when the file was created. */
     val createdAt: kotlin.Int,
+    /* The name of the file. */
     val filename: kotlin.String,
-    val purpose: kotlin.String,
-    val status: kotlin.String? = null,
-    val statusDetails: kotlin.Any? = null
+    /* The object type, which is always `file`. */
+    val `object`: OpenAIFile.`Object`,
+    /* The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. */
+    val purpose: OpenAIFile.Purpose,
+    /* Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`. */
+    val status: OpenAIFile.Status,
+    /* Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`. */
+    val statusDetails: kotlin.String? = null
 ) 
+{
+    /**
+    * The object type, which is always `file`.
+    * Values: file
+    */
+    enum class `Object`(val value: kotlin.String){
+        file("file");
+    }
+    /**
+    * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+    * Values: fineMinusTune,fineMinusTuneMinusResults,assistants,assistants_output
+    */
+    enum class Purpose(val value: kotlin.String){
+        fineMinusTune("fine-tune"),
+        fineMinusTuneMinusResults("fine-tune-results"),
+        assistants("assistants"),
+        assistants_output("assistants_output");
+    }
+    /**
+    * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+    * Values: uploaded,processed,error
+    */
+    enum class Status(val value: kotlin.String){
+        uploaded("uploaded"),
+        processed("processed"),
+        error("error");
+    }
+}
 

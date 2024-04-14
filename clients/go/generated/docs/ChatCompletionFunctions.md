@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Description** | Pointer to **string** | A description of what the function does, used by the model to choose when and how to call the function. | [optional] 
 **Name** | **string** | The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | 
-**Description** | Pointer to **string** | The description of what the function does. | [optional] 
-**Parameters** | Pointer to **map[string]interface{}** | The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. | [optional] 
+**Parameters** | Pointer to **map[string]interface{}** | The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list. | [optional] 
 
 ## Methods
 
@@ -26,26 +26,6 @@ will change when the set of required properties is changed
 NewChatCompletionFunctionsWithDefaults instantiates a new ChatCompletionFunctions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetName
-
-`func (o *ChatCompletionFunctions) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ChatCompletionFunctions) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ChatCompletionFunctions) SetName(v string)`
-
-SetName sets Name field to given value.
-
 
 ### GetDescription
 
@@ -71,6 +51,26 @@ SetDescription sets Description field to given value.
 `func (o *ChatCompletionFunctions) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *ChatCompletionFunctions) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ChatCompletionFunctions) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ChatCompletionFunctions) SetName(v string)`
+
+SetName sets Name field to given value.
+
 
 ### GetParameters
 

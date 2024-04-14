@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,7 +14,7 @@ import { RequestFile } from './models';
 import { Model } from './model';
 
 export class ListModelsResponse {
-    'object': string;
+    'object': ListModelsResponse.ObjectEnum;
     'data': Array<Model>;
 
     static discriminator: string | undefined = undefined;
@@ -23,7 +23,7 @@ export class ListModelsResponse {
         {
             "name": "object",
             "baseName": "object",
-            "type": "string"
+            "type": "ListModelsResponse.ObjectEnum"
         },
         {
             "name": "data",
@@ -36,3 +36,8 @@ export class ListModelsResponse {
     }
 }
 
+export namespace ListModelsResponse {
+    export enum ObjectEnum {
+        List = <any> 'list'
+    }
+}

@@ -10,13 +10,13 @@
 
 -type openapi_open_ai_file() ::
   [ {'id', binary() }
-  | {'object', binary() }
   | {'bytes', integer() }
   | {'created_at', integer() }
   | {'filename', binary() }
+  | {'object', binary() }
   | {'purpose', binary() }
   | {'status', binary() }
-  | {'status_details', map() }
+  | {'status_details', binary() }
   ].
 
 
@@ -25,13 +25,13 @@ openapi_open_ai_file() ->
 
 openapi_open_ai_file(Fields) ->
   Default = [ {'id', binary() }
-            , {'object', binary() }
             , {'bytes', integer() }
             , {'created_at', integer() }
             , {'filename', binary() }
-            , {'purpose', binary() }
-            , {'status', binary() }
-            , {'status_details', map() }
+            , {'object', elements([<<"file">>]) }
+            , {'purpose', elements([<<"fine-tune">>, <<"fine-tune-results">>, <<"assistants">>, <<"assistants_output">>]) }
+            , {'status', elements([<<"uploaded">>, <<"processed">>, <<"error">>]) }
+            , {'status_details', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

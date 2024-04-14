@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,23 +16,28 @@ import ApiClient from '../ApiClient';
 /**
  * The CreateModerationResponseResultsInnerCategoryScores model module.
  * @module model/CreateModerationResponseResultsInnerCategoryScores
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateModerationResponseResultsInnerCategoryScores {
     /**
      * Constructs a new <code>CreateModerationResponseResultsInnerCategoryScores</code>.
+     * A list of the categories along with their scores as predicted by model.
      * @alias module:model/CreateModerationResponseResultsInnerCategoryScores
-     * @param hate {Number} 
-     * @param hateThreatening {Number} 
-     * @param selfHarm {Number} 
-     * @param sexual {Number} 
-     * @param sexualMinors {Number} 
-     * @param violence {Number} 
-     * @param violenceGraphic {Number} 
+     * @param hate {Number} The score for the category 'hate'.
+     * @param hateThreatening {Number} The score for the category 'hate/threatening'.
+     * @param harassment {Number} The score for the category 'harassment'.
+     * @param harassmentThreatening {Number} The score for the category 'harassment/threatening'.
+     * @param selfHarm {Number} The score for the category 'self-harm'.
+     * @param selfHarmIntent {Number} The score for the category 'self-harm/intent'.
+     * @param selfHarmInstructions {Number} The score for the category 'self-harm/instructions'.
+     * @param sexual {Number} The score for the category 'sexual'.
+     * @param sexualMinors {Number} The score for the category 'sexual/minors'.
+     * @param violence {Number} The score for the category 'violence'.
+     * @param violenceGraphic {Number} The score for the category 'violence/graphic'.
      */
-    constructor(hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic) { 
+    constructor(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic) { 
         
-        CreateModerationResponseResultsInnerCategoryScores.initialize(this, hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic);
+        CreateModerationResponseResultsInnerCategoryScores.initialize(this, hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
     }
 
     /**
@@ -40,10 +45,14 @@ class CreateModerationResponseResultsInnerCategoryScores {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic) { 
+    static initialize(obj, hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic) { 
         obj['hate'] = hate;
         obj['hate/threatening'] = hateThreatening;
+        obj['harassment'] = harassment;
+        obj['harassment/threatening'] = harassmentThreatening;
         obj['self-harm'] = selfHarm;
+        obj['self-harm/intent'] = selfHarmIntent;
+        obj['self-harm/instructions'] = selfHarmInstructions;
         obj['sexual'] = sexual;
         obj['sexual/minors'] = sexualMinors;
         obj['violence'] = violence;
@@ -67,8 +76,20 @@ class CreateModerationResponseResultsInnerCategoryScores {
             if (data.hasOwnProperty('hate/threatening')) {
                 obj['hate/threatening'] = ApiClient.convertToType(data['hate/threatening'], 'Number');
             }
+            if (data.hasOwnProperty('harassment')) {
+                obj['harassment'] = ApiClient.convertToType(data['harassment'], 'Number');
+            }
+            if (data.hasOwnProperty('harassment/threatening')) {
+                obj['harassment/threatening'] = ApiClient.convertToType(data['harassment/threatening'], 'Number');
+            }
             if (data.hasOwnProperty('self-harm')) {
                 obj['self-harm'] = ApiClient.convertToType(data['self-harm'], 'Number');
+            }
+            if (data.hasOwnProperty('self-harm/intent')) {
+                obj['self-harm/intent'] = ApiClient.convertToType(data['self-harm/intent'], 'Number');
+            }
+            if (data.hasOwnProperty('self-harm/instructions')) {
+                obj['self-harm/instructions'] = ApiClient.convertToType(data['self-harm/instructions'], 'Number');
             }
             if (data.hasOwnProperty('sexual')) {
                 obj['sexual'] = ApiClient.convertToType(data['sexual'], 'Number');
@@ -105,39 +126,70 @@ class CreateModerationResponseResultsInnerCategoryScores {
 
 }
 
-CreateModerationResponseResultsInnerCategoryScores.RequiredProperties = ["hate", "hate/threatening", "self-harm", "sexual", "sexual/minors", "violence", "violence/graphic"];
+CreateModerationResponseResultsInnerCategoryScores.RequiredProperties = ["hate", "hate/threatening", "harassment", "harassment/threatening", "self-harm", "self-harm/intent", "self-harm/instructions", "sexual", "sexual/minors", "violence", "violence/graphic"];
 
 /**
+ * The score for the category 'hate'.
  * @member {Number} hate
  */
 CreateModerationResponseResultsInnerCategoryScores.prototype['hate'] = undefined;
 
 /**
+ * The score for the category 'hate/threatening'.
  * @member {Number} hate/threatening
  */
 CreateModerationResponseResultsInnerCategoryScores.prototype['hate/threatening'] = undefined;
 
 /**
+ * The score for the category 'harassment'.
+ * @member {Number} harassment
+ */
+CreateModerationResponseResultsInnerCategoryScores.prototype['harassment'] = undefined;
+
+/**
+ * The score for the category 'harassment/threatening'.
+ * @member {Number} harassment/threatening
+ */
+CreateModerationResponseResultsInnerCategoryScores.prototype['harassment/threatening'] = undefined;
+
+/**
+ * The score for the category 'self-harm'.
  * @member {Number} self-harm
  */
 CreateModerationResponseResultsInnerCategoryScores.prototype['self-harm'] = undefined;
 
 /**
+ * The score for the category 'self-harm/intent'.
+ * @member {Number} self-harm/intent
+ */
+CreateModerationResponseResultsInnerCategoryScores.prototype['self-harm/intent'] = undefined;
+
+/**
+ * The score for the category 'self-harm/instructions'.
+ * @member {Number} self-harm/instructions
+ */
+CreateModerationResponseResultsInnerCategoryScores.prototype['self-harm/instructions'] = undefined;
+
+/**
+ * The score for the category 'sexual'.
  * @member {Number} sexual
  */
 CreateModerationResponseResultsInnerCategoryScores.prototype['sexual'] = undefined;
 
 /**
+ * The score for the category 'sexual/minors'.
  * @member {Number} sexual/minors
  */
 CreateModerationResponseResultsInnerCategoryScores.prototype['sexual/minors'] = undefined;
 
 /**
+ * The score for the category 'violence'.
  * @member {Number} violence
  */
 CreateModerationResponseResultsInnerCategoryScores.prototype['violence'] = undefined;
 
 /**
+ * The score for the category 'violence/graphic'.
  * @member {Number} violence/graphic
  */
 CreateModerationResponseResultsInnerCategoryScores.prototype['violence/graphic'] = undefined;

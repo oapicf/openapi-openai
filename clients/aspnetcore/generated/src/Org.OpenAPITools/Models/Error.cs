@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,11 +27,11 @@ namespace Org.OpenAPITools.Models
     public partial class Error : IEquatable<Error>
     {
         /// <summary>
-        /// Gets or Sets Type
+        /// Gets or Sets Code
         /// </summary>
         [Required]
-        [DataMember(Name="type", EmitDefaultValue=false)]
-        public string Type { get; set; }
+        [DataMember(Name="code", EmitDefaultValue=true)]
+        public string Code { get; set; }
 
         /// <summary>
         /// Gets or Sets Message
@@ -48,11 +48,11 @@ namespace Org.OpenAPITools.Models
         public string Param { get; set; }
 
         /// <summary>
-        /// Gets or Sets Code
+        /// Gets or Sets Type
         /// </summary>
         [Required]
-        [DataMember(Name="code", EmitDefaultValue=true)]
-        public string Code { get; set; }
+        [DataMember(Name="type", EmitDefaultValue=false)]
+        public string Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,10 +62,10 @@ namespace Org.OpenAPITools.Models
         {
             var sb = new StringBuilder();
             sb.Append("class Error {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Param: ").Append(Param).Append("\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -103,9 +103,9 @@ namespace Org.OpenAPITools.Models
 
             return 
                 (
-                    Type == other.Type ||
-                    Type != null &&
-                    Type.Equals(other.Type)
+                    Code == other.Code ||
+                    Code != null &&
+                    Code.Equals(other.Code)
                 ) && 
                 (
                     Message == other.Message ||
@@ -118,9 +118,9 @@ namespace Org.OpenAPITools.Models
                     Param.Equals(other.Param)
                 ) && 
                 (
-                    Code == other.Code ||
-                    Code != null &&
-                    Code.Equals(other.Code)
+                    Type == other.Type ||
+                    Type != null &&
+                    Type.Equals(other.Type)
                 );
         }
 
@@ -134,14 +134,14 @@ namespace Org.OpenAPITools.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Type != null)
-                    hashCode = hashCode * 59 + Type.GetHashCode();
+                    if (Code != null)
+                    hashCode = hashCode * 59 + Code.GetHashCode();
                     if (Message != null)
                     hashCode = hashCode * 59 + Message.GetHashCode();
                     if (Param != null)
                     hashCode = hashCode * 59 + Param.GetHashCode();
-                    if (Code != null)
-                    hashCode = hashCode * 59 + Code.GetHashCode();
+                    if (Type != null)
+                    hashCode = hashCode * 59 + Type.GetHashCode();
                 return hashCode;
             }
         }

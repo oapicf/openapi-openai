@@ -12,11 +12,12 @@ import org.joda.time.DateTime
 import ChatCompletionStreamResponseDelta._
 
 case class ChatCompletionStreamResponseDelta (
-  /* The role of the author of this message. */
-  role: Option[Role],
-/* The contents of the chunk message. */
+  /* The contents of the chunk message. */
   content: Option[String],
-functionCall: Option[ChatCompletionRequestMessageFunctionCall])
+functionCall: Option[ChatCompletionStreamResponseDeltaFunctionCall],
+toolCalls: Option[List[ChatCompletionMessageToolCallChunk]],
+/* The role of the author of this message. */
+  role: Option[Role])
 
 object ChatCompletionStreamResponseDelta {
   import DateTimeCodecs._
@@ -24,14 +25,14 @@ object ChatCompletionStreamResponseDelta {
   case object System extends Role
   case object User extends Role
   case object Assistant extends Role
-  case object Function extends Role
+  case object Tool extends Role
 
   object Role {
     def toRole(s: String): Option[Role] = s match {
       case "System" => Some(System)
       case "User" => Some(User)
       case "Assistant" => Some(Assistant)
-      case "Function" => Some(Function)
+      case "Tool" => Some(Tool)
       case _ => None
     }
 
@@ -39,7 +40,7 @@ object ChatCompletionStreamResponseDelta {
       case System => "System"
       case User => "User"
       case Assistant => "Assistant"
-      case Function => "Function"
+      case Tool => "Tool"
     }
   }
 

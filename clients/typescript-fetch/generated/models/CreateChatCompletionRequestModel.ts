@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,33 +12,31 @@
  * Do not edit the class manually.
  */
 
+import { mapValues } from '../runtime';
 /**
- * @type CreateChatCompletionRequestModel
  * ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.
  * @export
+ * @interface CreateChatCompletionRequestModel
  */
-export type CreateChatCompletionRequestModel = string;
+export interface CreateChatCompletionRequestModel {
+}
+
+/**
+ * Check if a given object implements the CreateChatCompletionRequestModel interface.
+ */
+export function instanceOfCreateChatCompletionRequestModel(value: object): boolean {
+    return true;
+}
 
 export function CreateChatCompletionRequestModelFromJSON(json: any): CreateChatCompletionRequestModel {
     return CreateChatCompletionRequestModelFromJSONTyped(json, false);
 }
 
 export function CreateChatCompletionRequestModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateChatCompletionRequestModel {
-    if (json == null) {
-        return json;
-    }
-    return { ...stringFromJSONTyped(json, true) };
+    return json;
 }
 
 export function CreateChatCompletionRequestModelToJSON(value?: CreateChatCompletionRequestModel | null): any {
-    if (value == null) {
-        return value;
-    }
-
-    if (instanceOfstring(value)) {
-        return stringToJSON(value as string);
-    }
-
-    return {};
+    return value;
 }
 

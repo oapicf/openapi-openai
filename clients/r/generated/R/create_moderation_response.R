@@ -1,15 +1,15 @@
 #' Create a new CreateModerationResponse
 #'
 #' @description
-#' CreateModerationResponse Class
+#' Represents if a given text input is potentially harmful.
 #'
 #' @docType class
 #' @title CreateModerationResponse
 #' @description CreateModerationResponse Class
 #' @format An \code{R6Class} generator object
-#' @field id  character
-#' @field model  character
-#' @field results  list(\link{CreateModerationResponseResultsInner})
+#' @field id The unique identifier for the moderation request. character
+#' @field model The model used to generate the moderation results. character
+#' @field results A list of moderation objects. list(\link{CreateModerationResponseResultsInner})
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -24,9 +24,9 @@ CreateModerationResponse <- R6::R6Class(
     #' @description
     #' Initialize a new CreateModerationResponse class.
     #'
-    #' @param id id
-    #' @param model model
-    #' @param results results
+    #' @param id The unique identifier for the moderation request.
+    #' @param model The model used to generate the moderation results.
+    #' @param results A list of moderation objects.
     #' @param ... Other optional arguments.
     #' @export
     initialize = function(`id`, `model`, `results`, ...) {

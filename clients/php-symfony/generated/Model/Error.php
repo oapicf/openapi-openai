@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -45,12 +45,12 @@ class Error
 {
         /**
      * @var string|null
-     * @SerializedName("type")
+     * @SerializedName("code")
      * @Assert\NotNull()
      * @Assert\Type("string")
      * @Type("string")
      */
-    protected ?string $type = null;
+    protected ?string $code = null;
 
     /**
      * @var string|null
@@ -72,12 +72,12 @@ class Error
 
     /**
      * @var string|null
-     * @SerializedName("code")
+     * @SerializedName("type")
      * @Assert\NotNull()
      * @Assert\Type("string")
      * @Type("string")
      */
-    protected ?string $code = null;
+    protected ?string $type = null;
 
     /**
      * Constructor
@@ -86,35 +86,35 @@ class Error
     public function __construct(array $data = null)
     {
         if (is_array($data)) {
-            $this->type = array_key_exists('type', $data) ? $data['type'] : $this->type;
+            $this->code = array_key_exists('code', $data) ? $data['code'] : $this->code;
             $this->message = array_key_exists('message', $data) ? $data['message'] : $this->message;
             $this->param = array_key_exists('param', $data) ? $data['param'] : $this->param;
-            $this->code = array_key_exists('code', $data) ? $data['code'] : $this->code;
+            $this->type = array_key_exists('type', $data) ? $data['type'] : $this->type;
         }
     }
 
     /**
-     * Gets type.
+     * Gets code.
      *
      * @return string|null
      */
-    public function getType(): ?string
+    public function getCode(): ?string
     {
-        return $this->type;
+        return $this->code;
     }
 
 
 
     /**
-     * Sets type.
+     * Sets code.
      *
-     * @param string|null $type
+     * @param string|null $code
      *
      * @return $this
      */
-    public function setType(?string $type): self
+    public function setCode(?string $code): self
     {
-        $this->type = $type;
+        $this->code = $code;
 
         return $this;
     }
@@ -172,27 +172,27 @@ class Error
     }
 
     /**
-     * Gets code.
+     * Gets type.
      *
      * @return string|null
      */
-    public function getCode(): ?string
+    public function getType(): ?string
     {
-        return $this->code;
+        return $this->type;
     }
 
 
 
     /**
-     * Sets code.
+     * Sets type.
      *
-     * @param string|null $code
+     * @param string|null $type
      *
      * @return $this
      */
-    public function setCode(?string $code): self
+    public function setType(?string $type): self
     {
-        $this->code = $code;
+        $this->type = $type;
 
         return $this;
     }

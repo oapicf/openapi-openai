@@ -1,5 +1,5 @@
 const utils = require('../utils/utils');
-const CreateChatCompletionRequest_function_call_oneOf = require('../models/CreateChatCompletionRequest_function_call_oneOf');
+const ChatCompletionFunctionCallOption = require('../models/ChatCompletionFunctionCallOption');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {

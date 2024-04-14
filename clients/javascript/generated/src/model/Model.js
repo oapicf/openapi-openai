@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,20 +16,21 @@ import ApiClient from '../ApiClient';
 /**
  * The Model model module.
  * @module model/Model
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class Model {
     /**
      * Constructs a new <code>Model</code>.
+     * Describes an OpenAI model offering that can be used with the API.
      * @alias module:model/Model
-     * @param id {String} 
-     * @param object {String} 
-     * @param created {Number} 
-     * @param ownedBy {String} 
+     * @param id {String} The model identifier, which can be referenced in the API endpoints.
+     * @param created {Number} The Unix timestamp (in seconds) when the model was created.
+     * @param object {module:model/Model.ObjectEnum} The object type, which is always \"model\".
+     * @param ownedBy {String} The organization that owns the model.
      */
-    constructor(id, object, created, ownedBy) { 
+    constructor(id, created, object, ownedBy) { 
         
-        Model.initialize(this, id, object, created, ownedBy);
+        Model.initialize(this, id, created, object, ownedBy);
     }
 
     /**
@@ -37,10 +38,10 @@ class Model {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, object, created, ownedBy) { 
+    static initialize(obj, id, created, object, ownedBy) { 
         obj['id'] = id;
-        obj['object'] = object;
         obj['created'] = created;
+        obj['object'] = object;
         obj['owned_by'] = ownedBy;
     }
 
@@ -58,11 +59,11 @@ class Model {
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
-            if (data.hasOwnProperty('object')) {
-                obj['object'] = ApiClient.convertToType(data['object'], 'String');
-            }
             if (data.hasOwnProperty('created')) {
                 obj['created'] = ApiClient.convertToType(data['created'], 'Number');
+            }
+            if (data.hasOwnProperty('object')) {
+                obj['object'] = ApiClient.convertToType(data['object'], 'String');
             }
             if (data.hasOwnProperty('owned_by')) {
                 obj['owned_by'] = ApiClient.convertToType(data['owned_by'], 'String');
@@ -102,30 +103,49 @@ class Model {
 
 }
 
-Model.RequiredProperties = ["id", "object", "created", "owned_by"];
+Model.RequiredProperties = ["id", "created", "object", "owned_by"];
 
 /**
+ * The model identifier, which can be referenced in the API endpoints.
  * @member {String} id
  */
 Model.prototype['id'] = undefined;
 
 /**
- * @member {String} object
- */
-Model.prototype['object'] = undefined;
-
-/**
+ * The Unix timestamp (in seconds) when the model was created.
  * @member {Number} created
  */
 Model.prototype['created'] = undefined;
 
 /**
+ * The object type, which is always \"model\".
+ * @member {module:model/Model.ObjectEnum} object
+ */
+Model.prototype['object'] = undefined;
+
+/**
+ * The organization that owns the model.
  * @member {String} owned_by
  */
 Model.prototype['owned_by'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>object</code> property.
+ * @enum {String}
+ * @readonly
+ */
+Model['ObjectEnum'] = {
+
+    /**
+     * value: "model"
+     * @const
+     */
+    "model": "model"
+};
 
 
 

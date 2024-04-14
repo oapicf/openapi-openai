@@ -10,30 +10,43 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Represents a chat completion response returned by model, based on the provided input. */
 public struct CreateChatCompletionResponse: Codable, JSONEncodable, Hashable {
 
+    public enum Object: String, Codable, CaseIterable {
+        case chatPeriodCompletion = "chat.completion"
+    }
+    /** A unique identifier for the chat completion. */
     public var id: String
-    public var object: String
-    public var created: Int
-    public var model: String
+    /** A list of chat completion choices. Can be more than one if `n` is greater than 1. */
     public var choices: [CreateChatCompletionResponseChoicesInner]
-    public var usage: CreateCompletionResponseUsage?
+    /** The Unix timestamp (in seconds) of when the chat completion was created. */
+    public var created: Int
+    /** The model used for the chat completion. */
+    public var model: String
+    /** This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
+    public var systemFingerprint: String?
+    /** The object type, which is always `chat.completion`. */
+    public var object: Object
+    public var usage: CompletionUsage?
 
-    public init(id: String, object: String, created: Int, model: String, choices: [CreateChatCompletionResponseChoicesInner], usage: CreateCompletionResponseUsage? = nil) {
+    public init(id: String, choices: [CreateChatCompletionResponseChoicesInner], created: Int, model: String, systemFingerprint: String? = nil, object: Object, usage: CompletionUsage? = nil) {
         self.id = id
-        self.object = object
+        self.choices = choices
         self.created = created
         self.model = model
-        self.choices = choices
+        self.systemFingerprint = systemFingerprint
+        self.object = object
         self.usage = usage
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
-        case object
+        case choices
         case created
         case model
-        case choices
+        case systemFingerprint = "system_fingerprint"
+        case object
         case usage
     }
 
@@ -42,10 +55,11 @@ public struct CreateChatCompletionResponse: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(object, forKey: .object)
+        try container.encode(choices, forKey: .choices)
         try container.encode(created, forKey: .created)
         try container.encode(model, forKey: .model)
-        try container.encode(choices, forKey: .choices)
+        try container.encodeIfPresent(systemFingerprint, forKey: .systemFingerprint)
+        try container.encode(object, forKey: .object)
         try container.encodeIfPresent(usage, forKey: .usage)
     }
 }

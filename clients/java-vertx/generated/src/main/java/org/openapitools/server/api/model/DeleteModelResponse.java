@@ -8,17 +8,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DeleteModelResponse   {
   
   private String id;
-  private String _object;
   private Boolean deleted;
+  private String _object;
 
   public DeleteModelResponse () {
 
   }
 
-  public DeleteModelResponse (String id, String _object, Boolean deleted) {
+  public DeleteModelResponse (String id, Boolean deleted, String _object) {
     this.id = id;
-    this._object = _object;
     this.deleted = deleted;
+    this._object = _object;
   }
 
     
@@ -31,21 +31,21 @@ public class DeleteModelResponse   {
   }
 
     
-  @JsonProperty("object")
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-    
   @JsonProperty("deleted")
   public Boolean getDeleted() {
     return deleted;
   }
   public void setDeleted(Boolean deleted) {
     this.deleted = deleted;
+  }
+
+    
+  @JsonProperty("object")
+  public String getObject() {
+    return _object;
+  }
+  public void setObject(String _object) {
+    this._object = _object;
   }
 
 
@@ -59,13 +59,13 @@ public class DeleteModelResponse   {
     }
     DeleteModelResponse deleteModelResponse = (DeleteModelResponse) o;
     return Objects.equals(id, deleteModelResponse.id) &&
-        Objects.equals(_object, deleteModelResponse._object) &&
-        Objects.equals(deleted, deleteModelResponse.deleted);
+        Objects.equals(deleted, deleteModelResponse.deleted) &&
+        Objects.equals(_object, deleteModelResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, deleted);
+    return Objects.hash(id, deleted, _object);
   }
 
   @Override
@@ -74,8 +74,8 @@ public class DeleteModelResponse   {
     sb.append("class DeleteModelResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

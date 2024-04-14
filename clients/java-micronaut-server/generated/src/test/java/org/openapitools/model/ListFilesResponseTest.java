@@ -24,19 +24,19 @@ public class ListFilesResponseTest {
     }
 
     /**
-     * Test the property '_object'
-     */
-    @Test
-    public void _objectTest() {
-        // TODO: test _object
-    }
-
-    /**
      * Test the property 'data'
      */
     @Test
     public void dataTest() {
         // TODO: test data
+    }
+
+    /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
     }
 
 }

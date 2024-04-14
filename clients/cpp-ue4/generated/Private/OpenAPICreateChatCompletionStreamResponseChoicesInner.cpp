@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -28,6 +28,10 @@ inline FString ToString(const OpenAPICreateChatCompletionStreamResponseChoicesIn
 		return TEXT("stop");
 	case OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum::Length:
 		return TEXT("length");
+	case OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum::ToolCalls:
+		return TEXT("tool_calls");
+	case OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum::ContentFilter:
+		return TEXT("content_filter");
 	case OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum::FunctionCall:
 		return TEXT("function_call");
 	}
@@ -46,6 +50,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPICreateChatCompletionS
 	static TMap<FString, OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum> StringToEnum = { 
 		{ TEXT("stop"), OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum::Stop },
 		{ TEXT("length"), OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum::Length },
+		{ TEXT("tool_calls"), OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum::ToolCalls },
+		{ TEXT("content_filter"), OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum::ContentFilter },
 		{ TEXT("function_call"), OpenAPICreateChatCompletionStreamResponseChoicesInner::FinishReasonEnum::FunctionCall }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
@@ -79,18 +85,13 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPICrea
 void OpenAPICreateChatCompletionStreamResponseChoicesInner::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	if (Index.IsSet())
+	Writer->WriteIdentifierPrefix(TEXT("delta")); WriteJsonValue(Writer, Delta);
+	if (Logprobs.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("index")); WriteJsonValue(Writer, Index.GetValue());
+		Writer->WriteIdentifierPrefix(TEXT("logprobs")); WriteJsonValue(Writer, Logprobs.GetValue());
 	}
-	if (Delta.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("delta")); WriteJsonValue(Writer, Delta.GetValue());
-	}
-	if (FinishReason.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("finish_reason")); WriteJsonValue(Writer, FinishReason.GetValue());
-	}
+	Writer->WriteIdentifierPrefix(TEXT("finish_reason")); WriteJsonValue(Writer, FinishReason);
+	Writer->WriteIdentifierPrefix(TEXT("index")); WriteJsonValue(Writer, Index);
 	Writer->WriteObjectEnd();
 }
 
@@ -102,9 +103,10 @@ bool OpenAPICreateChatCompletionStreamResponseChoicesInner::FromJson(const TShar
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("index"), Index);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("delta"), Delta);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("logprobs"), Logprobs);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("finish_reason"), FinishReason);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("index"), Index);
 
 	return ParseSuccess;
 }

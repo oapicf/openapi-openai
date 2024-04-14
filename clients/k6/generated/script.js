@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -22,13 +22,32 @@ const SLEEP_DURATION = 0.1;
 // Global variables should be initialized.
 
 export default function() {
-    group("/fine-tunes/{fine_tune_id}/cancel", () => {
-        let fineTuneId = 'TODO_EDIT_THE_FINE_TUNE_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+    group("/assistants/{assistant_id}/files", () => {
+        let assistantId = 'TODO_EDIT_THE_ASSISTANT_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let before = 'TODO_EDIT_THE_BEFORE'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let limit = 'TODO_EDIT_THE_LIMIT'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let after = 'TODO_EDIT_THE_AFTER'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let order = 'TODO_EDIT_THE_ORDER'; // specify value as there is no example value for this parameter in OpenAPI spec
 
-        // Request No. 1: cancelFineTune
+        // Request No. 1: listAssistantFiles
         {
-            let url = BASE_URL + `/fine-tunes/${fine_tune_id}/cancel`;
-            let request = http.post(url);
+            let url = BASE_URL + `/assistants/${assistant_id}/files?limit=${limit}&order=${order}&after=${after}&before=${before}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: createAssistantFile
+        {
+            let url = BASE_URL + `/assistants/${assistant_id}/files`;
+            // TODO: edit the parameters of the request body.
+            let body = {"fileId": "string"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
 
             check(request, {
                 "OK": (r) => r.status === 200
@@ -50,46 +69,14 @@ export default function() {
         }
     });
 
-    group("/images/generations", () => {
+    group("/audio/speech", () => {
 
-        // Request No. 1: createImage
+        // Request No. 1: createSpeech
         {
-            let url = BASE_URL + `/images/generations`;
+            let url = BASE_URL + `/audio/speech`;
             // TODO: edit the parameters of the request body.
-            let body = {"prompt": "string", "n": "integer", "size": "string", "responseFormat": "string", "user": "string"};
-            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
-            let request = http.post(url, JSON.stringify(body), params);
-
-            check(request, {
-                "OK": (r) => r.status === 200
-            });
-        }
-    });
-
-    group("/edits", () => {
-
-        // Request No. 1: createEdit
-        {
-            let url = BASE_URL + `/edits`;
-            // TODO: edit the parameters of the request body.
-            let body = {"model": {}, "input": "string", "instruction": "string", "n": "integer", "temperature": "bigdecimal", "topP": "bigdecimal"};
-            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
-            let request = http.post(url, JSON.stringify(body), params);
-
-            check(request, {
-                "OK": (r) => r.status === 200
-            });
-        }
-    });
-
-    group("/images/variations", () => {
-
-        // Request No. 1: createImageVariation
-        {
-            let url = BASE_URL + `/images/variations`;
-            // TODO: edit the parameters of the request body.
-            let body = {"image": http.file(open("/path/to/file.bin", "b"), "test.bin"), "n": "integer", "size": "string", "responseFormat": "string", "user": "string"};
-            let params = {headers: {"Content-Type": "multipart/form-data", "Accept": "application/json"}};
+            let body = {"model": {}, "input": "string", "voice": "string", "responseFormat": "string", "speed": "bigdecimal"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/octet-stream"}};
             let request = http.post(url, JSON.stringify(body), params);
 
             check(request, {
@@ -111,26 +98,30 @@ export default function() {
         }
     });
 
-    group("/files", () => {
+    group("/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints", () => {
+        let fineTuningJobId = 'TODO_EDIT_THE_FINE_TUNING_JOB_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let limit = 'TODO_EDIT_THE_LIMIT'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let after = 'TODO_EDIT_THE_AFTER'; // specify value as there is no example value for this parameter in OpenAPI spec
 
-        // Request No. 1: listFiles
+        // Request No. 1: listFineTuningJobCheckpoints
         {
-            let url = BASE_URL + `/files`;
+            let url = BASE_URL + `/fine_tuning/jobs/${fine_tuning_job_id}/checkpoints?after=${after}&limit=${limit}`;
             let request = http.get(url);
 
             check(request, {
                 "OK": (r) => r.status === 200
             });
-
-            sleep(SLEEP_DURATION);
         }
+    });
 
-        // Request No. 2: createFile
+    group("/threads", () => {
+
+        // Request No. 1: createThread
         {
-            let url = BASE_URL + `/files`;
+            let url = BASE_URL + `/threads`;
             // TODO: edit the parameters of the request body.
-            let body = {"file": http.file(open("/path/to/file.bin", "b"), "test.bin"), "purpose": "string"};
-            let params = {headers: {"Content-Type": "multipart/form-data", "Accept": "application/json"}};
+            let body = {"messages": "list", "metadata": "object"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
             let request = http.post(url, JSON.stringify(body), params);
 
             check(request, {
@@ -145,7 +136,7 @@ export default function() {
         {
             let url = BASE_URL + `/chat/completions`;
             // TODO: edit the parameters of the request body.
-            let body = {"model": {}, "messages": "list", "functions": "list", "functionCall": {"name": "string"}, "temperature": "bigdecimal", "topP": "bigdecimal", "n": "integer", "stream": "boolean", "stop": {}, "maxTokens": "integer", "presencePenalty": "bigdecimal", "frequencyPenalty": "bigdecimal", "logitBias": "object", "user": "string"};
+            let body = {"messages": "list", "model": {}, "frequencyPenalty": "bigdecimal", "logitBias": "map", "logprobs": "boolean", "topLogprobs": "integer", "maxTokens": "integer", "n": "integer", "presencePenalty": "bigdecimal", "responseFormat": {"type": "string"}, "seed": "integer", "stop": {}, "stream": "boolean", "temperature": "bigdecimal", "topP": "bigdecimal", "tools": "list", "toolChoice": {"type": "string", "function": "chatcompletionnamedtoolchoice_function"}, "user": "string", "functionCall": {"name": "string"}, "functions": "list"};
             let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
             let request = http.post(url, JSON.stringify(body), params);
 
@@ -155,13 +146,25 @@ export default function() {
         }
     });
 
-    group("/fine-tunes/{fine_tune_id}", () => {
-        let fineTuneId = 'TODO_EDIT_THE_FINE_TUNE_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+    group("/assistants/{assistant_id}", () => {
+        let assistantId = 'TODO_EDIT_THE_ASSISTANT_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
 
-        // Request No. 1: retrieveFineTune
+        // Request No. 1: getAssistant
         {
-            let url = BASE_URL + `/fine-tunes/${fine_tune_id}`;
+            let url = BASE_URL + `/assistants/${assistant_id}`;
             let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: deleteAssistant
+        {
+            let url = BASE_URL + `/assistants/${assistant_id}`;
+            let request = http.del(url);
 
             check(request, {
                 "OK": (r) => r.status === 200
@@ -175,7 +178,7 @@ export default function() {
         {
             let url = BASE_URL + `/embeddings`;
             // TODO: edit the parameters of the request body.
-            let body = {"model": {}, "input": {}, "user": "string"};
+            let body = {"input": {}, "model": {}, "encodingFormat": "string", "dimensions": "integer", "user": "string"};
             let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
             let request = http.post(url, JSON.stringify(body), params);
 
@@ -191,7 +194,7 @@ export default function() {
         {
             let url = BASE_URL + `/completions`;
             // TODO: edit the parameters of the request body.
-            let body = {"model": {}, "prompt": {}, "suffix": "string", "maxTokens": "integer", "temperature": "bigdecimal", "topP": "bigdecimal", "n": "integer", "stream": "boolean", "logprobs": "integer", "echo": "boolean", "stop": {}, "presencePenalty": "bigdecimal", "frequencyPenalty": "bigdecimal", "bestOf": "integer", "logitBias": "object", "user": "string"};
+            let body = {"model": {}, "prompt": {}, "bestOf": "integer", "echo": "boolean", "frequencyPenalty": "bigdecimal", "logitBias": "map", "logprobs": "integer", "maxTokens": "integer", "n": "integer", "presencePenalty": "bigdecimal", "seed": "integer", "stop": {}, "stream": "boolean", "suffix": "string", "temperature": "bigdecimal", "topP": "bigdecimal", "user": "string"};
             let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
             let request = http.post(url, JSON.stringify(body), params);
 
@@ -201,15 +204,31 @@ export default function() {
         }
     });
 
-    group("/moderations", () => {
+    group("/threads/{thread_id}/messages/{message_id}/files/{file_id}", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let messageId = 'TODO_EDIT_THE_MESSAGE_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let fileId = 'TODO_EDIT_THE_FILE_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
 
-        // Request No. 1: createModeration
+        // Request No. 1: getMessageFile
         {
-            let url = BASE_URL + `/moderations`;
-            // TODO: edit the parameters of the request body.
-            let body = {"input": {}, "model": {}};
-            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
-            let request = http.post(url, JSON.stringify(body), params);
+            let url = BASE_URL + `/threads/${thread_id}/messages/${message_id}/files/${file_id}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}/runs/{run_id}/steps/{step_id}", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let stepId = 'TODO_EDIT_THE_STEP_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let runId = 'TODO_EDIT_THE_RUN_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: getRunStep
+        {
+            let url = BASE_URL + `/threads/${thread_id}/runs/${run_id}/steps/${step_id}`;
+            let request = http.get(url);
 
             check(request, {
                 "OK": (r) => r.status === 200
@@ -223,24 +242,9 @@ export default function() {
         {
             let url = BASE_URL + `/audio/transcriptions`;
             // TODO: edit the parameters of the request body.
-            let body = {"file": http.file(open("/path/to/file.bin", "b"), "test.bin"), "model": {}, "prompt": "string", "responseFormat": "string", "temperature": "bigdecimal", "language": "string"};
+            let body = {"file": http.file(open("/path/to/file.bin", "b"), "test.bin"), "model": {}, "language": "string", "prompt": "string", "responseFormat": "string", "temperature": "bigdecimal", "timestampGranularitiesLeft_Square_BracketRight_Square_Bracket": "list"};
             let params = {headers: {"Content-Type": "multipart/form-data", "Accept": "application/json"}};
             let request = http.post(url, JSON.stringify(body), params);
-
-            check(request, {
-                "OK": (r) => r.status === 200
-            });
-        }
-    });
-
-    group("/fine-tunes/{fine_tune_id}/events", () => {
-        let stream = 'TODO_EDIT_THE_STREAM'; // specify value as there is no example value for this parameter in OpenAPI spec
-        let fineTuneId = 'TODO_EDIT_THE_FINE_TUNE_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
-
-        // Request No. 1: listFineTuneEvents
-        {
-            let url = BASE_URL + `/fine-tunes/${fine_tune_id}/events?stream=${stream}`;
-            let request = http.get(url);
 
             check(request, {
                 "OK": (r) => r.status === 200
@@ -280,7 +284,7 @@ export default function() {
         {
             let url = BASE_URL + `/images/edits`;
             // TODO: edit the parameters of the request body.
-            let body = {"image": http.file(open("/path/to/file.bin", "b"), "test.bin"), "mask": http.file(open("/path/to/file.bin", "b"), "test.bin"), "prompt": "string", "n": "integer", "size": "string", "responseFormat": "string", "user": "string"};
+            let body = {"image": http.file(open("/path/to/file.bin", "b"), "test.bin"), "prompt": "string", "mask": http.file(open("/path/to/file.bin", "b"), "test.bin"), "model": {}, "n": "integer", "size": "string", "responseFormat": "string", "user": "string"};
             let params = {headers: {"Content-Type": "multipart/form-data", "Accept": "application/json"}};
             let request = http.post(url, JSON.stringify(body), params);
 
@@ -316,11 +320,13 @@ export default function() {
         }
     });
 
-    group("/fine-tunes", () => {
+    group("/assistants/{assistant_id}/files/{file_id}", () => {
+        let assistantId = 'TODO_EDIT_THE_ASSISTANT_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let fileId = 'TODO_EDIT_THE_FILE_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
 
-        // Request No. 1: listFineTunes
+        // Request No. 1: getAssistantFile
         {
-            let url = BASE_URL + `/fine-tunes`;
+            let url = BASE_URL + `/assistants/${assistant_id}/files/${file_id}`;
             let request = http.get(url);
 
             check(request, {
@@ -330,11 +336,401 @@ export default function() {
             sleep(SLEEP_DURATION);
         }
 
-        // Request No. 2: createFineTune
+        // Request No. 2: deleteAssistantFile
         {
-            let url = BASE_URL + `/fine-tunes`;
+            let url = BASE_URL + `/assistants/${assistant_id}/files/${file_id}`;
+            let request = http.del(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/fine_tuning/jobs/{fine_tuning_job_id}/cancel", () => {
+        let fineTuningJobId = 'TODO_EDIT_THE_FINE_TUNING_JOB_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: cancelFineTuningJob
+        {
+            let url = BASE_URL + `/fine_tuning/jobs/${fine_tuning_job_id}/cancel`;
+            let request = http.post(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}/messages/{message_id}", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let messageId = 'TODO_EDIT_THE_MESSAGE_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: getMessage
+        {
+            let url = BASE_URL + `/threads/${thread_id}/messages/${message_id}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: modifyMessage
+        {
+            let url = BASE_URL + `/threads/${thread_id}/messages/${message_id}`;
             // TODO: edit the parameters of the request body.
-            let body = {"trainingFile": "string", "validationFile": "string", "model": {}, "nEpochs": "integer", "batchSize": "integer", "learningRateMultiplier": "bigdecimal", "promptLossWeight": "bigdecimal", "computeClassificationMetrics": "boolean", "classificationNClasses": "integer", "classificationPositiveClass": "string", "classificationBetas": "list", "suffix": "string"};
+            let body = {"metadata": "object"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}/messages", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let before = 'TODO_EDIT_THE_BEFORE'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let limit = 'TODO_EDIT_THE_LIMIT'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let after = 'TODO_EDIT_THE_AFTER'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let runId = 'TODO_EDIT_THE_RUN_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let order = 'TODO_EDIT_THE_ORDER'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: listMessages
+        {
+            let url = BASE_URL + `/threads/${thread_id}/messages?limit=${limit}&order=${order}&after=${after}&before=${before}&run_id=${run_id}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: createMessage
+        {
+            let url = BASE_URL + `/threads/${thread_id}/messages`;
+            // TODO: edit the parameters of the request body.
+            let body = {"role": "string", "content": "string", "fileIds": "list", "metadata": "object"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}/runs/{run_id}/cancel", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let runId = 'TODO_EDIT_THE_RUN_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: cancelRun
+        {
+            let url = BASE_URL + `/threads/${thread_id}/runs/${run_id}/cancel`;
+            let request = http.post(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/images/generations", () => {
+
+        // Request No. 1: createImage
+        {
+            let url = BASE_URL + `/images/generations`;
+            // TODO: edit the parameters of the request body.
+            let body = {"prompt": "string", "model": {}, "n": "integer", "quality": "string", "responseFormat": "string", "size": "string", "style": "string", "user": "string"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}/runs", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let before = 'TODO_EDIT_THE_BEFORE'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let limit = 'TODO_EDIT_THE_LIMIT'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let after = 'TODO_EDIT_THE_AFTER'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let order = 'TODO_EDIT_THE_ORDER'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: listRuns
+        {
+            let url = BASE_URL + `/threads/${thread_id}/runs?limit=${limit}&order=${order}&after=${after}&before=${before}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: createRun
+        {
+            let url = BASE_URL + `/threads/${thread_id}/runs`;
+            // TODO: edit the parameters of the request body.
+            let body = {"assistantId": "string", "model": {}, "instructions": "string", "additionalInstructions": "string", "additionalMessages": "list", "tools": "list", "metadata": "object", "temperature": "bigdecimal", "stream": "boolean", "maxPromptTokens": "integer", "maxCompletionTokens": "integer", "truncationStrategy": {"type": "string", "lastMessages": "integer"}, "toolChoice": {"type": "string", "function": "chatcompletionnamedtoolchoice_function"}, "responseFormat": {"type": "string"}};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/images/variations", () => {
+
+        // Request No. 1: createImageVariation
+        {
+            let url = BASE_URL + `/images/variations`;
+            // TODO: edit the parameters of the request body.
+            let body = {"image": http.file(open("/path/to/file.bin", "b"), "test.bin"), "model": {}, "n": "integer", "responseFormat": "string", "size": "string", "user": "string"};
+            let params = {headers: {"Content-Type": "multipart/form-data", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/runs", () => {
+
+        // Request No. 1: createThreadAndRun
+        {
+            let url = BASE_URL + `/threads/runs`;
+            // TODO: edit the parameters of the request body.
+            let body = {"assistantId": "string", "thread": {"messages": "list", "metadata": "object"}, "model": {}, "instructions": "string", "tools": "list", "metadata": "object", "temperature": "bigdecimal", "stream": "boolean", "maxPromptTokens": "integer", "maxCompletionTokens": "integer", "truncationStrategy": {"type": "string", "lastMessages": "integer"}, "toolChoice": {"type": "string", "function": "chatcompletionnamedtoolchoice_function"}, "responseFormat": {"type": "string"}};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/files", () => {
+        let purpose = 'TODO_EDIT_THE_PURPOSE'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: listFiles
+        {
+            let url = BASE_URL + `/files?purpose=${purpose}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: createFile
+        {
+            let url = BASE_URL + `/files`;
+            // TODO: edit the parameters of the request body.
+            let body = {"file": http.file(open("/path/to/file.bin", "b"), "test.bin"), "purpose": "string"};
+            let params = {headers: {"Content-Type": "multipart/form-data", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}/runs/{run_id}/submit_tool_outputs", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let runId = 'TODO_EDIT_THE_RUN_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: submitToolOuputsToRun
+        {
+            let url = BASE_URL + `/threads/${thread_id}/runs/${run_id}/submit_tool_outputs`;
+            // TODO: edit the parameters of the request body.
+            let body = {"toolOutputs": "list", "stream": "boolean"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}/messages/{message_id}/files", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let before = 'TODO_EDIT_THE_BEFORE'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let limit = 'TODO_EDIT_THE_LIMIT'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let messageId = 'TODO_EDIT_THE_MESSAGE_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let after = 'TODO_EDIT_THE_AFTER'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let order = 'TODO_EDIT_THE_ORDER'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: listMessageFiles
+        {
+            let url = BASE_URL + `/threads/${thread_id}/messages/${message_id}/files?limit=${limit}&order=${order}&after=${after}&before=${before}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/fine_tuning/jobs/{fine_tuning_job_id}", () => {
+        let fineTuningJobId = 'TODO_EDIT_THE_FINE_TUNING_JOB_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: retrieveFineTuningJob
+        {
+            let url = BASE_URL + `/fine_tuning/jobs/${fine_tuning_job_id}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/fine_tuning/jobs/{fine_tuning_job_id}/events", () => {
+        let fineTuningJobId = 'TODO_EDIT_THE_FINE_TUNING_JOB_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let limit = 'TODO_EDIT_THE_LIMIT'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let after = 'TODO_EDIT_THE_AFTER'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: listFineTuningEvents
+        {
+            let url = BASE_URL + `/fine_tuning/jobs/${fine_tuning_job_id}/events?after=${after}&limit=${limit}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}/runs/{run_id}/steps", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let before = 'TODO_EDIT_THE_BEFORE'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let limit = 'TODO_EDIT_THE_LIMIT'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let runId = 'TODO_EDIT_THE_RUN_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let after = 'TODO_EDIT_THE_AFTER'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let order = 'TODO_EDIT_THE_ORDER'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: listRunSteps
+        {
+            let url = BASE_URL + `/threads/${thread_id}/runs/${run_id}/steps?limit=${limit}&order=${order}&after=${after}&before=${before}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/assistants", () => {
+        let before = 'TODO_EDIT_THE_BEFORE'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let limit = 'TODO_EDIT_THE_LIMIT'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let after = 'TODO_EDIT_THE_AFTER'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let order = 'TODO_EDIT_THE_ORDER'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: listAssistants
+        {
+            let url = BASE_URL + `/assistants?limit=${limit}&order=${order}&after=${after}&before=${before}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: createAssistant
+        {
+            let url = BASE_URL + `/assistants`;
+            // TODO: edit the parameters of the request body.
+            let body = {"model": {}, "name": "string", "description": "string", "instructions": "string", "tools": "list", "fileIds": "list", "metadata": "object"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/moderations", () => {
+
+        // Request No. 1: createModeration
+        {
+            let url = BASE_URL + `/moderations`;
+            // TODO: edit the parameters of the request body.
+            let body = {"input": {}, "model": {}};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: getThread
+        {
+            let url = BASE_URL + `/threads/${thread_id}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: deleteThread
+        {
+            let url = BASE_URL + `/threads/${thread_id}`;
+            let request = http.del(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/threads/{thread_id}/runs/{run_id}", () => {
+        let threadId = 'TODO_EDIT_THE_THREAD_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let runId = 'TODO_EDIT_THE_RUN_ID'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: getRun
+        {
+            let url = BASE_URL + `/threads/${thread_id}/runs/${run_id}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: modifyRun
+        {
+            let url = BASE_URL + `/threads/${thread_id}/runs/${run_id}`;
+            // TODO: edit the parameters of the request body.
+            let body = {"metadata": "object"};
             let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
             let request = http.post(url, JSON.stringify(body), params);
 
@@ -352,6 +748,36 @@ export default function() {
             // TODO: edit the parameters of the request body.
             let body = {"file": http.file(open("/path/to/file.bin", "b"), "test.bin"), "model": {}, "prompt": "string", "responseFormat": "string", "temperature": "bigdecimal"};
             let params = {headers: {"Content-Type": "multipart/form-data", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/fine_tuning/jobs", () => {
+        let limit = 'TODO_EDIT_THE_LIMIT'; // specify value as there is no example value for this parameter in OpenAPI spec
+        let after = 'TODO_EDIT_THE_AFTER'; // specify value as there is no example value for this parameter in OpenAPI spec
+
+        // Request No. 1: listPaginatedFineTuningJobs
+        {
+            let url = BASE_URL + `/fine_tuning/jobs?after=${after}&limit=${limit}`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: createFineTuningJob
+        {
+            let url = BASE_URL + `/fine_tuning/jobs`;
+            // TODO: edit the parameters of the request body.
+            let body = {"model": {}, "trainingFile": "string", "hyperparameters": {"batchSize": "createfinetuningjobrequest_hyperparameters_batch_size", "learningRateMultiplier": "createfinetuningjobrequest_hyperparameters_learning_rate_multiplier", "nEpochs": "createfinetuningjobrequest_hyperparameters_n_epochs"}, "suffix": "string", "validationFile": "string", "integrations": "list", "seed": "integer"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
             let request = http.post(url, JSON.stringify(body), params);
 
             check(request, {

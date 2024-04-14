@@ -5,9 +5,9 @@
 ## Properties
 Name | Mapping | SQL Type | Default | Type | Description | Notes
 ---- | ------- | -------- | ------- | ---- | ----------- | -----
-**id** | id | text NOT NULL PRIMARY KEY |  | **kotlin.String** |  | 
-**model** | model | text NOT NULL |  | **kotlin.String** |  | 
-**results** | `One-To-Many` | `----` | `----`  | [**kotlin.Array&lt;CreateModerationResponseResultsInner&gt;**](CreateModerationResponseResultsInner.md) |  | 
+**id** | id | text NOT NULL PRIMARY KEY |  | **kotlin.String** | The unique identifier for the moderation request. | 
+**model** | model | text NOT NULL |  | **kotlin.String** | The model used to generate the moderation results. | 
+**results** | `One-To-Many` | `----` | `----`  | [**kotlin.Array&lt;CreateModerationResponseResultsInner&gt;**](CreateModerationResponseResultsInner.md) | A list of moderation objects. | 
 
 
 

@@ -7,12 +7,12 @@ Protected Class DeleteModelResponse
 
 
 	#tag Property, Flags = &h0
-		object As String
+		deleted As Boolean
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		deleted As Boolean
+		object As String
 	#tag EndProperty
 
 
@@ -61,19 +61,19 @@ Protected Class DeleteModelResponse
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="object"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="deleted"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
 			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="object"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

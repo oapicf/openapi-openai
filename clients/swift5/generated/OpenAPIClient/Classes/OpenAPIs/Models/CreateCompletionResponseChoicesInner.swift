@@ -15,34 +15,36 @@ public struct CreateCompletionResponseChoicesInner: Codable, JSONEncodable, Hash
     public enum FinishReason: String, Codable, CaseIterable {
         case stop = "stop"
         case length = "length"
+        case contentFilter = "content_filter"
     }
-    public var text: String
+    /** The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.  */
+    public var finishReason: FinishReason
     public var index: Int
     public var logprobs: CreateCompletionResponseChoicesInnerLogprobs?
-    public var finishReason: FinishReason
+    public var text: String
 
-    public init(text: String, index: Int, logprobs: CreateCompletionResponseChoicesInnerLogprobs?, finishReason: FinishReason) {
-        self.text = text
+    public init(finishReason: FinishReason, index: Int, logprobs: CreateCompletionResponseChoicesInnerLogprobs?, text: String) {
+        self.finishReason = finishReason
         self.index = index
         self.logprobs = logprobs
-        self.finishReason = finishReason
+        self.text = text
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case text
+        case finishReason = "finish_reason"
         case index
         case logprobs
-        case finishReason = "finish_reason"
+        case text
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(text, forKey: .text)
+        try container.encode(finishReason, forKey: .finishReason)
         try container.encode(index, forKey: .index)
         try container.encode(logprobs, forKey: .logprobs)
-        try container.encode(finishReason, forKey: .finishReason)
+        try container.encode(text, forKey: .text)
     }
 }
 

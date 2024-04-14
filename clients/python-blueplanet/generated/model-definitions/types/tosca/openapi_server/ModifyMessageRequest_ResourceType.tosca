@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ModifyMessageRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ModifyMessageRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ModifyMessageRequest {
+    title = ModifyMessageRequest
+    description = ModifyMessageRequest
+    derivedFrom = Root
+    properties {
+        metadata {
+          type =  
+          description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ModifyMessageRequest {
+    title = ModifyMessageRequest
+    description = ModifyMessageRequest
+    implements = openapi_server.resourceTypes.ModifyMessageRequest
+
+  }
+}

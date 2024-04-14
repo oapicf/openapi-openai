@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,31 +15,39 @@
  */
 public class OASCreateChatCompletionStreamRespons implements OAS.MappedProperties {
     /**
-     * Get index
-     * @return index
-     */
-    public Integer index { get; set; }
-
-    /**
      * Get delta
      * @return delta
      */
     public OASChatCompletionStreamResponseDelta delta { get; set; }
 
     /**
-     * Gets or Sets finishReason
+     * Get logprobs
+     * @return logprobs
+     */
+    public OASCreateChatCompletionResponseChoic logprobs { get; set; }
+
+    /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,\n`length` if the maximum number of tokens specified in the request was reached,\n`content_filter` if content was omitted due to a flag from our content filters,\n`tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.\n
      */
     public enum FinishReasonEnum {
         STOP,
         LENGTH,
+        TOOL_CALLS,
+        CONTENT_FILTER,
         FUNCTION_CALL
     }
 
     /**
-     * Get finishReason
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,\n`length` if the maximum number of tokens specified in the request was reached,\n`content_filter` if content was omitted due to a flag from our content filters,\n`tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.\n
      * @return finishReason
      */
     public FinishReasonEnum finishReason { get; set; }
+
+    /**
+     * The index of the choice in the list of choices.
+     * @return index
+     */
+    public Integer index { get; set; }
 
     private static final Map<String, String> propertyMappings = new Map<String, String>{
         'finish_reason' => 'finishReason'
@@ -51,27 +59,30 @@ public class OASCreateChatCompletionStreamRespons implements OAS.MappedPropertie
 
     public static OASCreateChatCompletionStreamRespons getExample() {
         OASCreateChatCompletionStreamRespons createChatCompletionStreamResponseChoicesInner = new OASCreateChatCompletionStreamRespons();
-          createChatCompletionStreamResponseChoicesInner.index = 0;
           createChatCompletionStreamResponseChoicesInner.delta = OASChatCompletionStreamResponseDelta.getExample();
+          createChatCompletionStreamResponseChoicesInner.logprobs = OASCreateChatCompletionResponseChoic.getExample();
           createChatCompletionStreamResponseChoicesInner.finishReason = FinishReasonEnum.STOP;
+          createChatCompletionStreamResponseChoicesInner.index = 0;
         return createChatCompletionStreamResponseChoicesInner;
     }
 
     public Boolean equals(Object obj) {
         if (obj instanceof OASCreateChatCompletionStreamRespons) {           
             OASCreateChatCompletionStreamRespons createChatCompletionStreamResponseChoicesInner = (OASCreateChatCompletionStreamRespons) obj;
-            return this.index == createChatCompletionStreamResponseChoicesInner.index
-                && this.delta == createChatCompletionStreamResponseChoicesInner.delta
-                && this.finishReason == createChatCompletionStreamResponseChoicesInner.finishReason;
+            return this.delta == createChatCompletionStreamResponseChoicesInner.delta
+                && this.logprobs == createChatCompletionStreamResponseChoicesInner.logprobs
+                && this.finishReason == createChatCompletionStreamResponseChoicesInner.finishReason
+                && this.index == createChatCompletionStreamResponseChoicesInner.index;
         }
         return false;
     }
 
     public Integer hashCode() {
         Integer hashCode = 43;
-        hashCode = (17 * hashCode) + (index == null ? 0 : System.hashCode(index));
         hashCode = (17 * hashCode) + (delta == null ? 0 : System.hashCode(delta));
+        hashCode = (17 * hashCode) + (logprobs == null ? 0 : System.hashCode(logprobs));
         hashCode = (17 * hashCode) + (finishReason == null ? 0 : System.hashCode(finishReason));
+        hashCode = (17 * hashCode) + (index == null ? 0 : System.hashCode(index));
         return hashCode;
     }
 }

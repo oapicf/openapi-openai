@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Occurs when a new [thread](/docs/api-reference/threads/object) is created.",
+  "name": "ThreadStreamEventOneOf",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "ThreadStreamEventOneOf_event",
+        "symbols": [
+          "thread.created"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.ThreadObject",
+      "doc": ""
+    }
+  ]
+
+}

@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **kotlin.String** |  | 
+**code** | **kotlin.String** |  | 
 **message** | **kotlin.String** |  | 
 **&#x60;param&#x60;** | **kotlin.String** |  | 
-**code** | **kotlin.String** |  | 
+**type** | **kotlin.String** |  | 
 
 
 

@@ -2,6 +2,7 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonValue
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -25,11 +26,20 @@ data class DeleteFileResponse(
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("object", required = true) val `object`: kotlin.String,
+    @get:JsonProperty("object", required = true) val `object`: DeleteFileResponse.`Object`,
 
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("deleted", required = true) val deleted: kotlin.Boolean
 ) {
+
+    /**
+    * 
+    * Values: file
+    */
+    enum class `Object`(val value: kotlin.String) {
+
+        @JsonProperty("file") file("file")
+    }
 
 }
 

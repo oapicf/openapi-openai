@@ -3,6 +3,7 @@ package org.openapitools.server.api.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,24 +12,42 @@ import org.openapitools.server.api.model.Model;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ListModelsResponse   {
   
-  private String _object;
+
+
+  public enum ObjectEnum {
+    LIST("list");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private ObjectEnum _object;
   private List<Model> data = new ArrayList<>();
 
   public ListModelsResponse () {
 
   }
 
-  public ListModelsResponse (String _object, List<Model> data) {
+  public ListModelsResponse (ObjectEnum _object, List<Model> data) {
     this._object = _object;
     this.data = data;
   }
 
     
   @JsonProperty("object")
-  public String getObject() {
+  public ObjectEnum getObject() {
     return _object;
   }
-  public void setObject(String _object) {
+  public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 

@@ -72,7 +72,7 @@ private class OASImagesResponseTest {
     @isTest
     private static void defaultValuesPopulated() {
         OASImagesResponse imagesResponse = new OASImagesResponse();
-        System.assertEquals(new List<OASImagesResponseDataInner>(), imagesResponse.data);
+        System.assertEquals(new List<OASImage>(), imagesResponse.data);
         System.assertEquals(null, imagesResponse.created);
     }
 }

@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import io.swagger.annotations.*;
 import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-16T01:13:37.006745963Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@ApiModel(description="Represents if a given text input is potentially harmful.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-04-14T13:41:51.736364282Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponse   {
   
   private String id;
@@ -23,9 +23,10 @@ public class CreateModerationResponse   {
   private List<@Valid CreateModerationResponseResultsInner> results = new ArrayList<>();
 
   /**
+   * The unique identifier for the moderation request.
    **/
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier for the moderation request.")
   @JsonProperty("id")
   @NotNull
   public String getId() {
@@ -36,9 +37,10 @@ public class CreateModerationResponse   {
   }
 
   /**
+   * The model used to generate the moderation results.
    **/
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model used to generate the moderation results.")
   @JsonProperty("model")
   @NotNull
   public String getModel() {
@@ -49,9 +51,10 @@ public class CreateModerationResponse   {
   }
 
   /**
+   * A list of moderation objects.
    **/
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A list of moderation objects.")
   @JsonProperty("results")
   @NotNull
   @Valid

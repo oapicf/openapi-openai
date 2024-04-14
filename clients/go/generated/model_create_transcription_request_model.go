@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -16,68 +16,37 @@ import (
 	"fmt"
 )
 
-// CreateTranscriptionRequestModel - ID of the model to use. Only `whisper-1` is currently available. 
+// CreateTranscriptionRequestModel ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available. 
 type CreateTranscriptionRequestModel struct {
-	String *string
+	string *string
 }
 
-// stringAsCreateTranscriptionRequestModel is a convenience function that returns string wrapped in CreateTranscriptionRequestModel
-func StringAsCreateTranscriptionRequestModel(v *string) CreateTranscriptionRequestModel {
-	return CreateTranscriptionRequestModel{
-		String: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *CreateTranscriptionRequestModel) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into String
-	err = newStrictDecoder(data).Decode(&dst.String)
+	// try to unmarshal JSON data into string
+	err = json.Unmarshal(data, &dst.string);
 	if err == nil {
-		jsonString, _ := json.Marshal(dst.String)
-		if string(jsonString) == "{}" { // empty struct
-			dst.String = nil
+		jsonstring, _ := json.Marshal(dst.string)
+		if string(jsonstring) == "{}" { // empty struct
+			dst.string = nil
 		} else {
-			match++
+			return nil // data stored in dst.string, return on the first match
 		}
 	} else {
-		dst.String = nil
+		dst.string = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.String = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(CreateTranscriptionRequestModel)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(CreateTranscriptionRequestModel)")
-	}
+	return fmt.Errorf("data failed to match schemas in anyOf(CreateTranscriptionRequestModel)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src CreateTranscriptionRequestModel) MarshalJSON() ([]byte, error) {
-	if src.String != nil {
-		return json.Marshal(&src.String)
+func (src *CreateTranscriptionRequestModel) MarshalJSON() ([]byte, error) {
+	if src.string != nil {
+		return json.Marshal(&src.string)
 	}
 
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *CreateTranscriptionRequestModel) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.String != nil {
-		return obj.String
-	}
-
-	// all schemas are nil
-	return nil
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullableCreateTranscriptionRequestModel struct {

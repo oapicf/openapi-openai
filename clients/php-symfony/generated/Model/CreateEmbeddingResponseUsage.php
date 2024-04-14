@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,6 +37,8 @@ use JMS\Serializer\Annotation\SerializedName;
 /**
  * Class representing the CreateEmbeddingResponseUsage model.
  *
+ * The usage information for the request.
+ *
  * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
@@ -44,6 +46,8 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateEmbeddingResponseUsage 
 {
         /**
+     * The number of tokens used by the prompt.
+     *
      * @var int|null
      * @SerializedName("prompt_tokens")
      * @Assert\NotNull()
@@ -53,6 +57,8 @@ class CreateEmbeddingResponseUsage
     protected ?int $promptTokens = null;
 
     /**
+     * The total number of tokens used by the request.
+     *
      * @var int|null
      * @SerializedName("total_tokens")
      * @Assert\NotNull()
@@ -88,7 +94,7 @@ class CreateEmbeddingResponseUsage
     /**
      * Sets promptTokens.
      *
-     * @param int|null $promptTokens
+     * @param int|null $promptTokens  The number of tokens used by the prompt.
      *
      * @return $this
      */
@@ -114,7 +120,7 @@ class CreateEmbeddingResponseUsage
     /**
      * Sets totalTokens.
      *
-     * @param int|null $totalTokens
+     * @param int|null $totalTokens  The total number of tokens used by the request.
      *
      * @return $this
      */

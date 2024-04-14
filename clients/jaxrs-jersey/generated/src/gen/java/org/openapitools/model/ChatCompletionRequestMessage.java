@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -19,7 +19,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.ChatCompletionRequestMessageFunctionCall;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.openapitools.model.ChatCompletionMessageToolCall;
+import org.openapitools.model.ChatCompletionRequestAssistantMessage;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageFunctionCall;
+import org.openapitools.model.ChatCompletionRequestFunctionMessage;
+import org.openapitools.model.ChatCompletionRequestSystemMessage;
+import org.openapitools.model.ChatCompletionRequestToolMessage;
+import org.openapitools.model.ChatCompletionRequestUserMessage;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -28,23 +37,23 @@ import javax.validation.Valid;
  * ChatCompletionRequestMessage
  */
 @JsonPropertyOrder({
-  ChatCompletionRequestMessage.JSON_PROPERTY_ROLE,
   ChatCompletionRequestMessage.JSON_PROPERTY_CONTENT,
+  ChatCompletionRequestMessage.JSON_PROPERTY_ROLE,
   ChatCompletionRequestMessage.JSON_PROPERTY_NAME,
-  ChatCompletionRequestMessage.JSON_PROPERTY_FUNCTION_CALL
+  ChatCompletionRequestMessage.JSON_PROPERTY_TOOL_CALLS,
+  ChatCompletionRequestMessage.JSON_PROPERTY_FUNCTION_CALL,
+  ChatCompletionRequestMessage.JSON_PROPERTY_TOOL_CALL_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ChatCompletionRequestMessage   {
+  public static final String JSON_PROPERTY_CONTENT = "content";
+  @JsonProperty(JSON_PROPERTY_CONTENT)
+  private String content;
+
   /**
-   * The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.
+   * The role of the messages author, in this case &#x60;function&#x60;.
    */
   public enum RoleEnum {
-    SYSTEM("system"),
-    
-    USER("user"),
-    
-    ASSISTANT("assistant"),
-    
     FUNCTION("function");
 
     private String value;
@@ -74,17 +83,41 @@ public class ChatCompletionRequestMessage   {
   @JsonProperty(JSON_PROPERTY_ROLE)
   private RoleEnum role;
 
-  public static final String JSON_PROPERTY_CONTENT = "content";
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  private String content;
-
   public static final String JSON_PROPERTY_NAME = "name";
   @JsonProperty(JSON_PROPERTY_NAME)
   private String name;
 
+  public static final String JSON_PROPERTY_TOOL_CALLS = "tool_calls";
+  @JsonProperty(JSON_PROPERTY_TOOL_CALLS)
+  private List<@Valid ChatCompletionMessageToolCall> toolCalls;
+
   public static final String JSON_PROPERTY_FUNCTION_CALL = "function_call";
   @JsonProperty(JSON_PROPERTY_FUNCTION_CALL)
-  private ChatCompletionRequestMessageFunctionCall functionCall;
+  private ChatCompletionRequestAssistantMessageFunctionCall functionCall;
+
+  public static final String JSON_PROPERTY_TOOL_CALL_ID = "tool_call_id";
+  @JsonProperty(JSON_PROPERTY_TOOL_CALL_ID)
+  private String toolCallId;
+
+  public ChatCompletionRequestMessage content(String content) {
+    this.content = content;
+    return this;
+  }
+
+  /**
+   * The contents of the function message.
+   * @return content
+   **/
+  @JsonProperty(value = "content")
+  @ApiModelProperty(required = true, value = "The contents of the function message.")
+  @NotNull 
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
 
   public ChatCompletionRequestMessage role(RoleEnum role) {
     this.role = role;
@@ -92,11 +125,11 @@ public class ChatCompletionRequestMessage   {
   }
 
   /**
-   * The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.
+   * The role of the messages author, in this case &#x60;function&#x60;.
    * @return role
    **/
   @JsonProperty(value = "role")
-  @ApiModelProperty(required = true, value = "The role of the messages author. One of `system`, `user`, `assistant`, or `function`.")
+  @ApiModelProperty(required = true, value = "The role of the messages author, in this case `function`.")
   @NotNull 
   public RoleEnum getRole() {
     return role;
@@ -106,38 +139,18 @@ public class ChatCompletionRequestMessage   {
     this.role = role;
   }
 
-  public ChatCompletionRequestMessage content(String content) {
-    this.content = content;
-    return this;
-  }
-
-  /**
-   * The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls.
-   * @return content
-   **/
-  @JsonProperty(value = "content")
-  @ApiModelProperty(value = "The contents of the message. `content` is required for all messages except assistant messages with function calls.")
-  
-  public String getContent() {
-    return content;
-  }
-
-  public void setContent(String content) {
-    this.content = content;
-  }
-
   public ChatCompletionRequestMessage name(String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
+   * The name of the function to call.
    * @return name
    **/
   @JsonProperty(value = "name")
-  @ApiModelProperty(value = "The name of the author of this message. `name` is required if role is `function`, and it should be the name of the function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.")
-  
+  @ApiModelProperty(required = true, value = "The name of the function to call.")
+  @NotNull 
   public String getName() {
     return name;
   }
@@ -146,7 +159,35 @@ public class ChatCompletionRequestMessage   {
     this.name = name;
   }
 
-  public ChatCompletionRequestMessage functionCall(ChatCompletionRequestMessageFunctionCall functionCall) {
+  public ChatCompletionRequestMessage toolCalls(List<@Valid ChatCompletionMessageToolCall> toolCalls) {
+    this.toolCalls = toolCalls;
+    return this;
+  }
+
+  public ChatCompletionRequestMessage addToolCallsItem(ChatCompletionMessageToolCall toolCallsItem) {
+    if (this.toolCalls == null) {
+      this.toolCalls = new ArrayList<>();
+    }
+    this.toolCalls.add(toolCallsItem);
+    return this;
+  }
+
+  /**
+   * The tool calls generated by the model, such as function calls.
+   * @return toolCalls
+   **/
+  @JsonProperty(value = "tool_calls")
+  @ApiModelProperty(value = "The tool calls generated by the model, such as function calls.")
+  @Valid 
+  public List<@Valid ChatCompletionMessageToolCall> getToolCalls() {
+    return toolCalls;
+  }
+
+  public void setToolCalls(List<@Valid ChatCompletionMessageToolCall> toolCalls) {
+    this.toolCalls = toolCalls;
+  }
+
+  public ChatCompletionRequestMessage functionCall(ChatCompletionRequestAssistantMessageFunctionCall functionCall) {
     this.functionCall = functionCall;
     return this;
   }
@@ -158,12 +199,32 @@ public class ChatCompletionRequestMessage   {
   @JsonProperty(value = "function_call")
   @ApiModelProperty(value = "")
   @Valid 
-  public ChatCompletionRequestMessageFunctionCall getFunctionCall() {
+  public ChatCompletionRequestAssistantMessageFunctionCall getFunctionCall() {
     return functionCall;
   }
 
-  public void setFunctionCall(ChatCompletionRequestMessageFunctionCall functionCall) {
+  public void setFunctionCall(ChatCompletionRequestAssistantMessageFunctionCall functionCall) {
     this.functionCall = functionCall;
+  }
+
+  public ChatCompletionRequestMessage toolCallId(String toolCallId) {
+    this.toolCallId = toolCallId;
+    return this;
+  }
+
+  /**
+   * Tool call that this message is responding to.
+   * @return toolCallId
+   **/
+  @JsonProperty(value = "tool_call_id")
+  @ApiModelProperty(required = true, value = "Tool call that this message is responding to.")
+  @NotNull 
+  public String getToolCallId() {
+    return toolCallId;
+  }
+
+  public void setToolCallId(String toolCallId) {
+    this.toolCallId = toolCallId;
   }
 
 
@@ -176,15 +237,17 @@ public class ChatCompletionRequestMessage   {
       return false;
     }
     ChatCompletionRequestMessage chatCompletionRequestMessage = (ChatCompletionRequestMessage) o;
-    return Objects.equals(this.role, chatCompletionRequestMessage.role) &&
-        Objects.equals(this.content, chatCompletionRequestMessage.content) &&
+    return Objects.equals(this.content, chatCompletionRequestMessage.content) &&
+        Objects.equals(this.role, chatCompletionRequestMessage.role) &&
         Objects.equals(this.name, chatCompletionRequestMessage.name) &&
-        Objects.equals(this.functionCall, chatCompletionRequestMessage.functionCall);
+        Objects.equals(this.toolCalls, chatCompletionRequestMessage.toolCalls) &&
+        Objects.equals(this.functionCall, chatCompletionRequestMessage.functionCall) &&
+        Objects.equals(this.toolCallId, chatCompletionRequestMessage.toolCallId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, name, functionCall);
+    return Objects.hash(content, role, name, toolCalls, functionCall, toolCallId);
   }
 
   @Override
@@ -192,10 +255,12 @@ public class ChatCompletionRequestMessage   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChatCompletionRequestMessage {\n");
     
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    toolCalls: ").append(toIndentedString(toolCalls)).append("\n");
     sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
+    sb.append("    toolCallId: ").append(toIndentedString(toolCallId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

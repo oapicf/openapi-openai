@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@ package openapi
 
 
 
-// CreateTranscriptionRequestModel - ID of the model to use. Only `whisper-1` is currently available. 
+// CreateTranscriptionRequestModel - ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available. 
 type CreateTranscriptionRequestModel struct {
 }
 

@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -13,22 +13,41 @@ package org.openapitools.server.models
 
 
 /**
- * 
- * @param hate 
- * @param hateThreatening 
- * @param selfHarm 
- * @param sexual 
- * @param sexualMinors 
- * @param violence 
- * @param violenceGraphic 
+ * A list of the categories along with their scores as predicted by model.
+ * @param hate The score for the category 'hate'.
+ * @param hateThreatening The score for the category 'hate/threatening'.
+ * @param harassment The score for the category 'harassment'.
+ * @param harassmentThreatening The score for the category 'harassment/threatening'.
+ * @param selfHarm The score for the category 'self-harm'.
+ * @param selfHarmIntent The score for the category 'self-harm/intent'.
+ * @param selfHarmInstructions The score for the category 'self-harm/instructions'.
+ * @param sexual The score for the category 'sexual'.
+ * @param sexualMinors The score for the category 'sexual/minors'.
+ * @param violence The score for the category 'violence'.
+ * @param violenceGraphic The score for the category 'violence/graphic'.
  */
 data class CreateModerationResponseResultsInnerCategoryScores(
+    /* The score for the category 'hate'. */
     val hate: java.math.BigDecimal,
+    /* The score for the category 'hate/threatening'. */
     val hateThreatening: java.math.BigDecimal,
+    /* The score for the category 'harassment'. */
+    val harassment: java.math.BigDecimal,
+    /* The score for the category 'harassment/threatening'. */
+    val harassmentThreatening: java.math.BigDecimal,
+    /* The score for the category 'self-harm'. */
     val selfHarm: java.math.BigDecimal,
+    /* The score for the category 'self-harm/intent'. */
+    val selfHarmIntent: java.math.BigDecimal,
+    /* The score for the category 'self-harm/instructions'. */
+    val selfHarmInstructions: java.math.BigDecimal,
+    /* The score for the category 'sexual'. */
     val sexual: java.math.BigDecimal,
+    /* The score for the category 'sexual/minors'. */
     val sexualMinors: java.math.BigDecimal,
+    /* The score for the category 'violence'. */
     val violence: java.math.BigDecimal,
+    /* The score for the category 'violence/graphic'. */
     val violenceGraphic: java.math.BigDecimal
 ) 
 

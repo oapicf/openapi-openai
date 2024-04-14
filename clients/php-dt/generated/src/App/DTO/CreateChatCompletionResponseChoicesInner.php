@@ -8,22 +8,31 @@ use Articus\DataTransfer\Annotation as DTA;
 class CreateChatCompletionResponseChoicesInner
 {
     /**
-     * @DTA\Data(field="index", nullable=true)
+     * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function.
+     * @DTA\Data(field="finish_reason")
+     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     */
+    public ?string $finish_reason = null;
+
+    /**
+     * The index of the choice in the list of choices.
+     * @DTA\Data(field="index")
      * @DTA\Validator(name="Scalar", options={"type":"int"})
      */
     public ?int $index = null;
 
     /**
-     * @DTA\Data(field="message", nullable=true)
+     * @DTA\Data(field="message")
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\ChatCompletionResponseMessage::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\ChatCompletionResponseMessage::class})
      */
     public ?\App\DTO\ChatCompletionResponseMessage $message = null;
 
     /**
-     * @DTA\Data(field="finish_reason", nullable=true)
-     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     * @DTA\Data(field="logprobs")
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\CreateChatCompletionResponseChoicesInnerLogprobs::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\CreateChatCompletionResponseChoicesInnerLogprobs::class})
      */
-    public ?string $finish_reason = null;
+    public ?\App\DTO\CreateChatCompletionResponseChoicesInnerLogprobs $logprobs = null;
 
 }

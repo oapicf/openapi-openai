@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param flagged 
+ * @param flagged Whether any of the below categories are flagged.
  * @param categories 
  * @param categoryScores 
  */
@@ -32,6 +32,7 @@ import com.squareup.moshi.JsonClass
 
 data class CreateModerationResponseResultsInner (
 
+    /* Whether any of the below categories are flagged. */
     @Json(name = "flagged")
     val flagged: kotlin.Boolean,
 

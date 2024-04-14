@@ -16,7 +16,24 @@ Protected Class DeleteFileResponse
 	#tag EndProperty
 
 
+    #tag Enum, Name = ObjectEnum, Type = Integer, Flags = &h0
+        
+        Escapedfile
+        
+    #tag EndEnum
 
+
+	#tag Method, Flags = &h0
+		Shared Function ObjectEnumToString(value As ObjectEnum) As String
+		  Select Case value
+		    
+		    Case ObjectEnum.Escapedfile
+		      Return "file"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 
 	#tag ViewBehavior
@@ -54,14 +71,6 @@ Protected Class DeleteFileResponse
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="id"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="object"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

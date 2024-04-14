@@ -7,8 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreateCompletionResponseChoicesInnerLogprobs, () {
-    // BuiltList<String> tokens
-    test('to test the property `tokens`', () async {
+    // BuiltList<int> textOffset
+    test('to test the property `textOffset`', () async {
       // TODO
     });
 
@@ -17,13 +17,13 @@ void main() {
       // TODO
     });
 
-    // BuiltList<JsonObject> topLogprobs
-    test('to test the property `topLogprobs`', () async {
+    // BuiltList<String> tokens
+    test('to test the property `tokens`', () async {
       // TODO
     });
 
-    // BuiltList<int> textOffset
-    test('to test the property `textOffset`', () async {
+    // BuiltList<BuiltMap<String, num>> topLogprobs
+    test('to test the property `topLogprobs`', () async {
       // TODO
     });
 

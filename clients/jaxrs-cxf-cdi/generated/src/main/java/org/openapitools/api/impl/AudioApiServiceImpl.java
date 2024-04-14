@@ -6,9 +6,10 @@ import org.openapitools.model.*;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
 import java.math.BigDecimal;
+import org.openapitools.model.CreateSpeechRequest;
+import org.openapitools.model.CreateTranscription200Response;
 import org.openapitools.model.CreateTranscriptionRequestModel;
-import org.openapitools.model.CreateTranscriptionResponse;
-import org.openapitools.model.CreateTranslationResponse;
+import org.openapitools.model.CreateTranslation200Response;
 
 import java.util.List;
 
@@ -22,10 +23,15 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-03-16T01:13:26.699737416Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-04-14T13:41:22.441879330Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class AudioApiServiceImpl implements AudioApiService {
       @Override
-      public Response createTranscription(InputStream _fileInputStream, Attachment _fileDetail, CreateTranscriptionRequestModel model, String prompt, String responseFormat, BigDecimal temperature, String language, SecurityContext securityContext) {
+      public Response createSpeech(CreateSpeechRequest createSpeechRequest, SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response createTranscription(InputStream _fileInputStream, Attachment _fileDetail, CreateTranscriptionRequestModel model, String language, String prompt, String responseFormat, BigDecimal temperature, List<String> timestampGranularities, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }

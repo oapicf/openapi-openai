@@ -6,6 +6,7 @@ from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
 from openapi_server.models.chat_completion_response_message import ChatCompletionResponseMessage
+from openapi_server.models.create_chat_completion_response_choices_inner_logprobs import CreateChatCompletionResponseChoicesInnerLogprobs
 from openapi_server import util
 
 
@@ -15,28 +16,32 @@ class CreateChatCompletionResponseChoicesInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, index: int=None, message: ChatCompletionResponseMessage=None, finish_reason: str=None):
+    def __init__(self, finish_reason: str=None, index: int=None, message: ChatCompletionResponseMessage=None, logprobs: CreateChatCompletionResponseChoicesInnerLogprobs=None):
         """CreateChatCompletionResponseChoicesInner - a model defined in OpenAPI
 
+        :param finish_reason: The finish_reason of this CreateChatCompletionResponseChoicesInner.
         :param index: The index of this CreateChatCompletionResponseChoicesInner.
         :param message: The message of this CreateChatCompletionResponseChoicesInner.
-        :param finish_reason: The finish_reason of this CreateChatCompletionResponseChoicesInner.
+        :param logprobs: The logprobs of this CreateChatCompletionResponseChoicesInner.
         """
         self.openapi_types = {
+            'finish_reason': str,
             'index': int,
             'message': ChatCompletionResponseMessage,
-            'finish_reason': str
+            'logprobs': CreateChatCompletionResponseChoicesInnerLogprobs
         }
 
         self.attribute_map = {
+            'finish_reason': 'finish_reason',
             'index': 'index',
             'message': 'message',
-            'finish_reason': 'finish_reason'
+            'logprobs': 'logprobs'
         }
 
+        self._finish_reason = finish_reason
         self._index = index
         self._message = message
-        self._finish_reason = finish_reason
+        self._logprobs = logprobs
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'CreateChatCompletionResponseChoicesInner':
@@ -48,9 +53,39 @@ class CreateChatCompletionResponseChoicesInner(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
+    def finish_reason(self):
+        """Gets the finish_reason of this CreateChatCompletionResponseChoicesInner.
+
+        The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+
+        :return: The finish_reason of this CreateChatCompletionResponseChoicesInner.
+        :rtype: str
+        """
+        return self._finish_reason
+
+    @finish_reason.setter
+    def finish_reason(self, finish_reason):
+        """Sets the finish_reason of this CreateChatCompletionResponseChoicesInner.
+
+        The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+
+        :param finish_reason: The finish_reason of this CreateChatCompletionResponseChoicesInner.
+        :type finish_reason: str
+        """
+        allowed_values = ["stop", "length", "tool_calls", "content_filter", "function_call"]  # noqa: E501
+        if finish_reason not in allowed_values:
+            raise ValueError(
+                "Invalid value for `finish_reason` ({0}), must be one of {1}"
+                .format(finish_reason, allowed_values)
+            )
+
+        self._finish_reason = finish_reason
+
+    @property
     def index(self):
         """Gets the index of this CreateChatCompletionResponseChoicesInner.
 
+        The index of the choice in the list of choices.
 
         :return: The index of this CreateChatCompletionResponseChoicesInner.
         :rtype: int
@@ -61,10 +96,13 @@ class CreateChatCompletionResponseChoicesInner(Model):
     def index(self, index):
         """Sets the index of this CreateChatCompletionResponseChoicesInner.
 
+        The index of the choice in the list of choices.
 
         :param index: The index of this CreateChatCompletionResponseChoicesInner.
         :type index: int
         """
+        if index is None:
+            raise ValueError("Invalid value for `index`, must not be `None`")
 
         self._index = index
 
@@ -86,32 +124,30 @@ class CreateChatCompletionResponseChoicesInner(Model):
         :param message: The message of this CreateChatCompletionResponseChoicesInner.
         :type message: ChatCompletionResponseMessage
         """
+        if message is None:
+            raise ValueError("Invalid value for `message`, must not be `None`")
 
         self._message = message
 
     @property
-    def finish_reason(self):
-        """Gets the finish_reason of this CreateChatCompletionResponseChoicesInner.
+    def logprobs(self):
+        """Gets the logprobs of this CreateChatCompletionResponseChoicesInner.
 
 
-        :return: The finish_reason of this CreateChatCompletionResponseChoicesInner.
-        :rtype: str
+        :return: The logprobs of this CreateChatCompletionResponseChoicesInner.
+        :rtype: CreateChatCompletionResponseChoicesInnerLogprobs
         """
-        return self._finish_reason
+        return self._logprobs
 
-    @finish_reason.setter
-    def finish_reason(self, finish_reason):
-        """Sets the finish_reason of this CreateChatCompletionResponseChoicesInner.
+    @logprobs.setter
+    def logprobs(self, logprobs):
+        """Sets the logprobs of this CreateChatCompletionResponseChoicesInner.
 
 
-        :param finish_reason: The finish_reason of this CreateChatCompletionResponseChoicesInner.
-        :type finish_reason: str
+        :param logprobs: The logprobs of this CreateChatCompletionResponseChoicesInner.
+        :type logprobs: CreateChatCompletionResponseChoicesInnerLogprobs
         """
-        allowed_values = ["stop", "length", "function_call"]  # noqa: E501
-        if finish_reason not in allowed_values:
-            raise ValueError(
-                "Invalid value for `finish_reason` ({0}), must be one of {1}"
-                .format(finish_reason, allowed_values)
-            )
+        if logprobs is None:
+            raise ValueError("Invalid value for `logprobs`, must not be `None`")
 
-        self._finish_reason = finish_reason
+        self._logprobs = logprobs

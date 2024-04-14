@@ -13,7 +13,7 @@ import org.openapitools.model.CreateModerationResponseResultsInnerCategoryScores
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-03-16T01:12:27.532392463Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-04-14T13:37:33.081471369Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponseResultsInner   {
   @JsonProperty("flagged")
   private Boolean flagged;
@@ -25,6 +25,7 @@ public class CreateModerationResponseResultsInner   {
   private CreateModerationResponseResultsInnerCategoryScores categoryScores;
 
   /**
+   * Whether any of the below categories are flagged.
    **/
   public CreateModerationResponseResultsInner flagged(Boolean flagged) {
     this.flagged = flagged;
@@ -32,7 +33,7 @@ public class CreateModerationResponseResultsInner   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Whether any of the below categories are flagged.")
   @JsonProperty("flagged")
   public Boolean getFlagged() {
     return flagged;

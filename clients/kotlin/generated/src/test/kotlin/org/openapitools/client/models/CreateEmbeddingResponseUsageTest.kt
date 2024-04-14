@@ -25,13 +25,13 @@ class CreateEmbeddingResponseUsageTest : ShouldSpec() {
         // uncomment below to create an instance of CreateEmbeddingResponseUsage
         //val modelInstance = CreateEmbeddingResponseUsage()
 
-        // to test the property `promptTokens`
+        // to test the property `promptTokens` - The number of tokens used by the prompt.
         should("test promptTokens") {
             // uncomment below to test the property
             //modelInstance.promptTokens shouldBe ("TODO")
         }
 
-        // to test the property `totalTokens`
+        // to test the property `totalTokens` - The total number of tokens used by the request.
         should("test totalTokens") {
             // uncomment below to test the property
             //modelInstance.totalTokens shouldBe ("TODO")

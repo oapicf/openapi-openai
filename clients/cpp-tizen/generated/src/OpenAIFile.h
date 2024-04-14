@@ -1,7 +1,7 @@
 /*
  * OpenAIFile.h
  *
- * 
+ * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
 
 #ifndef _OpenAIFile_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief The `File` object represents a document that has been uploaded to OpenAI.
  *
  *  \ingroup Models
  *
@@ -45,69 +45,69 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get The file identifier, which can be referenced in the API endpoints.
 	 */
 	std::string getId();
 
-	/*! \brief Set 
+	/*! \brief Set The file identifier, which can be referenced in the API endpoints.
 	 */
 	void setId(std::string  id);
-	/*! \brief Get 
-	 */
-	std::string getObject();
-
-	/*! \brief Set 
-	 */
-	void setObject(std::string  object);
-	/*! \brief Get 
+	/*! \brief Get The size of the file, in bytes.
 	 */
 	int getBytes();
 
-	/*! \brief Set 
+	/*! \brief Set The size of the file, in bytes.
 	 */
 	void setBytes(int  bytes);
-	/*! \brief Get 
+	/*! \brief Get The Unix timestamp (in seconds) for when the file was created.
 	 */
 	int getCreatedAt();
 
-	/*! \brief Set 
+	/*! \brief Set The Unix timestamp (in seconds) for when the file was created.
 	 */
 	void setCreatedAt(int  created_at);
-	/*! \brief Get 
+	/*! \brief Get The name of the file.
 	 */
 	std::string getFilename();
 
-	/*! \brief Set 
+	/*! \brief Set The name of the file.
 	 */
 	void setFilename(std::string  filename);
-	/*! \brief Get 
+	/*! \brief Get The object type, which is always `file`.
+	 */
+	std::string getObject();
+
+	/*! \brief Set The object type, which is always `file`.
+	 */
+	void setObject(std::string  object);
+	/*! \brief Get The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
 	 */
 	std::string getPurpose();
 
-	/*! \brief Set 
+	/*! \brief Set The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
 	 */
 	void setPurpose(std::string  purpose);
-	/*! \brief Get 
+	/*! \brief Get Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
 	 */
 	std::string getStatus();
 
-	/*! \brief Set 
+	/*! \brief Set Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
 	 */
 	void setStatus(std::string  status);
-	/*! \brief Get 
+	/*! \brief Get Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
 	 */
 	std::string getStatusDetails();
 
-	/*! \brief Set 
+	/*! \brief Set Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
 	 */
 	void setStatusDetails(std::string  status_details);
 
 private:
 	std::string id;
-	std::string object;
 	int bytes;
 	int created_at;
 	std::string filename;
+	std::string object;
 	std::string purpose;
 	std::string status;
 	std::string status_details;

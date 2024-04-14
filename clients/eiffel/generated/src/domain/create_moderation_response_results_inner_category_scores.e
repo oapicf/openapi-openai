@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -20,19 +20,27 @@ class CREATE_MODERATION_RESPONSE_RESULTS_INNER_CATEGORY_SCORES
 feature --Access
 
     hate: REAL_32
-      
+      -- The score for the category 'hate'.
     hate_threatening: REAL_32
-      
+      -- The score for the category 'hate/threatening'.
+    harassment: REAL_32
+      -- The score for the category 'harassment'.
+    harassment_threatening: REAL_32
+      -- The score for the category 'harassment/threatening'.
     self_harm: REAL_32
-      
+      -- The score for the category 'self-harm'.
+    self_harm_intent: REAL_32
+      -- The score for the category 'self-harm/intent'.
+    self_harm_instructions: REAL_32
+      -- The score for the category 'self-harm/instructions'.
     sexual: REAL_32
-      
+      -- The score for the category 'sexual'.
     sexual_minors: REAL_32
-      
+      -- The score for the category 'sexual/minors'.
     violence: REAL_32
-      
+      -- The score for the category 'violence'.
     violence_graphic: REAL_32
-      
+      -- The score for the category 'violence/graphic'.
 
 feature -- Change Element
 
@@ -52,12 +60,44 @@ feature -- Change Element
         hate_threatening_set: hate_threatening = a_name
       end
 
+    set_harassment (a_name: like harassment)
+        -- Set 'harassment' with 'a_name'.
+      do
+        harassment := a_name
+      ensure
+        harassment_set: harassment = a_name
+      end
+
+    set_harassment_threatening (a_name: like harassment_threatening)
+        -- Set 'harassment_threatening' with 'a_name'.
+      do
+        harassment_threatening := a_name
+      ensure
+        harassment_threatening_set: harassment_threatening = a_name
+      end
+
     set_self_harm (a_name: like self_harm)
         -- Set 'self_harm' with 'a_name'.
       do
         self_harm := a_name
       ensure
         self_harm_set: self_harm = a_name
+      end
+
+    set_self_harm_intent (a_name: like self_harm_intent)
+        -- Set 'self_harm_intent' with 'a_name'.
+      do
+        self_harm_intent := a_name
+      ensure
+        self_harm_intent_set: self_harm_intent = a_name
+      end
+
+    set_self_harm_instructions (a_name: like self_harm_instructions)
+        -- Set 'self_harm_instructions' with 'a_name'.
+      do
+        self_harm_instructions := a_name
+      ensure
+        self_harm_instructions_set: self_harm_instructions = a_name
       end
 
     set_sexual (a_name: like sexual)
@@ -110,9 +150,29 @@ feature -- Change Element
           Result.append (l_hate_threatening.out)
           Result.append ("%N")
         end
+        if attached harassment as l_harassment then
+          Result.append ("%Nharassment:")
+          Result.append (l_harassment.out)
+          Result.append ("%N")
+        end
+        if attached harassment_threatening as l_harassment_threatening then
+          Result.append ("%Nharassment_threatening:")
+          Result.append (l_harassment_threatening.out)
+          Result.append ("%N")
+        end
         if attached self_harm as l_self_harm then
           Result.append ("%Nself_harm:")
           Result.append (l_self_harm.out)
+          Result.append ("%N")
+        end
+        if attached self_harm_intent as l_self_harm_intent then
+          Result.append ("%Nself_harm_intent:")
+          Result.append (l_self_harm_intent.out)
+          Result.append ("%N")
+        end
+        if attached self_harm_instructions as l_self_harm_instructions then
+          Result.append ("%Nself_harm_instructions:")
+          Result.append (l_self_harm_instructions.out)
           Result.append ("%N")
         end
         if attached sexual as l_sexual then

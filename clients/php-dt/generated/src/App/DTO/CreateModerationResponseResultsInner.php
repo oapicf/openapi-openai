@@ -8,6 +8,7 @@ use Articus\DataTransfer\Annotation as DTA;
 class CreateModerationResponseResultsInner
 {
     /**
+     * Whether any of the below categories are flagged.
      * @DTA\Data(field="flagged")
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
      */

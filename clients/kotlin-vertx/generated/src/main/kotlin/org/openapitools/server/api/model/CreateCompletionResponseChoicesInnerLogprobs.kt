@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -18,18 +18,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param tokens 
- * @param tokenLogprobs 
- * @param topLogprobs 
  * @param textOffset 
+ * @param tokenLogprobs 
+ * @param tokens 
+ * @param topLogprobs 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateCompletionResponseChoicesInnerLogprobs (
-    val tokens: kotlin.Array<kotlin.String>? = null,
+    val textOffset: kotlin.Array<kotlin.Int>? = null,
     val tokenLogprobs: kotlin.Array<java.math.BigDecimal>? = null,
-    val topLogprobs: kotlin.Array<kotlin.Any>? = null,
-    val textOffset: kotlin.Array<kotlin.Int>? = null
+    val tokens: kotlin.Array<kotlin.String>? = null,
+    val topLogprobs: kotlin.Array<kotlin.collections.Map<kotlin.String, java.math.BigDecimal>>? = null
 ) {
 
 }

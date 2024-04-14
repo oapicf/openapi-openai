@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -42,7 +42,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="created">created (required).</param>
         /// <param name="data">data (required).</param>
-        public ImagesResponse(int created = default(int), List<ImagesResponseDataInner> data = default(List<ImagesResponseDataInner>))
+        public ImagesResponse(int created = default(int), List<Image> data = default(List<Image>))
         {
             this.Created = created;
             // to ensure "data" is required (not null)
@@ -63,7 +63,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
-        public List<ImagesResponseDataInner> Data { get; set; }
+        public List<Image> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

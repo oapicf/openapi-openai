@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ChatCompletionMessageToolCall",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The ID of the tool call."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "ChatCompletionMessageToolCall_type",
+        "symbols": [
+          "function"
+        ]
+      },
+      "doc": "The type of the tool. Currently, only `function` is supported."
+    },
+    {
+      "name": "function",
+      "type": "model.ChatCompletionMessageToolCallFunction",
+      "doc": ""
+    }
+  ]
+
+}

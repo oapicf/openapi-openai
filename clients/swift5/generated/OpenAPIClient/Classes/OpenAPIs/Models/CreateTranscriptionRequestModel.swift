@@ -10,25 +10,17 @@ import Foundation
 import AnyCodable
 #endif
 
-/** ID of the model to use. Only &#x60;whisper-1&#x60; is currently available.  */
-public enum CreateTranscriptionRequestModel: Codable, JSONEncodable, Hashable {
-    case typeString(String)
+/** ID of the model to use. Only &#x60;whisper-1&#x60; (which is powered by our open source Whisper V2 model) is currently available.  */
+public struct CreateTranscriptionRequestModel: Codable, JSONEncodable, Hashable {
 
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .typeString(let value):
-            try container.encode(value)
-        }
+
+    public enum CodingKeys: CodingKey, CaseIterable {
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(String.self) {
-            self = .typeString(value)
-        } else {
-            throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of CreateTranscriptionRequestModel"))
-        }
+    // Encodable protocol methods
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
     }
 }
 

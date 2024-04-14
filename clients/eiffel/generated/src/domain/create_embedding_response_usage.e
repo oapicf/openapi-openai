@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -20,9 +20,9 @@ class CREATE_EMBEDDING_RESPONSE_USAGE
 feature --Access
 
     prompt_tokens: INTEGER_32
-      
+      -- The number of tokens used by the prompt.
     total_tokens: INTEGER_32
-      
+      -- The total number of tokens used by the request.
 
 feature -- Change Element
 

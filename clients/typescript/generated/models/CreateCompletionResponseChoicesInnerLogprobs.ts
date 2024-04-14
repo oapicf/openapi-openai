@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,18 +13,18 @@
 import { HttpFile } from '../http/http';
 
 export class CreateCompletionResponseChoicesInnerLogprobs {
-    'tokens'?: Array<string>;
-    'tokenLogprobs'?: Array<number>;
-    'topLogprobs'?: Array<any>;
     'textOffset'?: Array<number>;
+    'tokenLogprobs'?: Array<number>;
+    'tokens'?: Array<string>;
+    'topLogprobs'?: Array<{ [key: string]: number; }>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "tokens",
-            "baseName": "tokens",
-            "type": "Array<string>",
+            "name": "textOffset",
+            "baseName": "text_offset",
+            "type": "Array<number>",
             "format": ""
         },
         {
@@ -34,15 +34,15 @@ export class CreateCompletionResponseChoicesInnerLogprobs {
             "format": ""
         },
         {
-            "name": "topLogprobs",
-            "baseName": "top_logprobs",
-            "type": "Array<any>",
+            "name": "tokens",
+            "baseName": "tokens",
+            "type": "Array<string>",
             "format": ""
         },
         {
-            "name": "textOffset",
-            "baseName": "text_offset",
-            "type": "Array<number>",
+            "name": "topLogprobs",
+            "baseName": "top_logprobs",
+            "type": "Array<{ [key: string]: number; }>",
             "format": ""
         }    ];
 

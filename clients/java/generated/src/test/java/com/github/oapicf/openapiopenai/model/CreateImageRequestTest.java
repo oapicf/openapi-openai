@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,6 +13,7 @@
 
 package com.github.oapicf.openapiopenai.model;
 
+import com.github.oapicf.openapiopenai.model.CreateImageRequestModel;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -47,11 +48,35 @@ public class CreateImageRequestTest {
     }
 
     /**
+     * Test the property 'model'
+     */
+    @Test
+    public void modelTest() {
+        // TODO: test model
+    }
+
+    /**
      * Test the property 'n'
      */
     @Test
     public void nTest() {
         // TODO: test n
+    }
+
+    /**
+     * Test the property 'quality'
+     */
+    @Test
+    public void qualityTest() {
+        // TODO: test quality
+    }
+
+    /**
+     * Test the property 'responseFormat'
+     */
+    @Test
+    public void responseFormatTest() {
+        // TODO: test responseFormat
     }
 
     /**
@@ -63,11 +88,11 @@ public class CreateImageRequestTest {
     }
 
     /**
-     * Test the property 'responseFormat'
+     * Test the property 'style'
      */
     @Test
-    public void responseFormatTest() {
-        // TODO: test responseFormat
+    public void styleTest() {
+        // TODO: test style
     }
 
     /**

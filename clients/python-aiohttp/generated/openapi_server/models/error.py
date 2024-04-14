@@ -14,32 +14,32 @@ class Error(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: str=None, message: str=None, param: str=None, code: str=None):
+    def __init__(self, code: str=None, message: str=None, param: str=None, type: str=None):
         """Error - a model defined in OpenAPI
 
-        :param type: The type of this Error.
+        :param code: The code of this Error.
         :param message: The message of this Error.
         :param param: The param of this Error.
-        :param code: The code of this Error.
+        :param type: The type of this Error.
         """
         self.openapi_types = {
-            'type': str,
+            'code': str,
             'message': str,
             'param': str,
-            'code': str
+            'type': str
         }
 
         self.attribute_map = {
-            'type': 'type',
+            'code': 'code',
             'message': 'message',
             'param': 'param',
-            'code': 'code'
+            'type': 'type'
         }
 
-        self._type = type
+        self._code = code
         self._message = message
         self._param = param
-        self._code = code
+        self._type = type
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'Error':
@@ -51,27 +51,27 @@ class Error(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def type(self):
-        """Gets the type of this Error.
+    def code(self):
+        """Gets the code of this Error.
 
 
-        :return: The type of this Error.
+        :return: The code of this Error.
         :rtype: str
         """
-        return self._type
+        return self._code
 
-    @type.setter
-    def type(self, type):
-        """Sets the type of this Error.
+    @code.setter
+    def code(self, code):
+        """Sets the code of this Error.
 
 
-        :param type: The type of this Error.
-        :type type: str
+        :param code: The code of this Error.
+        :type code: str
         """
-        if type is None:
-            raise ValueError("Invalid value for `type`, must not be `None`")
+        if code is None:
+            raise ValueError("Invalid value for `code`, must not be `None`")
 
-        self._type = type
+        self._code = code
 
     @property
     def message(self):
@@ -120,24 +120,24 @@ class Error(Model):
         self._param = param
 
     @property
-    def code(self):
-        """Gets the code of this Error.
+    def type(self):
+        """Gets the type of this Error.
 
 
-        :return: The code of this Error.
+        :return: The type of this Error.
         :rtype: str
         """
-        return self._code
+        return self._type
 
-    @code.setter
-    def code(self, code):
-        """Sets the code of this Error.
+    @type.setter
+    def type(self, type):
+        """Sets the type of this Error.
 
 
-        :param code: The code of this Error.
-        :type code: str
+        :param type: The type of this Error.
+        :type type: str
         """
-        if code is None:
-            raise ValueError("Invalid value for `code`, must not be `None`")
+        if type is None:
+            raise ValueError("Invalid value for `type`, must not be `None`")
 
-        self._code = code
+        self._type = type

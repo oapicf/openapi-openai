@@ -7,15 +7,15 @@ import io.circe.java8.time._
 import org.openapitools._
 
 /**
- * 
- * @param id 
- * @param _object 
- * @param created 
- * @param ownedUnderscoreby 
+ * Describes an OpenAI model offering that can be used with the API.
+ * @param id The model identifier, which can be referenced in the API endpoints.
+ * @param created The Unix timestamp (in seconds) when the model was created.
+ * @param _object The object type, which is always \"model\".
+ * @param ownedUnderscoreby The organization that owns the model.
  */
 case class Model(id: String,
-                _object: String,
                 created: Int,
+                _object: String,
                 ownedUnderscoreby: String
                 )
 

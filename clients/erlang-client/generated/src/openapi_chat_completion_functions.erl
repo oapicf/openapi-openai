@@ -5,16 +5,16 @@
 -export_type([openapi_chat_completion_functions/0]).
 
 -type openapi_chat_completion_functions() ::
-    #{ 'name' := binary(),
-       'description' => binary(),
+    #{ 'description' => binary(),
+       'name' := binary(),
        'parameters' => maps:map()
      }.
 
-encode(#{ 'name' := Name,
-          'description' := Description,
+encode(#{ 'description' := Description,
+          'name' := Name,
           'parameters' := Parameters
         }) ->
-    #{ 'name' => Name,
-       'description' => Description,
+    #{ 'description' => Description,
+       'name' => Name,
        'parameters' => Parameters
      }.

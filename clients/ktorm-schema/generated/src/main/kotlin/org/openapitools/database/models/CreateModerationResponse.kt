@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -18,22 +18,22 @@ import .*
 
 
 /**
- * 
- * @param id 
- * @param model 
- * @param results 
+ * Represents if a given text input is potentially harmful.
+ * @param id The unique identifier for the moderation request.
+ * @param model The model used to generate the moderation results.
+ * @param results A list of moderation objects.
  */
 object CreateModerationResponses : BaseTable<CreateModerationResponse>("CreateModerationResponse") {
-    val id = text("id")
-    val model = text("model")
+    val id = text("id") /* The unique identifier for the moderation request. */
+    val model = text("model") /* The model used to generate the moderation results. */
 
     /**
      * Create an entity of type CreateModerationResponse from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = CreateModerationResponse(
-        id = row[id] ?: "" /* kotlin.String */,
-        model = row[model] ?: "" /* kotlin.String */,
-        results = emptyList() /* kotlin.Array<CreateModerationResponseResultsInner> */
+        id = row[id] ?: "" /* kotlin.String */ /* The unique identifier for the moderation request. */,
+        model = row[model] ?: "" /* kotlin.String */ /* The model used to generate the moderation results. */,
+        results = emptyList() /* kotlin.Array<CreateModerationResponseResultsInner> */ /* A list of moderation objects. */
     )
 
     /**

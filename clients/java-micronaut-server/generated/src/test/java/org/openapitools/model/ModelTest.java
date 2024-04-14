@@ -28,19 +28,19 @@ public class ModelTest {
     }
 
     /**
-     * Test the property '_object'
-     */
-    @Test
-    public void _objectTest() {
-        // TODO: test _object
-    }
-
-    /**
      * Test the property 'created'
      */
     @Test
     public void createdTest() {
         // TODO: test created
+    }
+
+    /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
     }
 
     /**

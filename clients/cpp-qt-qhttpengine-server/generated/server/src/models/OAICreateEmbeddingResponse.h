@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,8 +21,8 @@
 
 #include <QJsonObject>
 
-#include "OAICreateEmbeddingResponse_data_inner.h"
 #include "OAICreateEmbeddingResponse_usage.h"
+#include "OAIEmbedding.h"
 #include <QList>
 #include <QString>
 
@@ -42,20 +42,20 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    QString getObject() const;
-    void setObject(const QString &object);
-    bool is_object_Set() const;
-    bool is_object_Valid() const;
+    QList<OAIEmbedding> getData() const;
+    void setData(const QList<OAIEmbedding> &data);
+    bool is_data_Set() const;
+    bool is_data_Valid() const;
 
     QString getModel() const;
     void setModel(const QString &model);
     bool is_model_Set() const;
     bool is_model_Valid() const;
 
-    QList<OAICreateEmbeddingResponse_data_inner> getData() const;
-    void setData(const QList<OAICreateEmbeddingResponse_data_inner> &data);
-    bool is_data_Set() const;
-    bool is_data_Valid() const;
+    QString getObject() const;
+    void setObject(const QString &object);
+    bool is_object_Set() const;
+    bool is_object_Valid() const;
 
     OAICreateEmbeddingResponse_usage getUsage() const;
     void setUsage(const OAICreateEmbeddingResponse_usage &usage);
@@ -68,17 +68,17 @@ public:
 private:
     void initializeModel();
 
-    QString object;
-    bool m_object_isSet;
-    bool m_object_isValid;
+    QList<OAIEmbedding> data;
+    bool m_data_isSet;
+    bool m_data_isValid;
 
     QString model;
     bool m_model_isSet;
     bool m_model_isValid;
 
-    QList<OAICreateEmbeddingResponse_data_inner> data;
-    bool m_data_isSet;
-    bool m_data_isValid;
+    QString object;
+    bool m_object_isSet;
+    bool m_object_isValid;
 
     OAICreateEmbeddingResponse_usage usage;
     bool m_usage_isSet;

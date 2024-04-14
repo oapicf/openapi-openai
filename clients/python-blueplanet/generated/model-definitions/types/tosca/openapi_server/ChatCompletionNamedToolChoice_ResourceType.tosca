@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionNamedToolChoice"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionNamedToolChoice"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionNamedToolChoiceFunction = openapi_server.resourceTypes.ChatCompletionNamedToolChoiceFunction
+}
+resourceTypes {
+
+  ChatCompletionNamedToolChoice {
+    title = ChatCompletionNamedToolChoice
+    description = ChatCompletionNamedToolChoice
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of the tool. Currently, only &#x60;function&#x60; is supported."
+          enum = ["function"]
+          optional = true
+        }
+        function {
+          type = ChatCompletionNamedToolChoiceFunction
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionNamedToolChoice {
+    title = ChatCompletionNamedToolChoice
+    description = ChatCompletionNamedToolChoice
+    implements = openapi_server.resourceTypes.ChatCompletionNamedToolChoice
+
+  }
+}

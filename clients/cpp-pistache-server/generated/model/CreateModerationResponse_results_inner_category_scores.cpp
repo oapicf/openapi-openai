@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,11 @@ CreateModerationResponse_results_inner_category_scores::CreateModerationResponse
 {
     m_Hate = 0.0;
     m_Hate_threatening = 0.0;
+    m_Harassment = 0.0;
+    m_Harassment_threatening = 0.0;
     m_Self_harm = 0.0;
+    m_Self_harm_intent = 0.0;
+    m_Self_harm_instructions = 0.0;
     m_Sexual = 0.0;
     m_Sexual_minors = 0.0;
     m_Violence = 0.0;
@@ -50,7 +54,7 @@ bool CreateModerationResponse_results_inner_category_scores::validate(std::strin
     bool success = true;
     const std::string _pathPrefix = pathPrefix.empty() ? "CreateModerationResponse_results_inner_category_scores" : pathPrefix;
 
-                                
+                                                
     return success;
 }
 
@@ -65,7 +69,19 @@ bool CreateModerationResponse_results_inner_category_scores::operator==(const Cr
     (getHateThreatening() == rhs.getHateThreatening())
      &&
     
+    (getHarassment() == rhs.getHarassment())
+     &&
+    
+    (getHarassmentThreatening() == rhs.getHarassmentThreatening())
+     &&
+    
     (getSelfHarm() == rhs.getSelfHarm())
+     &&
+    
+    (getSelfHarmIntent() == rhs.getSelfHarmIntent())
+     &&
+    
+    (getSelfHarmInstructions() == rhs.getSelfHarmInstructions())
      &&
     
     (getSexual() == rhs.getSexual())
@@ -93,7 +109,11 @@ void to_json(nlohmann::json& j, const CreateModerationResponse_results_inner_cat
     j = nlohmann::json::object();
     j["hate"] = o.m_Hate;
     j["hate/threatening"] = o.m_Hate_threatening;
+    j["harassment"] = o.m_Harassment;
+    j["harassment/threatening"] = o.m_Harassment_threatening;
     j["self-harm"] = o.m_Self_harm;
+    j["self-harm/intent"] = o.m_Self_harm_intent;
+    j["self-harm/instructions"] = o.m_Self_harm_instructions;
     j["sexual"] = o.m_Sexual;
     j["sexual/minors"] = o.m_Sexual_minors;
     j["violence"] = o.m_Violence;
@@ -105,7 +125,11 @@ void from_json(const nlohmann::json& j, CreateModerationResponse_results_inner_c
 {
     j.at("hate").get_to(o.m_Hate);
     j.at("hate/threatening").get_to(o.m_Hate_threatening);
+    j.at("harassment").get_to(o.m_Harassment);
+    j.at("harassment/threatening").get_to(o.m_Harassment_threatening);
     j.at("self-harm").get_to(o.m_Self_harm);
+    j.at("self-harm/intent").get_to(o.m_Self_harm_intent);
+    j.at("self-harm/instructions").get_to(o.m_Self_harm_instructions);
     j.at("sexual").get_to(o.m_Sexual);
     j.at("sexual/minors").get_to(o.m_Sexual_minors);
     j.at("violence").get_to(o.m_Violence);
@@ -129,6 +153,22 @@ void CreateModerationResponse_results_inner_category_scores::setHateThreatening(
 {
     m_Hate_threatening = value;
 }
+double CreateModerationResponse_results_inner_category_scores::getHarassment() const
+{
+    return m_Harassment;
+}
+void CreateModerationResponse_results_inner_category_scores::setHarassment(double const value)
+{
+    m_Harassment = value;
+}
+double CreateModerationResponse_results_inner_category_scores::getHarassmentThreatening() const
+{
+    return m_Harassment_threatening;
+}
+void CreateModerationResponse_results_inner_category_scores::setHarassmentThreatening(double const value)
+{
+    m_Harassment_threatening = value;
+}
 double CreateModerationResponse_results_inner_category_scores::getSelfHarm() const
 {
     return m_Self_harm;
@@ -136,6 +176,22 @@ double CreateModerationResponse_results_inner_category_scores::getSelfHarm() con
 void CreateModerationResponse_results_inner_category_scores::setSelfHarm(double const value)
 {
     m_Self_harm = value;
+}
+double CreateModerationResponse_results_inner_category_scores::getSelfHarmIntent() const
+{
+    return m_Self_harm_intent;
+}
+void CreateModerationResponse_results_inner_category_scores::setSelfHarmIntent(double const value)
+{
+    m_Self_harm_intent = value;
+}
+double CreateModerationResponse_results_inner_category_scores::getSelfHarmInstructions() const
+{
+    return m_Self_harm_instructions;
+}
+void CreateModerationResponse_results_inner_category_scores::setSelfHarmInstructions(double const value)
+{
+    m_Self_harm_instructions = value;
 }
 double CreateModerationResponse_results_inner_category_scores::getSexual() const
 {

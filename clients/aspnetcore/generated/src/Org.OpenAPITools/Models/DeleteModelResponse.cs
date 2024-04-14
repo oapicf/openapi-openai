@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -34,18 +34,18 @@ namespace Org.OpenAPITools.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarObject
-        /// </summary>
-        [Required]
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string VarObject { get; set; }
-
-        /// <summary>
         /// Gets or Sets Deleted
         /// </summary>
         [Required]
         [DataMember(Name="deleted", EmitDefaultValue=true)]
         public bool Deleted { get; set; }
+
+        /// <summary>
+        /// Gets or Sets VarObject
+        /// </summary>
+        [Required]
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string VarObject { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,8 +56,8 @@ namespace Org.OpenAPITools.Models
             var sb = new StringBuilder();
             sb.Append("class DeleteModelResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  Deleted: ").Append(Deleted).Append("\n");
+            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -100,14 +100,14 @@ namespace Org.OpenAPITools.Models
                     Id.Equals(other.Id)
                 ) && 
                 (
-                    VarObject == other.VarObject ||
-                    VarObject != null &&
-                    VarObject.Equals(other.VarObject)
-                ) && 
-                (
                     Deleted == other.Deleted ||
                     
                     Deleted.Equals(other.Deleted)
+                ) && 
+                (
+                    VarObject == other.VarObject ||
+                    VarObject != null &&
+                    VarObject.Equals(other.VarObject)
                 );
         }
 
@@ -123,10 +123,10 @@ namespace Org.OpenAPITools.Models
                 // Suitable nullity checks etc, of course :)
                     if (Id != null)
                     hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (VarObject != null)
-                    hashCode = hashCode * 59 + VarObject.GetHashCode();
                     
                     hashCode = hashCode * 59 + Deleted.GetHashCode();
+                    if (VarObject != null)
+                    hashCode = hashCode * 59 + VarObject.GetHashCode();
                 return hashCode;
             }
         }

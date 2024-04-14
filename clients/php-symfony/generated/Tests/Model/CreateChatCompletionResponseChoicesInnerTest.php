@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -87,6 +87,17 @@ class CreateChatCompletionResponseChoicesInnerTest extends TestCase
     }
 
     /**
+     * Test attribute "finishReason"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyFinishReason(): void
+    {
+        $this->markTestSkipped('Test for property finishReason not implemented');
+    }
+
+    /**
      * Test attribute "index"
      *
      * @group unit
@@ -109,13 +120,13 @@ class CreateChatCompletionResponseChoicesInnerTest extends TestCase
     }
 
     /**
-     * Test attribute "finishReason"
+     * Test attribute "logprobs"
      *
      * @group unit
      * @small
      */
-    public function testPropertyFinishReason(): void
+    public function testPropertyLogprobs(): void
     {
-        $this->markTestSkipped('Test for property finishReason not implemented');
+        $this->markTestSkipped('Test for property logprobs not implemented');
     }
 }

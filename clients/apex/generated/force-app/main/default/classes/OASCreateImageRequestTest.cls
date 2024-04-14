@@ -80,9 +80,12 @@ private class OASCreateImageRequestTest {
     private static void defaultValuesPopulated() {
         OASCreateImageRequest createImageRequest = new OASCreateImageRequest();
         System.assertEquals(1, createImageRequest.n);
-        System.assertEquals(SizeEnum._1024X1024, createImageRequest.size);
+        System.assertEquals(QualityEnum.STANDARD, createImageRequest.quality);
         System.assertEquals(ResponseFormatEnum.URL, createImageRequest.responseFormat);
+        System.assertEquals(SizeEnum._1024X1024, createImageRequest.size);
+        System.assertEquals(StyleEnum.VIVID, createImageRequest.style);
         System.assertEquals(null, createImageRequest.prompt);
+        System.assertEquals(null, createImageRequest.model);
         System.assertEquals(null, createImageRequest.user);
     }
 }

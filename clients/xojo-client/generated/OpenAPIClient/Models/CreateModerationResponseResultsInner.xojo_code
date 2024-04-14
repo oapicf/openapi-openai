@@ -2,6 +2,9 @@
 Protected Class CreateModerationResponseResultsInner
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Whether any of the below categories are flagged.
+		#tag EndNote
 		flagged As Boolean
 	#tag EndProperty
 

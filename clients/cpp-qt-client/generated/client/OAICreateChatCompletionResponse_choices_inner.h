@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -22,6 +22,7 @@
 #include <QJsonObject>
 
 #include "OAIChatCompletionResponseMessage.h"
+#include "OAICreateChatCompletionResponse_choices_inner_logprobs.h"
 #include <QString>
 
 #include "OAIEnum.h"
@@ -29,6 +30,7 @@
 
 namespace OpenAPI {
 class OAIChatCompletionResponseMessage;
+class OAICreateChatCompletionResponse_choices_inner_logprobs;
 
 class OAICreateChatCompletionResponse_choices_inner : public OAIObject {
 public:
@@ -41,6 +43,11 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
+    QString getFinishReason() const;
+    void setFinishReason(const QString &finish_reason);
+    bool is_finish_reason_Set() const;
+    bool is_finish_reason_Valid() const;
+
     qint32 getIndex() const;
     void setIndex(const qint32 &index);
     bool is_index_Set() const;
@@ -51,16 +58,20 @@ public:
     bool is_message_Set() const;
     bool is_message_Valid() const;
 
-    QString getFinishReason() const;
-    void setFinishReason(const QString &finish_reason);
-    bool is_finish_reason_Set() const;
-    bool is_finish_reason_Valid() const;
+    OAICreateChatCompletionResponse_choices_inner_logprobs getLogprobs() const;
+    void setLogprobs(const OAICreateChatCompletionResponse_choices_inner_logprobs &logprobs);
+    bool is_logprobs_Set() const;
+    bool is_logprobs_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
 private:
     void initializeModel();
+
+    QString m_finish_reason;
+    bool m_finish_reason_isSet;
+    bool m_finish_reason_isValid;
 
     qint32 m_index;
     bool m_index_isSet;
@@ -70,9 +81,9 @@ private:
     bool m_message_isSet;
     bool m_message_isValid;
 
-    QString m_finish_reason;
-    bool m_finish_reason_isSet;
-    bool m_finish_reason_isValid;
+    OAICreateChatCompletionResponse_choices_inner_logprobs m_logprobs;
+    bool m_logprobs_isSet;
+    bool m_logprobs_isValid;
 };
 
 } // namespace OpenAPI

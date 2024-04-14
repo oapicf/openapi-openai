@@ -10,6 +10,7 @@
 
 #include <string>
 #include <list>
+#include <map>
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -48,11 +49,11 @@ public:
 
 	/*! \brief Get 
 	 */
-	std::list<std::string> getTokens();
+	std::list<int> getTextOffset();
 
 	/*! \brief Set 
 	 */
-	void setTokens(std::list <std::string> tokens);
+	void setTextOffset(std::list <int> text_offset);
 	/*! \brief Get 
 	 */
 	std::list<long long> getTokenLogprobs();
@@ -62,24 +63,24 @@ public:
 	void setTokenLogprobs(std::list <long long> token_logprobs);
 	/*! \brief Get 
 	 */
-	std::list<std::string> getTopLogprobs();
+	std::list<std::string> getTokens();
 
 	/*! \brief Set 
 	 */
-	void setTopLogprobs(std::list <std::string> top_logprobs);
+	void setTokens(std::list <std::string> tokens);
 	/*! \brief Get 
 	 */
-	std::list<int> getTextOffset();
+	std::list<std::map> getTopLogprobs();
 
 	/*! \brief Set 
 	 */
-	void setTextOffset(std::list <int> text_offset);
+	void setTopLogprobs(std::list <std::map> top_logprobs);
 
 private:
-	std::list <std::string>tokens;
-	std::list <long long>token_logprobs;
-	std::list <std::string>top_logprobs;
 	std::list <int>text_offset;
+	std::list <long long>token_logprobs;
+	std::list <std::string>tokens;
+	std::list <std::map>top_logprobs;
 	void __init();
 	void __cleanup();
 

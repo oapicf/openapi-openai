@@ -15,14 +15,14 @@ CreateCompletionRequestModel <- R6::R6Class(
     actual_instance = NULL,
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
-    #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("character"),
+    #' @field any_of  a list of object types defined in the anyOf schema.
+    any_of = list("character"),
     #' Initialize a new CreateCompletionRequestModel.
     #'
     #' @description
     #' Initialize a new CreateCompletionRequestModel.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "character"
+    #' @param instance an instance of the object defined in the anyOf schemas: "character"
     #' @export
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
@@ -31,7 +31,7 @@ CreateCompletionRequestModel <- R6::R6Class(
         self$actual_instance <- instance
         self$actual_type <- "character"
       } else {
-        stop(paste("Failed to initialize CreateCompletionRequestModel with oneOf schemas character. Provided class name: ",
+        stop(paste("Failed to initialize CreateCompletionRequestModel with anyOf schemas character. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -39,7 +39,7 @@ CreateCompletionRequestModel <- R6::R6Class(
     #'
     #' @description
     #' Deserialize JSON string into an instance of CreateCompletionRequestModel.
-    #' An alias to the method `fromJSON` .
+    #' An alias to the method `fromJSON`.
     #'
     #' @param input The input JSON.
     #' @return An instance of CreateCompletionRequestModel.
@@ -56,19 +56,16 @@ CreateCompletionRequestModel <- R6::R6Class(
     #' @return An instance of CreateCompletionRequestModel.
     #' @export
     fromJSON = function(input) {
-      matched <- 0 # match counter
-      matched_schemas <- list() #names of matched schemas
       error_messages <- list()
-      instance <- NULL
 
       `character_result` <- tryCatch({
           instance <- jsonlite::fromJSON(input, simplifyVector = FALSE)
           if (typeof(instance) != "character") {
             stop(sprintf("Data type doesn't match. Expected: %s. Actual: %s.", "character", typeof(instance)))
           }
-          instance_type <- "character"
-          matched_schemas <- append(matched_schemas, "character")
-          matched <- matched + 1
+          self$actual_instance <- `character_instance`$fromJSON(input)
+          self$actual_type <- "character"
+          return(self)
         },
         error = function(err) err
       )
@@ -82,9 +79,9 @@ CreateCompletionRequestModel <- R6::R6Class(
           if (typeof(instance) != "character") {
             stop(sprintf("Data type doesn't match. Expected: %s. Actual: %s.", "character", typeof(instance)))
           }
-          instance_type <- "character"
-          matched_schemas <- append(matched_schemas, "character")
-          matched <- matched + 1
+          self$actual_instance <- `character_instance`$fromJSON(input)
+          self$actual_type <- "character"
+          return(self)
         },
         error = function(err) err
       )
@@ -93,21 +90,9 @@ CreateCompletionRequestModel <- R6::R6Class(
         error_messages <- append(error_messages, `character_result`["message"])
       }
 
-      if (matched == 1) {
-        # successfully match exactly 1 schema specified in oneOf
-        self$actual_instance <- instance
-        self$actual_type <- instance_type
-      } else if (matched > 1) {
-        # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into CreateCompletionRequestModel with oneOf schemas character. Matched schemas: ",
-                   paste(matched_schemas, collapse = ", ")))
-      } else {
-        # no match
-        stop(paste("No match found when deserializing the input into CreateCompletionRequestModel with oneOf schemas character. Details: >>",
-                   paste(error_messages, collapse = " >> ")))
-      }
-
-      self
+      # no match
+      stop(paste("No match found when deserializing the input into CreateCompletionRequestModel with anyOf schemas character. Details: >>",
+                 paste(error_messages, collapse = " >> ")))
     },
     #' Serialize CreateCompletionRequestModel to JSON string.
     #'
@@ -118,7 +103,7 @@ CreateCompletionRequestModel <- R6::R6Class(
     #' @export
     toJSONString = function() {
       if (!is.null(self$actual_instance)) {
-        as.character(jsonlite::minify(self$actual_instance$toJSONString()))
+        as.character(jsonlite::minify((self$actual_instance$toJSONString())))
       } else {
         NULL
       }
@@ -168,7 +153,7 @@ CreateCompletionRequestModel <- R6::R6Class(
       jsoncontent <- c(
         sprintf('"actual_instance": %s', if (is.null(self$actual_instance)) NULL else self$actual_instance$toJSONString()),
         sprintf('"actual_type": "%s"', self$actual_type),
-        sprintf('"one_of": "%s"', paste(unlist(self$one_of), collapse = ", "))
+        sprintf('"any_of": "%s"', paste(unlist(self$any_of), collapse = ", "))
       )
       jsoncontent <- paste(jsoncontent, collapse = ",")
       as.character(jsonlite::prettify(paste("{", jsoncontent, "}", sep = "")))

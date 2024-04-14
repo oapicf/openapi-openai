@@ -73,6 +73,16 @@ private class OASChatCompletionResponseMessageTest {
     private static void maintainRenamedProperties() {
         OASChatCompletionResponseMessage chatCompletionResponseMessage = new OASChatCompletionResponseMessage();
         Map<String, String> x-property-mappings = chatCompletionResponseMessage.getx-property-mappings();
+        System.assertEquals('toolCalls', x-property-mappings.get('tool_calls'));
         System.assertEquals('functionCall', x-property-mappings.get('function_call'));
+    }
+
+    @isTest
+    private static void defaultValuesPopulated() {
+        OASChatCompletionResponseMessage chatCompletionResponseMessage = new OASChatCompletionResponseMessage();
+        System.assertEquals(new List<OASChatCompletionMessageToolCall>(), chatCompletionResponseMessage.toolCalls);
+        System.assertEquals(null, chatCompletionResponseMessage.content);
+        System.assertEquals(null, chatCompletionResponseMessage.role);
+        System.assertEquals(null, chatCompletionResponseMessage.functionCall);
     }
 }

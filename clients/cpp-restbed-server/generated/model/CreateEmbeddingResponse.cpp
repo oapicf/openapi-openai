@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <regex>
+#include <algorithm>
 #include <boost/lexical_cast.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -62,8 +63,6 @@ ptree CreateEmbeddingResponse::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.put("object", m_object);
-	pt.put("model", m_Model);
 	// generate tree for Data
     tmp_node.clear();
 	if (!m_Data.empty()) {
@@ -71,6 +70,8 @@ ptree CreateEmbeddingResponse::toPropertyTree() const
 		pt.add_child("data", tmp_node);
 		tmp_node.clear();
 	}
+	pt.put("model", m_Model);
+	pt.put("object", m_object);
 	pt.add_child("usage", m_Usage.toPropertyTree());
 	return pt;
 }
@@ -78,25 +79,25 @@ ptree CreateEmbeddingResponse::toPropertyTree() const
 void CreateEmbeddingResponse::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	m_object = pt.get("object", "");
-	m_Model = pt.get("model", "");
 	// push all items of Data into member
 	if (pt.get_child_optional("data")) {
-        m_Data = fromPt<std::vector<CreateEmbeddingResponse_data_inner>>(pt.get_child("data"));
+        m_Data = fromPt<std::vector<Embedding>>(pt.get_child("data"));
 	}
+	m_Model = pt.get("model", "");
+	setObject(pt.get("object", ""));
 	if (pt.get_child_optional("usage")) {
         m_Usage = fromPt<CreateEmbeddingResponse_usage>(pt.get_child("usage"));
 	}
 }
 
-std::string CreateEmbeddingResponse::getObject() const
+std::vector<Embedding> CreateEmbeddingResponse::getData() const
 {
-    return m_object;
+    return m_Data;
 }
 
-void CreateEmbeddingResponse::setObject(std::string value)
+void CreateEmbeddingResponse::setData(std::vector<Embedding> value)
 {
-    m_object = value;
+    m_Data = value;
 }
 
 
@@ -111,14 +112,22 @@ void CreateEmbeddingResponse::setModel(std::string value)
 }
 
 
-std::vector<CreateEmbeddingResponse_data_inner> CreateEmbeddingResponse::getData() const
+std::string CreateEmbeddingResponse::getObject() const
 {
-    return m_Data;
+    return m_object;
 }
 
-void CreateEmbeddingResponse::setData(std::vector<CreateEmbeddingResponse_data_inner> value)
+void CreateEmbeddingResponse::setObject(std::string value)
 {
-    m_Data = value;
+    static const std::array<std::string, 1> allowedValues = {
+        "list"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_object = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 

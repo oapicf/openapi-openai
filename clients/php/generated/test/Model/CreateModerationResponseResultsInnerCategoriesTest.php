@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  * CreateModerationResponseResultsInnerCategoriesTest Class Doc Comment
  *
  * @category    Class
- * @description CreateModerationResponseResultsInnerCategories
+ * @description A list of the categories, and whether they are flagged or not.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -99,9 +99,45 @@ class CreateModerationResponseResultsInnerCategoriesTest extends TestCase
     }
 
     /**
+     * Test attribute "harassment"
+     */
+    public function testPropertyHarassment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "harassment_threatening"
+     */
+    public function testPropertyHarassmentThreatening()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "self_harm"
      */
     public function testPropertySelfHarm()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "self_harm_intent"
+     */
+    public function testPropertySelfHarmIntent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "self_harm_instructions"
+     */
+    public function testPropertySelfHarmInstructions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

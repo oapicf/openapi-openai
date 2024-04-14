@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -21,8 +21,8 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from openapi_server.models.create_chat_completion_stream_response_choices_inner import CreateChatCompletionStreamResponseChoicesInner
 try:
     from typing import Self
@@ -31,14 +31,22 @@ except ImportError:
 
 class CreateChatCompletionStreamResponse(BaseModel):
     """
-    CreateChatCompletionStreamResponse
+    Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
     """ # noqa: E501
-    id: StrictStr
-    object: StrictStr
-    created: StrictInt
-    model: StrictStr
-    choices: List[CreateChatCompletionStreamResponseChoicesInner]
-    __properties: ClassVar[List[str]] = ["id", "object", "created", "model", "choices"]
+    id: StrictStr = Field(description="A unique identifier for the chat completion. Each chunk has the same ID.")
+    choices: List[CreateChatCompletionStreamResponseChoicesInner] = Field(description="A list of chat completion choices. Can be more than one if `n` is greater than 1.")
+    created: StrictInt = Field(description="The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.")
+    model: StrictStr = Field(description="The model to generate the completion.")
+    system_fingerprint: Optional[StrictStr] = Field(default=None, description="This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ")
+    object: StrictStr = Field(description="The object type, which is always `chat.completion.chunk`.")
+    __properties: ClassVar[List[str]] = ["id", "choices", "created", "model", "system_fingerprint", "object"]
+
+    @field_validator('object')
+    def object_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('chat.completion.chunk'):
+            raise ValueError("must be one of enum values ('chat.completion.chunk')")
+        return value
 
     model_config = {
         "populate_by_name": True,
@@ -97,10 +105,11 @@ class CreateChatCompletionStreamResponse(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "object": obj.get("object"),
+            "choices": [CreateChatCompletionStreamResponseChoicesInner.from_dict(_item) for _item in obj.get("choices")] if obj.get("choices") is not None else None,
             "created": obj.get("created"),
             "model": obj.get("model"),
-            "choices": [CreateChatCompletionStreamResponseChoicesInner.from_dict(_item) for _item in obj.get("choices")] if obj.get("choices") is not None else None
+            "system_fingerprint": obj.get("system_fingerprint"),
+            "object": obj.get("object")
         })
         return _obj
 

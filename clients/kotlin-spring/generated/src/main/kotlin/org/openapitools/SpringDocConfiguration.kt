@@ -19,14 +19,27 @@ class SpringDocConfiguration {
             .info(
                 Info()
                     .title("OpenAI API")
-                    .description("APIs for sampling from and fine-tuning language models")
+                    .description("The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.")
+                    .termsOfService("https://openai.com/policies/terms-of-use")
                     .contact(
                         Contact()
                             .name("Cliffano Subagio")
                             .url("https://github.com/oapicf/openapi-openai")
                             .email("blah+oapicf@cliffano.com")
                     )
+                    .license(
+                        License()
+                            .name("MIT")
+                            .url("https://github.com/openai/openai-openapi/blob/master/LICENSE")
+                    )
                     .version("2.0.0")
+            )
+            .components(
+                Components()
+                    .addSecuritySchemes("ApiKeyAuth", SecurityScheme()
+                        .type(SecurityScheme.Type.HTTP)
+                        .scheme("bearer")
+                    )
             )
     }
 }

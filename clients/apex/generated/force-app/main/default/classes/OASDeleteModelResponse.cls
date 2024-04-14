@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,16 +21,16 @@ public class OASDeleteModelResponse implements OAS.MappedProperties {
     public String id { get; set; }
 
     /**
-     * Get r_object
-     * @return r_object
-     */
-    public String r_object { get; set; }
-
-    /**
      * Get deleted
      * @return deleted
      */
     public Boolean deleted { get; set; }
+
+    /**
+     * Get r_object
+     * @return r_object
+     */
+    public String r_object { get; set; }
 
     private static final Map<String, String> propertyMappings = new Map<String, String>{
         'object' => 'r_object'
@@ -43,8 +43,8 @@ public class OASDeleteModelResponse implements OAS.MappedProperties {
     public static OASDeleteModelResponse getExample() {
         OASDeleteModelResponse deleteModelResponse = new OASDeleteModelResponse();
           deleteModelResponse.id = '';
-          deleteModelResponse.r_object = '';
           deleteModelResponse.deleted = true;
+          deleteModelResponse.r_object = '';
         return deleteModelResponse;
     }
 
@@ -52,8 +52,8 @@ public class OASDeleteModelResponse implements OAS.MappedProperties {
         if (obj instanceof OASDeleteModelResponse) {           
             OASDeleteModelResponse deleteModelResponse = (OASDeleteModelResponse) obj;
             return this.id == deleteModelResponse.id
-                && this.r_object == deleteModelResponse.r_object
-                && this.deleted == deleteModelResponse.deleted;
+                && this.deleted == deleteModelResponse.deleted
+                && this.r_object == deleteModelResponse.r_object;
         }
         return false;
     }
@@ -61,8 +61,8 @@ public class OASDeleteModelResponse implements OAS.MappedProperties {
     public Integer hashCode() {
         Integer hashCode = 43;
         hashCode = (17 * hashCode) + (id == null ? 0 : System.hashCode(id));
-        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
         hashCode = (17 * hashCode) + (deleted == null ? 0 : System.hashCode(deleted));
+        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
         return hashCode;
     }
 }

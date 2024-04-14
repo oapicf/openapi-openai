@@ -4,12 +4,19 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * A list of the categories, and whether they are flagged or not.
+ **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateModerationResponseResultsInnerCategories   {
   
   private Boolean hate;
   private Boolean hateThreatening;
+  private Boolean harassment;
+  private Boolean harassmentThreatening;
   private Boolean selfHarm;
+  private Boolean selfHarmIntent;
+  private Boolean selfHarmInstructions;
   private Boolean sexual;
   private Boolean sexualMinors;
   private Boolean violence;
@@ -19,10 +26,14 @@ public class CreateModerationResponseResultsInnerCategories   {
 
   }
 
-  public CreateModerationResponseResultsInnerCategories (Boolean hate, Boolean hateThreatening, Boolean selfHarm, Boolean sexual, Boolean sexualMinors, Boolean violence, Boolean violenceGraphic) {
+  public CreateModerationResponseResultsInnerCategories (Boolean hate, Boolean hateThreatening, Boolean harassment, Boolean harassmentThreatening, Boolean selfHarm, Boolean selfHarmIntent, Boolean selfHarmInstructions, Boolean sexual, Boolean sexualMinors, Boolean violence, Boolean violenceGraphic) {
     this.hate = hate;
     this.hateThreatening = hateThreatening;
+    this.harassment = harassment;
+    this.harassmentThreatening = harassmentThreatening;
     this.selfHarm = selfHarm;
+    this.selfHarmIntent = selfHarmIntent;
+    this.selfHarmInstructions = selfHarmInstructions;
     this.sexual = sexual;
     this.sexualMinors = sexualMinors;
     this.violence = violence;
@@ -48,12 +59,48 @@ public class CreateModerationResponseResultsInnerCategories   {
   }
 
     
+  @JsonProperty("harassment")
+  public Boolean getHarassment() {
+    return harassment;
+  }
+  public void setHarassment(Boolean harassment) {
+    this.harassment = harassment;
+  }
+
+    
+  @JsonProperty("harassment/threatening")
+  public Boolean getHarassmentThreatening() {
+    return harassmentThreatening;
+  }
+  public void setHarassmentThreatening(Boolean harassmentThreatening) {
+    this.harassmentThreatening = harassmentThreatening;
+  }
+
+    
   @JsonProperty("self-harm")
   public Boolean getSelfHarm() {
     return selfHarm;
   }
   public void setSelfHarm(Boolean selfHarm) {
     this.selfHarm = selfHarm;
+  }
+
+    
+  @JsonProperty("self-harm/intent")
+  public Boolean getSelfHarmIntent() {
+    return selfHarmIntent;
+  }
+  public void setSelfHarmIntent(Boolean selfHarmIntent) {
+    this.selfHarmIntent = selfHarmIntent;
+  }
+
+    
+  @JsonProperty("self-harm/instructions")
+  public Boolean getSelfHarmInstructions() {
+    return selfHarmInstructions;
+  }
+  public void setSelfHarmInstructions(Boolean selfHarmInstructions) {
+    this.selfHarmInstructions = selfHarmInstructions;
   }
 
     
@@ -104,7 +151,11 @@ public class CreateModerationResponseResultsInnerCategories   {
     CreateModerationResponseResultsInnerCategories createModerationResponseResultsInnerCategories = (CreateModerationResponseResultsInnerCategories) o;
     return Objects.equals(hate, createModerationResponseResultsInnerCategories.hate) &&
         Objects.equals(hateThreatening, createModerationResponseResultsInnerCategories.hateThreatening) &&
+        Objects.equals(harassment, createModerationResponseResultsInnerCategories.harassment) &&
+        Objects.equals(harassmentThreatening, createModerationResponseResultsInnerCategories.harassmentThreatening) &&
         Objects.equals(selfHarm, createModerationResponseResultsInnerCategories.selfHarm) &&
+        Objects.equals(selfHarmIntent, createModerationResponseResultsInnerCategories.selfHarmIntent) &&
+        Objects.equals(selfHarmInstructions, createModerationResponseResultsInnerCategories.selfHarmInstructions) &&
         Objects.equals(sexual, createModerationResponseResultsInnerCategories.sexual) &&
         Objects.equals(sexualMinors, createModerationResponseResultsInnerCategories.sexualMinors) &&
         Objects.equals(violence, createModerationResponseResultsInnerCategories.violence) &&
@@ -113,7 +164,7 @@ public class CreateModerationResponseResultsInnerCategories   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic);
+    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
   }
 
   @Override
@@ -123,7 +174,11 @@ public class CreateModerationResponseResultsInnerCategories   {
     
     sb.append("    hate: ").append(toIndentedString(hate)).append("\n");
     sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
+    sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
+    sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
     sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
+    sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
+    sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");
     sb.append("    sexual: ").append(toIndentedString(sexual)).append("\n");
     sb.append("    sexualMinors: ").append(toIndentedString(sexualMinors)).append("\n");
     sb.append("    violence: ").append(toIndentedString(violence)).append("\n");

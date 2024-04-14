@@ -3,7 +3,7 @@
 
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -14,12 +14,12 @@
 */
 
 
+#import "OAICompletionUsage.h"
 #import "OAICreateCompletionResponseChoicesInner.h"
-#import "OAICreateCompletionResponseUsage.h"
+@protocol OAICompletionUsage;
+@class OAICompletionUsage;
 @protocol OAICreateCompletionResponseChoicesInner;
 @class OAICreateCompletionResponseChoicesInner;
-@protocol OAICreateCompletionResponseUsage;
-@class OAICreateCompletionResponseUsage;
 
 
 
@@ -28,17 +28,25 @@
 
 @interface OAICreateCompletionResponse : OAIObject
 
-
+/* A unique identifier for the completion. 
+ */
 @property(nonatomic) NSString* _id;
-
+/* The list of completion choices the model generated for the input prompt. 
+ */
+@property(nonatomic) NSArray<OAICreateCompletionResponseChoicesInner>* choices;
+/* The Unix timestamp (in seconds) of when the completion was created. 
+ */
+@property(nonatomic) NSNumber* created;
+/* The model used for completion. 
+ */
+@property(nonatomic) NSString* model;
+/* This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  [optional]
+ */
+@property(nonatomic) NSString* systemFingerprint;
+/* The object type, which is always \"text_completion\" 
+ */
 @property(nonatomic) NSString* object;
 
-@property(nonatomic) NSNumber* created;
-
-@property(nonatomic) NSString* model;
-
-@property(nonatomic) NSArray<OAICreateCompletionResponseChoicesInner>* choices;
-
-@property(nonatomic) OAICreateCompletionResponseUsage* usage;
+@property(nonatomic) OAICompletionUsage* usage;
 
 @end

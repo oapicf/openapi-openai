@@ -12,20 +12,33 @@ import AnyCodable
 
 public struct CreateEmbeddingRequest: Codable, JSONEncodable, Hashable {
 
-    public var model: CreateEmbeddingRequestModel
+    public enum EncodingFormat: String, Codable, CaseIterable {
+        case float = "float"
+        case base64 = "base64"
+    }
+    static let dimensionsRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: nil, exclusiveMaximum: false, multipleOf: nil)
     public var input: CreateEmbeddingRequestInput
+    public var model: CreateEmbeddingRequestModel
+    /** The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/). */
+    public var encodingFormat: EncodingFormat? = .float
+    /** The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */
+    public var dimensions: Int?
     /** A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
     public var user: String?
 
-    public init(model: CreateEmbeddingRequestModel, input: CreateEmbeddingRequestInput, user: String? = nil) {
-        self.model = model
+    public init(input: CreateEmbeddingRequestInput, model: CreateEmbeddingRequestModel, encodingFormat: EncodingFormat? = .float, dimensions: Int? = nil, user: String? = nil) {
         self.input = input
+        self.model = model
+        self.encodingFormat = encodingFormat
+        self.dimensions = dimensions
         self.user = user
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case model
         case input
+        case model
+        case encodingFormat = "encoding_format"
+        case dimensions
         case user
     }
 
@@ -33,8 +46,10 @@ public struct CreateEmbeddingRequest: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(model, forKey: .model)
         try container.encode(input, forKey: .input)
+        try container.encode(model, forKey: .model)
+        try container.encodeIfPresent(encodingFormat, forKey: .encodingFormat)
+        try container.encodeIfPresent(dimensions, forKey: .dimensions)
         try container.encodeIfPresent(user, forKey: .user)
     }
 }

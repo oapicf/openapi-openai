@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
-import org.openapitools.model.CreateCompletionResponseUsage;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -17,19 +17,70 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-
-
+/**
+ * Represents a chat completion response returned by model, based on the provided input.
+ **/
+@ApiModel(description = "Represents a chat completion response returned by model, based on the provided input.")
 @JsonTypeName("CreateChatCompletionResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionResponse   {
   private @Valid String id;
-  private @Valid String _object;
+  private @Valid List<@Valid CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
   private @Valid Integer created;
   private @Valid String model;
-  private @Valid List<@Valid CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
-  private @Valid CreateCompletionResponseUsage usage;
+  private @Valid String systemFingerprint;
+  public enum ObjectEnum {
+
+    CHAT_COMPLETION(String.valueOf("chat.completion"));
+
+
+    private String value;
+
+    ObjectEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static ObjectEnum fromString(String s) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private @Valid ObjectEnum _object;
+  private @Valid CompletionUsage usage;
 
   /**
+   * A unique identifier for the chat completion.
    **/
   public CreateChatCompletionResponse id(String id) {
     this.id = id;
@@ -37,7 +88,7 @@ public class CreateChatCompletionResponse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A unique identifier for the chat completion.")
   @JsonProperty("id")
   @NotNull
   public String getId() {
@@ -50,66 +101,7 @@ public class CreateChatCompletionResponse   {
   }
 
   /**
-   **/
-  public CreateChatCompletionResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-  
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("object")
-  @NotNull
-  public String getObject() {
-    return _object;
-  }
-
-  @JsonProperty("object")
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-  /**
-   **/
-  public CreateChatCompletionResponse created(Integer created) {
-    this.created = created;
-    return this;
-  }
-
-  
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("created")
-  @NotNull
-  public Integer getCreated() {
-    return created;
-  }
-
-  @JsonProperty("created")
-  public void setCreated(Integer created) {
-    this.created = created;
-  }
-
-  /**
-   **/
-  public CreateChatCompletionResponse model(String model) {
-    this.model = model;
-    return this;
-  }
-
-  
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("model")
-  @NotNull
-  public String getModel() {
-    return model;
-  }
-
-  @JsonProperty("model")
-  public void setModel(String model) {
-    this.model = model;
-  }
-
-  /**
+   * A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
    **/
   public CreateChatCompletionResponse choices(List<@Valid CreateChatCompletionResponseChoicesInner> choices) {
     this.choices = choices;
@@ -117,7 +109,7 @@ public class CreateChatCompletionResponse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A list of chat completion choices. Can be more than one if `n` is greater than 1.")
   @JsonProperty("choices")
   @NotNull
   public List<CreateChatCompletionResponseChoicesInner> getChoices() {
@@ -146,8 +138,91 @@ public class CreateChatCompletionResponse   {
     return this;
   }
   /**
+   * The Unix timestamp (in seconds) of when the chat completion was created.
    **/
-  public CreateChatCompletionResponse usage(CreateCompletionResponseUsage usage) {
+  public CreateChatCompletionResponse created(Integer created) {
+    this.created = created;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) of when the chat completion was created.")
+  @JsonProperty("created")
+  @NotNull
+  public Integer getCreated() {
+    return created;
+  }
+
+  @JsonProperty("created")
+  public void setCreated(Integer created) {
+    this.created = created;
+  }
+
+  /**
+   * The model used for the chat completion.
+   **/
+  public CreateChatCompletionResponse model(String model) {
+    this.model = model;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The model used for the chat completion.")
+  @JsonProperty("model")
+  @NotNull
+  public String getModel() {
+    return model;
+  }
+
+  @JsonProperty("model")
+  public void setModel(String model) {
+    this.model = model;
+  }
+
+  /**
+   * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
+   **/
+  public CreateChatCompletionResponse systemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ")
+  @JsonProperty("system_fingerprint")
+  public String getSystemFingerprint() {
+    return systemFingerprint;
+  }
+
+  @JsonProperty("system_fingerprint")
+  public void setSystemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+  }
+
+  /**
+   * The object type, which is always &#x60;chat.completion&#x60;.
+   **/
+  public CreateChatCompletionResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The object type, which is always `chat.completion`.")
+  @JsonProperty("object")
+  @NotNull
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  @JsonProperty("object")
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+  /**
+   **/
+  public CreateChatCompletionResponse usage(CompletionUsage usage) {
     this.usage = usage;
     return this;
   }
@@ -155,12 +230,12 @@ public class CreateChatCompletionResponse   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("usage")
-  public CreateCompletionResponseUsage getUsage() {
+  public CompletionUsage getUsage() {
     return usage;
   }
 
   @JsonProperty("usage")
-  public void setUsage(CreateCompletionResponseUsage usage) {
+  public void setUsage(CompletionUsage usage) {
     this.usage = usage;
   }
 
@@ -175,16 +250,17 @@ public class CreateChatCompletionResponse   {
     }
     CreateChatCompletionResponse createChatCompletionResponse = (CreateChatCompletionResponse) o;
     return Objects.equals(this.id, createChatCompletionResponse.id) &&
-        Objects.equals(this._object, createChatCompletionResponse._object) &&
+        Objects.equals(this.choices, createChatCompletionResponse.choices) &&
         Objects.equals(this.created, createChatCompletionResponse.created) &&
         Objects.equals(this.model, createChatCompletionResponse.model) &&
-        Objects.equals(this.choices, createChatCompletionResponse.choices) &&
+        Objects.equals(this.systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
+        Objects.equals(this._object, createChatCompletionResponse._object) &&
         Objects.equals(this.usage, createChatCompletionResponse.usage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, model, choices, usage);
+    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
   }
 
   @Override
@@ -193,10 +269,11 @@ public class CreateChatCompletionResponse   {
     sb.append("class CreateChatCompletionResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
-    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
+    sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("}");
     return sb.toString();

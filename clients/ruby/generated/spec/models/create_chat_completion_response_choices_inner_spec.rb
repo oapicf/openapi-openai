@@ -1,7 +1,7 @@
 =begin
 #OpenAI API
 
-#APIs for sampling from and fine-tuning language models
+#The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 The version of the OpenAPI document: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -27,6 +27,16 @@ describe OpenApiOpenAIClient::CreateChatCompletionResponseChoicesInner do
     end
   end
 
+  describe 'test attribute "finish_reason"' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["stop", "length", "tool_calls", "content_filter", "function_call"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.finish_reason = value }.not_to raise_error
+      # end
+    end
+  end
+
   describe 'test attribute "index"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
@@ -39,13 +49,9 @@ describe OpenApiOpenAIClient::CreateChatCompletionResponseChoicesInner do
     end
   end
 
-  describe 'test attribute "finish_reason"' do
+  describe 'test attribute "logprobs"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["stop", "length", "function_call"])
-      # validator.allowable_values.each do |value|
-      #   expect { instance.finish_reason = value }.not_to raise_error
-      # end
     end
   end
 

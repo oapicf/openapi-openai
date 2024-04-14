@@ -7,7 +7,8 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
-  ChatCompletionRequestMessageFunctionCall = openapi_server.resourceTypes.ChatCompletionRequestMessageFunctionCall
+  ChatCompletionMessageToolCallChunk = openapi_server.resourceTypes.ChatCompletionMessageToolCallChunk
+  ChatCompletionStreamResponseDeltaFunctionCall = openapi_server.resourceTypes.ChatCompletionStreamResponseDeltaFunctionCall
 }
 resourceTypes {
 
@@ -16,20 +17,26 @@ resourceTypes {
     description = ChatCompletionStreamResponseDelta
     derivedFrom = Root
     properties {
-        role {
-          type =  string
-          description = "The role of the author of this message."
-          enum = ["system", "user", "assistant", "function"]
-          optional = false
-        }
         content {
           type =  string
           description = "The contents of the chunk message."
           optional = false
         }
         function_call {
-          type = ChatCompletionRequestMessageFunctionCall
+          type = ChatCompletionStreamResponseDeltaFunctionCall
           description = ""
+          optional = false
+        }
+        tool_calls {
+          type = array
+          items.type = ChatCompletionMessageToolCallChunk
+          description = ""
+          optional = false
+        }
+        role {
+          type =  string
+          description = "The role of the author of this message."
+          enum = ["system", "user", "assistant", "tool"]
           optional = false
         }
     }

@@ -11,8 +11,38 @@ public class DeleteFileResponse  {
   @ApiModelProperty(required = true, value = "")
   private String id;
 
+public enum ObjectEnum {
+
+FILE(String.valueOf("file"));
+
+
+    private String value;
+
+    ObjectEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
   @ApiModelProperty(required = true, value = "")
-  private String _object;
+  private ObjectEnum _object;
 
   @ApiModelProperty(required = true, value = "")
   private Boolean deleted;
@@ -40,14 +70,17 @@ public class DeleteFileResponse  {
   **/
   @JsonProperty("object")
   public String getObject() {
-    return _object;
+    if (_object == null) {
+      return null;
+    }
+    return _object.value();
   }
 
-  public void setObject(String _object) {
+  public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 
-  public DeleteFileResponse _object(String _object) {
+  public DeleteFileResponse _object(ObjectEnum _object) {
     this._object = _object;
     return this;
   }

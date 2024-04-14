@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -22,15 +22,15 @@
 
 #include "CppRestOpenAPIClient/ModelBase.h"
 
+#include "CppRestOpenAPIClient/model/Image.h"
 #include <vector>
-#include "CppRestOpenAPIClient/model/ImagesResponse_data_inner.h"
 
 namespace org {
 namespace openapitools {
 namespace client {
 namespace model {
 
-class ImagesResponse_data_inner;
+class Image;
 
 /// <summary>
 /// 
@@ -68,17 +68,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<std::shared_ptr<ImagesResponse_data_inner>>& getData();
+    std::vector<std::shared_ptr<Image>>& getData();
     bool dataIsSet() const;
     void unsetData();
 
-    void setData(const std::vector<std::shared_ptr<ImagesResponse_data_inner>>& value);
+    void setData(const std::vector<std::shared_ptr<Image>>& value);
 
 
 protected:
     int32_t m_Created;
     bool m_CreatedIsSet;
-    std::vector<std::shared_ptr<ImagesResponse_data_inner>> m_Data;
+    std::vector<std::shared_ptr<Image>> m_Data;
     bool m_DataIsSet;
 };
 

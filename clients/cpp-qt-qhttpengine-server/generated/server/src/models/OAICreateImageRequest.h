@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,6 +21,7 @@
 
 #include <QJsonObject>
 
+#include "OAICreateImageRequest_model.h"
 #include <QString>
 
 #include "OAIEnum.h"
@@ -44,20 +45,35 @@ public:
     bool is_prompt_Set() const;
     bool is_prompt_Valid() const;
 
+    OAICreateImageRequest_model getModel() const;
+    void setModel(const OAICreateImageRequest_model &model);
+    bool is_model_Set() const;
+    bool is_model_Valid() const;
+
     qint32 getN() const;
     void setN(const qint32 &n);
     bool is_n_Set() const;
     bool is_n_Valid() const;
+
+    QString getQuality() const;
+    void setQuality(const QString &quality);
+    bool is_quality_Set() const;
+    bool is_quality_Valid() const;
+
+    QString getResponseFormat() const;
+    void setResponseFormat(const QString &response_format);
+    bool is_response_format_Set() const;
+    bool is_response_format_Valid() const;
 
     QString getSize() const;
     void setSize(const QString &size);
     bool is_size_Set() const;
     bool is_size_Valid() const;
 
-    QString getResponseFormat() const;
-    void setResponseFormat(const QString &response_format);
-    bool is_response_format_Set() const;
-    bool is_response_format_Valid() const;
+    QString getStyle() const;
+    void setStyle(const QString &style);
+    bool is_style_Set() const;
+    bool is_style_Valid() const;
 
     QString getUser() const;
     void setUser(const QString &user);
@@ -74,17 +90,29 @@ private:
     bool m_prompt_isSet;
     bool m_prompt_isValid;
 
+    OAICreateImageRequest_model model;
+    bool m_model_isSet;
+    bool m_model_isValid;
+
     qint32 n;
     bool m_n_isSet;
     bool m_n_isValid;
+
+    QString quality;
+    bool m_quality_isSet;
+    bool m_quality_isValid;
+
+    QString response_format;
+    bool m_response_format_isSet;
+    bool m_response_format_isValid;
 
     QString size;
     bool m_size_isSet;
     bool m_size_isValid;
 
-    QString response_format;
-    bool m_response_format_isSet;
-    bool m_response_format_isValid;
+    QString style;
+    bool m_style_isSet;
+    bool m_style_isValid;
 
     QString user;
     bool m_user_isSet;

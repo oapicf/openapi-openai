@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -41,15 +41,25 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
+    OAICreateEmbeddingRequest_input getInput() const;
+    void setInput(const OAICreateEmbeddingRequest_input &input);
+    bool is_input_Set() const;
+    bool is_input_Valid() const;
+
     OAICreateEmbeddingRequest_model getModel() const;
     void setModel(const OAICreateEmbeddingRequest_model &model);
     bool is_model_Set() const;
     bool is_model_Valid() const;
 
-    OAICreateEmbeddingRequest_input getInput() const;
-    void setInput(const OAICreateEmbeddingRequest_input &input);
-    bool is_input_Set() const;
-    bool is_input_Valid() const;
+    QString getEncodingFormat() const;
+    void setEncodingFormat(const QString &encoding_format);
+    bool is_encoding_format_Set() const;
+    bool is_encoding_format_Valid() const;
+
+    qint32 getDimensions() const;
+    void setDimensions(const qint32 &dimensions);
+    bool is_dimensions_Set() const;
+    bool is_dimensions_Valid() const;
 
     QString getUser() const;
     void setUser(const QString &user);
@@ -62,13 +72,21 @@ public:
 private:
     void initializeModel();
 
+    OAICreateEmbeddingRequest_input m_input;
+    bool m_input_isSet;
+    bool m_input_isValid;
+
     OAICreateEmbeddingRequest_model m_model;
     bool m_model_isSet;
     bool m_model_isValid;
 
-    OAICreateEmbeddingRequest_input m_input;
-    bool m_input_isSet;
-    bool m_input_isValid;
+    QString m_encoding_format;
+    bool m_encoding_format_isSet;
+    bool m_encoding_format_isValid;
+
+    qint32 m_dimensions;
+    bool m_dimensions_isSet;
+    bool m_dimensions_isValid;
 
     QString m_user;
     bool m_user_isSet;

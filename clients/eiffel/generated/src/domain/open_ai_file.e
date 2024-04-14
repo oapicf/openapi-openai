@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -20,21 +20,21 @@ class OPEN_AI_FILE
 feature --Access
 
     id: detachable STRING_32
-      
-    object: detachable STRING_32
-      
+      -- The file identifier, which can be referenced in the API endpoints.
     bytes: INTEGER_32
-      
+      -- The size of the file, in bytes.
     created_at: INTEGER_32
-      
+      -- The Unix timestamp (in seconds) for when the file was created.
     filename: detachable STRING_32
-      
+      -- The name of the file.
+    object: detachable STRING_32
+      -- The object type, which is always `file`.
     purpose: detachable STRING_32
-      
+      -- The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
     status: detachable STRING_32
-      
-    status_details: detachable ANY
-      
+      -- Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+    status_details: detachable STRING_32
+      -- Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
 
 feature -- Change Element
 
@@ -44,14 +44,6 @@ feature -- Change Element
         id := a_name
       ensure
         id_set: id = a_name
-      end
-
-    set_object (a_name: like object)
-        -- Set 'object' with 'a_name'.
-      do
-        object := a_name
-      ensure
-        object_set: object = a_name
       end
 
     set_bytes (a_name: like bytes)
@@ -76,6 +68,14 @@ feature -- Change Element
         filename := a_name
       ensure
         filename_set: filename = a_name
+      end
+
+    set_object (a_name: like object)
+        -- Set 'object' with 'a_name'.
+      do
+        object := a_name
+      ensure
+        object_set: object = a_name
       end
 
     set_purpose (a_name: like purpose)
@@ -115,11 +115,6 @@ feature -- Change Element
           Result.append (l_id.out)
           Result.append ("%N")
         end
-        if attached object as l_object then
-          Result.append ("%Nobject:")
-          Result.append (l_object.out)
-          Result.append ("%N")
-        end
         if attached bytes as l_bytes then
           Result.append ("%Nbytes:")
           Result.append (l_bytes.out)
@@ -133,6 +128,11 @@ feature -- Change Element
         if attached filename as l_filename then
           Result.append ("%Nfilename:")
           Result.append (l_filename.out)
+          Result.append ("%N")
+        end
+        if attached object as l_object then
+          Result.append ("%Nobject:")
+          Result.append (l_object.out)
           Result.append ("%N")
         end
         if attached purpose as l_purpose then

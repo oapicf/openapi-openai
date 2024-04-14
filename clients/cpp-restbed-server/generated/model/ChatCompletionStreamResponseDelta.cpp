@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -63,40 +63,32 @@ ptree ChatCompletionStreamResponseDelta::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.put("role", m_Role);
 	pt.put("content", m_Content);
 	pt.add_child("function_call", m_Function_call.toPropertyTree());
+	// generate tree for Tool_calls
+    tmp_node.clear();
+	if (!m_Tool_calls.empty()) {
+        tmp_node = toPt(m_Tool_calls);
+		pt.add_child("tool_calls", tmp_node);
+		tmp_node.clear();
+	}
+	pt.put("role", m_Role);
 	return pt;
 }
 
 void ChatCompletionStreamResponseDelta::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	setRole(pt.get("role", ""));
 	m_Content = pt.get("content", "");
 	if (pt.get_child_optional("function_call")) {
-        m_Function_call = fromPt<ChatCompletionRequestMessage_function_call>(pt.get_child("function_call"));
+        m_Function_call = fromPt<ChatCompletionStreamResponseDelta_function_call>(pt.get_child("function_call"));
 	}
-}
-
-std::string ChatCompletionStreamResponseDelta::getRole() const
-{
-    return m_Role;
-}
-
-void ChatCompletionStreamResponseDelta::setRole(std::string value)
-{
-    static const std::array<std::string, 4> allowedValues = {
-        "system", "user", "assistant", "function"
-    };
-
-    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
-		m_Role = value;
-	} else {
-		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	// push all items of Tool_calls into member
+	if (pt.get_child_optional("tool_calls")) {
+        m_Tool_calls = fromPt<std::vector<ChatCompletionMessageToolCallChunk>>(pt.get_child("tool_calls"));
 	}
+	setRole(pt.get("role", ""));
 }
-
 
 std::string ChatCompletionStreamResponseDelta::getContent() const
 {
@@ -109,14 +101,44 @@ void ChatCompletionStreamResponseDelta::setContent(std::string value)
 }
 
 
-ChatCompletionRequestMessage_function_call ChatCompletionStreamResponseDelta::getFunctionCall() const
+ChatCompletionStreamResponseDelta_function_call ChatCompletionStreamResponseDelta::getFunctionCall() const
 {
     return m_Function_call;
 }
 
-void ChatCompletionStreamResponseDelta::setFunctionCall(ChatCompletionRequestMessage_function_call value)
+void ChatCompletionStreamResponseDelta::setFunctionCall(ChatCompletionStreamResponseDelta_function_call value)
 {
     m_Function_call = value;
+}
+
+
+std::vector<ChatCompletionMessageToolCallChunk> ChatCompletionStreamResponseDelta::getToolCalls() const
+{
+    return m_Tool_calls;
+}
+
+void ChatCompletionStreamResponseDelta::setToolCalls(std::vector<ChatCompletionMessageToolCallChunk> value)
+{
+    m_Tool_calls = value;
+}
+
+
+std::string ChatCompletionStreamResponseDelta::getRole() const
+{
+    return m_Role;
+}
+
+void ChatCompletionStreamResponseDelta::setRole(std::string value)
+{
+    static const std::array<std::string, 4> allowedValues = {
+        "system", "user", "assistant", "tool"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Role = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 

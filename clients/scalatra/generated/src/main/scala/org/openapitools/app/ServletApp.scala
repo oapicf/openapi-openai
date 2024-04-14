@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -29,9 +29,9 @@ class OpenAPIApp extends Swagger(apiInfo = OpenAPIInfo.apiInfo, apiVersion = "2.
 object OpenAPIInfo {
   val apiInfo = ApiInfo(
     """OpenAI API""",
-    """APIs for sampling from and fine-tuning language models""",
+    """The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.""",
     """https://github.com/oapicf/openapi-openai""",
     """blah+oapicf@cliffano.com""",
-    """All rights reserved""",
-    """http://apache.org/licenses/LICENSE-2.0.html""")
+    """MIT""",
+    """https://github.com/openai/openai-openapi/blob/master/LICENSE""")
 }

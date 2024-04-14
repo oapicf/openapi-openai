@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -56,15 +56,6 @@ namespace Org.OpenAPITools.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Model'
-        /// </summary>
-        [Fact]
-        public void ModelTest()
-        {
-            // TODO unit test for the property 'Model'
-        }
-
-        /// <summary>
         /// Test the property 'Messages'
         /// </summary>
         [Fact]
@@ -74,84 +65,12 @@ namespace Org.OpenAPITools.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Functions'
+        /// Test the property 'Model'
         /// </summary>
         [Fact]
-        public void FunctionsTest()
+        public void ModelTest()
         {
-            // TODO unit test for the property 'Functions'
-        }
-
-        /// <summary>
-        /// Test the property 'FunctionCall'
-        /// </summary>
-        [Fact]
-        public void FunctionCallTest()
-        {
-            // TODO unit test for the property 'FunctionCall'
-        }
-
-        /// <summary>
-        /// Test the property 'Temperature'
-        /// </summary>
-        [Fact]
-        public void TemperatureTest()
-        {
-            // TODO unit test for the property 'Temperature'
-        }
-
-        /// <summary>
-        /// Test the property 'TopP'
-        /// </summary>
-        [Fact]
-        public void TopPTest()
-        {
-            // TODO unit test for the property 'TopP'
-        }
-
-        /// <summary>
-        /// Test the property 'N'
-        /// </summary>
-        [Fact]
-        public void NTest()
-        {
-            // TODO unit test for the property 'N'
-        }
-
-        /// <summary>
-        /// Test the property 'Stream'
-        /// </summary>
-        [Fact]
-        public void StreamTest()
-        {
-            // TODO unit test for the property 'Stream'
-        }
-
-        /// <summary>
-        /// Test the property 'Stop'
-        /// </summary>
-        [Fact]
-        public void StopTest()
-        {
-            // TODO unit test for the property 'Stop'
-        }
-
-        /// <summary>
-        /// Test the property 'MaxTokens'
-        /// </summary>
-        [Fact]
-        public void MaxTokensTest()
-        {
-            // TODO unit test for the property 'MaxTokens'
-        }
-
-        /// <summary>
-        /// Test the property 'PresencePenalty'
-        /// </summary>
-        [Fact]
-        public void PresencePenaltyTest()
-        {
-            // TODO unit test for the property 'PresencePenalty'
+            // TODO unit test for the property 'Model'
         }
 
         /// <summary>
@@ -173,12 +92,147 @@ namespace Org.OpenAPITools.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Logprobs'
+        /// </summary>
+        [Fact]
+        public void LogprobsTest()
+        {
+            // TODO unit test for the property 'Logprobs'
+        }
+
+        /// <summary>
+        /// Test the property 'TopLogprobs'
+        /// </summary>
+        [Fact]
+        public void TopLogprobsTest()
+        {
+            // TODO unit test for the property 'TopLogprobs'
+        }
+
+        /// <summary>
+        /// Test the property 'MaxTokens'
+        /// </summary>
+        [Fact]
+        public void MaxTokensTest()
+        {
+            // TODO unit test for the property 'MaxTokens'
+        }
+
+        /// <summary>
+        /// Test the property 'N'
+        /// </summary>
+        [Fact]
+        public void NTest()
+        {
+            // TODO unit test for the property 'N'
+        }
+
+        /// <summary>
+        /// Test the property 'PresencePenalty'
+        /// </summary>
+        [Fact]
+        public void PresencePenaltyTest()
+        {
+            // TODO unit test for the property 'PresencePenalty'
+        }
+
+        /// <summary>
+        /// Test the property 'ResponseFormat'
+        /// </summary>
+        [Fact]
+        public void ResponseFormatTest()
+        {
+            // TODO unit test for the property 'ResponseFormat'
+        }
+
+        /// <summary>
+        /// Test the property 'Seed'
+        /// </summary>
+        [Fact]
+        public void SeedTest()
+        {
+            // TODO unit test for the property 'Seed'
+        }
+
+        /// <summary>
+        /// Test the property 'Stop'
+        /// </summary>
+        [Fact]
+        public void StopTest()
+        {
+            // TODO unit test for the property 'Stop'
+        }
+
+        /// <summary>
+        /// Test the property 'Stream'
+        /// </summary>
+        [Fact]
+        public void StreamTest()
+        {
+            // TODO unit test for the property 'Stream'
+        }
+
+        /// <summary>
+        /// Test the property 'Temperature'
+        /// </summary>
+        [Fact]
+        public void TemperatureTest()
+        {
+            // TODO unit test for the property 'Temperature'
+        }
+
+        /// <summary>
+        /// Test the property 'TopP'
+        /// </summary>
+        [Fact]
+        public void TopPTest()
+        {
+            // TODO unit test for the property 'TopP'
+        }
+
+        /// <summary>
+        /// Test the property 'Tools'
+        /// </summary>
+        [Fact]
+        public void ToolsTest()
+        {
+            // TODO unit test for the property 'Tools'
+        }
+
+        /// <summary>
+        /// Test the property 'ToolChoice'
+        /// </summary>
+        [Fact]
+        public void ToolChoiceTest()
+        {
+            // TODO unit test for the property 'ToolChoice'
+        }
+
+        /// <summary>
         /// Test the property 'User'
         /// </summary>
         [Fact]
         public void UserTest()
         {
             // TODO unit test for the property 'User'
+        }
+
+        /// <summary>
+        /// Test the property 'FunctionCall'
+        /// </summary>
+        [Fact]
+        public void FunctionCallTest()
+        {
+            // TODO unit test for the property 'FunctionCall'
+        }
+
+        /// <summary>
+        /// Test the property 'Functions'
+        /// </summary>
+        [Fact]
+        public void FunctionsTest()
+        {
+            // TODO unit test for the property 'Functions'
         }
     }
 }

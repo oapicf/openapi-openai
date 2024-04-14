@@ -9,3 +9,12 @@ Name | Type | Description | Notes
 **deleted** | **Boolean** |  | 
 
 
+
+## Enum: ObjectEnum
+
+
+* `file` (value: `"file"`)
+
+
+
+

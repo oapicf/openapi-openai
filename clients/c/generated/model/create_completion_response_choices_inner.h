@@ -19,7 +19,7 @@ typedef struct create_completion_response_choices_inner_t create_completion_resp
 
 // Enum FINISHREASON for create_completion_response_choices_inner
 
-typedef enum  { openai_api_create_completion_response_choices_inner_FINISHREASON_NULL = 0, openai_api_create_completion_response_choices_inner_FINISHREASON_stop, openai_api_create_completion_response_choices_inner_FINISHREASON_length } openai_api_create_completion_response_choices_inner_FINISHREASON_e;
+typedef enum  { openai_api_create_completion_response_choices_inner_FINISHREASON_NULL = 0, openai_api_create_completion_response_choices_inner_FINISHREASON_stop, openai_api_create_completion_response_choices_inner_FINISHREASON_length, openai_api_create_completion_response_choices_inner_FINISHREASON_content_filter } openai_api_create_completion_response_choices_inner_FINISHREASON_e;
 
 char* create_completion_response_choices_inner_finish_reason_ToString(openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason);
 
@@ -28,18 +28,18 @@ openai_api_create_completion_response_choices_inner_FINISHREASON_e create_comple
 
 
 typedef struct create_completion_response_choices_inner_t {
-    char *text; // string
+    openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason; //enum
     int index; //numeric
     struct create_completion_response_choices_inner_logprobs_t *logprobs; //model
-    openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason; //enum
+    char *text; // string
 
 } create_completion_response_choices_inner_t;
 
 create_completion_response_choices_inner_t *create_completion_response_choices_inner_create(
-    char *text,
+    openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason,
     int index,
     create_completion_response_choices_inner_logprobs_t *logprobs,
-    openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason
+    char *text
 );
 
 void create_completion_response_choices_inner_free(create_completion_response_choices_inner_t *create_completion_response_choices_inner);

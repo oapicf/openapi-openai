@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,13 +25,15 @@ CreateChatCompletionResponse::CreateChatCompletionResponse()
 {
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_object = utility::conversions::to_string_t("");
-    m_objectIsSet = false;
+    m_ChoicesIsSet = false;
     m_Created = 0;
     m_CreatedIsSet = false;
     m_Model = utility::conversions::to_string_t("");
     m_ModelIsSet = false;
-    m_ChoicesIsSet = false;
+    m_System_fingerprint = utility::conversions::to_string_t("");
+    m_System_fingerprintIsSet = false;
+    m_object = utility::conversions::to_string_t("");
+    m_objectIsSet = false;
     m_UsageIsSet = false;
 }
 
@@ -53,9 +55,9 @@ web::json::value CreateChatCompletionResponse::toJson() const
     {
         val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
     }
-    if(m_objectIsSet)
+    if(m_ChoicesIsSet)
     {
-        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
+        val[utility::conversions::to_string_t(U("choices"))] = ModelBase::toJson(m_Choices);
     }
     if(m_CreatedIsSet)
     {
@@ -65,9 +67,13 @@ web::json::value CreateChatCompletionResponse::toJson() const
     {
         val[utility::conversions::to_string_t(U("model"))] = ModelBase::toJson(m_Model);
     }
-    if(m_ChoicesIsSet)
+    if(m_System_fingerprintIsSet)
     {
-        val[utility::conversions::to_string_t(U("choices"))] = ModelBase::toJson(m_Choices);
+        val[utility::conversions::to_string_t(U("system_fingerprint"))] = ModelBase::toJson(m_System_fingerprint);
+    }
+    if(m_objectIsSet)
+    {
+        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
     }
     if(m_UsageIsSet)
     {
@@ -91,14 +97,14 @@ bool CreateChatCompletionResponse::fromJson(const web::json::value& val)
             setId(refVal_setId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("object"))))
+    if(val.has_field(utility::conversions::to_string_t(U("choices"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("choices")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setObject;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
-            setObject(refVal_setObject);
+            std::vector<std::shared_ptr<CreateChatCompletionResponse_choices_inner>> refVal_setChoices;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setChoices);
+            setChoices(refVal_setChoices);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("created"))))
@@ -121,14 +127,24 @@ bool CreateChatCompletionResponse::fromJson(const web::json::value& val)
             setModel(refVal_setModel);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("choices"))))
+    if(val.has_field(utility::conversions::to_string_t(U("system_fingerprint"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("choices")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("system_fingerprint")));
         if(!fieldValue.is_null())
         {
-            std::vector<std::shared_ptr<CreateChatCompletionResponse_choices_inner>> refVal_setChoices;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setChoices);
-            setChoices(refVal_setChoices);
+            utility::string_t refVal_setSystemFingerprint;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSystemFingerprint);
+            setSystemFingerprint(refVal_setSystemFingerprint);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("object"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setObject;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
+            setObject(refVal_setObject);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("usage"))))
@@ -136,7 +152,7 @@ bool CreateChatCompletionResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("usage")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<CreateCompletionResponse_usage> refVal_setUsage;
+            std::shared_ptr<CompletionUsage> refVal_setUsage;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUsage);
             setUsage(refVal_setUsage);
         }
@@ -155,9 +171,9 @@ void CreateChatCompletionResponse::toMultipart(std::shared_ptr<MultipartFormData
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
     }
-    if(m_objectIsSet)
+    if(m_ChoicesIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("choices")), m_Choices));
     }
     if(m_CreatedIsSet)
     {
@@ -167,9 +183,13 @@ void CreateChatCompletionResponse::toMultipart(std::shared_ptr<MultipartFormData
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("model")), m_Model));
     }
-    if(m_ChoicesIsSet)
+    if(m_System_fingerprintIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("choices")), m_Choices));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("system_fingerprint")), m_System_fingerprint));
+    }
+    if(m_objectIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
     }
     if(m_UsageIsSet)
     {
@@ -192,11 +212,11 @@ bool CreateChatCompletionResponse::fromMultiPart(std::shared_ptr<MultipartFormDa
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
         setId(refVal_setId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("choices"))))
     {
-        utility::string_t refVal_setObject;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
-        setObject(refVal_setObject);
+        std::vector<std::shared_ptr<CreateChatCompletionResponse_choices_inner>> refVal_setChoices;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("choices"))), refVal_setChoices );
+        setChoices(refVal_setChoices);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("created"))))
     {
@@ -210,15 +230,21 @@ bool CreateChatCompletionResponse::fromMultiPart(std::shared_ptr<MultipartFormDa
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("model"))), refVal_setModel );
         setModel(refVal_setModel);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("choices"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("system_fingerprint"))))
     {
-        std::vector<std::shared_ptr<CreateChatCompletionResponse_choices_inner>> refVal_setChoices;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("choices"))), refVal_setChoices );
-        setChoices(refVal_setChoices);
+        utility::string_t refVal_setSystemFingerprint;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("system_fingerprint"))), refVal_setSystemFingerprint );
+        setSystemFingerprint(refVal_setSystemFingerprint);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
+    {
+        utility::string_t refVal_setObject;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
+        setObject(refVal_setObject);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("usage"))))
     {
-        std::shared_ptr<CreateCompletionResponse_usage> refVal_setUsage;
+        std::shared_ptr<CompletionUsage> refVal_setUsage;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("usage"))), refVal_setUsage );
         setUsage(refVal_setUsage);
     }
@@ -245,25 +271,25 @@ void CreateChatCompletionResponse::unsetId()
 {
     m_IdIsSet = false;
 }
-utility::string_t CreateChatCompletionResponse::getObject() const
+std::vector<std::shared_ptr<CreateChatCompletionResponse_choices_inner>>& CreateChatCompletionResponse::getChoices()
 {
-    return m_object;
+    return m_Choices;
 }
 
-void CreateChatCompletionResponse::setObject(const utility::string_t& value)
+void CreateChatCompletionResponse::setChoices(const std::vector<std::shared_ptr<CreateChatCompletionResponse_choices_inner>>& value)
 {
-    m_object = value;
-    m_objectIsSet = true;
+    m_Choices = value;
+    m_ChoicesIsSet = true;
 }
 
-bool CreateChatCompletionResponse::objectIsSet() const
+bool CreateChatCompletionResponse::choicesIsSet() const
 {
-    return m_objectIsSet;
+    return m_ChoicesIsSet;
 }
 
-void CreateChatCompletionResponse::unsetobject()
+void CreateChatCompletionResponse::unsetChoices()
 {
-    m_objectIsSet = false;
+    m_ChoicesIsSet = false;
 }
 int32_t CreateChatCompletionResponse::getCreated() const
 {
@@ -305,32 +331,52 @@ void CreateChatCompletionResponse::unsetModel()
 {
     m_ModelIsSet = false;
 }
-std::vector<std::shared_ptr<CreateChatCompletionResponse_choices_inner>>& CreateChatCompletionResponse::getChoices()
+utility::string_t CreateChatCompletionResponse::getSystemFingerprint() const
 {
-    return m_Choices;
+    return m_System_fingerprint;
 }
 
-void CreateChatCompletionResponse::setChoices(const std::vector<std::shared_ptr<CreateChatCompletionResponse_choices_inner>>& value)
+void CreateChatCompletionResponse::setSystemFingerprint(const utility::string_t& value)
 {
-    m_Choices = value;
-    m_ChoicesIsSet = true;
+    m_System_fingerprint = value;
+    m_System_fingerprintIsSet = true;
 }
 
-bool CreateChatCompletionResponse::choicesIsSet() const
+bool CreateChatCompletionResponse::systemFingerprintIsSet() const
 {
-    return m_ChoicesIsSet;
+    return m_System_fingerprintIsSet;
 }
 
-void CreateChatCompletionResponse::unsetChoices()
+void CreateChatCompletionResponse::unsetSystem_fingerprint()
 {
-    m_ChoicesIsSet = false;
+    m_System_fingerprintIsSet = false;
 }
-std::shared_ptr<CreateCompletionResponse_usage> CreateChatCompletionResponse::getUsage() const
+utility::string_t CreateChatCompletionResponse::getObject() const
+{
+    return m_object;
+}
+
+void CreateChatCompletionResponse::setObject(const utility::string_t& value)
+{
+    m_object = value;
+    m_objectIsSet = true;
+}
+
+bool CreateChatCompletionResponse::objectIsSet() const
+{
+    return m_objectIsSet;
+}
+
+void CreateChatCompletionResponse::unsetobject()
+{
+    m_objectIsSet = false;
+}
+std::shared_ptr<CompletionUsage> CreateChatCompletionResponse::getUsage() const
 {
     return m_Usage;
 }
 
-void CreateChatCompletionResponse::setUsage(const std::shared_ptr<CreateCompletionResponse_usage>& value)
+void CreateChatCompletionResponse::setUsage(const std::shared_ptr<CompletionUsage>& value)
 {
     m_Usage = value;
     m_UsageIsSet = true;

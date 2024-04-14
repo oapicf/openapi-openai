@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,7 +14,7 @@
 package com.github.oapicf.openapiopenai.model;
 
 import java.util.Objects;
-import com.github.oapicf.openapiopenai.model.CreateChatCompletionRequestFunctionCallOneOf;
+import com.github.oapicf.openapiopenai.model.ChatCompletionFunctionCallOption;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,7 +58,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateChatCompletionRequestFunctionCall.class.getName());
 
@@ -71,7 +71,7 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<String> adapterString = gson.getDelegateAdapter(this, TypeToken.get(String.class));
-            final TypeAdapter<CreateChatCompletionRequestFunctionCallOneOf> adapterCreateChatCompletionRequestFunctionCallOneOf = gson.getDelegateAdapter(this, TypeToken.get(CreateChatCompletionRequestFunctionCallOneOf.class));
+            final TypeAdapter<ChatCompletionFunctionCallOption> adapterChatCompletionFunctionCallOption = gson.getDelegateAdapter(this, TypeToken.get(ChatCompletionFunctionCallOption.class));
 
             return (TypeAdapter<T>) new TypeAdapter<CreateChatCompletionRequestFunctionCall>() {
                 @Override
@@ -87,13 +87,13 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
                       elementAdapter.write(out, primitive);
                       return;
                     }
-                    // check if the actual instance is of the type `CreateChatCompletionRequestFunctionCallOneOf`
-                    if (value.getActualInstance() instanceof CreateChatCompletionRequestFunctionCallOneOf) {
-                      JsonElement element = adapterCreateChatCompletionRequestFunctionCallOneOf.toJsonTree((CreateChatCompletionRequestFunctionCallOneOf)value.getActualInstance());
+                    // check if the actual instance is of the type `ChatCompletionFunctionCallOption`
+                    if (value.getActualInstance() instanceof ChatCompletionFunctionCallOption) {
+                      JsonElement element = adapterChatCompletionFunctionCallOption.toJsonTree((ChatCompletionFunctionCallOption)value.getActualInstance());
                       elementAdapter.write(out, element);
                       return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: CreateChatCompletionRequestFunctionCallOneOf, String");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: ChatCompletionFunctionCallOption, String");
                 }
 
                 @Override
@@ -119,17 +119,17 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
                       errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
                       log.log(Level.FINER, "Input data does not match schema 'String'", e);
                     }
-                    // deserialize CreateChatCompletionRequestFunctionCallOneOf
+                    // deserialize ChatCompletionFunctionCallOption
                     try {
                       // validate the JSON object to see if any exception is thrown
-                      CreateChatCompletionRequestFunctionCallOneOf.validateJsonElement(jsonElement);
-                      actualAdapter = adapterCreateChatCompletionRequestFunctionCallOneOf;
+                      ChatCompletionFunctionCallOption.validateJsonElement(jsonElement);
+                      actualAdapter = adapterChatCompletionFunctionCallOption;
                       match++;
-                      log.log(Level.FINER, "Input data matches schema 'CreateChatCompletionRequestFunctionCallOneOf'");
+                      log.log(Level.FINER, "Input data matches schema 'ChatCompletionFunctionCallOption'");
                     } catch (Exception e) {
                       // deserialization failed, continue
-                      errorMessages.add(String.format("Deserialization for CreateChatCompletionRequestFunctionCallOneOf failed with `%s`.", e.getMessage()));
-                      log.log(Level.FINER, "Input data does not match schema 'CreateChatCompletionRequestFunctionCallOneOf'", e);
+                      errorMessages.add(String.format("Deserialization for ChatCompletionFunctionCallOption failed with `%s`.", e.getMessage()));
+                      log.log(Level.FINER, "Input data does not match schema 'ChatCompletionFunctionCallOption'", e);
                     }
 
                     if (match == 1) {
@@ -151,7 +151,7 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
         super("oneOf", Boolean.FALSE);
     }
 
-    public CreateChatCompletionRequestFunctionCall(CreateChatCompletionRequestFunctionCallOneOf o) {
+    public CreateChatCompletionRequestFunctionCall(ChatCompletionFunctionCallOption o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
@@ -163,7 +163,7 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
 
     static {
         schemas.put("String", String.class);
-        schemas.put("CreateChatCompletionRequestFunctionCallOneOf", CreateChatCompletionRequestFunctionCallOneOf.class);
+        schemas.put("ChatCompletionFunctionCallOption", ChatCompletionFunctionCallOption.class);
     }
 
     @Override
@@ -174,7 +174,7 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * CreateChatCompletionRequestFunctionCallOneOf, String
+     * ChatCompletionFunctionCallOption, String
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -185,19 +185,19 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
             return;
         }
 
-        if (instance instanceof CreateChatCompletionRequestFunctionCallOneOf) {
+        if (instance instanceof ChatCompletionFunctionCallOption) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be CreateChatCompletionRequestFunctionCallOneOf, String");
+        throw new RuntimeException("Invalid instance type. Must be ChatCompletionFunctionCallOption, String");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * CreateChatCompletionRequestFunctionCallOneOf, String
+     * ChatCompletionFunctionCallOption, String
      *
-     * @return The actual instance (CreateChatCompletionRequestFunctionCallOneOf, String)
+     * @return The actual instance (ChatCompletionFunctionCallOption, String)
      */
     @Override
     public Object getActualInstance() {
@@ -215,14 +215,14 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
         return (String)super.getActualInstance();
     }
     /**
-     * Get the actual instance of `CreateChatCompletionRequestFunctionCallOneOf`. If the actual instance is not `CreateChatCompletionRequestFunctionCallOneOf`,
+     * Get the actual instance of `ChatCompletionFunctionCallOption`. If the actual instance is not `ChatCompletionFunctionCallOption`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `CreateChatCompletionRequestFunctionCallOneOf`
-     * @throws ClassCastException if the instance is not `CreateChatCompletionRequestFunctionCallOneOf`
+     * @return The actual instance of `ChatCompletionFunctionCallOption`
+     * @throws ClassCastException if the instance is not `ChatCompletionFunctionCallOption`
      */
-    public CreateChatCompletionRequestFunctionCallOneOf getCreateChatCompletionRequestFunctionCallOneOf() throws ClassCastException {
-        return (CreateChatCompletionRequestFunctionCallOneOf)super.getActualInstance();
+    public ChatCompletionFunctionCallOption getChatCompletionFunctionCallOption() throws ClassCastException {
+        return (ChatCompletionFunctionCallOption)super.getActualInstance();
     }
 
  /**
@@ -245,16 +245,16 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
       errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
-    // validate the json string with CreateChatCompletionRequestFunctionCallOneOf
+    // validate the json string with ChatCompletionFunctionCallOption
     try {
-      CreateChatCompletionRequestFunctionCallOneOf.validateJsonElement(jsonElement);
+      ChatCompletionFunctionCallOption.validateJsonElement(jsonElement);
       validCount++;
     } catch (Exception e) {
-      errorMessages.add(String.format("Deserialization for CreateChatCompletionRequestFunctionCallOneOf failed with `%s`.", e.getMessage()));
+      errorMessages.add(String.format("Deserialization for ChatCompletionFunctionCallOption failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
     if (validCount != 1) {
-      throw new IOException(String.format("The JSON string is invalid for CreateChatCompletionRequestFunctionCall with oneOf schemas: CreateChatCompletionRequestFunctionCallOneOf, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+      throw new IOException(String.format("The JSON string is invalid for CreateChatCompletionRequestFunctionCall with oneOf schemas: ChatCompletionFunctionCallOption, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
     }
   }
 

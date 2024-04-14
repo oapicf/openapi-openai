@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,11 +14,12 @@ package org.openapitools.client.model
 import org.openapitools.client.core.ApiModel
 
 case class ChatCompletionStreamResponseDelta (
-  /* The role of the author of this message. */
-  role: Option[ChatCompletionStreamResponseDeltaEnums.Role] = None,
   /* The contents of the chunk message. */
   content: Option[String] = None,
-  functionCall: Option[ChatCompletionRequestMessageFunctionCall] = None
+  functionCall: Option[ChatCompletionStreamResponseDeltaFunctionCall] = None,
+  toolCalls: Option[Seq[ChatCompletionMessageToolCallChunk]] = None,
+  /* The role of the author of this message. */
+  role: Option[ChatCompletionStreamResponseDeltaEnums.Role] = None
 ) extends ApiModel
 
 object ChatCompletionStreamResponseDeltaEnums {
@@ -28,7 +29,7 @@ object ChatCompletionStreamResponseDeltaEnums {
     val System = Value("system")
     val User = Value("user")
     val Assistant = Value("assistant")
-    val Function = Value("function")
+    val Tool = Value("tool")
   }
 
 }

@@ -16,7 +16,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class Moderations
 {
     /**
-     * Classifies if text violates OpenAI&#39;s Content Policy
+     * Classifies if text is potentially harmful.
      * @PHA\Post()
      * TODO check if consumer is valid, if it has correct priority and if it can be moved to class annotation
      * @PHA\Consumer(name=PHConsumer\Json::class, mediaRange="application/json")

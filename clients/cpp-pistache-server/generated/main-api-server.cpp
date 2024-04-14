@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -22,7 +22,16 @@
 
 #include "ApiBase.h"
 
-#include "OpenAIApiImpl.h"
+#include "AssistantsApiImpl.h"
+#include "AudioApiImpl.h"
+#include "ChatApiImpl.h"
+#include "CompletionsApiImpl.h"
+#include "EmbeddingsApiImpl.h"
+#include "FilesApiImpl.h"
+#include "FineTuningApiImpl.h"
+#include "ImagesApiImpl.h"
+#include "ModelsApiImpl.h"
+#include "ModerationsApiImpl.h"
 
 #define PISTACHE_SERVER_THREADS     2
 #define PISTACHE_SERVER_MAX_REQUEST_SIZE 32768
@@ -80,7 +89,16 @@ int main() {
 
     auto apiImpls = std::vector<std::shared_ptr<ApiBase>>();
     
-    apiImpls.push_back(std::make_shared<OpenAIApiImpl>(router));
+    apiImpls.push_back(std::make_shared<AssistantsApiImpl>(router));
+    apiImpls.push_back(std::make_shared<AudioApiImpl>(router));
+    apiImpls.push_back(std::make_shared<ChatApiImpl>(router));
+    apiImpls.push_back(std::make_shared<CompletionsApiImpl>(router));
+    apiImpls.push_back(std::make_shared<EmbeddingsApiImpl>(router));
+    apiImpls.push_back(std::make_shared<FilesApiImpl>(router));
+    apiImpls.push_back(std::make_shared<FineTuningApiImpl>(router));
+    apiImpls.push_back(std::make_shared<ImagesApiImpl>(router));
+    apiImpls.push_back(std::make_shared<ModelsApiImpl>(router));
+    apiImpls.push_back(std::make_shared<ModerationsApiImpl>(router));
 
     for (auto api : apiImpls) {
         api->init();

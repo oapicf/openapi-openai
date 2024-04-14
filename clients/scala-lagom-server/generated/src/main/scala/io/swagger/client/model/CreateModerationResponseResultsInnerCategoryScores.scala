@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,12 +14,27 @@ package io.swagger.client.model
 import play.api.libs.json._
 
 case class CreateModerationResponseResultsInnerCategoryScores (
+            /* The score for the category 'hate'. */
                   hate: Number,
+            /* The score for the category 'hate/threatening'. */
                   hateThreatening: Number,
+            /* The score for the category 'harassment'. */
+                  harassment: Number,
+            /* The score for the category 'harassment/threatening'. */
+                  harassmentThreatening: Number,
+            /* The score for the category 'self-harm'. */
                   selfHarm: Number,
+            /* The score for the category 'self-harm/intent'. */
+                  selfHarmIntent: Number,
+            /* The score for the category 'self-harm/instructions'. */
+                  selfHarmInstructions: Number,
+            /* The score for the category 'sexual'. */
                   sexual: Number,
+            /* The score for the category 'sexual/minors'. */
                   sexualMinors: Number,
+            /* The score for the category 'violence'. */
                   violence: Number,
+            /* The score for the category 'violence/graphic'. */
                   violenceGraphic: Number
 )
 

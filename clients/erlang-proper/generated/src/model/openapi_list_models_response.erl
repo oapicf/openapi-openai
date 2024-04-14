@@ -18,7 +18,7 @@ openapi_list_models_response() ->
     openapi_list_models_response([]).
 
 openapi_list_models_response(Fields) ->
-  Default = [ {'object', binary() }
+  Default = [ {'object', elements([<<"list">>]) }
             , {'data', list(openapi_model:openapi_model()) }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

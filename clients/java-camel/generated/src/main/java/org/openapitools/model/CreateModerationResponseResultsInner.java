@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("CreateModerationResponse_results_inner")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-16T01:13:12.257183065Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-04-14T13:40:33.442815767Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponseResultsInner {
 
   private Boolean flagged;
@@ -50,11 +50,11 @@ public class CreateModerationResponseResultsInner {
   }
 
   /**
-   * Get flagged
+   * Whether any of the below categories are flagged.
    * @return flagged
   */
   @NotNull 
-  @Schema(name = "flagged", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "flagged", description = "Whether any of the below categories are flagged.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("flagged")
   public Boolean getFlagged() {
     return flagged;

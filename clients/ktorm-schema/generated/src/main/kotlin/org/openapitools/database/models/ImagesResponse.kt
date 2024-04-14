@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -30,7 +30,7 @@ object ImagesResponses : BaseTable<ImagesResponse>("ImagesResponse") {
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = ImagesResponse(
         created = row[created] ?: 0 /* kotlin.Int */,
-        data = emptyList() /* kotlin.Array<ImagesResponseDataInner> */
+        data = emptyList() /* kotlin.Array<Image> */
     )
 
     /**
@@ -55,17 +55,17 @@ object ImagesResponses : BaseTable<ImagesResponse>("ImagesResponse") {
 }
 
 
-object ImagesResponseImagesResponseDataInner : BaseTable<Pair<kotlin.Long, kotlin.Long>>("ImagesResponseImagesResponseDataInner") {
+object ImagesResponseImage : BaseTable<Pair<kotlin.Long, kotlin.Long>>("ImagesResponseImage") {
     val imagesResponse = long("imagesResponse")
-    val imagesResponseDataInner = long("imagesResponseDataInner")
+    val image = long("image")
 
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): Pair<kotlin.Long, kotlin.Long> =
-        Pair(row[imagesResponse] ?: 0, row[imagesResponseDataInner] ?: 0)
+        Pair(row[imagesResponse] ?: 0, row[image] ?: 0)
 
     fun AssignmentsBuilder.assignFrom(entity: Pair<kotlin.Long, kotlin.Long>) {
         this.apply {
-            set(ImagesResponseImagesResponseDataInner.imagesResponse, entity.first)
-            set(ImagesResponseImagesResponseDataInner.imagesResponseDataInner, entity.second)
+            set(ImagesResponseImage.imagesResponse, entity.first)
+            set(ImagesResponseImage.image, entity.second)
         }
     }
 

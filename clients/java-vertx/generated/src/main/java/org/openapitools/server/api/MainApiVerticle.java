@@ -66,12 +66,93 @@ public class MainApiVerticle extends AbstractVerticle {
 
     public void deployVerticals(Future<Void> startFuture) {
         
-        vertx.deployVerticle("org.openapitools.server.api.verticle.OpenAiApiVerticle", res -> {
+        vertx.deployVerticle("org.openapitools.server.api.verticle.AssistantsApiVerticle", res -> {
             if (res.succeeded()) {
-                LOGGER.info("OpenAiApiVerticle : Deployed");
+                LOGGER.info("AssistantsApiVerticle : Deployed");
             } else {
                 startFuture.fail(res.cause());
-                LOGGER.error("OpenAiApiVerticle : Deployment failed");
+                LOGGER.error("AssistantsApiVerticle : Deployment failed");
+            }
+        });
+        
+        vertx.deployVerticle("org.openapitools.server.api.verticle.AudioApiVerticle", res -> {
+            if (res.succeeded()) {
+                LOGGER.info("AudioApiVerticle : Deployed");
+            } else {
+                startFuture.fail(res.cause());
+                LOGGER.error("AudioApiVerticle : Deployment failed");
+            }
+        });
+        
+        vertx.deployVerticle("org.openapitools.server.api.verticle.ChatApiVerticle", res -> {
+            if (res.succeeded()) {
+                LOGGER.info("ChatApiVerticle : Deployed");
+            } else {
+                startFuture.fail(res.cause());
+                LOGGER.error("ChatApiVerticle : Deployment failed");
+            }
+        });
+        
+        vertx.deployVerticle("org.openapitools.server.api.verticle.CompletionsApiVerticle", res -> {
+            if (res.succeeded()) {
+                LOGGER.info("CompletionsApiVerticle : Deployed");
+            } else {
+                startFuture.fail(res.cause());
+                LOGGER.error("CompletionsApiVerticle : Deployment failed");
+            }
+        });
+        
+        vertx.deployVerticle("org.openapitools.server.api.verticle.EmbeddingsApiVerticle", res -> {
+            if (res.succeeded()) {
+                LOGGER.info("EmbeddingsApiVerticle : Deployed");
+            } else {
+                startFuture.fail(res.cause());
+                LOGGER.error("EmbeddingsApiVerticle : Deployment failed");
+            }
+        });
+        
+        vertx.deployVerticle("org.openapitools.server.api.verticle.FilesApiVerticle", res -> {
+            if (res.succeeded()) {
+                LOGGER.info("FilesApiVerticle : Deployed");
+            } else {
+                startFuture.fail(res.cause());
+                LOGGER.error("FilesApiVerticle : Deployment failed");
+            }
+        });
+        
+        vertx.deployVerticle("org.openapitools.server.api.verticle.FineTuningApiVerticle", res -> {
+            if (res.succeeded()) {
+                LOGGER.info("FineTuningApiVerticle : Deployed");
+            } else {
+                startFuture.fail(res.cause());
+                LOGGER.error("FineTuningApiVerticle : Deployment failed");
+            }
+        });
+        
+        vertx.deployVerticle("org.openapitools.server.api.verticle.ImagesApiVerticle", res -> {
+            if (res.succeeded()) {
+                LOGGER.info("ImagesApiVerticle : Deployed");
+            } else {
+                startFuture.fail(res.cause());
+                LOGGER.error("ImagesApiVerticle : Deployment failed");
+            }
+        });
+        
+        vertx.deployVerticle("org.openapitools.server.api.verticle.ModelsApiVerticle", res -> {
+            if (res.succeeded()) {
+                LOGGER.info("ModelsApiVerticle : Deployed");
+            } else {
+                startFuture.fail(res.cause());
+                LOGGER.error("ModelsApiVerticle : Deployment failed");
+            }
+        });
+        
+        vertx.deployVerticle("org.openapitools.server.api.verticle.ModerationsApiVerticle", res -> {
+            if (res.succeeded()) {
+                LOGGER.info("ModerationsApiVerticle : Deployed");
+            } else {
+                startFuture.fail(res.cause());
+                LOGGER.error("ModerationsApiVerticle : Deployment failed");
             }
         });
         

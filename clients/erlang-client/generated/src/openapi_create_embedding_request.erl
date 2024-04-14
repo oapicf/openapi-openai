@@ -5,16 +5,22 @@
 -export_type([openapi_create_embedding_request/0]).
 
 -type openapi_create_embedding_request() ::
-    #{ 'model' := openapi_create_embedding_request_model:openapi_create_embedding_request_model(),
-       'input' := openapi_create_embedding_request_input:openapi_create_embedding_request_input(),
+    #{ 'input' := openapi_create_embedding_request_input:openapi_create_embedding_request_input(),
+       'model' := openapi_create_embedding_request_model:openapi_create_embedding_request_model(),
+       'encoding_format' => binary(),
+       'dimensions' => integer(),
        'user' => binary()
      }.
 
-encode(#{ 'model' := Model,
-          'input' := Input,
+encode(#{ 'input' := Input,
+          'model' := Model,
+          'encoding_format' := EncodingFormat,
+          'dimensions' := Dimensions,
           'user' := User
         }) ->
-    #{ 'model' => Model,
-       'input' => Input,
+    #{ 'input' => Input,
+       'model' => Model,
+       'encoding_format' => EncodingFormat,
+       'dimensions' => Dimensions,
        'user' => User
      }.

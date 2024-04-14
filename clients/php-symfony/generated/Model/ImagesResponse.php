@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -53,14 +53,14 @@ class ImagesResponse
     protected ?int $created = null;
 
     /**
-     * @var ImagesResponseDataInner[]|null
+     * @var Image[]|null
      * @SerializedName("data")
      * @Assert\NotNull()
      * @Assert\Valid()
      * @Assert\All({
-     *   @Assert\Type("OpenAPI\Server\Model\ImagesResponseDataInner")
+     *   @Assert\Type("OpenAPI\Server\Model\Image")
      * })
-     * @Type("array<OpenAPI\Server\Model\ImagesResponseDataInner>")
+     * @Type("array<OpenAPI\Server\Model\Image>")
      */
     protected ?array $data = null;
 
@@ -105,7 +105,7 @@ class ImagesResponse
     /**
      * Gets data.
      *
-     * @return ImagesResponseDataInner[]|null
+     * @return Image[]|null
      */
     public function getData(): ?array
     {
@@ -117,7 +117,7 @@ class ImagesResponse
     /**
      * Sets data.
      *
-     * @param ImagesResponseDataInner[]|null $data
+     * @param Image[]|null $data
      *
      * @return $this
      */

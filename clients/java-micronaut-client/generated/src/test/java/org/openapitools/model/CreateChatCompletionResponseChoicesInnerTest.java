@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.model.ChatCompletionResponseMessage;
+import org.openapitools.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -22,6 +23,14 @@ public class CreateChatCompletionResponseChoicesInnerTest {
     }
 
     /**
+     * Test the property 'finishReason'
+     */
+    @Test
+    public void finishReasonTest() {
+        // TODO: test finishReason
+    }
+
+    /**
      * Test the property 'index'
      */
     @Test
@@ -38,11 +47,11 @@ public class CreateChatCompletionResponseChoicesInnerTest {
     }
 
     /**
-     * Test the property 'finishReason'
+     * Test the property 'logprobs'
      */
     @Test
-    public void finishReasonTest() {
-        // TODO: test finishReason
+    public void logprobsTest() {
+        // TODO: test logprobs
     }
 
 }

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -26,16 +26,16 @@ import javax.validation.Valid;
  * Error
  */
 @JsonPropertyOrder({
-  Error.JSON_PROPERTY_TYPE,
+  Error.JSON_PROPERTY_CODE,
   Error.JSON_PROPERTY_MESSAGE,
   Error.JSON_PROPERTY_PARAM,
-  Error.JSON_PROPERTY_CODE
+  Error.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Error   {
-  public static final String JSON_PROPERTY_TYPE = "type";
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  private String type;
+  public static final String JSON_PROPERTY_CODE = "code";
+  @JsonProperty(JSON_PROPERTY_CODE)
+  private String code;
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @JsonProperty(JSON_PROPERTY_MESSAGE)
@@ -45,28 +45,28 @@ public class Error   {
   @JsonProperty(JSON_PROPERTY_PARAM)
   private String param;
 
-  public static final String JSON_PROPERTY_CODE = "code";
-  @JsonProperty(JSON_PROPERTY_CODE)
-  private String code;
+  public static final String JSON_PROPERTY_TYPE = "type";
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  private String type;
 
-  public Error type(String type) {
-    this.type = type;
+  public Error code(String code) {
+    this.code = code;
     return this;
   }
 
   /**
-   * Get type
-   * @return type
+   * Get code
+   * @return code
    **/
-  @JsonProperty(value = "type")
+  @JsonProperty(value = "code")
   @ApiModelProperty(required = true, value = "")
   @NotNull 
-  public String getType() {
-    return type;
+  public String getCode() {
+    return code;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setCode(String code) {
+    this.code = code;
   }
 
   public Error message(String message) {
@@ -109,24 +109,24 @@ public class Error   {
     this.param = param;
   }
 
-  public Error code(String code) {
-    this.code = code;
+  public Error type(String type) {
+    this.type = type;
     return this;
   }
 
   /**
-   * Get code
-   * @return code
+   * Get type
+   * @return type
    **/
-  @JsonProperty(value = "code")
+  @JsonProperty(value = "type")
   @ApiModelProperty(required = true, value = "")
   @NotNull 
-  public String getCode() {
-    return code;
+  public String getType() {
+    return type;
   }
 
-  public void setCode(String code) {
-    this.code = code;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -139,15 +139,15 @@ public class Error   {
       return false;
     }
     Error error = (Error) o;
-    return Objects.equals(this.type, error.type) &&
+    return Objects.equals(this.code, error.code) &&
         Objects.equals(this.message, error.message) &&
         Objects.equals(this.param, error.param) &&
-        Objects.equals(this.code, error.code);
+        Objects.equals(this.type, error.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, message, param, code);
+    return Objects.hash(code, message, param, type);
   }
 
   @Override
@@ -155,10 +155,10 @@ public class Error   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    param: ").append(toIndentedString(param)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,28 +23,37 @@ namespace model {
 
 CreateChatCompletionRequest::CreateChatCompletionRequest()
 {
-    m_ModelIsSet = false;
     m_MessagesIsSet = false;
-    m_FunctionsIsSet = false;
-    m_Function_callIsSet = false;
+    m_ModelIsSet = false;
+    m_Frequency_penalty = 0.0;
+    m_Frequency_penaltyIsSet = false;
+    m_Logit_biasIsSet = false;
+    m_Logprobs = false;
+    m_LogprobsIsSet = false;
+    m_Top_logprobs = 0;
+    m_Top_logprobsIsSet = false;
+    m_Max_tokens = 0;
+    m_Max_tokensIsSet = false;
+    m_n = 0;
+    m_nIsSet = false;
+    m_Presence_penalty = 0.0;
+    m_Presence_penaltyIsSet = false;
+    m_Response_formatIsSet = false;
+    m_Seed = 0;
+    m_SeedIsSet = false;
+    m_StopIsSet = false;
+    m_Stream = false;
+    m_StreamIsSet = false;
     m_Temperature = 0.0;
     m_TemperatureIsSet = false;
     m_Top_p = 0.0;
     m_Top_pIsSet = false;
-    m_n = 0;
-    m_nIsSet = false;
-    m_Stream = false;
-    m_StreamIsSet = false;
-    m_StopIsSet = false;
-    m_Max_tokens = 0;
-    m_Max_tokensIsSet = false;
-    m_Presence_penalty = 0.0;
-    m_Presence_penaltyIsSet = false;
-    m_Frequency_penalty = 0.0;
-    m_Frequency_penaltyIsSet = false;
-    m_Logit_biasIsSet = false;
+    m_ToolsIsSet = false;
+    m_Tool_choiceIsSet = false;
     m_User = utility::conversions::to_string_t("");
     m_UserIsSet = false;
+    m_Function_callIsSet = false;
+    m_FunctionsIsSet = false;
 }
 
 CreateChatCompletionRequest::~CreateChatCompletionRequest()
@@ -61,49 +70,13 @@ web::json::value CreateChatCompletionRequest::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_ModelIsSet)
-    {
-        val[utility::conversions::to_string_t(U("model"))] = ModelBase::toJson(m_Model);
-    }
     if(m_MessagesIsSet)
     {
         val[utility::conversions::to_string_t(U("messages"))] = ModelBase::toJson(m_Messages);
     }
-    if(m_FunctionsIsSet)
+    if(m_ModelIsSet)
     {
-        val[utility::conversions::to_string_t(U("functions"))] = ModelBase::toJson(m_Functions);
-    }
-    if(m_Function_callIsSet)
-    {
-        val[utility::conversions::to_string_t(U("function_call"))] = ModelBase::toJson(m_Function_call);
-    }
-    if(m_TemperatureIsSet)
-    {
-        val[utility::conversions::to_string_t(U("temperature"))] = ModelBase::toJson(m_Temperature);
-    }
-    if(m_Top_pIsSet)
-    {
-        val[utility::conversions::to_string_t(U("top_p"))] = ModelBase::toJson(m_Top_p);
-    }
-    if(m_nIsSet)
-    {
-        val[utility::conversions::to_string_t(U("n"))] = ModelBase::toJson(m_n);
-    }
-    if(m_StreamIsSet)
-    {
-        val[utility::conversions::to_string_t(U("stream"))] = ModelBase::toJson(m_Stream);
-    }
-    if(m_StopIsSet)
-    {
-        val[utility::conversions::to_string_t(U("stop"))] = ModelBase::toJson(m_Stop);
-    }
-    if(m_Max_tokensIsSet)
-    {
-        val[utility::conversions::to_string_t(U("max_tokens"))] = ModelBase::toJson(m_Max_tokens);
-    }
-    if(m_Presence_penaltyIsSet)
-    {
-        val[utility::conversions::to_string_t(U("presence_penalty"))] = ModelBase::toJson(m_Presence_penalty);
+        val[utility::conversions::to_string_t(U("model"))] = ModelBase::toJson(m_Model);
     }
     if(m_Frequency_penaltyIsSet)
     {
@@ -113,9 +86,69 @@ web::json::value CreateChatCompletionRequest::toJson() const
     {
         val[utility::conversions::to_string_t(U("logit_bias"))] = ModelBase::toJson(m_Logit_bias);
     }
+    if(m_LogprobsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("logprobs"))] = ModelBase::toJson(m_Logprobs);
+    }
+    if(m_Top_logprobsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("top_logprobs"))] = ModelBase::toJson(m_Top_logprobs);
+    }
+    if(m_Max_tokensIsSet)
+    {
+        val[utility::conversions::to_string_t(U("max_tokens"))] = ModelBase::toJson(m_Max_tokens);
+    }
+    if(m_nIsSet)
+    {
+        val[utility::conversions::to_string_t(U("n"))] = ModelBase::toJson(m_n);
+    }
+    if(m_Presence_penaltyIsSet)
+    {
+        val[utility::conversions::to_string_t(U("presence_penalty"))] = ModelBase::toJson(m_Presence_penalty);
+    }
+    if(m_Response_formatIsSet)
+    {
+        val[utility::conversions::to_string_t(U("response_format"))] = ModelBase::toJson(m_Response_format);
+    }
+    if(m_SeedIsSet)
+    {
+        val[utility::conversions::to_string_t(U("seed"))] = ModelBase::toJson(m_Seed);
+    }
+    if(m_StopIsSet)
+    {
+        val[utility::conversions::to_string_t(U("stop"))] = ModelBase::toJson(m_Stop);
+    }
+    if(m_StreamIsSet)
+    {
+        val[utility::conversions::to_string_t(U("stream"))] = ModelBase::toJson(m_Stream);
+    }
+    if(m_TemperatureIsSet)
+    {
+        val[utility::conversions::to_string_t(U("temperature"))] = ModelBase::toJson(m_Temperature);
+    }
+    if(m_Top_pIsSet)
+    {
+        val[utility::conversions::to_string_t(U("top_p"))] = ModelBase::toJson(m_Top_p);
+    }
+    if(m_ToolsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("tools"))] = ModelBase::toJson(m_Tools);
+    }
+    if(m_Tool_choiceIsSet)
+    {
+        val[utility::conversions::to_string_t(U("tool_choice"))] = ModelBase::toJson(m_Tool_choice);
+    }
     if(m_UserIsSet)
     {
         val[utility::conversions::to_string_t(U("user"))] = ModelBase::toJson(m_User);
+    }
+    if(m_Function_callIsSet)
+    {
+        val[utility::conversions::to_string_t(U("function_call"))] = ModelBase::toJson(m_Function_call);
+    }
+    if(m_FunctionsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("functions"))] = ModelBase::toJson(m_Functions);
     }
 
     return val;
@@ -125,16 +158,6 @@ bool CreateChatCompletionRequest::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("model"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("model")));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<CreateChatCompletionRequest_model> refVal_setModel;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setModel);
-            setModel(refVal_setModel);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("messages"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("messages")));
@@ -145,24 +168,124 @@ bool CreateChatCompletionRequest::fromJson(const web::json::value& val)
             setMessages(refVal_setMessages);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("functions"))))
+    if(val.has_field(utility::conversions::to_string_t(U("model"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("functions")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("model")));
         if(!fieldValue.is_null())
         {
-            std::vector<std::shared_ptr<ChatCompletionFunctions>> refVal_setFunctions;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFunctions);
-            setFunctions(refVal_setFunctions);
+            std::shared_ptr<CreateChatCompletionRequest_model> refVal_setModel;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setModel);
+            setModel(refVal_setModel);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("function_call"))))
+    if(val.has_field(utility::conversions::to_string_t(U("frequency_penalty"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("function_call")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("frequency_penalty")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<CreateChatCompletionRequest_function_call> refVal_setFunctionCall;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFunctionCall);
-            setFunctionCall(refVal_setFunctionCall);
+            double refVal_setFrequencyPenalty;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFrequencyPenalty);
+            setFrequencyPenalty(refVal_setFrequencyPenalty);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("logit_bias"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("logit_bias")));
+        if(!fieldValue.is_null())
+        {
+            std::map<utility::string_t, int32_t> refVal_setLogitBias;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setLogitBias);
+            setLogitBias(refVal_setLogitBias);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("logprobs"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("logprobs")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setLogprobs;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setLogprobs);
+            setLogprobs(refVal_setLogprobs);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("top_logprobs"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("top_logprobs")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setTopLogprobs;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTopLogprobs);
+            setTopLogprobs(refVal_setTopLogprobs);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("max_tokens"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("max_tokens")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setMaxTokens;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMaxTokens);
+            setMaxTokens(refVal_setMaxTokens);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("n"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("n")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setN;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setN);
+            setN(refVal_setN);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("presence_penalty"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("presence_penalty")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setPresencePenalty;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPresencePenalty);
+            setPresencePenalty(refVal_setPresencePenalty);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("response_format"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("response_format")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<CreateChatCompletionRequest_response_format> refVal_setResponseFormat;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setResponseFormat);
+            setResponseFormat(refVal_setResponseFormat);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("seed"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("seed")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setSeed;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSeed);
+            setSeed(refVal_setSeed);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("stop"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("stop")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<CreateChatCompletionRequest_stop> refVal_setStop;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStop);
+            setStop(refVal_setStop);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("stream"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("stream")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setStream;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStream);
+            setStream(refVal_setStream);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("temperature"))))
@@ -185,74 +308,24 @@ bool CreateChatCompletionRequest::fromJson(const web::json::value& val)
             setTopP(refVal_setTopP);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("n"))))
+    if(val.has_field(utility::conversions::to_string_t(U("tools"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("n")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tools")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setN;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setN);
-            setN(refVal_setN);
+            std::vector<std::shared_ptr<ChatCompletionTool>> refVal_setTools;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTools);
+            setTools(refVal_setTools);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("stream"))))
+    if(val.has_field(utility::conversions::to_string_t(U("tool_choice"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("stream")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tool_choice")));
         if(!fieldValue.is_null())
         {
-            bool refVal_setStream;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setStream);
-            setStream(refVal_setStream);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("stop"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("stop")));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<CreateChatCompletionRequest_stop> refVal_setStop;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setStop);
-            setStop(refVal_setStop);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("max_tokens"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("max_tokens")));
-        if(!fieldValue.is_null())
-        {
-            int32_t refVal_setMaxTokens;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setMaxTokens);
-            setMaxTokens(refVal_setMaxTokens);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("presence_penalty"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("presence_penalty")));
-        if(!fieldValue.is_null())
-        {
-            double refVal_setPresencePenalty;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPresencePenalty);
-            setPresencePenalty(refVal_setPresencePenalty);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("frequency_penalty"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("frequency_penalty")));
-        if(!fieldValue.is_null())
-        {
-            double refVal_setFrequencyPenalty;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFrequencyPenalty);
-            setFrequencyPenalty(refVal_setFrequencyPenalty);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("logit_bias"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("logit_bias")));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<Object> refVal_setLogitBias;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setLogitBias);
-            setLogitBias(refVal_setLogitBias);
+            std::shared_ptr<ChatCompletionToolChoiceOption> refVal_setToolChoice;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setToolChoice);
+            setToolChoice(refVal_setToolChoice);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("user"))))
@@ -265,6 +338,26 @@ bool CreateChatCompletionRequest::fromJson(const web::json::value& val)
             setUser(refVal_setUser);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("function_call"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("function_call")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<CreateChatCompletionRequest_function_call> refVal_setFunctionCall;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFunctionCall);
+            setFunctionCall(refVal_setFunctionCall);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("functions"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("functions")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<ChatCompletionFunctions>> refVal_setFunctions;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFunctions);
+            setFunctions(refVal_setFunctions);
+        }
+    }
     return ok;
 }
 
@@ -275,49 +368,13 @@ void CreateChatCompletionRequest::toMultipart(std::shared_ptr<MultipartFormData>
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_ModelIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("model")), m_Model));
-    }
     if(m_MessagesIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("messages")), m_Messages));
     }
-    if(m_FunctionsIsSet)
+    if(m_ModelIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("functions")), m_Functions));
-    }
-    if(m_Function_callIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("function_call")), m_Function_call));
-    }
-    if(m_TemperatureIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("temperature")), m_Temperature));
-    }
-    if(m_Top_pIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("top_p")), m_Top_p));
-    }
-    if(m_nIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("n")), m_n));
-    }
-    if(m_StreamIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("stream")), m_Stream));
-    }
-    if(m_StopIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("stop")), m_Stop));
-    }
-    if(m_Max_tokensIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("max_tokens")), m_Max_tokens));
-    }
-    if(m_Presence_penaltyIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("presence_penalty")), m_Presence_penalty));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("model")), m_Model));
     }
     if(m_Frequency_penaltyIsSet)
     {
@@ -327,9 +384,69 @@ void CreateChatCompletionRequest::toMultipart(std::shared_ptr<MultipartFormData>
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logit_bias")), m_Logit_bias));
     }
+    if(m_LogprobsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logprobs")), m_Logprobs));
+    }
+    if(m_Top_logprobsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("top_logprobs")), m_Top_logprobs));
+    }
+    if(m_Max_tokensIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("max_tokens")), m_Max_tokens));
+    }
+    if(m_nIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("n")), m_n));
+    }
+    if(m_Presence_penaltyIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("presence_penalty")), m_Presence_penalty));
+    }
+    if(m_Response_formatIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("response_format")), m_Response_format));
+    }
+    if(m_SeedIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("seed")), m_Seed));
+    }
+    if(m_StopIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("stop")), m_Stop));
+    }
+    if(m_StreamIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("stream")), m_Stream));
+    }
+    if(m_TemperatureIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("temperature")), m_Temperature));
+    }
+    if(m_Top_pIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("top_p")), m_Top_p));
+    }
+    if(m_ToolsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tools")), m_Tools));
+    }
+    if(m_Tool_choiceIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tool_choice")), m_Tool_choice));
+    }
     if(m_UserIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("user")), m_User));
+    }
+    if(m_Function_callIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("function_call")), m_Function_call));
+    }
+    if(m_FunctionsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("functions")), m_Functions));
     }
 }
 
@@ -342,29 +459,83 @@ bool CreateChatCompletionRequest::fromMultiPart(std::shared_ptr<MultipartFormDat
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("model"))))
-    {
-        std::shared_ptr<CreateChatCompletionRequest_model> refVal_setModel;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("model"))), refVal_setModel );
-        setModel(refVal_setModel);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("messages"))))
     {
         std::vector<std::shared_ptr<ChatCompletionRequestMessage>> refVal_setMessages;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("messages"))), refVal_setMessages );
         setMessages(refVal_setMessages);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("functions"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("model"))))
     {
-        std::vector<std::shared_ptr<ChatCompletionFunctions>> refVal_setFunctions;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("functions"))), refVal_setFunctions );
-        setFunctions(refVal_setFunctions);
+        std::shared_ptr<CreateChatCompletionRequest_model> refVal_setModel;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("model"))), refVal_setModel );
+        setModel(refVal_setModel);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("function_call"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("frequency_penalty"))))
     {
-        std::shared_ptr<CreateChatCompletionRequest_function_call> refVal_setFunctionCall;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("function_call"))), refVal_setFunctionCall );
-        setFunctionCall(refVal_setFunctionCall);
+        double refVal_setFrequencyPenalty;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("frequency_penalty"))), refVal_setFrequencyPenalty );
+        setFrequencyPenalty(refVal_setFrequencyPenalty);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("logit_bias"))))
+    {
+        std::map<utility::string_t, int32_t> refVal_setLogitBias;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logit_bias"))), refVal_setLogitBias );
+        setLogitBias(refVal_setLogitBias);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("logprobs"))))
+    {
+        bool refVal_setLogprobs;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logprobs"))), refVal_setLogprobs );
+        setLogprobs(refVal_setLogprobs);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("top_logprobs"))))
+    {
+        int32_t refVal_setTopLogprobs;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("top_logprobs"))), refVal_setTopLogprobs );
+        setTopLogprobs(refVal_setTopLogprobs);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("max_tokens"))))
+    {
+        int32_t refVal_setMaxTokens;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("max_tokens"))), refVal_setMaxTokens );
+        setMaxTokens(refVal_setMaxTokens);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("n"))))
+    {
+        int32_t refVal_setN;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("n"))), refVal_setN );
+        setN(refVal_setN);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("presence_penalty"))))
+    {
+        double refVal_setPresencePenalty;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("presence_penalty"))), refVal_setPresencePenalty );
+        setPresencePenalty(refVal_setPresencePenalty);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("response_format"))))
+    {
+        std::shared_ptr<CreateChatCompletionRequest_response_format> refVal_setResponseFormat;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("response_format"))), refVal_setResponseFormat );
+        setResponseFormat(refVal_setResponseFormat);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("seed"))))
+    {
+        int32_t refVal_setSeed;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("seed"))), refVal_setSeed );
+        setSeed(refVal_setSeed);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("stop"))))
+    {
+        std::shared_ptr<CreateChatCompletionRequest_stop> refVal_setStop;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stop"))), refVal_setStop );
+        setStop(refVal_setStop);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("stream"))))
+    {
+        bool refVal_setStream;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stream"))), refVal_setStream );
+        setStream(refVal_setStream);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("temperature"))))
     {
@@ -378,47 +549,17 @@ bool CreateChatCompletionRequest::fromMultiPart(std::shared_ptr<MultipartFormDat
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("top_p"))), refVal_setTopP );
         setTopP(refVal_setTopP);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("n"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("tools"))))
     {
-        int32_t refVal_setN;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("n"))), refVal_setN );
-        setN(refVal_setN);
+        std::vector<std::shared_ptr<ChatCompletionTool>> refVal_setTools;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tools"))), refVal_setTools );
+        setTools(refVal_setTools);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("stream"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("tool_choice"))))
     {
-        bool refVal_setStream;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stream"))), refVal_setStream );
-        setStream(refVal_setStream);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("stop"))))
-    {
-        std::shared_ptr<CreateChatCompletionRequest_stop> refVal_setStop;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stop"))), refVal_setStop );
-        setStop(refVal_setStop);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("max_tokens"))))
-    {
-        int32_t refVal_setMaxTokens;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("max_tokens"))), refVal_setMaxTokens );
-        setMaxTokens(refVal_setMaxTokens);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("presence_penalty"))))
-    {
-        double refVal_setPresencePenalty;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("presence_penalty"))), refVal_setPresencePenalty );
-        setPresencePenalty(refVal_setPresencePenalty);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("frequency_penalty"))))
-    {
-        double refVal_setFrequencyPenalty;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("frequency_penalty"))), refVal_setFrequencyPenalty );
-        setFrequencyPenalty(refVal_setFrequencyPenalty);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("logit_bias"))))
-    {
-        std::shared_ptr<Object> refVal_setLogitBias;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logit_bias"))), refVal_setLogitBias );
-        setLogitBias(refVal_setLogitBias);
+        std::shared_ptr<ChatCompletionToolChoiceOption> refVal_setToolChoice;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tool_choice"))), refVal_setToolChoice );
+        setToolChoice(refVal_setToolChoice);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("user"))))
     {
@@ -426,29 +567,21 @@ bool CreateChatCompletionRequest::fromMultiPart(std::shared_ptr<MultipartFormDat
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("user"))), refVal_setUser );
         setUser(refVal_setUser);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("function_call"))))
+    {
+        std::shared_ptr<CreateChatCompletionRequest_function_call> refVal_setFunctionCall;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("function_call"))), refVal_setFunctionCall );
+        setFunctionCall(refVal_setFunctionCall);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("functions"))))
+    {
+        std::vector<std::shared_ptr<ChatCompletionFunctions>> refVal_setFunctions;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("functions"))), refVal_setFunctions );
+        setFunctions(refVal_setFunctions);
+    }
     return ok;
 }
 
-std::shared_ptr<CreateChatCompletionRequest_model> CreateChatCompletionRequest::getModel() const
-{
-    return m_Model;
-}
-
-void CreateChatCompletionRequest::setModel(const std::shared_ptr<CreateChatCompletionRequest_model>& value)
-{
-    m_Model = value;
-    m_ModelIsSet = true;
-}
-
-bool CreateChatCompletionRequest::modelIsSet() const
-{
-    return m_ModelIsSet;
-}
-
-void CreateChatCompletionRequest::unsetModel()
-{
-    m_ModelIsSet = false;
-}
 std::vector<std::shared_ptr<ChatCompletionRequestMessage>>& CreateChatCompletionRequest::getMessages()
 {
     return m_Messages;
@@ -469,45 +602,245 @@ void CreateChatCompletionRequest::unsetMessages()
 {
     m_MessagesIsSet = false;
 }
-std::vector<std::shared_ptr<ChatCompletionFunctions>>& CreateChatCompletionRequest::getFunctions()
+std::shared_ptr<CreateChatCompletionRequest_model> CreateChatCompletionRequest::getModel() const
 {
-    return m_Functions;
+    return m_Model;
 }
 
-void CreateChatCompletionRequest::setFunctions(const std::vector<std::shared_ptr<ChatCompletionFunctions>>& value)
+void CreateChatCompletionRequest::setModel(const std::shared_ptr<CreateChatCompletionRequest_model>& value)
 {
-    m_Functions = value;
-    m_FunctionsIsSet = true;
+    m_Model = value;
+    m_ModelIsSet = true;
 }
 
-bool CreateChatCompletionRequest::functionsIsSet() const
+bool CreateChatCompletionRequest::modelIsSet() const
 {
-    return m_FunctionsIsSet;
+    return m_ModelIsSet;
 }
 
-void CreateChatCompletionRequest::unsetFunctions()
+void CreateChatCompletionRequest::unsetModel()
 {
-    m_FunctionsIsSet = false;
+    m_ModelIsSet = false;
 }
-std::shared_ptr<CreateChatCompletionRequest_function_call> CreateChatCompletionRequest::getFunctionCall() const
+double CreateChatCompletionRequest::getFrequencyPenalty() const
 {
-    return m_Function_call;
-}
-
-void CreateChatCompletionRequest::setFunctionCall(const std::shared_ptr<CreateChatCompletionRequest_function_call>& value)
-{
-    m_Function_call = value;
-    m_Function_callIsSet = true;
+    return m_Frequency_penalty;
 }
 
-bool CreateChatCompletionRequest::functionCallIsSet() const
+void CreateChatCompletionRequest::setFrequencyPenalty(double value)
 {
-    return m_Function_callIsSet;
+    m_Frequency_penalty = value;
+    m_Frequency_penaltyIsSet = true;
 }
 
-void CreateChatCompletionRequest::unsetFunction_call()
+bool CreateChatCompletionRequest::frequencyPenaltyIsSet() const
 {
-    m_Function_callIsSet = false;
+    return m_Frequency_penaltyIsSet;
+}
+
+void CreateChatCompletionRequest::unsetFrequency_penalty()
+{
+    m_Frequency_penaltyIsSet = false;
+}
+std::map<utility::string_t, int32_t>& CreateChatCompletionRequest::getLogitBias()
+{
+    return m_Logit_bias;
+}
+
+void CreateChatCompletionRequest::setLogitBias(std::map<utility::string_t, int32_t> value)
+{
+    m_Logit_bias = value;
+    m_Logit_biasIsSet = true;
+}
+
+bool CreateChatCompletionRequest::logitBiasIsSet() const
+{
+    return m_Logit_biasIsSet;
+}
+
+void CreateChatCompletionRequest::unsetLogit_bias()
+{
+    m_Logit_biasIsSet = false;
+}
+bool CreateChatCompletionRequest::isLogprobs() const
+{
+    return m_Logprobs;
+}
+
+void CreateChatCompletionRequest::setLogprobs(bool value)
+{
+    m_Logprobs = value;
+    m_LogprobsIsSet = true;
+}
+
+bool CreateChatCompletionRequest::logprobsIsSet() const
+{
+    return m_LogprobsIsSet;
+}
+
+void CreateChatCompletionRequest::unsetLogprobs()
+{
+    m_LogprobsIsSet = false;
+}
+int32_t CreateChatCompletionRequest::getTopLogprobs() const
+{
+    return m_Top_logprobs;
+}
+
+void CreateChatCompletionRequest::setTopLogprobs(int32_t value)
+{
+    m_Top_logprobs = value;
+    m_Top_logprobsIsSet = true;
+}
+
+bool CreateChatCompletionRequest::topLogprobsIsSet() const
+{
+    return m_Top_logprobsIsSet;
+}
+
+void CreateChatCompletionRequest::unsetTop_logprobs()
+{
+    m_Top_logprobsIsSet = false;
+}
+int32_t CreateChatCompletionRequest::getMaxTokens() const
+{
+    return m_Max_tokens;
+}
+
+void CreateChatCompletionRequest::setMaxTokens(int32_t value)
+{
+    m_Max_tokens = value;
+    m_Max_tokensIsSet = true;
+}
+
+bool CreateChatCompletionRequest::maxTokensIsSet() const
+{
+    return m_Max_tokensIsSet;
+}
+
+void CreateChatCompletionRequest::unsetMax_tokens()
+{
+    m_Max_tokensIsSet = false;
+}
+int32_t CreateChatCompletionRequest::getN() const
+{
+    return m_n;
+}
+
+void CreateChatCompletionRequest::setN(int32_t value)
+{
+    m_n = value;
+    m_nIsSet = true;
+}
+
+bool CreateChatCompletionRequest::NIsSet() const
+{
+    return m_nIsSet;
+}
+
+void CreateChatCompletionRequest::unsetn()
+{
+    m_nIsSet = false;
+}
+double CreateChatCompletionRequest::getPresencePenalty() const
+{
+    return m_Presence_penalty;
+}
+
+void CreateChatCompletionRequest::setPresencePenalty(double value)
+{
+    m_Presence_penalty = value;
+    m_Presence_penaltyIsSet = true;
+}
+
+bool CreateChatCompletionRequest::presencePenaltyIsSet() const
+{
+    return m_Presence_penaltyIsSet;
+}
+
+void CreateChatCompletionRequest::unsetPresence_penalty()
+{
+    m_Presence_penaltyIsSet = false;
+}
+std::shared_ptr<CreateChatCompletionRequest_response_format> CreateChatCompletionRequest::getResponseFormat() const
+{
+    return m_Response_format;
+}
+
+void CreateChatCompletionRequest::setResponseFormat(const std::shared_ptr<CreateChatCompletionRequest_response_format>& value)
+{
+    m_Response_format = value;
+    m_Response_formatIsSet = true;
+}
+
+bool CreateChatCompletionRequest::responseFormatIsSet() const
+{
+    return m_Response_formatIsSet;
+}
+
+void CreateChatCompletionRequest::unsetResponse_format()
+{
+    m_Response_formatIsSet = false;
+}
+int32_t CreateChatCompletionRequest::getSeed() const
+{
+    return m_Seed;
+}
+
+void CreateChatCompletionRequest::setSeed(int32_t value)
+{
+    m_Seed = value;
+    m_SeedIsSet = true;
+}
+
+bool CreateChatCompletionRequest::seedIsSet() const
+{
+    return m_SeedIsSet;
+}
+
+void CreateChatCompletionRequest::unsetSeed()
+{
+    m_SeedIsSet = false;
+}
+std::shared_ptr<CreateChatCompletionRequest_stop> CreateChatCompletionRequest::getStop() const
+{
+    return m_Stop;
+}
+
+void CreateChatCompletionRequest::setStop(const std::shared_ptr<CreateChatCompletionRequest_stop>& value)
+{
+    m_Stop = value;
+    m_StopIsSet = true;
+}
+
+bool CreateChatCompletionRequest::stopIsSet() const
+{
+    return m_StopIsSet;
+}
+
+void CreateChatCompletionRequest::unsetStop()
+{
+    m_StopIsSet = false;
+}
+bool CreateChatCompletionRequest::isStream() const
+{
+    return m_Stream;
+}
+
+void CreateChatCompletionRequest::setStream(bool value)
+{
+    m_Stream = value;
+    m_StreamIsSet = true;
+}
+
+bool CreateChatCompletionRequest::streamIsSet() const
+{
+    return m_StreamIsSet;
+}
+
+void CreateChatCompletionRequest::unsetStream()
+{
+    m_StreamIsSet = false;
 }
 double CreateChatCompletionRequest::getTemperature() const
 {
@@ -549,145 +882,45 @@ void CreateChatCompletionRequest::unsetTop_p()
 {
     m_Top_pIsSet = false;
 }
-int32_t CreateChatCompletionRequest::getN() const
+std::vector<std::shared_ptr<ChatCompletionTool>>& CreateChatCompletionRequest::getTools()
 {
-    return m_n;
+    return m_Tools;
 }
 
-void CreateChatCompletionRequest::setN(int32_t value)
+void CreateChatCompletionRequest::setTools(const std::vector<std::shared_ptr<ChatCompletionTool>>& value)
 {
-    m_n = value;
-    m_nIsSet = true;
+    m_Tools = value;
+    m_ToolsIsSet = true;
 }
 
-bool CreateChatCompletionRequest::NIsSet() const
+bool CreateChatCompletionRequest::toolsIsSet() const
 {
-    return m_nIsSet;
+    return m_ToolsIsSet;
 }
 
-void CreateChatCompletionRequest::unsetn()
+void CreateChatCompletionRequest::unsetTools()
 {
-    m_nIsSet = false;
+    m_ToolsIsSet = false;
 }
-bool CreateChatCompletionRequest::isStream() const
+std::shared_ptr<ChatCompletionToolChoiceOption> CreateChatCompletionRequest::getToolChoice() const
 {
-    return m_Stream;
-}
-
-void CreateChatCompletionRequest::setStream(bool value)
-{
-    m_Stream = value;
-    m_StreamIsSet = true;
+    return m_Tool_choice;
 }
 
-bool CreateChatCompletionRequest::streamIsSet() const
+void CreateChatCompletionRequest::setToolChoice(const std::shared_ptr<ChatCompletionToolChoiceOption>& value)
 {
-    return m_StreamIsSet;
+    m_Tool_choice = value;
+    m_Tool_choiceIsSet = true;
 }
 
-void CreateChatCompletionRequest::unsetStream()
+bool CreateChatCompletionRequest::toolChoiceIsSet() const
 {
-    m_StreamIsSet = false;
-}
-std::shared_ptr<CreateChatCompletionRequest_stop> CreateChatCompletionRequest::getStop() const
-{
-    return m_Stop;
+    return m_Tool_choiceIsSet;
 }
 
-void CreateChatCompletionRequest::setStop(const std::shared_ptr<CreateChatCompletionRequest_stop>& value)
+void CreateChatCompletionRequest::unsetTool_choice()
 {
-    m_Stop = value;
-    m_StopIsSet = true;
-}
-
-bool CreateChatCompletionRequest::stopIsSet() const
-{
-    return m_StopIsSet;
-}
-
-void CreateChatCompletionRequest::unsetStop()
-{
-    m_StopIsSet = false;
-}
-int32_t CreateChatCompletionRequest::getMaxTokens() const
-{
-    return m_Max_tokens;
-}
-
-void CreateChatCompletionRequest::setMaxTokens(int32_t value)
-{
-    m_Max_tokens = value;
-    m_Max_tokensIsSet = true;
-}
-
-bool CreateChatCompletionRequest::maxTokensIsSet() const
-{
-    return m_Max_tokensIsSet;
-}
-
-void CreateChatCompletionRequest::unsetMax_tokens()
-{
-    m_Max_tokensIsSet = false;
-}
-double CreateChatCompletionRequest::getPresencePenalty() const
-{
-    return m_Presence_penalty;
-}
-
-void CreateChatCompletionRequest::setPresencePenalty(double value)
-{
-    m_Presence_penalty = value;
-    m_Presence_penaltyIsSet = true;
-}
-
-bool CreateChatCompletionRequest::presencePenaltyIsSet() const
-{
-    return m_Presence_penaltyIsSet;
-}
-
-void CreateChatCompletionRequest::unsetPresence_penalty()
-{
-    m_Presence_penaltyIsSet = false;
-}
-double CreateChatCompletionRequest::getFrequencyPenalty() const
-{
-    return m_Frequency_penalty;
-}
-
-void CreateChatCompletionRequest::setFrequencyPenalty(double value)
-{
-    m_Frequency_penalty = value;
-    m_Frequency_penaltyIsSet = true;
-}
-
-bool CreateChatCompletionRequest::frequencyPenaltyIsSet() const
-{
-    return m_Frequency_penaltyIsSet;
-}
-
-void CreateChatCompletionRequest::unsetFrequency_penalty()
-{
-    m_Frequency_penaltyIsSet = false;
-}
-std::shared_ptr<Object> CreateChatCompletionRequest::getLogitBias() const
-{
-    return m_Logit_bias;
-}
-
-void CreateChatCompletionRequest::setLogitBias(const std::shared_ptr<Object>& value)
-{
-    m_Logit_bias = value;
-    m_Logit_biasIsSet = true;
-}
-
-bool CreateChatCompletionRequest::logitBiasIsSet() const
-{
-    return m_Logit_biasIsSet;
-}
-
-void CreateChatCompletionRequest::unsetLogit_bias()
-{
-    m_Logit_biasIsSet = false;
+    m_Tool_choiceIsSet = false;
 }
 utility::string_t CreateChatCompletionRequest::getUser() const
 {
@@ -708,6 +941,46 @@ bool CreateChatCompletionRequest::userIsSet() const
 void CreateChatCompletionRequest::unsetUser()
 {
     m_UserIsSet = false;
+}
+std::shared_ptr<CreateChatCompletionRequest_function_call> CreateChatCompletionRequest::getFunctionCall() const
+{
+    return m_Function_call;
+}
+
+void CreateChatCompletionRequest::setFunctionCall(const std::shared_ptr<CreateChatCompletionRequest_function_call>& value)
+{
+    m_Function_call = value;
+    m_Function_callIsSet = true;
+}
+
+bool CreateChatCompletionRequest::functionCallIsSet() const
+{
+    return m_Function_callIsSet;
+}
+
+void CreateChatCompletionRequest::unsetFunction_call()
+{
+    m_Function_callIsSet = false;
+}
+std::vector<std::shared_ptr<ChatCompletionFunctions>>& CreateChatCompletionRequest::getFunctions()
+{
+    return m_Functions;
+}
+
+void CreateChatCompletionRequest::setFunctions(const std::vector<std::shared_ptr<ChatCompletionFunctions>>& value)
+{
+    m_Functions = value;
+    m_FunctionsIsSet = true;
+}
+
+bool CreateChatCompletionRequest::functionsIsSet() const
+{
+    return m_FunctionsIsSet;
+}
+
+void CreateChatCompletionRequest::unsetFunctions()
+{
+    m_FunctionsIsSet = false;
 }
 }
 }

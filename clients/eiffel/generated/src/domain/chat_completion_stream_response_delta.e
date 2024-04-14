@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -19,22 +19,16 @@ class CHAT_COMPLETION_STREAM_RESPONSE_DELTA
 
 feature --Access
 
-    role: detachable STRING_32
-      -- The role of the author of this message.
     content: detachable STRING_32
       -- The contents of the chunk message.
-    function_call: detachable CHAT_COMPLETION_REQUEST_MESSAGE_FUNCTION_CALL
+    function_call: detachable CHAT_COMPLETION_STREAM_RESPONSE_DELTA_FUNCTION_CALL
       
+    tool_calls: detachable LIST [CHAT_COMPLETION_MESSAGE_TOOL_CALL_CHUNK]
+      
+    role: detachable STRING_32
+      -- The role of the author of this message.
 
 feature -- Change Element
-
-    set_role (a_name: like role)
-        -- Set 'role' with 'a_name'.
-      do
-        role := a_name
-      ensure
-        role_set: role = a_name
-      end
 
     set_content (a_name: like content)
         -- Set 'content' with 'a_name'.
@@ -52,6 +46,22 @@ feature -- Change Element
         function_call_set: function_call = a_name
       end
 
+    set_tool_calls (a_name: like tool_calls)
+        -- Set 'tool_calls' with 'a_name'.
+      do
+        tool_calls := a_name
+      ensure
+        tool_calls_set: tool_calls = a_name
+      end
+
+    set_role (a_name: like role)
+        -- Set 'role' with 'a_name'.
+      do
+        role := a_name
+      ensure
+        role_set: role = a_name
+      end
+
 
  feature -- Status Report
 
@@ -60,11 +70,6 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass CHAT_COMPLETION_STREAM_RESPONSE_DELTA%N")
-        if attached role as l_role then
-          Result.append ("%Nrole:")
-          Result.append (l_role.out)
-          Result.append ("%N")
-        end
         if attached content as l_content then
           Result.append ("%Ncontent:")
           Result.append (l_content.out)
@@ -73,6 +78,18 @@ feature -- Change Element
         if attached function_call as l_function_call then
           Result.append ("%Nfunction_call:")
           Result.append (l_function_call.out)
+          Result.append ("%N")
+        end
+        if attached tool_calls as l_tool_calls then
+          across l_tool_calls as ic loop
+            Result.append ("%N tool_calls:")
+            Result.append (ic.item.out)
+            Result.append ("%N")
+          end
+        end
+        if attached role as l_role then
+          Result.append ("%Nrole:")
+          Result.append (l_role.out)
           Result.append ("%N")
         end
       end

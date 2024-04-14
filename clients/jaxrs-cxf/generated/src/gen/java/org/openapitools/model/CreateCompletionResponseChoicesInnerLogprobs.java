@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -16,37 +17,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CreateCompletionResponseChoicesInnerLogprobs  {
   
   @ApiModelProperty(value = "")
-  private List<String> tokens;
+  private List<Integer> textOffset;
 
   @ApiModelProperty(value = "")
   @Valid
   private List<BigDecimal> tokenLogprobs;
 
   @ApiModelProperty(value = "")
-  private List<Object> topLogprobs;
+  private List<String> tokens;
 
   @ApiModelProperty(value = "")
-  private List<Integer> textOffset;
+  @Valid
+  private List<Map<String, BigDecimal>> topLogprobs;
  /**
-   * Get tokens
-   * @return tokens
+   * Get textOffset
+   * @return textOffset
   **/
-  @JsonProperty("tokens")
-  public List<String> getTokens() {
-    return tokens;
+  @JsonProperty("text_offset")
+  public List<Integer> getTextOffset() {
+    return textOffset;
   }
 
-  public void setTokens(List<String> tokens) {
-    this.tokens = tokens;
+  public void setTextOffset(List<Integer> textOffset) {
+    this.textOffset = textOffset;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs tokens(List<String> tokens) {
-    this.tokens = tokens;
+  public CreateCompletionResponseChoicesInnerLogprobs textOffset(List<Integer> textOffset) {
+    this.textOffset = textOffset;
     return this;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs addTokensItem(String tokensItem) {
-    this.tokens.add(tokensItem);
+  public CreateCompletionResponseChoicesInnerLogprobs addTextOffsetItem(Integer textOffsetItem) {
+    this.textOffset.add(textOffsetItem);
     return this;
   }
 
@@ -74,48 +76,48 @@ public class CreateCompletionResponseChoicesInnerLogprobs  {
   }
 
  /**
-   * Get topLogprobs
-   * @return topLogprobs
+   * Get tokens
+   * @return tokens
   **/
-  @JsonProperty("top_logprobs")
-  public List<Object> getTopLogprobs() {
-    return topLogprobs;
+  @JsonProperty("tokens")
+  public List<String> getTokens() {
+    return tokens;
   }
 
-  public void setTopLogprobs(List<Object> topLogprobs) {
-    this.topLogprobs = topLogprobs;
+  public void setTokens(List<String> tokens) {
+    this.tokens = tokens;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs topLogprobs(List<Object> topLogprobs) {
-    this.topLogprobs = topLogprobs;
+  public CreateCompletionResponseChoicesInnerLogprobs tokens(List<String> tokens) {
+    this.tokens = tokens;
     return this;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs addTopLogprobsItem(Object topLogprobsItem) {
-    this.topLogprobs.add(topLogprobsItem);
+  public CreateCompletionResponseChoicesInnerLogprobs addTokensItem(String tokensItem) {
+    this.tokens.add(tokensItem);
     return this;
   }
 
  /**
-   * Get textOffset
-   * @return textOffset
+   * Get topLogprobs
+   * @return topLogprobs
   **/
-  @JsonProperty("text_offset")
-  public List<Integer> getTextOffset() {
-    return textOffset;
+  @JsonProperty("top_logprobs")
+  public List<Map<String, BigDecimal>> getTopLogprobs() {
+    return topLogprobs;
   }
 
-  public void setTextOffset(List<Integer> textOffset) {
-    this.textOffset = textOffset;
+  public void setTopLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
+    this.topLogprobs = topLogprobs;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs textOffset(List<Integer> textOffset) {
-    this.textOffset = textOffset;
+  public CreateCompletionResponseChoicesInnerLogprobs topLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
+    this.topLogprobs = topLogprobs;
     return this;
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs addTextOffsetItem(Integer textOffsetItem) {
-    this.textOffset.add(textOffsetItem);
+  public CreateCompletionResponseChoicesInnerLogprobs addTopLogprobsItem(Map<String, BigDecimal> topLogprobsItem) {
+    this.topLogprobs.add(topLogprobsItem);
     return this;
   }
 
@@ -128,15 +130,15 @@ public class CreateCompletionResponseChoicesInnerLogprobs  {
       return false;
     }
     CreateCompletionResponseChoicesInnerLogprobs createCompletionResponseChoicesInnerLogprobs = (CreateCompletionResponseChoicesInnerLogprobs) o;
-    return Objects.equals(this.tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+    return Objects.equals(this.textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset) &&
         Objects.equals(this.tokenLogprobs, createCompletionResponseChoicesInnerLogprobs.tokenLogprobs) &&
-        Objects.equals(this.topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs) &&
-        Objects.equals(this.textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset);
+        Objects.equals(this.tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+        Objects.equals(this.topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tokens, tokenLogprobs, topLogprobs, textOffset);
+    return Objects.hash(textOffset, tokenLogprobs, tokens, topLogprobs);
   }
 
   @Override
@@ -144,10 +146,10 @@ public class CreateCompletionResponseChoicesInnerLogprobs  {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInnerLogprobs {\n");
     
-    sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
-    sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
-    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("    textOffset: ").append(toIndentedString(textOffset)).append("\n");
+    sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
+    sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
+    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

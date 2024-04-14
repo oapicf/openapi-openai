@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -41,15 +41,15 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    QString getName() const;
-    void setName(const QString &name);
-    bool is_name_Set() const;
-    bool is_name_Valid() const;
-
     QString getDescription() const;
     void setDescription(const QString &description);
     bool is_description_Set() const;
     bool is_description_Valid() const;
+
+    QString getName() const;
+    void setName(const QString &name);
+    bool is_name_Set() const;
+    bool is_name_Valid() const;
 
     QMap<QString, QJsonValue> getParameters() const;
     void setParameters(const QMap<QString, QJsonValue> &parameters);
@@ -62,13 +62,13 @@ public:
 private:
     void initializeModel();
 
-    QString m_name;
-    bool m_name_isSet;
-    bool m_name_isValid;
-
     QString m_description;
     bool m_description_isSet;
     bool m_description_isValid;
+
+    QString m_name;
+    bool m_name_isSet;
+    bool m_name_isValid;
 
     QMap<QString, QJsonValue> m_parameters;
     bool m_parameters_isSet;

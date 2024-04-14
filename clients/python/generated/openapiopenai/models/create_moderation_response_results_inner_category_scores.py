@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -25,16 +25,20 @@ from typing_extensions import Self
 
 class CreateModerationResponseResultsInnerCategoryScores(BaseModel):
     """
-    CreateModerationResponseResultsInnerCategoryScores
+    A list of the categories along with their scores as predicted by model.
     """ # noqa: E501
-    hate: Union[StrictFloat, StrictInt]
-    hate_threatening: Union[StrictFloat, StrictInt] = Field(alias="hate/threatening")
-    self_harm: Union[StrictFloat, StrictInt] = Field(alias="self-harm")
-    sexual: Union[StrictFloat, StrictInt]
-    sexual_minors: Union[StrictFloat, StrictInt] = Field(alias="sexual/minors")
-    violence: Union[StrictFloat, StrictInt]
-    violence_graphic: Union[StrictFloat, StrictInt] = Field(alias="violence/graphic")
-    __properties: ClassVar[List[str]] = ["hate", "hate/threatening", "self-harm", "sexual", "sexual/minors", "violence", "violence/graphic"]
+    hate: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'hate'.")
+    hate_threatening: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'hate/threatening'.", alias="hate/threatening")
+    harassment: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'harassment'.")
+    harassment_threatening: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'harassment/threatening'.", alias="harassment/threatening")
+    self_harm: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'self-harm'.", alias="self-harm")
+    self_harm_intent: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'self-harm/intent'.", alias="self-harm/intent")
+    self_harm_instructions: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'self-harm/instructions'.", alias="self-harm/instructions")
+    sexual: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'sexual'.")
+    sexual_minors: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'sexual/minors'.", alias="sexual/minors")
+    violence: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'violence'.")
+    violence_graphic: Union[StrictFloat, StrictInt] = Field(description="The score for the category 'violence/graphic'.", alias="violence/graphic")
+    __properties: ClassVar[List[str]] = ["hate", "hate/threatening", "harassment", "harassment/threatening", "self-harm", "self-harm/intent", "self-harm/instructions", "sexual", "sexual/minors", "violence", "violence/graphic"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +93,11 @@ class CreateModerationResponseResultsInnerCategoryScores(BaseModel):
         _obj = cls.model_validate({
             "hate": obj.get("hate"),
             "hate/threatening": obj.get("hate/threatening"),
+            "harassment": obj.get("harassment"),
+            "harassment/threatening": obj.get("harassment/threatening"),
             "self-harm": obj.get("self-harm"),
+            "self-harm/intent": obj.get("self-harm/intent"),
+            "self-harm/instructions": obj.get("self-harm/instructions"),
             "sexual": obj.get("sexual"),
             "sexual/minors": obj.get("sexual/minors"),
             "violence": obj.get("violence"),

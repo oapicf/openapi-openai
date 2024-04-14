@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -22,6 +22,7 @@
 
 
 #include <string>
+#include "CreateChatCompletionResponse_choices_inner_logprobs.h"
 #include "ChatCompletionStreamResponseDelta.h"
 #include <memory>
 #include <vector>
@@ -62,25 +63,32 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int32_t getIndex() const;
-    void setIndex(int32_t value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     ChatCompletionStreamResponseDelta getDelta() const;
     void setDelta(ChatCompletionStreamResponseDelta value);
 
     /// <summary>
     /// 
     /// </summary>
+    CreateChatCompletionResponse_choices_inner_logprobs getLogprobs() const;
+    void setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs value);
+
+    /// <summary>
+    /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
+    /// </summary>
     std::string getFinishReason() const;
     void setFinishReason(std::string value);
 
+    /// <summary>
+    /// The index of the choice in the list of choices.
+    /// </summary>
+    int32_t getIndex() const;
+    void setIndex(int32_t value);
+
 protected:
-    int32_t m_Index = 0;
     ChatCompletionStreamResponseDelta m_Delta;
+    CreateChatCompletionResponse_choices_inner_logprobs m_Logprobs;
     std::string m_Finish_reason = "";
+    int32_t m_Index = 0;
 };
 
 std::vector<CreateChatCompletionStreamResponse_choices_inner> createCreateChatCompletionStreamResponse_choices_innerVectorFromJsonString(const std::string& json);

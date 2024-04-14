@@ -9,9 +9,10 @@
 -export_type([openapi_create_chat_completion_response_choices_inner/0]).
 
 -type openapi_create_chat_completion_response_choices_inner() ::
-  [ {'index', integer() }
+  [ {'finish_reason', binary() }
+  | {'index', integer() }
   | {'message', openapi_chat_completion_response_message:openapi_chat_completion_response_message() }
-  | {'finish_reason', binary() }
+  | {'logprobs', openapi_create_chat_completion_response_choices_inner_logprobs:openapi_create_chat_completion_response_choices_inner_logprobs() }
   ].
 
 
@@ -19,9 +20,10 @@ openapi_create_chat_completion_response_choices_inner() ->
     openapi_create_chat_completion_response_choices_inner([]).
 
 openapi_create_chat_completion_response_choices_inner(Fields) ->
-  Default = [ {'index', integer() }
+  Default = [ {'finish_reason', elements([<<"stop">>, <<"length">>, <<"tool_calls">>, <<"content_filter">>, <<"function_call">>]) }
+            , {'index', integer() }
             , {'message', openapi_chat_completion_response_message:openapi_chat_completion_response_message() }
-            , {'finish_reason', elements([<<"stop">>, <<"length">>, <<"function_call">>]) }
+            , {'logprobs', openapi_create_chat_completion_response_choices_inner_logprobs:openapi_create_chat_completion_response_choices_inner_logprobs() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

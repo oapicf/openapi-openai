@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -16,8 +16,8 @@ Please update as you see appropriate
 describe("create_completion_response_choices_inner_logprobs", function()
   local openapiclient_create_completion_response_choices_inner_logprobs = require "openapiclient.model.create_completion_response_choices_inner_logprobs"
 
-  -- unit tests for the property 'tokens'
-  describe("property tokens test", function()
+  -- unit tests for the property 'text_offset'
+  describe("property text_offset test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
@@ -30,15 +30,15 @@ describe("create_completion_response_choices_inner_logprobs", function()
     end)
   end)
 
-  -- unit tests for the property 'top_logprobs'
-  describe("property top_logprobs test", function()
+  -- unit tests for the property 'tokens'
+  describe("property tokens test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for the property 'text_offset'
-  describe("property text_offset test", function()
+  -- unit tests for the property 'top_logprobs'
+  describe("property top_logprobs test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

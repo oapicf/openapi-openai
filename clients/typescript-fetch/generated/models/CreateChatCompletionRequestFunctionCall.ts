@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,13 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type { CreateChatCompletionRequestFunctionCallOneOf } from './CreateChatCompletionRequestFunctionCallOneOf';
+import type { ChatCompletionFunctionCallOption } from './ChatCompletionFunctionCallOption';
 import {
-    instanceOfCreateChatCompletionRequestFunctionCallOneOf,
-    CreateChatCompletionRequestFunctionCallOneOfFromJSON,
-    CreateChatCompletionRequestFunctionCallOneOfFromJSONTyped,
-    CreateChatCompletionRequestFunctionCallOneOfToJSON,
-} from './CreateChatCompletionRequestFunctionCallOneOf';
+    instanceOfChatCompletionFunctionCallOption,
+    ChatCompletionFunctionCallOptionFromJSON,
+    ChatCompletionFunctionCallOptionFromJSONTyped,
+    ChatCompletionFunctionCallOptionToJSON,
+} from './ChatCompletionFunctionCallOption';
 import type { string } from './string';
 import {
     instanceOfstring,
@@ -29,10 +29,18 @@ import {
 
 /**
  * @type CreateChatCompletionRequestFunctionCall
- * Controls how the model responds to function calls. "none" means the model does not call a function, and responds to the end-user. "auto" means the model can pick between an end-user or calling a function.  Specifying a particular function via `{"name":\ "my_function"}` forces the model to call that function. "none" is the default when no functions are present. "auto" is the default if functions are present.
+ * Deprecated in favor of `tool_choice`.
+ * 
+ * Controls which (if any) function is called by the model.
+ * `none` means the model will not call a function and instead generates a message.
+ * `auto` means the model can pick between generating a message or calling a function.
+ * Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.
+ * 
+ * `none` is the default when no functions are present. `auto` is the default if functions are present.
+ * 
  * @export
  */
-export type CreateChatCompletionRequestFunctionCall = CreateChatCompletionRequestFunctionCallOneOf | string;
+export type CreateChatCompletionRequestFunctionCall = ChatCompletionFunctionCallOption | string;
 
 export function CreateChatCompletionRequestFunctionCallFromJSON(json: any): CreateChatCompletionRequestFunctionCall {
     return CreateChatCompletionRequestFunctionCallFromJSONTyped(json, false);
@@ -42,7 +50,7 @@ export function CreateChatCompletionRequestFunctionCallFromJSONTyped(json: any, 
     if (json == null) {
         return json;
     }
-    return { ...CreateChatCompletionRequestFunctionCallOneOfFromJSONTyped(json, true), ...stringFromJSONTyped(json, true) };
+    return { ...ChatCompletionFunctionCallOptionFromJSONTyped(json, true), ...stringFromJSONTyped(json, true) };
 }
 
 export function CreateChatCompletionRequestFunctionCallToJSON(value?: CreateChatCompletionRequestFunctionCall | null): any {
@@ -50,8 +58,8 @@ export function CreateChatCompletionRequestFunctionCallToJSON(value?: CreateChat
         return value;
     }
 
-    if (instanceOfCreateChatCompletionRequestFunctionCallOneOf(value)) {
-        return CreateChatCompletionRequestFunctionCallOneOfToJSON(value as CreateChatCompletionRequestFunctionCallOneOf);
+    if (instanceOfChatCompletionFunctionCallOption(value)) {
+        return ChatCompletionFunctionCallOptionToJSON(value as ChatCompletionFunctionCallOption);
     }
     if (instanceOfstring(value)) {
         return stringToJSON(value as string);

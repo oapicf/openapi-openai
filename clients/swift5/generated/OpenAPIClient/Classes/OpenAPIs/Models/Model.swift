@@ -10,24 +10,32 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Describes an OpenAI model offering that can be used with the API. */
 public struct Model: Codable, JSONEncodable, Hashable {
 
+    public enum Object: String, Codable, CaseIterable {
+        case model = "model"
+    }
+    /** The model identifier, which can be referenced in the API endpoints. */
     public var id: String
-    public var object: String
+    /** The Unix timestamp (in seconds) when the model was created. */
     public var created: Int
+    /** The object type, which is always \"model\". */
+    public var object: Object
+    /** The organization that owns the model. */
     public var ownedBy: String
 
-    public init(id: String, object: String, created: Int, ownedBy: String) {
+    public init(id: String, created: Int, object: Object, ownedBy: String) {
         self.id = id
-        self.object = object
         self.created = created
+        self.object = object
         self.ownedBy = ownedBy
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
-        case object
         case created
+        case object
         case ownedBy = "owned_by"
     }
 
@@ -36,8 +44,8 @@ public struct Model: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(object, forKey: .object)
         try container.encode(created, forKey: .created)
+        try container.encode(object, forKey: .object)
         try container.encode(ownedBy, forKey: .ownedBy)
     }
 }

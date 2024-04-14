@@ -20,13 +20,13 @@ resourceTypes {
           description = ""
           optional = true
         }
-        object {
-          type =  string
+        deleted {
+          type =  boolean
           description = ""
           optional = true
         }
-        deleted {
-          type =  boolean
+        object {
+          type =  string
           description = ""
           optional = true
         }

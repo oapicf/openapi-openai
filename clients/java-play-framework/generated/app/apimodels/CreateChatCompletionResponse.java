@@ -1,7 +1,7 @@
 package apimodels;
 
+import apimodels.CompletionUsage;
 import apimodels.CreateChatCompletionResponseChoicesInner;
-import apimodels.CreateCompletionResponseUsage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * CreateChatCompletionResponse
+ * Represents a chat completion response returned by model, based on the provided input.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateChatCompletionResponse   {
   @JsonProperty("id")
@@ -22,10 +22,11 @@ public class CreateChatCompletionResponse   {
 
   private String id;
 
-  @JsonProperty("object")
+  @JsonProperty("choices")
   @NotNull
+@Valid
 
-  private String _object;
+  private List<@Valid CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
 
   @JsonProperty("created")
   @NotNull
@@ -37,16 +38,48 @@ public class CreateChatCompletionResponse   {
 
   private String model;
 
-  @JsonProperty("choices")
-  @NotNull
-@Valid
+  @JsonProperty("system_fingerprint")
+  
+  private String systemFingerprint;
 
-  private List<@Valid CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
+  /**
+   * The object type, which is always `chat.completion`.
+   */
+  public enum ObjectEnum {
+    CHAT_COMPLETION("chat.completion");
+
+    private final String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("object")
+  @NotNull
+
+  private ObjectEnum _object;
 
   @JsonProperty("usage")
   @Valid
 
-  private CreateCompletionResponseUsage usage;
+  private CompletionUsage usage;
 
   public CreateChatCompletionResponse id(String id) {
     this.id = id;
@@ -54,7 +87,7 @@ public class CreateChatCompletionResponse   {
   }
 
    /**
-   * Get id
+   * A unique identifier for the chat completion.
    * @return id
   **/
   public String getId() {
@@ -63,57 +96,6 @@ public class CreateChatCompletionResponse   {
 
   public void setId(String id) {
     this.id = id;
-  }
-
-  public CreateChatCompletionResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-  public CreateChatCompletionResponse created(Integer created) {
-    this.created = created;
-    return this;
-  }
-
-   /**
-   * Get created
-   * @return created
-  **/
-  public Integer getCreated() {
-    return created;
-  }
-
-  public void setCreated(Integer created) {
-    this.created = created;
-  }
-
-  public CreateChatCompletionResponse model(String model) {
-    this.model = model;
-    return this;
-  }
-
-   /**
-   * Get model
-   * @return model
-  **/
-  public String getModel() {
-    return model;
-  }
-
-  public void setModel(String model) {
-    this.model = model;
   }
 
   public CreateChatCompletionResponse choices(List<@Valid CreateChatCompletionResponseChoicesInner> choices) {
@@ -130,7 +112,7 @@ public class CreateChatCompletionResponse   {
   }
 
    /**
-   * Get choices
+   * A list of chat completion choices. Can be more than one if `n` is greater than 1.
    * @return choices
   **/
   public List<@Valid CreateChatCompletionResponseChoicesInner> getChoices() {
@@ -141,7 +123,75 @@ public class CreateChatCompletionResponse   {
     this.choices = choices;
   }
 
-  public CreateChatCompletionResponse usage(CreateCompletionResponseUsage usage) {
+  public CreateChatCompletionResponse created(Integer created) {
+    this.created = created;
+    return this;
+  }
+
+   /**
+   * The Unix timestamp (in seconds) of when the chat completion was created.
+   * @return created
+  **/
+  public Integer getCreated() {
+    return created;
+  }
+
+  public void setCreated(Integer created) {
+    this.created = created;
+  }
+
+  public CreateChatCompletionResponse model(String model) {
+    this.model = model;
+    return this;
+  }
+
+   /**
+   * The model used for the chat completion.
+   * @return model
+  **/
+  public String getModel() {
+    return model;
+  }
+
+  public void setModel(String model) {
+    this.model = model;
+  }
+
+  public CreateChatCompletionResponse systemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+    return this;
+  }
+
+   /**
+   * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+   * @return systemFingerprint
+  **/
+  public String getSystemFingerprint() {
+    return systemFingerprint;
+  }
+
+  public void setSystemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+  }
+
+  public CreateChatCompletionResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * The object type, which is always `chat.completion`.
+   * @return _object
+  **/
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+  public CreateChatCompletionResponse usage(CompletionUsage usage) {
     this.usage = usage;
     return this;
   }
@@ -150,11 +200,11 @@ public class CreateChatCompletionResponse   {
    * Get usage
    * @return usage
   **/
-  public CreateCompletionResponseUsage getUsage() {
+  public CompletionUsage getUsage() {
     return usage;
   }
 
-  public void setUsage(CreateCompletionResponseUsage usage) {
+  public void setUsage(CompletionUsage usage) {
     this.usage = usage;
   }
 
@@ -169,16 +219,17 @@ public class CreateChatCompletionResponse   {
     }
     CreateChatCompletionResponse createChatCompletionResponse = (CreateChatCompletionResponse) o;
     return Objects.equals(id, createChatCompletionResponse.id) &&
-        Objects.equals(_object, createChatCompletionResponse._object) &&
+        Objects.equals(choices, createChatCompletionResponse.choices) &&
         Objects.equals(created, createChatCompletionResponse.created) &&
         Objects.equals(model, createChatCompletionResponse.model) &&
-        Objects.equals(choices, createChatCompletionResponse.choices) &&
+        Objects.equals(systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
+        Objects.equals(_object, createChatCompletionResponse._object) &&
         Objects.equals(usage, createChatCompletionResponse.usage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, model, choices, usage);
+    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -188,10 +239,11 @@ public class CreateChatCompletionResponse   {
     sb.append("class CreateChatCompletionResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
-    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
+    sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("}");
     return sb.toString();

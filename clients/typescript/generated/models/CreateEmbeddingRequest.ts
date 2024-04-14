@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,8 +15,16 @@ import { CreateEmbeddingRequestModel } from '../models/CreateEmbeddingRequestMod
 import { HttpFile } from '../http/http';
 
 export class CreateEmbeddingRequest {
-    'model': CreateEmbeddingRequestModel;
     'input': CreateEmbeddingRequestInput;
+    'model': CreateEmbeddingRequestModel;
+    /**
+    * The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+    */
+    'encodingFormat'?: CreateEmbeddingRequestEncodingFormatEnum;
+    /**
+    * The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+    */
+    'dimensions'?: number;
     /**
     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
     */
@@ -26,15 +34,27 @@ export class CreateEmbeddingRequest {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "input",
+            "baseName": "input",
+            "type": "CreateEmbeddingRequestInput",
+            "format": ""
+        },
+        {
             "name": "model",
             "baseName": "model",
             "type": "CreateEmbeddingRequestModel",
             "format": ""
         },
         {
-            "name": "input",
-            "baseName": "input",
-            "type": "CreateEmbeddingRequestInput",
+            "name": "encodingFormat",
+            "baseName": "encoding_format",
+            "type": "CreateEmbeddingRequestEncodingFormatEnum",
+            "format": ""
+        },
+        {
+            "name": "dimensions",
+            "baseName": "dimensions",
+            "type": "number",
             "format": ""
         },
         {
@@ -50,5 +70,11 @@ export class CreateEmbeddingRequest {
 
     public constructor() {
     }
+}
+
+
+export enum CreateEmbeddingRequestEncodingFormatEnum {
+    Float = 'float',
+    Base64 = 'base64'
 }
 

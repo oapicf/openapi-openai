@@ -4,19 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hate** | **float32** |  | 
-**HateThreatening** | **float32** |  | 
-**SelfHarm** | **float32** |  | 
-**Sexual** | **float32** |  | 
-**SexualMinors** | **float32** |  | 
-**Violence** | **float32** |  | 
-**ViolenceGraphic** | **float32** |  | 
+**Hate** | **float32** | The score for the category &#39;hate&#39;. | 
+**HateThreatening** | **float32** | The score for the category &#39;hate/threatening&#39;. | 
+**Harassment** | **float32** | The score for the category &#39;harassment&#39;. | 
+**HarassmentThreatening** | **float32** | The score for the category &#39;harassment/threatening&#39;. | 
+**SelfHarm** | **float32** | The score for the category &#39;self-harm&#39;. | 
+**SelfHarmIntent** | **float32** | The score for the category &#39;self-harm/intent&#39;. | 
+**SelfHarmInstructions** | **float32** | The score for the category &#39;self-harm/instructions&#39;. | 
+**Sexual** | **float32** | The score for the category &#39;sexual&#39;. | 
+**SexualMinors** | **float32** | The score for the category &#39;sexual/minors&#39;. | 
+**Violence** | **float32** | The score for the category &#39;violence&#39;. | 
+**ViolenceGraphic** | **float32** | The score for the category &#39;violence/graphic&#39;. | 
 
 ## Methods
 
 ### NewCreateModerationResponseResultsInnerCategoryScores
 
-`func NewCreateModerationResponseResultsInnerCategoryScores(hate float32, hateThreatening float32, selfHarm float32, sexual float32, sexualMinors float32, violence float32, violenceGraphic float32, ) *CreateModerationResponseResultsInnerCategoryScores`
+`func NewCreateModerationResponseResultsInnerCategoryScores(hate float32, hateThreatening float32, harassment float32, harassmentThreatening float32, selfHarm float32, selfHarmIntent float32, selfHarmInstructions float32, sexual float32, sexualMinors float32, violence float32, violenceGraphic float32, ) *CreateModerationResponseResultsInnerCategoryScores`
 
 NewCreateModerationResponseResultsInnerCategoryScores instantiates a new CreateModerationResponseResultsInnerCategoryScores object
 This constructor will assign default values to properties that have it defined,
@@ -71,6 +75,46 @@ and a boolean to check if the value has been set.
 SetHateThreatening sets HateThreatening field to given value.
 
 
+### GetHarassment
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetHarassment() float32`
+
+GetHarassment returns the Harassment field if non-nil, zero value otherwise.
+
+### GetHarassmentOk
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetHarassmentOk() (*float32, bool)`
+
+GetHarassmentOk returns a tuple with the Harassment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHarassment
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) SetHarassment(v float32)`
+
+SetHarassment sets Harassment field to given value.
+
+
+### GetHarassmentThreatening
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetHarassmentThreatening() float32`
+
+GetHarassmentThreatening returns the HarassmentThreatening field if non-nil, zero value otherwise.
+
+### GetHarassmentThreateningOk
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetHarassmentThreateningOk() (*float32, bool)`
+
+GetHarassmentThreateningOk returns a tuple with the HarassmentThreatening field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHarassmentThreatening
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) SetHarassmentThreatening(v float32)`
+
+SetHarassmentThreatening sets HarassmentThreatening field to given value.
+
+
 ### GetSelfHarm
 
 `func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarm() float32`
@@ -89,6 +133,46 @@ and a boolean to check if the value has been set.
 `func (o *CreateModerationResponseResultsInnerCategoryScores) SetSelfHarm(v float32)`
 
 SetSelfHarm sets SelfHarm field to given value.
+
+
+### GetSelfHarmIntent
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarmIntent() float32`
+
+GetSelfHarmIntent returns the SelfHarmIntent field if non-nil, zero value otherwise.
+
+### GetSelfHarmIntentOk
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarmIntentOk() (*float32, bool)`
+
+GetSelfHarmIntentOk returns a tuple with the SelfHarmIntent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfHarmIntent
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) SetSelfHarmIntent(v float32)`
+
+SetSelfHarmIntent sets SelfHarmIntent field to given value.
+
+
+### GetSelfHarmInstructions
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarmInstructions() float32`
+
+GetSelfHarmInstructions returns the SelfHarmInstructions field if non-nil, zero value otherwise.
+
+### GetSelfHarmInstructionsOk
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarmInstructionsOk() (*float32, bool)`
+
+GetSelfHarmInstructionsOk returns a tuple with the SelfHarmInstructions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfHarmInstructions
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) SetSelfHarmInstructions(v float32)`
+
+SetSelfHarmInstructions sets SelfHarmInstructions field to given value.
 
 
 ### GetSexual

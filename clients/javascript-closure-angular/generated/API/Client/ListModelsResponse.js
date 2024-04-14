@@ -17,3 +17,7 @@ API.Client.ListModelsResponse.prototype.object;
  */
 API.Client.ListModelsResponse.prototype.data;
 
+/** @enum {string} */
+API.Client.ListModelsResponse.ObjectEnum = { 
+  list: 'list',
+}

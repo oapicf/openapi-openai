@@ -7,37 +7,40 @@
 #' @title CreateCompletionResponseChoicesInner
 #' @description CreateCompletionResponseChoicesInner Class
 #' @format An \code{R6Class} generator object
-#' @field text  character
+#' @field finish_reason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. character
 #' @field index  integer
 #' @field logprobs  \link{CreateCompletionResponseChoicesInnerLogprobs}
-#' @field finish_reason  character
+#' @field text  character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 CreateCompletionResponseChoicesInner <- R6::R6Class(
   "CreateCompletionResponseChoicesInner",
   public = list(
-    `text` = NULL,
+    `finish_reason` = NULL,
     `index` = NULL,
     `logprobs` = NULL,
-    `finish_reason` = NULL,
+    `text` = NULL,
     #' Initialize a new CreateCompletionResponseChoicesInner class.
     #'
     #' @description
     #' Initialize a new CreateCompletionResponseChoicesInner class.
     #'
-    #' @param text text
+    #' @param finish_reason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.
     #' @param index index
     #' @param logprobs logprobs
-    #' @param finish_reason finish_reason
+    #' @param text text
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`text`, `index`, `logprobs`, `finish_reason`, ...) {
-      if (!missing(`text`)) {
-        if (!(is.character(`text`) && length(`text`) == 1)) {
-          stop(paste("Error! Invalid data for `text`. Must be a string:", `text`))
+    initialize = function(`finish_reason`, `index`, `logprobs`, `text`, ...) {
+      if (!missing(`finish_reason`)) {
+        if (!(`finish_reason` %in% c("stop", "length", "content_filter"))) {
+          stop(paste("Error! \"", `finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\", \"content_filter\".", sep = ""))
         }
-        self$`text` <- `text`
+        if (!(is.character(`finish_reason`) && length(`finish_reason`) == 1)) {
+          stop(paste("Error! Invalid data for `finish_reason`. Must be a string:", `finish_reason`))
+        }
+        self$`finish_reason` <- `finish_reason`
       }
       if (!missing(`index`)) {
         if (!(is.numeric(`index`) && length(`index`) == 1)) {
@@ -49,14 +52,11 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
         stopifnot(R6::is.R6(`logprobs`))
         self$`logprobs` <- `logprobs`
       }
-      if (!missing(`finish_reason`)) {
-        if (!(`finish_reason` %in% c("stop", "length"))) {
-          stop(paste("Error! \"", `finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\".", sep = ""))
+      if (!missing(`text`)) {
+        if (!(is.character(`text`) && length(`text`) == 1)) {
+          stop(paste("Error! Invalid data for `text`. Must be a string:", `text`))
         }
-        if (!(is.character(`finish_reason`) && length(`finish_reason`) == 1)) {
-          stop(paste("Error! Invalid data for `finish_reason`. Must be a string:", `finish_reason`))
-        }
-        self$`finish_reason` <- `finish_reason`
+        self$`text` <- `text`
       }
     },
     #' To JSON string
@@ -68,9 +68,9 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
     #' @export
     toJSON = function() {
       CreateCompletionResponseChoicesInnerObject <- list()
-      if (!is.null(self$`text`)) {
-        CreateCompletionResponseChoicesInnerObject[["text"]] <-
-          self$`text`
+      if (!is.null(self$`finish_reason`)) {
+        CreateCompletionResponseChoicesInnerObject[["finish_reason"]] <-
+          self$`finish_reason`
       }
       if (!is.null(self$`index`)) {
         CreateCompletionResponseChoicesInnerObject[["index"]] <-
@@ -80,9 +80,9 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
         CreateCompletionResponseChoicesInnerObject[["logprobs"]] <-
           self$`logprobs`$toJSON()
       }
-      if (!is.null(self$`finish_reason`)) {
-        CreateCompletionResponseChoicesInnerObject[["finish_reason"]] <-
-          self$`finish_reason`
+      if (!is.null(self$`text`)) {
+        CreateCompletionResponseChoicesInnerObject[["text"]] <-
+          self$`text`
       }
       CreateCompletionResponseChoicesInnerObject
     },
@@ -96,8 +96,11 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
     #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`text`)) {
-        self$`text` <- this_object$`text`
+      if (!is.null(this_object$`finish_reason`)) {
+        if (!is.null(this_object$`finish_reason`) && !(this_object$`finish_reason` %in% c("stop", "length", "content_filter"))) {
+          stop(paste("Error! \"", this_object$`finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\", \"content_filter\".", sep = ""))
+        }
+        self$`finish_reason` <- this_object$`finish_reason`
       }
       if (!is.null(this_object$`index`)) {
         self$`index` <- this_object$`index`
@@ -107,11 +110,8 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
         `logprobs_object`$fromJSON(jsonlite::toJSON(this_object$`logprobs`, auto_unbox = TRUE, digits = NA))
         self$`logprobs` <- `logprobs_object`
       }
-      if (!is.null(this_object$`finish_reason`)) {
-        if (!is.null(this_object$`finish_reason`) && !(this_object$`finish_reason` %in% c("stop", "length"))) {
-          stop(paste("Error! \"", this_object$`finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\".", sep = ""))
-        }
-        self$`finish_reason` <- this_object$`finish_reason`
+      if (!is.null(this_object$`text`)) {
+        self$`text` <- this_object$`text`
       }
       self
     },
@@ -124,12 +124,12 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
     #' @export
     toJSONString = function() {
       jsoncontent <- c(
-        if (!is.null(self$`text`)) {
+        if (!is.null(self$`finish_reason`)) {
           sprintf(
-          '"text":
+          '"finish_reason":
             "%s"
                     ',
-          self$`text`
+          self$`finish_reason`
           )
         },
         if (!is.null(self$`index`)) {
@@ -148,12 +148,12 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
           jsonlite::toJSON(self$`logprobs`$toJSON(), auto_unbox = TRUE, digits = NA)
           )
         },
-        if (!is.null(self$`finish_reason`)) {
+        if (!is.null(self$`text`)) {
           sprintf(
-          '"finish_reason":
+          '"text":
             "%s"
                     ',
-          self$`finish_reason`
+          self$`text`
           )
         }
       )
@@ -170,13 +170,13 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`text` <- this_object$`text`
-      self$`index` <- this_object$`index`
-      self$`logprobs` <- CreateCompletionResponseChoicesInnerLogprobs$new()$fromJSON(jsonlite::toJSON(this_object$`logprobs`, auto_unbox = TRUE, digits = NA))
-      if (!is.null(this_object$`finish_reason`) && !(this_object$`finish_reason` %in% c("stop", "length"))) {
-        stop(paste("Error! \"", this_object$`finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\".", sep = ""))
+      if (!is.null(this_object$`finish_reason`) && !(this_object$`finish_reason` %in% c("stop", "length", "content_filter"))) {
+        stop(paste("Error! \"", this_object$`finish_reason`, "\" cannot be assigned to `finish_reason`. Must be \"stop\", \"length\", \"content_filter\".", sep = ""))
       }
       self$`finish_reason` <- this_object$`finish_reason`
+      self$`index` <- this_object$`index`
+      self$`logprobs` <- CreateCompletionResponseChoicesInnerLogprobs$new()$fromJSON(jsonlite::toJSON(this_object$`logprobs`, auto_unbox = TRUE, digits = NA))
+      self$`text` <- this_object$`text`
       self
     },
     #' Validate JSON input with respect to CreateCompletionResponseChoicesInner
@@ -188,13 +188,13 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
     #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
-      # check the required field `text`
-      if (!is.null(input_json$`text`)) {
-        if (!(is.character(input_json$`text`) && length(input_json$`text`) == 1)) {
-          stop(paste("Error! Invalid data for `text`. Must be a string:", input_json$`text`))
+      # check the required field `finish_reason`
+      if (!is.null(input_json$`finish_reason`)) {
+        if (!(is.character(input_json$`finish_reason`) && length(input_json$`finish_reason`) == 1)) {
+          stop(paste("Error! Invalid data for `finish_reason`. Must be a string:", input_json$`finish_reason`))
         }
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponseChoicesInner: the required field `text` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponseChoicesInner: the required field `finish_reason` is missing."))
       }
       # check the required field `index`
       if (!is.null(input_json$`index`)) {
@@ -210,13 +210,13 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponseChoicesInner: the required field `logprobs` is missing."))
       }
-      # check the required field `finish_reason`
-      if (!is.null(input_json$`finish_reason`)) {
-        if (!(is.character(input_json$`finish_reason`) && length(input_json$`finish_reason`) == 1)) {
-          stop(paste("Error! Invalid data for `finish_reason`. Must be a string:", input_json$`finish_reason`))
+      # check the required field `text`
+      if (!is.null(input_json$`text`)) {
+        if (!(is.character(input_json$`text`) && length(input_json$`text`) == 1)) {
+          stop(paste("Error! Invalid data for `text`. Must be a string:", input_json$`text`))
         }
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponseChoicesInner: the required field `finish_reason` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponseChoicesInner: the required field `text` is missing."))
       }
     },
     #' To string (JSON format)
@@ -237,8 +237,8 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
     #' @return true if the values in all fields are valid.
     #' @export
     isValid = function() {
-      # check if the required `text` is null
-      if (is.null(self$`text`)) {
+      # check if the required `finish_reason` is null
+      if (is.null(self$`finish_reason`)) {
         return(FALSE)
       }
 
@@ -247,8 +247,8 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `finish_reason` is null
-      if (is.null(self$`finish_reason`)) {
+      # check if the required `text` is null
+      if (is.null(self$`text`)) {
         return(FALSE)
       }
 
@@ -263,9 +263,9 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
     #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
-      # check if the required `text` is null
-      if (is.null(self$`text`)) {
-        invalid_fields["text"] <- "Non-nullable required field `text` cannot be null."
+      # check if the required `finish_reason` is null
+      if (is.null(self$`finish_reason`)) {
+        invalid_fields["finish_reason"] <- "Non-nullable required field `finish_reason` cannot be null."
       }
 
       # check if the required `index` is null
@@ -273,9 +273,9 @@ CreateCompletionResponseChoicesInner <- R6::R6Class(
         invalid_fields["index"] <- "Non-nullable required field `index` cannot be null."
       }
 
-      # check if the required `finish_reason` is null
-      if (is.null(self$`finish_reason`)) {
-        invalid_fields["finish_reason"] <- "Non-nullable required field `finish_reason` cannot be null."
+      # check if the required `text` is null
+      if (is.null(self$`text`)) {
+        invalid_fields["text"] <- "Non-nullable required field `text` cannot be null."
       }
 
       invalid_fields

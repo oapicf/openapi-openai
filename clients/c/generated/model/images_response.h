@@ -15,7 +15,7 @@
 
 typedef struct images_response_t images_response_t;
 
-#include "images_response_data_inner.h"
+#include "image.h"
 
 
 

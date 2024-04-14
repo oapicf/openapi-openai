@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -26,7 +26,7 @@ import io.micronaut.core.annotation.*;
 import javax.annotation.Generated;
 
 /**
- * CreateModerationResponse
+ * Represents if a given text input is potentially harmful.
  */
 @JsonPropertyOrder({
   CreateModerationResponse.JSON_PROPERTY_ID,
@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   CreateModerationResponse.JSON_PROPERTY_RESULTS
 })
 @JsonTypeName("CreateModerationResponse")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-03-16T01:12:32.706318857Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-14T13:37:52.123317469Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateModerationResponse {
     public static final String JSON_PROPERTY_ID = "id";
@@ -58,7 +58,7 @@ public class CreateModerationResponse {
     }
 
     /**
-     * Get id
+     * The unique identifier for the moderation request.
      * @return id
      **/
     @NotNull
@@ -80,7 +80,7 @@ public class CreateModerationResponse {
     }
 
     /**
-     * Get model
+     * The model used to generate the moderation results.
      * @return model
      **/
     @NotNull
@@ -107,7 +107,7 @@ public class CreateModerationResponse {
     }
 
     /**
-     * Get results
+     * A list of moderation objects.
      * @return results
      **/
     @NotNull

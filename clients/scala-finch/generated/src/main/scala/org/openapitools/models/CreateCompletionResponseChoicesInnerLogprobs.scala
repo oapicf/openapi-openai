@@ -10,15 +10,15 @@ import scala.collection.immutable.Seq
 
 /**
  * 
- * @param tokens 
- * @param tokenUnderscorelogprobs 
- * @param topUnderscorelogprobs 
  * @param textUnderscoreoffset 
+ * @param tokenUnderscorelogprobs 
+ * @param tokens 
+ * @param topUnderscorelogprobs 
  */
-case class CreateCompletionResponseChoicesInnerLogprobs(tokens: Option[Seq[String]],
+case class CreateCompletionResponseChoicesInnerLogprobs(textUnderscoreoffset: Option[Seq[Int]],
                 tokenUnderscorelogprobs: Option[Seq[BigDecimal]],
-                topUnderscorelogprobs: Option[Seq[Object]],
-                textUnderscoreoffset: Option[Seq[Int]]
+                tokens: Option[Seq[String]],
+                topUnderscorelogprobs: Option[Seq[Map[String, BigDecimal]]]
                 )
 
 object CreateCompletionResponseChoicesInnerLogprobs {

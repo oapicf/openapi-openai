@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,14 +24,15 @@ import javax.annotation.Generated;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
- * CreateEmbeddingResponseUsage
+ * The usage information for the request.
  */
+@Schema(name = "CreateEmbeddingResponse_usage", description = "The usage information for the request.")
 @JsonPropertyOrder({
   CreateEmbeddingResponseUsage.JSON_PROPERTY_PROMPT_TOKENS,
   CreateEmbeddingResponseUsage.JSON_PROPERTY_TOTAL_TOKENS
 })
 @JsonTypeName("CreateEmbeddingResponse_usage")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-03-16T01:12:38.762786439Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-04-14T13:38:24.957235058Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateEmbeddingResponseUsage {
     public static final String JSON_PROPERTY_PROMPT_TOKENS = "prompt_tokens";
@@ -51,11 +52,11 @@ public class CreateEmbeddingResponseUsage {
     }
 
     /**
-     * Get promptTokens
+     * The number of tokens used by the prompt.
      * @return promptTokens
      **/
     @NotNull
-    @Schema(name = "prompt_tokens", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "prompt_tokens", description = "The number of tokens used by the prompt.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_PROMPT_TOKENS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public Integer getPromptTokens() {
@@ -74,11 +75,11 @@ public class CreateEmbeddingResponseUsage {
     }
 
     /**
-     * Get totalTokens
+     * The total number of tokens used by the request.
      * @return totalTokens
      **/
     @NotNull
-    @Schema(name = "total_tokens", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "total_tokens", description = "The total number of tokens used by the request.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_TOTAL_TOKENS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public Integer getTotalTokens() {

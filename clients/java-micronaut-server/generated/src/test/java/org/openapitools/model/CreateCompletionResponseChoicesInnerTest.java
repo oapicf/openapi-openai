@@ -22,11 +22,11 @@ public class CreateCompletionResponseChoicesInnerTest {
     }
 
     /**
-     * Test the property 'text'
+     * Test the property 'finishReason'
      */
     @Test
-    public void textTest() {
-        // TODO: test text
+    public void finishReasonTest() {
+        // TODO: test finishReason
     }
 
     /**
@@ -46,11 +46,11 @@ public class CreateCompletionResponseChoicesInnerTest {
     }
 
     /**
-     * Test the property 'finishReason'
+     * Test the property 'text'
      */
     @Test
-    public void finishReasonTest() {
-        // TODO: test finishReason
+    public void textTest() {
+        // TODO: test text
     }
 
 }

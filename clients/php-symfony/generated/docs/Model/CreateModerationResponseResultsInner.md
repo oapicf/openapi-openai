@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flagged** | **bool** |  | 
+**flagged** | **bool** | Whether any of the below categories are flagged. | 
 **categories** | [**OpenAPI\Server\Model\CreateModerationResponseResultsInnerCategories**](CreateModerationResponseResultsInnerCategories.md) |  | 
 **categoryScores** | [**OpenAPI\Server\Model\CreateModerationResponseResultsInnerCategoryScores**](CreateModerationResponseResultsInnerCategoryScores.md) |  | 
 

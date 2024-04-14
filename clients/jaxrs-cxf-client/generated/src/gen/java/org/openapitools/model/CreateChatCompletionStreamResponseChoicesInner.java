@@ -1,6 +1,8 @@
 package org.openapitools.model;
 
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionStreamResponseDelta;
+import org.openapitools.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
@@ -9,15 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateChatCompletionStreamResponseChoicesInner  {
   
-  @ApiModelProperty(value = "")
-  private Integer index;
+  @ApiModelProperty(required = true, value = "")
+  private ChatCompletionStreamResponseDelta delta;
 
   @ApiModelProperty(value = "")
-  private ChatCompletionStreamResponseDelta delta;
+  private CreateChatCompletionResponseChoicesInnerLogprobs logprobs;
 
 public enum FinishReasonEnum {
 
-STOP(String.valueOf("stop")), LENGTH(String.valueOf("length")), FUNCTION_CALL(String.valueOf("function_call"));
+STOP(String.valueOf("stop")), LENGTH(String.valueOf("length")), TOOL_CALLS(String.valueOf("tool_calls")), CONTENT_FILTER(String.valueOf("content_filter")), FUNCTION_CALL(String.valueOf("function_call"));
 
 
     private String value;
@@ -41,30 +43,21 @@ STOP(String.valueOf("stop")), LENGTH(String.valueOf("length")), FUNCTION_CALL(St
                 return b;
             }
         }
-        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        return null;
     }
 }
 
-  @ApiModelProperty(value = "")
-  private FinishReasonEnum finishReason;
+  @ApiModelProperty(required = true, value = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ")
  /**
-   * Get index
-   * @return index
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
   **/
-  @JsonProperty("index")
-  public Integer getIndex() {
-    return index;
-  }
+  private FinishReasonEnum finishReason;
 
-  public void setIndex(Integer index) {
-    this.index = index;
-  }
-
-  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
-    this.index = index;
-    return this;
-  }
-
+  @ApiModelProperty(required = true, value = "The index of the choice in the list of choices.")
+ /**
+   * The index of the choice in the list of choices.
+  **/
+  private Integer index;
  /**
    * Get delta
    * @return delta
@@ -84,7 +77,25 @@ STOP(String.valueOf("stop")), LENGTH(String.valueOf("length")), FUNCTION_CALL(St
   }
 
  /**
-   * Get finishReason
+   * Get logprobs
+   * @return logprobs
+  **/
+  @JsonProperty("logprobs")
+  public CreateChatCompletionResponseChoicesInnerLogprobs getLogprobs() {
+    return logprobs;
+  }
+
+  public void setLogprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
+  }
+
+  public CreateChatCompletionStreamResponseChoicesInner logprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
+    return this;
+  }
+
+ /**
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
    * @return finishReason
   **/
   @JsonProperty("finish_reason")
@@ -104,6 +115,24 @@ STOP(String.valueOf("stop")), LENGTH(String.valueOf("length")), FUNCTION_CALL(St
     return this;
   }
 
+ /**
+   * The index of the choice in the list of choices.
+   * @return index
+  **/
+  @JsonProperty("index")
+  public Integer getIndex() {
+    return index;
+  }
+
+  public void setIndex(Integer index) {
+    this.index = index;
+  }
+
+  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
+    this.index = index;
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -113,14 +142,15 @@ STOP(String.valueOf("stop")), LENGTH(String.valueOf("length")), FUNCTION_CALL(St
       return false;
     }
     CreateChatCompletionStreamResponseChoicesInner createChatCompletionStreamResponseChoicesInner = (CreateChatCompletionStreamResponseChoicesInner) o;
-    return Objects.equals(this.index, createChatCompletionStreamResponseChoicesInner.index) &&
-        Objects.equals(this.delta, createChatCompletionStreamResponseChoicesInner.delta) &&
-        Objects.equals(this.finishReason, createChatCompletionStreamResponseChoicesInner.finishReason);
+    return Objects.equals(this.delta, createChatCompletionStreamResponseChoicesInner.delta) &&
+        Objects.equals(this.logprobs, createChatCompletionStreamResponseChoicesInner.logprobs) &&
+        Objects.equals(this.finishReason, createChatCompletionStreamResponseChoicesInner.finishReason) &&
+        Objects.equals(this.index, createChatCompletionStreamResponseChoicesInner.index);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, delta, finishReason);
+    return Objects.hash(delta, logprobs, finishReason, index);
   }
 
   @Override
@@ -128,9 +158,10 @@ STOP(String.valueOf("stop")), LENGTH(String.valueOf("length")), FUNCTION_CALL(St
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionStreamResponseChoicesInner {\n");
     
-    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    delta: ").append(toIndentedString(delta)).append("\n");
+    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -20,14 +20,29 @@ import (
 // checks if the CreateModerationResponseResultsInnerCategoryScores type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateModerationResponseResultsInnerCategoryScores{}
 
-// CreateModerationResponseResultsInnerCategoryScores struct for CreateModerationResponseResultsInnerCategoryScores
+// CreateModerationResponseResultsInnerCategoryScores A list of the categories along with their scores as predicted by model.
 type CreateModerationResponseResultsInnerCategoryScores struct {
+	// The score for the category 'hate'.
 	Hate float32 `json:"hate"`
+	// The score for the category 'hate/threatening'.
 	HateThreatening float32 `json:"hate/threatening"`
+	// The score for the category 'harassment'.
+	Harassment float32 `json:"harassment"`
+	// The score for the category 'harassment/threatening'.
+	HarassmentThreatening float32 `json:"harassment/threatening"`
+	// The score for the category 'self-harm'.
 	SelfHarm float32 `json:"self-harm"`
+	// The score for the category 'self-harm/intent'.
+	SelfHarmIntent float32 `json:"self-harm/intent"`
+	// The score for the category 'self-harm/instructions'.
+	SelfHarmInstructions float32 `json:"self-harm/instructions"`
+	// The score for the category 'sexual'.
 	Sexual float32 `json:"sexual"`
+	// The score for the category 'sexual/minors'.
 	SexualMinors float32 `json:"sexual/minors"`
+	// The score for the category 'violence'.
 	Violence float32 `json:"violence"`
+	// The score for the category 'violence/graphic'.
 	ViolenceGraphic float32 `json:"violence/graphic"`
 }
 
@@ -37,11 +52,15 @@ type _CreateModerationResponseResultsInnerCategoryScores CreateModerationRespons
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateModerationResponseResultsInnerCategoryScores(hate float32, hateThreatening float32, selfHarm float32, sexual float32, sexualMinors float32, violence float32, violenceGraphic float32) *CreateModerationResponseResultsInnerCategoryScores {
+func NewCreateModerationResponseResultsInnerCategoryScores(hate float32, hateThreatening float32, harassment float32, harassmentThreatening float32, selfHarm float32, selfHarmIntent float32, selfHarmInstructions float32, sexual float32, sexualMinors float32, violence float32, violenceGraphic float32) *CreateModerationResponseResultsInnerCategoryScores {
 	this := CreateModerationResponseResultsInnerCategoryScores{}
 	this.Hate = hate
 	this.HateThreatening = hateThreatening
+	this.Harassment = harassment
+	this.HarassmentThreatening = harassmentThreatening
 	this.SelfHarm = selfHarm
+	this.SelfHarmIntent = selfHarmIntent
+	this.SelfHarmInstructions = selfHarmInstructions
 	this.Sexual = sexual
 	this.SexualMinors = sexualMinors
 	this.Violence = violence
@@ -105,6 +124,54 @@ func (o *CreateModerationResponseResultsInnerCategoryScores) SetHateThreatening(
 	o.HateThreatening = v
 }
 
+// GetHarassment returns the Harassment field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetHarassment() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Harassment
+}
+
+// GetHarassmentOk returns a tuple with the Harassment field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetHarassmentOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Harassment, true
+}
+
+// SetHarassment sets field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) SetHarassment(v float32) {
+	o.Harassment = v
+}
+
+// GetHarassmentThreatening returns the HarassmentThreatening field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetHarassmentThreatening() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.HarassmentThreatening
+}
+
+// GetHarassmentThreateningOk returns a tuple with the HarassmentThreatening field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetHarassmentThreateningOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HarassmentThreatening, true
+}
+
+// SetHarassmentThreatening sets field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) SetHarassmentThreatening(v float32) {
+	o.HarassmentThreatening = v
+}
+
 // GetSelfHarm returns the SelfHarm field value
 func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarm() float32 {
 	if o == nil {
@@ -127,6 +194,54 @@ func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarmOk() (*f
 // SetSelfHarm sets field value
 func (o *CreateModerationResponseResultsInnerCategoryScores) SetSelfHarm(v float32) {
 	o.SelfHarm = v
+}
+
+// GetSelfHarmIntent returns the SelfHarmIntent field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarmIntent() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.SelfHarmIntent
+}
+
+// GetSelfHarmIntentOk returns a tuple with the SelfHarmIntent field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarmIntentOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SelfHarmIntent, true
+}
+
+// SetSelfHarmIntent sets field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) SetSelfHarmIntent(v float32) {
+	o.SelfHarmIntent = v
+}
+
+// GetSelfHarmInstructions returns the SelfHarmInstructions field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarmInstructions() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.SelfHarmInstructions
+}
+
+// GetSelfHarmInstructionsOk returns a tuple with the SelfHarmInstructions field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetSelfHarmInstructionsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SelfHarmInstructions, true
+}
+
+// SetSelfHarmInstructions sets field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) SetSelfHarmInstructions(v float32) {
+	o.SelfHarmInstructions = v
 }
 
 // GetSexual returns the Sexual field value
@@ -237,7 +352,11 @@ func (o CreateModerationResponseResultsInnerCategoryScores) ToMap() (map[string]
 	toSerialize := map[string]interface{}{}
 	toSerialize["hate"] = o.Hate
 	toSerialize["hate/threatening"] = o.HateThreatening
+	toSerialize["harassment"] = o.Harassment
+	toSerialize["harassment/threatening"] = o.HarassmentThreatening
 	toSerialize["self-harm"] = o.SelfHarm
+	toSerialize["self-harm/intent"] = o.SelfHarmIntent
+	toSerialize["self-harm/instructions"] = o.SelfHarmInstructions
 	toSerialize["sexual"] = o.Sexual
 	toSerialize["sexual/minors"] = o.SexualMinors
 	toSerialize["violence"] = o.Violence
@@ -252,7 +371,11 @@ func (o *CreateModerationResponseResultsInnerCategoryScores) UnmarshalJSON(data 
 	requiredProperties := []string{
 		"hate",
 		"hate/threatening",
+		"harassment",
+		"harassment/threatening",
 		"self-harm",
+		"self-harm/intent",
+		"self-harm/instructions",
 		"sexual",
 		"sexual/minors",
 		"violence",

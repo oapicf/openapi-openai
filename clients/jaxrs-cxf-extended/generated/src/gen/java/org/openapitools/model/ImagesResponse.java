@@ -3,7 +3,7 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -19,7 +19,7 @@ public class ImagesResponse  {
 
   @ApiModelProperty(required = true, value = "")
   @Valid
-  private List<@Valid ImagesResponseDataInner> data = new ArrayList<>();
+  private List<@Valid Image> data = new ArrayList<>();
  /**
   * Get created
   * @return created
@@ -51,21 +51,21 @@ public class ImagesResponse  {
   */
   @JsonProperty("data")
   @NotNull
-  public List<@Valid ImagesResponseDataInner> getData() {
+  public List<@Valid Image> getData() {
     return data;
   }
 
   /**
    * Sets the <code>data</code> property.
    */
- public void setData(List<@Valid ImagesResponseDataInner> data) {
+ public void setData(List<@Valid Image> data) {
     this.data = data;
   }
 
   /**
    * Sets the <code>data</code> property.
    */
-  public ImagesResponse data(List<@Valid ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<@Valid Image> data) {
     this.data = data;
     return this;
   }
@@ -73,7 +73,7 @@ public class ImagesResponse  {
   /**
    * Adds a new item to the <code>data</code> list.
    */
-  public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse addDataItem(Image dataItem) {
     this.data.add(dataItem);
     return this;
   }

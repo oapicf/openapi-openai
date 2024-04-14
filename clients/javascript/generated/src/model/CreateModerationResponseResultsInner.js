@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -18,13 +18,13 @@ import CreateModerationResponseResultsInnerCategoryScores from './CreateModerati
 /**
  * The CreateModerationResponseResultsInner model module.
  * @module model/CreateModerationResponseResultsInner
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateModerationResponseResultsInner {
     /**
      * Constructs a new <code>CreateModerationResponseResultsInner</code>.
      * @alias module:model/CreateModerationResponseResultsInner
-     * @param flagged {Boolean} 
+     * @param flagged {Boolean} Whether any of the below categories are flagged.
      * @param categories {module:model/CreateModerationResponseResultsInnerCategories} 
      * @param categoryScores {module:model/CreateModerationResponseResultsInnerCategoryScores} 
      */
@@ -98,6 +98,7 @@ class CreateModerationResponseResultsInner {
 CreateModerationResponseResultsInner.RequiredProperties = ["flagged", "categories", "category_scores"];
 
 /**
+ * Whether any of the below categories are flagged.
  * @member {Boolean} flagged
  */
 CreateModerationResponseResultsInner.prototype['flagged'] = undefined;

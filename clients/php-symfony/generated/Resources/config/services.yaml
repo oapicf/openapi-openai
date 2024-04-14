@@ -21,8 +21,89 @@ services:
         arguments:
             - '@validator'
 
-    open_api_server.controller.openAI:
-        class: OpenAPI\Server\Controller\OpenAIController
+    open_api_server.controller.assistants:
+        class: OpenAPI\Server\Controller\AssistantsController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.audio:
+        class: OpenAPI\Server\Controller\AudioController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.chat:
+        class: OpenAPI\Server\Controller\ChatController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.completions:
+        class: OpenAPI\Server\Controller\CompletionsController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.embeddings:
+        class: OpenAPI\Server\Controller\EmbeddingsController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.files:
+        class: OpenAPI\Server\Controller\FilesController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.fineTuning:
+        class: OpenAPI\Server\Controller\FineTuningController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.images:
+        class: OpenAPI\Server\Controller\ImagesController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.models:
+        class: OpenAPI\Server\Controller\ModelsController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.moderations:
+        class: OpenAPI\Server\Controller\ModerationsController
         calls:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]

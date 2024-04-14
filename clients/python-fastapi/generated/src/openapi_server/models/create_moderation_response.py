@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from openapi_server.models.create_moderation_response_results_inner import CreateModerationResponseResultsInner
 try:
@@ -31,11 +31,11 @@ except ImportError:
 
 class CreateModerationResponse(BaseModel):
     """
-    CreateModerationResponse
+    Represents if a given text input is potentially harmful.
     """ # noqa: E501
-    id: StrictStr
-    model: StrictStr
-    results: List[CreateModerationResponseResultsInner]
+    id: StrictStr = Field(description="The unique identifier for the moderation request.")
+    model: StrictStr = Field(description="The model used to generate the moderation results.")
+    results: List[CreateModerationResponseResultsInner] = Field(description="A list of moderation objects.")
     __properties: ClassVar[List[str]] = ["id", "model", "results"]
 
     model_config = {

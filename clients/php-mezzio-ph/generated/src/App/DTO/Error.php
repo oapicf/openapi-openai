@@ -10,11 +10,11 @@ use Articus\DataTransfer\Annotation as DTA;
 class Error
 {
     /**
-     * @DTA\Data(field="type")
+     * @DTA\Data(field="code")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null
      */
-    public $type;
+    public $code;
 
     /**
      * @DTA\Data(field="message")
@@ -31,10 +31,10 @@ class Error
     public $param;
 
     /**
-     * @DTA\Data(field="code")
+     * @DTA\Data(field="type")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null
      */
-    public $code;
+    public $type;
 
 }

@@ -23,8 +23,8 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param id 
- * @param `object` 
  * @param deleted 
+ * @param `object` 
  */
 
 
@@ -33,11 +33,11 @@ data class DeleteModelResponse (
     @Json(name = "id")
     val id: kotlin.String,
 
-    @Json(name = "object")
-    val `object`: kotlin.String,
-
     @Json(name = "deleted")
-    val deleted: kotlin.Boolean
+    val deleted: kotlin.Boolean,
+
+    @Json(name = "object")
+    val `object`: kotlin.String
 
 )
 

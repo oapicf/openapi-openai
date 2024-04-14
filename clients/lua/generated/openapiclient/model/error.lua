@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,12 +19,12 @@ local function cast_error(t)
 	return setmetatable(t, error_mt)
 end
 
-local function new_error(type, message, param, code)
+local function new_error(code, message, param, type)
 	return cast_error({
-		["type"] = type;
+		["code"] = code;
 		["message"] = message;
 		["param"] = param;
-		["code"] = code;
+		["type"] = type;
 	})
 end
 

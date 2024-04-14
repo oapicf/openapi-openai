@@ -2,7 +2,7 @@
 Protected Class Error
 
 	#tag Property, Flags = &h0
-		type As String
+		code As String
 	#tag EndProperty
 
 
@@ -17,7 +17,7 @@ Protected Class Error
 
 
 	#tag Property, Flags = &h0
-		code As String
+		type As String
 	#tag EndProperty
 
 
@@ -58,7 +58,7 @@ Protected Class Error
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="type"
+			Name="code"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -82,7 +82,7 @@ Protected Class Error
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="code"
+			Name="type"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

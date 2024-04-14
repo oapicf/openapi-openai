@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ListAssistantsResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ListAssistantsResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantObject = openapi_server.resourceTypes.AssistantObject
+}
+resourceTypes {
+
+  ListAssistantsResponse {
+    title = ListAssistantsResponse
+    description = ListAssistantsResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
+        data {
+          type = array
+          items.type = AssistantObject
+          description = ""
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ListAssistantsResponse {
+    title = ListAssistantsResponse
+    description = ListAssistantsResponse
+    implements = openapi_server.resourceTypes.ListAssistantsResponse
+
+  }
+}

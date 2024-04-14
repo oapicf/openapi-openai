@@ -12,10 +12,10 @@ import org.joda.time.DateTime
 import CreateCompletionResponseChoicesInnerLogprobs._
 
 case class CreateCompletionResponseChoicesInnerLogprobs (
-  tokens: Option[List[String]],
+  textOffset: Option[List[Integer]],
 tokenLogprobs: Option[List[BigDecimal]],
-topLogprobs: Option[List[Any]],
-textOffset: Option[List[Integer]])
+tokens: Option[List[String]],
+topLogprobs: Option[List[Map[String, BigDecimal]]])
 
 object CreateCompletionResponseChoicesInnerLogprobs {
   import DateTimeCodecs._

@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDeltaStepDetailsMessageCreationObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDeltaStepDetailsMessageCreationObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunStepDeltaStepDetailsMessageCreationObjectMessageCreation = openapi_server.resourceTypes.RunStepDeltaStepDetailsMessageCreationObjectMessageCreation
+}
+resourceTypes {
+
+  RunStepDeltaStepDetailsMessageCreationObject {
+    title = RunStepDeltaStepDetailsMessageCreationObject
+    description = RunStepDeltaStepDetailsMessageCreationObject
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;message_creation&#x60;."
+          enum = ["message_creation"]
+          optional = true
+        }
+        message_creation {
+          type = RunStepDeltaStepDetailsMessageCreationObjectMessageCreation
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDeltaStepDetailsMessageCreationObject {
+    title = RunStepDeltaStepDetailsMessageCreationObject
+    description = RunStepDeltaStepDetailsMessageCreationObject
+    implements = openapi_server.resourceTypes.RunStepDeltaStepDetailsMessageCreationObject
+
+  }
+}

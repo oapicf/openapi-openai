@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **character** |  | 
+**object** | **character** |  | [Enum: [list]] 
 **data** | [**array[Model]**](Model.md) |  | 
 
 

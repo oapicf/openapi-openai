@@ -23,15 +23,15 @@ model_t* instantiate_model(int include_optional) {
   if (include_optional) {
     model = model_create(
       "0",
-      "0",
       56,
+      openai_api_model_OBJECT_model,
       "0"
     );
   } else {
     model = model_create(
       "0",
-      "0",
       56,
+      openai_api_model_OBJECT_model,
       "0"
     );
   }

@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from openapi_server.models.open_ai_file import OpenAIFile
 try:
@@ -33,9 +33,16 @@ class ListFilesResponse(BaseModel):
     """
     ListFilesResponse
     """ # noqa: E501
-    object: StrictStr
     data: List[OpenAIFile]
-    __properties: ClassVar[List[str]] = ["object", "data"]
+    object: StrictStr
+    __properties: ClassVar[List[str]] = ["data", "object"]
+
+    @field_validator('object')
+    def object_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('list'):
+            raise ValueError("must be one of enum values ('list')")
+        return value
 
     model_config = {
         "populate_by_name": True,
@@ -93,8 +100,8 @@ class ListFilesResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "object": obj.get("object"),
-            "data": [OpenAIFile.from_dict(_item) for _item in obj.get("data")] if obj.get("data") is not None else None
+            "data": [OpenAIFile.from_dict(_item) for _item in obj.get("data")] if obj.get("data") is not None else None,
+            "object": obj.get("object")
         })
         return _obj
 

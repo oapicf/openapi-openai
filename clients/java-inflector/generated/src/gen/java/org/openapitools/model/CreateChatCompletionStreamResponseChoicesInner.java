@@ -7,27 +7,33 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionStreamResponseDelta;
+import org.openapitools.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 
 
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-03-16T01:12:27.532392463Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-04-14T13:37:33.081471369Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionStreamResponseChoicesInner   {
-  @JsonProperty("index")
-  private Integer index;
-
   @JsonProperty("delta")
   private ChatCompletionStreamResponseDelta delta;
 
+  @JsonProperty("logprobs")
+  private CreateChatCompletionResponseChoicesInnerLogprobs logprobs;
+
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
    */
   public enum FinishReasonEnum {
     STOP("stop"),
     
     LENGTH("length"),
+    
+    TOOL_CALLS("tool_calls"),
+    
+    CONTENT_FILTER("content_filter"),
     
     FUNCTION_CALL("function_call");
 
@@ -50,29 +56,15 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+      return null;
     }
   }
 
   @JsonProperty("finish_reason")
   private FinishReasonEnum finishReason;
 
-  /**
-   **/
-  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
-    this.index = index;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "")
   @JsonProperty("index")
-  public Integer getIndex() {
-    return index;
-  }
-  public void setIndex(Integer index) {
-    this.index = index;
-  }
+  private Integer index;
 
   /**
    **/
@@ -82,7 +74,7 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
   }
 
   
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty("delta")
   public ChatCompletionStreamResponseDelta getDelta() {
     return delta;
@@ -93,19 +85,55 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
 
   /**
    **/
+  public CreateChatCompletionStreamResponseChoicesInner logprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("logprobs")
+  public CreateChatCompletionResponseChoicesInnerLogprobs getLogprobs() {
+    return logprobs;
+  }
+  public void setLogprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
+  }
+
+  /**
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+   **/
   public CreateChatCompletionStreamResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
     this.finishReason = finishReason;
     return this;
   }
 
   
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ")
   @JsonProperty("finish_reason")
   public FinishReasonEnum getFinishReason() {
     return finishReason;
   }
   public void setFinishReason(FinishReasonEnum finishReason) {
     this.finishReason = finishReason;
+  }
+
+  /**
+   * The index of the choice in the list of choices.
+   **/
+  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
+    this.index = index;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The index of the choice in the list of choices.")
+  @JsonProperty("index")
+  public Integer getIndex() {
+    return index;
+  }
+  public void setIndex(Integer index) {
+    this.index = index;
   }
 
 
@@ -118,14 +146,15 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
       return false;
     }
     CreateChatCompletionStreamResponseChoicesInner createChatCompletionStreamResponseChoicesInner = (CreateChatCompletionStreamResponseChoicesInner) o;
-    return Objects.equals(index, createChatCompletionStreamResponseChoicesInner.index) &&
-        Objects.equals(delta, createChatCompletionStreamResponseChoicesInner.delta) &&
-        Objects.equals(finishReason, createChatCompletionStreamResponseChoicesInner.finishReason);
+    return Objects.equals(delta, createChatCompletionStreamResponseChoicesInner.delta) &&
+        Objects.equals(logprobs, createChatCompletionStreamResponseChoicesInner.logprobs) &&
+        Objects.equals(finishReason, createChatCompletionStreamResponseChoicesInner.finishReason) &&
+        Objects.equals(index, createChatCompletionStreamResponseChoicesInner.index);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, delta, finishReason);
+    return Objects.hash(delta, logprobs, finishReason, index);
   }
 
   @Override
@@ -133,9 +162,10 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionStreamResponseChoicesInner {\n");
     
-    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    delta: ").append(toIndentedString(delta)).append("\n");
+    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("}");
     return sb.toString();
   }

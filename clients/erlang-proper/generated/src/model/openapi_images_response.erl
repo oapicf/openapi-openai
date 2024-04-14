@@ -10,7 +10,7 @@
 
 -type openapi_images_response() ::
   [ {'created', integer() }
-  | {'data', list(openapi_images_response_data_inner:openapi_images_response_data_inner()) }
+  | {'data', list(openapi_image:openapi_image()) }
   ].
 
 
@@ -19,7 +19,7 @@ openapi_images_response() ->
 
 openapi_images_response(Fields) ->
   Default = [ {'created', integer() }
-            , {'data', list(openapi_images_response_data_inner:openapi_images_response_data_inner()) }
+            , {'data', list(openapi_image:openapi_image()) }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

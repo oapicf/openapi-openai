@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation {
+    title = MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+    description = MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+    derivedFrom = Root
+    properties {
+        file_id {
+          type =  string
+          description = "The ID of the specific File the citation is from."
+          optional = false
+        }
+        quote {
+          type =  string
+          description = "The specific quote in the file."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation {
+    title = MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+    description = MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+    implements = openapi_server.resourceTypes.MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+
+  }
+}

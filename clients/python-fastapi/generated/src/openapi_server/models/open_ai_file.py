@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 try:
     from typing import Self
@@ -30,17 +30,38 @@ except ImportError:
 
 class OpenAIFile(BaseModel):
     """
-    OpenAIFile
+    The `File` object represents a document that has been uploaded to OpenAI.
     """ # noqa: E501
-    id: StrictStr
-    object: StrictStr
-    bytes: StrictInt
-    created_at: StrictInt
-    filename: StrictStr
-    purpose: StrictStr
-    status: Optional[StrictStr] = None
-    status_details: Optional[Dict[str, Any]] = None
-    __properties: ClassVar[List[str]] = ["id", "object", "bytes", "created_at", "filename", "purpose", "status", "status_details"]
+    id: StrictStr = Field(description="The file identifier, which can be referenced in the API endpoints.")
+    bytes: StrictInt = Field(description="The size of the file, in bytes.")
+    created_at: StrictInt = Field(description="The Unix timestamp (in seconds) for when the file was created.")
+    filename: StrictStr = Field(description="The name of the file.")
+    object: StrictStr = Field(description="The object type, which is always `file`.")
+    purpose: StrictStr = Field(description="The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.")
+    status: StrictStr = Field(description="Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.")
+    status_details: Optional[StrictStr] = Field(default=None, description="Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.")
+    __properties: ClassVar[List[str]] = ["id", "bytes", "created_at", "filename", "object", "purpose", "status", "status_details"]
+
+    @field_validator('object')
+    def object_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('file'):
+            raise ValueError("must be one of enum values ('file')")
+        return value
+
+    @field_validator('purpose')
+    def purpose_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('fine-tune', 'fine-tune-results', 'assistants', 'assistants_output'):
+            raise ValueError("must be one of enum values ('fine-tune', 'fine-tune-results', 'assistants', 'assistants_output')")
+        return value
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('uploaded', 'processed', 'error'):
+            raise ValueError("must be one of enum values ('uploaded', 'processed', 'error')")
+        return value
 
     model_config = {
         "populate_by_name": True,
@@ -79,11 +100,6 @@ class OpenAIFile(BaseModel):
             },
             exclude_none=True,
         )
-        # set to None if status_details (nullable) is None
-        # and model_fields_set contains the field
-        if self.status_details is None and "status_details" in self.model_fields_set:
-            _dict['status_details'] = None
-
         return _dict
 
     @classmethod
@@ -97,10 +113,10 @@ class OpenAIFile(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "object": obj.get("object"),
             "bytes": obj.get("bytes"),
             "created_at": obj.get("created_at"),
             "filename": obj.get("filename"),
+            "object": obj.get("object"),
             "purpose": obj.get("purpose"),
             "status": obj.get("status"),
             "status_details": obj.get("status_details")

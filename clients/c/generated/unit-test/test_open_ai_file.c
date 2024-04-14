@@ -23,24 +23,24 @@ open_ai_file_t* instantiate_open_ai_file(int include_optional) {
   if (include_optional) {
     open_ai_file = open_ai_file_create(
       "0",
-      "0",
       56,
       56,
       "0",
-      "0",
-      "0",
-      0
+      openai_api_open_ai_file_OBJECT_file,
+      openai_api_open_ai_file_PURPOSE_fine-tune,
+      openai_api_open_ai_file_STATUS_uploaded,
+      "0"
     );
   } else {
     open_ai_file = open_ai_file_create(
       "0",
-      "0",
       56,
       56,
       "0",
-      "0",
-      "0",
-      0
+      openai_api_open_ai_file_OBJECT_file,
+      openai_api_open_ai_file_PURPOSE_fine-tune,
+      openai_api_open_ai_file_STATUS_uploaded,
+      "0"
     );
   }
 

@@ -2,6 +2,7 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open System.Collections.Generic
 
 module CreateCompletionResponseChoicesInnerLogprobs =
 
@@ -9,9 +10,9 @@ module CreateCompletionResponseChoicesInnerLogprobs =
 
 
   type CreateCompletionResponse_choices_inner_logprobs = {
-    Tokens : string[];
-    TokenLogprobs : decimal[];
-    TopLogprobs : obj[];
     TextOffset : int[];
+    TokenLogprobs : decimal[];
+    Tokens : string[];
+    TopLogprobs : IDictionary<string, decimal>[];
   }
   //#endregion

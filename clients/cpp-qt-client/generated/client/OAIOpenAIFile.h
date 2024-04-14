@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * OAIOpenAIFile.h
  *
- * 
+ * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
 
 #ifndef OAIOpenAIFile_H
@@ -21,7 +21,6 @@
 
 #include <QJsonObject>
 
-#include "OAIObject.h"
 #include <QString>
 
 #include "OAIEnum.h"
@@ -45,11 +44,6 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    QString getObject() const;
-    void setObject(const QString &object);
-    bool is_object_Set() const;
-    bool is_object_Valid() const;
-
     qint32 getBytes() const;
     void setBytes(const qint32 &bytes);
     bool is_bytes_Set() const;
@@ -65,20 +59,25 @@ public:
     bool is_filename_Set() const;
     bool is_filename_Valid() const;
 
+    QString getObject() const;
+    void setObject(const QString &object);
+    bool is_object_Set() const;
+    bool is_object_Valid() const;
+
     QString getPurpose() const;
     void setPurpose(const QString &purpose);
     bool is_purpose_Set() const;
     bool is_purpose_Valid() const;
 
-    QString getStatus() const;
-    void setStatus(const QString &status);
-    bool is_status_Set() const;
-    bool is_status_Valid() const;
+    Q_DECL_DEPRECATED QString getStatus() const;
+    Q_DECL_DEPRECATED void setStatus(const QString &status);
+    Q_DECL_DEPRECATED bool is_status_Set() const;
+    Q_DECL_DEPRECATED bool is_status_Valid() const;
 
-    OAIObject getStatusDetails() const;
-    void setStatusDetails(const OAIObject &status_details);
-    bool is_status_details_Set() const;
-    bool is_status_details_Valid() const;
+    Q_DECL_DEPRECATED QString getStatusDetails() const;
+    Q_DECL_DEPRECATED void setStatusDetails(const QString &status_details);
+    Q_DECL_DEPRECATED bool is_status_details_Set() const;
+    Q_DECL_DEPRECATED bool is_status_details_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -89,10 +88,6 @@ private:
     QString m_id;
     bool m_id_isSet;
     bool m_id_isValid;
-
-    QString m_object;
-    bool m_object_isSet;
-    bool m_object_isValid;
 
     qint32 m_bytes;
     bool m_bytes_isSet;
@@ -106,6 +101,10 @@ private:
     bool m_filename_isSet;
     bool m_filename_isValid;
 
+    QString m_object;
+    bool m_object_isSet;
+    bool m_object_isValid;
+
     QString m_purpose;
     bool m_purpose_isSet;
     bool m_purpose_isValid;
@@ -114,7 +113,7 @@ private:
     bool m_status_isSet;
     bool m_status_isValid;
 
-    OAIObject m_status_details;
+    QString m_status_details;
     bool m_status_details_isSet;
     bool m_status_details_isValid;
 };

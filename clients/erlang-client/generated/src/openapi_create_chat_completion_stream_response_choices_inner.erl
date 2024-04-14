@@ -5,16 +5,19 @@
 -export_type([openapi_create_chat_completion_stream_response_choices_inner/0]).
 
 -type openapi_create_chat_completion_stream_response_choices_inner() ::
-    #{ 'index' => integer(),
-       'delta' => openapi_chat_completion_stream_response_delta:openapi_chat_completion_stream_response_delta(),
-       'finish_reason' => binary()
+    #{ 'delta' := openapi_chat_completion_stream_response_delta:openapi_chat_completion_stream_response_delta(),
+       'logprobs' => openapi_create_chat_completion_response_choices_inner_logprobs:openapi_create_chat_completion_response_choices_inner_logprobs(),
+       'finish_reason' := binary(),
+       'index' := integer()
      }.
 
-encode(#{ 'index' := Index,
-          'delta' := Delta,
-          'finish_reason' := FinishReason
+encode(#{ 'delta' := Delta,
+          'logprobs' := Logprobs,
+          'finish_reason' := FinishReason,
+          'index' := Index
         }) ->
-    #{ 'index' => Index,
-       'delta' => Delta,
-       'finish_reason' => FinishReason
+    #{ 'delta' => Delta,
+       'logprobs' => Logprobs,
+       'finish_reason' => FinishReason,
+       'index' => Index
      }.

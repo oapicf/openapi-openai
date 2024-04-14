@@ -66,7 +66,16 @@ library
   exposed-modules:
       OpenAI
       OpenAI.API
-      OpenAI.API.OpenAI
+      OpenAI.API.Assistants
+      OpenAI.API.Audio
+      OpenAI.API.Chat
+      OpenAI.API.Completions
+      OpenAI.API.Embeddings
+      OpenAI.API.Files
+      OpenAI.API.FineTuning
+      OpenAI.API.Images
+      OpenAI.API.Models
+      OpenAI.API.Moderations
       OpenAI.Client
       OpenAI.Core
       OpenAI.Logging

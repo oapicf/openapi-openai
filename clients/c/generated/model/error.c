@@ -6,19 +6,19 @@
 
 
 error_t *error_create(
-    char *type,
+    char *code,
     char *message,
     char *param,
-    char *code
+    char *type
     ) {
     error_t *error_local_var = malloc(sizeof(error_t));
     if (!error_local_var) {
         return NULL;
     }
-    error_local_var->type = type;
+    error_local_var->code = code;
     error_local_var->message = message;
     error_local_var->param = param;
-    error_local_var->code = code;
+    error_local_var->type = type;
 
     return error_local_var;
 }
@@ -29,9 +29,9 @@ void error_free(error_t *error) {
         return ;
     }
     listEntry_t *listEntry;
-    if (error->type) {
-        free(error->type);
-        error->type = NULL;
+    if (error->code) {
+        free(error->code);
+        error->code = NULL;
     }
     if (error->message) {
         free(error->message);
@@ -41,9 +41,9 @@ void error_free(error_t *error) {
         free(error->param);
         error->param = NULL;
     }
-    if (error->code) {
-        free(error->code);
-        error->code = NULL;
+    if (error->type) {
+        free(error->type);
+        error->type = NULL;
     }
     free(error);
 }
@@ -51,11 +51,11 @@ void error_free(error_t *error) {
 cJSON *error_convertToJSON(error_t *error) {
     cJSON *item = cJSON_CreateObject();
 
-    // error->type
-    if (!error->type) {
+    // error->code
+    if (!error->code) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "type", error->type) == NULL) {
+    if(cJSON_AddStringToObject(item, "code", error->code) == NULL) {
     goto fail; //String
     }
 
@@ -78,11 +78,11 @@ cJSON *error_convertToJSON(error_t *error) {
     }
 
 
-    // error->code
-    if (!error->code) {
+    // error->type
+    if (!error->type) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "code", error->code) == NULL) {
+    if(cJSON_AddStringToObject(item, "type", error->type) == NULL) {
     goto fail; //String
     }
 
@@ -98,14 +98,14 @@ error_t *error_parseFromJSON(cJSON *errorJSON){
 
     error_t *error_local_var = NULL;
 
-    // error->type
-    cJSON *type = cJSON_GetObjectItemCaseSensitive(errorJSON, "type");
-    if (!type) {
+    // error->code
+    cJSON *code = cJSON_GetObjectItemCaseSensitive(errorJSON, "code");
+    if (!code) {
         goto end;
     }
 
     
-    if(!cJSON_IsString(type))
+    if(!cJSON_IsString(code))
     {
     goto end; //String
     }
@@ -134,24 +134,24 @@ error_t *error_parseFromJSON(cJSON *errorJSON){
     goto end; //String
     }
 
-    // error->code
-    cJSON *code = cJSON_GetObjectItemCaseSensitive(errorJSON, "code");
-    if (!code) {
+    // error->type
+    cJSON *type = cJSON_GetObjectItemCaseSensitive(errorJSON, "type");
+    if (!type) {
         goto end;
     }
 
     
-    if(!cJSON_IsString(code))
+    if(!cJSON_IsString(type))
     {
     goto end; //String
     }
 
 
     error_local_var = error_create (
-        strdup(type->valuestring),
+        strdup(code->valuestring),
         strdup(message->valuestring),
         strdup(param->valuestring),
-        strdup(code->valuestring)
+        strdup(type->valuestring)
         );
 
     return error_local_var;

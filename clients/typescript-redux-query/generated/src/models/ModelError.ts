@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,7 @@ export interface ModelError  {
      * @type {string}
      * @memberof ModelError
      */
-    type: string;
+    code: string;
     /**
      * 
      * @type {string}
@@ -41,15 +41,15 @@ export interface ModelError  {
      * @type {string}
      * @memberof ModelError
      */
-    code: string;
+    type: string;
 }
 
 export function ModelErrorFromJSON(json: any): ModelError {
     return {
-        'type': json['type'],
+        'code': json['code'],
         'message': json['message'],
         'param': json['param'],
-        'code': json['code'],
+        'type': json['type'],
     };
 }
 
@@ -58,10 +58,10 @@ export function ModelErrorToJSON(value?: ModelError): any {
         return undefined;
     }
     return {
-        'type': value.type,
+        'code': value.code,
         'message': value.message,
         'param': value.param,
-        'code': value.code,
+        'type': value.type,
     };
 }
 

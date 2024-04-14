@@ -7,8 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(Error, () {
-    // String type
-    test('to test the property `type`', () async {
+    // String code
+    test('to test the property `code`', () async {
       // TODO
     });
 
@@ -22,8 +22,8 @@ void main() {
       // TODO
     });
 
-    // String code
-    test('to test the property `code`', () async {
+    // String type
+    test('to test the property `type`', () async {
       // TODO
     });
 

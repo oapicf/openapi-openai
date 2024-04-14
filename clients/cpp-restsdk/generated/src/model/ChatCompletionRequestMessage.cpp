@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,13 +23,16 @@ namespace model {
 
 ChatCompletionRequestMessage::ChatCompletionRequestMessage()
 {
-    m_Role = utility::conversions::to_string_t("");
-    m_RoleIsSet = false;
     m_Content = utility::conversions::to_string_t("");
     m_ContentIsSet = false;
+    m_Role = utility::conversions::to_string_t("");
+    m_RoleIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
+    m_Tool_callsIsSet = false;
     m_Function_callIsSet = false;
+    m_Tool_call_id = utility::conversions::to_string_t("");
+    m_Tool_call_idIsSet = false;
 }
 
 ChatCompletionRequestMessage::~ChatCompletionRequestMessage()
@@ -46,21 +49,29 @@ web::json::value ChatCompletionRequestMessage::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_RoleIsSet)
-    {
-        val[utility::conversions::to_string_t(U("role"))] = ModelBase::toJson(m_Role);
-    }
     if(m_ContentIsSet)
     {
         val[utility::conversions::to_string_t(U("content"))] = ModelBase::toJson(m_Content);
+    }
+    if(m_RoleIsSet)
+    {
+        val[utility::conversions::to_string_t(U("role"))] = ModelBase::toJson(m_Role);
     }
     if(m_NameIsSet)
     {
         val[utility::conversions::to_string_t(U("name"))] = ModelBase::toJson(m_Name);
     }
+    if(m_Tool_callsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("tool_calls"))] = ModelBase::toJson(m_Tool_calls);
+    }
     if(m_Function_callIsSet)
     {
         val[utility::conversions::to_string_t(U("function_call"))] = ModelBase::toJson(m_Function_call);
+    }
+    if(m_Tool_call_idIsSet)
+    {
+        val[utility::conversions::to_string_t(U("tool_call_id"))] = ModelBase::toJson(m_Tool_call_id);
     }
 
     return val;
@@ -70,16 +81,6 @@ bool ChatCompletionRequestMessage::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("role"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("role")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setRole;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRole);
-            setRole(refVal_setRole);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("content"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("content")));
@@ -88,6 +89,16 @@ bool ChatCompletionRequestMessage::fromJson(const web::json::value& val)
             utility::string_t refVal_setContent;
             ok &= ModelBase::fromJson(fieldValue, refVal_setContent);
             setContent(refVal_setContent);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("role"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("role")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setRole;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRole);
+            setRole(refVal_setRole);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("name"))))
@@ -100,14 +111,34 @@ bool ChatCompletionRequestMessage::fromJson(const web::json::value& val)
             setName(refVal_setName);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("tool_calls"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tool_calls")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<ChatCompletionMessageToolCall>> refVal_setToolCalls;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setToolCalls);
+            setToolCalls(refVal_setToolCalls);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("function_call"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("function_call")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<ChatCompletionRequestMessage_function_call> refVal_setFunctionCall;
+            std::shared_ptr<ChatCompletionRequestAssistantMessage_function_call> refVal_setFunctionCall;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFunctionCall);
             setFunctionCall(refVal_setFunctionCall);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("tool_call_id"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tool_call_id")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setToolCallId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setToolCallId);
+            setToolCallId(refVal_setToolCallId);
         }
     }
     return ok;
@@ -120,21 +151,29 @@ void ChatCompletionRequestMessage::toMultipart(std::shared_ptr<MultipartFormData
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_RoleIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("role")), m_Role));
-    }
     if(m_ContentIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("content")), m_Content));
+    }
+    if(m_RoleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("role")), m_Role));
     }
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("name")), m_Name));
     }
+    if(m_Tool_callsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tool_calls")), m_Tool_calls));
+    }
     if(m_Function_callIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("function_call")), m_Function_call));
+    }
+    if(m_Tool_call_idIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tool_call_id")), m_Tool_call_id));
     }
 }
 
@@ -147,17 +186,17 @@ bool ChatCompletionRequestMessage::fromMultiPart(std::shared_ptr<MultipartFormDa
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("role"))))
-    {
-        utility::string_t refVal_setRole;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("role"))), refVal_setRole );
-        setRole(refVal_setRole);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("content"))))
     {
         utility::string_t refVal_setContent;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("content"))), refVal_setContent );
         setContent(refVal_setContent);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("role"))))
+    {
+        utility::string_t refVal_setRole;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("role"))), refVal_setRole );
+        setRole(refVal_setRole);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("name"))))
     {
@@ -165,35 +204,27 @@ bool ChatCompletionRequestMessage::fromMultiPart(std::shared_ptr<MultipartFormDa
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("name"))), refVal_setName );
         setName(refVal_setName);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("tool_calls"))))
+    {
+        std::vector<std::shared_ptr<ChatCompletionMessageToolCall>> refVal_setToolCalls;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tool_calls"))), refVal_setToolCalls );
+        setToolCalls(refVal_setToolCalls);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("function_call"))))
     {
-        std::shared_ptr<ChatCompletionRequestMessage_function_call> refVal_setFunctionCall;
+        std::shared_ptr<ChatCompletionRequestAssistantMessage_function_call> refVal_setFunctionCall;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("function_call"))), refVal_setFunctionCall );
         setFunctionCall(refVal_setFunctionCall);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("tool_call_id"))))
+    {
+        utility::string_t refVal_setToolCallId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tool_call_id"))), refVal_setToolCallId );
+        setToolCallId(refVal_setToolCallId);
     }
     return ok;
 }
 
-utility::string_t ChatCompletionRequestMessage::getRole() const
-{
-    return m_Role;
-}
-
-void ChatCompletionRequestMessage::setRole(const utility::string_t& value)
-{
-    m_Role = value;
-    m_RoleIsSet = true;
-}
-
-bool ChatCompletionRequestMessage::roleIsSet() const
-{
-    return m_RoleIsSet;
-}
-
-void ChatCompletionRequestMessage::unsetRole()
-{
-    m_RoleIsSet = false;
-}
 utility::string_t ChatCompletionRequestMessage::getContent() const
 {
     return m_Content;
@@ -213,6 +244,26 @@ bool ChatCompletionRequestMessage::contentIsSet() const
 void ChatCompletionRequestMessage::unsetContent()
 {
     m_ContentIsSet = false;
+}
+utility::string_t ChatCompletionRequestMessage::getRole() const
+{
+    return m_Role;
+}
+
+void ChatCompletionRequestMessage::setRole(const utility::string_t& value)
+{
+    m_Role = value;
+    m_RoleIsSet = true;
+}
+
+bool ChatCompletionRequestMessage::roleIsSet() const
+{
+    return m_RoleIsSet;
+}
+
+void ChatCompletionRequestMessage::unsetRole()
+{
+    m_RoleIsSet = false;
 }
 utility::string_t ChatCompletionRequestMessage::getName() const
 {
@@ -234,12 +285,32 @@ void ChatCompletionRequestMessage::unsetName()
 {
     m_NameIsSet = false;
 }
-std::shared_ptr<ChatCompletionRequestMessage_function_call> ChatCompletionRequestMessage::getFunctionCall() const
+std::vector<std::shared_ptr<ChatCompletionMessageToolCall>>& ChatCompletionRequestMessage::getToolCalls()
+{
+    return m_Tool_calls;
+}
+
+void ChatCompletionRequestMessage::setToolCalls(const std::vector<std::shared_ptr<ChatCompletionMessageToolCall>>& value)
+{
+    m_Tool_calls = value;
+    m_Tool_callsIsSet = true;
+}
+
+bool ChatCompletionRequestMessage::toolCallsIsSet() const
+{
+    return m_Tool_callsIsSet;
+}
+
+void ChatCompletionRequestMessage::unsetTool_calls()
+{
+    m_Tool_callsIsSet = false;
+}
+std::shared_ptr<ChatCompletionRequestAssistantMessage_function_call> ChatCompletionRequestMessage::getFunctionCall() const
 {
     return m_Function_call;
 }
 
-void ChatCompletionRequestMessage::setFunctionCall(const std::shared_ptr<ChatCompletionRequestMessage_function_call>& value)
+void ChatCompletionRequestMessage::setFunctionCall(const std::shared_ptr<ChatCompletionRequestAssistantMessage_function_call>& value)
 {
     m_Function_call = value;
     m_Function_callIsSet = true;
@@ -253,6 +324,26 @@ bool ChatCompletionRequestMessage::functionCallIsSet() const
 void ChatCompletionRequestMessage::unsetFunction_call()
 {
     m_Function_callIsSet = false;
+}
+utility::string_t ChatCompletionRequestMessage::getToolCallId() const
+{
+    return m_Tool_call_id;
+}
+
+void ChatCompletionRequestMessage::setToolCallId(const utility::string_t& value)
+{
+    m_Tool_call_id = value;
+    m_Tool_call_idIsSet = true;
+}
+
+bool ChatCompletionRequestMessage::toolCallIdIsSet() const
+{
+    return m_Tool_call_idIsSet;
+}
+
+void ChatCompletionRequestMessage::unsetTool_call_id()
+{
+    m_Tool_call_idIsSet = false;
 }
 }
 }

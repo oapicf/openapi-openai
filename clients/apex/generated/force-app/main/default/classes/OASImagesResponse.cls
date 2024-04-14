@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,16 +24,16 @@ public class OASImagesResponse {
      * Get data
      * @return data
      */
-    public List<OASImagesResponseDataInner> data { get; set; }
+    public List<OASImage> data { get; set; }
 
     public OASImagesResponse() {
-        data = new List<OASImagesResponseDataInner>();
+        data = new List<OASImage>();
     }
 
     public static OASImagesResponse getExample() {
         OASImagesResponse imagesResponse = new OASImagesResponse();
           imagesResponse.created = 0;
-          imagesResponse.data = new List<OASImagesResponseDataInner>{OASImagesResponseDataInner.getExample()};
+          imagesResponse.data = new List<OASImage>{OASImage.getExample()};
         return imagesResponse;
     }
 

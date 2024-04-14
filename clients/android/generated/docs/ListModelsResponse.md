@@ -6,8 +6,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_object** | **String** |  | 
+**_object** | [**_objectEnum**](#_objectEnum) |  | 
 **data** | [**List&lt;Model&gt;**](Model.md) |  | 
+
+
+## Enum: _objectEnum
+
+Name | Value
+---- | -----
 
 
 

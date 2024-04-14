@@ -9,13 +9,13 @@ module CreateCompletionResponseChoicesInner =
   //#region CreateCompletionResponseChoicesInner
 
   //#region enums
-  type FinishReasonEnum = StopEnum of string  |  LengthEnum of string  
+  type FinishReasonEnum = StopEnum of string  |  LengthEnum of string  |  ContentFilterEnum of string  
   //#endregion
 
   type CreateCompletionResponse_choices_inner = {
-    Text : string;
+    FinishReason : FinishReasonEnum;
     Index : int;
     Logprobs : CreateCompletionResponseChoicesInnerLogprobs;
-    FinishReason : FinishReasonEnum;
+    Text : string;
   }
   //#endregion

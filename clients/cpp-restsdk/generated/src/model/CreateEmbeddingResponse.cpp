@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,11 +23,11 @@ namespace model {
 
 CreateEmbeddingResponse::CreateEmbeddingResponse()
 {
-    m_object = utility::conversions::to_string_t("");
-    m_objectIsSet = false;
+    m_DataIsSet = false;
     m_Model = utility::conversions::to_string_t("");
     m_ModelIsSet = false;
-    m_DataIsSet = false;
+    m_object = utility::conversions::to_string_t("");
+    m_objectIsSet = false;
     m_UsageIsSet = false;
 }
 
@@ -45,17 +45,17 @@ web::json::value CreateEmbeddingResponse::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_objectIsSet)
+    if(m_DataIsSet)
     {
-        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
+        val[utility::conversions::to_string_t(U("data"))] = ModelBase::toJson(m_Data);
     }
     if(m_ModelIsSet)
     {
         val[utility::conversions::to_string_t(U("model"))] = ModelBase::toJson(m_Model);
     }
-    if(m_DataIsSet)
+    if(m_objectIsSet)
     {
-        val[utility::conversions::to_string_t(U("data"))] = ModelBase::toJson(m_Data);
+        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
     }
     if(m_UsageIsSet)
     {
@@ -69,14 +69,14 @@ bool CreateEmbeddingResponse::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("object"))))
+    if(val.has_field(utility::conversions::to_string_t(U("data"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("data")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setObject;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
-            setObject(refVal_setObject);
+            std::vector<std::shared_ptr<Embedding>> refVal_setData;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setData);
+            setData(refVal_setData);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("model"))))
@@ -89,14 +89,14 @@ bool CreateEmbeddingResponse::fromJson(const web::json::value& val)
             setModel(refVal_setModel);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("data"))))
+    if(val.has_field(utility::conversions::to_string_t(U("object"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("data")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
         if(!fieldValue.is_null())
         {
-            std::vector<std::shared_ptr<CreateEmbeddingResponse_data_inner>> refVal_setData;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setData);
-            setData(refVal_setData);
+            utility::string_t refVal_setObject;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
+            setObject(refVal_setObject);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("usage"))))
@@ -119,17 +119,17 @@ void CreateEmbeddingResponse::toMultipart(std::shared_ptr<MultipartFormData> mul
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_objectIsSet)
+    if(m_DataIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("data")), m_Data));
     }
     if(m_ModelIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("model")), m_Model));
     }
-    if(m_DataIsSet)
+    if(m_objectIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("data")), m_Data));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
     }
     if(m_UsageIsSet)
     {
@@ -146,11 +146,11 @@ bool CreateEmbeddingResponse::fromMultiPart(std::shared_ptr<MultipartFormData> m
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("data"))))
     {
-        utility::string_t refVal_setObject;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
-        setObject(refVal_setObject);
+        std::vector<std::shared_ptr<Embedding>> refVal_setData;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("data"))), refVal_setData );
+        setData(refVal_setData);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("model"))))
     {
@@ -158,11 +158,11 @@ bool CreateEmbeddingResponse::fromMultiPart(std::shared_ptr<MultipartFormData> m
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("model"))), refVal_setModel );
         setModel(refVal_setModel);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("data"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
     {
-        std::vector<std::shared_ptr<CreateEmbeddingResponse_data_inner>> refVal_setData;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("data"))), refVal_setData );
-        setData(refVal_setData);
+        utility::string_t refVal_setObject;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
+        setObject(refVal_setObject);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("usage"))))
     {
@@ -173,25 +173,25 @@ bool CreateEmbeddingResponse::fromMultiPart(std::shared_ptr<MultipartFormData> m
     return ok;
 }
 
-utility::string_t CreateEmbeddingResponse::getObject() const
+std::vector<std::shared_ptr<Embedding>>& CreateEmbeddingResponse::getData()
 {
-    return m_object;
+    return m_Data;
 }
 
-void CreateEmbeddingResponse::setObject(const utility::string_t& value)
+void CreateEmbeddingResponse::setData(const std::vector<std::shared_ptr<Embedding>>& value)
 {
-    m_object = value;
-    m_objectIsSet = true;
+    m_Data = value;
+    m_DataIsSet = true;
 }
 
-bool CreateEmbeddingResponse::objectIsSet() const
+bool CreateEmbeddingResponse::dataIsSet() const
 {
-    return m_objectIsSet;
+    return m_DataIsSet;
 }
 
-void CreateEmbeddingResponse::unsetobject()
+void CreateEmbeddingResponse::unsetData()
 {
-    m_objectIsSet = false;
+    m_DataIsSet = false;
 }
 utility::string_t CreateEmbeddingResponse::getModel() const
 {
@@ -213,25 +213,25 @@ void CreateEmbeddingResponse::unsetModel()
 {
     m_ModelIsSet = false;
 }
-std::vector<std::shared_ptr<CreateEmbeddingResponse_data_inner>>& CreateEmbeddingResponse::getData()
+utility::string_t CreateEmbeddingResponse::getObject() const
 {
-    return m_Data;
+    return m_object;
 }
 
-void CreateEmbeddingResponse::setData(const std::vector<std::shared_ptr<CreateEmbeddingResponse_data_inner>>& value)
+void CreateEmbeddingResponse::setObject(const utility::string_t& value)
 {
-    m_Data = value;
-    m_DataIsSet = true;
+    m_object = value;
+    m_objectIsSet = true;
 }
 
-bool CreateEmbeddingResponse::dataIsSet() const
+bool CreateEmbeddingResponse::objectIsSet() const
 {
-    return m_DataIsSet;
+    return m_objectIsSet;
 }
 
-void CreateEmbeddingResponse::unsetData()
+void CreateEmbeddingResponse::unsetobject()
 {
-    m_DataIsSet = false;
+    m_objectIsSet = false;
 }
 std::shared_ptr<CreateEmbeddingResponse_usage> CreateEmbeddingResponse::getUsage() const
 {

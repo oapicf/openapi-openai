@@ -7,6 +7,7 @@ model_instance <- CreateModerationResponseResultsInner$new()
 
 test_that("flagged", {
   # tests for the property `flagged` (character)
+  # Whether any of the below categories are flagged.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`flagged`, "EXPECTED_RESULT")

@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**role** | **String** | The role of the author of this message. | [optional] 
 **content** | **String** | The contents of the chunk message. | [optional] 
-**functionCall** | [**ChatCompletionRequestMessageFunctionCall**](ChatCompletionRequestMessageFunctionCall.md) |  | [optional] 
+**functionCall** | [**ChatCompletionStreamResponseDeltaFunctionCall**](ChatCompletionStreamResponseDeltaFunctionCall.md) |  | [optional] 
+**toolCalls** | [**[ChatCompletionMessageToolCallChunk]**](ChatCompletionMessageToolCallChunk.md) |  | [optional] 
+**role** | **String** | The role of the author of this message. | [optional] 
 
 
 
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 
 * `assistant` (value: `"assistant"`)
 
-* `function` (value: `"function"`)
+* `tool` (value: `"tool"`)
 
 
 

@@ -34,9 +34,9 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Validated
-@Tag(name = "OpenAI", description = "The OpenAI REST API")
+@Tag(name = "Models", description = "List and describe the various models available in the API.")
 public interface ModelsApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -44,19 +44,22 @@ public interface ModelsApi {
     }
 
     /**
-     * DELETE /models/{model} : Delete a fine-tuned model. You must have the Owner role in your organization.
+     * DELETE /models/{model} : Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
      *
      * @param model The model to delete (required)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "deleteModel",
-        summary = "Delete a fine-tuned model. You must have the Owner role in your organization.",
-        tags = { "OpenAI" },
+        summary = "Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.",
+        tags = { "Models" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = DeleteModelResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -90,11 +93,14 @@ public interface ModelsApi {
     @Operation(
         operationId = "listModels",
         summary = "Lists the currently available models, and provides basic information about each one such as the owner and availability.",
-        tags = { "OpenAI" },
+        tags = { "Models" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ListModelsResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -109,7 +115,7 @@ public interface ModelsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"data\" : [ { \"created\" : 0, \"owned_by\" : \"owned_by\", \"id\" : \"id\", \"object\" : \"object\" }, { \"created\" : 0, \"owned_by\" : \"owned_by\", \"id\" : \"id\", \"object\" : \"object\" } ], \"object\" : \"object\" }";
+                    String exampleString = "{ \"data\" : [ { \"created\" : 0, \"owned_by\" : \"owned_by\", \"id\" : \"id\", \"object\" : \"model\" }, { \"created\" : 0, \"owned_by\" : \"owned_by\", \"id\" : \"id\", \"object\" : \"model\" } ], \"object\" : \"list\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -129,11 +135,14 @@ public interface ModelsApi {
     @Operation(
         operationId = "retrieveModel",
         summary = "Retrieves a model instance, providing basic information about the model such as the owner and permissioning.",
-        tags = { "OpenAI" },
+        tags = { "Models" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Model.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -148,7 +157,7 @@ public interface ModelsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"created\" : 0, \"owned_by\" : \"owned_by\", \"id\" : \"id\", \"object\" : \"object\" }";
+                    String exampleString = "{ \"created\" : 0, \"owned_by\" : \"owned_by\", \"id\" : \"id\", \"object\" : \"model\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

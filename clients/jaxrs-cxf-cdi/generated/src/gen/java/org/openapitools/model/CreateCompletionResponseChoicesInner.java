@@ -17,16 +17,10 @@ import java.util.Objects;
 
 public class CreateCompletionResponseChoicesInner   {
   
-  private String text;
-
-  private Integer index;
-
-  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
-
 
 public enum FinishReasonEnum {
 
-    @JsonProperty("stop") STOP(String.valueOf("stop")), @JsonProperty("length") LENGTH(String.valueOf("length"));
+    @JsonProperty("stop") STOP(String.valueOf("stop")), @JsonProperty("length") LENGTH(String.valueOf("length")), @JsonProperty("content_filter") CONTENT_FILTER(String.valueOf("content_filter"));
 
 
     private String value;
@@ -56,22 +50,29 @@ public enum FinishReasonEnum {
 
   private FinishReasonEnum finishReason;
 
+  private Integer index;
+
+  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
+
+  private String text;
+
   /**
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
    **/
-  public CreateCompletionResponseChoicesInner text(String text) {
-    this.text = text;
+  public CreateCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("text")
+  @ApiModelProperty(required = true, value = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. ")
+  @JsonProperty("finish_reason")
   @NotNull
-  public String getText() {
-    return text;
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
   }
-  public void setText(String text) {
-    this.text = text;
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
   }
 
 
@@ -115,20 +116,20 @@ public enum FinishReasonEnum {
 
   /**
    **/
-  public CreateCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public CreateCompletionResponseChoicesInner text(String text) {
+    this.text = text;
     return this;
   }
 
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("finish_reason")
+  @JsonProperty("text")
   @NotNull
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  public String getText() {
+    return text;
   }
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -142,15 +143,15 @@ public enum FinishReasonEnum {
       return false;
     }
     CreateCompletionResponseChoicesInner createCompletionResponseChoicesInner = (CreateCompletionResponseChoicesInner) o;
-    return Objects.equals(this.text, createCompletionResponseChoicesInner.text) &&
+    return Objects.equals(this.finishReason, createCompletionResponseChoicesInner.finishReason) &&
         Objects.equals(this.index, createCompletionResponseChoicesInner.index) &&
         Objects.equals(this.logprobs, createCompletionResponseChoicesInner.logprobs) &&
-        Objects.equals(this.finishReason, createCompletionResponseChoicesInner.finishReason);
+        Objects.equals(this.text, createCompletionResponseChoicesInner.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, index, logprobs, finishReason);
+    return Objects.hash(finishReason, index, logprobs, text);
   }
 
   @Override
@@ -158,10 +159,10 @@ public enum FinishReasonEnum {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInner {\n");
     
-    sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

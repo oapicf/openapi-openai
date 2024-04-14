@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -50,7 +50,25 @@ type APIClient struct {
 
 	// API Services
 
-	OpenAIAPI *OpenAIAPIService
+	AssistantsAPI *AssistantsAPIService
+
+	AudioAPI *AudioAPIService
+
+	ChatAPI *ChatAPIService
+
+	CompletionsAPI *CompletionsAPIService
+
+	EmbeddingsAPI *EmbeddingsAPIService
+
+	FilesAPI *FilesAPIService
+
+	FineTuningAPI *FineTuningAPIService
+
+	ImagesAPI *ImagesAPIService
+
+	ModelsAPI *ModelsAPIService
+
+	ModerationsAPI *ModerationsAPIService
 }
 
 type service struct {
@@ -69,7 +87,16 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.OpenAIAPI = (*OpenAIAPIService)(&c.common)
+	c.AssistantsAPI = (*AssistantsAPIService)(&c.common)
+	c.AudioAPI = (*AudioAPIService)(&c.common)
+	c.ChatAPI = (*ChatAPIService)(&c.common)
+	c.CompletionsAPI = (*CompletionsAPIService)(&c.common)
+	c.EmbeddingsAPI = (*EmbeddingsAPIService)(&c.common)
+	c.FilesAPI = (*FilesAPIService)(&c.common)
+	c.FineTuningAPI = (*FineTuningAPIService)(&c.common)
+	c.ImagesAPI = (*ImagesAPIService)(&c.common)
+	c.ModelsAPI = (*ModelsAPIService)(&c.common)
+	c.ModerationsAPI = (*ModerationsAPIService)(&c.common)
 
 	return c
 }
@@ -410,6 +437,11 @@ func (c *APIClient) prepareRequest(
 		localVarRequest = localVarRequest.WithContext(ctx)
 
 		// Walk through any authentication.
+
+		// AccessToken Authentication
+		if auth, ok := ctx.Value(ContextAccessToken).(string); ok {
+			localVarRequest.Header.Add("Authorization", "Bearer "+auth)
+		}
 
 	}
 

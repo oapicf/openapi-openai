@@ -3,7 +3,7 @@
 
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -23,12 +23,12 @@
 @interface OAIError : OAIObject
 
 
-@property(nonatomic) NSString* type;
+@property(nonatomic) NSString* code;
 
 @property(nonatomic) NSString* message;
 
 @property(nonatomic) NSString* param;
 
-@property(nonatomic) NSString* code;
+@property(nonatomic) NSString* type;
 
 @end

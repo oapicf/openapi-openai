@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,10 +20,10 @@ public class DeleteModelResponse {
   
   @SerializedName("id")
   private String id = null;
-  @SerializedName("object")
-  private String _object = null;
   @SerializedName("deleted")
   private Boolean deleted = null;
+  @SerializedName("object")
+  private String _object = null;
 
   /**
    **/
@@ -38,21 +38,21 @@ public class DeleteModelResponse {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
   public Boolean getDeleted() {
     return deleted;
   }
   public void setDeleted(Boolean deleted) {
     this.deleted = deleted;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public String getObject() {
+    return _object;
+  }
+  public void setObject(String _object) {
+    this._object = _object;
   }
 
 
@@ -66,16 +66,16 @@ public class DeleteModelResponse {
     }
     DeleteModelResponse deleteModelResponse = (DeleteModelResponse) o;
     return (this.id == null ? deleteModelResponse.id == null : this.id.equals(deleteModelResponse.id)) &&
-        (this._object == null ? deleteModelResponse._object == null : this._object.equals(deleteModelResponse._object)) &&
-        (this.deleted == null ? deleteModelResponse.deleted == null : this.deleted.equals(deleteModelResponse.deleted));
+        (this.deleted == null ? deleteModelResponse.deleted == null : this.deleted.equals(deleteModelResponse.deleted)) &&
+        (this._object == null ? deleteModelResponse._object == null : this._object.equals(deleteModelResponse._object));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
     result = 31 * result + (this.id == null ? 0: this.id.hashCode());
-    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
     result = 31 * result + (this.deleted == null ? 0: this.deleted.hashCode());
+    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
     return result;
   }
 
@@ -85,8 +85,8 @@ public class DeleteModelResponse {
     sb.append("class DeleteModelResponse {\n");
     
     sb.append("  id: ").append(id).append("\n");
-    sb.append("  _object: ").append(_object).append("\n");
     sb.append("  deleted: ").append(deleted).append("\n");
+    sb.append("  _object: ").append(_object).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

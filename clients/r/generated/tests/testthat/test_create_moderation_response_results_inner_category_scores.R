@@ -7,6 +7,7 @@ model_instance <- CreateModerationResponseResultsInnerCategoryScores$new()
 
 test_that("hate", {
   # tests for the property `hate` (numeric)
+  # The score for the category &#39;hate&#39;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`hate`, "EXPECTED_RESULT")
@@ -14,20 +15,55 @@ test_that("hate", {
 
 test_that("hate/threatening", {
   # tests for the property `hate/threatening` (numeric)
+  # The score for the category &#39;hate/threatening&#39;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`hate/threatening`, "EXPECTED_RESULT")
 })
 
+test_that("harassment", {
+  # tests for the property `harassment` (numeric)
+  # The score for the category &#39;harassment&#39;.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`harassment`, "EXPECTED_RESULT")
+})
+
+test_that("harassment/threatening", {
+  # tests for the property `harassment/threatening` (numeric)
+  # The score for the category &#39;harassment/threatening&#39;.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`harassment/threatening`, "EXPECTED_RESULT")
+})
+
 test_that("self-harm", {
   # tests for the property `self-harm` (numeric)
+  # The score for the category &#39;self-harm&#39;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`self-harm`, "EXPECTED_RESULT")
 })
 
+test_that("self-harm/intent", {
+  # tests for the property `self-harm/intent` (numeric)
+  # The score for the category &#39;self-harm/intent&#39;.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`self-harm/intent`, "EXPECTED_RESULT")
+})
+
+test_that("self-harm/instructions", {
+  # tests for the property `self-harm/instructions` (numeric)
+  # The score for the category &#39;self-harm/instructions&#39;.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`self-harm/instructions`, "EXPECTED_RESULT")
+})
+
 test_that("sexual", {
   # tests for the property `sexual` (numeric)
+  # The score for the category &#39;sexual&#39;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`sexual`, "EXPECTED_RESULT")
@@ -35,6 +71,7 @@ test_that("sexual", {
 
 test_that("sexual/minors", {
   # tests for the property `sexual/minors` (numeric)
+  # The score for the category &#39;sexual/minors&#39;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`sexual/minors`, "EXPECTED_RESULT")
@@ -42,6 +79,7 @@ test_that("sexual/minors", {
 
 test_that("violence", {
   # tests for the property `violence` (numeric)
+  # The score for the category &#39;violence&#39;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`violence`, "EXPECTED_RESULT")
@@ -49,6 +87,7 @@ test_that("violence", {
 
 test_that("violence/graphic", {
   # tests for the property `violence/graphic` (numeric)
+  # The score for the category &#39;violence/graphic&#39;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`violence/graphic`, "EXPECTED_RESULT")

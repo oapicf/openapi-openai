@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,10 +15,19 @@
  */
 public class OASCreateCompletionResponseChoicesIn implements OAS.MappedProperties {
     /**
-     * Get text
-     * @return text
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,\n`length` if the maximum number of tokens specified in the request was reached,\nor `content_filter` if content was omitted due to a flag from our content filters.\n
      */
-    public String text { get; set; }
+    public enum FinishReasonEnum {
+        STOP,
+        LENGTH,
+        CONTENT_FILTER
+    }
+
+    /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,\n`length` if the maximum number of tokens specified in the request was reached,\nor `content_filter` if content was omitted due to a flag from our content filters.\n
+     * @return finishReason
+     */
+    public FinishReasonEnum finishReason { get; set; }
 
     /**
      * Get index
@@ -33,18 +42,10 @@ public class OASCreateCompletionResponseChoicesIn implements OAS.MappedPropertie
     public OASCreateCompletionResponseChoicesIn logprobs { get; set; }
 
     /**
-     * Gets or Sets finishReason
+     * Get text
+     * @return text
      */
-    public enum FinishReasonEnum {
-        STOP,
-        LENGTH
-    }
-
-    /**
-     * Get finishReason
-     * @return finishReason
-     */
-    public FinishReasonEnum finishReason { get; set; }
+    public String text { get; set; }
 
     private static final Map<String, String> propertyMappings = new Map<String, String>{
         'finish_reason' => 'finishReason'
@@ -56,30 +57,30 @@ public class OASCreateCompletionResponseChoicesIn implements OAS.MappedPropertie
 
     public static OASCreateCompletionResponseChoicesIn getExample() {
         OASCreateCompletionResponseChoicesIn createCompletionResponseChoicesInner = new OASCreateCompletionResponseChoicesIn();
-          createCompletionResponseChoicesInner.text = '';
+          createCompletionResponseChoicesInner.finishReason = FinishReasonEnum.STOP;
           createCompletionResponseChoicesInner.index = 0;
           createCompletionResponseChoicesInner.logprobs = OASCreateCompletionResponseChoicesIn.getExample();
-          createCompletionResponseChoicesInner.finishReason = FinishReasonEnum.STOP;
+          createCompletionResponseChoicesInner.text = '';
         return createCompletionResponseChoicesInner;
     }
 
     public Boolean equals(Object obj) {
         if (obj instanceof OASCreateCompletionResponseChoicesIn) {           
             OASCreateCompletionResponseChoicesIn createCompletionResponseChoicesInner = (OASCreateCompletionResponseChoicesIn) obj;
-            return this.text == createCompletionResponseChoicesInner.text
+            return this.finishReason == createCompletionResponseChoicesInner.finishReason
                 && this.index == createCompletionResponseChoicesInner.index
                 && this.logprobs == createCompletionResponseChoicesInner.logprobs
-                && this.finishReason == createCompletionResponseChoicesInner.finishReason;
+                && this.text == createCompletionResponseChoicesInner.text;
         }
         return false;
     }
 
     public Integer hashCode() {
         Integer hashCode = 43;
-        hashCode = (17 * hashCode) + (text == null ? 0 : System.hashCode(text));
+        hashCode = (17 * hashCode) + (finishReason == null ? 0 : System.hashCode(finishReason));
         hashCode = (17 * hashCode) + (index == null ? 0 : System.hashCode(index));
         hashCode = (17 * hashCode) + (logprobs == null ? 0 : System.hashCode(logprobs));
-        hashCode = (17 * hashCode) + (finishReason == null ? 0 : System.hashCode(finishReason));
+        hashCode = (17 * hashCode) + (text == null ? 0 : System.hashCode(text));
         return hashCode;
     }
 }

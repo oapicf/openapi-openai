@@ -6,6 +6,7 @@ import org.openapitools.api.factories.ImagesApiServiceFactory;
 import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
 
+import org.openapitools.model.CreateImageEditRequestModel;
 import org.openapitools.model.CreateImageRequest;
 import java.io.File;
 import org.openapitools.model.ImagesResponse;
@@ -31,7 +32,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the images API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesApi  {
    private final ImagesApiService delegate;
 
@@ -60,7 +61,9 @@ public class ImagesApi  {
     @Path("/generations")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Creates an image given a prompt.", notes = "", response = ImagesResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Creates an image given a prompt.", notes = "", response = ImagesResponse.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Images", })
     @io.swagger.annotations.ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = ImagesResponse.class)
     })
@@ -72,27 +75,31 @@ public class ImagesApi  {
     @Path("/edits")
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Creates an edited or extended image given an original image and a prompt.", notes = "", response = ImagesResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Creates an edited or extended image given an original image and a prompt.", notes = "", response = ImagesResponse.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Images", })
     @io.swagger.annotations.ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = ImagesResponse.class)
     })
     public Response createImageEdit(
  @FormDataParam("image") FormDataBodyPart imageBodypart ,@ApiParam(value = "A text description of the desired image(s). The maximum length is 1000 characters.", required=true)@FormDataParam("prompt")  String prompt,
- @FormDataParam("mask") FormDataBodyPart maskBodypart ,@ApiParam(value = "The number of images to generate. Must be between 1 and 10.", defaultValue="1")@FormDataParam("n")  Integer n,@ApiParam(value = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", allowableValues="256x256, 512x512, 1024x1024", defaultValue="1024x1024")@FormDataParam("size")  String size,@ApiParam(value = "The format in which the generated images are returned. Must be one of `url` or `b64_json`.", allowableValues="url, b64_json", defaultValue="url")@FormDataParam("response_format")  String responseFormat,@ApiParam(value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")@FormDataParam("user")  String user,@Context SecurityContext securityContext)
+ @FormDataParam("mask") FormDataBodyPart maskBodypart ,@ApiParam(value = "", defaultValue="dall-e-2")@FormDataParam("model")  CreateImageEditRequestModel model,@ApiParam(value = "The number of images to generate. Must be between 1 and 10.", defaultValue="1")@FormDataParam("n")  Integer n,@ApiParam(value = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", allowableValues="256x256, 512x512, 1024x1024", defaultValue="1024x1024")@FormDataParam("size")  String size,@ApiParam(value = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.", allowableValues="url, b64_json", defaultValue="url")@FormDataParam("response_format")  String responseFormat,@ApiParam(value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")@FormDataParam("user")  String user,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.createImageEdit(imageBodypart, prompt, maskBodypart, n, size, responseFormat, user, securityContext);
+        return delegate.createImageEdit(imageBodypart, prompt, maskBodypart, model, n, size, responseFormat, user, securityContext);
     }
     @javax.ws.rs.POST
     @Path("/variations")
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Creates a variation of a given image.", notes = "", response = ImagesResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Creates a variation of a given image.", notes = "", response = ImagesResponse.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Images", })
     @io.swagger.annotations.ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = ImagesResponse.class)
     })
     public Response createImageVariation(
- @FormDataParam("image") FormDataBodyPart imageBodypart ,@ApiParam(value = "The number of images to generate. Must be between 1 and 10.", defaultValue="1")@FormDataParam("n")  Integer n,@ApiParam(value = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", allowableValues="256x256, 512x512, 1024x1024", defaultValue="1024x1024")@FormDataParam("size")  String size,@ApiParam(value = "The format in which the generated images are returned. Must be one of `url` or `b64_json`.", allowableValues="url, b64_json", defaultValue="url")@FormDataParam("response_format")  String responseFormat,@ApiParam(value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")@FormDataParam("user")  String user,@Context SecurityContext securityContext)
+ @FormDataParam("image") FormDataBodyPart imageBodypart ,@ApiParam(value = "", defaultValue="dall-e-2")@FormDataParam("model")  CreateImageEditRequestModel model,@ApiParam(value = "The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.", defaultValue="1")@FormDataParam("n")  Integer n,@ApiParam(value = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.", allowableValues="url, b64_json", defaultValue="url")@FormDataParam("response_format")  String responseFormat,@ApiParam(value = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", allowableValues="256x256, 512x512, 1024x1024", defaultValue="1024x1024")@FormDataParam("size")  String size,@ApiParam(value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")@FormDataParam("user")  String user,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.createImageVariation(imageBodypart, n, size, responseFormat, user, securityContext);
+        return delegate.createImageVariation(imageBodypart, model, n, responseFormat, size, user, securityContext);
     }
 }

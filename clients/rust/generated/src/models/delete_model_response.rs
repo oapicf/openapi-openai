@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,18 +14,18 @@ use crate::models;
 pub struct DeleteModelResponse {
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "object")]
-    pub object: String,
     #[serde(rename = "deleted")]
     pub deleted: bool,
+    #[serde(rename = "object")]
+    pub object: String,
 }
 
 impl DeleteModelResponse {
-    pub fn new(id: String, object: String, deleted: bool) -> DeleteModelResponse {
+    pub fn new(id: String, deleted: bool, object: String) -> DeleteModelResponse {
         DeleteModelResponse {
             id,
-            object,
             deleted,
+            object,
         }
     }
 }

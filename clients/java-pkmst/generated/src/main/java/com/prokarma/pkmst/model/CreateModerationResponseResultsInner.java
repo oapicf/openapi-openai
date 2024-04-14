@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
  * CreateModerationResponseResultsInner
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-16T01:12:49.513446343Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-04-14T13:39:11.640510243Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponseResultsInner   {
   @JsonProperty("flagged")
   private Boolean flagged;
@@ -34,10 +34,10 @@ public class CreateModerationResponseResultsInner   {
   }
 
    /**
-   * Get flagged
+   * Whether any of the below categories are flagged.
    * @return flagged
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Whether any of the below categories are flagged.")
   public Boolean getFlagged() {
     return flagged;
   }

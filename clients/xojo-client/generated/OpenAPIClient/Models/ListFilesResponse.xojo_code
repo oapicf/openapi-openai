@@ -2,16 +2,33 @@
 Protected Class ListFilesResponse
 
 	#tag Property, Flags = &h0
-		object As String
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
 		data() As OpenAPIClient.Models.OpenAIFile
 	#tag EndProperty
 
 
+	#tag Property, Flags = &h0
+		object As String
+	#tag EndProperty
 
+
+    #tag Enum, Name = ObjectEnum, Type = Integer, Flags = &h0
+        
+        List
+        
+    #tag EndEnum
+
+
+	#tag Method, Flags = &h0
+		Shared Function ObjectEnumToString(value As ObjectEnum) As String
+		  Select Case value
+		    
+		    Case ObjectEnum.List
+		      Return "list"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 
 	#tag ViewBehavior
@@ -45,14 +62,6 @@ Protected Class ListFilesResponse
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="object"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.create_image_request_model import CreateImageRequestModel
 from openapi_server import util
 
 
@@ -14,35 +15,47 @@ class CreateImageRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, prompt: str=None, n: int=1, size: str='1024x1024', response_format: str='url', user: str=None):
+    def __init__(self, prompt: str=None, model: CreateImageRequestModel=None, n: int=1, quality: str='standard', response_format: str='url', size: str='1024x1024', style: str='vivid', user: str=None):
         """CreateImageRequest - a model defined in OpenAPI
 
         :param prompt: The prompt of this CreateImageRequest.
+        :param model: The model of this CreateImageRequest.
         :param n: The n of this CreateImageRequest.
-        :param size: The size of this CreateImageRequest.
+        :param quality: The quality of this CreateImageRequest.
         :param response_format: The response_format of this CreateImageRequest.
+        :param size: The size of this CreateImageRequest.
+        :param style: The style of this CreateImageRequest.
         :param user: The user of this CreateImageRequest.
         """
         self.openapi_types = {
             'prompt': str,
+            'model': CreateImageRequestModel,
             'n': int,
-            'size': str,
+            'quality': str,
             'response_format': str,
+            'size': str,
+            'style': str,
             'user': str
         }
 
         self.attribute_map = {
             'prompt': 'prompt',
+            'model': 'model',
             'n': 'n',
-            'size': 'size',
+            'quality': 'quality',
             'response_format': 'response_format',
+            'size': 'size',
+            'style': 'style',
             'user': 'user'
         }
 
         self._prompt = prompt
+        self._model = model
         self._n = n
-        self._size = size
+        self._quality = quality
         self._response_format = response_format
+        self._size = size
+        self._style = style
         self._user = user
 
     @classmethod
@@ -58,7 +71,7 @@ class CreateImageRequest(Model):
     def prompt(self):
         """Gets the prompt of this CreateImageRequest.
 
-        A text description of the desired image(s). The maximum length is 1000 characters.
+        A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.
 
         :return: The prompt of this CreateImageRequest.
         :rtype: str
@@ -69,7 +82,7 @@ class CreateImageRequest(Model):
     def prompt(self, prompt):
         """Sets the prompt of this CreateImageRequest.
 
-        A text description of the desired image(s). The maximum length is 1000 characters.
+        A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.
 
         :param prompt: The prompt of this CreateImageRequest.
         :type prompt: str
@@ -80,10 +93,31 @@ class CreateImageRequest(Model):
         self._prompt = prompt
 
     @property
+    def model(self):
+        """Gets the model of this CreateImageRequest.
+
+
+        :return: The model of this CreateImageRequest.
+        :rtype: CreateImageRequestModel
+        """
+        return self._model
+
+    @model.setter
+    def model(self, model):
+        """Sets the model of this CreateImageRequest.
+
+
+        :param model: The model of this CreateImageRequest.
+        :type model: CreateImageRequestModel
+        """
+
+        self._model = model
+
+    @property
     def n(self):
         """Gets the n of this CreateImageRequest.
 
-        The number of images to generate. Must be between 1 and 10.
+        The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
 
         :return: The n of this CreateImageRequest.
         :rtype: int
@@ -94,7 +128,7 @@ class CreateImageRequest(Model):
     def n(self, n):
         """Sets the n of this CreateImageRequest.
 
-        The number of images to generate. Must be between 1 and 10.
+        The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
 
         :param n: The n of this CreateImageRequest.
         :type n: int
@@ -107,39 +141,39 @@ class CreateImageRequest(Model):
         self._n = n
 
     @property
-    def size(self):
-        """Gets the size of this CreateImageRequest.
+    def quality(self):
+        """Gets the quality of this CreateImageRequest.
 
-        The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
+        The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.
 
-        :return: The size of this CreateImageRequest.
+        :return: The quality of this CreateImageRequest.
         :rtype: str
         """
-        return self._size
+        return self._quality
 
-    @size.setter
-    def size(self, size):
-        """Sets the size of this CreateImageRequest.
+    @quality.setter
+    def quality(self, quality):
+        """Sets the quality of this CreateImageRequest.
 
-        The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
+        The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.
 
-        :param size: The size of this CreateImageRequest.
-        :type size: str
+        :param quality: The quality of this CreateImageRequest.
+        :type quality: str
         """
-        allowed_values = [None,"256x256", "512x512", "1024x1024"]  # noqa: E501
-        if size not in allowed_values:
+        allowed_values = ["standard", "hd"]  # noqa: E501
+        if quality not in allowed_values:
             raise ValueError(
-                "Invalid value for `size` ({0}), must be one of {1}"
-                .format(size, allowed_values)
+                "Invalid value for `quality` ({0}), must be one of {1}"
+                .format(quality, allowed_values)
             )
 
-        self._size = size
+        self._quality = quality
 
     @property
     def response_format(self):
         """Gets the response_format of this CreateImageRequest.
 
-        The format in which the generated images are returned. Must be one of `url` or `b64_json`.
+        The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
 
         :return: The response_format of this CreateImageRequest.
         :rtype: str
@@ -150,7 +184,7 @@ class CreateImageRequest(Model):
     def response_format(self, response_format):
         """Sets the response_format of this CreateImageRequest.
 
-        The format in which the generated images are returned. Must be one of `url` or `b64_json`.
+        The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
 
         :param response_format: The response_format of this CreateImageRequest.
         :type response_format: str
@@ -163,6 +197,64 @@ class CreateImageRequest(Model):
             )
 
         self._response_format = response_format
+
+    @property
+    def size(self):
+        """Gets the size of this CreateImageRequest.
+
+        The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.
+
+        :return: The size of this CreateImageRequest.
+        :rtype: str
+        """
+        return self._size
+
+    @size.setter
+    def size(self, size):
+        """Sets the size of this CreateImageRequest.
+
+        The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.
+
+        :param size: The size of this CreateImageRequest.
+        :type size: str
+        """
+        allowed_values = [None,"256x256", "512x512", "1024x1024", "1792x1024", "1024x1792"]  # noqa: E501
+        if size not in allowed_values:
+            raise ValueError(
+                "Invalid value for `size` ({0}), must be one of {1}"
+                .format(size, allowed_values)
+            )
+
+        self._size = size
+
+    @property
+    def style(self):
+        """Gets the style of this CreateImageRequest.
+
+        The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.
+
+        :return: The style of this CreateImageRequest.
+        :rtype: str
+        """
+        return self._style
+
+    @style.setter
+    def style(self, style):
+        """Sets the style of this CreateImageRequest.
+
+        The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.
+
+        :param style: The style of this CreateImageRequest.
+        :type style: str
+        """
+        allowed_values = [None,"vivid", "natural"]  # noqa: E501
+        if style not in allowed_values:
+            raise ValueError(
+                "Invalid value for `style` ({0}), must be one of {1}"
+                .format(style, allowed_values)
+            )
+
+        self._style = style
 
     @property
     def user(self):

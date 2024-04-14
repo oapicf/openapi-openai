@@ -1,7 +1,9 @@
 package apimodels;
 
 import apimodels.ChatCompletionStreamResponseDelta;
+import apimodels.CreateChatCompletionResponseChoicesInnerLogprobs;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
@@ -11,25 +13,31 @@ import javax.validation.Valid;
 /**
  * CreateChatCompletionStreamResponseChoicesInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateChatCompletionStreamResponseChoicesInner   {
-  @JsonProperty("index")
-  
-  private Integer index;
-
   @JsonProperty("delta")
-  @Valid
+  @NotNull
+@Valid
 
   private ChatCompletionStreamResponseDelta delta;
 
+  @JsonProperty("logprobs")
+  @Valid
+
+  private CreateChatCompletionResponseChoicesInnerLogprobs logprobs;
+
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
    */
   public enum FinishReasonEnum {
     STOP("stop"),
     
     LENGTH("length"),
+    
+    TOOL_CALLS("tool_calls"),
+    
+    CONTENT_FILTER("content_filter"),
     
     FUNCTION_CALL("function_call");
 
@@ -52,30 +60,19 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   @JsonProperty("finish_reason")
-  
+  @NotNull
+
   private FinishReasonEnum finishReason;
 
-  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
-    this.index = index;
-    return this;
-  }
+  @JsonProperty("index")
+  @NotNull
 
-   /**
-   * Get index
-   * @return index
-  **/
-  public Integer getIndex() {
-    return index;
-  }
-
-  public void setIndex(Integer index) {
-    this.index = index;
-  }
+  private Integer index;
 
   public CreateChatCompletionStreamResponseChoicesInner delta(ChatCompletionStreamResponseDelta delta) {
     this.delta = delta;
@@ -94,13 +91,30 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
     this.delta = delta;
   }
 
+  public CreateChatCompletionStreamResponseChoicesInner logprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
+    return this;
+  }
+
+   /**
+   * Get logprobs
+   * @return logprobs
+  **/
+  public CreateChatCompletionResponseChoicesInnerLogprobs getLogprobs() {
+    return logprobs;
+  }
+
+  public void setLogprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
+  }
+
   public CreateChatCompletionStreamResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
     this.finishReason = finishReason;
     return this;
   }
 
    /**
-   * Get finishReason
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
    * @return finishReason
   **/
   public FinishReasonEnum getFinishReason() {
@@ -109,6 +123,23 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
 
   public void setFinishReason(FinishReasonEnum finishReason) {
     this.finishReason = finishReason;
+  }
+
+  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
+    this.index = index;
+    return this;
+  }
+
+   /**
+   * The index of the choice in the list of choices.
+   * @return index
+  **/
+  public Integer getIndex() {
+    return index;
+  }
+
+  public void setIndex(Integer index) {
+    this.index = index;
   }
 
 
@@ -121,14 +152,15 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
       return false;
     }
     CreateChatCompletionStreamResponseChoicesInner createChatCompletionStreamResponseChoicesInner = (CreateChatCompletionStreamResponseChoicesInner) o;
-    return Objects.equals(index, createChatCompletionStreamResponseChoicesInner.index) &&
-        Objects.equals(delta, createChatCompletionStreamResponseChoicesInner.delta) &&
-        Objects.equals(finishReason, createChatCompletionStreamResponseChoicesInner.finishReason);
+    return Objects.equals(delta, createChatCompletionStreamResponseChoicesInner.delta) &&
+        Objects.equals(logprobs, createChatCompletionStreamResponseChoicesInner.logprobs) &&
+        Objects.equals(finishReason, createChatCompletionStreamResponseChoicesInner.finishReason) &&
+        Objects.equals(index, createChatCompletionStreamResponseChoicesInner.index);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, delta, finishReason);
+    return Objects.hash(delta, logprobs, finishReason, index);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -137,9 +169,10 @@ public class CreateChatCompletionStreamResponseChoicesInner   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionStreamResponseChoicesInner {\n");
     
-    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    delta: ").append(toIndentedString(delta)).append("\n");
+    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("}");
     return sb.toString();
   }

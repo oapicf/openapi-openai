@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -57,13 +57,13 @@ public:
     /// CreateCompletionResponse_choices_inner members
 
     /// <summary>
-    /// 
+    /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
     /// </summary>
-    utility::string_t getText() const;
-    bool textIsSet() const;
-    void unsetText();
+    utility::string_t getFinishReason() const;
+    bool finishReasonIsSet() const;
+    void unsetFinish_reason();
 
-    void setText(const utility::string_t& value);
+    void setFinishReason(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -86,22 +86,22 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getFinishReason() const;
-    bool finishReasonIsSet() const;
-    void unsetFinish_reason();
+    utility::string_t getText() const;
+    bool textIsSet() const;
+    void unsetText();
 
-    void setFinishReason(const utility::string_t& value);
+    void setText(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_Text;
-    bool m_TextIsSet;
+    utility::string_t m_Finish_reason;
+    bool m_Finish_reasonIsSet;
     int32_t m_Index;
     bool m_IndexIsSet;
     std::shared_ptr<CreateCompletionResponse_choices_inner_logprobs> m_Logprobs;
     bool m_LogprobsIsSet;
-    utility::string_t m_Finish_reason;
-    bool m_Finish_reasonIsSet;
+    utility::string_t m_Text;
+    bool m_TextIsSet;
 };
 
 

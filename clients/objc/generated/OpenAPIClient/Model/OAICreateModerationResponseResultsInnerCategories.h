@@ -3,7 +3,7 @@
 
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -22,19 +22,38 @@
 
 @interface OAICreateModerationResponseResultsInnerCategories : OAIObject
 
-
+/* Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment. 
+ */
 @property(nonatomic) NSNumber* hate;
-
+/* Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. 
+ */
 @property(nonatomic) NSNumber* hateThreatening;
-
+/* Content that expresses, incites, or promotes harassing language towards any target. 
+ */
+@property(nonatomic) NSNumber* harassment;
+/* Harassment content that also includes violence or serious harm towards any target. 
+ */
+@property(nonatomic) NSNumber* harassmentThreatening;
+/* Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. 
+ */
 @property(nonatomic) NSNumber* selfHarm;
-
+/* Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. 
+ */
+@property(nonatomic) NSNumber* selfHarmIntent;
+/* Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. 
+ */
+@property(nonatomic) NSNumber* selfHarmInstructions;
+/* Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness). 
+ */
 @property(nonatomic) NSNumber* sexual;
-
+/* Sexual content that includes an individual who is under 18 years old. 
+ */
 @property(nonatomic) NSNumber* sexualMinors;
-
+/* Content that depicts death, violence, or physical injury. 
+ */
 @property(nonatomic) NSNumber* violence;
-
+/* Content that depicts death, violence, or physical injury in graphic detail. 
+ */
 @property(nonatomic) NSNumber* violenceGraphic;
 
 @end

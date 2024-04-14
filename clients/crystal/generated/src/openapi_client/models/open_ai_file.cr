@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -13,38 +13,70 @@ require "json"
 require "time"
 
 module OpenAPIClient
+  # The `File` object represents a document that has been uploaded to OpenAI.
   class OpenAIFile
     include JSON::Serializable
 
     # Required properties
+    # The file identifier, which can be referenced in the API endpoints.
     @[JSON::Field(key: "id", type: String, nillable: false, emit_null: false)]
     property id : String
 
-    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
-    property object : String
-
+    # The size of the file, in bytes.
     @[JSON::Field(key: "bytes", type: Int32, nillable: false, emit_null: false)]
     property bytes : Int32
 
+    # The Unix timestamp (in seconds) for when the file was created.
     @[JSON::Field(key: "created_at", type: Int32, nillable: false, emit_null: false)]
     property created_at : Int32
 
+    # The name of the file.
     @[JSON::Field(key: "filename", type: String, nillable: false, emit_null: false)]
     property filename : String
 
+    # The object type, which is always `file`.
+    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
+    property object : String
+
+    # The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
     @[JSON::Field(key: "purpose", type: String, nillable: false, emit_null: false)]
     property purpose : String
 
-    # Optional properties
-    @[JSON::Field(key: "status", type: String?, nillable: true, emit_null: false)]
-    property status : String?
+    # Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+    @[JSON::Field(key: "status", type: String, nillable: false, emit_null: false)]
+    property status : String
 
-    @[JSON::Field(key: "status_details", type: Object?, nillable: true, emit_null: false)]
-    property status_details : Object?
+    # Optional properties
+    # Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
+    @[JSON::Field(key: "status_details", type: String?, nillable: true, emit_null: false)]
+    property status_details : String?
+
+    class EnumAttributeValidator
+      getter datatype : String
+      getter allowable_values : Array(String)
+
+      def initialize(datatype, allowable_values)
+        @datatype = datatype
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.includes?(value)
+      end
+    end
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@id : String, @object : String, @bytes : Int32, @created_at : Int32, @filename : String, @purpose : String, @status : String?, @status_details : Object?)
+    def initialize(@id : String, @bytes : Int32, @created_at : Int32, @filename : String, @object : String, @purpose : String, @status : String, @status_details : String?)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -57,7 +89,43 @@ module OpenAPIClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      object_validator = EnumAttributeValidator.new("String", ["file"])
+      return false unless object_validator.valid?(@object)
+      purpose_validator = EnumAttributeValidator.new("String", ["fine-tune", "fine-tune-results", "assistants", "assistants_output"])
+      return false unless purpose_validator.valid?(@purpose)
+      status_validator = EnumAttributeValidator.new("String", ["uploaded", "processed", "error"])
+      return false unless status_validator.valid?(@status)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] object Object to be assigned
+    def object=(object)
+      validator = EnumAttributeValidator.new("String", ["file"])
+      unless validator.valid?(object)
+        raise ArgumentError.new("invalid value for \"object\", must be one of #{validator.allowable_values}.")
+      end
+      @object = object
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] purpose Object to be assigned
+    def purpose=(purpose)
+      validator = EnumAttributeValidator.new("String", ["fine-tune", "fine-tune-results", "assistants", "assistants_output"])
+      unless validator.valid?(purpose)
+        raise ArgumentError.new("invalid value for \"purpose\", must be one of #{validator.allowable_values}.")
+      end
+      @purpose = purpose
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] status Object to be assigned
+    def status=(status)
+      validator = EnumAttributeValidator.new("String", ["uploaded", "processed", "error"])
+      unless validator.valid?(status)
+        raise ArgumentError.new("invalid value for \"status\", must be one of #{validator.allowable_values}.")
+      end
+      @status = status
     end
 
     # Checks equality by comparing each attribute.
@@ -66,10 +134,10 @@ module OpenAPIClient
       return true if self.same?(o)
       self.class == o.class &&
           id == o.id &&
-          object == o.object &&
           bytes == o.bytes &&
           created_at == o.created_at &&
           filename == o.filename &&
+          object == o.object &&
           purpose == o.purpose &&
           status == o.status &&
           status_details == o.status_details
@@ -84,7 +152,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, object, bytes, created_at, filename, purpose, status, status_details].hash
+      [id, bytes, created_at, filename, object, purpose, status, status_details].hash
     end
 
     # Builds the object from hash

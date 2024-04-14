@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,11 +25,11 @@ import {
  */
 export interface CreateCompletionResponseChoicesInner  {
     /**
-     * 
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
      * @type {string}
      * @memberof CreateCompletionResponseChoicesInner
      */
-    text: string;
+    finishReason: CreateCompletionResponseChoicesInnerFinishReasonEnum;
     /**
      * 
      * @type {number}
@@ -47,15 +47,15 @@ export interface CreateCompletionResponseChoicesInner  {
      * @type {string}
      * @memberof CreateCompletionResponseChoicesInner
      */
-    finishReason: CreateCompletionResponseChoicesInnerFinishReasonEnum;
+    text: string;
 }
 
 export function CreateCompletionResponseChoicesInnerFromJSON(json: any): CreateCompletionResponseChoicesInner {
     return {
-        'text': json['text'],
+        'finishReason': json['finish_reason'],
         'index': json['index'],
         'logprobs': CreateCompletionResponseChoicesInnerLogprobsFromJSON(json['logprobs']),
-        'finishReason': json['finish_reason'],
+        'text': json['text'],
     };
 }
 
@@ -64,10 +64,10 @@ export function CreateCompletionResponseChoicesInnerToJSON(value?: CreateComplet
         return undefined;
     }
     return {
-        'text': value.text,
+        'finish_reason': value.finishReason,
         'index': value.index,
         'logprobs': CreateCompletionResponseChoicesInnerLogprobsToJSON(value.logprobs),
-        'finish_reason': value.finishReason,
+        'text': value.text,
     };
 }
 
@@ -77,7 +77,8 @@ export function CreateCompletionResponseChoicesInnerToJSON(value?: CreateComplet
 */
 export enum CreateCompletionResponseChoicesInnerFinishReasonEnum {
     Stop = 'stop',
-    Length = 'length'
+    Length = 'length',
+    ContentFilter = 'content_filter'
 }
 
 

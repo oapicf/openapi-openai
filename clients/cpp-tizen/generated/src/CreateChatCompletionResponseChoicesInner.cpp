@@ -23,14 +23,20 @@ CreateChatCompletionResponse_choices_inner::~CreateChatCompletionResponse_choice
 void
 CreateChatCompletionResponse_choices_inner::__init()
 {
+	//finish_reason = std::string();
 	//index = int(0);
 	//message = new ChatCompletionResponseMessage();
-	//finish_reason = std::string();
+	//logprobs = new CreateChatCompletionResponse_choices_inner_logprobs();
 }
 
 void
 CreateChatCompletionResponse_choices_inner::__cleanup()
 {
+	//if(finish_reason != NULL) {
+	//
+	//delete finish_reason;
+	//finish_reason = NULL;
+	//}
 	//if(index != NULL) {
 	//
 	//delete index;
@@ -41,10 +47,10 @@ CreateChatCompletionResponse_choices_inner::__cleanup()
 	//delete message;
 	//message = NULL;
 	//}
-	//if(finish_reason != NULL) {
+	//if(logprobs != NULL) {
 	//
-	//delete finish_reason;
-	//finish_reason = NULL;
+	//delete logprobs;
+	//logprobs = NULL;
 	//}
 	//
 }
@@ -54,6 +60,17 @@ CreateChatCompletionResponse_choices_inner::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
+	const gchar *finish_reasonKey = "finish_reason";
+	node = json_object_get_member(pJsonObject, finish_reasonKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&finish_reason, node, "std::string", "");
+		} else {
+			
+		}
+	}
 	const gchar *indexKey = "index";
 	node = json_object_get_member(pJsonObject, indexKey);
 	if (node !=NULL) {
@@ -79,14 +96,17 @@ CreateChatCompletionResponse_choices_inner::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *finish_reasonKey = "finish_reason";
-	node = json_object_get_member(pJsonObject, finish_reasonKey);
+	const gchar *logprobsKey = "logprobs";
+	node = json_object_get_member(pJsonObject, logprobsKey);
 	if (node !=NULL) {
 	
 
-		if (isprimitive("std::string")) {
-			jsonToValue(&finish_reason, node, "std::string", "");
+		if (isprimitive("CreateChatCompletionResponse_choices_inner_logprobs")) {
+			jsonToValue(&logprobs, node, "CreateChatCompletionResponse_choices_inner_logprobs", "CreateChatCompletionResponse_choices_inner_logprobs");
 		} else {
+			
+			CreateChatCompletionResponse_choices_inner_logprobs* obj = static_cast<CreateChatCompletionResponse_choices_inner_logprobs*> (&logprobs);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -102,6 +122,15 @@ CreateChatCompletionResponse_choices_inner::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
+	if (isprimitive("std::string")) {
+		std::string obj = getFinishReason();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *finish_reasonKey = "finish_reason";
+	json_object_set_member(pJsonObject, finish_reasonKey, node);
 	if (isprimitive("int")) {
 		int obj = getIndex();
 		node = converttoJson(&obj, "int", "");
@@ -125,21 +154,38 @@ CreateChatCompletionResponse_choices_inner::toJson()
 	}
 	const gchar *messageKey = "message";
 	json_object_set_member(pJsonObject, messageKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getFinishReason();
-		node = converttoJson(&obj, "std::string", "");
+	if (isprimitive("CreateChatCompletionResponse_choices_inner_logprobs")) {
+		CreateChatCompletionResponse_choices_inner_logprobs obj = getLogprobs();
+		node = converttoJson(&obj, "CreateChatCompletionResponse_choices_inner_logprobs", "");
 	}
 	else {
 		
+		CreateChatCompletionResponse_choices_inner_logprobs obj = static_cast<CreateChatCompletionResponse_choices_inner_logprobs> (getLogprobs());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
 	}
-	const gchar *finish_reasonKey = "finish_reason";
-	json_object_set_member(pJsonObject, finish_reasonKey, node);
+	const gchar *logprobsKey = "logprobs";
+	json_object_set_member(pJsonObject, logprobsKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
 	char * ret = json_to_string(node, false);
 	json_node_free(node);
 	return ret;
+}
+
+std::string
+CreateChatCompletionResponse_choices_inner::getFinishReason()
+{
+	return finish_reason;
+}
+
+void
+CreateChatCompletionResponse_choices_inner::setFinishReason(std::string  finish_reason)
+{
+	this->finish_reason = finish_reason;
 }
 
 int
@@ -166,16 +212,16 @@ CreateChatCompletionResponse_choices_inner::setMessage(ChatCompletionResponseMes
 	this->message = message;
 }
 
-std::string
-CreateChatCompletionResponse_choices_inner::getFinishReason()
+CreateChatCompletionResponse_choices_inner_logprobs
+CreateChatCompletionResponse_choices_inner::getLogprobs()
 {
-	return finish_reason;
+	return logprobs;
 }
 
 void
-CreateChatCompletionResponse_choices_inner::setFinishReason(std::string  finish_reason)
+CreateChatCompletionResponse_choices_inner::setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs  logprobs)
 {
-	this->finish_reason = finish_reason;
+	this->logprobs = logprobs;
 }
 
 

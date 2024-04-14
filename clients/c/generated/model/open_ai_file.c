@@ -4,26 +4,77 @@
 #include "open_ai_file.h"
 
 
+char* open_ai_file_object_ToString(openai_api_open_ai_file_OBJECT_e object) {
+    char* objectArray[] =  { "NULL", "file" };
+    return objectArray[object];
+}
+
+openai_api_open_ai_file_OBJECT_e open_ai_file_object_FromString(char* object){
+    int stringToReturn = 0;
+    char *objectArray[] =  { "NULL", "file" };
+    size_t sizeofArray = sizeof(objectArray) / sizeof(objectArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(object, objectArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+char* open_ai_file_purpose_ToString(openai_api_open_ai_file_PURPOSE_e purpose) {
+    char* purposeArray[] =  { "NULL", "fine-tune", "fine-tune-results", "assistants", "assistants_output" };
+    return purposeArray[purpose];
+}
+
+openai_api_open_ai_file_PURPOSE_e open_ai_file_purpose_FromString(char* purpose){
+    int stringToReturn = 0;
+    char *purposeArray[] =  { "NULL", "fine-tune", "fine-tune-results", "assistants", "assistants_output" };
+    size_t sizeofArray = sizeof(purposeArray) / sizeof(purposeArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(purpose, purposeArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+char* open_ai_file_status_ToString(openai_api_open_ai_file_STATUS_e status) {
+    char* statusArray[] =  { "NULL", "uploaded", "processed", "error" };
+    return statusArray[status];
+}
+
+openai_api_open_ai_file_STATUS_e open_ai_file_status_FromString(char* status){
+    int stringToReturn = 0;
+    char *statusArray[] =  { "NULL", "uploaded", "processed", "error" };
+    size_t sizeofArray = sizeof(statusArray) / sizeof(statusArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(status, statusArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 open_ai_file_t *open_ai_file_create(
     char *id,
-    char *object,
     int bytes,
     int created_at,
     char *filename,
-    char *purpose,
-    char *status,
-    object_t *status_details
+    openai_api_open_ai_file_OBJECT_e object,
+    openai_api_open_ai_file_PURPOSE_e purpose,
+    openai_api_open_ai_file_STATUS_e status,
+    char *status_details
     ) {
     open_ai_file_t *open_ai_file_local_var = malloc(sizeof(open_ai_file_t));
     if (!open_ai_file_local_var) {
         return NULL;
     }
     open_ai_file_local_var->id = id;
-    open_ai_file_local_var->object = object;
     open_ai_file_local_var->bytes = bytes;
     open_ai_file_local_var->created_at = created_at;
     open_ai_file_local_var->filename = filename;
+    open_ai_file_local_var->object = object;
     open_ai_file_local_var->purpose = purpose;
     open_ai_file_local_var->status = status;
     open_ai_file_local_var->status_details = status_details;
@@ -41,24 +92,12 @@ void open_ai_file_free(open_ai_file_t *open_ai_file) {
         free(open_ai_file->id);
         open_ai_file->id = NULL;
     }
-    if (open_ai_file->object) {
-        free(open_ai_file->object);
-        open_ai_file->object = NULL;
-    }
     if (open_ai_file->filename) {
         free(open_ai_file->filename);
         open_ai_file->filename = NULL;
     }
-    if (open_ai_file->purpose) {
-        free(open_ai_file->purpose);
-        open_ai_file->purpose = NULL;
-    }
-    if (open_ai_file->status) {
-        free(open_ai_file->status);
-        open_ai_file->status = NULL;
-    }
     if (open_ai_file->status_details) {
-        object_free(open_ai_file->status_details);
+        free(open_ai_file->status_details);
         open_ai_file->status_details = NULL;
     }
     free(open_ai_file);
@@ -72,15 +111,6 @@ cJSON *open_ai_file_convertToJSON(open_ai_file_t *open_ai_file) {
         goto fail;
     }
     if(cJSON_AddStringToObject(item, "id", open_ai_file->id) == NULL) {
-    goto fail; //String
-    }
-
-
-    // open_ai_file->object
-    if (!open_ai_file->object) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "object", open_ai_file->object) == NULL) {
     goto fail; //String
     }
 
@@ -112,32 +142,40 @@ cJSON *open_ai_file_convertToJSON(open_ai_file_t *open_ai_file) {
     }
 
 
-    // open_ai_file->purpose
-    if (!open_ai_file->purpose) {
+    // open_ai_file->object
+    if (openai_api_open_ai_file_OBJECT_NULL == open_ai_file->object) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "purpose", open_ai_file->purpose) == NULL) {
-    goto fail; //String
+    if(cJSON_AddStringToObject(item, "object", objectopen_ai_file_ToString(open_ai_file->object)) == NULL)
+    {
+    goto fail; //Enum
+    }
+
+
+    // open_ai_file->purpose
+    if (openai_api_open_ai_file_PURPOSE_NULL == open_ai_file->purpose) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "purpose", purposeopen_ai_file_ToString(open_ai_file->purpose)) == NULL)
+    {
+    goto fail; //Enum
     }
 
 
     // open_ai_file->status
-    if(open_ai_file->status) {
-    if(cJSON_AddStringToObject(item, "status", open_ai_file->status) == NULL) {
-    goto fail; //String
+    if (openai_api_open_ai_file_STATUS_NULL == open_ai_file->status) {
+        goto fail;
     }
+    if(cJSON_AddStringToObject(item, "status", statusopen_ai_file_ToString(open_ai_file->status)) == NULL)
+    {
+    goto fail; //Enum
     }
 
 
     // open_ai_file->status_details
     if(open_ai_file->status_details) {
-    cJSON *status_details_object = object_convertToJSON(open_ai_file->status_details);
-    if(status_details_object == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "status_details", status_details_object);
-    if(item->child == NULL) {
-    goto fail;
+    if(cJSON_AddStringToObject(item, "status_details", open_ai_file->status_details) == NULL) {
+    goto fail; //String
     }
     }
 
@@ -161,18 +199,6 @@ open_ai_file_t *open_ai_file_parseFromJSON(cJSON *open_ai_fileJSON){
 
     
     if(!cJSON_IsString(id))
-    {
-    goto end; //String
-    }
-
-    // open_ai_file->object
-    cJSON *object = cJSON_GetObjectItemCaseSensitive(open_ai_fileJSON, "object");
-    if (!object) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(object))
     {
     goto end; //String
     }
@@ -213,44 +239,67 @@ open_ai_file_t *open_ai_file_parseFromJSON(cJSON *open_ai_fileJSON){
     goto end; //String
     }
 
+    // open_ai_file->object
+    cJSON *object = cJSON_GetObjectItemCaseSensitive(open_ai_fileJSON, "object");
+    if (!object) {
+        goto end;
+    }
+
+    openai_api_open_ai_file_OBJECT_e objectVariable;
+    
+    if(!cJSON_IsString(object))
+    {
+    goto end; //Enum
+    }
+    objectVariable = open_ai_file_object_FromString(object->valuestring);
+
     // open_ai_file->purpose
     cJSON *purpose = cJSON_GetObjectItemCaseSensitive(open_ai_fileJSON, "purpose");
     if (!purpose) {
         goto end;
     }
 
+    openai_api_open_ai_file_PURPOSE_e purposeVariable;
     
     if(!cJSON_IsString(purpose))
     {
-    goto end; //String
+    goto end; //Enum
     }
+    purposeVariable = open_ai_file_purpose_FromString(purpose->valuestring);
 
     // open_ai_file->status
     cJSON *status = cJSON_GetObjectItemCaseSensitive(open_ai_fileJSON, "status");
-    if (status) { 
-    if(!cJSON_IsString(status) && !cJSON_IsNull(status))
+    if (!status) {
+        goto end;
+    }
+
+    openai_api_open_ai_file_STATUS_e statusVariable;
+    
+    if(!cJSON_IsString(status))
     {
-    goto end; //String
+    goto end; //Enum
     }
-    }
+    statusVariable = open_ai_file_status_FromString(status->valuestring);
 
     // open_ai_file->status_details
     cJSON *status_details = cJSON_GetObjectItemCaseSensitive(open_ai_fileJSON, "status_details");
-    object_t *status_details_local_object = NULL;
     if (status_details) { 
-    status_details_local_object = object_parseFromJSON(status_details); //object
+    if(!cJSON_IsString(status_details) && !cJSON_IsNull(status_details))
+    {
+    goto end; //String
+    }
     }
 
 
     open_ai_file_local_var = open_ai_file_create (
         strdup(id->valuestring),
-        strdup(object->valuestring),
         bytes->valuedouble,
         created_at->valuedouble,
         strdup(filename->valuestring),
-        strdup(purpose->valuestring),
-        status && !cJSON_IsNull(status) ? strdup(status->valuestring) : NULL,
-        status_details ? status_details_local_object : NULL
+        objectVariable,
+        purposeVariable,
+        statusVariable,
+        status_details && !cJSON_IsNull(status_details) ? strdup(status_details->valuestring) : NULL
         );
 
     return open_ai_file_local_var;

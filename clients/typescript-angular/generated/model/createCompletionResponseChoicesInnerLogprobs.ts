@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,9 +12,9 @@
 
 
 export interface CreateCompletionResponseChoicesInnerLogprobs { 
-    tokens?: Array<string>;
-    token_logprobs?: Array<number>;
-    top_logprobs?: Array<object>;
     text_offset?: Array<number>;
+    token_logprobs?: Array<number>;
+    tokens?: Array<string>;
+    top_logprobs?: Array<{ [key: string]: number; }>;
 }
 

@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,18 +12,30 @@ use crate::models;
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListFilesResponse {
-    #[serde(rename = "object")]
-    pub object: String,
     #[serde(rename = "data")]
     pub data: Vec<models::OpenAiFile>,
+    #[serde(rename = "object")]
+    pub object: Object,
 }
 
 impl ListFilesResponse {
-    pub fn new(object: String, data: Vec<models::OpenAiFile>) -> ListFilesResponse {
+    pub fn new(data: Vec<models::OpenAiFile>, object: Object) -> ListFilesResponse {
         ListFilesResponse {
-            object,
             data,
+            object,
         }
+    }
+}
+/// 
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Object {
+    #[serde(rename = "list")]
+    List,
+}
+
+impl Default for Object {
+    fn default() -> Object {
+        Self::List
     }
 }
 

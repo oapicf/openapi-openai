@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,23 +17,23 @@
  */
 export interface CreateCompletionResponseChoicesInnerLogprobs {
     /**
-     * @type {Array<string>}
+     * @type {Array<number>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    tokens?: Array<string>;
+    text_offset?: Array<number>;
     /**
      * @type {Array<number>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
     token_logprobs?: Array<number>;
     /**
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    top_logprobs?: Array<object>;
+    tokens?: Array<string>;
     /**
-     * @type {Array<number>}
+     * @type {Array<{ [key: string]: number; }>}
      * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
-    text_offset?: Array<number>;
+    top_logprobs?: Array<{ [key: string]: number; }>;
 }

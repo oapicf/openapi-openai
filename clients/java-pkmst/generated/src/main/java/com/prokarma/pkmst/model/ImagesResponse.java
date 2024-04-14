@@ -3,7 +3,7 @@ package com.prokarma.pkmst.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.prokarma.pkmst.model.ImagesResponseDataInner;
+import com.prokarma.pkmst.model.Image;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -18,14 +18,14 @@ import java.util.List;
  * ImagesResponse
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-16T01:12:49.513446343Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-04-14T13:39:11.640510243Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesResponse   {
   @JsonProperty("created")
   private Integer created;
 
   @JsonProperty("data")
   
-  private List<ImagesResponseDataInner> data = new ArrayList<>();
+  private List<Image> data = new ArrayList<>();
 
   public ImagesResponse created(Integer created) {
     this.created = created;
@@ -45,12 +45,12 @@ public class ImagesResponse   {
     this.created = created;
   }
 
-  public ImagesResponse data(List<ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<Image> data) {
     this.data = data;
     return this;
   }
 
-  public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse addDataItem(Image dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -63,11 +63,11 @@ public class ImagesResponse   {
    * @return data
   **/
   @ApiModelProperty(required = true, value = "")
-  public List<ImagesResponseDataInner> getData() {
+  public List<Image> getData() {
     return data;
   }
 
-  public void setData(List<ImagesResponseDataInner> data) {
+  public void setData(List<Image> data) {
     this.data = data;
   }
 

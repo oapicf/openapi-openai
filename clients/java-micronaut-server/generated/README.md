@@ -14,10 +14,28 @@ All the properties can be changed in the [application.yml](src/main/resources/ap
 
 Description on how to create Apis is given inside individual api guides:
 
-* [OpenAiController](docs/controllers/OpenAiController.md)
+* [AssistantsController](docs/controllers/AssistantsController.md)
+* [AudioController](docs/controllers/AudioController.md)
+* [ChatController](docs/controllers/ChatController.md)
+* [CompletionsController](docs/controllers/CompletionsController.md)
+* [EmbeddingsController](docs/controllers/EmbeddingsController.md)
+* [FilesController](docs/controllers/FilesController.md)
+* [FineTuningController](docs/controllers/FineTuningController.md)
+* [ImagesController](docs/controllers/ImagesController.md)
+* [ModelsController](docs/controllers/ModelsController.md)
+* [ModerationsController](docs/controllers/ModerationsController.md)
 
 ## Author
 
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
 blah+oapicf@cliffano.com
 
 

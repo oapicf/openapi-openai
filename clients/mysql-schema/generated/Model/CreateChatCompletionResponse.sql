@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `CreateChatCompletionResponse`
 --
-SELECT `id`, `object`, `created`, `model`, `choices`, `usage` FROM `CreateChatCompletionResponse` WHERE 1;
+SELECT `id`, `choices`, `created`, `model`, `system_fingerprint`, `object`, `usage` FROM `CreateChatCompletionResponse` WHERE 1;
 
 --
 -- INSERT template for table `CreateChatCompletionResponse`
 --
-INSERT INTO `CreateChatCompletionResponse`(`id`, `object`, `created`, `model`, `choices`, `usage`) VALUES (?, ?, ?, ?, ?, ?);
+INSERT INTO `CreateChatCompletionResponse`(`id`, `choices`, `created`, `model`, `system_fingerprint`, `object`, `usage`) VALUES (?, ?, ?, ?, ?, ?, ?);
 
 --
 -- UPDATE template for table `CreateChatCompletionResponse`
 --
-UPDATE `CreateChatCompletionResponse` SET `id` = ?, `object` = ?, `created` = ?, `model` = ?, `choices` = ?, `usage` = ? WHERE 1;
+UPDATE `CreateChatCompletionResponse` SET `id` = ?, `choices` = ?, `created` = ?, `model` = ?, `system_fingerprint` = ?, `object` = ?, `usage` = ? WHERE 1;
 
 --
 -- DELETE template for table `CreateChatCompletionResponse`

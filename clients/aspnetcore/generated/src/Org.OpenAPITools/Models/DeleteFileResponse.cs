@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -33,12 +33,28 @@ namespace Org.OpenAPITools.Models
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
 
+
+        /// <summary>
+        /// Gets or Sets VarObject
+        /// </summary>
+        [TypeConverter(typeof(CustomEnumConverter<ObjectEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            
+            /// <summary>
+            /// Enum FileEnum for file
+            /// </summary>
+            [EnumMember(Value = "file")]
+            FileEnum = 1
+        }
+
         /// <summary>
         /// Gets or Sets VarObject
         /// </summary>
         [Required]
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string VarObject { get; set; }
+        [DataMember(Name="object", EmitDefaultValue=true)]
+        public ObjectEnum VarObject { get; set; }
 
         /// <summary>
         /// Gets or Sets Deleted
@@ -101,7 +117,7 @@ namespace Org.OpenAPITools.Models
                 ) && 
                 (
                     VarObject == other.VarObject ||
-                    VarObject != null &&
+                    
                     VarObject.Equals(other.VarObject)
                 ) && 
                 (
@@ -123,7 +139,7 @@ namespace Org.OpenAPITools.Models
                 // Suitable nullity checks etc, of course :)
                     if (Id != null)
                     hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (VarObject != null)
+                    
                     hashCode = hashCode * 59 + VarObject.GetHashCode();
                     
                     hashCode = hashCode * 59 + Deleted.GetHashCode();

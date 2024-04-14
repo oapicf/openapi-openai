@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,19 +12,19 @@
  */
 
 import ApiClient from '../ApiClient';
-import ImagesResponseDataInner from './ImagesResponseDataInner';
+import Image from './Image';
 
 /**
  * The ImagesResponse model module.
  * @module model/ImagesResponse
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class ImagesResponse {
     /**
      * Constructs a new <code>ImagesResponse</code>.
      * @alias module:model/ImagesResponse
      * @param created {Number} 
-     * @param data {Array.<module:model/ImagesResponseDataInner>} 
+     * @param data {Array.<module:model/Image>} 
      */
     constructor(created, data) { 
         
@@ -56,7 +56,7 @@ class ImagesResponse {
                 obj['created'] = ApiClient.convertToType(data['created'], 'Number');
             }
             if (data.hasOwnProperty('data')) {
-                obj['data'] = ApiClient.convertToType(data['data'], [ImagesResponseDataInner]);
+                obj['data'] = ApiClient.convertToType(data['data'], [Image]);
             }
         }
         return obj;
@@ -81,7 +81,7 @@ class ImagesResponse {
             }
             // validate the optional field `data` (array)
             for (const item of data['data']) {
-                ImagesResponseDataInner.validateJSON(item);
+                Image.validateJSON(item);
             };
         }
 
@@ -99,7 +99,7 @@ ImagesResponse.RequiredProperties = ["created", "data"];
 ImagesResponse.prototype['created'] = undefined;
 
 /**
- * @member {Array.<module:model/ImagesResponseDataInner>} data
+ * @member {Array.<module:model/Image>} data
  */
 ImagesResponse.prototype['data'] = undefined;
 

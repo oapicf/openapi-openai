@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,28 +21,31 @@ using Org.OpenAPITools.Converters;
 namespace Org.OpenAPITools.Models
 { 
     /// <summary>
-    /// 
+    /// Represents if a given text input is potentially harmful.
     /// </summary>
     [DataContract]
     public partial class CreateModerationResponse : IEquatable<CreateModerationResponse>
     {
         /// <summary>
-        /// Gets or Sets Id
+        /// The unique identifier for the moderation request.
         /// </summary>
+        /// <value>The unique identifier for the moderation request.</value>
         [Required]
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Model
+        /// The model used to generate the moderation results.
         /// </summary>
+        /// <value>The model used to generate the moderation results.</value>
         [Required]
         [DataMember(Name="model", EmitDefaultValue=false)]
         public string Model { get; set; }
 
         /// <summary>
-        /// Gets or Sets Results
+        /// A list of moderation objects.
         /// </summary>
+        /// <value>A list of moderation objects.</value>
         [Required]
         [DataMember(Name="results", EmitDefaultValue=false)]
         public List<CreateModerationResponseResultsInner> Results { get; set; }

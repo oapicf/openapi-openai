@@ -7,9 +7,9 @@ import io.circe.java8.time._
 import org.openapitools._
 
 /**
- * 
- * @param promptUnderscoretokens 
- * @param totalUnderscoretokens 
+ * The usage information for the request.
+ * @param promptUnderscoretokens The number of tokens used by the prompt.
+ * @param totalUnderscoretokens The total number of tokens used by the request.
  */
 case class CreateEmbeddingResponseUsage(promptUnderscoretokens: Int,
                 totalUnderscoretokens: Int

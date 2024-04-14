@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepObjectLastError"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepObjectLastError"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RunStepObjectLastError {
+    title = RunStepObjectLastError
+    description = RunStepObjectLastError
+    derivedFrom = Root
+    properties {
+        code {
+          type =  string
+          description = "One of &#x60;server_error&#x60; or &#x60;rate_limit_exceeded&#x60;."
+          enum = ["server_error", "rate_limit_exceeded"]
+          optional = true
+        }
+        message {
+          type =  string
+          description = "A human-readable description of the error."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepObjectLastError {
+    title = RunStepObjectLastError
+    description = RunStepObjectLastError
+    implements = openapi_server.resourceTypes.RunStepObjectLastError
+
+  }
+}

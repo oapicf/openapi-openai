@@ -7,10 +7,13 @@ module DeleteFileResponse =
 
   //#region DeleteFileResponse
 
+  //#region enums
+  type ObjectEnum = FileEnum of string  
+  //#endregion
 
   type DeleteFileResponse = {
     Id : string;
-    Object : string;
+    Object : ObjectEnum;
     Deleted : bool;
   }
   //#endregion

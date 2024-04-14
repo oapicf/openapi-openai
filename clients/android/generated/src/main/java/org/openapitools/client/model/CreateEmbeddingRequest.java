@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,12 +20,29 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class CreateEmbeddingRequest {
   
-  @SerializedName("model")
-  private CreateEmbeddingRequestModel model = null;
   @SerializedName("input")
   private CreateEmbeddingRequestInput input = null;
+  @SerializedName("model")
+  private CreateEmbeddingRequestModel model = null;
+  public enum EncodingFormatEnum {
+     float,  base64, 
+  };
+  @SerializedName("encoding_format")
+  private EncodingFormatEnum encodingFormat = float;
+  @SerializedName("dimensions")
+  private Integer dimensions = null;
   @SerializedName("user")
   private String user = null;
+
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public CreateEmbeddingRequestInput getInput() {
+    return input;
+  }
+  public void setInput(CreateEmbeddingRequestInput input) {
+    this.input = input;
+  }
 
   /**
    **/
@@ -38,13 +55,26 @@ public class CreateEmbeddingRequest {
   }
 
   /**
+   * The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
    **/
-  @ApiModelProperty(required = true, value = "")
-  public CreateEmbeddingRequestInput getInput() {
-    return input;
+  @ApiModelProperty(value = "The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).")
+  public EncodingFormatEnum getEncodingFormat() {
+    return encodingFormat;
   }
-  public void setInput(CreateEmbeddingRequestInput input) {
-    this.input = input;
+  public void setEncodingFormat(EncodingFormatEnum encodingFormat) {
+    this.encodingFormat = encodingFormat;
+  }
+
+  /**
+   * The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+   * minimum: 1
+   **/
+  @ApiModelProperty(value = "The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. ")
+  public Integer getDimensions() {
+    return dimensions;
+  }
+  public void setDimensions(Integer dimensions) {
+    this.dimensions = dimensions;
   }
 
   /**
@@ -68,16 +98,20 @@ public class CreateEmbeddingRequest {
       return false;
     }
     CreateEmbeddingRequest createEmbeddingRequest = (CreateEmbeddingRequest) o;
-    return (this.model == null ? createEmbeddingRequest.model == null : this.model.equals(createEmbeddingRequest.model)) &&
-        (this.input == null ? createEmbeddingRequest.input == null : this.input.equals(createEmbeddingRequest.input)) &&
+    return (this.input == null ? createEmbeddingRequest.input == null : this.input.equals(createEmbeddingRequest.input)) &&
+        (this.model == null ? createEmbeddingRequest.model == null : this.model.equals(createEmbeddingRequest.model)) &&
+        (this.encodingFormat == null ? createEmbeddingRequest.encodingFormat == null : this.encodingFormat.equals(createEmbeddingRequest.encodingFormat)) &&
+        (this.dimensions == null ? createEmbeddingRequest.dimensions == null : this.dimensions.equals(createEmbeddingRequest.dimensions)) &&
         (this.user == null ? createEmbeddingRequest.user == null : this.user.equals(createEmbeddingRequest.user));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
-    result = 31 * result + (this.model == null ? 0: this.model.hashCode());
     result = 31 * result + (this.input == null ? 0: this.input.hashCode());
+    result = 31 * result + (this.model == null ? 0: this.model.hashCode());
+    result = 31 * result + (this.encodingFormat == null ? 0: this.encodingFormat.hashCode());
+    result = 31 * result + (this.dimensions == null ? 0: this.dimensions.hashCode());
     result = 31 * result + (this.user == null ? 0: this.user.hashCode());
     return result;
   }
@@ -87,8 +121,10 @@ public class CreateEmbeddingRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateEmbeddingRequest {\n");
     
-    sb.append("  model: ").append(model).append("\n");
     sb.append("  input: ").append(input).append("\n");
+    sb.append("  model: ").append(model).append("\n");
+    sb.append("  encodingFormat: ").append(encodingFormat).append("\n");
+    sb.append("  dimensions: ").append(dimensions).append("\n");
     sb.append("  user: ").append(user).append("\n");
     sb.append("}\n");
     return sb.toString();

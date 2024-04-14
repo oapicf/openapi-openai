@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,6 +13,7 @@
 
 import type {
     ChatCompletionResponseMessage,
+    CreateChatCompletionResponseChoicesInnerLogprobs,
 } from './';
 
 /**
@@ -21,20 +22,27 @@ import type {
  */
 export interface CreateChatCompletionResponseChoicesInner {
     /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+     * @type {string}
+     * @memberof CreateChatCompletionResponseChoicesInner
+     */
+    finish_reason: CreateChatCompletionResponseChoicesInnerFinishReasonEnum;
+    /**
+     * The index of the choice in the list of choices.
      * @type {number}
      * @memberof CreateChatCompletionResponseChoicesInner
      */
-    index?: number;
+    index: number;
     /**
      * @type {ChatCompletionResponseMessage}
      * @memberof CreateChatCompletionResponseChoicesInner
      */
-    message?: ChatCompletionResponseMessage;
+    message: ChatCompletionResponseMessage;
     /**
-     * @type {string}
+     * @type {CreateChatCompletionResponseChoicesInnerLogprobs}
      * @memberof CreateChatCompletionResponseChoicesInner
      */
-    finish_reason?: CreateChatCompletionResponseChoicesInnerFinishReasonEnum;
+    logprobs: CreateChatCompletionResponseChoicesInnerLogprobs | null;
 }
 
 /**
@@ -44,6 +52,8 @@ export interface CreateChatCompletionResponseChoicesInner {
 export enum CreateChatCompletionResponseChoicesInnerFinishReasonEnum {
     Stop = 'stop',
     Length = 'length',
+    ToolCalls = 'tool_calls',
+    ContentFilter = 'content_filter',
     FunctionCall = 'function_call'
 }
 

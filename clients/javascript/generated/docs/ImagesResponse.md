@@ -5,6 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created** | **Number** |  | 
-**data** | [**[ImagesResponseDataInner]**](ImagesResponseDataInner.md) |  | 
+**data** | [**[Image]**](Image.md) |  | 
 
 

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flagged** | **NSNumber*** |  | 
+**flagged** | **NSNumber*** | Whether any of the below categories are flagged. | 
 **categories** | [**OAICreateModerationResponseResultsInnerCategories***](OAICreateModerationResponseResultsInnerCategories.md) |  | 
 **categoryScores** | [**OAICreateModerationResponseResultsInnerCategoryScores***](OAICreateModerationResponseResultsInnerCategoryScores.md) |  | 
 

@@ -12,10 +12,10 @@ import org.joda.time.DateTime
 import Error._
 
 case class Error (
-  `type`: String,
+  code: String,
 message: String,
 param: String,
-code: String)
+`type`: String)
 
 object Error {
   import DateTimeCodecs._

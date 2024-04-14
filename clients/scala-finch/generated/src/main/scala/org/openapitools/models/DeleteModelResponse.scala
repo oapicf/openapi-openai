@@ -9,12 +9,12 @@ import org.openapitools._
 /**
  * 
  * @param id 
- * @param _object 
  * @param deleted 
+ * @param _object 
  */
 case class DeleteModelResponse(id: String,
-                _object: String,
-                deleted: Boolean
+                deleted: Boolean,
+                _object: String
                 )
 
 object DeleteModelResponse {

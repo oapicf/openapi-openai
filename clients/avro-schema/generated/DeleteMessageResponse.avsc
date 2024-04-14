@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "DeleteMessageResponse",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "deleted",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "DeleteMessageResponse_object",
+        "symbols": [
+          "thread.message.deleted"
+        ]
+      },
+      "doc": ""
+    }
+  ]
+
+}

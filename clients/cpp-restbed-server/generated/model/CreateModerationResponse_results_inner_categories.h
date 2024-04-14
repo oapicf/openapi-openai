@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * CreateModerationResponse_results_inner_categories.h
  *
- * 
+ * A list of the categories, and whether they are flagged or not.
  */
 
 #ifndef CreateModerationResponse_results_inner_categories_H_
@@ -32,7 +32,7 @@ namespace server {
 namespace model {
 
 /// <summary>
-/// 
+/// A list of the categories, and whether they are flagged or not.
 /// </summary>
 class  CreateModerationResponse_results_inner_categories 
 {
@@ -57,43 +57,67 @@ public:
     /// CreateModerationResponse_results_inner_categories members
 
     /// <summary>
-    /// 
+    /// Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
     /// </summary>
     bool isHate() const;
     void setHate(bool value);
 
     /// <summary>
-    /// 
+    /// Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
     /// </summary>
     bool isHateThreatening() const;
     void setHateThreatening(bool value);
 
     /// <summary>
-    /// 
+    /// Content that expresses, incites, or promotes harassing language towards any target.
+    /// </summary>
+    bool isHarassment() const;
+    void setHarassment(bool value);
+
+    /// <summary>
+    /// Harassment content that also includes violence or serious harm towards any target.
+    /// </summary>
+    bool isHarassmentThreatening() const;
+    void setHarassmentThreatening(bool value);
+
+    /// <summary>
+    /// Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
     /// </summary>
     bool isSelfHarm() const;
     void setSelfHarm(bool value);
 
     /// <summary>
-    /// 
+    /// Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+    /// </summary>
+    bool isSelfHarmIntent() const;
+    void setSelfHarmIntent(bool value);
+
+    /// <summary>
+    /// Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+    /// </summary>
+    bool isSelfHarmInstructions() const;
+    void setSelfHarmInstructions(bool value);
+
+    /// <summary>
+    /// Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
     /// </summary>
     bool isSexual() const;
     void setSexual(bool value);
 
     /// <summary>
-    /// 
+    /// Sexual content that includes an individual who is under 18 years old.
     /// </summary>
     bool isSexualMinors() const;
     void setSexualMinors(bool value);
 
     /// <summary>
-    /// 
+    /// Content that depicts death, violence, or physical injury.
     /// </summary>
     bool isViolence() const;
     void setViolence(bool value);
 
     /// <summary>
-    /// 
+    /// Content that depicts death, violence, or physical injury in graphic detail.
     /// </summary>
     bool isViolenceGraphic() const;
     void setViolenceGraphic(bool value);
@@ -101,7 +125,11 @@ public:
 protected:
     bool m_Hate = false;
     bool m_Hate_threatening = false;
+    bool m_Harassment = false;
+    bool m_Harassment_threatening = false;
     bool m_Self_harm = false;
+    bool m_Self_harm_intent = false;
+    bool m_Self_harm_instructions = false;
     bool m_Sexual = false;
     bool m_Sexual_minors = false;
     bool m_Violence = false;

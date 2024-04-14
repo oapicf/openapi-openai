@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -10,26 +10,44 @@
 
 use crate::models;
 
+/// Model : Describes an OpenAI model offering that can be used with the API.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Model {
+    /// The model identifier, which can be referenced in the API endpoints.
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "object")]
-    pub object: String,
+    /// The Unix timestamp (in seconds) when the model was created.
     #[serde(rename = "created")]
     pub created: i32,
+    /// The object type, which is always \"model\".
+    #[serde(rename = "object")]
+    pub object: Object,
+    /// The organization that owns the model.
     #[serde(rename = "owned_by")]
     pub owned_by: String,
 }
 
 impl Model {
-    pub fn new(id: String, object: String, created: i32, owned_by: String) -> Model {
+    /// Describes an OpenAI model offering that can be used with the API.
+    pub fn new(id: String, created: i32, object: Object, owned_by: String) -> Model {
         Model {
             id,
-            object,
             created,
+            object,
             owned_by,
         }
+    }
+}
+/// The object type, which is always \"model\".
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Object {
+    #[serde(rename = "model")]
+    Model,
+}
+
+impl Default for Object {
+    fn default() -> Object {
+        Self::Model
     }
 }
 

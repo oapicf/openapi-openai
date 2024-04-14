@@ -7,7 +7,7 @@ OpenAI API
 - API version: 2.0.0
 - Generator version: 7.4.0
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   For more information, please visit [https://github.com/oapicf/openapi-openai](https://github.com/oapicf/openapi-openai)
 
@@ -28,12 +28,13 @@ example.h:
 ```c++
 
 #include <iostream>
-#include "../client/OAIOpenAIApi.h"
+#include "../client/OAIAssistantsApi.h"
 
 using namespace test_namespace;
 
 class Example : public QObject {
     Q_OBJECT
+    QString create();
     QString create();
 public Q_SLOTS:
    void exampleFunction1();
@@ -44,30 +45,46 @@ public Q_SLOTS:
 example.cpp:
 ```c++
 
-#include "../client/OAIOpenAIApi.h"
+#include "../client/OAIAssistantsApi.h"
 #include "example.h"
 #include <QTimer>
 #include <QEventLoop>
 
 QString Example::create(){
     QString obj;
+QString Example::create(){
+    QString obj;
  return obj;
 }
 
 void Example::exampleFunction1(){
-     OAIOpenAIApi apiInstance;
+     OAIAssistantsApi apiInstance;
      
+      // Configure HTTP bearer authorization: ApiKeyAuth
+      apiInstance.setBearerToken("BEARER TOKEN");
+
       QEventLoop loop;
-      connect(&apiInstance, &OAIOpenAIApi::cancelFineTuneSignal, [&]() {
+      connect(&apiInstance, &OAIAssistantsApi::cancelRunSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIOpenAIApi::cancelFineTuneSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIAssistantsApi::cancelRunSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });
 
-      QString fine_tune_id = create(); // QString | The ID of the fine-tune job to cancel 
-      apiInstance.cancelFineTune(fine_tune_id);
+      QString thread_id = create(); // QString | The ID of the thread to which this run belongs.
+
+      QEventLoop loop;
+      connect(&apiInstance, &OAIAssistantsApi::cancelRunSignal, [&]() {
+          loop.quit();
+      });
+      connect(&apiInstance, &OAIAssistantsApi::cancelRunSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+          qDebug() << "Error happened while issuing request : " << error_str;
+          loop.quit();
+      });
+
+      QString run_id = create(); // QString | The ID of the run to cancel.
+      apiInstance.cancelRun(thread_idrun_id);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();
   }
@@ -127,8 +144,12 @@ servers:
 
 ## Documentation for Authorization
 
-All endpoints do not require authorization.
 Authentication schemes defined for the API:
+### ApiKeyAuth
+
+
+- **Type**: HTTP Bearer Token authentication
+
 
 ## Author
 
@@ -137,4 +158,4 @@ blah+oapicf@cliffano.com
 
 ## License
 
- for more information visit []()
+MIT for more information visit [MIT](https://github.com/openai/openai-openapi/blob/master/LICENSE)

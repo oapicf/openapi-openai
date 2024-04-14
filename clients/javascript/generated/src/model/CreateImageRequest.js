@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,17 +12,18 @@
  */
 
 import ApiClient from '../ApiClient';
+import CreateImageRequestModel from './CreateImageRequestModel';
 
 /**
  * The CreateImageRequest model module.
  * @module model/CreateImageRequest
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateImageRequest {
     /**
      * Constructs a new <code>CreateImageRequest</code>.
      * @alias module:model/CreateImageRequest
-     * @param prompt {String} A text description of the desired image(s). The maximum length is 1000 characters.
+     * @param prompt {String} A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.
      */
     constructor(prompt) { 
         
@@ -52,14 +53,23 @@ class CreateImageRequest {
             if (data.hasOwnProperty('prompt')) {
                 obj['prompt'] = ApiClient.convertToType(data['prompt'], 'String');
             }
+            if (data.hasOwnProperty('model')) {
+                obj['model'] = CreateImageRequestModel.constructFromObject(data['model']);
+            }
             if (data.hasOwnProperty('n')) {
                 obj['n'] = ApiClient.convertToType(data['n'], 'Number');
+            }
+            if (data.hasOwnProperty('quality')) {
+                obj['quality'] = ApiClient.convertToType(data['quality'], 'String');
+            }
+            if (data.hasOwnProperty('response_format')) {
+                obj['response_format'] = ApiClient.convertToType(data['response_format'], 'String');
             }
             if (data.hasOwnProperty('size')) {
                 obj['size'] = ApiClient.convertToType(data['size'], 'String');
             }
-            if (data.hasOwnProperty('response_format')) {
-                obj['response_format'] = ApiClient.convertToType(data['response_format'], 'String');
+            if (data.hasOwnProperty('style')) {
+                obj['style'] = ApiClient.convertToType(data['style'], 'String');
             }
             if (data.hasOwnProperty('user')) {
                 obj['user'] = ApiClient.convertToType(data['user'], 'String');
@@ -84,13 +94,25 @@ class CreateImageRequest {
         if (data['prompt'] && !(typeof data['prompt'] === 'string' || data['prompt'] instanceof String)) {
             throw new Error("Expected the field `prompt` to be a primitive type in the JSON string but got " + data['prompt']);
         }
+        // validate the optional field `model`
+        if (data['model']) { // data not null
+          CreateImageRequestModel.validateJSON(data['model']);
+        }
+        // ensure the json data is a string
+        if (data['quality'] && !(typeof data['quality'] === 'string' || data['quality'] instanceof String)) {
+            throw new Error("Expected the field `quality` to be a primitive type in the JSON string but got " + data['quality']);
+        }
+        // ensure the json data is a string
+        if (data['response_format'] && !(typeof data['response_format'] === 'string' || data['response_format'] instanceof String)) {
+            throw new Error("Expected the field `response_format` to be a primitive type in the JSON string but got " + data['response_format']);
+        }
         // ensure the json data is a string
         if (data['size'] && !(typeof data['size'] === 'string' || data['size'] instanceof String)) {
             throw new Error("Expected the field `size` to be a primitive type in the JSON string but got " + data['size']);
         }
         // ensure the json data is a string
-        if (data['response_format'] && !(typeof data['response_format'] === 'string' || data['response_format'] instanceof String)) {
-            throw new Error("Expected the field `response_format` to be a primitive type in the JSON string but got " + data['response_format']);
+        if (data['style'] && !(typeof data['style'] === 'string' || data['style'] instanceof String)) {
+            throw new Error("Expected the field `style` to be a primitive type in the JSON string but got " + data['style']);
         }
         // ensure the json data is a string
         if (data['user'] && !(typeof data['user'] === 'string' || data['user'] instanceof String)) {
@@ -106,31 +128,50 @@ class CreateImageRequest {
 CreateImageRequest.RequiredProperties = ["prompt"];
 
 /**
- * A text description of the desired image(s). The maximum length is 1000 characters.
+ * A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.
  * @member {String} prompt
  */
 CreateImageRequest.prototype['prompt'] = undefined;
 
 /**
- * The number of images to generate. Must be between 1 and 10.
+ * @member {module:model/CreateImageRequestModel} model
+ */
+CreateImageRequest.prototype['model'] = undefined;
+
+/**
+ * The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
  * @member {Number} n
  * @default 1
  */
 CreateImageRequest.prototype['n'] = 1;
 
 /**
- * The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
+ * The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.
+ * @member {module:model/CreateImageRequest.QualityEnum} quality
+ * @default 'standard'
+ */
+CreateImageRequest.prototype['quality'] = 'standard';
+
+/**
+ * The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
+ * @member {module:model/CreateImageRequest.ResponseFormatEnum} response_format
+ * @default 'url'
+ */
+CreateImageRequest.prototype['response_format'] = 'url';
+
+/**
+ * The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.
  * @member {module:model/CreateImageRequest.SizeEnum} size
  * @default '1024x1024'
  */
 CreateImageRequest.prototype['size'] = '1024x1024';
 
 /**
- * The format in which the generated images are returned. Must be one of `url` or `b64_json`.
- * @member {module:model/CreateImageRequest.ResponseFormatEnum} response_format
- * @default 'url'
+ * The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.
+ * @member {module:model/CreateImageRequest.StyleEnum} style
+ * @default 'vivid'
  */
-CreateImageRequest.prototype['response_format'] = 'url';
+CreateImageRequest.prototype['style'] = 'vivid';
 
 /**
  * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
@@ -140,6 +181,48 @@ CreateImageRequest.prototype['user'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>quality</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateImageRequest['QualityEnum'] = {
+
+    /**
+     * value: "standard"
+     * @const
+     */
+    "standard": "standard",
+
+    /**
+     * value: "hd"
+     * @const
+     */
+    "hd": "hd"
+};
+
+
+/**
+ * Allowed values for the <code>response_format</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateImageRequest['ResponseFormatEnum'] = {
+
+    /**
+     * value: "url"
+     * @const
+     */
+    "url": "url",
+
+    /**
+     * value: "b64_json"
+     * @const
+     */
+    "b64_json": "b64_json"
+};
 
 
 /**
@@ -165,28 +248,40 @@ CreateImageRequest['SizeEnum'] = {
      * value: "1024x1024"
      * @const
      */
-    "1024x1024": "1024x1024"
+    "1024x1024": "1024x1024",
+
+    /**
+     * value: "1792x1024"
+     * @const
+     */
+    "1792x1024": "1792x1024",
+
+    /**
+     * value: "1024x1792"
+     * @const
+     */
+    "1024x1792": "1024x1792"
 };
 
 
 /**
- * Allowed values for the <code>response_format</code> property.
+ * Allowed values for the <code>style</code> property.
  * @enum {String}
  * @readonly
  */
-CreateImageRequest['ResponseFormatEnum'] = {
+CreateImageRequest['StyleEnum'] = {
 
     /**
-     * value: "url"
+     * value: "vivid"
      * @const
      */
-    "url": "url",
+    "vivid": "vivid",
 
     /**
-     * value: "b64_json"
+     * value: "natural"
      * @const
      */
-    "b64_json": "b64_json"
+    "natural": "natural"
 };
 
 

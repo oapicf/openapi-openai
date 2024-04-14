@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,6 +23,7 @@
 #include "CppRestOpenAPIClient/ModelBase.h"
 
 #include "CppRestOpenAPIClient/model/ChatCompletionStreamResponseDelta.h"
+#include "CppRestOpenAPIClient/model/CreateChatCompletionResponse_choices_inner_logprobs.h"
 #include <cpprest/details/basic_types.h>
 
 namespace org {
@@ -31,6 +32,7 @@ namespace client {
 namespace model {
 
 class ChatCompletionStreamResponseDelta;
+class CreateChatCompletionResponse_choices_inner_logprobs;
 
 /// <summary>
 /// 
@@ -59,15 +61,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int32_t getIndex() const;
-    bool indexIsSet() const;
-    void unsetIndex();
-
-    void setIndex(int32_t value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     std::shared_ptr<ChatCompletionStreamResponseDelta> getDelta() const;
     bool deltaIsSet() const;
     void unsetDelta();
@@ -77,20 +70,40 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    std::shared_ptr<CreateChatCompletionResponse_choices_inner_logprobs> getLogprobs() const;
+    bool logprobsIsSet() const;
+    void unsetLogprobs();
+
+    void setLogprobs(const std::shared_ptr<CreateChatCompletionResponse_choices_inner_logprobs>& value);
+
+    /// <summary>
+    /// The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
+    /// </summary>
     utility::string_t getFinishReason() const;
     bool finishReasonIsSet() const;
     void unsetFinish_reason();
 
     void setFinishReason(const utility::string_t& value);
 
+    /// <summary>
+    /// The index of the choice in the list of choices.
+    /// </summary>
+    int32_t getIndex() const;
+    bool indexIsSet() const;
+    void unsetIndex();
+
+    void setIndex(int32_t value);
+
 
 protected:
-    int32_t m_Index;
-    bool m_IndexIsSet;
     std::shared_ptr<ChatCompletionStreamResponseDelta> m_Delta;
     bool m_DeltaIsSet;
+    std::shared_ptr<CreateChatCompletionResponse_choices_inner_logprobs> m_Logprobs;
+    bool m_LogprobsIsSet;
     utility::string_t m_Finish_reason;
     bool m_Finish_reasonIsSet;
+    int32_t m_Index;
+    bool m_IndexIsSet;
 };
 
 

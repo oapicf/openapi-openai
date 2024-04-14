@@ -11,8 +11,10 @@
     "label": "Details",
     "model": "properties",
     "children": [
-      {"model": "model" },
       {"model": "input" },
+      {"model": "model" },
+      {"model": "encoding_format" },
+      {"model": "dimensions" },
       {"model": "user" },
     ]
   }]

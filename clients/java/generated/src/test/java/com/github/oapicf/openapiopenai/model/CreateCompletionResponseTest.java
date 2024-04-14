@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,8 +13,8 @@
 
 package com.github.oapicf.openapiopenai.model;
 
+import com.github.oapicf.openapiopenai.model.CompletionUsage;
 import com.github.oapicf.openapiopenai.model.CreateCompletionResponseChoicesInner;
-import com.github.oapicf.openapiopenai.model.CreateCompletionResponseUsage;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,11 +50,11 @@ public class CreateCompletionResponseTest {
     }
 
     /**
-     * Test the property '_object'
+     * Test the property 'choices'
      */
     @Test
-    public void _objectTest() {
-        // TODO: test _object
+    public void choicesTest() {
+        // TODO: test choices
     }
 
     /**
@@ -74,11 +74,19 @@ public class CreateCompletionResponseTest {
     }
 
     /**
-     * Test the property 'choices'
+     * Test the property 'systemFingerprint'
      */
     @Test
-    public void choicesTest() {
-        // TODO: test choices
+    public void systemFingerprintTest() {
+        // TODO: test systemFingerprint
+    }
+
+    /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
     }
 
     /**

@@ -23,29 +23,29 @@ CreateEmbeddingResponse::~CreateEmbeddingResponse()
 void
 CreateEmbeddingResponse::__init()
 {
-	//object = std::string();
-	//model = std::string();
 	//new std::list()std::list> data;
+	//model = std::string();
+	//object = std::string();
 	//usage = new CreateEmbeddingResponse_usage();
 }
 
 void
 CreateEmbeddingResponse::__cleanup()
 {
-	//if(object != NULL) {
-	//
-	//delete object;
-	//object = NULL;
+	//if(data != NULL) {
+	//data.RemoveAll(true);
+	//delete data;
+	//data = NULL;
 	//}
 	//if(model != NULL) {
 	//
 	//delete model;
 	//model = NULL;
 	//}
-	//if(data != NULL) {
-	//data.RemoveAll(true);
-	//delete data;
-	//data = NULL;
+	//if(object != NULL) {
+	//
+	//delete object;
+	//object = NULL;
 	//}
 	//if(usage != NULL) {
 	//
@@ -60,16 +60,29 @@ CreateEmbeddingResponse::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
-	const gchar *objectKey = "object";
-	node = json_object_get_member(pJsonObject, objectKey);
+	const gchar *dataKey = "data";
+	node = json_object_get_member(pJsonObject, dataKey);
 	if (node !=NULL) {
 	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&object, node, "std::string", "");
-		} else {
-			
+		{
+			JsonArray* arr = json_node_get_array(node);
+			JsonNode*  temp_json;
+			list<Embedding> new_list;
+			Embedding inst;
+			for (guint i=0;i<json_array_get_length(arr);i++) {
+				temp_json = json_array_get_element(arr,i);
+				if (isprimitive("Embedding")) {
+					jsonToValue(&inst, temp_json, "Embedding", "");
+				} else {
+					
+					inst.fromJson(json_to_string(temp_json, false));
+					
+				}
+				new_list.push_back(inst);
+			}
+			data = new_list;
 		}
+		
 	}
 	const gchar *modelKey = "model";
 	node = json_object_get_member(pJsonObject, modelKey);
@@ -82,29 +95,16 @@ CreateEmbeddingResponse::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *dataKey = "data";
-	node = json_object_get_member(pJsonObject, dataKey);
+	const gchar *objectKey = "object";
+	node = json_object_get_member(pJsonObject, objectKey);
 	if (node !=NULL) {
 	
-		{
-			JsonArray* arr = json_node_get_array(node);
-			JsonNode*  temp_json;
-			list<CreateEmbeddingResponse_data_inner> new_list;
-			CreateEmbeddingResponse_data_inner inst;
-			for (guint i=0;i<json_array_get_length(arr);i++) {
-				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("CreateEmbeddingResponse_data_inner")) {
-					jsonToValue(&inst, temp_json, "CreateEmbeddingResponse_data_inner", "");
-				} else {
-					
-					inst.fromJson(json_to_string(temp_json, false));
-					
-				}
-				new_list.push_back(inst);
-			}
-			data = new_list;
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&object, node, "std::string", "");
+		} else {
+			
 		}
-		
 	}
 	const gchar *usageKey = "usage";
 	node = json_object_get_member(pJsonObject, usageKey);
@@ -132,36 +132,18 @@ CreateEmbeddingResponse::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
-	if (isprimitive("std::string")) {
-		std::string obj = getObject();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *objectKey = "object";
-	json_object_set_member(pJsonObject, objectKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getModel();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *modelKey = "model";
-	json_object_set_member(pJsonObject, modelKey, node);
-	if (isprimitive("CreateEmbeddingResponse_data_inner")) {
-		list<CreateEmbeddingResponse_data_inner> new_list = static_cast<list <CreateEmbeddingResponse_data_inner> > (getData());
-		node = converttoJson(&new_list, "CreateEmbeddingResponse_data_inner", "array");
+	if (isprimitive("Embedding")) {
+		list<Embedding> new_list = static_cast<list <Embedding> > (getData());
+		node = converttoJson(&new_list, "Embedding", "array");
 	} else {
 		node = json_node_alloc();
-		list<CreateEmbeddingResponse_data_inner> new_list = static_cast<list <CreateEmbeddingResponse_data_inner> > (getData());
+		list<Embedding> new_list = static_cast<list <Embedding> > (getData());
 		JsonArray* json_array = json_array_new();
 		GError *mygerror;
 		
-		for (list<CreateEmbeddingResponse_data_inner>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+		for (list<Embedding>::iterator it = new_list.begin(); it != new_list.end(); it++) {
 			mygerror = NULL;
-			CreateEmbeddingResponse_data_inner obj = *it;
+			Embedding obj = *it;
 			JsonNode *node_temp = json_from_string(obj.toJson(), &mygerror);
 			json_array_add_element(json_array, node_temp);
 			g_clear_error(&mygerror);
@@ -175,6 +157,24 @@ CreateEmbeddingResponse::toJson()
 	
 	const gchar *dataKey = "data";
 	json_object_set_member(pJsonObject, dataKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getModel();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *modelKey = "model";
+	json_object_set_member(pJsonObject, modelKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getObject();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *objectKey = "object";
+	json_object_set_member(pJsonObject, objectKey, node);
 	if (isprimitive("CreateEmbeddingResponse_usage")) {
 		CreateEmbeddingResponse_usage obj = getUsage();
 		node = converttoJson(&obj, "CreateEmbeddingResponse_usage", "");
@@ -197,16 +197,16 @@ CreateEmbeddingResponse::toJson()
 	return ret;
 }
 
-std::string
-CreateEmbeddingResponse::getObject()
+std::list<Embedding>
+CreateEmbeddingResponse::getData()
 {
-	return object;
+	return data;
 }
 
 void
-CreateEmbeddingResponse::setObject(std::string  object)
+CreateEmbeddingResponse::setData(std::list <Embedding> data)
 {
-	this->object = object;
+	this->data = data;
 }
 
 std::string
@@ -221,16 +221,16 @@ CreateEmbeddingResponse::setModel(std::string  model)
 	this->model = model;
 }
 
-std::list<CreateEmbeddingResponse_data_inner>
-CreateEmbeddingResponse::getData()
+std::string
+CreateEmbeddingResponse::getObject()
 {
-	return data;
+	return object;
 }
 
 void
-CreateEmbeddingResponse::setData(std::list <CreateEmbeddingResponse_data_inner> data)
+CreateEmbeddingResponse::setObject(std::string  object)
 {
-	this->data = data;
+	this->object = object;
 }
 
 CreateEmbeddingResponse_usage

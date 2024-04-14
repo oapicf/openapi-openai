@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -63,149 +63,341 @@ func DefaultHandleFunc(c *gin.Context) {
 
 type ApiHandleFunctions struct {
 
-	// Routes for the OpenAIAPI part of the API
-	OpenAIAPI OpenAIAPI
+	// Routes for the AssistantsAPI part of the API
+	AssistantsAPI AssistantsAPI
+	// Routes for the AudioAPI part of the API
+	AudioAPI AudioAPI
+	// Routes for the ChatAPI part of the API
+	ChatAPI ChatAPI
+	// Routes for the CompletionsAPI part of the API
+	CompletionsAPI CompletionsAPI
+	// Routes for the EmbeddingsAPI part of the API
+	EmbeddingsAPI EmbeddingsAPI
+	// Routes for the FilesAPI part of the API
+	FilesAPI FilesAPI
+	// Routes for the FineTuningAPI part of the API
+	FineTuningAPI FineTuningAPI
+	// Routes for the ImagesAPI part of the API
+	ImagesAPI ImagesAPI
+	// Routes for the ModelsAPI part of the API
+	ModelsAPI ModelsAPI
+	// Routes for the ModerationsAPI part of the API
+	ModerationsAPI ModerationsAPI
 }
 
 func getRoutes(handleFunctions ApiHandleFunctions) []Route {
 	return []Route{ 
 		{
-			"CancelFineTune",
+			"CancelRun",
 			http.MethodPost,
-			"/v1/fine-tunes/:fine_tune_id/cancel",
-			handleFunctions.OpenAIAPI.CancelFineTune,
+			"/v1/threads/:thread_id/runs/:run_id/cancel",
+			handleFunctions.AssistantsAPI.CancelRun,
 		},
 		{
-			"CreateChatCompletion",
+			"CreateAssistant",
 			http.MethodPost,
-			"/v1/chat/completions",
-			handleFunctions.OpenAIAPI.CreateChatCompletion,
+			"/v1/assistants",
+			handleFunctions.AssistantsAPI.CreateAssistant,
 		},
 		{
-			"CreateCompletion",
+			"CreateAssistantFile",
 			http.MethodPost,
-			"/v1/completions",
-			handleFunctions.OpenAIAPI.CreateCompletion,
+			"/v1/assistants/:assistant_id/files",
+			handleFunctions.AssistantsAPI.CreateAssistantFile,
 		},
 		{
-			"CreateEdit",
+			"CreateMessage",
 			http.MethodPost,
-			"/v1/edits",
-			handleFunctions.OpenAIAPI.CreateEdit,
+			"/v1/threads/:thread_id/messages",
+			handleFunctions.AssistantsAPI.CreateMessage,
 		},
 		{
-			"CreateEmbedding",
+			"CreateRun",
 			http.MethodPost,
-			"/v1/embeddings",
-			handleFunctions.OpenAIAPI.CreateEmbedding,
+			"/v1/threads/:thread_id/runs",
+			handleFunctions.AssistantsAPI.CreateRun,
 		},
 		{
-			"CreateFile",
+			"CreateThread",
 			http.MethodPost,
-			"/v1/files",
-			handleFunctions.OpenAIAPI.CreateFile,
+			"/v1/threads",
+			handleFunctions.AssistantsAPI.CreateThread,
 		},
 		{
-			"CreateFineTune",
+			"CreateThreadAndRun",
 			http.MethodPost,
-			"/v1/fine-tunes",
-			handleFunctions.OpenAIAPI.CreateFineTune,
+			"/v1/threads/runs",
+			handleFunctions.AssistantsAPI.CreateThreadAndRun,
 		},
 		{
-			"CreateImage",
-			http.MethodPost,
-			"/v1/images/generations",
-			handleFunctions.OpenAIAPI.CreateImage,
+			"DeleteAssistant",
+			http.MethodDelete,
+			"/v1/assistants/:assistant_id",
+			handleFunctions.AssistantsAPI.DeleteAssistant,
 		},
 		{
-			"CreateImageEdit",
-			http.MethodPost,
-			"/v1/images/edits",
-			handleFunctions.OpenAIAPI.CreateImageEdit,
+			"DeleteAssistantFile",
+			http.MethodDelete,
+			"/v1/assistants/:assistant_id/files/:file_id",
+			handleFunctions.AssistantsAPI.DeleteAssistantFile,
 		},
 		{
-			"CreateImageVariation",
-			http.MethodPost,
-			"/v1/images/variations",
-			handleFunctions.OpenAIAPI.CreateImageVariation,
+			"DeleteThread",
+			http.MethodDelete,
+			"/v1/threads/:thread_id",
+			handleFunctions.AssistantsAPI.DeleteThread,
 		},
 		{
-			"CreateModeration",
+			"GetAssistant",
+			http.MethodGet,
+			"/v1/assistants/:assistant_id",
+			handleFunctions.AssistantsAPI.GetAssistant,
+		},
+		{
+			"GetAssistantFile",
+			http.MethodGet,
+			"/v1/assistants/:assistant_id/files/:file_id",
+			handleFunctions.AssistantsAPI.GetAssistantFile,
+		},
+		{
+			"GetMessage",
+			http.MethodGet,
+			"/v1/threads/:thread_id/messages/:message_id",
+			handleFunctions.AssistantsAPI.GetMessage,
+		},
+		{
+			"GetMessageFile",
+			http.MethodGet,
+			"/v1/threads/:thread_id/messages/:message_id/files/:file_id",
+			handleFunctions.AssistantsAPI.GetMessageFile,
+		},
+		{
+			"GetRun",
+			http.MethodGet,
+			"/v1/threads/:thread_id/runs/:run_id",
+			handleFunctions.AssistantsAPI.GetRun,
+		},
+		{
+			"GetRunStep",
+			http.MethodGet,
+			"/v1/threads/:thread_id/runs/:run_id/steps/:step_id",
+			handleFunctions.AssistantsAPI.GetRunStep,
+		},
+		{
+			"GetThread",
+			http.MethodGet,
+			"/v1/threads/:thread_id",
+			handleFunctions.AssistantsAPI.GetThread,
+		},
+		{
+			"ListAssistantFiles",
+			http.MethodGet,
+			"/v1/assistants/:assistant_id/files",
+			handleFunctions.AssistantsAPI.ListAssistantFiles,
+		},
+		{
+			"ListAssistants",
+			http.MethodGet,
+			"/v1/assistants",
+			handleFunctions.AssistantsAPI.ListAssistants,
+		},
+		{
+			"ListMessageFiles",
+			http.MethodGet,
+			"/v1/threads/:thread_id/messages/:message_id/files",
+			handleFunctions.AssistantsAPI.ListMessageFiles,
+		},
+		{
+			"ListMessages",
+			http.MethodGet,
+			"/v1/threads/:thread_id/messages",
+			handleFunctions.AssistantsAPI.ListMessages,
+		},
+		{
+			"ListRunSteps",
+			http.MethodGet,
+			"/v1/threads/:thread_id/runs/:run_id/steps",
+			handleFunctions.AssistantsAPI.ListRunSteps,
+		},
+		{
+			"ListRuns",
+			http.MethodGet,
+			"/v1/threads/:thread_id/runs",
+			handleFunctions.AssistantsAPI.ListRuns,
+		},
+		{
+			"ModifyAssistant",
 			http.MethodPost,
-			"/v1/moderations",
-			handleFunctions.OpenAIAPI.CreateModeration,
+			"/v1/assistants/:assistant_id",
+			handleFunctions.AssistantsAPI.ModifyAssistant,
+		},
+		{
+			"ModifyMessage",
+			http.MethodPost,
+			"/v1/threads/:thread_id/messages/:message_id",
+			handleFunctions.AssistantsAPI.ModifyMessage,
+		},
+		{
+			"ModifyRun",
+			http.MethodPost,
+			"/v1/threads/:thread_id/runs/:run_id",
+			handleFunctions.AssistantsAPI.ModifyRun,
+		},
+		{
+			"ModifyThread",
+			http.MethodPost,
+			"/v1/threads/:thread_id",
+			handleFunctions.AssistantsAPI.ModifyThread,
+		},
+		{
+			"SubmitToolOuputsToRun",
+			http.MethodPost,
+			"/v1/threads/:thread_id/runs/:run_id/submit_tool_outputs",
+			handleFunctions.AssistantsAPI.SubmitToolOuputsToRun,
+		},
+		{
+			"CreateSpeech",
+			http.MethodPost,
+			"/v1/audio/speech",
+			handleFunctions.AudioAPI.CreateSpeech,
 		},
 		{
 			"CreateTranscription",
 			http.MethodPost,
 			"/v1/audio/transcriptions",
-			handleFunctions.OpenAIAPI.CreateTranscription,
+			handleFunctions.AudioAPI.CreateTranscription,
 		},
 		{
 			"CreateTranslation",
 			http.MethodPost,
 			"/v1/audio/translations",
-			handleFunctions.OpenAIAPI.CreateTranslation,
+			handleFunctions.AudioAPI.CreateTranslation,
+		},
+		{
+			"CreateChatCompletion",
+			http.MethodPost,
+			"/v1/chat/completions",
+			handleFunctions.ChatAPI.CreateChatCompletion,
+		},
+		{
+			"CreateCompletion",
+			http.MethodPost,
+			"/v1/completions",
+			handleFunctions.CompletionsAPI.CreateCompletion,
+		},
+		{
+			"CreateEmbedding",
+			http.MethodPost,
+			"/v1/embeddings",
+			handleFunctions.EmbeddingsAPI.CreateEmbedding,
+		},
+		{
+			"CreateFile",
+			http.MethodPost,
+			"/v1/files",
+			handleFunctions.FilesAPI.CreateFile,
 		},
 		{
 			"DeleteFile",
 			http.MethodDelete,
 			"/v1/files/:file_id",
-			handleFunctions.OpenAIAPI.DeleteFile,
-		},
-		{
-			"DeleteModel",
-			http.MethodDelete,
-			"/v1/models/:model",
-			handleFunctions.OpenAIAPI.DeleteModel,
+			handleFunctions.FilesAPI.DeleteFile,
 		},
 		{
 			"DownloadFile",
 			http.MethodGet,
 			"/v1/files/:file_id/content",
-			handleFunctions.OpenAIAPI.DownloadFile,
+			handleFunctions.FilesAPI.DownloadFile,
 		},
 		{
 			"ListFiles",
 			http.MethodGet,
 			"/v1/files",
-			handleFunctions.OpenAIAPI.ListFiles,
-		},
-		{
-			"ListFineTuneEvents",
-			http.MethodGet,
-			"/v1/fine-tunes/:fine_tune_id/events",
-			handleFunctions.OpenAIAPI.ListFineTuneEvents,
-		},
-		{
-			"ListFineTunes",
-			http.MethodGet,
-			"/v1/fine-tunes",
-			handleFunctions.OpenAIAPI.ListFineTunes,
-		},
-		{
-			"ListModels",
-			http.MethodGet,
-			"/v1/models",
-			handleFunctions.OpenAIAPI.ListModels,
+			handleFunctions.FilesAPI.ListFiles,
 		},
 		{
 			"RetrieveFile",
 			http.MethodGet,
 			"/v1/files/:file_id",
-			handleFunctions.OpenAIAPI.RetrieveFile,
+			handleFunctions.FilesAPI.RetrieveFile,
 		},
 		{
-			"RetrieveFineTune",
+			"CancelFineTuningJob",
+			http.MethodPost,
+			"/v1/fine_tuning/jobs/:fine_tuning_job_id/cancel",
+			handleFunctions.FineTuningAPI.CancelFineTuningJob,
+		},
+		{
+			"CreateFineTuningJob",
+			http.MethodPost,
+			"/v1/fine_tuning/jobs",
+			handleFunctions.FineTuningAPI.CreateFineTuningJob,
+		},
+		{
+			"ListFineTuningEvents",
 			http.MethodGet,
-			"/v1/fine-tunes/:fine_tune_id",
-			handleFunctions.OpenAIAPI.RetrieveFineTune,
+			"/v1/fine_tuning/jobs/:fine_tuning_job_id/events",
+			handleFunctions.FineTuningAPI.ListFineTuningEvents,
+		},
+		{
+			"ListFineTuningJobCheckpoints",
+			http.MethodGet,
+			"/v1/fine_tuning/jobs/:fine_tuning_job_id/checkpoints",
+			handleFunctions.FineTuningAPI.ListFineTuningJobCheckpoints,
+		},
+		{
+			"ListPaginatedFineTuningJobs",
+			http.MethodGet,
+			"/v1/fine_tuning/jobs",
+			handleFunctions.FineTuningAPI.ListPaginatedFineTuningJobs,
+		},
+		{
+			"RetrieveFineTuningJob",
+			http.MethodGet,
+			"/v1/fine_tuning/jobs/:fine_tuning_job_id",
+			handleFunctions.FineTuningAPI.RetrieveFineTuningJob,
+		},
+		{
+			"CreateImage",
+			http.MethodPost,
+			"/v1/images/generations",
+			handleFunctions.ImagesAPI.CreateImage,
+		},
+		{
+			"CreateImageEdit",
+			http.MethodPost,
+			"/v1/images/edits",
+			handleFunctions.ImagesAPI.CreateImageEdit,
+		},
+		{
+			"CreateImageVariation",
+			http.MethodPost,
+			"/v1/images/variations",
+			handleFunctions.ImagesAPI.CreateImageVariation,
+		},
+		{
+			"DeleteModel",
+			http.MethodDelete,
+			"/v1/models/:model",
+			handleFunctions.ModelsAPI.DeleteModel,
+		},
+		{
+			"ListModels",
+			http.MethodGet,
+			"/v1/models",
+			handleFunctions.ModelsAPI.ListModels,
 		},
 		{
 			"RetrieveModel",
 			http.MethodGet,
 			"/v1/models/:model",
-			handleFunctions.OpenAIAPI.RetrieveModel,
+			handleFunctions.ModelsAPI.RetrieveModel,
+		},
+		{
+			"CreateModeration",
+			http.MethodPost,
+			"/v1/moderations",
+			handleFunctions.ModerationsAPI.CreateModeration,
 		},
 	}
 }

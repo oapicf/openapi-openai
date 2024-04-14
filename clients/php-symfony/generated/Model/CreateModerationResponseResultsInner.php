@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -44,6 +44,8 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateModerationResponseResultsInner 
 {
         /**
+     * Whether any of the below categories are flagged.
+     *
      * @var bool|null
      * @SerializedName("flagged")
      * @Assert\NotNull()
@@ -100,7 +102,7 @@ class CreateModerationResponseResultsInner
     /**
      * Sets flagged.
      *
-     * @param bool|null $flagged
+     * @param bool|null $flagged  Whether any of the below categories are flagged.
      *
      * @return $this
      */

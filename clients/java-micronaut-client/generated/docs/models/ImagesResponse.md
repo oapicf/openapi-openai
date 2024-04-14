@@ -9,7 +9,7 @@ The class is defined in **[ImagesResponse.java](../../src/main/java/org/openapit
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created** | `Integer` |  | 
-**data** | [`List&lt;ImagesResponseDataInner&gt;`](ImagesResponseDataInner.md) |  | 
+**data** | [`List&lt;Image&gt;`](Image.md) |  | 
 
 
 

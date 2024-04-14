@@ -8,15 +8,15 @@ import org.openapitools._
 
 /**
  * 
- * @param _type 
+ * @param code 
  * @param message 
  * @param param 
- * @param code 
+ * @param _type 
  */
-case class Error(_type: String,
+case class Error(code: String,
                 message: String,
                 param: String,
-                code: String
+                _type: String
                 )
 
 object Error {

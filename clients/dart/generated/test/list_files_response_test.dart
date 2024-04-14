@@ -16,13 +16,13 @@ void main() {
   // final instance = ListFilesResponse();
 
   group('test ListFilesResponse', () {
-    // String object
-    test('to test the property `object`', () async {
+    // List<OpenAIFile> data (default value: const [])
+    test('to test the property `data`', () async {
       // TODO
     });
 
-    // List<OpenAIFile> data (default value: const [])
-    test('to test the property `data`', () async {
+    // String object
+    test('to test the property `object`', () async {
       // TODO
     });
 

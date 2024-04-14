@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -34,17 +34,17 @@ OAICreateCompletionResponse_choices_inner_logprobs::~OAICreateCompletionResponse
 
 void OAICreateCompletionResponse_choices_inner_logprobs::initializeModel() {
 
-    m_tokens_isSet = false;
-    m_tokens_isValid = false;
+    m_text_offset_isSet = false;
+    m_text_offset_isValid = false;
 
     m_token_logprobs_isSet = false;
     m_token_logprobs_isValid = false;
 
+    m_tokens_isSet = false;
+    m_tokens_isValid = false;
+
     m_top_logprobs_isSet = false;
     m_top_logprobs_isValid = false;
-
-    m_text_offset_isSet = false;
-    m_text_offset_isValid = false;
 }
 
 void OAICreateCompletionResponse_choices_inner_logprobs::fromJson(QString jsonString) {
@@ -56,17 +56,27 @@ void OAICreateCompletionResponse_choices_inner_logprobs::fromJson(QString jsonSt
 
 void OAICreateCompletionResponse_choices_inner_logprobs::fromJsonObject(QJsonObject json) {
 
-    m_tokens_isValid = ::OpenAPI::fromJsonValue(m_tokens, json[QString("tokens")]);
-    m_tokens_isSet = !json[QString("tokens")].isNull() && m_tokens_isValid;
+    m_text_offset_isValid = ::OpenAPI::fromJsonValue(m_text_offset, json[QString("text_offset")]);
+    m_text_offset_isSet = !json[QString("text_offset")].isNull() && m_text_offset_isValid;
 
     m_token_logprobs_isValid = ::OpenAPI::fromJsonValue(m_token_logprobs, json[QString("token_logprobs")]);
     m_token_logprobs_isSet = !json[QString("token_logprobs")].isNull() && m_token_logprobs_isValid;
 
-    m_top_logprobs_isValid = ::OpenAPI::fromJsonValue(m_top_logprobs, json[QString("top_logprobs")]);
-    m_top_logprobs_isSet = !json[QString("top_logprobs")].isNull() && m_top_logprobs_isValid;
+    m_tokens_isValid = ::OpenAPI::fromJsonValue(m_tokens, json[QString("tokens")]);
+    m_tokens_isSet = !json[QString("tokens")].isNull() && m_tokens_isValid;
 
-    m_text_offset_isValid = ::OpenAPI::fromJsonValue(m_text_offset, json[QString("text_offset")]);
-    m_text_offset_isSet = !json[QString("text_offset")].isNull() && m_text_offset_isValid;
+    if(json["top_logprobs"].isArray()){
+        auto arr = json["top_logprobs"].toArray();
+        m_top_logprobs_isValid = true;
+        if(arr.count() > 0) {
+            for (const QJsonValue jval : arr) {
+                QMap<QString, double> item;
+                m_top_logprobs_isValid &= ::OpenAPI::fromJsonValue(item, jval);
+                m_top_logprobs_isSet = !jval.isNull() && m_top_logprobs_isValid;
+                m_top_logprobs.push_back(item);
+            }
+        }
+    }
 }
 
 QString OAICreateCompletionResponse_choices_inner_logprobs::asJson() const {
@@ -78,67 +88,20 @@ QString OAICreateCompletionResponse_choices_inner_logprobs::asJson() const {
 
 QJsonObject OAICreateCompletionResponse_choices_inner_logprobs::asJsonObject() const {
     QJsonObject obj;
-    if (m_tokens.size() > 0) {
-        obj.insert(QString("tokens"), ::OpenAPI::toJsonValue(m_tokens));
+    if (m_text_offset.size() > 0) {
+        obj.insert(QString("text_offset"), ::OpenAPI::toJsonValue(m_text_offset));
     }
     if (m_token_logprobs.size() > 0) {
         obj.insert(QString("token_logprobs"), ::OpenAPI::toJsonValue(m_token_logprobs));
     }
-    if (m_top_logprobs.size() > 0) {
-        obj.insert(QString("top_logprobs"), ::OpenAPI::toJsonValue(m_top_logprobs));
+    if (m_tokens.size() > 0) {
+        obj.insert(QString("tokens"), ::OpenAPI::toJsonValue(m_tokens));
     }
-    if (m_text_offset.size() > 0) {
-        obj.insert(QString("text_offset"), ::OpenAPI::toJsonValue(m_text_offset));
+    if (m_top_logprobs.size() > 0) {
+        
+        obj.insert(QString("top_logprobs"), toJsonValue(m_top_logprobs));
     }
     return obj;
-}
-
-QList<QString> OAICreateCompletionResponse_choices_inner_logprobs::getTokens() const {
-    return m_tokens;
-}
-void OAICreateCompletionResponse_choices_inner_logprobs::setTokens(const QList<QString> &tokens) {
-    m_tokens = tokens;
-    m_tokens_isSet = true;
-}
-
-bool OAICreateCompletionResponse_choices_inner_logprobs::is_tokens_Set() const{
-    return m_tokens_isSet;
-}
-
-bool OAICreateCompletionResponse_choices_inner_logprobs::is_tokens_Valid() const{
-    return m_tokens_isValid;
-}
-
-QList<double> OAICreateCompletionResponse_choices_inner_logprobs::getTokenLogprobs() const {
-    return m_token_logprobs;
-}
-void OAICreateCompletionResponse_choices_inner_logprobs::setTokenLogprobs(const QList<double> &token_logprobs) {
-    m_token_logprobs = token_logprobs;
-    m_token_logprobs_isSet = true;
-}
-
-bool OAICreateCompletionResponse_choices_inner_logprobs::is_token_logprobs_Set() const{
-    return m_token_logprobs_isSet;
-}
-
-bool OAICreateCompletionResponse_choices_inner_logprobs::is_token_logprobs_Valid() const{
-    return m_token_logprobs_isValid;
-}
-
-QList<OAIObject> OAICreateCompletionResponse_choices_inner_logprobs::getTopLogprobs() const {
-    return m_top_logprobs;
-}
-void OAICreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(const QList<OAIObject> &top_logprobs) {
-    m_top_logprobs = top_logprobs;
-    m_top_logprobs_isSet = true;
-}
-
-bool OAICreateCompletionResponse_choices_inner_logprobs::is_top_logprobs_Set() const{
-    return m_top_logprobs_isSet;
-}
-
-bool OAICreateCompletionResponse_choices_inner_logprobs::is_top_logprobs_Valid() const{
-    return m_top_logprobs_isValid;
 }
 
 QList<qint32> OAICreateCompletionResponse_choices_inner_logprobs::getTextOffset() const {
@@ -157,10 +120,58 @@ bool OAICreateCompletionResponse_choices_inner_logprobs::is_text_offset_Valid() 
     return m_text_offset_isValid;
 }
 
+QList<double> OAICreateCompletionResponse_choices_inner_logprobs::getTokenLogprobs() const {
+    return m_token_logprobs;
+}
+void OAICreateCompletionResponse_choices_inner_logprobs::setTokenLogprobs(const QList<double> &token_logprobs) {
+    m_token_logprobs = token_logprobs;
+    m_token_logprobs_isSet = true;
+}
+
+bool OAICreateCompletionResponse_choices_inner_logprobs::is_token_logprobs_Set() const{
+    return m_token_logprobs_isSet;
+}
+
+bool OAICreateCompletionResponse_choices_inner_logprobs::is_token_logprobs_Valid() const{
+    return m_token_logprobs_isValid;
+}
+
+QList<QString> OAICreateCompletionResponse_choices_inner_logprobs::getTokens() const {
+    return m_tokens;
+}
+void OAICreateCompletionResponse_choices_inner_logprobs::setTokens(const QList<QString> &tokens) {
+    m_tokens = tokens;
+    m_tokens_isSet = true;
+}
+
+bool OAICreateCompletionResponse_choices_inner_logprobs::is_tokens_Set() const{
+    return m_tokens_isSet;
+}
+
+bool OAICreateCompletionResponse_choices_inner_logprobs::is_tokens_Valid() const{
+    return m_tokens_isValid;
+}
+
+QList<QMap<QString, double>> OAICreateCompletionResponse_choices_inner_logprobs::getTopLogprobs() const {
+    return m_top_logprobs;
+}
+void OAICreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(const QList<QMap<QString, double>> &top_logprobs) {
+    m_top_logprobs = top_logprobs;
+    m_top_logprobs_isSet = true;
+}
+
+bool OAICreateCompletionResponse_choices_inner_logprobs::is_top_logprobs_Set() const{
+    return m_top_logprobs_isSet;
+}
+
+bool OAICreateCompletionResponse_choices_inner_logprobs::is_top_logprobs_Valid() const{
+    return m_top_logprobs_isValid;
+}
+
 bool OAICreateCompletionResponse_choices_inner_logprobs::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_tokens.size() > 0) {
+        if (m_text_offset.size() > 0) {
             isObjectUpdated = true;
             break;
         }
@@ -170,12 +181,12 @@ bool OAICreateCompletionResponse_choices_inner_logprobs::isSet() const {
             break;
         }
 
-        if (m_top_logprobs.size() > 0) {
+        if (m_tokens.size() > 0) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_text_offset.size() > 0) {
+        if (m_top_logprobs.size() > 0) {
             isObjectUpdated = true;
             break;
         }

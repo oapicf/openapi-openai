@@ -11,16 +11,16 @@ module.exports = {
                 type: 'string',
             },
             {
-                key: `${keyPrefix}object`,
-                label: `[${labelPrefix}object]`,
-                required: true,
-                type: 'string',
-            },
-            {
                 key: `${keyPrefix}deleted`,
                 label: `[${labelPrefix}deleted]`,
                 required: true,
                 type: 'boolean',
+            },
+            {
+                key: `${keyPrefix}object`,
+                label: `[${labelPrefix}object]`,
+                required: true,
+                type: 'string',
             },
         ]
     },
@@ -28,8 +28,8 @@ module.exports = {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'id': bundle.inputData?.[`${keyPrefix}id`],
-            'object': bundle.inputData?.[`${keyPrefix}object`],
             'deleted': bundle.inputData?.[`${keyPrefix}deleted`],
+            'object': bundle.inputData?.[`${keyPrefix}object`],
         }
     },
 }

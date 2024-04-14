@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,7 @@ describe OpenAPIClient::Error do
       #expect(instance).to be_instance_of(OpenAPIClient::Error)
     end
   end
-  describe "test attribute '_type'" do
+  describe "test attribute 'code'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end
@@ -41,7 +41,7 @@ describe OpenAPIClient::Error do
     end
   end
 
-  describe "test attribute 'code'" do
+  describe "test attribute '_type'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end

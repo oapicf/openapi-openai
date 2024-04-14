@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * OAICreateChatCompletionResponse.h
  *
- * 
+ * Represents a chat completion response returned by model, based on the provided input.
  */
 
 #ifndef OAICreateChatCompletionResponse_H
@@ -21,8 +21,8 @@
 
 #include <QJsonObject>
 
+#include "OAICompletionUsage.h"
 #include "OAICreateChatCompletionResponse_choices_inner.h"
-#include "OAICreateCompletionResponse_usage.h"
 #include <QList>
 #include <QString>
 
@@ -31,7 +31,7 @@
 
 namespace OpenAPI {
 class OAICreateChatCompletionResponse_choices_inner;
-class OAICreateCompletionResponse_usage;
+class OAICompletionUsage;
 
 class OAICreateChatCompletionResponse : public OAIObject {
 public:
@@ -49,10 +49,10 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    QString getObject() const;
-    void setObject(const QString &object);
-    bool is_object_Set() const;
-    bool is_object_Valid() const;
+    QList<OAICreateChatCompletionResponse_choices_inner> getChoices() const;
+    void setChoices(const QList<OAICreateChatCompletionResponse_choices_inner> &choices);
+    bool is_choices_Set() const;
+    bool is_choices_Valid() const;
 
     qint32 getCreated() const;
     void setCreated(const qint32 &created);
@@ -64,13 +64,18 @@ public:
     bool is_model_Set() const;
     bool is_model_Valid() const;
 
-    QList<OAICreateChatCompletionResponse_choices_inner> getChoices() const;
-    void setChoices(const QList<OAICreateChatCompletionResponse_choices_inner> &choices);
-    bool is_choices_Set() const;
-    bool is_choices_Valid() const;
+    QString getSystemFingerprint() const;
+    void setSystemFingerprint(const QString &system_fingerprint);
+    bool is_system_fingerprint_Set() const;
+    bool is_system_fingerprint_Valid() const;
 
-    OAICreateCompletionResponse_usage getUsage() const;
-    void setUsage(const OAICreateCompletionResponse_usage &usage);
+    QString getObject() const;
+    void setObject(const QString &object);
+    bool is_object_Set() const;
+    bool is_object_Valid() const;
+
+    OAICompletionUsage getUsage() const;
+    void setUsage(const OAICompletionUsage &usage);
     bool is_usage_Set() const;
     bool is_usage_Valid() const;
 
@@ -84,9 +89,9 @@ private:
     bool m_id_isSet;
     bool m_id_isValid;
 
-    QString m_object;
-    bool m_object_isSet;
-    bool m_object_isValid;
+    QList<OAICreateChatCompletionResponse_choices_inner> m_choices;
+    bool m_choices_isSet;
+    bool m_choices_isValid;
 
     qint32 m_created;
     bool m_created_isSet;
@@ -96,11 +101,15 @@ private:
     bool m_model_isSet;
     bool m_model_isValid;
 
-    QList<OAICreateChatCompletionResponse_choices_inner> m_choices;
-    bool m_choices_isSet;
-    bool m_choices_isValid;
+    QString m_system_fingerprint;
+    bool m_system_fingerprint_isSet;
+    bool m_system_fingerprint_isValid;
 
-    OAICreateCompletionResponse_usage m_usage;
+    QString m_object;
+    bool m_object_isSet;
+    bool m_object_isValid;
+
+    OAICompletionUsage m_usage;
     bool m_usage_isSet;
     bool m_usage_isValid;
 };

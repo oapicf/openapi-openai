@@ -9,10 +9,10 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Error
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-16T01:12:44.741883350Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-04-14T13:38:52.193957698Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Error   {
-  @JsonProperty("type")
-  private String type;
+  @JsonProperty("code")
+  private String code;
 
   @JsonProperty("message")
   private String message;
@@ -20,25 +20,25 @@ public class Error   {
   @JsonProperty("param")
   private String param;
 
-  @JsonProperty("code")
-  private String code;
+  @JsonProperty("type")
+  private String type;
 
-  public Error type(String type) {
-    this.type = type;
+  public Error code(String code) {
+    this.code = code;
     return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * Get code
+   * @return code
   **/
   @ApiModelProperty(required = true, value = "")
-  public String getType() {
-    return type;
+  public String getCode() {
+    return code;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setCode(String code) {
+    this.code = code;
   }
 
   public Error message(String message) {
@@ -77,22 +77,22 @@ public class Error   {
     this.param = param;
   }
 
-  public Error code(String code) {
-    this.code = code;
+  public Error type(String type) {
+    this.type = type;
     return this;
   }
 
    /**
-   * Get code
-   * @return code
+   * Get type
+   * @return type
   **/
   @ApiModelProperty(required = true, value = "")
-  public String getCode() {
-    return code;
+  public String getType() {
+    return type;
   }
 
-  public void setCode(String code) {
-    this.code = code;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -105,15 +105,15 @@ public class Error   {
       return false;
     }
     Error error = (Error) o;
-    return Objects.equals(this.type, error.type) &&
+    return Objects.equals(this.code, error.code) &&
         Objects.equals(this.message, error.message) &&
         Objects.equals(this.param, error.param) &&
-        Objects.equals(this.code, error.code);
+        Objects.equals(this.type, error.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, message, param, code);
+    return Objects.hash(code, message, param, type);
   }
 
   @Override
@@ -121,10 +121,10 @@ public class Error   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    param: ").append(toIndentedString(param)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

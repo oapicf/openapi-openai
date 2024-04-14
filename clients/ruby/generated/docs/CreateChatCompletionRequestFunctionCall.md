@@ -14,7 +14,7 @@ require 'openapi_openai'
 OpenApiOpenAIClient::CreateChatCompletionRequestFunctionCall.openapi_one_of
 # =>
 # [
-#   :'CreateChatCompletionRequestFunctionCallOneOf',
+#   :'ChatCompletionFunctionCallOption',
 #   :'String'
 # ]
 ```
@@ -29,7 +29,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'openapi_openai'
 
 OpenApiOpenAIClient::CreateChatCompletionRequestFunctionCall.build(data)
-# => #<CreateChatCompletionRequestFunctionCallOneOf:0x00007fdd4aab02a0>
+# => #<ChatCompletionFunctionCallOption:0x00007fdd4aab02a0>
 
 OpenApiOpenAIClient::CreateChatCompletionRequestFunctionCall.build(data_that_doesnt_match)
 # => nil
@@ -43,7 +43,7 @@ OpenApiOpenAIClient::CreateChatCompletionRequestFunctionCall.build(data_that_doe
 
 #### Return type
 
-- `CreateChatCompletionRequestFunctionCallOneOf`
+- `ChatCompletionFunctionCallOption`
 - `String`
 - `nil` (if no type matches)
 

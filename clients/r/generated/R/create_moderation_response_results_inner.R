@@ -7,7 +7,7 @@
 #' @title CreateModerationResponseResultsInner
 #' @description CreateModerationResponseResultsInner Class
 #' @format An \code{R6Class} generator object
-#' @field flagged  character
+#' @field flagged Whether any of the below categories are flagged. character
 #' @field categories  \link{CreateModerationResponseResultsInnerCategories}
 #' @field category_scores  \link{CreateModerationResponseResultsInnerCategoryScores}
 #' @importFrom R6 R6Class
@@ -24,7 +24,7 @@ CreateModerationResponseResultsInner <- R6::R6Class(
     #' @description
     #' Initialize a new CreateModerationResponseResultsInner class.
     #'
-    #' @param flagged flagged
+    #' @param flagged Whether any of the below categories are flagged.
     #' @param categories categories
     #' @param category_scores category_scores
     #' @param ... Other optional arguments.

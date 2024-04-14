@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,11 +12,11 @@ package openapi
 
 type CreateCompletionResponseChoicesInnerLogprobs struct {
 
-	Tokens []string `json:"tokens,omitempty"`
+	TextOffset []int32 `json:"text_offset,omitempty"`
 
 	TokenLogprobs []float32 `json:"token_logprobs,omitempty"`
 
-	TopLogprobs []map[string]interface{} `json:"top_logprobs,omitempty"`
+	Tokens []string `json:"tokens,omitempty"`
 
-	TextOffset []int32 `json:"text_offset,omitempty"`
+	TopLogprobs []map[string]float32 `json:"top_logprobs,omitempty"`
 }

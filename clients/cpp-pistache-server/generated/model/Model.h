@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -12,7 +12,7 @@
 /*
  * Model.h
  *
- * 
+ * Describes an OpenAI model offering that can be used with the API.
  */
 
 #ifndef Model_H_
@@ -26,7 +26,7 @@ namespace org::openapitools::server::model
 {
 
 /// <summary>
-/// 
+/// Describes an OpenAI model offering that can be used with the API.
 /// </summary>
 class  Model
 {
@@ -59,22 +59,22 @@ public:
     /// Model members
 
     /// <summary>
-    /// 
+    /// The model identifier, which can be referenced in the API endpoints.
     /// </summary>
     std::string getId() const;
     void setId(std::string const& value);
     /// <summary>
-    /// 
-    /// </summary>
-    std::string getObject() const;
-    void setObject(std::string const& value);
-    /// <summary>
-    /// 
+    /// The Unix timestamp (in seconds) when the model was created.
     /// </summary>
     int32_t getCreated() const;
     void setCreated(int32_t const value);
     /// <summary>
-    /// 
+    /// The object type, which is always \&quot;model\&quot;.
+    /// </summary>
+    std::string getObject() const;
+    void setObject(std::string const& value);
+    /// <summary>
+    /// The organization that owns the model.
     /// </summary>
     std::string getOwnedBy() const;
     void setOwnedBy(std::string const& value);
@@ -84,9 +84,9 @@ public:
 protected:
     std::string m_Id;
 
-    std::string m_object;
-
     int32_t m_Created;
+
+    std::string m_object;
 
     std::string m_Owned_by;
 

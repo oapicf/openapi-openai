@@ -52,6 +52,7 @@ class CreateModerationResponseResultsInner(Model):
     def flagged(self):
         """Gets the flagged of this CreateModerationResponseResultsInner.
 
+        Whether any of the below categories are flagged.
 
         :return: The flagged of this CreateModerationResponseResultsInner.
         :rtype: bool
@@ -62,6 +63,7 @@ class CreateModerationResponseResultsInner(Model):
     def flagged(self, flagged):
         """Sets the flagged of this CreateModerationResponseResultsInner.
 
+        Whether any of the below categories are flagged.
 
         :param flagged: The flagged of this CreateModerationResponseResultsInner.
         :type flagged: bool

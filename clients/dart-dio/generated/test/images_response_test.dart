@@ -12,7 +12,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<ImagesResponseDataInner> data
+    // BuiltList<Image> data
     test('to test the property `data`', () async {
       // TODO
     });

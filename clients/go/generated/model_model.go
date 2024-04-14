@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -20,11 +20,15 @@ import (
 // checks if the Model type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Model{}
 
-// Model struct for Model
+// Model Describes an OpenAI model offering that can be used with the API.
 type Model struct {
+	// The model identifier, which can be referenced in the API endpoints.
 	Id string `json:"id"`
-	Object string `json:"object"`
+	// The Unix timestamp (in seconds) when the model was created.
 	Created int32 `json:"created"`
+	// The object type, which is always \"model\".
+	Object string `json:"object"`
+	// The organization that owns the model.
 	OwnedBy string `json:"owned_by"`
 }
 
@@ -34,11 +38,11 @@ type _Model Model
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewModel(id string, object string, created int32, ownedBy string) *Model {
+func NewModel(id string, created int32, object string, ownedBy string) *Model {
 	this := Model{}
 	this.Id = id
-	this.Object = object
 	this.Created = created
+	this.Object = object
 	this.OwnedBy = ownedBy
 	return &this
 }
@@ -75,30 +79,6 @@ func (o *Model) SetId(v string) {
 	o.Id = v
 }
 
-// GetObject returns the Object field value
-func (o *Model) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *Model) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *Model) SetObject(v string) {
-	o.Object = v
-}
-
 // GetCreated returns the Created field value
 func (o *Model) GetCreated() int32 {
 	if o == nil {
@@ -121,6 +101,30 @@ func (o *Model) GetCreatedOk() (*int32, bool) {
 // SetCreated sets field value
 func (o *Model) SetCreated(v int32) {
 	o.Created = v
+}
+
+// GetObject returns the Object field value
+func (o *Model) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *Model) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *Model) SetObject(v string) {
+	o.Object = v
 }
 
 // GetOwnedBy returns the OwnedBy field value
@@ -158,8 +162,8 @@ func (o Model) MarshalJSON() ([]byte, error) {
 func (o Model) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	toSerialize["object"] = o.Object
 	toSerialize["created"] = o.Created
+	toSerialize["object"] = o.Object
 	toSerialize["owned_by"] = o.OwnedBy
 	return toSerialize, nil
 }
@@ -170,8 +174,8 @@ func (o *Model) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
-		"object",
 		"created",
+		"object",
 		"owned_by",
 	}
 

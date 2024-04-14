@@ -25,6 +25,7 @@ public class CreateModerationResponseResultsInner   {
   private CreateModerationResponseResultsInnerCategoryScores categoryScores;
 
   /**
+   * Whether any of the below categories are flagged.
    **/
   public CreateModerationResponseResultsInner flagged(Boolean flagged) {
     this.flagged = flagged;
@@ -32,7 +33,7 @@ public class CreateModerationResponseResultsInner   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Whether any of the below categories are flagged.")
   @JsonProperty("flagged")
   @NotNull
   public Boolean getFlagged() {

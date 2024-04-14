@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,11 +20,72 @@
 namespace OpenAPI
 {
 
+inline FString ToString(const OpenAPICreateEmbeddingRequest::EncodingFormatEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPICreateEmbeddingRequest::EncodingFormatEnum::_Float:
+		return TEXT("float");
+	case OpenAPICreateEmbeddingRequest::EncodingFormatEnum::Base64:
+		return TEXT("base64");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPICreateEmbeddingRequest::EncodingFormatEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPICreateEmbeddingRequest::EnumToString(const OpenAPICreateEmbeddingRequest::EncodingFormatEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPICreateEmbeddingRequest::EncodingFormatEnum& Value)
+{
+	static TMap<FString, OpenAPICreateEmbeddingRequest::EncodingFormatEnum> StringToEnum = { 
+		{ TEXT("float"), OpenAPICreateEmbeddingRequest::EncodingFormatEnum::_Float },
+		{ TEXT("base64"), OpenAPICreateEmbeddingRequest::EncodingFormatEnum::Base64 }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPICreateEmbeddingRequest::EnumFromString(const FString& EnumAsString, OpenAPICreateEmbeddingRequest::EncodingFormatEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPICreateEmbeddingRequest::EncodingFormatEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPICreateEmbeddingRequest::EncodingFormatEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
+
 void OpenAPICreateEmbeddingRequest::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("model")); WriteJsonValue(Writer, Model);
 	Writer->WriteIdentifierPrefix(TEXT("input")); WriteJsonValue(Writer, Input);
+	Writer->WriteIdentifierPrefix(TEXT("model")); WriteJsonValue(Writer, Model);
+	if (EncodingFormat.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("encoding_format")); WriteJsonValue(Writer, EncodingFormat.GetValue());
+	}
+	if (Dimensions.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("dimensions")); WriteJsonValue(Writer, Dimensions.GetValue());
+	}
 	if (User.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("user")); WriteJsonValue(Writer, User.GetValue());
@@ -40,8 +101,10 @@ bool OpenAPICreateEmbeddingRequest::FromJson(const TSharedPtr<FJsonValue>& JsonV
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("model"), Model);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("input"), Input);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("model"), Model);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("encoding_format"), EncodingFormat);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("dimensions"), Dimensions);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("user"), User);
 
 	return ParseSuccess;

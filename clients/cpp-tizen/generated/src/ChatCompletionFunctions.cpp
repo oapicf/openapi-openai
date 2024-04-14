@@ -23,23 +23,23 @@ ChatCompletionFunctions::~ChatCompletionFunctions()
 void
 ChatCompletionFunctions::__init()
 {
-	//name = std::string();
 	//description = std::string();
+	//name = std::string();
 	//new std::map()std::map> parameters;
 }
 
 void
 ChatCompletionFunctions::__cleanup()
 {
-	//if(name != NULL) {
-	//
-	//delete name;
-	//name = NULL;
-	//}
 	//if(description != NULL) {
 	//
 	//delete description;
 	//description = NULL;
+	//}
+	//if(name != NULL) {
+	//
+	//delete name;
+	//name = NULL;
 	//}
 	//if(parameters != NULL) {
 	//parameters.RemoveAll(true);
@@ -54,17 +54,6 @@ ChatCompletionFunctions::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
-	const gchar *nameKey = "name";
-	node = json_object_get_member(pJsonObject, nameKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&name, node, "std::string", "");
-		} else {
-			
-		}
-	}
 	const gchar *descriptionKey = "description";
 	node = json_object_get_member(pJsonObject, descriptionKey);
 	if (node !=NULL) {
@@ -72,6 +61,17 @@ ChatCompletionFunctions::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&description, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *nameKey = "name";
+	node = json_object_get_member(pJsonObject, nameKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&name, node, "std::string", "");
 		} else {
 			
 		}
@@ -101,15 +101,6 @@ ChatCompletionFunctions::toJson()
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
 	if (isprimitive("std::string")) {
-		std::string obj = getName();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *nameKey = "name";
-	json_object_set_member(pJsonObject, nameKey, node);
-	if (isprimitive("std::string")) {
 		std::string obj = getDescription();
 		node = converttoJson(&obj, "std::string", "");
 	}
@@ -118,6 +109,15 @@ ChatCompletionFunctions::toJson()
 	}
 	const gchar *descriptionKey = "description";
 	json_object_set_member(pJsonObject, descriptionKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getName();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *nameKey = "name";
+	json_object_set_member(pJsonObject, nameKey, node);
 
 
 	{
@@ -146,18 +146,6 @@ ChatCompletionFunctions::toJson()
 }
 
 std::string
-ChatCompletionFunctions::getName()
-{
-	return name;
-}
-
-void
-ChatCompletionFunctions::setName(std::string  name)
-{
-	this->name = name;
-}
-
-std::string
 ChatCompletionFunctions::getDescription()
 {
 	return description;
@@ -167,6 +155,18 @@ void
 ChatCompletionFunctions::setDescription(std::string  description)
 {
 	this->description = description;
+}
+
+std::string
+ChatCompletionFunctions::getName()
+{
+	return name;
+}
+
+void
+ChatCompletionFunctions::setName(std::string  name)
+{
+	this->name = name;
 }
 
 std::map<string, string>

@@ -12,10 +12,11 @@
     "model": "properties",
     "children": [
       {"model": "id" },
-      {"model": "object" },
+      {"model": "choices" },
       {"model": "created" },
       {"model": "model" },
-      {"model": "choices" },
+      {"model": "system_fingerprint" },
+      {"model": "object" },
       {"model": "usage" },
     ]
   }]

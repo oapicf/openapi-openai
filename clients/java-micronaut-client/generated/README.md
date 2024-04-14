@@ -25,7 +25,16 @@ All the properties can be changed in the [application.yml][src/main/resources/ap
 
 Description on how to create Apis is given inside individual api guides:
 
-* [OpenAiApi](docs/apis/OpenAiApi.md)
+* [AssistantsApi](docs/apis/AssistantsApi.md)
+* [AudioApi](docs/apis/AudioApi.md)
+* [ChatApi](docs/apis/ChatApi.md)
+* [CompletionsApi](docs/apis/CompletionsApi.md)
+* [EmbeddingsApi](docs/apis/EmbeddingsApi.md)
+* [FilesApi](docs/apis/FilesApi.md)
+* [FineTuningApi](docs/apis/FineTuningApi.md)
+* [ImagesApi](docs/apis/ImagesApi.md)
+* [ModelsApi](docs/apis/ModelsApi.md)
+* [ModerationsApi](docs/apis/ModerationsApi.md)
 
 
 ## Auth methods
@@ -34,6 +43,15 @@ Details on auth methods can be found in the [auth.md](doc/auth.md).
 
 ## Author
 
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
 blah+oapicf@cliffano.com
 
 

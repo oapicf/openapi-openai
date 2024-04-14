@@ -7,51 +7,51 @@
 #' @title CreateCompletionResponseChoicesInnerLogprobs
 #' @description CreateCompletionResponseChoicesInnerLogprobs Class
 #' @format An \code{R6Class} generator object
-#' @field tokens  list(character) [optional]
-#' @field token_logprobs  list(numeric) [optional]
-#' @field top_logprobs  list(object) [optional]
 #' @field text_offset  list(integer) [optional]
+#' @field token_logprobs  list(numeric) [optional]
+#' @field tokens  list(character) [optional]
+#' @field top_logprobs  list(named list(numeric)) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 CreateCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
   "CreateCompletionResponseChoicesInnerLogprobs",
   public = list(
-    `tokens` = NULL,
-    `token_logprobs` = NULL,
-    `top_logprobs` = NULL,
     `text_offset` = NULL,
+    `token_logprobs` = NULL,
+    `tokens` = NULL,
+    `top_logprobs` = NULL,
     #' Initialize a new CreateCompletionResponseChoicesInnerLogprobs class.
     #'
     #' @description
     #' Initialize a new CreateCompletionResponseChoicesInnerLogprobs class.
     #'
-    #' @param tokens tokens
-    #' @param token_logprobs token_logprobs
-    #' @param top_logprobs top_logprobs
     #' @param text_offset text_offset
+    #' @param token_logprobs token_logprobs
+    #' @param tokens tokens
+    #' @param top_logprobs top_logprobs
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`tokens` = NULL, `token_logprobs` = NULL, `top_logprobs` = NULL, `text_offset` = NULL, ...) {
-      if (!is.null(`tokens`)) {
-        stopifnot(is.vector(`tokens`), length(`tokens`) != 0)
-        sapply(`tokens`, function(x) stopifnot(is.character(x)))
-        self$`tokens` <- `tokens`
+    initialize = function(`text_offset` = NULL, `token_logprobs` = NULL, `tokens` = NULL, `top_logprobs` = NULL, ...) {
+      if (!is.null(`text_offset`)) {
+        stopifnot(is.vector(`text_offset`), length(`text_offset`) != 0)
+        sapply(`text_offset`, function(x) stopifnot(is.character(x)))
+        self$`text_offset` <- `text_offset`
       }
       if (!is.null(`token_logprobs`)) {
         stopifnot(is.vector(`token_logprobs`), length(`token_logprobs`) != 0)
         sapply(`token_logprobs`, function(x) stopifnot(is.character(x)))
         self$`token_logprobs` <- `token_logprobs`
       }
+      if (!is.null(`tokens`)) {
+        stopifnot(is.vector(`tokens`), length(`tokens`) != 0)
+        sapply(`tokens`, function(x) stopifnot(is.character(x)))
+        self$`tokens` <- `tokens`
+      }
       if (!is.null(`top_logprobs`)) {
         stopifnot(is.vector(`top_logprobs`), length(`top_logprobs`) != 0)
-        sapply(`top_logprobs`, function(x) stopifnot(is.character(x)))
+        sapply(`top_logprobs`, function(x) stopifnot(R6::is.R6(x)))
         self$`top_logprobs` <- `top_logprobs`
-      }
-      if (!is.null(`text_offset`)) {
-        stopifnot(is.vector(`text_offset`), length(`text_offset`) != 0)
-        sapply(`text_offset`, function(x) stopifnot(is.character(x)))
-        self$`text_offset` <- `text_offset`
       }
     },
     #' To JSON string
@@ -63,21 +63,21 @@ CreateCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
     #' @export
     toJSON = function() {
       CreateCompletionResponseChoicesInnerLogprobsObject <- list()
-      if (!is.null(self$`tokens`)) {
-        CreateCompletionResponseChoicesInnerLogprobsObject[["tokens"]] <-
-          self$`tokens`
+      if (!is.null(self$`text_offset`)) {
+        CreateCompletionResponseChoicesInnerLogprobsObject[["text_offset"]] <-
+          self$`text_offset`
       }
       if (!is.null(self$`token_logprobs`)) {
         CreateCompletionResponseChoicesInnerLogprobsObject[["token_logprobs"]] <-
           self$`token_logprobs`
       }
+      if (!is.null(self$`tokens`)) {
+        CreateCompletionResponseChoicesInnerLogprobsObject[["tokens"]] <-
+          self$`tokens`
+      }
       if (!is.null(self$`top_logprobs`)) {
         CreateCompletionResponseChoicesInnerLogprobsObject[["top_logprobs"]] <-
-          self$`top_logprobs`
-      }
-      if (!is.null(self$`text_offset`)) {
-        CreateCompletionResponseChoicesInnerLogprobsObject[["text_offset"]] <-
-          self$`text_offset`
+          lapply(self$`top_logprobs`, function(x) x$toJSON())
       }
       CreateCompletionResponseChoicesInnerLogprobsObject
     },
@@ -91,17 +91,17 @@ CreateCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
     #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`tokens`)) {
-        self$`tokens` <- ApiClient$new()$deserializeObj(this_object$`tokens`, "array[character]", loadNamespace("openapi"))
+      if (!is.null(this_object$`text_offset`)) {
+        self$`text_offset` <- ApiClient$new()$deserializeObj(this_object$`text_offset`, "array[integer]", loadNamespace("openapi"))
       }
       if (!is.null(this_object$`token_logprobs`)) {
         self$`token_logprobs` <- ApiClient$new()$deserializeObj(this_object$`token_logprobs`, "array[numeric]", loadNamespace("openapi"))
       }
-      if (!is.null(this_object$`top_logprobs`)) {
-        self$`top_logprobs` <- ApiClient$new()$deserializeObj(this_object$`top_logprobs`, "array[object]", loadNamespace("openapi"))
+      if (!is.null(this_object$`tokens`)) {
+        self$`tokens` <- ApiClient$new()$deserializeObj(this_object$`tokens`, "array[character]", loadNamespace("openapi"))
       }
-      if (!is.null(this_object$`text_offset`)) {
-        self$`text_offset` <- ApiClient$new()$deserializeObj(this_object$`text_offset`, "array[integer]", loadNamespace("openapi"))
+      if (!is.null(this_object$`top_logprobs`)) {
+        self$`top_logprobs` <- ApiClient$new()$deserializeObj(this_object$`top_logprobs`, "array[map(numeric)]", loadNamespace("openapi"))
       }
       self
     },
@@ -114,12 +114,12 @@ CreateCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
     #' @export
     toJSONString = function() {
       jsoncontent <- c(
-        if (!is.null(self$`tokens`)) {
+        if (!is.null(self$`text_offset`)) {
           sprintf(
-          '"tokens":
+          '"text_offset":
              [%s]
           ',
-          paste(unlist(lapply(self$`tokens`, function(x) paste0('"', x, '"'))), collapse = ",")
+          paste(unlist(lapply(self$`text_offset`, function(x) paste0('"', x, '"'))), collapse = ",")
           )
         },
         if (!is.null(self$`token_logprobs`)) {
@@ -130,20 +130,20 @@ CreateCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
           paste(unlist(lapply(self$`token_logprobs`, function(x) paste0('"', x, '"'))), collapse = ",")
           )
         },
+        if (!is.null(self$`tokens`)) {
+          sprintf(
+          '"tokens":
+             [%s]
+          ',
+          paste(unlist(lapply(self$`tokens`, function(x) paste0('"', x, '"'))), collapse = ",")
+          )
+        },
         if (!is.null(self$`top_logprobs`)) {
           sprintf(
           '"top_logprobs":
-             [%s]
-          ',
-          paste(unlist(lapply(self$`top_logprobs`, function(x) paste0('"', x, '"'))), collapse = ",")
-          )
-        },
-        if (!is.null(self$`text_offset`)) {
-          sprintf(
-          '"text_offset":
-             [%s]
-          ',
-          paste(unlist(lapply(self$`text_offset`, function(x) paste0('"', x, '"'))), collapse = ",")
+          [%s]
+',
+          paste(sapply(self$`top_logprobs`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
           )
         }
       )
@@ -160,10 +160,10 @@ CreateCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`tokens` <- ApiClient$new()$deserializeObj(this_object$`tokens`, "array[character]", loadNamespace("openapi"))
-      self$`token_logprobs` <- ApiClient$new()$deserializeObj(this_object$`token_logprobs`, "array[numeric]", loadNamespace("openapi"))
-      self$`top_logprobs` <- ApiClient$new()$deserializeObj(this_object$`top_logprobs`, "array[object]", loadNamespace("openapi"))
       self$`text_offset` <- ApiClient$new()$deserializeObj(this_object$`text_offset`, "array[integer]", loadNamespace("openapi"))
+      self$`token_logprobs` <- ApiClient$new()$deserializeObj(this_object$`token_logprobs`, "array[numeric]", loadNamespace("openapi"))
+      self$`tokens` <- ApiClient$new()$deserializeObj(this_object$`tokens`, "array[character]", loadNamespace("openapi"))
+      self$`top_logprobs` <- ApiClient$new()$deserializeObj(this_object$`top_logprobs`, "array[map(numeric)]", loadNamespace("openapi"))
       self
     },
     #' Validate JSON input with respect to CreateCompletionResponseChoicesInnerLogprobs

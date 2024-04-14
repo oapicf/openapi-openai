@@ -25,10 +25,10 @@ class ErrorTest : ShouldSpec() {
         // uncomment below to create an instance of Error
         //val modelInstance = Error()
 
-        // to test the property `type`
-        should("test type") {
+        // to test the property `code`
+        should("test code") {
             // uncomment below to test the property
-            //modelInstance.type shouldBe ("TODO")
+            //modelInstance.code shouldBe ("TODO")
         }
 
         // to test the property `message`
@@ -43,10 +43,10 @@ class ErrorTest : ShouldSpec() {
             //modelInstance.`param` shouldBe ("TODO")
         }
 
-        // to test the property `code`
-        should("test code") {
+        // to test the property `type`
+        should("test type") {
             // uncomment below to test the property
-            //modelInstance.code shouldBe ("TODO")
+            //modelInstance.type shouldBe ("TODO")
         }
 
     }

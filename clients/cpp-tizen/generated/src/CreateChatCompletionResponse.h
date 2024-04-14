@@ -1,7 +1,7 @@
 /*
  * CreateChatCompletionResponse.h
  *
- * 
+ * Represents a chat completion response returned by model, based on the provided input.
  */
 
 #ifndef _CreateChatCompletionResponse_H_
@@ -9,8 +9,8 @@
 
 
 #include <string>
+#include "CompletionUsage.h"
 #include "CreateChatCompletionResponse_choices_inner.h"
-#include "CreateCompletionResponse_usage.h"
 #include <list>
 #include "Object.h"
 
@@ -23,7 +23,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Represents a chat completion response returned by model, based on the provided input.
  *
  *  \ingroup Models
  *
@@ -48,56 +48,64 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get A unique identifier for the chat completion.
 	 */
 	std::string getId();
 
-	/*! \brief Set 
+	/*! \brief Set A unique identifier for the chat completion.
 	 */
 	void setId(std::string  id);
-	/*! \brief Get 
+	/*! \brief Get A list of chat completion choices. Can be more than one if `n` is greater than 1.
+	 */
+	std::list<CreateChatCompletionResponse_choices_inner> getChoices();
+
+	/*! \brief Set A list of chat completion choices. Can be more than one if `n` is greater than 1.
+	 */
+	void setChoices(std::list <CreateChatCompletionResponse_choices_inner> choices);
+	/*! \brief Get The Unix timestamp (in seconds) of when the chat completion was created.
+	 */
+	int getCreated();
+
+	/*! \brief Set The Unix timestamp (in seconds) of when the chat completion was created.
+	 */
+	void setCreated(int  created);
+	/*! \brief Get The model used for the chat completion.
+	 */
+	std::string getModel();
+
+	/*! \brief Set The model used for the chat completion.
+	 */
+	void setModel(std::string  model);
+	/*! \brief Get This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+	 */
+	std::string getSystemFingerprint();
+
+	/*! \brief Set This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+	 */
+	void setSystemFingerprint(std::string  system_fingerprint);
+	/*! \brief Get The object type, which is always `chat.completion`.
 	 */
 	std::string getObject();
 
-	/*! \brief Set 
+	/*! \brief Set The object type, which is always `chat.completion`.
 	 */
 	void setObject(std::string  object);
 	/*! \brief Get 
 	 */
-	int getCreated();
+	CompletionUsage getUsage();
 
 	/*! \brief Set 
 	 */
-	void setCreated(int  created);
-	/*! \brief Get 
-	 */
-	std::string getModel();
-
-	/*! \brief Set 
-	 */
-	void setModel(std::string  model);
-	/*! \brief Get 
-	 */
-	std::list<CreateChatCompletionResponse_choices_inner> getChoices();
-
-	/*! \brief Set 
-	 */
-	void setChoices(std::list <CreateChatCompletionResponse_choices_inner> choices);
-	/*! \brief Get 
-	 */
-	CreateCompletionResponse_usage getUsage();
-
-	/*! \brief Set 
-	 */
-	void setUsage(CreateCompletionResponse_usage  usage);
+	void setUsage(CompletionUsage  usage);
 
 private:
 	std::string id;
-	std::string object;
+	std::list <CreateChatCompletionResponse_choices_inner>choices;
 	int created;
 	std::string model;
-	std::list <CreateChatCompletionResponse_choices_inner>choices;
-	CreateCompletionResponse_usage usage;
+	std::string system_fingerprint;
+	std::string object;
+	CompletionUsage usage;
 	void __init();
 	void __cleanup();
 

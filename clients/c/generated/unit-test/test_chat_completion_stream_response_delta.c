@@ -16,23 +16,25 @@
 #include "../model/chat_completion_stream_response_delta.h"
 chat_completion_stream_response_delta_t* instantiate_chat_completion_stream_response_delta(int include_optional);
 
-#include "test_chat_completion_request_message_function_call.c"
+#include "test_chat_completion_stream_response_delta_function_call.c"
 
 
 chat_completion_stream_response_delta_t* instantiate_chat_completion_stream_response_delta(int include_optional) {
   chat_completion_stream_response_delta_t* chat_completion_stream_response_delta = NULL;
   if (include_optional) {
     chat_completion_stream_response_delta = chat_completion_stream_response_delta_create(
-      openai_api_chat_completion_stream_response_delta_ROLE_system,
       "0",
        // false, not to have infinite recursion
-      instantiate_chat_completion_request_message_function_call(0)
+      instantiate_chat_completion_stream_response_delta_function_call(0),
+      list_createList(),
+      openai_api_chat_completion_stream_response_delta_ROLE_system
     );
   } else {
     chat_completion_stream_response_delta = chat_completion_stream_response_delta_create(
-      openai_api_chat_completion_stream_response_delta_ROLE_system,
       "0",
-      NULL
+      NULL,
+      list_createList(),
+      openai_api_chat_completion_stream_response_delta_ROLE_system
     );
   }
 

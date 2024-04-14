@@ -6,8 +6,8 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
+from app.openapi_server.models.completion_usage import CompletionUsage  # noqa: F401,E501
 from app.openapi_server.models.create_chat_completion_response_choices_inner import CreateChatCompletionResponseChoicesInner  # noqa: F401,E501
-from app.openapi_server.models.create_completion_response_usage import CreateCompletionResponseUsage  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -17,45 +17,50 @@ class CreateChatCompletionResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, object: str=None, created: int=None, model: str=None, choices: List[CreateChatCompletionResponseChoicesInner]=None, usage: CreateCompletionResponseUsage=None):  # noqa: E501
+    def __init__(self, id: str=None, choices: List[CreateChatCompletionResponseChoicesInner]=None, created: int=None, model: str=None, system_fingerprint: str=None, object: str=None, usage: CompletionUsage=None):  # noqa: E501
         """CreateChatCompletionResponse - a model defined in Swagger
 
         :param id: The id of this CreateChatCompletionResponse.  # noqa: E501
         :type id: str
-        :param object: The object of this CreateChatCompletionResponse.  # noqa: E501
-        :type object: str
+        :param choices: The choices of this CreateChatCompletionResponse.  # noqa: E501
+        :type choices: List[CreateChatCompletionResponseChoicesInner]
         :param created: The created of this CreateChatCompletionResponse.  # noqa: E501
         :type created: int
         :param model: The model of this CreateChatCompletionResponse.  # noqa: E501
         :type model: str
-        :param choices: The choices of this CreateChatCompletionResponse.  # noqa: E501
-        :type choices: List[CreateChatCompletionResponseChoicesInner]
+        :param system_fingerprint: The system_fingerprint of this CreateChatCompletionResponse.  # noqa: E501
+        :type system_fingerprint: str
+        :param object: The object of this CreateChatCompletionResponse.  # noqa: E501
+        :type object: str
         :param usage: The usage of this CreateChatCompletionResponse.  # noqa: E501
-        :type usage: CreateCompletionResponseUsage
+        :type usage: CompletionUsage
         """
         self.swagger_types = {
             'id': str,
-            'object': str,
+            'choices': List[CreateChatCompletionResponseChoicesInner],
             'created': int,
             'model': str,
-            'choices': List[CreateChatCompletionResponseChoicesInner],
-            'usage': CreateCompletionResponseUsage
+            'system_fingerprint': str,
+            'object': str,
+            'usage': CompletionUsage
         }
 
         self.attribute_map = {
             'id': 'id',
-            'object': 'object',
+            'choices': 'choices',
             'created': 'created',
             'model': 'model',
-            'choices': 'choices',
+            'system_fingerprint': 'system_fingerprint',
+            'object': 'object',
             'usage': 'usage'
         }
 
         self._id = id
-        self._object = object
+        self._choices = choices
         self._created = created
         self._model = model
-        self._choices = choices
+        self._system_fingerprint = system_fingerprint
+        self._object = object
         self._usage = usage
 
     @classmethod
@@ -73,6 +78,7 @@ class CreateChatCompletionResponse(Model):
     def id(self) -> str:
         """Gets the id of this CreateChatCompletionResponse.
 
+        A unique identifier for the chat completion.  # noqa: E501
 
         :return: The id of this CreateChatCompletionResponse.
         :rtype: str
@@ -83,6 +89,7 @@ class CreateChatCompletionResponse(Model):
     def id(self, id: str):
         """Sets the id of this CreateChatCompletionResponse.
 
+        A unique identifier for the chat completion.  # noqa: E501
 
         :param id: The id of this CreateChatCompletionResponse.
         :type id: str
@@ -93,32 +100,35 @@ class CreateChatCompletionResponse(Model):
         self._id = id
 
     @property
-    def object(self) -> str:
-        """Gets the object of this CreateChatCompletionResponse.
+    def choices(self) -> List[CreateChatCompletionResponseChoicesInner]:
+        """Gets the choices of this CreateChatCompletionResponse.
 
+        A list of chat completion choices. Can be more than one if `n` is greater than 1.  # noqa: E501
 
-        :return: The object of this CreateChatCompletionResponse.
-        :rtype: str
+        :return: The choices of this CreateChatCompletionResponse.
+        :rtype: List[CreateChatCompletionResponseChoicesInner]
         """
-        return self._object
+        return self._choices
 
-    @object.setter
-    def object(self, object: str):
-        """Sets the object of this CreateChatCompletionResponse.
+    @choices.setter
+    def choices(self, choices: List[CreateChatCompletionResponseChoicesInner]):
+        """Sets the choices of this CreateChatCompletionResponse.
 
+        A list of chat completion choices. Can be more than one if `n` is greater than 1.  # noqa: E501
 
-        :param object: The object of this CreateChatCompletionResponse.
-        :type object: str
+        :param choices: The choices of this CreateChatCompletionResponse.
+        :type choices: List[CreateChatCompletionResponseChoicesInner]
         """
-        if object is None:
-            raise ValueError("Invalid value for `object`, must not be `None`")  # noqa: E501
+        if choices is None:
+            raise ValueError("Invalid value for `choices`, must not be `None`")  # noqa: E501
 
-        self._object = object
+        self._choices = choices
 
     @property
     def created(self) -> int:
         """Gets the created of this CreateChatCompletionResponse.
 
+        The Unix timestamp (in seconds) of when the chat completion was created.  # noqa: E501
 
         :return: The created of this CreateChatCompletionResponse.
         :rtype: int
@@ -129,6 +139,7 @@ class CreateChatCompletionResponse(Model):
     def created(self, created: int):
         """Sets the created of this CreateChatCompletionResponse.
 
+        The Unix timestamp (in seconds) of when the chat completion was created.  # noqa: E501
 
         :param created: The created of this CreateChatCompletionResponse.
         :type created: int
@@ -142,6 +153,7 @@ class CreateChatCompletionResponse(Model):
     def model(self) -> str:
         """Gets the model of this CreateChatCompletionResponse.
 
+        The model used for the chat completion.  # noqa: E501
 
         :return: The model of this CreateChatCompletionResponse.
         :rtype: str
@@ -152,6 +164,7 @@ class CreateChatCompletionResponse(Model):
     def model(self, model: str):
         """Sets the model of this CreateChatCompletionResponse.
 
+        The model used for the chat completion.  # noqa: E501
 
         :param model: The model of this CreateChatCompletionResponse.
         :type model: str
@@ -162,45 +175,74 @@ class CreateChatCompletionResponse(Model):
         self._model = model
 
     @property
-    def choices(self) -> List[CreateChatCompletionResponseChoicesInner]:
-        """Gets the choices of this CreateChatCompletionResponse.
+    def system_fingerprint(self) -> str:
+        """Gets the system_fingerprint of this CreateChatCompletionResponse.
 
+        This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.   # noqa: E501
 
-        :return: The choices of this CreateChatCompletionResponse.
-        :rtype: List[CreateChatCompletionResponseChoicesInner]
+        :return: The system_fingerprint of this CreateChatCompletionResponse.
+        :rtype: str
         """
-        return self._choices
+        return self._system_fingerprint
 
-    @choices.setter
-    def choices(self, choices: List[CreateChatCompletionResponseChoicesInner]):
-        """Sets the choices of this CreateChatCompletionResponse.
+    @system_fingerprint.setter
+    def system_fingerprint(self, system_fingerprint: str):
+        """Sets the system_fingerprint of this CreateChatCompletionResponse.
 
+        This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.   # noqa: E501
 
-        :param choices: The choices of this CreateChatCompletionResponse.
-        :type choices: List[CreateChatCompletionResponseChoicesInner]
+        :param system_fingerprint: The system_fingerprint of this CreateChatCompletionResponse.
+        :type system_fingerprint: str
         """
-        if choices is None:
-            raise ValueError("Invalid value for `choices`, must not be `None`")  # noqa: E501
 
-        self._choices = choices
+        self._system_fingerprint = system_fingerprint
 
     @property
-    def usage(self) -> CreateCompletionResponseUsage:
+    def object(self) -> str:
+        """Gets the object of this CreateChatCompletionResponse.
+
+        The object type, which is always `chat.completion`.  # noqa: E501
+
+        :return: The object of this CreateChatCompletionResponse.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object: str):
+        """Sets the object of this CreateChatCompletionResponse.
+
+        The object type, which is always `chat.completion`.  # noqa: E501
+
+        :param object: The object of this CreateChatCompletionResponse.
+        :type object: str
+        """
+        allowed_values = ["chat.completion"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
+
+        self._object = object
+
+    @property
+    def usage(self) -> CompletionUsage:
         """Gets the usage of this CreateChatCompletionResponse.
 
 
         :return: The usage of this CreateChatCompletionResponse.
-        :rtype: CreateCompletionResponseUsage
+        :rtype: CompletionUsage
         """
         return self._usage
 
     @usage.setter
-    def usage(self, usage: CreateCompletionResponseUsage):
+    def usage(self, usage: CompletionUsage):
         """Sets the usage of this CreateChatCompletionResponse.
 
 
         :param usage: The usage of this CreateChatCompletionResponse.
-        :type usage: CreateCompletionResponseUsage
+        :type usage: CompletionUsage
         """
 
         self._usage = usage

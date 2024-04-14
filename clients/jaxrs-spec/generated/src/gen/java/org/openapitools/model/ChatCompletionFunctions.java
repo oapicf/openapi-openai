@@ -17,11 +17,31 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ChatCompletionFunctions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ChatCompletionFunctions   {
-  private @Valid String name;
   private @Valid String description;
+  private @Valid String name;
   private @Valid Map<String, Object> parameters = new HashMap<>();
+
+  /**
+   * A description of what the function does, used by the model to choose when and how to call the function.
+   **/
+  public ChatCompletionFunctions description(String description) {
+    this.description = description;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "A description of what the function does, used by the model to choose when and how to call the function.")
+  @JsonProperty("description")
+  public String getDescription() {
+    return description;
+  }
+
+  @JsonProperty("description")
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   /**
    * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
@@ -45,27 +65,7 @@ public class ChatCompletionFunctions   {
   }
 
   /**
-   * The description of what the function does.
-   **/
-  public ChatCompletionFunctions description(String description) {
-    this.description = description;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "The description of what the function does.")
-  @JsonProperty("description")
-  public String getDescription() {
-    return description;
-  }
-
-  @JsonProperty("description")
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  /**
-   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
    **/
   public ChatCompletionFunctions parameters(Map<String, Object> parameters) {
     this.parameters = parameters;
@@ -73,7 +73,7 @@ public class ChatCompletionFunctions   {
   }
 
   
-  @ApiModelProperty(value = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.")
+  @ApiModelProperty(value = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.")
   @JsonProperty("parameters")
   public Map<String, Object> getParameters() {
     return parameters;
@@ -110,14 +110,14 @@ public class ChatCompletionFunctions   {
       return false;
     }
     ChatCompletionFunctions chatCompletionFunctions = (ChatCompletionFunctions) o;
-    return Objects.equals(this.name, chatCompletionFunctions.name) &&
-        Objects.equals(this.description, chatCompletionFunctions.description) &&
+    return Objects.equals(this.description, chatCompletionFunctions.description) &&
+        Objects.equals(this.name, chatCompletionFunctions.name) &&
         Objects.equals(this.parameters, chatCompletionFunctions.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, parameters);
+    return Objects.hash(description, name, parameters);
   }
 
   @Override
@@ -125,8 +125,8 @@ public class ChatCompletionFunctions   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChatCompletionFunctions {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();

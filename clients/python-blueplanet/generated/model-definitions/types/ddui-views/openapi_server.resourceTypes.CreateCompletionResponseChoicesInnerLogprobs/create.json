@@ -11,10 +11,10 @@
     "label": "Details",
     "model": "properties",
     "children": [
-      {"model": "tokens" },
-      {"model": "token_logprobs" },
-      {"model": "top_logprobs" },
       {"model": "text_offset" },
+      {"model": "token_logprobs" },
+      {"model": "tokens" },
+      {"model": "top_logprobs" },
     ]
   }]
 }

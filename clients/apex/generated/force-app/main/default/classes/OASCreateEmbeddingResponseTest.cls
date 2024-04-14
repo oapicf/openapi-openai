@@ -79,9 +79,9 @@ private class OASCreateEmbeddingResponseTest {
     @isTest
     private static void defaultValuesPopulated() {
         OASCreateEmbeddingResponse createEmbeddingResponse = new OASCreateEmbeddingResponse();
-        System.assertEquals(new List<OASCreateEmbeddingResponseDataInner>(), createEmbeddingResponse.data);
-        System.assertEquals(null, createEmbeddingResponse.r_object);
+        System.assertEquals(new List<OASEmbedding>(), createEmbeddingResponse.data);
         System.assertEquals(null, createEmbeddingResponse.model);
+        System.assertEquals(null, createEmbeddingResponse.r_object);
         System.assertEquals(null, createEmbeddingResponse.usage);
     }
 }

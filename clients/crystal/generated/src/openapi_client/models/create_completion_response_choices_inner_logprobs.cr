@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -17,21 +17,21 @@ module OpenAPIClient
     include JSON::Serializable
 
     # Optional properties
-    @[JSON::Field(key: "tokens", type: Array(String)?, nillable: true, emit_null: false)]
-    property tokens : Array(String)?
+    @[JSON::Field(key: "text_offset", type: Array(Int32)?, nillable: true, emit_null: false)]
+    property text_offset : Array(Int32)?
 
     @[JSON::Field(key: "token_logprobs", type: Array(Float64)?, nillable: true, emit_null: false)]
     property token_logprobs : Array(Float64)?
 
-    @[JSON::Field(key: "top_logprobs", type: Array(Object)?, nillable: true, emit_null: false)]
-    property top_logprobs : Array(Object)?
+    @[JSON::Field(key: "tokens", type: Array(String)?, nillable: true, emit_null: false)]
+    property tokens : Array(String)?
 
-    @[JSON::Field(key: "text_offset", type: Array(Int32)?, nillable: true, emit_null: false)]
-    property text_offset : Array(Int32)?
+    @[JSON::Field(key: "top_logprobs", type: Array(Hash(String, Float64))?, nillable: true, emit_null: false)]
+    property top_logprobs : Array(Hash(String, Float64))?
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@tokens : Array(String)?, @token_logprobs : Array(Float64)?, @top_logprobs : Array(Object)?, @text_offset : Array(Int32)?)
+    def initialize(@text_offset : Array(Int32)?, @token_logprobs : Array(Float64)?, @tokens : Array(String)?, @top_logprobs : Array(Hash(String, Float64))?)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -52,10 +52,10 @@ module OpenAPIClient
     def ==(o)
       return true if self.same?(o)
       self.class == o.class &&
-          tokens == o.tokens &&
+          text_offset == o.text_offset &&
           token_logprobs == o.token_logprobs &&
-          top_logprobs == o.top_logprobs &&
-          text_offset == o.text_offset
+          tokens == o.tokens &&
+          top_logprobs == o.top_logprobs
     end
 
     # @see the `==` method
@@ -67,7 +67,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [tokens, token_logprobs, top_logprobs, text_offset].hash
+      [text_offset, token_logprobs, tokens, top_logprobs].hash
     end
 
     # Builds the object from hash

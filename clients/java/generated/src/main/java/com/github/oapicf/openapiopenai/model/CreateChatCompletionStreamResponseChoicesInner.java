@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,6 +15,7 @@ package com.github.oapicf.openapiopenai.model;
 
 import java.util.Objects;
 import com.github.oapicf.openapiopenai.model.ChatCompletionStreamResponseDelta;
+import com.github.oapicf.openapiopenai.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +23,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,24 +52,28 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateChatCompletionStreamResponseChoicesInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionStreamResponseChoicesInner {
-  public static final String SERIALIZED_NAME_INDEX = "index";
-  @SerializedName(SERIALIZED_NAME_INDEX)
-  private Integer index;
-
   public static final String SERIALIZED_NAME_DELTA = "delta";
   @SerializedName(SERIALIZED_NAME_DELTA)
   private ChatCompletionStreamResponseDelta delta;
 
+  public static final String SERIALIZED_NAME_LOGPROBS = "logprobs";
+  @SerializedName(SERIALIZED_NAME_LOGPROBS)
+  private CreateChatCompletionResponseChoicesInnerLogprobs logprobs;
+
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
    */
   @JsonAdapter(FinishReasonEnum.Adapter.class)
   public enum FinishReasonEnum {
     STOP("stop"),
     
     LENGTH("length"),
+    
+    TOOL_CALLS("tool_calls"),
+    
+    CONTENT_FILTER("content_filter"),
     
     FUNCTION_CALL("function_call");
 
@@ -92,7 +98,7 @@ public class CreateChatCompletionStreamResponseChoicesInner {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
 
     public static class Adapter extends TypeAdapter<FinishReasonEnum> {
@@ -118,27 +124,12 @@ public class CreateChatCompletionStreamResponseChoicesInner {
   @SerializedName(SERIALIZED_NAME_FINISH_REASON)
   private FinishReasonEnum finishReason;
 
+  public static final String SERIALIZED_NAME_INDEX = "index";
+  @SerializedName(SERIALIZED_NAME_INDEX)
+  private Integer index;
+
   public CreateChatCompletionStreamResponseChoicesInner() {
   }
-
-  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
-    this.index = index;
-    return this;
-  }
-
-   /**
-   * Get index
-   * @return index
-  **/
-  @javax.annotation.Nullable
-  public Integer getIndex() {
-    return index;
-  }
-
-  public void setIndex(Integer index) {
-    this.index = index;
-  }
-
 
   public CreateChatCompletionStreamResponseChoicesInner delta(ChatCompletionStreamResponseDelta delta) {
     this.delta = delta;
@@ -149,7 +140,7 @@ public class CreateChatCompletionStreamResponseChoicesInner {
    * Get delta
    * @return delta
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public ChatCompletionStreamResponseDelta getDelta() {
     return delta;
   }
@@ -159,13 +150,32 @@ public class CreateChatCompletionStreamResponseChoicesInner {
   }
 
 
+  public CreateChatCompletionStreamResponseChoicesInner logprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
+    return this;
+  }
+
+   /**
+   * Get logprobs
+   * @return logprobs
+  **/
+  @javax.annotation.Nullable
+  public CreateChatCompletionResponseChoicesInnerLogprobs getLogprobs() {
+    return logprobs;
+  }
+
+  public void setLogprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
+  }
+
+
   public CreateChatCompletionStreamResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
     this.finishReason = finishReason;
     return this;
   }
 
    /**
-   * Get finishReason
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
    * @return finishReason
   **/
   @javax.annotation.Nullable
@@ -175,6 +185,25 @@ public class CreateChatCompletionStreamResponseChoicesInner {
 
   public void setFinishReason(FinishReasonEnum finishReason) {
     this.finishReason = finishReason;
+  }
+
+
+  public CreateChatCompletionStreamResponseChoicesInner index(Integer index) {
+    this.index = index;
+    return this;
+  }
+
+   /**
+   * The index of the choice in the list of choices.
+   * @return index
+  **/
+  @javax.annotation.Nonnull
+  public Integer getIndex() {
+    return index;
+  }
+
+  public void setIndex(Integer index) {
+    this.index = index;
   }
 
 
@@ -188,23 +217,36 @@ public class CreateChatCompletionStreamResponseChoicesInner {
       return false;
     }
     CreateChatCompletionStreamResponseChoicesInner createChatCompletionStreamResponseChoicesInner = (CreateChatCompletionStreamResponseChoicesInner) o;
-    return Objects.equals(this.index, createChatCompletionStreamResponseChoicesInner.index) &&
-        Objects.equals(this.delta, createChatCompletionStreamResponseChoicesInner.delta) &&
-        Objects.equals(this.finishReason, createChatCompletionStreamResponseChoicesInner.finishReason);
+    return Objects.equals(this.delta, createChatCompletionStreamResponseChoicesInner.delta) &&
+        Objects.equals(this.logprobs, createChatCompletionStreamResponseChoicesInner.logprobs) &&
+        Objects.equals(this.finishReason, createChatCompletionStreamResponseChoicesInner.finishReason) &&
+        Objects.equals(this.index, createChatCompletionStreamResponseChoicesInner.index);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, delta, finishReason);
+    return Objects.hash(delta, logprobs, finishReason, index);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionStreamResponseChoicesInner {\n");
-    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    delta: ").append(toIndentedString(delta)).append("\n");
+    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -227,12 +269,16 @@ public class CreateChatCompletionStreamResponseChoicesInner {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("index");
     openapiFields.add("delta");
+    openapiFields.add("logprobs");
     openapiFields.add("finish_reason");
+    openapiFields.add("index");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("delta");
+    openapiRequiredFields.add("finish_reason");
+    openapiRequiredFields.add("index");
   }
 
  /**
@@ -255,18 +301,25 @@ public class CreateChatCompletionStreamResponseChoicesInner {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateChatCompletionStreamResponseChoicesInner` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : CreateChatCompletionStreamResponseChoicesInner.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `delta`
-      if (jsonObj.get("delta") != null && !jsonObj.get("delta").isJsonNull()) {
-        ChatCompletionStreamResponseDelta.validateJsonElement(jsonObj.get("delta"));
+      // validate the required field `delta`
+      ChatCompletionStreamResponseDelta.validateJsonElement(jsonObj.get("delta"));
+      // validate the optional field `logprobs`
+      if (jsonObj.get("logprobs") != null && !jsonObj.get("logprobs").isJsonNull()) {
+        CreateChatCompletionResponseChoicesInnerLogprobs.validateJsonElement(jsonObj.get("logprobs"));
       }
       if ((jsonObj.get("finish_reason") != null && !jsonObj.get("finish_reason").isJsonNull()) && !jsonObj.get("finish_reason").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `finish_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("finish_reason").toString()));
       }
-      // validate the optional field `finish_reason`
-      if (jsonObj.get("finish_reason") != null && !jsonObj.get("finish_reason").isJsonNull()) {
-        FinishReasonEnum.validateJsonElement(jsonObj.get("finish_reason"));
-      }
+      // validate the required field `finish_reason`
+      FinishReasonEnum.validateJsonElement(jsonObj.get("finish_reason"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

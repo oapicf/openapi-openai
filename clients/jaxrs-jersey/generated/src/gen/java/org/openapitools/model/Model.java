@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,6 +16,7 @@ package org.openapitools.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -23,27 +24,57 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Model
+ * Describes an OpenAI model offering that can be used with the API.
  */
+@ApiModel(description = "Describes an OpenAI model offering that can be used with the API.")
 @JsonPropertyOrder({
   Model.JSON_PROPERTY_ID,
-  Model.JSON_PROPERTY_OBJECT,
   Model.JSON_PROPERTY_CREATED,
+  Model.JSON_PROPERTY_OBJECT,
   Model.JSON_PROPERTY_OWNED_BY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Model   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
   private String id;
 
-  public static final String JSON_PROPERTY_OBJECT = "object";
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  private String _object;
-
   public static final String JSON_PROPERTY_CREATED = "created";
   @JsonProperty(JSON_PROPERTY_CREATED)
   private Integer created;
+
+  /**
+   * The object type, which is always \&quot;model\&quot;.
+   */
+  public enum ObjectEnum {
+    MODEL("model");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_OBJECT = "object";
+  @JsonProperty(JSON_PROPERTY_OBJECT)
+  private ObjectEnum _object;
 
   public static final String JSON_PROPERTY_OWNED_BY = "owned_by";
   @JsonProperty(JSON_PROPERTY_OWNED_BY)
@@ -55,11 +86,11 @@ public class Model   {
   }
 
   /**
-   * Get id
+   * The model identifier, which can be referenced in the API endpoints.
    * @return id
    **/
   @JsonProperty(value = "id")
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model identifier, which can be referenced in the API endpoints.")
   @NotNull 
   public String getId() {
     return id;
@@ -69,37 +100,17 @@ public class Model   {
     this.id = id;
   }
 
-  public Model _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-  /**
-   * Get _object
-   * @return _object
-   **/
-  @JsonProperty(value = "object")
-  @ApiModelProperty(required = true, value = "")
-  @NotNull 
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
   public Model created(Integer created) {
     this.created = created;
     return this;
   }
 
   /**
-   * Get created
+   * The Unix timestamp (in seconds) when the model was created.
    * @return created
    **/
   @JsonProperty(value = "created")
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) when the model was created.")
   @NotNull 
   public Integer getCreated() {
     return created;
@@ -109,17 +120,37 @@ public class Model   {
     this.created = created;
   }
 
+  public Model _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  /**
+   * The object type, which is always \&quot;model\&quot;.
+   * @return _object
+   **/
+  @JsonProperty(value = "object")
+  @ApiModelProperty(required = true, value = "The object type, which is always \"model\".")
+  @NotNull 
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
   public Model ownedBy(String ownedBy) {
     this.ownedBy = ownedBy;
     return this;
   }
 
   /**
-   * Get ownedBy
+   * The organization that owns the model.
    * @return ownedBy
    **/
   @JsonProperty(value = "owned_by")
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The organization that owns the model.")
   @NotNull 
   public String getOwnedBy() {
     return ownedBy;
@@ -140,14 +171,14 @@ public class Model   {
     }
     Model model = (Model) o;
     return Objects.equals(this.id, model.id) &&
-        Objects.equals(this._object, model._object) &&
         Objects.equals(this.created, model.created) &&
+        Objects.equals(this._object, model._object) &&
         Objects.equals(this.ownedBy, model.ownedBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, ownedBy);
+    return Objects.hash(id, created, _object, ownedBy);
   }
 
   @Override
@@ -156,8 +187,8 @@ public class Model   {
     sb.append("class Model {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    ownedBy: ").append(toIndentedString(ownedBy)).append("\n");
     sb.append("}");
     return sb.toString();

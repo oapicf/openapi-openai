@@ -15,35 +15,35 @@ class Model(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, object: str=None, created: int=None, owned_by: str=None):  # noqa: E501
+    def __init__(self, id: str=None, created: int=None, object: str=None, owned_by: str=None):  # noqa: E501
         """Model - a model defined in Swagger
 
         :param id: The id of this Model.  # noqa: E501
         :type id: str
-        :param object: The object of this Model.  # noqa: E501
-        :type object: str
         :param created: The created of this Model.  # noqa: E501
         :type created: int
+        :param object: The object of this Model.  # noqa: E501
+        :type object: str
         :param owned_by: The owned_by of this Model.  # noqa: E501
         :type owned_by: str
         """
         self.swagger_types = {
             'id': str,
-            'object': str,
             'created': int,
+            'object': str,
             'owned_by': str
         }
 
         self.attribute_map = {
             'id': 'id',
-            'object': 'object',
             'created': 'created',
+            'object': 'object',
             'owned_by': 'owned_by'
         }
 
         self._id = id
-        self._object = object
         self._created = created
+        self._object = object
         self._owned_by = owned_by
 
     @classmethod
@@ -61,6 +61,7 @@ class Model(Model):
     def id(self) -> str:
         """Gets the id of this Model.
 
+        The model identifier, which can be referenced in the API endpoints.  # noqa: E501
 
         :return: The id of this Model.
         :rtype: str
@@ -71,6 +72,7 @@ class Model(Model):
     def id(self, id: str):
         """Sets the id of this Model.
 
+        The model identifier, which can be referenced in the API endpoints.  # noqa: E501
 
         :param id: The id of this Model.
         :type id: str
@@ -81,32 +83,10 @@ class Model(Model):
         self._id = id
 
     @property
-    def object(self) -> str:
-        """Gets the object of this Model.
-
-
-        :return: The object of this Model.
-        :rtype: str
-        """
-        return self._object
-
-    @object.setter
-    def object(self, object: str):
-        """Sets the object of this Model.
-
-
-        :param object: The object of this Model.
-        :type object: str
-        """
-        if object is None:
-            raise ValueError("Invalid value for `object`, must not be `None`")  # noqa: E501
-
-        self._object = object
-
-    @property
     def created(self) -> int:
         """Gets the created of this Model.
 
+        The Unix timestamp (in seconds) when the model was created.  # noqa: E501
 
         :return: The created of this Model.
         :rtype: int
@@ -117,6 +97,7 @@ class Model(Model):
     def created(self, created: int):
         """Sets the created of this Model.
 
+        The Unix timestamp (in seconds) when the model was created.  # noqa: E501
 
         :param created: The created of this Model.
         :type created: int
@@ -127,9 +108,39 @@ class Model(Model):
         self._created = created
 
     @property
+    def object(self) -> str:
+        """Gets the object of this Model.
+
+        The object type, which is always \"model\".  # noqa: E501
+
+        :return: The object of this Model.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object: str):
+        """Sets the object of this Model.
+
+        The object type, which is always \"model\".  # noqa: E501
+
+        :param object: The object of this Model.
+        :type object: str
+        """
+        allowed_values = ["model"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
+
+        self._object = object
+
+    @property
     def owned_by(self) -> str:
         """Gets the owned_by of this Model.
 
+        The organization that owns the model.  # noqa: E501
 
         :return: The owned_by of this Model.
         :rtype: str
@@ -140,6 +151,7 @@ class Model(Model):
     def owned_by(self, owned_by: str):
         """Sets the owned_by of this Model.
 
+        The organization that owns the model.  # noqa: E501
 
         :param owned_by: The owned_by of this Model.
         :type owned_by: str

@@ -1,7 +1,7 @@
 /*
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
 
@@ -19,9 +19,20 @@ import public "models/create_embedding_request_model.proto";
 
 message CreateEmbeddingRequest {
 
+  CreateEmbeddingRequestInput input = 100358090;
+
   CreateEmbeddingRequestModel model = 104069929;
 
-  CreateEmbeddingRequestInput input = 100358090;
+  // The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+  enum Encoding_formatEnum {
+    Encoding_formatEnum_FLOAT = 0;
+    Encoding_formatEnum_BASE64 = 1;
+  }
+
+  Encoding_formatEnum encoding_format = 97891429;
+
+  // The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+  int32 dimensions = 414334925;
 
   // A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
   string user = 3599307;

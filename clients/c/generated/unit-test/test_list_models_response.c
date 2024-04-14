@@ -22,12 +22,12 @@ list_models_response_t* instantiate_list_models_response(int include_optional) {
   list_models_response_t* list_models_response = NULL;
   if (include_optional) {
     list_models_response = list_models_response_create(
-      "0",
+      openai_api_list_models_response_OBJECT_list,
       list_createList()
     );
   } else {
     list_models_response = list_models_response_create(
-      "0",
+      openai_api_list_models_response_OBJECT_list,
       list_createList()
     );
   }

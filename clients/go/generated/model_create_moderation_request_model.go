@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -16,68 +16,37 @@ import (
 	"fmt"
 )
 
-// CreateModerationRequestModel - Two content moderations models are available: `text-moderation-stable` and `text-moderation-latest`.  The default is `text-moderation-latest` which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use `text-moderation-stable`, we will provide advanced notice before updating the model. Accuracy of `text-moderation-stable` may be slightly lower than for `text-moderation-latest`. 
+// CreateModerationRequestModel Two content moderations models are available: `text-moderation-stable` and `text-moderation-latest`.  The default is `text-moderation-latest` which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use `text-moderation-stable`, we will provide advanced notice before updating the model. Accuracy of `text-moderation-stable` may be slightly lower than for `text-moderation-latest`. 
 type CreateModerationRequestModel struct {
-	String *string
+	string *string
 }
 
-// stringAsCreateModerationRequestModel is a convenience function that returns string wrapped in CreateModerationRequestModel
-func StringAsCreateModerationRequestModel(v *string) CreateModerationRequestModel {
-	return CreateModerationRequestModel{
-		String: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *CreateModerationRequestModel) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into String
-	err = newStrictDecoder(data).Decode(&dst.String)
+	// try to unmarshal JSON data into string
+	err = json.Unmarshal(data, &dst.string);
 	if err == nil {
-		jsonString, _ := json.Marshal(dst.String)
-		if string(jsonString) == "{}" { // empty struct
-			dst.String = nil
+		jsonstring, _ := json.Marshal(dst.string)
+		if string(jsonstring) == "{}" { // empty struct
+			dst.string = nil
 		} else {
-			match++
+			return nil // data stored in dst.string, return on the first match
 		}
 	} else {
-		dst.String = nil
+		dst.string = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.String = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(CreateModerationRequestModel)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(CreateModerationRequestModel)")
-	}
+	return fmt.Errorf("data failed to match schemas in anyOf(CreateModerationRequestModel)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src CreateModerationRequestModel) MarshalJSON() ([]byte, error) {
-	if src.String != nil {
-		return json.Marshal(&src.String)
+func (src *CreateModerationRequestModel) MarshalJSON() ([]byte, error) {
+	if src.string != nil {
+		return json.Marshal(&src.string)
 	}
 
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *CreateModerationRequestModel) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.String != nil {
-		return obj.String
-	}
-
-	// all schemas are nil
-	return nil
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullableCreateModerationRequestModel struct {

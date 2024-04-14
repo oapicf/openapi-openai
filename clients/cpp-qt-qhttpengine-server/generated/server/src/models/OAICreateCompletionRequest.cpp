@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -40,44 +40,47 @@ void OAICreateCompletionRequest::initializeModel() {
     m_prompt_isSet = false;
     m_prompt_isValid = false;
 
-    m_suffix_isSet = false;
-    m_suffix_isValid = false;
+    m_best_of_isSet = false;
+    m_best_of_isValid = false;
+
+    m_echo_isSet = false;
+    m_echo_isValid = false;
+
+    m_frequency_penalty_isSet = false;
+    m_frequency_penalty_isValid = false;
+
+    m_logit_bias_isSet = false;
+    m_logit_bias_isValid = false;
+
+    m_logprobs_isSet = false;
+    m_logprobs_isValid = false;
 
     m_max_tokens_isSet = false;
     m_max_tokens_isValid = false;
+
+    m_n_isSet = false;
+    m_n_isValid = false;
+
+    m_presence_penalty_isSet = false;
+    m_presence_penalty_isValid = false;
+
+    m_seed_isSet = false;
+    m_seed_isValid = false;
+
+    m_stop_isSet = false;
+    m_stop_isValid = false;
+
+    m_stream_isSet = false;
+    m_stream_isValid = false;
+
+    m_suffix_isSet = false;
+    m_suffix_isValid = false;
 
     m_temperature_isSet = false;
     m_temperature_isValid = false;
 
     m_top_p_isSet = false;
     m_top_p_isValid = false;
-
-    m_n_isSet = false;
-    m_n_isValid = false;
-
-    m_stream_isSet = false;
-    m_stream_isValid = false;
-
-    m_logprobs_isSet = false;
-    m_logprobs_isValid = false;
-
-    m_echo_isSet = false;
-    m_echo_isValid = false;
-
-    m_stop_isSet = false;
-    m_stop_isValid = false;
-
-    m_presence_penalty_isSet = false;
-    m_presence_penalty_isValid = false;
-
-    m_frequency_penalty_isSet = false;
-    m_frequency_penalty_isValid = false;
-
-    m_best_of_isSet = false;
-    m_best_of_isValid = false;
-
-    m_logit_bias_isSet = false;
-    m_logit_bias_isValid = false;
 
     m_user_isSet = false;
     m_user_isValid = false;
@@ -98,44 +101,47 @@ void OAICreateCompletionRequest::fromJsonObject(QJsonObject json) {
     m_prompt_isValid = ::OpenAPI::fromJsonValue(prompt, json[QString("prompt")]);
     m_prompt_isSet = !json[QString("prompt")].isNull() && m_prompt_isValid;
 
-    m_suffix_isValid = ::OpenAPI::fromJsonValue(suffix, json[QString("suffix")]);
-    m_suffix_isSet = !json[QString("suffix")].isNull() && m_suffix_isValid;
+    m_best_of_isValid = ::OpenAPI::fromJsonValue(best_of, json[QString("best_of")]);
+    m_best_of_isSet = !json[QString("best_of")].isNull() && m_best_of_isValid;
+
+    m_echo_isValid = ::OpenAPI::fromJsonValue(echo, json[QString("echo")]);
+    m_echo_isSet = !json[QString("echo")].isNull() && m_echo_isValid;
+
+    m_frequency_penalty_isValid = ::OpenAPI::fromJsonValue(frequency_penalty, json[QString("frequency_penalty")]);
+    m_frequency_penalty_isSet = !json[QString("frequency_penalty")].isNull() && m_frequency_penalty_isValid;
+
+    m_logit_bias_isValid = ::OpenAPI::fromJsonValue(logit_bias, json[QString("logit_bias")]);
+    m_logit_bias_isSet = !json[QString("logit_bias")].isNull() && m_logit_bias_isValid;
+
+    m_logprobs_isValid = ::OpenAPI::fromJsonValue(logprobs, json[QString("logprobs")]);
+    m_logprobs_isSet = !json[QString("logprobs")].isNull() && m_logprobs_isValid;
 
     m_max_tokens_isValid = ::OpenAPI::fromJsonValue(max_tokens, json[QString("max_tokens")]);
     m_max_tokens_isSet = !json[QString("max_tokens")].isNull() && m_max_tokens_isValid;
+
+    m_n_isValid = ::OpenAPI::fromJsonValue(n, json[QString("n")]);
+    m_n_isSet = !json[QString("n")].isNull() && m_n_isValid;
+
+    m_presence_penalty_isValid = ::OpenAPI::fromJsonValue(presence_penalty, json[QString("presence_penalty")]);
+    m_presence_penalty_isSet = !json[QString("presence_penalty")].isNull() && m_presence_penalty_isValid;
+
+    m_seed_isValid = ::OpenAPI::fromJsonValue(seed, json[QString("seed")]);
+    m_seed_isSet = !json[QString("seed")].isNull() && m_seed_isValid;
+
+    m_stop_isValid = ::OpenAPI::fromJsonValue(stop, json[QString("stop")]);
+    m_stop_isSet = !json[QString("stop")].isNull() && m_stop_isValid;
+
+    m_stream_isValid = ::OpenAPI::fromJsonValue(stream, json[QString("stream")]);
+    m_stream_isSet = !json[QString("stream")].isNull() && m_stream_isValid;
+
+    m_suffix_isValid = ::OpenAPI::fromJsonValue(suffix, json[QString("suffix")]);
+    m_suffix_isSet = !json[QString("suffix")].isNull() && m_suffix_isValid;
 
     m_temperature_isValid = ::OpenAPI::fromJsonValue(temperature, json[QString("temperature")]);
     m_temperature_isSet = !json[QString("temperature")].isNull() && m_temperature_isValid;
 
     m_top_p_isValid = ::OpenAPI::fromJsonValue(top_p, json[QString("top_p")]);
     m_top_p_isSet = !json[QString("top_p")].isNull() && m_top_p_isValid;
-
-    m_n_isValid = ::OpenAPI::fromJsonValue(n, json[QString("n")]);
-    m_n_isSet = !json[QString("n")].isNull() && m_n_isValid;
-
-    m_stream_isValid = ::OpenAPI::fromJsonValue(stream, json[QString("stream")]);
-    m_stream_isSet = !json[QString("stream")].isNull() && m_stream_isValid;
-
-    m_logprobs_isValid = ::OpenAPI::fromJsonValue(logprobs, json[QString("logprobs")]);
-    m_logprobs_isSet = !json[QString("logprobs")].isNull() && m_logprobs_isValid;
-
-    m_echo_isValid = ::OpenAPI::fromJsonValue(echo, json[QString("echo")]);
-    m_echo_isSet = !json[QString("echo")].isNull() && m_echo_isValid;
-
-    m_stop_isValid = ::OpenAPI::fromJsonValue(stop, json[QString("stop")]);
-    m_stop_isSet = !json[QString("stop")].isNull() && m_stop_isValid;
-
-    m_presence_penalty_isValid = ::OpenAPI::fromJsonValue(presence_penalty, json[QString("presence_penalty")]);
-    m_presence_penalty_isSet = !json[QString("presence_penalty")].isNull() && m_presence_penalty_isValid;
-
-    m_frequency_penalty_isValid = ::OpenAPI::fromJsonValue(frequency_penalty, json[QString("frequency_penalty")]);
-    m_frequency_penalty_isSet = !json[QString("frequency_penalty")].isNull() && m_frequency_penalty_isValid;
-
-    m_best_of_isValid = ::OpenAPI::fromJsonValue(best_of, json[QString("best_of")]);
-    m_best_of_isSet = !json[QString("best_of")].isNull() && m_best_of_isValid;
-
-    m_logit_bias_isValid = ::OpenAPI::fromJsonValue(logit_bias, json[QString("logit_bias")]);
-    m_logit_bias_isSet = !json[QString("logit_bias")].isNull() && m_logit_bias_isValid;
 
     m_user_isValid = ::OpenAPI::fromJsonValue(user, json[QString("user")]);
     m_user_isSet = !json[QString("user")].isNull() && m_user_isValid;
@@ -156,44 +162,47 @@ QJsonObject OAICreateCompletionRequest::asJsonObject() const {
     if (prompt.isSet()) {
         obj.insert(QString("prompt"), ::OpenAPI::toJsonValue(prompt));
     }
-    if (m_suffix_isSet) {
-        obj.insert(QString("suffix"), ::OpenAPI::toJsonValue(suffix));
+    if (m_best_of_isSet) {
+        obj.insert(QString("best_of"), ::OpenAPI::toJsonValue(best_of));
+    }
+    if (m_echo_isSet) {
+        obj.insert(QString("echo"), ::OpenAPI::toJsonValue(echo));
+    }
+    if (m_frequency_penalty_isSet) {
+        obj.insert(QString("frequency_penalty"), ::OpenAPI::toJsonValue(frequency_penalty));
+    }
+    if (logit_bias.size() > 0) {
+        obj.insert(QString("logit_bias"), ::OpenAPI::toJsonValue(logit_bias));
+    }
+    if (m_logprobs_isSet) {
+        obj.insert(QString("logprobs"), ::OpenAPI::toJsonValue(logprobs));
     }
     if (m_max_tokens_isSet) {
         obj.insert(QString("max_tokens"), ::OpenAPI::toJsonValue(max_tokens));
+    }
+    if (m_n_isSet) {
+        obj.insert(QString("n"), ::OpenAPI::toJsonValue(n));
+    }
+    if (m_presence_penalty_isSet) {
+        obj.insert(QString("presence_penalty"), ::OpenAPI::toJsonValue(presence_penalty));
+    }
+    if (m_seed_isSet) {
+        obj.insert(QString("seed"), ::OpenAPI::toJsonValue(seed));
+    }
+    if (stop.isSet()) {
+        obj.insert(QString("stop"), ::OpenAPI::toJsonValue(stop));
+    }
+    if (m_stream_isSet) {
+        obj.insert(QString("stream"), ::OpenAPI::toJsonValue(stream));
+    }
+    if (m_suffix_isSet) {
+        obj.insert(QString("suffix"), ::OpenAPI::toJsonValue(suffix));
     }
     if (m_temperature_isSet) {
         obj.insert(QString("temperature"), ::OpenAPI::toJsonValue(temperature));
     }
     if (m_top_p_isSet) {
         obj.insert(QString("top_p"), ::OpenAPI::toJsonValue(top_p));
-    }
-    if (m_n_isSet) {
-        obj.insert(QString("n"), ::OpenAPI::toJsonValue(n));
-    }
-    if (m_stream_isSet) {
-        obj.insert(QString("stream"), ::OpenAPI::toJsonValue(stream));
-    }
-    if (m_logprobs_isSet) {
-        obj.insert(QString("logprobs"), ::OpenAPI::toJsonValue(logprobs));
-    }
-    if (m_echo_isSet) {
-        obj.insert(QString("echo"), ::OpenAPI::toJsonValue(echo));
-    }
-    if (stop.isSet()) {
-        obj.insert(QString("stop"), ::OpenAPI::toJsonValue(stop));
-    }
-    if (m_presence_penalty_isSet) {
-        obj.insert(QString("presence_penalty"), ::OpenAPI::toJsonValue(presence_penalty));
-    }
-    if (m_frequency_penalty_isSet) {
-        obj.insert(QString("frequency_penalty"), ::OpenAPI::toJsonValue(frequency_penalty));
-    }
-    if (m_best_of_isSet) {
-        obj.insert(QString("best_of"), ::OpenAPI::toJsonValue(best_of));
-    }
-    if (m_logit_bias_isSet) {
-        obj.insert(QString("logit_bias"), ::OpenAPI::toJsonValue(logit_bias));
     }
     if (m_user_isSet) {
         obj.insert(QString("user"), ::OpenAPI::toJsonValue(user));
@@ -233,20 +242,84 @@ bool OAICreateCompletionRequest::is_prompt_Valid() const{
     return m_prompt_isValid;
 }
 
-QString OAICreateCompletionRequest::getSuffix() const {
-    return suffix;
+qint32 OAICreateCompletionRequest::getBestOf() const {
+    return best_of;
 }
-void OAICreateCompletionRequest::setSuffix(const QString &suffix) {
-    this->suffix = suffix;
-    this->m_suffix_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_suffix_Set() const{
-    return m_suffix_isSet;
+void OAICreateCompletionRequest::setBestOf(const qint32 &best_of) {
+    this->best_of = best_of;
+    this->m_best_of_isSet = true;
 }
 
-bool OAICreateCompletionRequest::is_suffix_Valid() const{
-    return m_suffix_isValid;
+bool OAICreateCompletionRequest::is_best_of_Set() const{
+    return m_best_of_isSet;
+}
+
+bool OAICreateCompletionRequest::is_best_of_Valid() const{
+    return m_best_of_isValid;
+}
+
+bool OAICreateCompletionRequest::isEcho() const {
+    return echo;
+}
+void OAICreateCompletionRequest::setEcho(const bool &echo) {
+    this->echo = echo;
+    this->m_echo_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_echo_Set() const{
+    return m_echo_isSet;
+}
+
+bool OAICreateCompletionRequest::is_echo_Valid() const{
+    return m_echo_isValid;
+}
+
+double OAICreateCompletionRequest::getFrequencyPenalty() const {
+    return frequency_penalty;
+}
+void OAICreateCompletionRequest::setFrequencyPenalty(const double &frequency_penalty) {
+    this->frequency_penalty = frequency_penalty;
+    this->m_frequency_penalty_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_frequency_penalty_Set() const{
+    return m_frequency_penalty_isSet;
+}
+
+bool OAICreateCompletionRequest::is_frequency_penalty_Valid() const{
+    return m_frequency_penalty_isValid;
+}
+
+QMap<QString, qint32> OAICreateCompletionRequest::getLogitBias() const {
+    return logit_bias;
+}
+void OAICreateCompletionRequest::setLogitBias(const QMap<QString, qint32> &logit_bias) {
+    this->logit_bias = logit_bias;
+    this->m_logit_bias_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_logit_bias_Set() const{
+    return m_logit_bias_isSet;
+}
+
+bool OAICreateCompletionRequest::is_logit_bias_Valid() const{
+    return m_logit_bias_isValid;
+}
+
+qint32 OAICreateCompletionRequest::getLogprobs() const {
+    return logprobs;
+}
+void OAICreateCompletionRequest::setLogprobs(const qint32 &logprobs) {
+    this->logprobs = logprobs;
+    this->m_logprobs_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_logprobs_Set() const{
+    return m_logprobs_isSet;
+}
+
+bool OAICreateCompletionRequest::is_logprobs_Valid() const{
+    return m_logprobs_isValid;
 }
 
 qint32 OAICreateCompletionRequest::getMaxTokens() const {
@@ -263,6 +336,102 @@ bool OAICreateCompletionRequest::is_max_tokens_Set() const{
 
 bool OAICreateCompletionRequest::is_max_tokens_Valid() const{
     return m_max_tokens_isValid;
+}
+
+qint32 OAICreateCompletionRequest::getN() const {
+    return n;
+}
+void OAICreateCompletionRequest::setN(const qint32 &n) {
+    this->n = n;
+    this->m_n_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_n_Set() const{
+    return m_n_isSet;
+}
+
+bool OAICreateCompletionRequest::is_n_Valid() const{
+    return m_n_isValid;
+}
+
+double OAICreateCompletionRequest::getPresencePenalty() const {
+    return presence_penalty;
+}
+void OAICreateCompletionRequest::setPresencePenalty(const double &presence_penalty) {
+    this->presence_penalty = presence_penalty;
+    this->m_presence_penalty_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_presence_penalty_Set() const{
+    return m_presence_penalty_isSet;
+}
+
+bool OAICreateCompletionRequest::is_presence_penalty_Valid() const{
+    return m_presence_penalty_isValid;
+}
+
+qint32 OAICreateCompletionRequest::getSeed() const {
+    return seed;
+}
+void OAICreateCompletionRequest::setSeed(const qint32 &seed) {
+    this->seed = seed;
+    this->m_seed_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_seed_Set() const{
+    return m_seed_isSet;
+}
+
+bool OAICreateCompletionRequest::is_seed_Valid() const{
+    return m_seed_isValid;
+}
+
+OAICreateCompletionRequest_stop OAICreateCompletionRequest::getStop() const {
+    return stop;
+}
+void OAICreateCompletionRequest::setStop(const OAICreateCompletionRequest_stop &stop) {
+    this->stop = stop;
+    this->m_stop_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_stop_Set() const{
+    return m_stop_isSet;
+}
+
+bool OAICreateCompletionRequest::is_stop_Valid() const{
+    return m_stop_isValid;
+}
+
+bool OAICreateCompletionRequest::isStream() const {
+    return stream;
+}
+void OAICreateCompletionRequest::setStream(const bool &stream) {
+    this->stream = stream;
+    this->m_stream_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_stream_Set() const{
+    return m_stream_isSet;
+}
+
+bool OAICreateCompletionRequest::is_stream_Valid() const{
+    return m_stream_isValid;
+}
+
+QString OAICreateCompletionRequest::getSuffix() const {
+    return suffix;
+}
+void OAICreateCompletionRequest::setSuffix(const QString &suffix) {
+    this->suffix = suffix;
+    this->m_suffix_isSet = true;
+}
+
+bool OAICreateCompletionRequest::is_suffix_Set() const{
+    return m_suffix_isSet;
+}
+
+bool OAICreateCompletionRequest::is_suffix_Valid() const{
+    return m_suffix_isValid;
 }
 
 double OAICreateCompletionRequest::getTemperature() const {
@@ -297,150 +466,6 @@ bool OAICreateCompletionRequest::is_top_p_Valid() const{
     return m_top_p_isValid;
 }
 
-qint32 OAICreateCompletionRequest::getN() const {
-    return n;
-}
-void OAICreateCompletionRequest::setN(const qint32 &n) {
-    this->n = n;
-    this->m_n_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_n_Set() const{
-    return m_n_isSet;
-}
-
-bool OAICreateCompletionRequest::is_n_Valid() const{
-    return m_n_isValid;
-}
-
-bool OAICreateCompletionRequest::isStream() const {
-    return stream;
-}
-void OAICreateCompletionRequest::setStream(const bool &stream) {
-    this->stream = stream;
-    this->m_stream_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_stream_Set() const{
-    return m_stream_isSet;
-}
-
-bool OAICreateCompletionRequest::is_stream_Valid() const{
-    return m_stream_isValid;
-}
-
-qint32 OAICreateCompletionRequest::getLogprobs() const {
-    return logprobs;
-}
-void OAICreateCompletionRequest::setLogprobs(const qint32 &logprobs) {
-    this->logprobs = logprobs;
-    this->m_logprobs_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_logprobs_Set() const{
-    return m_logprobs_isSet;
-}
-
-bool OAICreateCompletionRequest::is_logprobs_Valid() const{
-    return m_logprobs_isValid;
-}
-
-bool OAICreateCompletionRequest::isEcho() const {
-    return echo;
-}
-void OAICreateCompletionRequest::setEcho(const bool &echo) {
-    this->echo = echo;
-    this->m_echo_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_echo_Set() const{
-    return m_echo_isSet;
-}
-
-bool OAICreateCompletionRequest::is_echo_Valid() const{
-    return m_echo_isValid;
-}
-
-OAICreateCompletionRequest_stop OAICreateCompletionRequest::getStop() const {
-    return stop;
-}
-void OAICreateCompletionRequest::setStop(const OAICreateCompletionRequest_stop &stop) {
-    this->stop = stop;
-    this->m_stop_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_stop_Set() const{
-    return m_stop_isSet;
-}
-
-bool OAICreateCompletionRequest::is_stop_Valid() const{
-    return m_stop_isValid;
-}
-
-double OAICreateCompletionRequest::getPresencePenalty() const {
-    return presence_penalty;
-}
-void OAICreateCompletionRequest::setPresencePenalty(const double &presence_penalty) {
-    this->presence_penalty = presence_penalty;
-    this->m_presence_penalty_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_presence_penalty_Set() const{
-    return m_presence_penalty_isSet;
-}
-
-bool OAICreateCompletionRequest::is_presence_penalty_Valid() const{
-    return m_presence_penalty_isValid;
-}
-
-double OAICreateCompletionRequest::getFrequencyPenalty() const {
-    return frequency_penalty;
-}
-void OAICreateCompletionRequest::setFrequencyPenalty(const double &frequency_penalty) {
-    this->frequency_penalty = frequency_penalty;
-    this->m_frequency_penalty_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_frequency_penalty_Set() const{
-    return m_frequency_penalty_isSet;
-}
-
-bool OAICreateCompletionRequest::is_frequency_penalty_Valid() const{
-    return m_frequency_penalty_isValid;
-}
-
-qint32 OAICreateCompletionRequest::getBestOf() const {
-    return best_of;
-}
-void OAICreateCompletionRequest::setBestOf(const qint32 &best_of) {
-    this->best_of = best_of;
-    this->m_best_of_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_best_of_Set() const{
-    return m_best_of_isSet;
-}
-
-bool OAICreateCompletionRequest::is_best_of_Valid() const{
-    return m_best_of_isValid;
-}
-
-OAIObject OAICreateCompletionRequest::getLogitBias() const {
-    return logit_bias;
-}
-void OAICreateCompletionRequest::setLogitBias(const OAIObject &logit_bias) {
-    this->logit_bias = logit_bias;
-    this->m_logit_bias_isSet = true;
-}
-
-bool OAICreateCompletionRequest::is_logit_bias_Set() const{
-    return m_logit_bias_isSet;
-}
-
-bool OAICreateCompletionRequest::is_logit_bias_Valid() const{
-    return m_logit_bias_isValid;
-}
-
 QString OAICreateCompletionRequest::getUser() const {
     return user;
 }
@@ -470,12 +495,62 @@ bool OAICreateCompletionRequest::isSet() const {
             break;
         }
 
-        if (m_suffix_isSet) {
+        if (m_best_of_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_echo_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_frequency_penalty_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (logit_bias.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_logprobs_isSet) {
             isObjectUpdated = true;
             break;
         }
 
         if (m_max_tokens_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_n_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_presence_penalty_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_seed_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (stop.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_stream_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_suffix_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -486,51 +561,6 @@ bool OAICreateCompletionRequest::isSet() const {
         }
 
         if (m_top_p_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_n_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_stream_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_logprobs_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_echo_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (stop.isSet()) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_presence_penalty_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_frequency_penalty_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_best_of_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_logit_bias_isSet) {
             isObjectUpdated = true;
             break;
         }

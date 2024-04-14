@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -21,30 +21,32 @@ namespace org::openapitools::server::model
 
 CreateCompletionRequest::CreateCompletionRequest()
 {
-    m_Suffix = "";
-    m_SuffixIsSet = false;
+    m_Best_of = 1;
+    m_Best_ofIsSet = false;
+    m_Echo = false;
+    m_EchoIsSet = false;
+    m_Frequency_penalty = 0;
+    m_Frequency_penaltyIsSet = false;
+    m_Logit_biasIsSet = false;
+    m_Logprobs = 0;
+    m_LogprobsIsSet = false;
     m_Max_tokens = 16;
     m_Max_tokensIsSet = false;
+    m_n = 1;
+    m_nIsSet = false;
+    m_Presence_penalty = 0;
+    m_Presence_penaltyIsSet = false;
+    m_Seed = 0;
+    m_SeedIsSet = false;
+    m_StopIsSet = false;
+    m_Stream = false;
+    m_StreamIsSet = false;
+    m_Suffix = "";
+    m_SuffixIsSet = false;
     m_Temperature = 1;
     m_TemperatureIsSet = false;
     m_Top_p = 1;
     m_Top_pIsSet = false;
-    m_n = 1;
-    m_nIsSet = false;
-    m_Stream = false;
-    m_StreamIsSet = false;
-    m_Logprobs = 0;
-    m_LogprobsIsSet = false;
-    m_Echo = false;
-    m_EchoIsSet = false;
-    m_StopIsSet = false;
-    m_Presence_penalty = 0;
-    m_Presence_penaltyIsSet = false;
-    m_Frequency_penalty = 0;
-    m_Frequency_penaltyIsSet = false;
-    m_Best_of = 1;
-    m_Best_ofIsSet = false;
-    m_Logit_biasIsSet = false;
     m_User = "";
     m_UserIsSet = false;
     
@@ -77,7 +79,64 @@ bool CreateCompletionRequest::validate(std::stringstream& msg, const std::string
     if (!m_Prompt.validate()) {
         msg << _pathPrefix << ": Prompt is invalid;";
         success = false;
-    }         
+    }     
+    if (bestOfIsSet())
+    {
+        const int32_t& value = m_Best_of;
+        const std::string currentValuePath = _pathPrefix + ".bestOf";
+                
+        
+        if (value < 0)
+        {
+            success = false;
+            msg << currentValuePath << ": must be greater than or equal to 0;";
+        }
+        if (value > 20)
+        {
+            success = false;
+            msg << currentValuePath << ": must be less than or equal to 20;";
+        }
+
+    }
+             
+    if (frequencyPenaltyIsSet())
+    {
+        const double& value = m_Frequency_penalty;
+        const std::string currentValuePath = _pathPrefix + ".frequencyPenalty";
+                
+        
+        if (value < -2)
+        {
+            success = false;
+            msg << currentValuePath << ": must be greater than or equal to -2;";
+        }
+        if (value > 2)
+        {
+            success = false;
+            msg << currentValuePath << ": must be less than or equal to 2;";
+        }
+
+    }
+             
+    if (logprobsIsSet())
+    {
+        const int32_t& value = m_Logprobs;
+        const std::string currentValuePath = _pathPrefix + ".logprobs";
+                
+        
+        if (value < 0)
+        {
+            success = false;
+            msg << currentValuePath << ": must be greater than or equal to 0;";
+        }
+        if (value > 5)
+        {
+            success = false;
+            msg << currentValuePath << ": must be less than or equal to 5;";
+        }
+
+    }
+         
     if (maxTokensIsSet())
     {
         const int32_t& value = m_Max_tokens;
@@ -92,6 +151,63 @@ bool CreateCompletionRequest::validate(std::stringstream& msg, const std::string
 
     }
          
+    if (NIsSet())
+    {
+        const int32_t& value = m_n;
+        const std::string currentValuePath = _pathPrefix + ".N";
+                
+        
+        if (value < 1)
+        {
+            success = false;
+            msg << currentValuePath << ": must be greater than or equal to 1;";
+        }
+        if (value > 128)
+        {
+            success = false;
+            msg << currentValuePath << ": must be less than or equal to 128;";
+        }
+
+    }
+         
+    if (presencePenaltyIsSet())
+    {
+        const double& value = m_Presence_penalty;
+        const std::string currentValuePath = _pathPrefix + ".presencePenalty";
+                
+        
+        if (value < -2)
+        {
+            success = false;
+            msg << currentValuePath << ": must be greater than or equal to -2;";
+        }
+        if (value > 2)
+        {
+            success = false;
+            msg << currentValuePath << ": must be less than or equal to 2;";
+        }
+
+    }
+         
+    if (seedIsSet())
+    {
+        const int32_t& value = m_Seed;
+        const std::string currentValuePath = _pathPrefix + ".seed";
+                
+        
+        if (value < -9223372036854775808)
+        {
+            success = false;
+            msg << currentValuePath << ": must be greater than or equal to -9223372036854775808;";
+        }
+        if (value > 9223372036854775807)
+        {
+            success = false;
+            msg << currentValuePath << ": must be less than or equal to 9223372036854775807;";
+        }
+
+    }
+                     
     if (temperatureIsSet())
     {
         const double& value = m_Temperature;
@@ -129,102 +245,7 @@ bool CreateCompletionRequest::validate(std::stringstream& msg, const std::string
         }
 
     }
-         
-    if (NIsSet())
-    {
-        const int32_t& value = m_n;
-        const std::string currentValuePath = _pathPrefix + ".N";
-                
         
-        if (value < 1)
-        {
-            success = false;
-            msg << currentValuePath << ": must be greater than or equal to 1;";
-        }
-        if (value > 128)
-        {
-            success = false;
-            msg << currentValuePath << ": must be less than or equal to 128;";
-        }
-
-    }
-             
-    if (logprobsIsSet())
-    {
-        const int32_t& value = m_Logprobs;
-        const std::string currentValuePath = _pathPrefix + ".logprobs";
-                
-        
-        if (value < 0)
-        {
-            success = false;
-            msg << currentValuePath << ": must be greater than or equal to 0;";
-        }
-        if (value > 5)
-        {
-            success = false;
-            msg << currentValuePath << ": must be less than or equal to 5;";
-        }
-
-    }
-                 
-    if (presencePenaltyIsSet())
-    {
-        const double& value = m_Presence_penalty;
-        const std::string currentValuePath = _pathPrefix + ".presencePenalty";
-                
-        
-        if (value < -2)
-        {
-            success = false;
-            msg << currentValuePath << ": must be greater than or equal to -2;";
-        }
-        if (value > 2)
-        {
-            success = false;
-            msg << currentValuePath << ": must be less than or equal to 2;";
-        }
-
-    }
-         
-    if (frequencyPenaltyIsSet())
-    {
-        const double& value = m_Frequency_penalty;
-        const std::string currentValuePath = _pathPrefix + ".frequencyPenalty";
-                
-        
-        if (value < -2)
-        {
-            success = false;
-            msg << currentValuePath << ": must be greater than or equal to -2;";
-        }
-        if (value > 2)
-        {
-            success = false;
-            msg << currentValuePath << ": must be less than or equal to 2;";
-        }
-
-    }
-         
-    if (bestOfIsSet())
-    {
-        const int32_t& value = m_Best_of;
-        const std::string currentValuePath = _pathPrefix + ".bestOf";
-                
-        
-        if (value < 0)
-        {
-            success = false;
-            msg << currentValuePath << ": must be greater than or equal to 0;";
-        }
-        if (value > 20)
-        {
-            success = false;
-            msg << currentValuePath << ": must be less than or equal to 20;";
-        }
-
-    }
-            
     return success;
 }
 
@@ -240,43 +261,46 @@ bool CreateCompletionRequest::operator==(const CreateCompletionRequest& rhs) con
      &&
     
     
-    ((!suffixIsSet() && !rhs.suffixIsSet()) || (suffixIsSet() && rhs.suffixIsSet() && getSuffix() == rhs.getSuffix())) &&
+    ((!bestOfIsSet() && !rhs.bestOfIsSet()) || (bestOfIsSet() && rhs.bestOfIsSet() && getBestOf() == rhs.getBestOf())) &&
+    
+    
+    ((!echoIsSet() && !rhs.echoIsSet()) || (echoIsSet() && rhs.echoIsSet() && isEcho() == rhs.isEcho())) &&
+    
+    
+    ((!frequencyPenaltyIsSet() && !rhs.frequencyPenaltyIsSet()) || (frequencyPenaltyIsSet() && rhs.frequencyPenaltyIsSet() && getFrequencyPenalty() == rhs.getFrequencyPenalty())) &&
+    
+    
+    ((!logitBiasIsSet() && !rhs.logitBiasIsSet()) || (logitBiasIsSet() && rhs.logitBiasIsSet() && getLogitBias() == rhs.getLogitBias())) &&
+    
+    
+    ((!logprobsIsSet() && !rhs.logprobsIsSet()) || (logprobsIsSet() && rhs.logprobsIsSet() && getLogprobs() == rhs.getLogprobs())) &&
     
     
     ((!maxTokensIsSet() && !rhs.maxTokensIsSet()) || (maxTokensIsSet() && rhs.maxTokensIsSet() && getMaxTokens() == rhs.getMaxTokens())) &&
+    
+    
+    ((!NIsSet() && !rhs.NIsSet()) || (NIsSet() && rhs.NIsSet() && getN() == rhs.getN())) &&
+    
+    
+    ((!presencePenaltyIsSet() && !rhs.presencePenaltyIsSet()) || (presencePenaltyIsSet() && rhs.presencePenaltyIsSet() && getPresencePenalty() == rhs.getPresencePenalty())) &&
+    
+    
+    ((!seedIsSet() && !rhs.seedIsSet()) || (seedIsSet() && rhs.seedIsSet() && getSeed() == rhs.getSeed())) &&
+    
+    
+    ((!stopIsSet() && !rhs.stopIsSet()) || (stopIsSet() && rhs.stopIsSet() && getStop() == rhs.getStop())) &&
+    
+    
+    ((!streamIsSet() && !rhs.streamIsSet()) || (streamIsSet() && rhs.streamIsSet() && isStream() == rhs.isStream())) &&
+    
+    
+    ((!suffixIsSet() && !rhs.suffixIsSet()) || (suffixIsSet() && rhs.suffixIsSet() && getSuffix() == rhs.getSuffix())) &&
     
     
     ((!temperatureIsSet() && !rhs.temperatureIsSet()) || (temperatureIsSet() && rhs.temperatureIsSet() && getTemperature() == rhs.getTemperature())) &&
     
     
     ((!topPIsSet() && !rhs.topPIsSet()) || (topPIsSet() && rhs.topPIsSet() && getTopP() == rhs.getTopP())) &&
-    
-    
-    ((!NIsSet() && !rhs.NIsSet()) || (NIsSet() && rhs.NIsSet() && getN() == rhs.getN())) &&
-    
-    
-    ((!streamIsSet() && !rhs.streamIsSet()) || (streamIsSet() && rhs.streamIsSet() && isStream() == rhs.isStream())) &&
-    
-    
-    ((!logprobsIsSet() && !rhs.logprobsIsSet()) || (logprobsIsSet() && rhs.logprobsIsSet() && getLogprobs() == rhs.getLogprobs())) &&
-    
-    
-    ((!echoIsSet() && !rhs.echoIsSet()) || (echoIsSet() && rhs.echoIsSet() && isEcho() == rhs.isEcho())) &&
-    
-    
-    ((!stopIsSet() && !rhs.stopIsSet()) || (stopIsSet() && rhs.stopIsSet() && getStop() == rhs.getStop())) &&
-    
-    
-    ((!presencePenaltyIsSet() && !rhs.presencePenaltyIsSet()) || (presencePenaltyIsSet() && rhs.presencePenaltyIsSet() && getPresencePenalty() == rhs.getPresencePenalty())) &&
-    
-    
-    ((!frequencyPenaltyIsSet() && !rhs.frequencyPenaltyIsSet()) || (frequencyPenaltyIsSet() && rhs.frequencyPenaltyIsSet() && getFrequencyPenalty() == rhs.getFrequencyPenalty())) &&
-    
-    
-    ((!bestOfIsSet() && !rhs.bestOfIsSet()) || (bestOfIsSet() && rhs.bestOfIsSet() && getBestOf() == rhs.getBestOf())) &&
-    
-    
-    ((!logitBiasIsSet() && !rhs.logitBiasIsSet()) || (logitBiasIsSet() && rhs.logitBiasIsSet() && getLogitBias() == rhs.getLogitBias())) &&
     
     
     ((!userIsSet() && !rhs.userIsSet()) || (userIsSet() && rhs.userIsSet() && getUser() == rhs.getUser()))
@@ -294,32 +318,34 @@ void to_json(nlohmann::json& j, const CreateCompletionRequest& o)
     j = nlohmann::json::object();
     j["model"] = o.m_Model;
     j["prompt"] = o.m_Prompt;
-    if(o.suffixIsSet())
-        j["suffix"] = o.m_Suffix;
+    if(o.bestOfIsSet())
+        j["best_of"] = o.m_Best_of;
+    if(o.echoIsSet())
+        j["echo"] = o.m_Echo;
+    if(o.frequencyPenaltyIsSet())
+        j["frequency_penalty"] = o.m_Frequency_penalty;
+    if(o.logitBiasIsSet() || !o.m_Logit_bias.empty())
+        j["logit_bias"] = o.m_Logit_bias;
+    if(o.logprobsIsSet())
+        j["logprobs"] = o.m_Logprobs;
     if(o.maxTokensIsSet())
         j["max_tokens"] = o.m_Max_tokens;
+    if(o.NIsSet())
+        j["n"] = o.m_n;
+    if(o.presencePenaltyIsSet())
+        j["presence_penalty"] = o.m_Presence_penalty;
+    if(o.seedIsSet())
+        j["seed"] = o.m_Seed;
+    if(o.stopIsSet())
+        j["stop"] = o.m_Stop;
+    if(o.streamIsSet())
+        j["stream"] = o.m_Stream;
+    if(o.suffixIsSet())
+        j["suffix"] = o.m_Suffix;
     if(o.temperatureIsSet())
         j["temperature"] = o.m_Temperature;
     if(o.topPIsSet())
         j["top_p"] = o.m_Top_p;
-    if(o.NIsSet())
-        j["n"] = o.m_n;
-    if(o.streamIsSet())
-        j["stream"] = o.m_Stream;
-    if(o.logprobsIsSet())
-        j["logprobs"] = o.m_Logprobs;
-    if(o.echoIsSet())
-        j["echo"] = o.m_Echo;
-    if(o.stopIsSet())
-        j["stop"] = o.m_Stop;
-    if(o.presencePenaltyIsSet())
-        j["presence_penalty"] = o.m_Presence_penalty;
-    if(o.frequencyPenaltyIsSet())
-        j["frequency_penalty"] = o.m_Frequency_penalty;
-    if(o.bestOfIsSet())
-        j["best_of"] = o.m_Best_of;
-    if(o.logitBiasIsSet())
-        j["logit_bias"] = o.m_Logit_bias;
     if(o.userIsSet())
         j["user"] = o.m_User;
     
@@ -329,15 +355,65 @@ void from_json(const nlohmann::json& j, CreateCompletionRequest& o)
 {
     j.at("model").get_to(o.m_Model);
     j.at("prompt").get_to(o.m_Prompt);
-    if(j.find("suffix") != j.end())
+    if(j.find("best_of") != j.end())
     {
-        j.at("suffix").get_to(o.m_Suffix);
-        o.m_SuffixIsSet = true;
+        j.at("best_of").get_to(o.m_Best_of);
+        o.m_Best_ofIsSet = true;
+    } 
+    if(j.find("echo") != j.end())
+    {
+        j.at("echo").get_to(o.m_Echo);
+        o.m_EchoIsSet = true;
+    } 
+    if(j.find("frequency_penalty") != j.end())
+    {
+        j.at("frequency_penalty").get_to(o.m_Frequency_penalty);
+        o.m_Frequency_penaltyIsSet = true;
+    } 
+    if(j.find("logit_bias") != j.end())
+    {
+        j.at("logit_bias").get_to(o.m_Logit_bias);
+        o.m_Logit_biasIsSet = true;
+    } 
+    if(j.find("logprobs") != j.end())
+    {
+        j.at("logprobs").get_to(o.m_Logprobs);
+        o.m_LogprobsIsSet = true;
     } 
     if(j.find("max_tokens") != j.end())
     {
         j.at("max_tokens").get_to(o.m_Max_tokens);
         o.m_Max_tokensIsSet = true;
+    } 
+    if(j.find("n") != j.end())
+    {
+        j.at("n").get_to(o.m_n);
+        o.m_nIsSet = true;
+    } 
+    if(j.find("presence_penalty") != j.end())
+    {
+        j.at("presence_penalty").get_to(o.m_Presence_penalty);
+        o.m_Presence_penaltyIsSet = true;
+    } 
+    if(j.find("seed") != j.end())
+    {
+        j.at("seed").get_to(o.m_Seed);
+        o.m_SeedIsSet = true;
+    } 
+    if(j.find("stop") != j.end())
+    {
+        j.at("stop").get_to(o.m_Stop);
+        o.m_StopIsSet = true;
+    } 
+    if(j.find("stream") != j.end())
+    {
+        j.at("stream").get_to(o.m_Stream);
+        o.m_StreamIsSet = true;
+    } 
+    if(j.find("suffix") != j.end())
+    {
+        j.at("suffix").get_to(o.m_Suffix);
+        o.m_SuffixIsSet = true;
     } 
     if(j.find("temperature") != j.end())
     {
@@ -348,51 +424,6 @@ void from_json(const nlohmann::json& j, CreateCompletionRequest& o)
     {
         j.at("top_p").get_to(o.m_Top_p);
         o.m_Top_pIsSet = true;
-    } 
-    if(j.find("n") != j.end())
-    {
-        j.at("n").get_to(o.m_n);
-        o.m_nIsSet = true;
-    } 
-    if(j.find("stream") != j.end())
-    {
-        j.at("stream").get_to(o.m_Stream);
-        o.m_StreamIsSet = true;
-    } 
-    if(j.find("logprobs") != j.end())
-    {
-        j.at("logprobs").get_to(o.m_Logprobs);
-        o.m_LogprobsIsSet = true;
-    } 
-    if(j.find("echo") != j.end())
-    {
-        j.at("echo").get_to(o.m_Echo);
-        o.m_EchoIsSet = true;
-    } 
-    if(j.find("stop") != j.end())
-    {
-        j.at("stop").get_to(o.m_Stop);
-        o.m_StopIsSet = true;
-    } 
-    if(j.find("presence_penalty") != j.end())
-    {
-        j.at("presence_penalty").get_to(o.m_Presence_penalty);
-        o.m_Presence_penaltyIsSet = true;
-    } 
-    if(j.find("frequency_penalty") != j.end())
-    {
-        j.at("frequency_penalty").get_to(o.m_Frequency_penalty);
-        o.m_Frequency_penaltyIsSet = true;
-    } 
-    if(j.find("best_of") != j.end())
-    {
-        j.at("best_of").get_to(o.m_Best_of);
-        o.m_Best_ofIsSet = true;
-    } 
-    if(j.find("logit_bias") != j.end())
-    {
-        j.at("logit_bias").get_to(o.m_Logit_bias);
-        o.m_Logit_biasIsSet = true;
     } 
     if(j.find("user") != j.end())
     {
@@ -418,22 +449,90 @@ void CreateCompletionRequest::setPrompt(org::openapitools::server::model::Create
 {
     m_Prompt = value;
 }
-std::string CreateCompletionRequest::getSuffix() const
+int32_t CreateCompletionRequest::getBestOf() const
 {
-    return m_Suffix;
+    return m_Best_of;
 }
-void CreateCompletionRequest::setSuffix(std::string const& value)
+void CreateCompletionRequest::setBestOf(int32_t const value)
 {
-    m_Suffix = value;
-    m_SuffixIsSet = true;
+    m_Best_of = value;
+    m_Best_ofIsSet = true;
 }
-bool CreateCompletionRequest::suffixIsSet() const
+bool CreateCompletionRequest::bestOfIsSet() const
 {
-    return m_SuffixIsSet;
+    return m_Best_ofIsSet;
 }
-void CreateCompletionRequest::unsetSuffix()
+void CreateCompletionRequest::unsetBest_of()
 {
-    m_SuffixIsSet = false;
+    m_Best_ofIsSet = false;
+}
+bool CreateCompletionRequest::isEcho() const
+{
+    return m_Echo;
+}
+void CreateCompletionRequest::setEcho(bool const value)
+{
+    m_Echo = value;
+    m_EchoIsSet = true;
+}
+bool CreateCompletionRequest::echoIsSet() const
+{
+    return m_EchoIsSet;
+}
+void CreateCompletionRequest::unsetEcho()
+{
+    m_EchoIsSet = false;
+}
+double CreateCompletionRequest::getFrequencyPenalty() const
+{
+    return m_Frequency_penalty;
+}
+void CreateCompletionRequest::setFrequencyPenalty(double const value)
+{
+    m_Frequency_penalty = value;
+    m_Frequency_penaltyIsSet = true;
+}
+bool CreateCompletionRequest::frequencyPenaltyIsSet() const
+{
+    return m_Frequency_penaltyIsSet;
+}
+void CreateCompletionRequest::unsetFrequency_penalty()
+{
+    m_Frequency_penaltyIsSet = false;
+}
+std::map<std::string, int32_t> CreateCompletionRequest::getLogitBias() const
+{
+    return m_Logit_bias;
+}
+void CreateCompletionRequest::setLogitBias(std::map<std::string, int32_t> const value)
+{
+    m_Logit_bias = value;
+    m_Logit_biasIsSet = true;
+}
+bool CreateCompletionRequest::logitBiasIsSet() const
+{
+    return m_Logit_biasIsSet;
+}
+void CreateCompletionRequest::unsetLogit_bias()
+{
+    m_Logit_biasIsSet = false;
+}
+int32_t CreateCompletionRequest::getLogprobs() const
+{
+    return m_Logprobs;
+}
+void CreateCompletionRequest::setLogprobs(int32_t const value)
+{
+    m_Logprobs = value;
+    m_LogprobsIsSet = true;
+}
+bool CreateCompletionRequest::logprobsIsSet() const
+{
+    return m_LogprobsIsSet;
+}
+void CreateCompletionRequest::unsetLogprobs()
+{
+    m_LogprobsIsSet = false;
 }
 int32_t CreateCompletionRequest::getMaxTokens() const
 {
@@ -451,6 +550,108 @@ bool CreateCompletionRequest::maxTokensIsSet() const
 void CreateCompletionRequest::unsetMax_tokens()
 {
     m_Max_tokensIsSet = false;
+}
+int32_t CreateCompletionRequest::getN() const
+{
+    return m_n;
+}
+void CreateCompletionRequest::setN(int32_t const value)
+{
+    m_n = value;
+    m_nIsSet = true;
+}
+bool CreateCompletionRequest::NIsSet() const
+{
+    return m_nIsSet;
+}
+void CreateCompletionRequest::unsetn()
+{
+    m_nIsSet = false;
+}
+double CreateCompletionRequest::getPresencePenalty() const
+{
+    return m_Presence_penalty;
+}
+void CreateCompletionRequest::setPresencePenalty(double const value)
+{
+    m_Presence_penalty = value;
+    m_Presence_penaltyIsSet = true;
+}
+bool CreateCompletionRequest::presencePenaltyIsSet() const
+{
+    return m_Presence_penaltyIsSet;
+}
+void CreateCompletionRequest::unsetPresence_penalty()
+{
+    m_Presence_penaltyIsSet = false;
+}
+int32_t CreateCompletionRequest::getSeed() const
+{
+    return m_Seed;
+}
+void CreateCompletionRequest::setSeed(int32_t const value)
+{
+    m_Seed = value;
+    m_SeedIsSet = true;
+}
+bool CreateCompletionRequest::seedIsSet() const
+{
+    return m_SeedIsSet;
+}
+void CreateCompletionRequest::unsetSeed()
+{
+    m_SeedIsSet = false;
+}
+org::openapitools::server::model::CreateCompletionRequest_stop CreateCompletionRequest::getStop() const
+{
+    return m_Stop;
+}
+void CreateCompletionRequest::setStop(org::openapitools::server::model::CreateCompletionRequest_stop const& value)
+{
+    m_Stop = value;
+    m_StopIsSet = true;
+}
+bool CreateCompletionRequest::stopIsSet() const
+{
+    return m_StopIsSet;
+}
+void CreateCompletionRequest::unsetStop()
+{
+    m_StopIsSet = false;
+}
+bool CreateCompletionRequest::isStream() const
+{
+    return m_Stream;
+}
+void CreateCompletionRequest::setStream(bool const value)
+{
+    m_Stream = value;
+    m_StreamIsSet = true;
+}
+bool CreateCompletionRequest::streamIsSet() const
+{
+    return m_StreamIsSet;
+}
+void CreateCompletionRequest::unsetStream()
+{
+    m_StreamIsSet = false;
+}
+std::string CreateCompletionRequest::getSuffix() const
+{
+    return m_Suffix;
+}
+void CreateCompletionRequest::setSuffix(std::string const& value)
+{
+    m_Suffix = value;
+    m_SuffixIsSet = true;
+}
+bool CreateCompletionRequest::suffixIsSet() const
+{
+    return m_SuffixIsSet;
+}
+void CreateCompletionRequest::unsetSuffix()
+{
+    m_SuffixIsSet = false;
 }
 double CreateCompletionRequest::getTemperature() const
 {
@@ -485,159 +686,6 @@ bool CreateCompletionRequest::topPIsSet() const
 void CreateCompletionRequest::unsetTop_p()
 {
     m_Top_pIsSet = false;
-}
-int32_t CreateCompletionRequest::getN() const
-{
-    return m_n;
-}
-void CreateCompletionRequest::setN(int32_t const value)
-{
-    m_n = value;
-    m_nIsSet = true;
-}
-bool CreateCompletionRequest::NIsSet() const
-{
-    return m_nIsSet;
-}
-void CreateCompletionRequest::unsetn()
-{
-    m_nIsSet = false;
-}
-bool CreateCompletionRequest::isStream() const
-{
-    return m_Stream;
-}
-void CreateCompletionRequest::setStream(bool const value)
-{
-    m_Stream = value;
-    m_StreamIsSet = true;
-}
-bool CreateCompletionRequest::streamIsSet() const
-{
-    return m_StreamIsSet;
-}
-void CreateCompletionRequest::unsetStream()
-{
-    m_StreamIsSet = false;
-}
-int32_t CreateCompletionRequest::getLogprobs() const
-{
-    return m_Logprobs;
-}
-void CreateCompletionRequest::setLogprobs(int32_t const value)
-{
-    m_Logprobs = value;
-    m_LogprobsIsSet = true;
-}
-bool CreateCompletionRequest::logprobsIsSet() const
-{
-    return m_LogprobsIsSet;
-}
-void CreateCompletionRequest::unsetLogprobs()
-{
-    m_LogprobsIsSet = false;
-}
-bool CreateCompletionRequest::isEcho() const
-{
-    return m_Echo;
-}
-void CreateCompletionRequest::setEcho(bool const value)
-{
-    m_Echo = value;
-    m_EchoIsSet = true;
-}
-bool CreateCompletionRequest::echoIsSet() const
-{
-    return m_EchoIsSet;
-}
-void CreateCompletionRequest::unsetEcho()
-{
-    m_EchoIsSet = false;
-}
-org::openapitools::server::model::CreateCompletionRequest_stop CreateCompletionRequest::getStop() const
-{
-    return m_Stop;
-}
-void CreateCompletionRequest::setStop(org::openapitools::server::model::CreateCompletionRequest_stop const& value)
-{
-    m_Stop = value;
-    m_StopIsSet = true;
-}
-bool CreateCompletionRequest::stopIsSet() const
-{
-    return m_StopIsSet;
-}
-void CreateCompletionRequest::unsetStop()
-{
-    m_StopIsSet = false;
-}
-double CreateCompletionRequest::getPresencePenalty() const
-{
-    return m_Presence_penalty;
-}
-void CreateCompletionRequest::setPresencePenalty(double const value)
-{
-    m_Presence_penalty = value;
-    m_Presence_penaltyIsSet = true;
-}
-bool CreateCompletionRequest::presencePenaltyIsSet() const
-{
-    return m_Presence_penaltyIsSet;
-}
-void CreateCompletionRequest::unsetPresence_penalty()
-{
-    m_Presence_penaltyIsSet = false;
-}
-double CreateCompletionRequest::getFrequencyPenalty() const
-{
-    return m_Frequency_penalty;
-}
-void CreateCompletionRequest::setFrequencyPenalty(double const value)
-{
-    m_Frequency_penalty = value;
-    m_Frequency_penaltyIsSet = true;
-}
-bool CreateCompletionRequest::frequencyPenaltyIsSet() const
-{
-    return m_Frequency_penaltyIsSet;
-}
-void CreateCompletionRequest::unsetFrequency_penalty()
-{
-    m_Frequency_penaltyIsSet = false;
-}
-int32_t CreateCompletionRequest::getBestOf() const
-{
-    return m_Best_of;
-}
-void CreateCompletionRequest::setBestOf(int32_t const value)
-{
-    m_Best_of = value;
-    m_Best_ofIsSet = true;
-}
-bool CreateCompletionRequest::bestOfIsSet() const
-{
-    return m_Best_ofIsSet;
-}
-void CreateCompletionRequest::unsetBest_of()
-{
-    m_Best_ofIsSet = false;
-}
-org::openapitools::server::model::Object CreateCompletionRequest::getLogitBias() const
-{
-    return m_Logit_bias;
-}
-void CreateCompletionRequest::setLogitBias(org::openapitools::server::model::Object const& value)
-{
-    m_Logit_bias = value;
-    m_Logit_biasIsSet = true;
-}
-bool CreateCompletionRequest::logitBiasIsSet() const
-{
-    return m_Logit_biasIsSet;
-}
-void CreateCompletionRequest::unsetLogit_bias()
-{
-    m_Logit_biasIsSet = false;
 }
 std::string CreateCompletionRequest::getUser() const
 {

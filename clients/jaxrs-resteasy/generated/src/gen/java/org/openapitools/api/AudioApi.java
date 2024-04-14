@@ -7,9 +7,10 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
 
 import java.math.BigDecimal;
+import org.openapitools.model.CreateSpeechRequest;
+import org.openapitools.model.CreateTranscription200Response;
 import org.openapitools.model.CreateTranscriptionRequestModel;
-import org.openapitools.model.CreateTranscriptionResponse;
-import org.openapitools.model.CreateTranslationResponse;
+import org.openapitools.model.CreateTranslation200Response;
 import java.io.File;
 
 import java.util.Map;
@@ -33,18 +34,33 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 
 @io.swagger.annotations.Api(description = "the audio API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-16T01:13:37.006745963Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-04-14T13:41:51.736364282Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class AudioApi  {
 
     @Inject AudioApiService service;
 
     @POST
+    @Path("/speech")
+    @Consumes({ "application/json" })
+    @Produces({ "application/octet-stream" })
+    @io.swagger.annotations.ApiOperation(value = "Generates audio from the input text.", notes = "", response = File.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Audio", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = File.class) })
+    public Response createSpeech(@ApiParam(value = "" ,required=true) @NotNull @Valid CreateSpeechRequest createSpeechRequest,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.createSpeech(createSpeechRequest,securityContext);
+    }
+    @POST
     @Path("/transcriptions")
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Transcribes audio into the input language.", notes = "", response = CreateTranscriptionResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Transcribes audio into the input language.", notes = "", response = CreateTranscription200Response.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Audio", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = CreateTranscriptionResponse.class) })
+        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = CreateTranscription200Response.class) })
     public Response createTranscription(MultipartFormDataInput input,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.createTranscription(input,securityContext);
@@ -53,9 +69,11 @@ public class AudioApi  {
     @Path("/translations")
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Translates audio into English.", notes = "", response = CreateTranslationResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Translates audio into English.", notes = "", response = CreateTranslation200Response.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Audio", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = CreateTranslationResponse.class) })
+        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = CreateTranslation200Response.class) })
     public Response createTranslation(MultipartFormDataInput input,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.createTranslation(input,securityContext);

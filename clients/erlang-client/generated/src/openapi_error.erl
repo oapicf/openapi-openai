@@ -5,19 +5,19 @@
 -export_type([openapi_error/0]).
 
 -type openapi_error() ::
-    #{ 'type' := binary(),
+    #{ 'code' := binary(),
        'message' := binary(),
        'param' := binary(),
-       'code' := binary()
+       'type' := binary()
      }.
 
-encode(#{ 'type' := Type,
+encode(#{ 'code' := Code,
           'message' := Message,
           'param' := Param,
-          'code' := Code
+          'type' := Type
         }) ->
-    #{ 'type' => Type,
+    #{ 'code' => Code,
        'message' => Message,
        'param' => Param,
-       'code' => Code
+       'type' => Type
      }.

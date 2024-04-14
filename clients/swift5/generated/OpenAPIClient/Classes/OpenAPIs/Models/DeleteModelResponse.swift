@@ -13,19 +13,19 @@ import AnyCodable
 public struct DeleteModelResponse: Codable, JSONEncodable, Hashable {
 
     public var id: String
-    public var object: String
     public var deleted: Bool
+    public var object: String
 
-    public init(id: String, object: String, deleted: Bool) {
+    public init(id: String, deleted: Bool, object: String) {
         self.id = id
-        self.object = object
         self.deleted = deleted
+        self.object = object
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
-        case object
         case deleted
+        case object
     }
 
     // Encodable protocol methods
@@ -33,8 +33,8 @@ public struct DeleteModelResponse: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(object, forKey: .object)
         try container.encode(deleted, forKey: .deleted)
+        try container.encode(object, forKey: .object)
     }
 }
 

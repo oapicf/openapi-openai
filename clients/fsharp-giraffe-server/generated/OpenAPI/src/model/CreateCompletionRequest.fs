@@ -9,6 +9,7 @@ open OpenAPI.Model.bool option
 open OpenAPI.Model.decimal option
 open OpenAPI.Model.int option
 open OpenAPI.Model.string option
+open System.Collections.Generic
 
 module CreateCompletionRequest =
 
@@ -18,19 +19,20 @@ module CreateCompletionRequest =
   type CreateCompletionRequest = {
     Model : CreateCompletionRequestModel;
     Prompt : CreateCompletionRequestPrompt;
-    Suffix : string option;
+    BestOf : int option;
+    Echo : bool option;
+    FrequencyPenalty : decimal option;
+    LogitBias : IDictionary<string, int>;
+    Logprobs : int option;
     MaxTokens : int option;
+    N : int option;
+    PresencePenalty : decimal option;
+    Seed : int option;
+    Stop : CreateCompletionRequestStop;
+    Stream : bool option;
+    Suffix : string option;
     Temperature : decimal option;
     TopP : decimal option;
-    N : int option;
-    Stream : bool option;
-    Logprobs : int option;
-    Echo : bool option;
-    Stop : CreateCompletionRequestStop;
-    PresencePenalty : decimal option;
-    FrequencyPenalty : decimal option;
-    BestOf : int option;
-    LogitBias : obj;
     User : string;
   }
   //#endregion

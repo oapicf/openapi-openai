@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -13,25 +13,53 @@ require "json"
 require "time"
 
 module OpenAPIClient
+  # Describes an OpenAI model offering that can be used with the API.
   class Model
     include JSON::Serializable
 
     # Required properties
+    # The model identifier, which can be referenced in the API endpoints.
     @[JSON::Field(key: "id", type: String, nillable: false, emit_null: false)]
     property id : String
 
-    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
-    property object : String
-
+    # The Unix timestamp (in seconds) when the model was created.
     @[JSON::Field(key: "created", type: Int32, nillable: false, emit_null: false)]
     property created : Int32
 
+    # The object type, which is always \"model\".
+    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
+    property object : String
+
+    # The organization that owns the model.
     @[JSON::Field(key: "owned_by", type: String, nillable: false, emit_null: false)]
     property owned_by : String
 
+    class EnumAttributeValidator
+      getter datatype : String
+      getter allowable_values : Array(String)
+
+      def initialize(datatype, allowable_values)
+        @datatype = datatype
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.includes?(value)
+      end
+    end
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@id : String, @object : String, @created : Int32, @owned_by : String)
+    def initialize(@id : String, @created : Int32, @object : String, @owned_by : String)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -44,7 +72,19 @@ module OpenAPIClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      object_validator = EnumAttributeValidator.new("String", ["model"])
+      return false unless object_validator.valid?(@object)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] object Object to be assigned
+    def object=(object)
+      validator = EnumAttributeValidator.new("String", ["model"])
+      unless validator.valid?(object)
+        raise ArgumentError.new("invalid value for \"object\", must be one of #{validator.allowable_values}.")
+      end
+      @object = object
     end
 
     # Checks equality by comparing each attribute.
@@ -53,8 +93,8 @@ module OpenAPIClient
       return true if self.same?(o)
       self.class == o.class &&
           id == o.id &&
-          object == o.object &&
           created == o.created &&
+          object == o.object &&
           owned_by == o.owned_by
     end
 
@@ -67,7 +107,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, object, created, owned_by].hash
+      [id, created, object, owned_by].hash
     end
 
     # Builds the object from hash

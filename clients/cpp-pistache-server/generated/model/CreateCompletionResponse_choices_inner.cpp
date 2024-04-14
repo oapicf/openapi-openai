@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -21,9 +21,9 @@ namespace org::openapitools::server::model
 
 CreateCompletionResponse_choices_inner::CreateCompletionResponse_choices_inner()
 {
-    m_Text = "";
-    m_Index = 0;
     m_Finish_reason = "";
+    m_Index = 0;
+    m_Text = "";
     
 }
 
@@ -59,7 +59,7 @@ bool CreateCompletionResponse_choices_inner::operator==(const CreateCompletionRe
     return
     
     
-    (getText() == rhs.getText())
+    (getFinishReason() == rhs.getFinishReason())
      &&
     
     (getIndex() == rhs.getIndex())
@@ -68,7 +68,7 @@ bool CreateCompletionResponse_choices_inner::operator==(const CreateCompletionRe
     (getLogprobs() == rhs.getLogprobs())
      &&
     
-    (getFinishReason() == rhs.getFinishReason())
+    (getText() == rhs.getText())
     
     
     ;
@@ -82,29 +82,29 @@ bool CreateCompletionResponse_choices_inner::operator!=(const CreateCompletionRe
 void to_json(nlohmann::json& j, const CreateCompletionResponse_choices_inner& o)
 {
     j = nlohmann::json::object();
-    j["text"] = o.m_Text;
+    j["finish_reason"] = o.m_Finish_reason;
     j["index"] = o.m_Index;
     j["logprobs"] = o.m_Logprobs;
-    j["finish_reason"] = o.m_Finish_reason;
+    j["text"] = o.m_Text;
     
 }
 
 void from_json(const nlohmann::json& j, CreateCompletionResponse_choices_inner& o)
 {
-    j.at("text").get_to(o.m_Text);
+    j.at("finish_reason").get_to(o.m_Finish_reason);
     j.at("index").get_to(o.m_Index);
     j.at("logprobs").get_to(o.m_Logprobs);
-    j.at("finish_reason").get_to(o.m_Finish_reason);
+    j.at("text").get_to(o.m_Text);
     
 }
 
-std::string CreateCompletionResponse_choices_inner::getText() const
+std::string CreateCompletionResponse_choices_inner::getFinishReason() const
 {
-    return m_Text;
+    return m_Finish_reason;
 }
-void CreateCompletionResponse_choices_inner::setText(std::string const& value)
+void CreateCompletionResponse_choices_inner::setFinishReason(std::string const& value)
 {
-    m_Text = value;
+    m_Finish_reason = value;
 }
 int32_t CreateCompletionResponse_choices_inner::getIndex() const
 {
@@ -122,13 +122,13 @@ void CreateCompletionResponse_choices_inner::setLogprobs(org::openapitools::serv
 {
     m_Logprobs = value;
 }
-std::string CreateCompletionResponse_choices_inner::getFinishReason() const
+std::string CreateCompletionResponse_choices_inner::getText() const
 {
-    return m_Finish_reason;
+    return m_Text;
 }
-void CreateCompletionResponse_choices_inner::setFinishReason(std::string const& value)
+void CreateCompletionResponse_choices_inner::setText(std::string const& value)
 {
-    m_Finish_reason = value;
+    m_Text = value;
 }
 
 

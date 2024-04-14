@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -40,8 +40,20 @@ void OAICreateModerationResponse_results_inner_categories::initializeModel() {
     m_hate_threatening_isSet = false;
     m_hate_threatening_isValid = false;
 
+    m_harassment_isSet = false;
+    m_harassment_isValid = false;
+
+    m_harassment_threatening_isSet = false;
+    m_harassment_threatening_isValid = false;
+
     m_self_harm_isSet = false;
     m_self_harm_isValid = false;
+
+    m_self_harm_intent_isSet = false;
+    m_self_harm_intent_isValid = false;
+
+    m_self_harm_instructions_isSet = false;
+    m_self_harm_instructions_isValid = false;
 
     m_sexual_isSet = false;
     m_sexual_isValid = false;
@@ -71,8 +83,20 @@ void OAICreateModerationResponse_results_inner_categories::fromJsonObject(QJsonO
     m_hate_threatening_isValid = ::OpenAPI::fromJsonValue(hate_threatening, json[QString("hate/threatening")]);
     m_hate_threatening_isSet = !json[QString("hate/threatening")].isNull() && m_hate_threatening_isValid;
 
+    m_harassment_isValid = ::OpenAPI::fromJsonValue(harassment, json[QString("harassment")]);
+    m_harassment_isSet = !json[QString("harassment")].isNull() && m_harassment_isValid;
+
+    m_harassment_threatening_isValid = ::OpenAPI::fromJsonValue(harassment_threatening, json[QString("harassment/threatening")]);
+    m_harassment_threatening_isSet = !json[QString("harassment/threatening")].isNull() && m_harassment_threatening_isValid;
+
     m_self_harm_isValid = ::OpenAPI::fromJsonValue(self_harm, json[QString("self-harm")]);
     m_self_harm_isSet = !json[QString("self-harm")].isNull() && m_self_harm_isValid;
+
+    m_self_harm_intent_isValid = ::OpenAPI::fromJsonValue(self_harm_intent, json[QString("self-harm/intent")]);
+    m_self_harm_intent_isSet = !json[QString("self-harm/intent")].isNull() && m_self_harm_intent_isValid;
+
+    m_self_harm_instructions_isValid = ::OpenAPI::fromJsonValue(self_harm_instructions, json[QString("self-harm/instructions")]);
+    m_self_harm_instructions_isSet = !json[QString("self-harm/instructions")].isNull() && m_self_harm_instructions_isValid;
 
     m_sexual_isValid = ::OpenAPI::fromJsonValue(sexual, json[QString("sexual")]);
     m_sexual_isSet = !json[QString("sexual")].isNull() && m_sexual_isValid;
@@ -102,8 +126,20 @@ QJsonObject OAICreateModerationResponse_results_inner_categories::asJsonObject()
     if (m_hate_threatening_isSet) {
         obj.insert(QString("hate/threatening"), ::OpenAPI::toJsonValue(hate_threatening));
     }
+    if (m_harassment_isSet) {
+        obj.insert(QString("harassment"), ::OpenAPI::toJsonValue(harassment));
+    }
+    if (m_harassment_threatening_isSet) {
+        obj.insert(QString("harassment/threatening"), ::OpenAPI::toJsonValue(harassment_threatening));
+    }
     if (m_self_harm_isSet) {
         obj.insert(QString("self-harm"), ::OpenAPI::toJsonValue(self_harm));
+    }
+    if (m_self_harm_intent_isSet) {
+        obj.insert(QString("self-harm/intent"), ::OpenAPI::toJsonValue(self_harm_intent));
+    }
+    if (m_self_harm_instructions_isSet) {
+        obj.insert(QString("self-harm/instructions"), ::OpenAPI::toJsonValue(self_harm_instructions));
     }
     if (m_sexual_isSet) {
         obj.insert(QString("sexual"), ::OpenAPI::toJsonValue(sexual));
@@ -152,6 +188,38 @@ bool OAICreateModerationResponse_results_inner_categories::is_hate_threatening_V
     return m_hate_threatening_isValid;
 }
 
+bool OAICreateModerationResponse_results_inner_categories::isHarassment() const {
+    return harassment;
+}
+void OAICreateModerationResponse_results_inner_categories::setHarassment(const bool &harassment) {
+    this->harassment = harassment;
+    this->m_harassment_isSet = true;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::is_harassment_Set() const{
+    return m_harassment_isSet;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::is_harassment_Valid() const{
+    return m_harassment_isValid;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::isHarassmentThreatening() const {
+    return harassment_threatening;
+}
+void OAICreateModerationResponse_results_inner_categories::setHarassmentThreatening(const bool &harassment_threatening) {
+    this->harassment_threatening = harassment_threatening;
+    this->m_harassment_threatening_isSet = true;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::is_harassment_threatening_Set() const{
+    return m_harassment_threatening_isSet;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::is_harassment_threatening_Valid() const{
+    return m_harassment_threatening_isValid;
+}
+
 bool OAICreateModerationResponse_results_inner_categories::isSelfHarm() const {
     return self_harm;
 }
@@ -166,6 +234,38 @@ bool OAICreateModerationResponse_results_inner_categories::is_self_harm_Set() co
 
 bool OAICreateModerationResponse_results_inner_categories::is_self_harm_Valid() const{
     return m_self_harm_isValid;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::isSelfHarmIntent() const {
+    return self_harm_intent;
+}
+void OAICreateModerationResponse_results_inner_categories::setSelfHarmIntent(const bool &self_harm_intent) {
+    this->self_harm_intent = self_harm_intent;
+    this->m_self_harm_intent_isSet = true;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::is_self_harm_intent_Set() const{
+    return m_self_harm_intent_isSet;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::is_self_harm_intent_Valid() const{
+    return m_self_harm_intent_isValid;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::isSelfHarmInstructions() const {
+    return self_harm_instructions;
+}
+void OAICreateModerationResponse_results_inner_categories::setSelfHarmInstructions(const bool &self_harm_instructions) {
+    this->self_harm_instructions = self_harm_instructions;
+    this->m_self_harm_instructions_isSet = true;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::is_self_harm_instructions_Set() const{
+    return m_self_harm_instructions_isSet;
+}
+
+bool OAICreateModerationResponse_results_inner_categories::is_self_harm_instructions_Valid() const{
+    return m_self_harm_instructions_isValid;
 }
 
 bool OAICreateModerationResponse_results_inner_categories::isSexual() const {
@@ -245,7 +345,27 @@ bool OAICreateModerationResponse_results_inner_categories::isSet() const {
             break;
         }
 
+        if (m_harassment_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_harassment_threatening_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (m_self_harm_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_self_harm_intent_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_self_harm_instructions_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -275,7 +395,7 @@ bool OAICreateModerationResponse_results_inner_categories::isSet() const {
 
 bool OAICreateModerationResponse_results_inner_categories::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_hate_isValid && m_hate_threatening_isValid && m_self_harm_isValid && m_sexual_isValid && m_sexual_minors_isValid && m_violence_isValid && m_violence_graphic_isValid && true;
+    return m_hate_isValid && m_hate_threatening_isValid && m_harassment_isValid && m_harassment_threatening_isValid && m_self_harm_isValid && m_self_harm_intent_isValid && m_self_harm_instructions_isValid && m_sexual_isValid && m_sexual_minors_isValid && m_violence_isValid && m_violence_graphic_isValid && true;
 }
 
 } // namespace OpenAPI

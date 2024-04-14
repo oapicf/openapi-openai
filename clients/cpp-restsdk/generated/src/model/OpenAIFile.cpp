@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,18 +25,19 @@ OpenAIFile::OpenAIFile()
 {
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_object = utility::conversions::to_string_t("");
-    m_objectIsSet = false;
     m_Bytes = 0;
     m_BytesIsSet = false;
     m_Created_at = 0;
     m_Created_atIsSet = false;
     m_Filename = utility::conversions::to_string_t("");
     m_FilenameIsSet = false;
+    m_object = utility::conversions::to_string_t("");
+    m_objectIsSet = false;
     m_Purpose = utility::conversions::to_string_t("");
     m_PurposeIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
+    m_Status_details = utility::conversions::to_string_t("");
     m_Status_detailsIsSet = false;
 }
 
@@ -58,10 +59,6 @@ web::json::value OpenAIFile::toJson() const
     {
         val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
     }
-    if(m_objectIsSet)
-    {
-        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
-    }
     if(m_BytesIsSet)
     {
         val[utility::conversions::to_string_t(U("bytes"))] = ModelBase::toJson(m_Bytes);
@@ -73,6 +70,10 @@ web::json::value OpenAIFile::toJson() const
     if(m_FilenameIsSet)
     {
         val[utility::conversions::to_string_t(U("filename"))] = ModelBase::toJson(m_Filename);
+    }
+    if(m_objectIsSet)
+    {
+        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
     }
     if(m_PurposeIsSet)
     {
@@ -102,16 +103,6 @@ bool OpenAIFile::fromJson(const web::json::value& val)
             utility::string_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("object"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setObject;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
-            setObject(refVal_setObject);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("bytes"))))
@@ -144,6 +135,16 @@ bool OpenAIFile::fromJson(const web::json::value& val)
             setFilename(refVal_setFilename);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("object"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setObject;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
+            setObject(refVal_setObject);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("purpose"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("purpose")));
@@ -169,7 +170,7 @@ bool OpenAIFile::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("status_details")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> refVal_setStatusDetails;
+            utility::string_t refVal_setStatusDetails;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStatusDetails);
             setStatusDetails(refVal_setStatusDetails);
         }
@@ -188,10 +189,6 @@ void OpenAIFile::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
     }
-    if(m_objectIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
-    }
     if(m_BytesIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bytes")), m_Bytes));
@@ -203,6 +200,10 @@ void OpenAIFile::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_FilenameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("filename")), m_Filename));
+    }
+    if(m_objectIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
     }
     if(m_PurposeIsSet)
     {
@@ -233,12 +234,6 @@ bool OpenAIFile::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
         setId(refVal_setId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
-    {
-        utility::string_t refVal_setObject;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
-        setObject(refVal_setObject);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("bytes"))))
     {
         int32_t refVal_setBytes;
@@ -257,6 +252,12 @@ bool OpenAIFile::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("filename"))), refVal_setFilename );
         setFilename(refVal_setFilename);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
+    {
+        utility::string_t refVal_setObject;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
+        setObject(refVal_setObject);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("purpose"))))
     {
         utility::string_t refVal_setPurpose;
@@ -271,7 +272,7 @@ bool OpenAIFile::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("status_details"))))
     {
-        std::shared_ptr<Object> refVal_setStatusDetails;
+        utility::string_t refVal_setStatusDetails;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("status_details"))), refVal_setStatusDetails );
         setStatusDetails(refVal_setStatusDetails);
     }
@@ -297,26 +298,6 @@ bool OpenAIFile::idIsSet() const
 void OpenAIFile::unsetId()
 {
     m_IdIsSet = false;
-}
-utility::string_t OpenAIFile::getObject() const
-{
-    return m_object;
-}
-
-void OpenAIFile::setObject(const utility::string_t& value)
-{
-    m_object = value;
-    m_objectIsSet = true;
-}
-
-bool OpenAIFile::objectIsSet() const
-{
-    return m_objectIsSet;
-}
-
-void OpenAIFile::unsetobject()
-{
-    m_objectIsSet = false;
 }
 int32_t OpenAIFile::getBytes() const
 {
@@ -378,6 +359,26 @@ void OpenAIFile::unsetFilename()
 {
     m_FilenameIsSet = false;
 }
+utility::string_t OpenAIFile::getObject() const
+{
+    return m_object;
+}
+
+void OpenAIFile::setObject(const utility::string_t& value)
+{
+    m_object = value;
+    m_objectIsSet = true;
+}
+
+bool OpenAIFile::objectIsSet() const
+{
+    return m_objectIsSet;
+}
+
+void OpenAIFile::unsetobject()
+{
+    m_objectIsSet = false;
+}
 utility::string_t OpenAIFile::getPurpose() const
 {
     return m_Purpose;
@@ -418,12 +419,12 @@ void OpenAIFile::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-std::shared_ptr<Object> OpenAIFile::getStatusDetails() const
+utility::string_t OpenAIFile::getStatusDetails() const
 {
     return m_Status_details;
 }
 
-void OpenAIFile::setStatusDetails(const std::shared_ptr<Object>& value)
+void OpenAIFile::setStatusDetails(const utility::string_t& value)
 {
     m_Status_details = value;
     m_Status_detailsIsSet = true;

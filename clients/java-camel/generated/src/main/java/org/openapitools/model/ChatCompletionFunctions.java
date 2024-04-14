@@ -18,14 +18,15 @@ import javax.annotation.Generated;
 
 /**
  * ChatCompletionFunctions
+ * @deprecated
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-16T01:13:12.257183065Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-04-14T13:40:33.442815767Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ChatCompletionFunctions {
 
-  private String name;
-
   private String description;
+
+  private String name;
 
   @Valid
   private Map<String, Object> parameters = new HashMap<>();
@@ -39,6 +40,26 @@ public class ChatCompletionFunctions {
    */
   public ChatCompletionFunctions(String name) {
     this.name = name;
+  }
+
+  public ChatCompletionFunctions description(String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * A description of what the function does, used by the model to choose when and how to call the function.
+   * @return description
+  */
+  
+  @Schema(name = "description", description = "A description of what the function does, used by the model to choose when and how to call the function.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public ChatCompletionFunctions name(String name) {
@@ -61,26 +82,6 @@ public class ChatCompletionFunctions {
     this.name = name;
   }
 
-  public ChatCompletionFunctions description(String description) {
-    this.description = description;
-    return this;
-  }
-
-  /**
-   * The description of what the function does.
-   * @return description
-  */
-  
-  @Schema(name = "description", description = "The description of what the function does.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("description")
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
   public ChatCompletionFunctions parameters(Map<String, Object> parameters) {
     this.parameters = parameters;
     return this;
@@ -95,11 +96,11 @@ public class ChatCompletionFunctions {
   }
 
   /**
-   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
    * @return parameters
   */
   
-  @Schema(name = "parameters", description = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "parameters", description = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("parameters")
   public Map<String, Object> getParameters() {
     return parameters;
@@ -118,22 +119,22 @@ public class ChatCompletionFunctions {
       return false;
     }
     ChatCompletionFunctions chatCompletionFunctions = (ChatCompletionFunctions) o;
-    return Objects.equals(this.name, chatCompletionFunctions.name) &&
-        Objects.equals(this.description, chatCompletionFunctions.description) &&
+    return Objects.equals(this.description, chatCompletionFunctions.description) &&
+        Objects.equals(this.name, chatCompletionFunctions.name) &&
         Objects.equals(this.parameters, chatCompletionFunctions.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, parameters);
+    return Objects.hash(description, name, parameters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChatCompletionFunctions {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();

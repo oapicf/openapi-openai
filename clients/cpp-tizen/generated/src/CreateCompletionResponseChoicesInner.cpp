@@ -23,19 +23,19 @@ CreateCompletionResponse_choices_inner::~CreateCompletionResponse_choices_inner(
 void
 CreateCompletionResponse_choices_inner::__init()
 {
-	//text = std::string();
+	//finish_reason = std::string();
 	//index = int(0);
 	//logprobs = new CreateCompletionResponse_choices_inner_logprobs();
-	//finish_reason = std::string();
+	//text = std::string();
 }
 
 void
 CreateCompletionResponse_choices_inner::__cleanup()
 {
-	//if(text != NULL) {
+	//if(finish_reason != NULL) {
 	//
-	//delete text;
-	//text = NULL;
+	//delete finish_reason;
+	//finish_reason = NULL;
 	//}
 	//if(index != NULL) {
 	//
@@ -47,10 +47,10 @@ CreateCompletionResponse_choices_inner::__cleanup()
 	//delete logprobs;
 	//logprobs = NULL;
 	//}
-	//if(finish_reason != NULL) {
+	//if(text != NULL) {
 	//
-	//delete finish_reason;
-	//finish_reason = NULL;
+	//delete text;
+	//text = NULL;
 	//}
 	//
 }
@@ -60,13 +60,13 @@ CreateCompletionResponse_choices_inner::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
-	const gchar *textKey = "text";
-	node = json_object_get_member(pJsonObject, textKey);
+	const gchar *finish_reasonKey = "finish_reason";
+	node = json_object_get_member(pJsonObject, finish_reasonKey);
 	if (node !=NULL) {
 	
 
 		if (isprimitive("std::string")) {
-			jsonToValue(&text, node, "std::string", "");
+			jsonToValue(&finish_reason, node, "std::string", "");
 		} else {
 			
 		}
@@ -96,13 +96,13 @@ CreateCompletionResponse_choices_inner::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *finish_reasonKey = "finish_reason";
-	node = json_object_get_member(pJsonObject, finish_reasonKey);
+	const gchar *textKey = "text";
+	node = json_object_get_member(pJsonObject, textKey);
 	if (node !=NULL) {
 	
 
 		if (isprimitive("std::string")) {
-			jsonToValue(&finish_reason, node, "std::string", "");
+			jsonToValue(&text, node, "std::string", "");
 		} else {
 			
 		}
@@ -120,14 +120,14 @@ CreateCompletionResponse_choices_inner::toJson()
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
 	if (isprimitive("std::string")) {
-		std::string obj = getText();
+		std::string obj = getFinishReason();
 		node = converttoJson(&obj, "std::string", "");
 	}
 	else {
 		
 	}
-	const gchar *textKey = "text";
-	json_object_set_member(pJsonObject, textKey, node);
+	const gchar *finish_reasonKey = "finish_reason";
+	json_object_set_member(pJsonObject, finish_reasonKey, node);
 	if (isprimitive("int")) {
 		int obj = getIndex();
 		node = converttoJson(&obj, "int", "");
@@ -152,14 +152,14 @@ CreateCompletionResponse_choices_inner::toJson()
 	const gchar *logprobsKey = "logprobs";
 	json_object_set_member(pJsonObject, logprobsKey, node);
 	if (isprimitive("std::string")) {
-		std::string obj = getFinishReason();
+		std::string obj = getText();
 		node = converttoJson(&obj, "std::string", "");
 	}
 	else {
 		
 	}
-	const gchar *finish_reasonKey = "finish_reason";
-	json_object_set_member(pJsonObject, finish_reasonKey, node);
+	const gchar *textKey = "text";
+	json_object_set_member(pJsonObject, textKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -169,15 +169,15 @@ CreateCompletionResponse_choices_inner::toJson()
 }
 
 std::string
-CreateCompletionResponse_choices_inner::getText()
+CreateCompletionResponse_choices_inner::getFinishReason()
 {
-	return text;
+	return finish_reason;
 }
 
 void
-CreateCompletionResponse_choices_inner::setText(std::string  text)
+CreateCompletionResponse_choices_inner::setFinishReason(std::string  finish_reason)
 {
-	this->text = text;
+	this->finish_reason = finish_reason;
 }
 
 int
@@ -205,15 +205,15 @@ CreateCompletionResponse_choices_inner::setLogprobs(CreateCompletionResponse_cho
 }
 
 std::string
-CreateCompletionResponse_choices_inner::getFinishReason()
+CreateCompletionResponse_choices_inner::getText()
 {
-	return finish_reason;
+	return text;
 }
 
 void
-CreateCompletionResponse_choices_inner::setFinishReason(std::string  finish_reason)
+CreateCompletionResponse_choices_inner::setText(std::string  text)
 {
-	this->finish_reason = finish_reason;
+	this->text = text;
 }
 
 

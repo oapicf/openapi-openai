@@ -5,11 +5,11 @@ context("Test CreateCompletionResponseChoicesInnerLogprobs")
 
 model_instance <- CreateCompletionResponseChoicesInnerLogprobs$new()
 
-test_that("tokens", {
-  # tests for the property `tokens` (array[character])
+test_that("text_offset", {
+  # tests for the property `text_offset` (array[integer])
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`tokens`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`text_offset`, "EXPECTED_RESULT")
 })
 
 test_that("token_logprobs", {
@@ -19,16 +19,16 @@ test_that("token_logprobs", {
   #expect_equal(model.instance$`token_logprobs`, "EXPECTED_RESULT")
 })
 
+test_that("tokens", {
+  # tests for the property `tokens` (array[character])
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`tokens`, "EXPECTED_RESULT")
+})
+
 test_that("top_logprobs", {
-  # tests for the property `top_logprobs` (array[object])
+  # tests for the property `top_logprobs` (array[map(numeric)])
 
   # uncomment below to test the property
   #expect_equal(model.instance$`top_logprobs`, "EXPECTED_RESULT")
-})
-
-test_that("text_offset", {
-  # tests for the property `text_offset` (array[integer])
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`text_offset`, "EXPECTED_RESULT")
 })

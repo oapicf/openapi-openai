@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * CreateModerationResponse_results_inner_category_scores.h
  *
- * 
+ * A list of the categories along with their scores as predicted by model.
  */
 
 #ifndef CreateModerationResponse_results_inner_category_scores_H_
@@ -32,7 +32,7 @@ namespace server {
 namespace model {
 
 /// <summary>
-/// 
+/// A list of the categories along with their scores as predicted by model.
 /// </summary>
 class  CreateModerationResponse_results_inner_category_scores 
 {
@@ -57,43 +57,67 @@ public:
     /// CreateModerationResponse_results_inner_category_scores members
 
     /// <summary>
-    /// 
+    /// The score for the category &#39;hate&#39;.
     /// </summary>
     double getHate() const;
     void setHate(double value);
 
     /// <summary>
-    /// 
+    /// The score for the category &#39;hate/threatening&#39;.
     /// </summary>
     double getHateThreatening() const;
     void setHateThreatening(double value);
 
     /// <summary>
-    /// 
+    /// The score for the category &#39;harassment&#39;.
+    /// </summary>
+    double getHarassment() const;
+    void setHarassment(double value);
+
+    /// <summary>
+    /// The score for the category &#39;harassment/threatening&#39;.
+    /// </summary>
+    double getHarassmentThreatening() const;
+    void setHarassmentThreatening(double value);
+
+    /// <summary>
+    /// The score for the category &#39;self-harm&#39;.
     /// </summary>
     double getSelfHarm() const;
     void setSelfHarm(double value);
 
     /// <summary>
-    /// 
+    /// The score for the category &#39;self-harm/intent&#39;.
+    /// </summary>
+    double getSelfHarmIntent() const;
+    void setSelfHarmIntent(double value);
+
+    /// <summary>
+    /// The score for the category &#39;self-harm/instructions&#39;.
+    /// </summary>
+    double getSelfHarmInstructions() const;
+    void setSelfHarmInstructions(double value);
+
+    /// <summary>
+    /// The score for the category &#39;sexual&#39;.
     /// </summary>
     double getSexual() const;
     void setSexual(double value);
 
     /// <summary>
-    /// 
+    /// The score for the category &#39;sexual/minors&#39;.
     /// </summary>
     double getSexualMinors() const;
     void setSexualMinors(double value);
 
     /// <summary>
-    /// 
+    /// The score for the category &#39;violence&#39;.
     /// </summary>
     double getViolence() const;
     void setViolence(double value);
 
     /// <summary>
-    /// 
+    /// The score for the category &#39;violence/graphic&#39;.
     /// </summary>
     double getViolenceGraphic() const;
     void setViolenceGraphic(double value);
@@ -101,7 +125,11 @@ public:
 protected:
     double m_Hate = 0.0;
     double m_Hate_threatening = 0.0;
+    double m_Harassment = 0.0;
+    double m_Harassment_threatening = 0.0;
     double m_Self_harm = 0.0;
+    double m_Self_harm_intent = 0.0;
+    double m_Self_harm_instructions = 0.0;
     double m_Sexual = 0.0;
     double m_Sexual_minors = 0.0;
     double m_Violence = 0.0;

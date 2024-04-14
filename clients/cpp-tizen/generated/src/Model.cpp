@@ -24,8 +24,8 @@ void
 Model::__init()
 {
 	//id = std::string();
-	//object = std::string();
 	//created = int(0);
+	//object = std::string();
 	//owned_by = std::string();
 }
 
@@ -37,15 +37,15 @@ Model::__cleanup()
 	//delete id;
 	//id = NULL;
 	//}
-	//if(object != NULL) {
-	//
-	//delete object;
-	//object = NULL;
-	//}
 	//if(created != NULL) {
 	//
 	//delete created;
 	//created = NULL;
+	//}
+	//if(object != NULL) {
+	//
+	//delete object;
+	//object = NULL;
 	//}
 	//if(owned_by != NULL) {
 	//
@@ -71,17 +71,6 @@ Model::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *objectKey = "object";
-	node = json_object_get_member(pJsonObject, objectKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&object, node, "std::string", "");
-		} else {
-			
-		}
-	}
 	const gchar *createdKey = "created";
 	node = json_object_get_member(pJsonObject, createdKey);
 	if (node !=NULL) {
@@ -89,6 +78,17 @@ Model::fromJson(char* jsonStr)
 
 		if (isprimitive("int")) {
 			jsonToValue(&created, node, "int", "");
+		} else {
+			
+		}
+	}
+	const gchar *objectKey = "object";
+	node = json_object_get_member(pJsonObject, objectKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&object, node, "std::string", "");
 		} else {
 			
 		}
@@ -125,15 +125,6 @@ Model::toJson()
 	}
 	const gchar *idKey = "id";
 	json_object_set_member(pJsonObject, idKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getObject();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *objectKey = "object";
-	json_object_set_member(pJsonObject, objectKey, node);
 	if (isprimitive("int")) {
 		int obj = getCreated();
 		node = converttoJson(&obj, "int", "");
@@ -143,6 +134,15 @@ Model::toJson()
 	}
 	const gchar *createdKey = "created";
 	json_object_set_member(pJsonObject, createdKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getObject();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *objectKey = "object";
+	json_object_set_member(pJsonObject, objectKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getOwnedBy();
 		node = converttoJson(&obj, "std::string", "");
@@ -172,18 +172,6 @@ Model::setId(std::string  id)
 	this->id = id;
 }
 
-std::string
-Model::getObject()
-{
-	return object;
-}
-
-void
-Model::setObject(std::string  object)
-{
-	this->object = object;
-}
-
 int
 Model::getCreated()
 {
@@ -194,6 +182,18 @@ void
 Model::setCreated(int  created)
 {
 	this->created = created;
+}
+
+std::string
+Model::getObject()
+{
+	return object;
+}
+
+void
+Model::setObject(std::string  object)
+{
+	this->object = object;
 }
 
 std::string

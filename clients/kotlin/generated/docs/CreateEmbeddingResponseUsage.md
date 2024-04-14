@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**promptTokens** | **kotlin.Int** |  | 
-**totalTokens** | **kotlin.Int** |  | 
+**promptTokens** | **kotlin.Int** | The number of tokens used by the prompt. | 
+**totalTokens** | **kotlin.Int** | The total number of tokens used by the request. | 
 
 
 

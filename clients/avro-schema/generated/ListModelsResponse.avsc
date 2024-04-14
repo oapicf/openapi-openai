@@ -6,7 +6,13 @@
   "fields": [
     {
       "name": "object",
-      "type": "string",
+      "type": {
+        "type": "enum",
+        "name": "ListModelsResponse_object",
+        "symbols": [
+          "list"
+        ]
+      },
       "doc": ""
     },
     {

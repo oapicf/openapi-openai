@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,12 +12,30 @@
 package org.openapitools.client.model
 
 
+  /**
+   * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
+   */
 case class CreateCompletionResponse(
+  /* A unique identifier for the completion. */
   id: String,
-  `object`: String,
-  created: Int,
-  model: String,
+  /* The list of completion choices the model generated for the input prompt. */
   choices: Seq[CreateCompletionResponseChoicesInner],
-  usage: Option[CreateCompletionResponseUsage] = None
+  /* The Unix timestamp (in seconds) of when the completion was created. */
+  created: Int,
+  /* The model used for completion. */
+  model: String,
+  /* This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
+  systemFingerprint: Option[String] = None,
+  /* The object type, which is always \"text_completion\" */
+  `object`: CreateCompletionResponseEnums.`Object`,
+  usage: Option[CompletionUsage] = None
 )
 
+object CreateCompletionResponseEnums {
+
+  type `Object` = `Object`.Value
+  object `Object` extends Enumeration {
+    val TextCompletion = Value("text_completion")
+  }
+
+}

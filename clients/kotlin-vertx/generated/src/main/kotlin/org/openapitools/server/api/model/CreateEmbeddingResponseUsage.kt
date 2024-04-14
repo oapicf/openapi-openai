@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -17,14 +17,16 @@ import com.google.gson.annotations.SerializedName
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
- * 
- * @param promptTokens 
- * @param totalTokens 
+ * The usage information for the request.
+ * @param promptTokens The number of tokens used by the prompt.
+ * @param totalTokens The total number of tokens used by the request.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateEmbeddingResponseUsage (
+    /* The number of tokens used by the prompt. */
     @SerializedName("promptTokens") private val _promptTokens: kotlin.Int?,
+    /* The total number of tokens used by the request. */
     @SerializedName("totalTokens") private val _totalTokens: kotlin.Int?
 ) {
 

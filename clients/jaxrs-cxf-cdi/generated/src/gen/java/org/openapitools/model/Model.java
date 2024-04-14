@@ -7,23 +7,58 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+/**
+ * Describes an OpenAI model offering that can be used with the API.
+ **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-
+@ApiModel(description = "Describes an OpenAI model offering that can be used with the API.")
 public class Model   {
   
   private String id;
 
-  private String _object;
-
   private Integer created;
+
+
+public enum ObjectEnum {
+
+    @JsonProperty("model") MODEL(String.valueOf("model"));
+
+
+    private String value;
+
+    ObjectEnum(String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private ObjectEnum _object;
 
   private String ownedBy;
 
   /**
+   * The model identifier, which can be referenced in the API endpoints.
    **/
   public Model id(String id) {
     this.id = id;
@@ -31,7 +66,7 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model identifier, which can be referenced in the API endpoints.")
   @JsonProperty("id")
   @NotNull
   public String getId() {
@@ -43,25 +78,7 @@ public class Model   {
 
 
   /**
-   **/
-  public Model _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-  
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("object")
-  @NotNull
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-
-  /**
+   * The Unix timestamp (in seconds) when the model was created.
    **/
   public Model created(Integer created) {
     this.created = created;
@@ -69,7 +86,7 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) when the model was created.")
   @JsonProperty("created")
   @NotNull
   public Integer getCreated() {
@@ -81,6 +98,27 @@ public class Model   {
 
 
   /**
+   * The object type, which is always \&quot;model\&quot;.
+   **/
+  public Model _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The object type, which is always \"model\".")
+  @JsonProperty("object")
+  @NotNull
+  public ObjectEnum getObject() {
+    return _object;
+  }
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+
+  /**
+   * The organization that owns the model.
    **/
   public Model ownedBy(String ownedBy) {
     this.ownedBy = ownedBy;
@@ -88,7 +126,7 @@ public class Model   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The organization that owns the model.")
   @JsonProperty("owned_by")
   @NotNull
   public String getOwnedBy() {
@@ -110,14 +148,14 @@ public class Model   {
     }
     Model model = (Model) o;
     return Objects.equals(this.id, model.id) &&
-        Objects.equals(this._object, model._object) &&
         Objects.equals(this.created, model.created) &&
+        Objects.equals(this._object, model._object) &&
         Objects.equals(this.ownedBy, model.ownedBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, ownedBy);
+    return Objects.hash(id, created, _object, ownedBy);
   }
 
   @Override
@@ -126,8 +164,8 @@ public class Model   {
     sb.append("class Model {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    ownedBy: ").append(toIndentedString(ownedBy)).append("\n");
     sb.append("}");
     return sb.toString();

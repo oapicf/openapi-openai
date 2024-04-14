@@ -13,7 +13,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * ID of the model to use. Only `whisper-1` is currently available. 
+ * ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available. 
  */
 class CreateTranscriptionRequestModel(
 

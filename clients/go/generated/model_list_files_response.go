@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -22,8 +22,8 @@ var _ MappedNullable = &ListFilesResponse{}
 
 // ListFilesResponse struct for ListFilesResponse
 type ListFilesResponse struct {
-	Object string `json:"object"`
 	Data []OpenAIFile `json:"data"`
+	Object string `json:"object"`
 }
 
 type _ListFilesResponse ListFilesResponse
@@ -32,10 +32,10 @@ type _ListFilesResponse ListFilesResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListFilesResponse(object string, data []OpenAIFile) *ListFilesResponse {
+func NewListFilesResponse(data []OpenAIFile, object string) *ListFilesResponse {
 	this := ListFilesResponse{}
-	this.Object = object
 	this.Data = data
+	this.Object = object
 	return &this
 }
 
@@ -45,30 +45,6 @@ func NewListFilesResponse(object string, data []OpenAIFile) *ListFilesResponse {
 func NewListFilesResponseWithDefaults() *ListFilesResponse {
 	this := ListFilesResponse{}
 	return &this
-}
-
-// GetObject returns the Object field value
-func (o *ListFilesResponse) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *ListFilesResponse) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *ListFilesResponse) SetObject(v string) {
-	o.Object = v
 }
 
 // GetData returns the Data field value
@@ -95,6 +71,30 @@ func (o *ListFilesResponse) SetData(v []OpenAIFile) {
 	o.Data = v
 }
 
+// GetObject returns the Object field value
+func (o *ListFilesResponse) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *ListFilesResponse) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *ListFilesResponse) SetObject(v string) {
+	o.Object = v
+}
+
 func (o ListFilesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -105,8 +105,8 @@ func (o ListFilesResponse) MarshalJSON() ([]byte, error) {
 
 func (o ListFilesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
 	toSerialize["data"] = o.Data
+	toSerialize["object"] = o.Object
 	return toSerialize, nil
 }
 
@@ -115,8 +115,8 @@ func (o *ListFilesResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"object",
 		"data",
+		"object",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,7 +15,10 @@ package org.openapitools.client.model;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
-@ApiModel(description = "")
+/**
+ * The usage information for the request.
+ **/
+@ApiModel(description = "The usage information for the request.")
 public class CreateEmbeddingResponseUsage {
   
   @SerializedName("prompt_tokens")
@@ -24,8 +27,9 @@ public class CreateEmbeddingResponseUsage {
   private Integer totalTokens = null;
 
   /**
+   * The number of tokens used by the prompt.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The number of tokens used by the prompt.")
   public Integer getPromptTokens() {
     return promptTokens;
   }
@@ -34,8 +38,9 @@ public class CreateEmbeddingResponseUsage {
   }
 
   /**
+   * The total number of tokens used by the request.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The total number of tokens used by the request.")
   public Integer getTotalTokens() {
     return totalTokens;
   }

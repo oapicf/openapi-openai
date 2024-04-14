@@ -8,9 +8,12 @@ module ListModelsResponse =
 
   //#region ListModelsResponse
 
+  //#region enums
+  type ObjectEnum = ListEnum of string  
+  //#endregion
 
   type ListModelsResponse = {
-    Object : string;
+    Object : ObjectEnum;
     Data : Model[];
   }
   //#endregion

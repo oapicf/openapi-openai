@@ -12,10 +12,10 @@ module ChatCompletionFunctions =
 
   [<CLIMutable>]
   type ChatCompletionFunctions = {
-    [<JsonProperty(PropertyName = "name")>]
-    Name : string;
     [<JsonProperty(PropertyName = "description")>]
     Description : string;
+    [<JsonProperty(PropertyName = "name")>]
+    Name : string;
     [<JsonProperty(PropertyName = "parameters")>]
     Parameters : IDictionary<string, AnyType>;
   }

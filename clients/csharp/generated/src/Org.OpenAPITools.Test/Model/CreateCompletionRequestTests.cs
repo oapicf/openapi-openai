@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -74,12 +74,48 @@ namespace Org.OpenAPITools.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Suffix'
+        /// Test the property 'BestOf'
         /// </summary>
         [Fact]
-        public void SuffixTest()
+        public void BestOfTest()
         {
-            // TODO unit test for the property 'Suffix'
+            // TODO unit test for the property 'BestOf'
+        }
+
+        /// <summary>
+        /// Test the property 'Echo'
+        /// </summary>
+        [Fact]
+        public void EchoTest()
+        {
+            // TODO unit test for the property 'Echo'
+        }
+
+        /// <summary>
+        /// Test the property 'FrequencyPenalty'
+        /// </summary>
+        [Fact]
+        public void FrequencyPenaltyTest()
+        {
+            // TODO unit test for the property 'FrequencyPenalty'
+        }
+
+        /// <summary>
+        /// Test the property 'LogitBias'
+        /// </summary>
+        [Fact]
+        public void LogitBiasTest()
+        {
+            // TODO unit test for the property 'LogitBias'
+        }
+
+        /// <summary>
+        /// Test the property 'Logprobs'
+        /// </summary>
+        [Fact]
+        public void LogprobsTest()
+        {
+            // TODO unit test for the property 'Logprobs'
         }
 
         /// <summary>
@@ -89,6 +125,60 @@ namespace Org.OpenAPITools.Test.Model
         public void MaxTokensTest()
         {
             // TODO unit test for the property 'MaxTokens'
+        }
+
+        /// <summary>
+        /// Test the property 'N'
+        /// </summary>
+        [Fact]
+        public void NTest()
+        {
+            // TODO unit test for the property 'N'
+        }
+
+        /// <summary>
+        /// Test the property 'PresencePenalty'
+        /// </summary>
+        [Fact]
+        public void PresencePenaltyTest()
+        {
+            // TODO unit test for the property 'PresencePenalty'
+        }
+
+        /// <summary>
+        /// Test the property 'Seed'
+        /// </summary>
+        [Fact]
+        public void SeedTest()
+        {
+            // TODO unit test for the property 'Seed'
+        }
+
+        /// <summary>
+        /// Test the property 'Stop'
+        /// </summary>
+        [Fact]
+        public void StopTest()
+        {
+            // TODO unit test for the property 'Stop'
+        }
+
+        /// <summary>
+        /// Test the property 'Stream'
+        /// </summary>
+        [Fact]
+        public void StreamTest()
+        {
+            // TODO unit test for the property 'Stream'
+        }
+
+        /// <summary>
+        /// Test the property 'Suffix'
+        /// </summary>
+        [Fact]
+        public void SuffixTest()
+        {
+            // TODO unit test for the property 'Suffix'
         }
 
         /// <summary>
@@ -107,87 +197,6 @@ namespace Org.OpenAPITools.Test.Model
         public void TopPTest()
         {
             // TODO unit test for the property 'TopP'
-        }
-
-        /// <summary>
-        /// Test the property 'N'
-        /// </summary>
-        [Fact]
-        public void NTest()
-        {
-            // TODO unit test for the property 'N'
-        }
-
-        /// <summary>
-        /// Test the property 'Stream'
-        /// </summary>
-        [Fact]
-        public void StreamTest()
-        {
-            // TODO unit test for the property 'Stream'
-        }
-
-        /// <summary>
-        /// Test the property 'Logprobs'
-        /// </summary>
-        [Fact]
-        public void LogprobsTest()
-        {
-            // TODO unit test for the property 'Logprobs'
-        }
-
-        /// <summary>
-        /// Test the property 'Echo'
-        /// </summary>
-        [Fact]
-        public void EchoTest()
-        {
-            // TODO unit test for the property 'Echo'
-        }
-
-        /// <summary>
-        /// Test the property 'Stop'
-        /// </summary>
-        [Fact]
-        public void StopTest()
-        {
-            // TODO unit test for the property 'Stop'
-        }
-
-        /// <summary>
-        /// Test the property 'PresencePenalty'
-        /// </summary>
-        [Fact]
-        public void PresencePenaltyTest()
-        {
-            // TODO unit test for the property 'PresencePenalty'
-        }
-
-        /// <summary>
-        /// Test the property 'FrequencyPenalty'
-        /// </summary>
-        [Fact]
-        public void FrequencyPenaltyTest()
-        {
-            // TODO unit test for the property 'FrequencyPenalty'
-        }
-
-        /// <summary>
-        /// Test the property 'BestOf'
-        /// </summary>
-        [Fact]
-        public void BestOfTest()
-        {
-            // TODO unit test for the property 'BestOf'
-        }
-
-        /// <summary>
-        /// Test the property 'LogitBias'
-        /// </summary>
-        [Fact]
-        public void LogitBiasTest()
-        {
-            // TODO unit test for the property 'LogitBias'
         }
 
         /// <summary>

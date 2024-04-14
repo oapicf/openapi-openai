@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,14 +21,14 @@
 
 #include <QJsonObject>
 
-#include "OAIImagesResponse_data_inner.h"
+#include "OAIImage.h"
 #include <QList>
 
 #include "OAIEnum.h"
 #include "OAIObject.h"
 
 namespace OpenAPI {
-class OAIImagesResponse_data_inner;
+class OAIImage;
 
 class OAIImagesResponse : public OAIObject {
 public:
@@ -46,8 +46,8 @@ public:
     bool is_created_Set() const;
     bool is_created_Valid() const;
 
-    QList<OAIImagesResponse_data_inner> getData() const;
-    void setData(const QList<OAIImagesResponse_data_inner> &data);
+    QList<OAIImage> getData() const;
+    void setData(const QList<OAIImage> &data);
     bool is_data_Set() const;
     bool is_data_Valid() const;
 
@@ -61,7 +61,7 @@ private:
     bool m_created_isSet;
     bool m_created_isValid;
 
-    QList<OAIImagesResponse_data_inner> m_data;
+    QList<OAIImage> m_data;
     bool m_data_isSet;
     bool m_data_isValid;
 };

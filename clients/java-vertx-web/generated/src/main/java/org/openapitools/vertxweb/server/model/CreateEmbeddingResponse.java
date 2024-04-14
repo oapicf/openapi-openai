@@ -3,38 +3,57 @@ package org.openapitools.vertxweb.server.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.vertxweb.server.model.CreateEmbeddingResponseDataInner;
 import org.openapitools.vertxweb.server.model.CreateEmbeddingResponseUsage;
+import org.openapitools.vertxweb.server.model.Embedding;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateEmbeddingResponse   {
   
-  private String _object;
+  private List<Embedding> data = new ArrayList<>();
   private String model;
-  private List<CreateEmbeddingResponseDataInner> data = new ArrayList<>();
+
+
+  public enum ObjectEnum {
+    LIST("list");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private ObjectEnum _object;
   private CreateEmbeddingResponseUsage usage;
 
   public CreateEmbeddingResponse () {
 
   }
 
-  public CreateEmbeddingResponse (String _object, String model, List<CreateEmbeddingResponseDataInner> data, CreateEmbeddingResponseUsage usage) {
-    this._object = _object;
-    this.model = model;
+  public CreateEmbeddingResponse (List<Embedding> data, String model, ObjectEnum _object, CreateEmbeddingResponseUsage usage) {
     this.data = data;
+    this.model = model;
+    this._object = _object;
     this.usage = usage;
   }
 
     
-  @JsonProperty("object")
-  public String getObject() {
-    return _object;
+  @JsonProperty("data")
+  public List<Embedding> getData() {
+    return data;
   }
-  public void setObject(String _object) {
-    this._object = _object;
+  public void setData(List<Embedding> data) {
+    this.data = data;
   }
 
     
@@ -47,12 +66,12 @@ public class CreateEmbeddingResponse   {
   }
 
     
-  @JsonProperty("data")
-  public List<CreateEmbeddingResponseDataInner> getData() {
-    return data;
+  @JsonProperty("object")
+  public ObjectEnum getObject() {
+    return _object;
   }
-  public void setData(List<CreateEmbeddingResponseDataInner> data) {
-    this.data = data;
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
   }
 
     
@@ -74,15 +93,15 @@ public class CreateEmbeddingResponse   {
       return false;
     }
     CreateEmbeddingResponse createEmbeddingResponse = (CreateEmbeddingResponse) o;
-    return Objects.equals(_object, createEmbeddingResponse._object) &&
+    return Objects.equals(data, createEmbeddingResponse.data) &&
         Objects.equals(model, createEmbeddingResponse.model) &&
-        Objects.equals(data, createEmbeddingResponse.data) &&
+        Objects.equals(_object, createEmbeddingResponse._object) &&
         Objects.equals(usage, createEmbeddingResponse.usage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_object, model, data, usage);
+    return Objects.hash(data, model, _object, usage);
   }
 
   @Override
@@ -90,9 +109,9 @@ public class CreateEmbeddingResponse   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateEmbeddingResponse {\n");
     
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
-    sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -11,14 +11,14 @@ module Error =
 
   [<CLIMutable>]
   type Error = {
-    [<JsonProperty(PropertyName = "type")>]
-    Type : string;
+    [<JsonProperty(PropertyName = "code")>]
+    Code : string option;
     [<JsonProperty(PropertyName = "message")>]
     Message : string;
     [<JsonProperty(PropertyName = "param")>]
     Param : string option;
-    [<JsonProperty(PropertyName = "code")>]
-    Code : string option;
+    [<JsonProperty(PropertyName = "type")>]
+    Type : string;
   }
 
   //#endregion

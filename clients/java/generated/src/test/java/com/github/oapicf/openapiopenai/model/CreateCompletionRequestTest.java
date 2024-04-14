@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,6 +24,8 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -59,11 +61,43 @@ public class CreateCompletionRequestTest {
     }
 
     /**
-     * Test the property 'suffix'
+     * Test the property 'bestOf'
      */
     @Test
-    public void suffixTest() {
-        // TODO: test suffix
+    public void bestOfTest() {
+        // TODO: test bestOf
+    }
+
+    /**
+     * Test the property 'echo'
+     */
+    @Test
+    public void echoTest() {
+        // TODO: test echo
+    }
+
+    /**
+     * Test the property 'frequencyPenalty'
+     */
+    @Test
+    public void frequencyPenaltyTest() {
+        // TODO: test frequencyPenalty
+    }
+
+    /**
+     * Test the property 'logitBias'
+     */
+    @Test
+    public void logitBiasTest() {
+        // TODO: test logitBias
+    }
+
+    /**
+     * Test the property 'logprobs'
+     */
+    @Test
+    public void logprobsTest() {
+        // TODO: test logprobs
     }
 
     /**
@@ -72,6 +106,54 @@ public class CreateCompletionRequestTest {
     @Test
     public void maxTokensTest() {
         // TODO: test maxTokens
+    }
+
+    /**
+     * Test the property 'n'
+     */
+    @Test
+    public void nTest() {
+        // TODO: test n
+    }
+
+    /**
+     * Test the property 'presencePenalty'
+     */
+    @Test
+    public void presencePenaltyTest() {
+        // TODO: test presencePenalty
+    }
+
+    /**
+     * Test the property 'seed'
+     */
+    @Test
+    public void seedTest() {
+        // TODO: test seed
+    }
+
+    /**
+     * Test the property 'stop'
+     */
+    @Test
+    public void stopTest() {
+        // TODO: test stop
+    }
+
+    /**
+     * Test the property 'stream'
+     */
+    @Test
+    public void streamTest() {
+        // TODO: test stream
+    }
+
+    /**
+     * Test the property 'suffix'
+     */
+    @Test
+    public void suffixTest() {
+        // TODO: test suffix
     }
 
     /**
@@ -88,78 +170,6 @@ public class CreateCompletionRequestTest {
     @Test
     public void topPTest() {
         // TODO: test topP
-    }
-
-    /**
-     * Test the property 'n'
-     */
-    @Test
-    public void nTest() {
-        // TODO: test n
-    }
-
-    /**
-     * Test the property 'stream'
-     */
-    @Test
-    public void streamTest() {
-        // TODO: test stream
-    }
-
-    /**
-     * Test the property 'logprobs'
-     */
-    @Test
-    public void logprobsTest() {
-        // TODO: test logprobs
-    }
-
-    /**
-     * Test the property 'echo'
-     */
-    @Test
-    public void echoTest() {
-        // TODO: test echo
-    }
-
-    /**
-     * Test the property 'stop'
-     */
-    @Test
-    public void stopTest() {
-        // TODO: test stop
-    }
-
-    /**
-     * Test the property 'presencePenalty'
-     */
-    @Test
-    public void presencePenaltyTest() {
-        // TODO: test presencePenalty
-    }
-
-    /**
-     * Test the property 'frequencyPenalty'
-     */
-    @Test
-    public void frequencyPenaltyTest() {
-        // TODO: test frequencyPenalty
-    }
-
-    /**
-     * Test the property 'bestOf'
-     */
-    @Test
-    public void bestOfTest() {
-        // TODO: test bestOf
-    }
-
-    /**
-     * Test the property 'logitBias'
-     */
-    @Test
-    public void logitBiasTest() {
-        // TODO: test logitBias
     }
 
     /**

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,20 +17,20 @@ import CreateCompletionResponseChoicesInnerLogprobs from './CreateCompletionResp
 /**
  * The CreateCompletionResponseChoicesInner model module.
  * @module model/CreateCompletionResponseChoicesInner
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateCompletionResponseChoicesInner {
     /**
      * Constructs a new <code>CreateCompletionResponseChoicesInner</code>.
      * @alias module:model/CreateCompletionResponseChoicesInner
-     * @param text {String} 
+     * @param finishReason {module:model/CreateCompletionResponseChoicesInner.FinishReasonEnum} The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
      * @param index {Number} 
      * @param logprobs {module:model/CreateCompletionResponseChoicesInnerLogprobs} 
-     * @param finishReason {module:model/CreateCompletionResponseChoicesInner.FinishReasonEnum} 
+     * @param text {String} 
      */
-    constructor(text, index, logprobs, finishReason) { 
+    constructor(finishReason, index, logprobs, text) { 
         
-        CreateCompletionResponseChoicesInner.initialize(this, text, index, logprobs, finishReason);
+        CreateCompletionResponseChoicesInner.initialize(this, finishReason, index, logprobs, text);
     }
 
     /**
@@ -38,11 +38,11 @@ class CreateCompletionResponseChoicesInner {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, text, index, logprobs, finishReason) { 
-        obj['text'] = text;
+    static initialize(obj, finishReason, index, logprobs, text) { 
+        obj['finish_reason'] = finishReason;
         obj['index'] = index;
         obj['logprobs'] = logprobs;
-        obj['finish_reason'] = finishReason;
+        obj['text'] = text;
     }
 
     /**
@@ -56,8 +56,8 @@ class CreateCompletionResponseChoicesInner {
         if (data) {
             obj = obj || new CreateCompletionResponseChoicesInner();
 
-            if (data.hasOwnProperty('text')) {
-                obj['text'] = ApiClient.convertToType(data['text'], 'String');
+            if (data.hasOwnProperty('finish_reason')) {
+                obj['finish_reason'] = ApiClient.convertToType(data['finish_reason'], 'String');
             }
             if (data.hasOwnProperty('index')) {
                 obj['index'] = ApiClient.convertToType(data['index'], 'Number');
@@ -65,8 +65,8 @@ class CreateCompletionResponseChoicesInner {
             if (data.hasOwnProperty('logprobs')) {
                 obj['logprobs'] = CreateCompletionResponseChoicesInnerLogprobs.constructFromObject(data['logprobs']);
             }
-            if (data.hasOwnProperty('finish_reason')) {
-                obj['finish_reason'] = ApiClient.convertToType(data['finish_reason'], 'String');
+            if (data.hasOwnProperty('text')) {
+                obj['text'] = ApiClient.convertToType(data['text'], 'String');
             }
         }
         return obj;
@@ -85,16 +85,16 @@ class CreateCompletionResponseChoicesInner {
             }
         }
         // ensure the json data is a string
-        if (data['text'] && !(typeof data['text'] === 'string' || data['text'] instanceof String)) {
-            throw new Error("Expected the field `text` to be a primitive type in the JSON string but got " + data['text']);
+        if (data['finish_reason'] && !(typeof data['finish_reason'] === 'string' || data['finish_reason'] instanceof String)) {
+            throw new Error("Expected the field `finish_reason` to be a primitive type in the JSON string but got " + data['finish_reason']);
         }
         // validate the optional field `logprobs`
         if (data['logprobs']) { // data not null
           CreateCompletionResponseChoicesInnerLogprobs.validateJSON(data['logprobs']);
         }
         // ensure the json data is a string
-        if (data['finish_reason'] && !(typeof data['finish_reason'] === 'string' || data['finish_reason'] instanceof String)) {
-            throw new Error("Expected the field `finish_reason` to be a primitive type in the JSON string but got " + data['finish_reason']);
+        if (data['text'] && !(typeof data['text'] === 'string' || data['text'] instanceof String)) {
+            throw new Error("Expected the field `text` to be a primitive type in the JSON string but got " + data['text']);
         }
 
         return true;
@@ -103,12 +103,13 @@ class CreateCompletionResponseChoicesInner {
 
 }
 
-CreateCompletionResponseChoicesInner.RequiredProperties = ["text", "index", "logprobs", "finish_reason"];
+CreateCompletionResponseChoicesInner.RequiredProperties = ["finish_reason", "index", "logprobs", "text"];
 
 /**
- * @member {String} text
+ * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+ * @member {module:model/CreateCompletionResponseChoicesInner.FinishReasonEnum} finish_reason
  */
-CreateCompletionResponseChoicesInner.prototype['text'] = undefined;
+CreateCompletionResponseChoicesInner.prototype['finish_reason'] = undefined;
 
 /**
  * @member {Number} index
@@ -121,9 +122,9 @@ CreateCompletionResponseChoicesInner.prototype['index'] = undefined;
 CreateCompletionResponseChoicesInner.prototype['logprobs'] = undefined;
 
 /**
- * @member {module:model/CreateCompletionResponseChoicesInner.FinishReasonEnum} finish_reason
+ * @member {String} text
  */
-CreateCompletionResponseChoicesInner.prototype['finish_reason'] = undefined;
+CreateCompletionResponseChoicesInner.prototype['text'] = undefined;
 
 
 
@@ -146,7 +147,13 @@ CreateCompletionResponseChoicesInner['FinishReasonEnum'] = {
      * value: "length"
      * @const
      */
-    "length": "length"
+    "length": "length",
+
+    /**
+     * value: "content_filter"
+     * @const
+     */
+    "content_filter": "content_filter"
 };
 
 

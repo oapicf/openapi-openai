@@ -3,7 +3,7 @@
 
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -25,13 +25,13 @@
 
 @interface OAIChatCompletionFunctions : OAIObject
 
+/* A description of what the function does, used by the model to choose when and how to call the function. [optional]
+ */
+@property(nonatomic) NSString* _description;
 /* The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. 
  */
 @property(nonatomic) NSString* name;
-/* The description of what the function does. [optional]
- */
-@property(nonatomic) NSString* _description;
-/* The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. [optional]
+/* The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. [optional]
  */
 @property(nonatomic) NSDictionary<OAIAnyType>* parameters;
 

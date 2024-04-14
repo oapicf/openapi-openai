@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -10,17 +10,39 @@
  * Do not edit the class manually.
  */
 
+import { CompletionUsage } from '../models/CompletionUsage';
 import { CreateChatCompletionResponseChoicesInner } from '../models/CreateChatCompletionResponseChoicesInner';
-import { CreateCompletionResponseUsage } from '../models/CreateCompletionResponseUsage';
 import { HttpFile } from '../http/http';
 
+/**
+* Represents a chat completion response returned by model, based on the provided input.
+*/
 export class CreateChatCompletionResponse {
+    /**
+    * A unique identifier for the chat completion.
+    */
     'id': string;
-    'object': string;
-    'created': number;
-    'model': string;
+    /**
+    * A list of chat completion choices. Can be more than one if `n` is greater than 1.
+    */
     'choices': Array<CreateChatCompletionResponseChoicesInner>;
-    'usage'?: CreateCompletionResponseUsage;
+    /**
+    * The Unix timestamp (in seconds) of when the chat completion was created.
+    */
+    'created': number;
+    /**
+    * The model used for the chat completion.
+    */
+    'model': string;
+    /**
+    * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+    */
+    'systemFingerprint'?: string;
+    /**
+    * The object type, which is always `chat.completion`.
+    */
+    'object': CreateChatCompletionResponseObjectEnum;
+    'usage'?: CompletionUsage;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -32,9 +54,9 @@ export class CreateChatCompletionResponse {
             "format": ""
         },
         {
-            "name": "object",
-            "baseName": "object",
-            "type": "string",
+            "name": "choices",
+            "baseName": "choices",
+            "type": "Array<CreateChatCompletionResponseChoicesInner>",
             "format": ""
         },
         {
@@ -50,15 +72,21 @@ export class CreateChatCompletionResponse {
             "format": ""
         },
         {
-            "name": "choices",
-            "baseName": "choices",
-            "type": "Array<CreateChatCompletionResponseChoicesInner>",
+            "name": "systemFingerprint",
+            "baseName": "system_fingerprint",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "object",
+            "baseName": "object",
+            "type": "CreateChatCompletionResponseObjectEnum",
             "format": ""
         },
         {
             "name": "usage",
             "baseName": "usage",
-            "type": "CreateCompletionResponseUsage",
+            "type": "CompletionUsage",
             "format": ""
         }    ];
 
@@ -68,5 +96,10 @@ export class CreateChatCompletionResponse {
 
     public constructor() {
     }
+}
+
+
+export enum CreateChatCompletionResponseObjectEnum {
+    ChatCompletion = 'chat.completion'
 }
 

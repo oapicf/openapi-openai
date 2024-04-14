@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,10 +25,10 @@ Model::Model()
 {
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_object = utility::conversions::to_string_t("");
-    m_objectIsSet = false;
     m_Created = 0;
     m_CreatedIsSet = false;
+    m_object = utility::conversions::to_string_t("");
+    m_objectIsSet = false;
     m_Owned_by = utility::conversions::to_string_t("");
     m_Owned_byIsSet = false;
 }
@@ -51,13 +51,13 @@ web::json::value Model::toJson() const
     {
         val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
     }
-    if(m_objectIsSet)
-    {
-        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
-    }
     if(m_CreatedIsSet)
     {
         val[utility::conversions::to_string_t(U("created"))] = ModelBase::toJson(m_Created);
+    }
+    if(m_objectIsSet)
+    {
+        val[utility::conversions::to_string_t(U("object"))] = ModelBase::toJson(m_object);
     }
     if(m_Owned_byIsSet)
     {
@@ -81,16 +81,6 @@ bool Model::fromJson(const web::json::value& val)
             setId(refVal_setId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("object"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setObject;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
-            setObject(refVal_setObject);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("created"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("created")));
@@ -99,6 +89,16 @@ bool Model::fromJson(const web::json::value& val)
             int32_t refVal_setCreated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreated);
             setCreated(refVal_setCreated);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("object"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("object")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setObject;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
+            setObject(refVal_setObject);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("owned_by"))))
@@ -125,13 +125,13 @@ void Model::toMultipart(std::shared_ptr<MultipartFormData> multipart, const util
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
     }
-    if(m_objectIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
-    }
     if(m_CreatedIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("created")), m_Created));
+    }
+    if(m_objectIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("object")), m_object));
     }
     if(m_Owned_byIsSet)
     {
@@ -154,17 +154,17 @@ bool Model::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
         setId(refVal_setId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
-    {
-        utility::string_t refVal_setObject;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
-        setObject(refVal_setObject);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("created"))))
     {
         int32_t refVal_setCreated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("created"))), refVal_setCreated );
         setCreated(refVal_setCreated);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("object"))))
+    {
+        utility::string_t refVal_setObject;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("object"))), refVal_setObject );
+        setObject(refVal_setObject);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("owned_by"))))
     {
@@ -195,26 +195,6 @@ void Model::unsetId()
 {
     m_IdIsSet = false;
 }
-utility::string_t Model::getObject() const
-{
-    return m_object;
-}
-
-void Model::setObject(const utility::string_t& value)
-{
-    m_object = value;
-    m_objectIsSet = true;
-}
-
-bool Model::objectIsSet() const
-{
-    return m_objectIsSet;
-}
-
-void Model::unsetobject()
-{
-    m_objectIsSet = false;
-}
 int32_t Model::getCreated() const
 {
     return m_Created;
@@ -234,6 +214,26 @@ bool Model::createdIsSet() const
 void Model::unsetCreated()
 {
     m_CreatedIsSet = false;
+}
+utility::string_t Model::getObject() const
+{
+    return m_object;
+}
+
+void Model::setObject(const utility::string_t& value)
+{
+    m_object = value;
+    m_objectIsSet = true;
+}
+
+bool Model::objectIsSet() const
+{
+    return m_objectIsSet;
+}
+
+void Model::unsetobject()
+{
+    m_objectIsSet = false;
 }
 utility::string_t Model::getOwnedBy() const
 {

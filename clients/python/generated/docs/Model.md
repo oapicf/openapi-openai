@@ -1,14 +1,15 @@
 # Model
 
+Describes an OpenAI model offering that can be used with the API.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**object** | **str** |  | 
-**created** | **int** |  | 
-**owned_by** | **str** |  | 
+**id** | **str** | The model identifier, which can be referenced in the API endpoints. | 
+**created** | **int** | The Unix timestamp (in seconds) when the model was created. | 
+**object** | **str** | The object type, which is always \&quot;model\&quot;. | 
+**owned_by** | **str** | The organization that owns the model. | 
 
 ## Example
 

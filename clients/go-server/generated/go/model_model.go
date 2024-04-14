@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,14 +13,19 @@ package openapi
 
 
 
+// Model - Describes an OpenAI model offering that can be used with the API.
 type Model struct {
 
+	// The model identifier, which can be referenced in the API endpoints.
 	Id string `json:"id"`
 
-	Object string `json:"object"`
-
+	// The Unix timestamp (in seconds) when the model was created.
 	Created int32 `json:"created"`
 
+	// The object type, which is always \"model\".
+	Object string `json:"object"`
+
+	// The organization that owns the model.
 	OwnedBy string `json:"owned_by"`
 }
 
@@ -28,8 +33,8 @@ type Model struct {
 func AssertModelRequired(obj Model) error {
 	elements := map[string]interface{}{
 		"id": obj.Id,
-		"object": obj.Object,
 		"created": obj.Created,
+		"object": obj.Object,
 		"owned_by": obj.OwnedBy,
 	}
 	for name, el := range elements {

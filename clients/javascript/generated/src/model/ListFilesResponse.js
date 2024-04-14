@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,18 +17,18 @@ import OpenAIFile from './OpenAIFile';
 /**
  * The ListFilesResponse model module.
  * @module model/ListFilesResponse
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class ListFilesResponse {
     /**
      * Constructs a new <code>ListFilesResponse</code>.
      * @alias module:model/ListFilesResponse
-     * @param object {String} 
      * @param data {Array.<module:model/OpenAIFile>} 
+     * @param object {module:model/ListFilesResponse.ObjectEnum} 
      */
-    constructor(object, data) { 
+    constructor(data, object) { 
         
-        ListFilesResponse.initialize(this, object, data);
+        ListFilesResponse.initialize(this, data, object);
     }
 
     /**
@@ -36,9 +36,9 @@ class ListFilesResponse {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, object, data) { 
-        obj['object'] = object;
+    static initialize(obj, data, object) { 
         obj['data'] = data;
+        obj['object'] = object;
     }
 
     /**
@@ -52,11 +52,11 @@ class ListFilesResponse {
         if (data) {
             obj = obj || new ListFilesResponse();
 
-            if (data.hasOwnProperty('object')) {
-                obj['object'] = ApiClient.convertToType(data['object'], 'String');
-            }
             if (data.hasOwnProperty('data')) {
                 obj['data'] = ApiClient.convertToType(data['data'], [OpenAIFile]);
+            }
+            if (data.hasOwnProperty('object')) {
+                obj['object'] = ApiClient.convertToType(data['object'], 'String');
             }
         }
         return obj;
@@ -74,10 +74,6 @@ class ListFilesResponse {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        // ensure the json data is a string
-        if (data['object'] && !(typeof data['object'] === 'string' || data['object'] instanceof String)) {
-            throw new Error("Expected the field `object` to be a primitive type in the JSON string but got " + data['object']);
-        }
         if (data['data']) { // data not null
             // ensure the json data is an array
             if (!Array.isArray(data['data'])) {
@@ -88,6 +84,10 @@ class ListFilesResponse {
                 OpenAIFile.validateJSON(item);
             };
         }
+        // ensure the json data is a string
+        if (data['object'] && !(typeof data['object'] === 'string' || data['object'] instanceof String)) {
+            throw new Error("Expected the field `object` to be a primitive type in the JSON string but got " + data['object']);
+        }
 
         return true;
     }
@@ -95,20 +95,35 @@ class ListFilesResponse {
 
 }
 
-ListFilesResponse.RequiredProperties = ["object", "data"];
-
-/**
- * @member {String} object
- */
-ListFilesResponse.prototype['object'] = undefined;
+ListFilesResponse.RequiredProperties = ["data", "object"];
 
 /**
  * @member {Array.<module:model/OpenAIFile>} data
  */
 ListFilesResponse.prototype['data'] = undefined;
 
+/**
+ * @member {module:model/ListFilesResponse.ObjectEnum} object
+ */
+ListFilesResponse.prototype['object'] = undefined;
 
 
+
+
+
+/**
+ * Allowed values for the <code>object</code> property.
+ * @enum {String}
+ * @readonly
+ */
+ListFilesResponse['ObjectEnum'] = {
+
+    /**
+     * value: "list"
+     * @const
+     */
+    "list": "list"
+};
 
 
 

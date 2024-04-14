@@ -13,7 +13,7 @@
       "name": "data",
       "type": {
         "type": "array",
-        "items": "model.ImagesResponseDataInner"
+        "items": "model.Image"
       },
       "doc": ""
     }

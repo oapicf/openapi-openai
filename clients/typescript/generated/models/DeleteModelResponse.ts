@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,8 +14,8 @@ import { HttpFile } from '../http/http';
 
 export class DeleteModelResponse {
     'id': string;
-    'object': string;
     'deleted': boolean;
+    'object': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,15 +27,15 @@ export class DeleteModelResponse {
             "format": ""
         },
         {
-            "name": "object",
-            "baseName": "object",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "deleted",
             "baseName": "deleted",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "object",
+            "baseName": "object",
+            "type": "string",
             "format": ""
         }    ];
 

@@ -1,16 +1,18 @@
 # CreateCompletionResponse
 
+Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**object** | **str** |  | 
-**created** | **int** |  | 
-**model** | **str** |  | 
-**choices** | [**List[CreateCompletionResponseChoicesInner]**](CreateCompletionResponseChoicesInner.md) |  | 
-**usage** | [**CreateCompletionResponseUsage**](CreateCompletionResponseUsage.md) |  | [optional] 
+**id** | **str** | A unique identifier for the completion. | 
+**choices** | [**List[CreateCompletionResponseChoicesInner]**](CreateCompletionResponseChoicesInner.md) | The list of completion choices the model generated for the input prompt. | 
+**created** | **int** | The Unix timestamp (in seconds) of when the completion was created. | 
+**model** | **str** | The model used for completion. | 
+**system_fingerprint** | **str** | This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism.  | [optional] 
+**object** | **str** | The object type, which is always \&quot;text_completion\&quot; | 
+**usage** | [**CompletionUsage**](CompletionUsage.md) |  | [optional] 
 
 ## Example
 

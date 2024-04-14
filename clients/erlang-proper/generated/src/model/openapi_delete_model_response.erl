@@ -10,8 +10,8 @@
 
 -type openapi_delete_model_response() ::
   [ {'id', binary() }
-  | {'object', binary() }
   | {'deleted', boolean() }
+  | {'object', binary() }
   ].
 
 
@@ -20,8 +20,8 @@ openapi_delete_model_response() ->
 
 openapi_delete_model_response(Fields) ->
   Default = [ {'id', binary() }
-            , {'object', binary() }
             , {'deleted', boolean() }
+            , {'object', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

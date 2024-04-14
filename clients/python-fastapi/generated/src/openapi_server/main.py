@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -15,12 +15,30 @@
 
 from fastapi import FastAPI
 
-from openapi_server.apis.open_ai_api import router as OpenAIApiRouter
+from openapi_server.apis.assistants_api import router as AssistantsApiRouter
+from openapi_server.apis.audio_api import router as AudioApiRouter
+from openapi_server.apis.chat_api import router as ChatApiRouter
+from openapi_server.apis.completions_api import router as CompletionsApiRouter
+from openapi_server.apis.embeddings_api import router as EmbeddingsApiRouter
+from openapi_server.apis.files_api import router as FilesApiRouter
+from openapi_server.apis.fine_tuning_api import router as FineTuningApiRouter
+from openapi_server.apis.images_api import router as ImagesApiRouter
+from openapi_server.apis.models_api import router as ModelsApiRouter
+from openapi_server.apis.moderations_api import router as ModerationsApiRouter
 
 app = FastAPI(
     title="OpenAI API",
-    description="APIs for sampling from and fine-tuning language models",
+    description="The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.",
     version="2.0.0",
 )
 
-app.include_router(OpenAIApiRouter)
+app.include_router(AssistantsApiRouter)
+app.include_router(AudioApiRouter)
+app.include_router(ChatApiRouter)
+app.include_router(CompletionsApiRouter)
+app.include_router(EmbeddingsApiRouter)
+app.include_router(FilesApiRouter)
+app.include_router(FineTuningApiRouter)
+app.include_router(ImagesApiRouter)
+app.include_router(ModelsApiRouter)
+app.include_router(ModerationsApiRouter)

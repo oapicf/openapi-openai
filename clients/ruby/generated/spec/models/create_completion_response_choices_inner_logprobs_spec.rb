@@ -1,7 +1,7 @@
 =begin
 #OpenAI API
 
-#APIs for sampling from and fine-tuning language models
+#The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 The version of the OpenAPI document: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -27,7 +27,7 @@ describe OpenApiOpenAIClient::CreateCompletionResponseChoicesInnerLogprobs do
     end
   end
 
-  describe 'test attribute "tokens"' do
+  describe 'test attribute "text_offset"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end
@@ -39,13 +39,13 @@ describe OpenApiOpenAIClient::CreateCompletionResponseChoicesInnerLogprobs do
     end
   end
 
-  describe 'test attribute "top_logprobs"' do
+  describe 'test attribute "tokens"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end
   end
 
-  describe 'test attribute "text_offset"' do
+  describe 'test attribute "top_logprobs"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end

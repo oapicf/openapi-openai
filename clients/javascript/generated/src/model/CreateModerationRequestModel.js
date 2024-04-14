@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,108 +12,4 @@
  */
 
 import ApiClient from '../ApiClient';
-
-/**
- * The CreateModerationRequestModel model module.
- * @module model/CreateModerationRequestModel
- * @version 0.9.0-pre.0
- */
-class CreateModerationRequestModel {
-    /**
-     * Constructs a new <code>CreateModerationRequestModel</code>.
-     * Two content moderations models are available: &#x60;text-moderation-stable&#x60; and &#x60;text-moderation-latest&#x60;.  The default is &#x60;text-moderation-latest&#x60; which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use &#x60;text-moderation-stable&#x60;, we will provide advanced notice before updating the model. Accuracy of &#x60;text-moderation-stable&#x60; may be slightly lower than for &#x60;text-moderation-latest&#x60;. 
-     * @alias module:model/CreateModerationRequestModel
-     * @param {(module:model/String)} instance The actual instance to initialize CreateModerationRequestModel.
-     */
-    constructor(instance = null) {
-        if (instance === null) {
-            this.actualInstance = null;
-            return;
-        }
-        var match = 0;
-        var errorMessages = [];
-        try {
-            // validate string
-            if (!(typeof instance === 'string')) {
-                throw new Error("Invalid value. Must be string. Input: " + JSON.stringify(instance));
-            }
-            this.actualInstance = instance;
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into String
-            errorMessages.push("Failed to construct String: " + err)
-        }
-
-        try {
-            // validate string
-            if (!(typeof instance === 'string')) {
-                throw new Error("Invalid value. Must be string. Input: " + JSON.stringify(instance));
-            }
-            this.actualInstance = instance;
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into String
-            errorMessages.push("Failed to construct String: " + err)
-        }
-
-        if (match > 1) {
-            throw new Error("Multiple matches found constructing `CreateModerationRequestModel` with oneOf schemas String. Input: " + JSON.stringify(instance));
-        } else if (match === 0) {
-            this.actualInstance = null; // clear the actual instance in case there are multiple matches
-            throw new Error("No match found constructing `CreateModerationRequestModel` with oneOf schemas String. Details: " +
-                            errorMessages.join(", "));
-        } else { // only 1 match
-            // the input is valid
-        }
-    }
-
-    /**
-     * Constructs a <code>CreateModerationRequestModel</code> from a plain JavaScript object, optionally creating a new instance.
-     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-     * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/CreateModerationRequestModel} obj Optional instance to populate.
-     * @return {module:model/CreateModerationRequestModel} The populated <code>CreateModerationRequestModel</code> instance.
-     */
-    static constructFromObject(data, obj) {
-        return new CreateModerationRequestModel(data);
-    }
-
-    /**
-     * Gets the actual instance, which can be <code>String</code>.
-     * @return {(module:model/String)} The actual instance.
-     */
-    getActualInstance() {
-        return this.actualInstance;
-    }
-
-    /**
-     * Sets the actual instance, which can be <code>String</code>.
-     * @param {(module:model/String)} obj The actual instance.
-     */
-    setActualInstance(obj) {
-       this.actualInstance = CreateModerationRequestModel.constructFromObject(obj).getActualInstance();
-    }
-
-    /**
-     * Returns the JSON representation of the actual instance.
-     * @return {string}
-     */
-    toJSON = function(){
-        return this.getActualInstance();
-    }
-
-    /**
-     * Create an instance of CreateModerationRequestModel from a JSON string.
-     * @param {string} json_string JSON string.
-     * @return {module:model/CreateModerationRequestModel} An instance of CreateModerationRequestModel.
-     */
-    static fromJSON = function(json_string){
-        return CreateModerationRequestModel.constructFromObject(JSON.parse(json_string));
-    }
-}
-
-
-CreateModerationRequestModel.OneOf = ["String"];
-
-export default CreateModerationRequestModel;
-
+// TODO: add anyof model support

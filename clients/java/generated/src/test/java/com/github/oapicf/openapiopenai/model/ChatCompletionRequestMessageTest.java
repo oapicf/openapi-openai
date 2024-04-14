@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,14 +13,22 @@
 
 package com.github.oapicf.openapiopenai.model;
 
-import com.github.oapicf.openapiopenai.model.ChatCompletionRequestMessageFunctionCall;
+import com.github.oapicf.openapiopenai.model.ChatCompletionMessageToolCall;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestAssistantMessage;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestAssistantMessageFunctionCall;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestFunctionMessage;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestSystemMessage;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestToolMessage;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestUserMessage;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -39,19 +47,19 @@ public class ChatCompletionRequestMessageTest {
     }
 
     /**
-     * Test the property 'role'
-     */
-    @Test
-    public void roleTest() {
-        // TODO: test role
-    }
-
-    /**
      * Test the property 'content'
      */
     @Test
     public void contentTest() {
         // TODO: test content
+    }
+
+    /**
+     * Test the property 'role'
+     */
+    @Test
+    public void roleTest() {
+        // TODO: test role
     }
 
     /**
@@ -63,11 +71,27 @@ public class ChatCompletionRequestMessageTest {
     }
 
     /**
+     * Test the property 'toolCalls'
+     */
+    @Test
+    public void toolCallsTest() {
+        // TODO: test toolCalls
+    }
+
+    /**
      * Test the property 'functionCall'
      */
     @Test
     public void functionCallTest() {
         // TODO: test functionCall
+    }
+
+    /**
+     * Test the property 'toolCallId'
+     */
+    @Test
+    public void toolCallIdTest() {
+        // TODO: test toolCallId
     }
 
 }

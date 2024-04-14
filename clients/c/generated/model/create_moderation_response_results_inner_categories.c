@@ -8,7 +8,11 @@
 create_moderation_response_results_inner_categories_t *create_moderation_response_results_inner_categories_create(
     int hate,
     int hate_threatening,
+    int harassment,
+    int harassment_threatening,
     int self_harm,
+    int self_harm_intent,
+    int self_harm_instructions,
     int sexual,
     int sexual_minors,
     int violence,
@@ -20,7 +24,11 @@ create_moderation_response_results_inner_categories_t *create_moderation_respons
     }
     create_moderation_response_results_inner_categories_local_var->hate = hate;
     create_moderation_response_results_inner_categories_local_var->hate_threatening = hate_threatening;
+    create_moderation_response_results_inner_categories_local_var->harassment = harassment;
+    create_moderation_response_results_inner_categories_local_var->harassment_threatening = harassment_threatening;
     create_moderation_response_results_inner_categories_local_var->self_harm = self_harm;
+    create_moderation_response_results_inner_categories_local_var->self_harm_intent = self_harm_intent;
+    create_moderation_response_results_inner_categories_local_var->self_harm_instructions = self_harm_instructions;
     create_moderation_response_results_inner_categories_local_var->sexual = sexual;
     create_moderation_response_results_inner_categories_local_var->sexual_minors = sexual_minors;
     create_moderation_response_results_inner_categories_local_var->violence = violence;
@@ -59,11 +67,47 @@ cJSON *create_moderation_response_results_inner_categories_convertToJSON(create_
     }
 
 
+    // create_moderation_response_results_inner_categories->harassment
+    if (!create_moderation_response_results_inner_categories->harassment) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "harassment", create_moderation_response_results_inner_categories->harassment) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // create_moderation_response_results_inner_categories->harassment_threatening
+    if (!create_moderation_response_results_inner_categories->harassment_threatening) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "harassment/threatening", create_moderation_response_results_inner_categories->harassment_threatening) == NULL) {
+    goto fail; //Bool
+    }
+
+
     // create_moderation_response_results_inner_categories->self_harm
     if (!create_moderation_response_results_inner_categories->self_harm) {
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "self-harm", create_moderation_response_results_inner_categories->self_harm) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // create_moderation_response_results_inner_categories->self_harm_intent
+    if (!create_moderation_response_results_inner_categories->self_harm_intent) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "self-harm/intent", create_moderation_response_results_inner_categories->self_harm_intent) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // create_moderation_response_results_inner_categories->self_harm_instructions
+    if (!create_moderation_response_results_inner_categories->self_harm_instructions) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "self-harm/instructions", create_moderation_response_results_inner_categories->self_harm_instructions) == NULL) {
     goto fail; //Bool
     }
 
@@ -139,6 +183,30 @@ create_moderation_response_results_inner_categories_t *create_moderation_respons
     goto end; //Bool
     }
 
+    // create_moderation_response_results_inner_categories->harassment
+    cJSON *harassment = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_categoriesJSON, "harassment");
+    if (!harassment) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(harassment))
+    {
+    goto end; //Bool
+    }
+
+    // create_moderation_response_results_inner_categories->harassment_threatening
+    cJSON *harassment_threatening = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_categoriesJSON, "harassment/threatening");
+    if (!harassment_threatening) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(harassment_threatening))
+    {
+    goto end; //Bool
+    }
+
     // create_moderation_response_results_inner_categories->self_harm
     cJSON *self_harm = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_categoriesJSON, "self-harm");
     if (!self_harm) {
@@ -147,6 +215,30 @@ create_moderation_response_results_inner_categories_t *create_moderation_respons
 
     
     if(!cJSON_IsBool(self_harm))
+    {
+    goto end; //Bool
+    }
+
+    // create_moderation_response_results_inner_categories->self_harm_intent
+    cJSON *self_harm_intent = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_categoriesJSON, "self-harm/intent");
+    if (!self_harm_intent) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(self_harm_intent))
+    {
+    goto end; //Bool
+    }
+
+    // create_moderation_response_results_inner_categories->self_harm_instructions
+    cJSON *self_harm_instructions = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_categoriesJSON, "self-harm/instructions");
+    if (!self_harm_instructions) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(self_harm_instructions))
     {
     goto end; //Bool
     }
@@ -203,7 +295,11 @@ create_moderation_response_results_inner_categories_t *create_moderation_respons
     create_moderation_response_results_inner_categories_local_var = create_moderation_response_results_inner_categories_create (
         hate->valueint,
         hate_threatening->valueint,
+        harassment->valueint,
+        harassment_threatening->valueint,
         self_harm->valueint,
+        self_harm_intent->valueint,
+        self_harm_instructions->valueint,
         sexual->valueint,
         sexual_minors->valueint,
         violence->valueint,

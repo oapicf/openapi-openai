@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -22,9 +22,11 @@ namespace org::openapitools::server::model
 CreateChatCompletionResponse::CreateChatCompletionResponse()
 {
     m_Id = "";
-    m_object = "";
     m_Created = 0;
     m_Model = "";
+    m_System_fingerprint = "";
+    m_System_fingerprintIsSet = false;
+    m_object = "";
     m_UsageIsSet = false;
     
 }
@@ -48,7 +50,7 @@ bool CreateChatCompletionResponse::validate(std::stringstream& msg, const std::s
     bool success = true;
     const std::string _pathPrefix = pathPrefix.empty() ? "CreateChatCompletionResponse" : pathPrefix;
 
-                         
+             
     
     /* Choices */ {
         const std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner>& value = m_Choices;
@@ -69,7 +71,7 @@ bool CreateChatCompletionResponse::validate(std::stringstream& msg, const std::s
         }
 
     }
-        
+                        
     return success;
 }
 
@@ -81,7 +83,7 @@ bool CreateChatCompletionResponse::operator==(const CreateChatCompletionResponse
     (getId() == rhs.getId())
      &&
     
-    (getObject() == rhs.getObject())
+    (getChoices() == rhs.getChoices())
      &&
     
     (getCreated() == rhs.getCreated())
@@ -90,7 +92,10 @@ bool CreateChatCompletionResponse::operator==(const CreateChatCompletionResponse
     (getModel() == rhs.getModel())
      &&
     
-    (getChoices() == rhs.getChoices())
+    
+    ((!systemFingerprintIsSet() && !rhs.systemFingerprintIsSet()) || (systemFingerprintIsSet() && rhs.systemFingerprintIsSet() && getSystemFingerprint() == rhs.getSystemFingerprint())) &&
+    
+    (getObject() == rhs.getObject())
      &&
     
     
@@ -108,10 +113,12 @@ void to_json(nlohmann::json& j, const CreateChatCompletionResponse& o)
 {
     j = nlohmann::json::object();
     j["id"] = o.m_Id;
-    j["object"] = o.m_object;
+    j["choices"] = o.m_Choices;
     j["created"] = o.m_Created;
     j["model"] = o.m_Model;
-    j["choices"] = o.m_Choices;
+    if(o.systemFingerprintIsSet())
+        j["system_fingerprint"] = o.m_System_fingerprint;
+    j["object"] = o.m_object;
     if(o.usageIsSet())
         j["usage"] = o.m_Usage;
     
@@ -120,10 +127,15 @@ void to_json(nlohmann::json& j, const CreateChatCompletionResponse& o)
 void from_json(const nlohmann::json& j, CreateChatCompletionResponse& o)
 {
     j.at("id").get_to(o.m_Id);
-    j.at("object").get_to(o.m_object);
+    j.at("choices").get_to(o.m_Choices);
     j.at("created").get_to(o.m_Created);
     j.at("model").get_to(o.m_Model);
-    j.at("choices").get_to(o.m_Choices);
+    if(j.find("system_fingerprint") != j.end())
+    {
+        j.at("system_fingerprint").get_to(o.m_System_fingerprint);
+        o.m_System_fingerprintIsSet = true;
+    } 
+    j.at("object").get_to(o.m_object);
     if(j.find("usage") != j.end())
     {
         j.at("usage").get_to(o.m_Usage);
@@ -140,13 +152,13 @@ void CreateChatCompletionResponse::setId(std::string const& value)
 {
     m_Id = value;
 }
-std::string CreateChatCompletionResponse::getObject() const
+std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> CreateChatCompletionResponse::getChoices() const
 {
-    return m_object;
+    return m_Choices;
 }
-void CreateChatCompletionResponse::setObject(std::string const& value)
+void CreateChatCompletionResponse::setChoices(std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> const& value)
 {
-    m_object = value;
+    m_Choices = value;
 }
 int32_t CreateChatCompletionResponse::getCreated() const
 {
@@ -164,19 +176,36 @@ void CreateChatCompletionResponse::setModel(std::string const& value)
 {
     m_Model = value;
 }
-std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> CreateChatCompletionResponse::getChoices() const
+std::string CreateChatCompletionResponse::getSystemFingerprint() const
 {
-    return m_Choices;
+    return m_System_fingerprint;
 }
-void CreateChatCompletionResponse::setChoices(std::vector<org::openapitools::server::model::CreateChatCompletionResponse_choices_inner> const& value)
+void CreateChatCompletionResponse::setSystemFingerprint(std::string const& value)
 {
-    m_Choices = value;
+    m_System_fingerprint = value;
+    m_System_fingerprintIsSet = true;
 }
-org::openapitools::server::model::CreateCompletionResponse_usage CreateChatCompletionResponse::getUsage() const
+bool CreateChatCompletionResponse::systemFingerprintIsSet() const
+{
+    return m_System_fingerprintIsSet;
+}
+void CreateChatCompletionResponse::unsetSystem_fingerprint()
+{
+    m_System_fingerprintIsSet = false;
+}
+std::string CreateChatCompletionResponse::getObject() const
+{
+    return m_object;
+}
+void CreateChatCompletionResponse::setObject(std::string const& value)
+{
+    m_object = value;
+}
+org::openapitools::server::model::CompletionUsage CreateChatCompletionResponse::getUsage() const
 {
     return m_Usage;
 }
-void CreateChatCompletionResponse::setUsage(org::openapitools::server::model::CreateCompletionResponse_usage const& value)
+void CreateChatCompletionResponse::setUsage(org::openapitools::server::model::CompletionUsage const& value)
 {
     m_Usage = value;
     m_UsageIsSet = true;

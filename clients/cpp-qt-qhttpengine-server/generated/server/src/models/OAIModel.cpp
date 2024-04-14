@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,11 +37,11 @@ void OAIModel::initializeModel() {
     m_id_isSet = false;
     m_id_isValid = false;
 
-    m_object_isSet = false;
-    m_object_isValid = false;
-
     m_created_isSet = false;
     m_created_isValid = false;
+
+    m_object_isSet = false;
+    m_object_isValid = false;
 
     m_owned_by_isSet = false;
     m_owned_by_isValid = false;
@@ -59,11 +59,11 @@ void OAIModel::fromJsonObject(QJsonObject json) {
     m_id_isValid = ::OpenAPI::fromJsonValue(id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
-    m_object_isValid = ::OpenAPI::fromJsonValue(object, json[QString("object")]);
-    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
-
     m_created_isValid = ::OpenAPI::fromJsonValue(created, json[QString("created")]);
     m_created_isSet = !json[QString("created")].isNull() && m_created_isValid;
+
+    m_object_isValid = ::OpenAPI::fromJsonValue(object, json[QString("object")]);
+    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
 
     m_owned_by_isValid = ::OpenAPI::fromJsonValue(owned_by, json[QString("owned_by")]);
     m_owned_by_isSet = !json[QString("owned_by")].isNull() && m_owned_by_isValid;
@@ -81,11 +81,11 @@ QJsonObject OAIModel::asJsonObject() const {
     if (m_id_isSet) {
         obj.insert(QString("id"), ::OpenAPI::toJsonValue(id));
     }
-    if (m_object_isSet) {
-        obj.insert(QString("object"), ::OpenAPI::toJsonValue(object));
-    }
     if (m_created_isSet) {
         obj.insert(QString("created"), ::OpenAPI::toJsonValue(created));
+    }
+    if (m_object_isSet) {
+        obj.insert(QString("object"), ::OpenAPI::toJsonValue(object));
     }
     if (m_owned_by_isSet) {
         obj.insert(QString("owned_by"), ::OpenAPI::toJsonValue(owned_by));
@@ -109,22 +109,6 @@ bool OAIModel::is_id_Valid() const{
     return m_id_isValid;
 }
 
-QString OAIModel::getObject() const {
-    return object;
-}
-void OAIModel::setObject(const QString &object) {
-    this->object = object;
-    this->m_object_isSet = true;
-}
-
-bool OAIModel::is_object_Set() const{
-    return m_object_isSet;
-}
-
-bool OAIModel::is_object_Valid() const{
-    return m_object_isValid;
-}
-
 qint32 OAIModel::getCreated() const {
     return created;
 }
@@ -139,6 +123,22 @@ bool OAIModel::is_created_Set() const{
 
 bool OAIModel::is_created_Valid() const{
     return m_created_isValid;
+}
+
+QString OAIModel::getObject() const {
+    return object;
+}
+void OAIModel::setObject(const QString &object) {
+    this->object = object;
+    this->m_object_isSet = true;
+}
+
+bool OAIModel::is_object_Set() const{
+    return m_object_isSet;
+}
+
+bool OAIModel::is_object_Valid() const{
+    return m_object_isValid;
 }
 
 QString OAIModel::getOwnedBy() const {
@@ -165,12 +165,12 @@ bool OAIModel::isSet() const {
             break;
         }
 
-        if (m_object_isSet) {
+        if (m_created_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_created_isSet) {
+        if (m_object_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -185,7 +185,7 @@ bool OAIModel::isSet() const {
 
 bool OAIModel::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_object_isValid && m_created_isValid && m_owned_by_isValid && true;
+    return m_id_isValid && m_created_isValid && m_object_isValid && m_owned_by_isValid && true;
 }
 
 } // namespace OpenAPI

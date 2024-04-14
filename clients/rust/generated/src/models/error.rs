@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,23 +12,23 @@ use crate::models;
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Error {
-    #[serde(rename = "type")]
-    pub r#type: String,
+    #[serde(rename = "code", deserialize_with = "Option::deserialize")]
+    pub code: Option<String>,
     #[serde(rename = "message")]
     pub message: String,
     #[serde(rename = "param", deserialize_with = "Option::deserialize")]
     pub param: Option<String>,
-    #[serde(rename = "code", deserialize_with = "Option::deserialize")]
-    pub code: Option<String>,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
 
 impl Error {
-    pub fn new(r#type: String, message: String, param: Option<String>, code: Option<String>) -> Error {
+    pub fn new(code: Option<String>, message: String, param: Option<String>, r#type: String) -> Error {
         Error {
-            r#type,
+            code,
             message,
             param,
-            code,
+            r#type,
         }
     }
 }

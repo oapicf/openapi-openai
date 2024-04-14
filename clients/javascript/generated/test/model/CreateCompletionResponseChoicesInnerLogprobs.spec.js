@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -54,8 +54,8 @@
       //expect(instance).to.be.a(OpenapiOpenai.CreateCompletionResponseChoicesInnerLogprobs);
     });
 
-    it('should have the property tokens (base name: "tokens")', function() {
-      // uncomment below and update the code to test the property tokens
+    it('should have the property textOffset (base name: "text_offset")', function() {
+      // uncomment below and update the code to test the property textOffset
       //var instance = new OpenapiOpenai.CreateCompletionResponseChoicesInnerLogprobs();
       //expect(instance).to.be();
     });
@@ -66,14 +66,14 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property topLogprobs (base name: "top_logprobs")', function() {
-      // uncomment below and update the code to test the property topLogprobs
+    it('should have the property tokens (base name: "tokens")', function() {
+      // uncomment below and update the code to test the property tokens
       //var instance = new OpenapiOpenai.CreateCompletionResponseChoicesInnerLogprobs();
       //expect(instance).to.be();
     });
 
-    it('should have the property textOffset (base name: "text_offset")', function() {
-      // uncomment below and update the code to test the property textOffset
+    it('should have the property topLogprobs (base name: "top_logprobs")', function() {
+      // uncomment below and update the code to test the property topLogprobs
       //var instance = new OpenapiOpenai.CreateCompletionResponseChoicesInnerLogprobs();
       //expect(instance).to.be();
     });

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,11 +20,61 @@
 namespace OpenAPI
 {
 
+inline FString ToString(const OpenAPIListFilesResponse::ObjectEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPIListFilesResponse::ObjectEnum::List:
+		return TEXT("list");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIListFilesResponse::ObjectEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPIListFilesResponse::EnumToString(const OpenAPIListFilesResponse::ObjectEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPIListFilesResponse::ObjectEnum& Value)
+{
+	static TMap<FString, OpenAPIListFilesResponse::ObjectEnum> StringToEnum = { 
+		{ TEXT("list"), OpenAPIListFilesResponse::ObjectEnum::List }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPIListFilesResponse::EnumFromString(const FString& EnumAsString, OpenAPIListFilesResponse::ObjectEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPIListFilesResponse::ObjectEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIListFilesResponse::ObjectEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
+
 void OpenAPIListFilesResponse::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("object")); WriteJsonValue(Writer, Object);
 	Writer->WriteIdentifierPrefix(TEXT("data")); WriteJsonValue(Writer, Data);
+	Writer->WriteIdentifierPrefix(TEXT("object")); WriteJsonValue(Writer, Object);
 	Writer->WriteObjectEnd();
 }
 
@@ -36,8 +86,8 @@ bool OpenAPIListFilesResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("object"), Object);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("data"), Data);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("object"), Object);
 
 	return ParseSuccess;
 }

@@ -13,7 +13,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateModerationResponseResultsInner  {
   
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * Whether any of the below categories are flagged.
+  */
+  @ApiModelProperty(required = true, value = "Whether any of the below categories are flagged.")
   private Boolean flagged;
 
   @ApiModelProperty(required = true, value = "")
@@ -24,7 +27,7 @@ public class CreateModerationResponseResultsInner  {
   @Valid
   private CreateModerationResponseResultsInnerCategoryScores categoryScores;
  /**
-  * Get flagged
+  * Whether any of the below categories are flagged.
   * @return flagged
   */
   @JsonProperty("flagged")

@@ -4,6 +4,8 @@ open System
 open System.Collections.Generic
 open Newtonsoft.Json
 open OpenAPI.Model.ChatCompletionStreamResponseDelta
+open OpenAPI.Model.CreateChatCompletionResponseChoicesInnerLogprobs
+open OpenAPI.Model.string option
 
 module CreateChatCompletionStreamResponseChoicesInner =
 
@@ -11,12 +13,14 @@ module CreateChatCompletionStreamResponseChoicesInner =
 
   [<CLIMutable>]
   type CreateChatCompletionStreamResponseChoicesInner = {
-    [<JsonProperty(PropertyName = "index")>]
-    Index : int;
     [<JsonProperty(PropertyName = "delta")>]
     Delta : ChatCompletionStreamResponseDelta;
+    [<JsonProperty(PropertyName = "logprobs")>]
+    Logprobs : CreateChatCompletionResponseChoicesInnerLogprobs;
     [<JsonProperty(PropertyName = "finish_reason")>]
-    FinishReason : string;
+    FinishReason : string option;
+    [<JsonProperty(PropertyName = "index")>]
+    Index : int;
   }
 
   //#endregion

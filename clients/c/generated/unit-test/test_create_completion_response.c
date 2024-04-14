@@ -16,7 +16,7 @@
 #include "../model/create_completion_response.h"
 create_completion_response_t* instantiate_create_completion_response(int include_optional);
 
-#include "test_create_completion_response_usage.c"
+#include "test_completion_usage.c"
 
 
 create_completion_response_t* instantiate_create_completion_response(int include_optional) {
@@ -24,20 +24,22 @@ create_completion_response_t* instantiate_create_completion_response(int include
   if (include_optional) {
     create_completion_response = create_completion_response_create(
       "0",
-      "0",
+      list_createList(),
       56,
       "0",
-      list_createList(),
+      "0",
+      openai_api_create_completion_response_OBJECT_text_completion,
        // false, not to have infinite recursion
-      instantiate_create_completion_response_usage(0)
+      instantiate_completion_usage(0)
     );
   } else {
     create_completion_response = create_completion_response_create(
       "0",
-      "0",
+      list_createList(),
       56,
       "0",
-      list_createList(),
+      "0",
+      openai_api_create_completion_response_OBJECT_text_completion,
       NULL
     );
   }

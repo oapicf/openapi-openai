@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-16T01:13:37.006745963Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-04-14T13:41:51.736364282Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public interface FilesApiService {
       Response createFile(MultipartFormDataInput input,SecurityContext securityContext)
       throws NotFoundException;
@@ -28,7 +28,7 @@ public interface FilesApiService {
       throws NotFoundException;
       Response downloadFile(String fileId,SecurityContext securityContext)
       throws NotFoundException;
-      Response listFiles(SecurityContext securityContext)
+      Response listFiles(String purpose,SecurityContext securityContext)
       throws NotFoundException;
       Response retrieveFile(String fileId,SecurityContext securityContext)
       throws NotFoundException;

@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -56,12 +56,12 @@ namespace Org.OpenAPITools.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Type'
+        /// Test the property 'Code'
         /// </summary>
         [Fact]
-        public void TypeTest()
+        public void CodeTest()
         {
-            // TODO unit test for the property 'Type'
+            // TODO unit test for the property 'Code'
         }
 
         /// <summary>
@@ -83,12 +83,12 @@ namespace Org.OpenAPITools.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Code'
+        /// Test the property 'Type'
         /// </summary>
         [Fact]
-        public void CodeTest()
+        public void TypeTest()
         {
-            // TODO unit test for the property 'Code'
+            // TODO unit test for the property 'Type'
         }
     }
 }

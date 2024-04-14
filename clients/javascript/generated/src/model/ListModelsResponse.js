@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,13 +17,13 @@ import Model from './Model';
 /**
  * The ListModelsResponse model module.
  * @module model/ListModelsResponse
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class ListModelsResponse {
     /**
      * Constructs a new <code>ListModelsResponse</code>.
      * @alias module:model/ListModelsResponse
-     * @param object {String} 
+     * @param object {module:model/ListModelsResponse.ObjectEnum} 
      * @param data {Array.<module:model/Model>} 
      */
     constructor(object, data) { 
@@ -98,7 +98,7 @@ class ListModelsResponse {
 ListModelsResponse.RequiredProperties = ["object", "data"];
 
 /**
- * @member {String} object
+ * @member {module:model/ListModelsResponse.ObjectEnum} object
  */
 ListModelsResponse.prototype['object'] = undefined;
 
@@ -109,6 +109,21 @@ ListModelsResponse.prototype['data'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>object</code> property.
+ * @enum {String}
+ * @readonly
+ */
+ListModelsResponse['ObjectEnum'] = {
+
+    /**
+     * value: "list"
+     * @const
+     */
+    "list": "list"
+};
 
 
 

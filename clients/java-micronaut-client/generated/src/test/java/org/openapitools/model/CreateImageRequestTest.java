@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.CreateImageRequestModel;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -29,11 +30,35 @@ public class CreateImageRequestTest {
     }
 
     /**
+     * Test the property 'model'
+     */
+    @Test
+    public void modelTest() {
+        // TODO: test model
+    }
+
+    /**
      * Test the property 'n'
      */
     @Test
     public void nTest() {
         // TODO: test n
+    }
+
+    /**
+     * Test the property 'quality'
+     */
+    @Test
+    public void qualityTest() {
+        // TODO: test quality
+    }
+
+    /**
+     * Test the property 'responseFormat'
+     */
+    @Test
+    public void responseFormatTest() {
+        // TODO: test responseFormat
     }
 
     /**
@@ -45,11 +70,11 @@ public class CreateImageRequestTest {
     }
 
     /**
-     * Test the property 'responseFormat'
+     * Test the property 'style'
      */
     @Test
-    public void responseFormatTest() {
-        // TODO: test responseFormat
+    public void styleTest() {
+        // TODO: test style
     }
 
     /**

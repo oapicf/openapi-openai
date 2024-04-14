@@ -23,13 +23,13 @@ delete_file_response_t* instantiate_delete_file_response(int include_optional) {
   if (include_optional) {
     delete_file_response = delete_file_response_create(
       "0",
-      "0",
+      openai_api_delete_file_response_OBJECT_file,
       1
     );
   } else {
     delete_file_response = delete_file_response_create(
       "0",
-      "0",
+      openai_api_delete_file_response_OBJECT_file,
       1
     );
   }

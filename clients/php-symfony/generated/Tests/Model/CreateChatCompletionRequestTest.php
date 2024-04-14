@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -87,17 +87,6 @@ class CreateChatCompletionRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "model"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyModel(): void
-    {
-        $this->markTestSkipped('Test for property model not implemented');
-    }
-
-    /**
      * Test attribute "messages"
      *
      * @group unit
@@ -109,102 +98,14 @@ class CreateChatCompletionRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "functions"
+     * Test attribute "model"
      *
      * @group unit
      * @small
      */
-    public function testPropertyFunctions(): void
+    public function testPropertyModel(): void
     {
-        $this->markTestSkipped('Test for property functions not implemented');
-    }
-
-    /**
-     * Test attribute "functionCall"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyFunctionCall(): void
-    {
-        $this->markTestSkipped('Test for property functionCall not implemented');
-    }
-
-    /**
-     * Test attribute "temperature"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyTemperature(): void
-    {
-        $this->markTestSkipped('Test for property temperature not implemented');
-    }
-
-    /**
-     * Test attribute "topP"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyTopP(): void
-    {
-        $this->markTestSkipped('Test for property topP not implemented');
-    }
-
-    /**
-     * Test attribute "n"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyN(): void
-    {
-        $this->markTestSkipped('Test for property n not implemented');
-    }
-
-    /**
-     * Test attribute "stream"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyStream(): void
-    {
-        $this->markTestSkipped('Test for property stream not implemented');
-    }
-
-    /**
-     * Test attribute "stop"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyStop(): void
-    {
-        $this->markTestSkipped('Test for property stop not implemented');
-    }
-
-    /**
-     * Test attribute "maxTokens"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyMaxTokens(): void
-    {
-        $this->markTestSkipped('Test for property maxTokens not implemented');
-    }
-
-    /**
-     * Test attribute "presencePenalty"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyPresencePenalty(): void
-    {
-        $this->markTestSkipped('Test for property presencePenalty not implemented');
+        $this->markTestSkipped('Test for property model not implemented');
     }
 
     /**
@@ -230,6 +131,149 @@ class CreateChatCompletionRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "logprobs"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyLogprobs(): void
+    {
+        $this->markTestSkipped('Test for property logprobs not implemented');
+    }
+
+    /**
+     * Test attribute "topLogprobs"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyTopLogprobs(): void
+    {
+        $this->markTestSkipped('Test for property topLogprobs not implemented');
+    }
+
+    /**
+     * Test attribute "maxTokens"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyMaxTokens(): void
+    {
+        $this->markTestSkipped('Test for property maxTokens not implemented');
+    }
+
+    /**
+     * Test attribute "n"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyN(): void
+    {
+        $this->markTestSkipped('Test for property n not implemented');
+    }
+
+    /**
+     * Test attribute "presencePenalty"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyPresencePenalty(): void
+    {
+        $this->markTestSkipped('Test for property presencePenalty not implemented');
+    }
+
+    /**
+     * Test attribute "responseFormat"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyResponseFormat(): void
+    {
+        $this->markTestSkipped('Test for property responseFormat not implemented');
+    }
+
+    /**
+     * Test attribute "seed"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertySeed(): void
+    {
+        $this->markTestSkipped('Test for property seed not implemented');
+    }
+
+    /**
+     * Test attribute "stop"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyStop(): void
+    {
+        $this->markTestSkipped('Test for property stop not implemented');
+    }
+
+    /**
+     * Test attribute "stream"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyStream(): void
+    {
+        $this->markTestSkipped('Test for property stream not implemented');
+    }
+
+    /**
+     * Test attribute "temperature"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyTemperature(): void
+    {
+        $this->markTestSkipped('Test for property temperature not implemented');
+    }
+
+    /**
+     * Test attribute "topP"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyTopP(): void
+    {
+        $this->markTestSkipped('Test for property topP not implemented');
+    }
+
+    /**
+     * Test attribute "tools"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyTools(): void
+    {
+        $this->markTestSkipped('Test for property tools not implemented');
+    }
+
+    /**
+     * Test attribute "toolChoice"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyToolChoice(): void
+    {
+        $this->markTestSkipped('Test for property toolChoice not implemented');
+    }
+
+    /**
      * Test attribute "user"
      *
      * @group unit
@@ -238,5 +282,27 @@ class CreateChatCompletionRequestTest extends TestCase
     public function testPropertyUser(): void
     {
         $this->markTestSkipped('Test for property user not implemented');
+    }
+
+    /**
+     * Test attribute "functionCall"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyFunctionCall(): void
+    {
+        $this->markTestSkipped('Test for property functionCall not implemented');
+    }
+
+    /**
+     * Test attribute "functions"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyFunctions(): void
+    {
+        $this->markTestSkipped('Test for property functions not implemented');
     }
 }

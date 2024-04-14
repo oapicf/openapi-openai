@@ -27,7 +27,7 @@ class CreateModerationResponseResultsInnerTest : ShouldSpec() {
         // uncomment below to create an instance of CreateModerationResponseResultsInner
         //val modelInstance = CreateModerationResponseResultsInner()
 
-        // to test the property `flagged`
+        // to test the property `flagged` - Whether any of the below categories are flagged.
         should("test flagged") {
             // uncomment below to test the property
             //modelInstance.flagged shouldBe ("TODO")

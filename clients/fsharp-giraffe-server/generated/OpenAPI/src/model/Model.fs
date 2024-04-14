@@ -7,11 +7,14 @@ module Model =
 
   //#region Model
 
+  //#region enums
+  type ObjectEnum = ModelEnum of string  
+  //#endregion
 
   type Model = {
     Id : string;
-    Object : string;
     Created : int;
+    Object : ObjectEnum;
     OwnedBy : string;
   }
   //#endregion

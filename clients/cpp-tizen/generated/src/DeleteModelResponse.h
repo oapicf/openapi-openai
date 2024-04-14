@@ -54,23 +54,23 @@ public:
 	void setId(std::string  id);
 	/*! \brief Get 
 	 */
-	std::string getObject();
-
-	/*! \brief Set 
-	 */
-	void setObject(std::string  object);
-	/*! \brief Get 
-	 */
 	bool getDeleted();
 
 	/*! \brief Set 
 	 */
 	void setDeleted(bool  deleted);
+	/*! \brief Get 
+	 */
+	std::string getObject();
+
+	/*! \brief Set 
+	 */
+	void setObject(std::string  object);
 
 private:
 	std::string id;
-	std::string object;
 	bool deleted;
+	std::string object;
 	void __init();
 	void __cleanup();
 

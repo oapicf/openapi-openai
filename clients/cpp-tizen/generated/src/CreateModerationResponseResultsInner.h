@@ -47,11 +47,11 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get Whether any of the below categories are flagged.
 	 */
 	bool getFlagged();
 
-	/*! \brief Set 
+	/*! \brief Set Whether any of the below categories are flagged.
 	 */
 	void setFlagged(bool  flagged);
 	/*! \brief Get 

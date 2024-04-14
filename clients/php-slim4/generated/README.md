@@ -152,45 +152,115 @@ For instance, when abstract class located at `./lib/Api/AbstractPetApi.php` you 
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AbstractOpenAIApi* | **createChatCompletion** | **POST** /chat/completions | Creates a model response for the given chat conversation.
-*AbstractOpenAIApi* | **createCompletion** | **POST** /completions | Creates a completion for the provided prompt and parameters.
-*AbstractOpenAIApi* | **createEdit** | **POST** /edits | Creates a new edit for the provided input, instruction, and parameters.
-*AbstractOpenAIApi* | **createEmbedding** | **POST** /embeddings | Creates an embedding vector representing the input text.
-*AbstractOpenAIApi* | **createFile** | **POST** /files | Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit.
-*AbstractOpenAIApi* | **createFineTune** | **POST** /fine-tunes | Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning)
-*AbstractOpenAIApi* | **createImage** | **POST** /images/generations | Creates an image given a prompt.
-*AbstractOpenAIApi* | **createImageEdit** | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
-*AbstractOpenAIApi* | **createImageVariation** | **POST** /images/variations | Creates a variation of a given image.
-*AbstractOpenAIApi* | **createModeration** | **POST** /moderations | Classifies if text violates OpenAI's Content Policy
-*AbstractOpenAIApi* | **createTranscription** | **POST** /audio/transcriptions | Transcribes audio into the input language.
-*AbstractOpenAIApi* | **createTranslation** | **POST** /audio/translations | Translates audio into English.
-*AbstractOpenAIApi* | **listFiles** | **GET** /files | Returns a list of files that belong to the user's organization.
-*AbstractOpenAIApi* | **listFineTunes** | **GET** /fine-tunes | List your organization's fine-tuning jobs
-*AbstractOpenAIApi* | **listModels** | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
-*AbstractOpenAIApi* | **cancelFineTune** | **POST** /fine-tunes/{fine_tune_id}/cancel | Immediately cancel a fine-tune job.
-*AbstractOpenAIApi* | **deleteFile** | **DELETE** /files/{file_id} | Delete a file.
-*AbstractOpenAIApi* | **deleteModel** | **DELETE** /models/{model} | Delete a fine-tuned model. You must have the Owner role in your organization.
-*AbstractOpenAIApi* | **downloadFile** | **GET** /files/{file_id}/content | Returns the contents of the specified file
-*AbstractOpenAIApi* | **listFineTuneEvents** | **GET** /fine-tunes/{fine_tune_id}/events | Get fine-grained status updates for a fine-tune job.
-*AbstractOpenAIApi* | **retrieveFile** | **GET** /files/{file_id} | Returns information about a specific file.
-*AbstractOpenAIApi* | **retrieveFineTune** | **GET** /fine-tunes/{fine_tune_id} | Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning)
-*AbstractOpenAIApi* | **retrieveModel** | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+*AbstractAssistantsApi* | **createAssistant** | **POST** /assistants | Create an assistant with a model and instructions.
+*AbstractAssistantsApi* | **createThread** | **POST** /threads | Create a thread.
+*AbstractAssistantsApi* | **createThreadAndRun** | **POST** /threads/runs | Create a thread and run it in one request.
+*AbstractAssistantsApi* | **listAssistants** | **GET** /assistants | Returns a list of assistants.
+*AbstractAssistantsApi* | **cancelRun** | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is `in_progress`.
+*AbstractAssistantsApi* | **createAssistantFile** | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+*AbstractAssistantsApi* | **createMessage** | **POST** /threads/{thread_id}/messages | Create a message.
+*AbstractAssistantsApi* | **createRun** | **POST** /threads/{thread_id}/runs | Create a run.
+*AbstractAssistantsApi* | **deleteAssistant** | **DELETE** /assistants/{assistant_id} | Delete an assistant.
+*AbstractAssistantsApi* | **deleteAssistantFile** | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+*AbstractAssistantsApi* | **deleteThread** | **DELETE** /threads/{thread_id} | Delete a thread.
+*AbstractAssistantsApi* | **getAssistant** | **GET** /assistants/{assistant_id} | Retrieves an assistant.
+*AbstractAssistantsApi* | **getAssistantFile** | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
+*AbstractAssistantsApi* | **getMessage** | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
+*AbstractAssistantsApi* | **getMessageFile** | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
+*AbstractAssistantsApi* | **getRun** | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
+*AbstractAssistantsApi* | **getRunStep** | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
+*AbstractAssistantsApi* | **getThread** | **GET** /threads/{thread_id} | Retrieves a thread.
+*AbstractAssistantsApi* | **listAssistantFiles** | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
+*AbstractAssistantsApi* | **listMessageFiles** | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
+*AbstractAssistantsApi* | **listMessages** | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
+*AbstractAssistantsApi* | **listRunSteps** | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
+*AbstractAssistantsApi* | **listRuns** | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
+*AbstractAssistantsApi* | **modifyAssistant** | **POST** /assistants/{assistant_id} | Modifies an assistant.
+*AbstractAssistantsApi* | **modifyMessage** | **POST** /threads/{thread_id}/messages/{message_id} | Modifies a message.
+*AbstractAssistantsApi* | **modifyRun** | **POST** /threads/{thread_id}/runs/{run_id} | Modifies a run.
+*AbstractAssistantsApi* | **modifyThread** | **POST** /threads/{thread_id} | Modifies a thread.
+*AbstractAssistantsApi* | **submitToolOuputsToRun** | **POST** /threads/{thread_id}/runs/{run_id}/submit_tool_outputs | When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request.
+*AbstractAudioApi* | **createSpeech** | **POST** /audio/speech | Generates audio from the input text.
+*AbstractAudioApi* | **createTranscription** | **POST** /audio/transcriptions | Transcribes audio into the input language.
+*AbstractAudioApi* | **createTranslation** | **POST** /audio/translations | Translates audio into English.
+*AbstractChatApi* | **createChatCompletion** | **POST** /chat/completions | Creates a model response for the given chat conversation.
+*AbstractCompletionsApi* | **createCompletion** | **POST** /completions | Creates a completion for the provided prompt and parameters.
+*AbstractEmbeddingsApi* | **createEmbedding** | **POST** /embeddings | Creates an embedding vector representing the input text.
+*AbstractFilesApi* | **createFile** | **POST** /files | Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
+*AbstractFilesApi* | **listFiles** | **GET** /files | Returns a list of files that belong to the user's organization.
+*AbstractFilesApi* | **deleteFile** | **DELETE** /files/{file_id} | Delete a file.
+*AbstractFilesApi* | **downloadFile** | **GET** /files/{file_id}/content | Returns the contents of the specified file.
+*AbstractFilesApi* | **retrieveFile** | **GET** /files/{file_id} | Returns information about a specific file.
+*AbstractFineTuningApi* | **createFineTuningJob** | **POST** /fine_tuning/jobs | Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning)
+*AbstractFineTuningApi* | **listPaginatedFineTuningJobs** | **GET** /fine_tuning/jobs | List your organization's fine-tuning jobs
+*AbstractFineTuningApi* | **cancelFineTuningJob** | **POST** /fine_tuning/jobs/{fine_tuning_job_id}/cancel | Immediately cancel a fine-tune job.
+*AbstractFineTuningApi* | **listFineTuningEvents** | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/events | Get status updates for a fine-tuning job.
+*AbstractFineTuningApi* | **listFineTuningJobCheckpoints** | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/checkpoints | List checkpoints for a fine-tuning job.
+*AbstractFineTuningApi* | **retrieveFineTuningJob** | **GET** /fine_tuning/jobs/{fine_tuning_job_id} | Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning)
+*AbstractImagesApi* | **createImage** | **POST** /images/generations | Creates an image given a prompt.
+*AbstractImagesApi* | **createImageEdit** | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
+*AbstractImagesApi* | **createImageVariation** | **POST** /images/variations | Creates a variation of a given image.
+*AbstractModelsApi* | **listModels** | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
+*AbstractModelsApi* | **deleteModel** | **DELETE** /models/{model} | Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
+*AbstractModelsApi* | **retrieveModel** | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+*AbstractModerationsApi* | **createModeration** | **POST** /moderations | Classifies if text is potentially harmful.
 
 
 ## Models
 
+* OpenAPIServer\Model\AssistantFileObject
+* OpenAPIServer\Model\AssistantObject
+* OpenAPIServer\Model\AssistantObjectToolsInner
+* OpenAPIServer\Model\AssistantStreamEvent
+* OpenAPIServer\Model\AssistantToolsCode
+* OpenAPIServer\Model\AssistantToolsFunction
+* OpenAPIServer\Model\AssistantToolsRetrieval
+* OpenAPIServer\Model\AssistantsApiNamedToolChoice
+* OpenAPIServer\Model\AssistantsApiResponseFormat
+* OpenAPIServer\Model\AssistantsApiResponseFormatOption
+* OpenAPIServer\Model\AssistantsApiToolChoiceOption
+* OpenAPIServer\Model\ChatCompletionFunctionCallOption
 * OpenAPIServer\Model\ChatCompletionFunctions
+* OpenAPIServer\Model\ChatCompletionMessageToolCall
+* OpenAPIServer\Model\ChatCompletionMessageToolCallChunk
+* OpenAPIServer\Model\ChatCompletionMessageToolCallChunkFunction
+* OpenAPIServer\Model\ChatCompletionMessageToolCallFunction
+* OpenAPIServer\Model\ChatCompletionNamedToolChoice
+* OpenAPIServer\Model\ChatCompletionNamedToolChoiceFunction
+* OpenAPIServer\Model\ChatCompletionRequestAssistantMessage
+* OpenAPIServer\Model\ChatCompletionRequestAssistantMessageFunctionCall
+* OpenAPIServer\Model\ChatCompletionRequestFunctionMessage
 * OpenAPIServer\Model\ChatCompletionRequestMessage
-* OpenAPIServer\Model\ChatCompletionRequestMessageFunctionCall
+* OpenAPIServer\Model\ChatCompletionRequestMessageContentPart
+* OpenAPIServer\Model\ChatCompletionRequestMessageContentPartImage
+* OpenAPIServer\Model\ChatCompletionRequestMessageContentPartImageImageUrl
+* OpenAPIServer\Model\ChatCompletionRequestMessageContentPartText
+* OpenAPIServer\Model\ChatCompletionRequestSystemMessage
+* OpenAPIServer\Model\ChatCompletionRequestToolMessage
+* OpenAPIServer\Model\ChatCompletionRequestUserMessage
+* OpenAPIServer\Model\ChatCompletionRequestUserMessageContent
 * OpenAPIServer\Model\ChatCompletionResponseMessage
+* OpenAPIServer\Model\ChatCompletionRole
 * OpenAPIServer\Model\ChatCompletionStreamResponseDelta
+* OpenAPIServer\Model\ChatCompletionStreamResponseDeltaFunctionCall
+* OpenAPIServer\Model\ChatCompletionTokenLogprob
+* OpenAPIServer\Model\ChatCompletionTokenLogprobTopLogprobsInner
+* OpenAPIServer\Model\ChatCompletionTool
+* OpenAPIServer\Model\ChatCompletionToolChoiceOption
+* OpenAPIServer\Model\CompletionUsage
+* OpenAPIServer\Model\CreateAssistantFileRequest
+* OpenAPIServer\Model\CreateAssistantRequest
+* OpenAPIServer\Model\CreateAssistantRequestModel
+* OpenAPIServer\Model\CreateChatCompletionFunctionResponse
+* OpenAPIServer\Model\CreateChatCompletionFunctionResponseChoicesInner
 * OpenAPIServer\Model\CreateChatCompletionRequest
 * OpenAPIServer\Model\CreateChatCompletionRequestFunctionCall
-* OpenAPIServer\Model\CreateChatCompletionRequestFunctionCallOneOf
 * OpenAPIServer\Model\CreateChatCompletionRequestModel
+* OpenAPIServer\Model\CreateChatCompletionRequestResponseFormat
 * OpenAPIServer\Model\CreateChatCompletionRequestStop
 * OpenAPIServer\Model\CreateChatCompletionResponse
 * OpenAPIServer\Model\CreateChatCompletionResponseChoicesInner
+* OpenAPIServer\Model\CreateChatCompletionResponseChoicesInnerLogprobs
 * OpenAPIServer\Model\CreateChatCompletionStreamResponse
 * OpenAPIServer\Model\CreateChatCompletionStreamResponseChoicesInner
 * OpenAPIServer\Model\CreateCompletionRequest
@@ -200,20 +270,24 @@ Class | Method | HTTP request | Description
 * OpenAPIServer\Model\CreateCompletionResponse
 * OpenAPIServer\Model\CreateCompletionResponseChoicesInner
 * OpenAPIServer\Model\CreateCompletionResponseChoicesInnerLogprobs
-* OpenAPIServer\Model\CreateCompletionResponseUsage
-* OpenAPIServer\Model\CreateEditRequest
-* OpenAPIServer\Model\CreateEditRequestModel
-* OpenAPIServer\Model\CreateEditResponse
-* OpenAPIServer\Model\CreateEditResponseChoicesInner
 * OpenAPIServer\Model\CreateEmbeddingRequest
 * OpenAPIServer\Model\CreateEmbeddingRequestInput
 * OpenAPIServer\Model\CreateEmbeddingRequestModel
 * OpenAPIServer\Model\CreateEmbeddingResponse
-* OpenAPIServer\Model\CreateEmbeddingResponseDataInner
 * OpenAPIServer\Model\CreateEmbeddingResponseUsage
-* OpenAPIServer\Model\CreateFineTuneRequest
-* OpenAPIServer\Model\CreateFineTuneRequestModel
+* OpenAPIServer\Model\CreateFineTuningJobRequest
+* OpenAPIServer\Model\CreateFineTuningJobRequestHyperparameters
+* OpenAPIServer\Model\CreateFineTuningJobRequestHyperparametersBatchSize
+* OpenAPIServer\Model\CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+* OpenAPIServer\Model\CreateFineTuningJobRequestHyperparametersNEpochs
+* OpenAPIServer\Model\CreateFineTuningJobRequestIntegrationsInner
+* OpenAPIServer\Model\CreateFineTuningJobRequestIntegrationsInnerType
+* OpenAPIServer\Model\CreateFineTuningJobRequestIntegrationsInnerWandb
+* OpenAPIServer\Model\CreateFineTuningJobRequestModel
+* OpenAPIServer\Model\CreateImageEditRequestModel
 * OpenAPIServer\Model\CreateImageRequest
+* OpenAPIServer\Model\CreateImageRequestModel
+* OpenAPIServer\Model\CreateMessageRequest
 * OpenAPIServer\Model\CreateModerationRequest
 * OpenAPIServer\Model\CreateModerationRequestInput
 * OpenAPIServer\Model\CreateModerationRequestModel
@@ -221,22 +295,162 @@ Class | Method | HTTP request | Description
 * OpenAPIServer\Model\CreateModerationResponseResultsInner
 * OpenAPIServer\Model\CreateModerationResponseResultsInnerCategories
 * OpenAPIServer\Model\CreateModerationResponseResultsInnerCategoryScores
+* OpenAPIServer\Model\CreateRunRequest
+* OpenAPIServer\Model\CreateRunRequestModel
+* OpenAPIServer\Model\CreateSpeechRequest
+* OpenAPIServer\Model\CreateSpeechRequestModel
+* OpenAPIServer\Model\CreateThreadAndRunRequest
+* OpenAPIServer\Model\CreateThreadAndRunRequestToolsInner
+* OpenAPIServer\Model\CreateThreadRequest
+* OpenAPIServer\Model\CreateTranscription200Response
 * OpenAPIServer\Model\CreateTranscriptionRequestModel
-* OpenAPIServer\Model\CreateTranscriptionResponse
-* OpenAPIServer\Model\CreateTranslationResponse
+* OpenAPIServer\Model\CreateTranscriptionResponseJson
+* OpenAPIServer\Model\CreateTranscriptionResponseVerboseJson
+* OpenAPIServer\Model\CreateTranslation200Response
+* OpenAPIServer\Model\CreateTranslationResponseJson
+* OpenAPIServer\Model\CreateTranslationResponseVerboseJson
+* OpenAPIServer\Model\DeleteAssistantFileResponse
+* OpenAPIServer\Model\DeleteAssistantResponse
 * OpenAPIServer\Model\DeleteFileResponse
+* OpenAPIServer\Model\DeleteMessageResponse
 * OpenAPIServer\Model\DeleteModelResponse
+* OpenAPIServer\Model\DeleteThreadResponse
+* OpenAPIServer\Model\DoneEvent
+* OpenAPIServer\Model\Embedding
 * OpenAPIServer\Model\Error
+* OpenAPIServer\Model\ErrorEvent
 * OpenAPIServer\Model\ErrorResponse
-* OpenAPIServer\Model\FineTune
-* OpenAPIServer\Model\FineTuneEvent
+* OpenAPIServer\Model\FineTuningIntegration
+* OpenAPIServer\Model\FineTuningJob
+* OpenAPIServer\Model\FineTuningJobCheckpoint
+* OpenAPIServer\Model\FineTuningJobCheckpointMetrics
+* OpenAPIServer\Model\FineTuningJobError
+* OpenAPIServer\Model\FineTuningJobEvent
+* OpenAPIServer\Model\FineTuningJobHyperparameters
+* OpenAPIServer\Model\FineTuningJobHyperparametersNEpochs
+* OpenAPIServer\Model\FineTuningJobIntegrationsInner
+* OpenAPIServer\Model\FunctionObject
+* OpenAPIServer\Model\Image
 * OpenAPIServer\Model\ImagesResponse
-* OpenAPIServer\Model\ImagesResponseDataInner
+* OpenAPIServer\Model\ListAssistantFilesResponse
+* OpenAPIServer\Model\ListAssistantsResponse
 * OpenAPIServer\Model\ListFilesResponse
-* OpenAPIServer\Model\ListFineTuneEventsResponse
-* OpenAPIServer\Model\ListFineTunesResponse
+* OpenAPIServer\Model\ListFineTuningJobCheckpointsResponse
+* OpenAPIServer\Model\ListFineTuningJobEventsResponse
+* OpenAPIServer\Model\ListMessageFilesResponse
+* OpenAPIServer\Model\ListMessagesResponse
 * OpenAPIServer\Model\ListModelsResponse
+* OpenAPIServer\Model\ListPaginatedFineTuningJobsResponse
+* OpenAPIServer\Model\ListRunStepsResponse
+* OpenAPIServer\Model\ListRunsResponse
+* OpenAPIServer\Model\ListThreadsResponse
+* OpenAPIServer\Model\MessageContentImageFileObject
+* OpenAPIServer\Model\MessageContentImageFileObjectImageFile
+* OpenAPIServer\Model\MessageContentTextAnnotationsFileCitationObject
+* OpenAPIServer\Model\MessageContentTextAnnotationsFileCitationObjectFileCitation
+* OpenAPIServer\Model\MessageContentTextAnnotationsFilePathObject
+* OpenAPIServer\Model\MessageContentTextAnnotationsFilePathObjectFilePath
+* OpenAPIServer\Model\MessageContentTextObject
+* OpenAPIServer\Model\MessageContentTextObjectText
+* OpenAPIServer\Model\MessageContentTextObjectTextAnnotationsInner
+* OpenAPIServer\Model\MessageDeltaContentImageFileObject
+* OpenAPIServer\Model\MessageDeltaContentImageFileObjectImageFile
+* OpenAPIServer\Model\MessageDeltaContentTextAnnotationsFileCitationObject
+* OpenAPIServer\Model\MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+* OpenAPIServer\Model\MessageDeltaContentTextAnnotationsFilePathObject
+* OpenAPIServer\Model\MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+* OpenAPIServer\Model\MessageDeltaContentTextObject
+* OpenAPIServer\Model\MessageDeltaContentTextObjectText
+* OpenAPIServer\Model\MessageDeltaContentTextObjectTextAnnotationsInner
+* OpenAPIServer\Model\MessageDeltaObject
+* OpenAPIServer\Model\MessageDeltaObjectDelta
+* OpenAPIServer\Model\MessageDeltaObjectDeltaContentInner
+* OpenAPIServer\Model\MessageFileObject
+* OpenAPIServer\Model\MessageObject
+* OpenAPIServer\Model\MessageObjectContentInner
+* OpenAPIServer\Model\MessageObjectIncompleteDetails
+* OpenAPIServer\Model\MessageStreamEvent
+* OpenAPIServer\Model\MessageStreamEventOneOf
+* OpenAPIServer\Model\MessageStreamEventOneOf1
+* OpenAPIServer\Model\MessageStreamEventOneOf2
+* OpenAPIServer\Model\MessageStreamEventOneOf3
+* OpenAPIServer\Model\MessageStreamEventOneOf4
 * OpenAPIServer\Model\Model
+* OpenAPIServer\Model\ModifyAssistantRequest
+* OpenAPIServer\Model\ModifyMessageRequest
+* OpenAPIServer\Model\ModifyRunRequest
+* OpenAPIServer\Model\ModifyThreadRequest
 * OpenAPIServer\Model\OpenAIFile
+* OpenAPIServer\Model\RunCompletionUsage
+* OpenAPIServer\Model\RunObject
+* OpenAPIServer\Model\RunObjectIncompleteDetails
+* OpenAPIServer\Model\RunObjectLastError
+* OpenAPIServer\Model\RunObjectRequiredAction
+* OpenAPIServer\Model\RunObjectRequiredActionSubmitToolOutputs
+* OpenAPIServer\Model\RunStepCompletionUsage
+* OpenAPIServer\Model\RunStepDeltaObject
+* OpenAPIServer\Model\RunStepDeltaObjectDelta
+* OpenAPIServer\Model\RunStepDeltaObjectDeltaStepDetails
+* OpenAPIServer\Model\RunStepDeltaStepDetailsMessageCreationObject
+* OpenAPIServer\Model\RunStepDeltaStepDetailsMessageCreationObjectMessageCreation
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsCodeObject
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsFunctionObject
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsObject
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+* OpenAPIServer\Model\RunStepDeltaStepDetailsToolCallsRetrievalObject
+* OpenAPIServer\Model\RunStepDetailsMessageCreationObject
+* OpenAPIServer\Model\RunStepDetailsMessageCreationObjectMessageCreation
+* OpenAPIServer\Model\RunStepDetailsToolCallsCodeObject
+* OpenAPIServer\Model\RunStepDetailsToolCallsCodeObjectCodeInterpreter
+* OpenAPIServer\Model\RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+* OpenAPIServer\Model\RunStepDetailsToolCallsCodeOutputImageObject
+* OpenAPIServer\Model\RunStepDetailsToolCallsCodeOutputImageObjectImage
+* OpenAPIServer\Model\RunStepDetailsToolCallsCodeOutputLogsObject
+* OpenAPIServer\Model\RunStepDetailsToolCallsFunctionObject
+* OpenAPIServer\Model\RunStepDetailsToolCallsFunctionObjectFunction
+* OpenAPIServer\Model\RunStepDetailsToolCallsObject
+* OpenAPIServer\Model\RunStepDetailsToolCallsObjectToolCallsInner
+* OpenAPIServer\Model\RunStepDetailsToolCallsRetrievalObject
+* OpenAPIServer\Model\RunStepObject
+* OpenAPIServer\Model\RunStepObjectLastError
+* OpenAPIServer\Model\RunStepObjectStepDetails
+* OpenAPIServer\Model\RunStepStreamEvent
+* OpenAPIServer\Model\RunStepStreamEventOneOf
+* OpenAPIServer\Model\RunStepStreamEventOneOf1
+* OpenAPIServer\Model\RunStepStreamEventOneOf2
+* OpenAPIServer\Model\RunStepStreamEventOneOf3
+* OpenAPIServer\Model\RunStepStreamEventOneOf4
+* OpenAPIServer\Model\RunStepStreamEventOneOf5
+* OpenAPIServer\Model\RunStepStreamEventOneOf6
+* OpenAPIServer\Model\RunStreamEvent
+* OpenAPIServer\Model\RunStreamEventOneOf
+* OpenAPIServer\Model\RunStreamEventOneOf1
+* OpenAPIServer\Model\RunStreamEventOneOf2
+* OpenAPIServer\Model\RunStreamEventOneOf3
+* OpenAPIServer\Model\RunStreamEventOneOf4
+* OpenAPIServer\Model\RunStreamEventOneOf5
+* OpenAPIServer\Model\RunStreamEventOneOf6
+* OpenAPIServer\Model\RunStreamEventOneOf7
+* OpenAPIServer\Model\RunStreamEventOneOf8
+* OpenAPIServer\Model\RunToolCallObject
+* OpenAPIServer\Model\RunToolCallObjectFunction
+* OpenAPIServer\Model\SubmitToolOutputsRunRequest
+* OpenAPIServer\Model\SubmitToolOutputsRunRequestToolOutputsInner
+* OpenAPIServer\Model\ThreadObject
+* OpenAPIServer\Model\ThreadStreamEvent
+* OpenAPIServer\Model\ThreadStreamEventOneOf
+* OpenAPIServer\Model\TranscriptionSegment
+* OpenAPIServer\Model\TranscriptionWord
+* OpenAPIServer\Model\TruncationObject
 
 
+## Authentication
+
+### Advanced middleware configuration
+Ref to used Slim Token Middleware [dyorg/slim-token-authentication](https://github.com/dyorg/slim-token-authentication/tree/1.x#readme)

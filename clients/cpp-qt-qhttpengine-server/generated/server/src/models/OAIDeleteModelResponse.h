@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -44,15 +44,15 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    QString getObject() const;
-    void setObject(const QString &object);
-    bool is_object_Set() const;
-    bool is_object_Valid() const;
-
     bool isDeleted() const;
     void setDeleted(const bool &deleted);
     bool is_deleted_Set() const;
     bool is_deleted_Valid() const;
+
+    QString getObject() const;
+    void setObject(const QString &object);
+    bool is_object_Set() const;
+    bool is_object_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -64,13 +64,13 @@ private:
     bool m_id_isSet;
     bool m_id_isValid;
 
-    QString object;
-    bool m_object_isSet;
-    bool m_object_isValid;
-
     bool deleted;
     bool m_deleted_isSet;
     bool m_deleted_isValid;
+
+    QString object;
+    bool m_object_isSet;
+    bool m_object_isValid;
 };
 
 } // namespace OpenAPI

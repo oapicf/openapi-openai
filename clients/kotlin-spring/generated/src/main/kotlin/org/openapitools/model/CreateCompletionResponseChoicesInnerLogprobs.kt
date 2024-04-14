@@ -15,26 +15,25 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param tokens 
- * @param tokenLogprobs 
- * @param topLogprobs 
  * @param textOffset 
+ * @param tokenLogprobs 
+ * @param tokens 
+ * @param topLogprobs 
  */
 data class CreateCompletionResponseChoicesInnerLogprobs(
 
     @Schema(example = "null", description = "")
-    @get:JsonProperty("tokens") val tokens: kotlin.collections.List<kotlin.String>? = null,
+    @get:JsonProperty("text_offset") val textOffset: kotlin.collections.List<kotlin.Int>? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("token_logprobs") val tokenLogprobs: kotlin.collections.List<java.math.BigDecimal>? = null,
 
-    @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("top_logprobs") val topLogprobs: kotlin.collections.List<kotlin.Any>? = null,
+    @get:JsonProperty("tokens") val tokens: kotlin.collections.List<kotlin.String>? = null,
 
     @Schema(example = "null", description = "")
-    @get:JsonProperty("text_offset") val textOffset: kotlin.collections.List<kotlin.Int>? = null
+    @get:JsonProperty("top_logprobs") val topLogprobs: kotlin.collections.List<kotlin.collections.Map<kotlin.String, java.math.BigDecimal>>? = null
 ) {
 
 }

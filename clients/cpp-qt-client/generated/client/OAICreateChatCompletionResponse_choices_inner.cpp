@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -34,14 +34,17 @@ OAICreateChatCompletionResponse_choices_inner::~OAICreateChatCompletionResponse_
 
 void OAICreateChatCompletionResponse_choices_inner::initializeModel() {
 
+    m_finish_reason_isSet = false;
+    m_finish_reason_isValid = false;
+
     m_index_isSet = false;
     m_index_isValid = false;
 
     m_message_isSet = false;
     m_message_isValid = false;
 
-    m_finish_reason_isSet = false;
-    m_finish_reason_isValid = false;
+    m_logprobs_isSet = false;
+    m_logprobs_isValid = false;
 }
 
 void OAICreateChatCompletionResponse_choices_inner::fromJson(QString jsonString) {
@@ -53,14 +56,17 @@ void OAICreateChatCompletionResponse_choices_inner::fromJson(QString jsonString)
 
 void OAICreateChatCompletionResponse_choices_inner::fromJsonObject(QJsonObject json) {
 
+    m_finish_reason_isValid = ::OpenAPI::fromJsonValue(m_finish_reason, json[QString("finish_reason")]);
+    m_finish_reason_isSet = !json[QString("finish_reason")].isNull() && m_finish_reason_isValid;
+
     m_index_isValid = ::OpenAPI::fromJsonValue(m_index, json[QString("index")]);
     m_index_isSet = !json[QString("index")].isNull() && m_index_isValid;
 
     m_message_isValid = ::OpenAPI::fromJsonValue(m_message, json[QString("message")]);
     m_message_isSet = !json[QString("message")].isNull() && m_message_isValid;
 
-    m_finish_reason_isValid = ::OpenAPI::fromJsonValue(m_finish_reason, json[QString("finish_reason")]);
-    m_finish_reason_isSet = !json[QString("finish_reason")].isNull() && m_finish_reason_isValid;
+    m_logprobs_isValid = ::OpenAPI::fromJsonValue(m_logprobs, json[QString("logprobs")]);
+    m_logprobs_isSet = !json[QString("logprobs")].isNull() && m_logprobs_isValid;
 }
 
 QString OAICreateChatCompletionResponse_choices_inner::asJson() const {
@@ -72,16 +78,35 @@ QString OAICreateChatCompletionResponse_choices_inner::asJson() const {
 
 QJsonObject OAICreateChatCompletionResponse_choices_inner::asJsonObject() const {
     QJsonObject obj;
+    if (m_finish_reason_isSet) {
+        obj.insert(QString("finish_reason"), ::OpenAPI::toJsonValue(m_finish_reason));
+    }
     if (m_index_isSet) {
         obj.insert(QString("index"), ::OpenAPI::toJsonValue(m_index));
     }
     if (m_message.isSet()) {
         obj.insert(QString("message"), ::OpenAPI::toJsonValue(m_message));
     }
-    if (m_finish_reason_isSet) {
-        obj.insert(QString("finish_reason"), ::OpenAPI::toJsonValue(m_finish_reason));
+    if (m_logprobs.isSet()) {
+        obj.insert(QString("logprobs"), ::OpenAPI::toJsonValue(m_logprobs));
     }
     return obj;
+}
+
+QString OAICreateChatCompletionResponse_choices_inner::getFinishReason() const {
+    return m_finish_reason;
+}
+void OAICreateChatCompletionResponse_choices_inner::setFinishReason(const QString &finish_reason) {
+    m_finish_reason = finish_reason;
+    m_finish_reason_isSet = true;
+}
+
+bool OAICreateChatCompletionResponse_choices_inner::is_finish_reason_Set() const{
+    return m_finish_reason_isSet;
+}
+
+bool OAICreateChatCompletionResponse_choices_inner::is_finish_reason_Valid() const{
+    return m_finish_reason_isValid;
 }
 
 qint32 OAICreateChatCompletionResponse_choices_inner::getIndex() const {
@@ -116,25 +141,30 @@ bool OAICreateChatCompletionResponse_choices_inner::is_message_Valid() const{
     return m_message_isValid;
 }
 
-QString OAICreateChatCompletionResponse_choices_inner::getFinishReason() const {
-    return m_finish_reason;
+OAICreateChatCompletionResponse_choices_inner_logprobs OAICreateChatCompletionResponse_choices_inner::getLogprobs() const {
+    return m_logprobs;
 }
-void OAICreateChatCompletionResponse_choices_inner::setFinishReason(const QString &finish_reason) {
-    m_finish_reason = finish_reason;
-    m_finish_reason_isSet = true;
-}
-
-bool OAICreateChatCompletionResponse_choices_inner::is_finish_reason_Set() const{
-    return m_finish_reason_isSet;
+void OAICreateChatCompletionResponse_choices_inner::setLogprobs(const OAICreateChatCompletionResponse_choices_inner_logprobs &logprobs) {
+    m_logprobs = logprobs;
+    m_logprobs_isSet = true;
 }
 
-bool OAICreateChatCompletionResponse_choices_inner::is_finish_reason_Valid() const{
-    return m_finish_reason_isValid;
+bool OAICreateChatCompletionResponse_choices_inner::is_logprobs_Set() const{
+    return m_logprobs_isSet;
+}
+
+bool OAICreateChatCompletionResponse_choices_inner::is_logprobs_Valid() const{
+    return m_logprobs_isValid;
 }
 
 bool OAICreateChatCompletionResponse_choices_inner::isSet() const {
     bool isObjectUpdated = false;
     do {
+        if (m_finish_reason_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (m_index_isSet) {
             isObjectUpdated = true;
             break;
@@ -145,7 +175,7 @@ bool OAICreateChatCompletionResponse_choices_inner::isSet() const {
             break;
         }
 
-        if (m_finish_reason_isSet) {
+        if (m_logprobs.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -155,7 +185,7 @@ bool OAICreateChatCompletionResponse_choices_inner::isSet() const {
 
 bool OAICreateChatCompletionResponse_choices_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return true;
+    return m_finish_reason_isValid && m_index_isValid && m_message_isValid && m_logprobs_isValid && true;
 }
 
 } // namespace OpenAPI

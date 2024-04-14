@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -33,6 +33,34 @@ namespace Org.OpenAPITools.Model
     public partial class CreateEmbeddingRequest : IValidatableObject
     {
         /// <summary>
+        /// The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
+        /// </summary>
+        /// <value>The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum EncodingFormatEnum
+        {
+            /// <summary>
+            /// Enum Float for value: float
+            /// </summary>
+            [EnumMember(Value = "float")]
+            Float = 1,
+
+            /// <summary>
+            /// Enum Base64 for value: base64
+            /// </summary>
+            [EnumMember(Value = "base64")]
+            Base64 = 2
+        }
+
+
+        /// <summary>
+        /// The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
+        /// </summary>
+        /// <value>The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).</value>
+        /// <example>float</example>
+        [DataMember(Name = "encoding_format", EmitDefaultValue = false)]
+        public EncodingFormatEnum? EncodingFormat { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateEmbeddingRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -40,25 +68,35 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateEmbeddingRequest" /> class.
         /// </summary>
-        /// <param name="model">model (required).</param>
         /// <param name="input">input (required).</param>
+        /// <param name="model">model (required).</param>
+        /// <param name="encodingFormat">The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/). (default to EncodingFormatEnum.Float).</param>
+        /// <param name="dimensions">The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. .</param>
         /// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). .</param>
-        public CreateEmbeddingRequest(CreateEmbeddingRequestModel model = default(CreateEmbeddingRequestModel), CreateEmbeddingRequestInput input = default(CreateEmbeddingRequestInput), string user = default(string))
+        public CreateEmbeddingRequest(CreateEmbeddingRequestInput input = default(CreateEmbeddingRequestInput), CreateEmbeddingRequestModel model = default(CreateEmbeddingRequestModel), EncodingFormatEnum? encodingFormat = EncodingFormatEnum.Float, int dimensions = default(int), string user = default(string))
         {
-            // to ensure "model" is required (not null)
-            if (model == null)
-            {
-                throw new ArgumentNullException("model is a required property for CreateEmbeddingRequest and cannot be null");
-            }
-            this.Model = model;
             // to ensure "input" is required (not null)
             if (input == null)
             {
                 throw new ArgumentNullException("input is a required property for CreateEmbeddingRequest and cannot be null");
             }
             this.Input = input;
+            // to ensure "model" is required (not null)
+            if (model == null)
+            {
+                throw new ArgumentNullException("model is a required property for CreateEmbeddingRequest and cannot be null");
+            }
+            this.Model = model;
+            this.EncodingFormat = encodingFormat;
+            this.Dimensions = dimensions;
             this.User = user;
         }
+
+        /// <summary>
+        /// Gets or Sets Input
+        /// </summary>
+        [DataMember(Name = "input", IsRequired = true, EmitDefaultValue = true)]
+        public CreateEmbeddingRequestInput Input { get; set; }
 
         /// <summary>
         /// Gets or Sets Model
@@ -67,10 +105,11 @@ namespace Org.OpenAPITools.Model
         public CreateEmbeddingRequestModel Model { get; set; }
 
         /// <summary>
-        /// Gets or Sets Input
+        /// The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. 
         /// </summary>
-        [DataMember(Name = "input", IsRequired = true, EmitDefaultValue = true)]
-        public CreateEmbeddingRequestInput Input { get; set; }
+        /// <value>The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. </value>
+        [DataMember(Name = "dimensions", EmitDefaultValue = false)]
+        public int Dimensions { get; set; }
 
         /// <summary>
         /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
@@ -88,8 +127,10 @@ namespace Org.OpenAPITools.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateEmbeddingRequest {\n");
-            sb.Append("  Model: ").Append(Model).Append("\n");
             sb.Append("  Input: ").Append(Input).Append("\n");
+            sb.Append("  Model: ").Append(Model).Append("\n");
+            sb.Append("  EncodingFormat: ").Append(EncodingFormat).Append("\n");
+            sb.Append("  Dimensions: ").Append(Dimensions).Append("\n");
             sb.Append("  User: ").Append(User).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -111,6 +152,12 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Dimensions (int) minimum
+            if (this.Dimensions < (int)1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Dimensions, must be a value greater than or equal to 1.", new [] { "Dimensions" });
+            }
+
             yield break;
         }
     }

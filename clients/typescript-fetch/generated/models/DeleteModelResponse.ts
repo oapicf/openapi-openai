@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,16 +27,16 @@ export interface DeleteModelResponse {
     id: string;
     /**
      * 
-     * @type {string}
-     * @memberof DeleteModelResponse
-     */
-    object: string;
-    /**
-     * 
      * @type {boolean}
      * @memberof DeleteModelResponse
      */
     deleted: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteModelResponse
+     */
+    object: string;
 }
 
 /**
@@ -44,8 +44,8 @@ export interface DeleteModelResponse {
  */
 export function instanceOfDeleteModelResponse(value: object): boolean {
     if (!('id' in value)) return false;
-    if (!('object' in value)) return false;
     if (!('deleted' in value)) return false;
+    if (!('object' in value)) return false;
     return true;
 }
 
@@ -60,8 +60,8 @@ export function DeleteModelResponseFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'id': json['id'],
-        'object': json['object'],
         'deleted': json['deleted'],
+        'object': json['object'],
     };
 }
 
@@ -72,8 +72,8 @@ export function DeleteModelResponseToJSON(value?: DeleteModelResponse | null): a
     return {
         
         'id': value['id'],
-        'object': value['object'],
         'deleted': value['deleted'],
+        'object': value['object'],
     };
 }
 

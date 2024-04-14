@@ -10,8 +10,26 @@ import io.vertx.ext.web.openapi.RouterBuilderOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.openapitools.vertxweb.server.api.OpenAiApiHandler;
-import org.openapitools.vertxweb.server.api.OpenAiApiImpl;
+import org.openapitools.vertxweb.server.api.AssistantsApiHandler;
+import org.openapitools.vertxweb.server.api.AssistantsApiImpl;
+import org.openapitools.vertxweb.server.api.AudioApiHandler;
+import org.openapitools.vertxweb.server.api.AudioApiImpl;
+import org.openapitools.vertxweb.server.api.ChatApiHandler;
+import org.openapitools.vertxweb.server.api.ChatApiImpl;
+import org.openapitools.vertxweb.server.api.CompletionsApiHandler;
+import org.openapitools.vertxweb.server.api.CompletionsApiImpl;
+import org.openapitools.vertxweb.server.api.EmbeddingsApiHandler;
+import org.openapitools.vertxweb.server.api.EmbeddingsApiImpl;
+import org.openapitools.vertxweb.server.api.FilesApiHandler;
+import org.openapitools.vertxweb.server.api.FilesApiImpl;
+import org.openapitools.vertxweb.server.api.FineTuningApiHandler;
+import org.openapitools.vertxweb.server.api.FineTuningApiImpl;
+import org.openapitools.vertxweb.server.api.ImagesApiHandler;
+import org.openapitools.vertxweb.server.api.ImagesApiImpl;
+import org.openapitools.vertxweb.server.api.ModelsApiHandler;
+import org.openapitools.vertxweb.server.api.ModelsApiImpl;
+import org.openapitools.vertxweb.server.api.ModerationsApiHandler;
+import org.openapitools.vertxweb.server.api.ModerationsApiImpl;
 
 public class HttpServerVerticle extends AbstractVerticle {
 
@@ -19,7 +37,16 @@ public class HttpServerVerticle extends AbstractVerticle {
     private static final String specFile = "src/main/resources/openapi.yaml";
 
     
-    private final OpenAiApiHandler openAiHandler = new OpenAiApiHandler(new OpenAiApiImpl());
+    private final AssistantsApiHandler assistantsHandler = new AssistantsApiHandler(new AssistantsApiImpl());
+    private final AudioApiHandler audioHandler = new AudioApiHandler(new AudioApiImpl());
+    private final ChatApiHandler chatHandler = new ChatApiHandler(new ChatApiImpl());
+    private final CompletionsApiHandler completionsHandler = new CompletionsApiHandler(new CompletionsApiImpl());
+    private final EmbeddingsApiHandler embeddingsHandler = new EmbeddingsApiHandler(new EmbeddingsApiImpl());
+    private final FilesApiHandler filesHandler = new FilesApiHandler(new FilesApiImpl());
+    private final FineTuningApiHandler fineTuningHandler = new FineTuningApiHandler(new FineTuningApiImpl());
+    private final ImagesApiHandler imagesHandler = new ImagesApiHandler(new ImagesApiImpl());
+    private final ModelsApiHandler modelsHandler = new ModelsApiHandler(new ModelsApiImpl());
+    private final ModerationsApiHandler moderationsHandler = new ModerationsApiHandler(new ModerationsApiImpl());
 
     @Override
     public void start(Promise<Void> startPromise) {
@@ -30,7 +57,16 @@ public class HttpServerVerticle extends AbstractVerticle {
                   .setRequireSecurityHandlers(false)
               );
               
-              openAiHandler.mount(builder);
+              assistantsHandler.mount(builder);
+              audioHandler.mount(builder);
+              chatHandler.mount(builder);
+              completionsHandler.mount(builder);
+              embeddingsHandler.mount(builder);
+              filesHandler.mount(builder);
+              fineTuningHandler.mount(builder);
+              imagesHandler.mount(builder);
+              modelsHandler.mount(builder);
+              moderationsHandler.mount(builder);
 
               Router router = builder.createRouter();
               router.errorHandler(400, this::validationFailureHandler);

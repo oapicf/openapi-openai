@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,34 +12,32 @@
  * Do not edit the class manually.
  */
 
+import { mapValues } from '../runtime';
 /**
- * @type CreateTranscriptionRequestModel
- * ID of the model to use. Only `whisper-1` is currently available.
+ * ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available.
  * 
  * @export
+ * @interface CreateTranscriptionRequestModel
  */
-export type CreateTranscriptionRequestModel = string;
+export interface CreateTranscriptionRequestModel {
+}
+
+/**
+ * Check if a given object implements the CreateTranscriptionRequestModel interface.
+ */
+export function instanceOfCreateTranscriptionRequestModel(value: object): boolean {
+    return true;
+}
 
 export function CreateTranscriptionRequestModelFromJSON(json: any): CreateTranscriptionRequestModel {
     return CreateTranscriptionRequestModelFromJSONTyped(json, false);
 }
 
 export function CreateTranscriptionRequestModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTranscriptionRequestModel {
-    if (json == null) {
-        return json;
-    }
-    return { ...stringFromJSONTyped(json, true) };
+    return json;
 }
 
 export function CreateTranscriptionRequestModelToJSON(value?: CreateTranscriptionRequestModel | null): any {
-    if (value == null) {
-        return value;
-    }
-
-    if (instanceOfstring(value)) {
-        return stringToJSON(value as string);
-    }
-
-    return {};
+    return value;
 }
 

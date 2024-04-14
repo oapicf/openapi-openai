@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -47,21 +47,71 @@ import java.util.Set;
 import com.github.oapicf.openapiopenai.JSON;
 
 /**
- * Model
+ * Describes an OpenAI model offering that can be used with the API.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Model {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  public static final String SERIALIZED_NAME_OBJECT = "object";
-  @SerializedName(SERIALIZED_NAME_OBJECT)
-  private String _object;
-
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
   private Integer created;
+
+  /**
+   * The object type, which is always \&quot;model\&quot;.
+   */
+  @JsonAdapter(ObjectEnum.Adapter.class)
+  public enum ObjectEnum {
+    MODEL("model");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ObjectEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ObjectEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ObjectEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ObjectEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ObjectEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_OBJECT = "object";
+  @SerializedName(SERIALIZED_NAME_OBJECT)
+  private ObjectEnum _object;
 
   public static final String SERIALIZED_NAME_OWNED_BY = "owned_by";
   @SerializedName(SERIALIZED_NAME_OWNED_BY)
@@ -76,7 +126,7 @@ public class Model {
   }
 
    /**
-   * Get id
+   * The model identifier, which can be referenced in the API endpoints.
    * @return id
   **/
   @javax.annotation.Nonnull
@@ -89,32 +139,13 @@ public class Model {
   }
 
 
-  public Model _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  @javax.annotation.Nonnull
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-
   public Model created(Integer created) {
     this.created = created;
     return this;
   }
 
    /**
-   * Get created
+   * The Unix timestamp (in seconds) when the model was created.
    * @return created
   **/
   @javax.annotation.Nonnull
@@ -127,13 +158,32 @@ public class Model {
   }
 
 
+  public Model _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * The object type, which is always \&quot;model\&quot;.
+   * @return _object
+  **/
+  @javax.annotation.Nonnull
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+
   public Model ownedBy(String ownedBy) {
     this.ownedBy = ownedBy;
     return this;
   }
 
    /**
-   * Get ownedBy
+   * The organization that owns the model.
    * @return ownedBy
   **/
   @javax.annotation.Nonnull
@@ -157,14 +207,14 @@ public class Model {
     }
     Model model = (Model) o;
     return Objects.equals(this.id, model.id) &&
-        Objects.equals(this._object, model._object) &&
         Objects.equals(this.created, model.created) &&
+        Objects.equals(this._object, model._object) &&
         Objects.equals(this.ownedBy, model.ownedBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, ownedBy);
+    return Objects.hash(id, created, _object, ownedBy);
   }
 
   @Override
@@ -172,8 +222,8 @@ public class Model {
     StringBuilder sb = new StringBuilder();
     sb.append("class Model {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    ownedBy: ").append(toIndentedString(ownedBy)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -198,15 +248,15 @@ public class Model {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
-    openapiFields.add("object");
     openapiFields.add("created");
+    openapiFields.add("object");
     openapiFields.add("owned_by");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
-    openapiRequiredFields.add("object");
     openapiRequiredFields.add("created");
+    openapiRequiredFields.add("object");
     openapiRequiredFields.add("owned_by");
   }
 
@@ -244,6 +294,8 @@ public class Model {
       if (!jsonObj.get("object").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `object` to be a primitive type in the JSON string but got `%s`", jsonObj.get("object").toString()));
       }
+      // validate the required field `object`
+      ObjectEnum.validateJsonElement(jsonObj.get("object"));
       if (!jsonObj.get("owned_by").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `owned_by` to be a primitive type in the JSON string but got `%s`", jsonObj.get("owned_by").toString()));
       }

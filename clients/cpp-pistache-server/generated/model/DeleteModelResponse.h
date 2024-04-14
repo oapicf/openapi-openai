@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -66,22 +66,22 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::string getObject() const;
-    void setObject(std::string const& value);
+    bool isDeleted() const;
+    void setDeleted(bool const value);
     /// <summary>
     /// 
     /// </summary>
-    bool isDeleted() const;
-    void setDeleted(bool const value);
+    std::string getObject() const;
+    void setObject(std::string const& value);
 
     friend  void to_json(nlohmann::json& j, const DeleteModelResponse& o);
     friend  void from_json(const nlohmann::json& j, DeleteModelResponse& o);
 protected:
     std::string m_Id;
 
-    std::string m_object;
-
     bool m_Deleted;
+
+    std::string m_object;
 
     
 };

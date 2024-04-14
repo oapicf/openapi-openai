@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// CreateModerationResponse
+    /// Represents if a given text input is potentially harmful.
     /// </summary>
     [DataContract(Name = "CreateModerationResponse")]
     public partial class CreateModerationResponse : IValidatableObject
@@ -40,9 +40,9 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateModerationResponse" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="model">model (required).</param>
-        /// <param name="results">results (required).</param>
+        /// <param name="id">The unique identifier for the moderation request. (required).</param>
+        /// <param name="model">The model used to generate the moderation results. (required).</param>
+        /// <param name="results">A list of moderation objects. (required).</param>
         public CreateModerationResponse(string id = default(string), string model = default(string), List<CreateModerationResponseResultsInner> results = default(List<CreateModerationResponseResultsInner>))
         {
             // to ensure "id" is required (not null)
@@ -66,20 +66,23 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// The unique identifier for the moderation request.
         /// </summary>
+        /// <value>The unique identifier for the moderation request.</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Model
+        /// The model used to generate the moderation results.
         /// </summary>
+        /// <value>The model used to generate the moderation results.</value>
         [DataMember(Name = "model", IsRequired = true, EmitDefaultValue = true)]
         public string Model { get; set; }
 
         /// <summary>
-        /// Gets or Sets Results
+        /// A list of moderation objects.
         /// </summary>
+        /// <value>A list of moderation objects.</value>
         [DataMember(Name = "results", IsRequired = true, EmitDefaultValue = true)]
         public List<CreateModerationResponseResultsInner> Results { get; set; }
 

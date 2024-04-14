@@ -1,0 +1,30 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "id" },
+      {"model": "object" },
+      {"model": "created_at" },
+      {"model": "thread_id" },
+      {"model": "status" },
+      {"model": "incomplete_details" },
+      {"model": "completed_at" },
+      {"model": "incomplete_at" },
+      {"model": "role" },
+      {"model": "content" },
+      {"model": "assistant_id" },
+      {"model": "run_id" },
+      {"model": "file_ids" },
+      {"model": "metadata" },
+    ]
+  }]
+}

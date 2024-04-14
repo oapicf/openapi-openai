@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tokens** | **String[]** |  | [optional] 
-**TokenLogprobs** | **Decimal[]** |  | [optional] 
-**TopLogprobs** | [**SystemCollectionsHashtable[]**](SystemCollectionsHashtable.md) |  | [optional] 
 **TextOffset** | **Int32[]** |  | [optional] 
+**TokenLogprobs** | **Decimal[]** |  | [optional] 
+**Tokens** | **String[]** |  | [optional] 
+**TopLogprobs** | [**System.Collections.Hashtable[]**](Map.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$CreateCompletionResponseChoicesInnerLogprobs = Initialize-PSOpenAPIToolsCreateCompletionResponseChoicesInnerLogprobs  -Tokens null `
+$CreateCompletionResponseChoicesInnerLogprobs = Initialize-PSOpenAPIToolsCreateCompletionResponseChoicesInnerLogprobs  -TextOffset null `
  -TokenLogprobs null `
- -TopLogprobs null `
- -TextOffset null
+ -Tokens null `
+ -TopLogprobs null
 ```
 
 - Convert the resource to JSON

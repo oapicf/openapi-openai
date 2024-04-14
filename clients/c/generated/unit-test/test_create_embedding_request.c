@@ -16,22 +16,26 @@
 #include "../model/create_embedding_request.h"
 create_embedding_request_t* instantiate_create_embedding_request(int include_optional);
 
-#include "test_create_embedding_request_model.c"
 #include "test_create_embedding_request_input.c"
+#include "test_create_embedding_request_model.c"
 
 
 create_embedding_request_t* instantiate_create_embedding_request(int include_optional) {
   create_embedding_request_t* create_embedding_request = NULL;
   if (include_optional) {
     create_embedding_request = create_embedding_request_create(
-      text-embedding-ada-002,
       The quick brown fox jumped over the lazy dog,
+      text-embedding-3-small,
+      openai_api_create_embedding_request_ENCODINGFORMAT_"float",
+      1,
       "user-1234"
     );
   } else {
     create_embedding_request = create_embedding_request_create(
-      text-embedding-ada-002,
       The quick brown fox jumped over the lazy dog,
+      text-embedding-3-small,
+      openai_api_create_embedding_request_ENCODINGFORMAT_"float",
+      1,
       "user-1234"
     );
   }

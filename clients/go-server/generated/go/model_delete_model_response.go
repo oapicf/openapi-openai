@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,17 +17,17 @@ type DeleteModelResponse struct {
 
 	Id string `json:"id"`
 
-	Object string `json:"object"`
-
 	Deleted bool `json:"deleted"`
+
+	Object string `json:"object"`
 }
 
 // AssertDeleteModelResponseRequired checks if the required fields are not zero-ed
 func AssertDeleteModelResponseRequired(obj DeleteModelResponse) error {
 	elements := map[string]interface{}{
 		"id": obj.Id,
-		"object": obj.Object,
 		"deleted": obj.Deleted,
+		"object": obj.Object,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

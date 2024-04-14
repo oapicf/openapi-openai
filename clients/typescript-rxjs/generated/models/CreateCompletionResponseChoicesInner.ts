@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,10 +21,11 @@ import type {
  */
 export interface CreateCompletionResponseChoicesInner {
     /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
      * @type {string}
      * @memberof CreateCompletionResponseChoicesInner
      */
-    text: string;
+    finish_reason: CreateCompletionResponseChoicesInnerFinishReasonEnum;
     /**
      * @type {number}
      * @memberof CreateCompletionResponseChoicesInner
@@ -39,7 +40,7 @@ export interface CreateCompletionResponseChoicesInner {
      * @type {string}
      * @memberof CreateCompletionResponseChoicesInner
      */
-    finish_reason: CreateCompletionResponseChoicesInnerFinishReasonEnum;
+    text: string;
 }
 
 /**
@@ -48,6 +49,7 @@ export interface CreateCompletionResponseChoicesInner {
  */
 export enum CreateCompletionResponseChoicesInnerFinishReasonEnum {
     Stop = 'stop',
-    Length = 'length'
+    Length = 'length',
+    ContentFilter = 'content_filter'
 }
 

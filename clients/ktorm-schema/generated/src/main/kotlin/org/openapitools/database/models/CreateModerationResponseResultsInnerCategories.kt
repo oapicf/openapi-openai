@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -18,35 +18,47 @@ import .*
 
 
 /**
- * 
- * @param hate 
- * @param hateThreatening 
- * @param selfHarm 
- * @param sexual 
- * @param sexualMinors 
- * @param violence 
- * @param violenceGraphic 
+ * A list of the categories, and whether they are flagged or not.
+ * @param hate Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
+ * @param hateThreatening Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
+ * @param harassment Content that expresses, incites, or promotes harassing language towards any target.
+ * @param harassmentThreatening Harassment content that also includes violence or serious harm towards any target.
+ * @param selfHarm Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
+ * @param selfHarmIntent Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+ * @param selfHarmInstructions Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+ * @param sexual Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
+ * @param sexualMinors Sexual content that includes an individual who is under 18 years old.
+ * @param violence Content that depicts death, violence, or physical injury.
+ * @param violenceGraphic Content that depicts death, violence, or physical injury in graphic detail.
  */
 object CreateModerationResponseResultsInnerCategoriess : BaseTable<CreateModerationResponseResultsInnerCategories>("CreateModerationResponse_results_inner_categories") {
-    val hate = boolean("hate")
-    val hateThreatening = boolean("hatethreatening")
-    val selfHarm = boolean("selfharm")
-    val sexual = boolean("sexual")
-    val sexualMinors = boolean("sexualminors")
-    val violence = boolean("violence")
-    val violenceGraphic = boolean("violencegraphic")
+    val hate = boolean("hate") /* Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment. */
+    val hateThreatening = boolean("hatethreatening") /* Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. */
+    val harassment = boolean("harassment") /* Content that expresses, incites, or promotes harassing language towards any target. */
+    val harassmentThreatening = boolean("harassmentthreatening") /* Harassment content that also includes violence or serious harm towards any target. */
+    val selfHarm = boolean("selfharm") /* Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. */
+    val selfHarmIntent = boolean("selfharmintent") /* Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. */
+    val selfHarmInstructions = boolean("selfharminstructions") /* Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. */
+    val sexual = boolean("sexual") /* Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness). */
+    val sexualMinors = boolean("sexualminors") /* Sexual content that includes an individual who is under 18 years old. */
+    val violence = boolean("violence") /* Content that depicts death, violence, or physical injury. */
+    val violenceGraphic = boolean("violencegraphic") /* Content that depicts death, violence, or physical injury in graphic detail. */
 
     /**
      * Create an entity of type CreateModerationResponseResultsInnerCategories from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = CreateModerationResponseResultsInnerCategories(
-        hate = row[hate] ?: false /* kotlin.Boolean */,
-        hateThreatening = row[hateThreatening] ?: false /* kotlin.Boolean */,
-        selfHarm = row[selfHarm] ?: false /* kotlin.Boolean */,
-        sexual = row[sexual] ?: false /* kotlin.Boolean */,
-        sexualMinors = row[sexualMinors] ?: false /* kotlin.Boolean */,
-        violence = row[violence] ?: false /* kotlin.Boolean */,
-        violenceGraphic = row[violenceGraphic] ?: false /* kotlin.Boolean */
+        hate = row[hate] ?: false /* kotlin.Boolean */ /* Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment. */,
+        hateThreatening = row[hateThreatening] ?: false /* kotlin.Boolean */ /* Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. */,
+        harassment = row[harassment] ?: false /* kotlin.Boolean */ /* Content that expresses, incites, or promotes harassing language towards any target. */,
+        harassmentThreatening = row[harassmentThreatening] ?: false /* kotlin.Boolean */ /* Harassment content that also includes violence or serious harm towards any target. */,
+        selfHarm = row[selfHarm] ?: false /* kotlin.Boolean */ /* Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. */,
+        selfHarmIntent = row[selfHarmIntent] ?: false /* kotlin.Boolean */ /* Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. */,
+        selfHarmInstructions = row[selfHarmInstructions] ?: false /* kotlin.Boolean */ /* Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. */,
+        sexual = row[sexual] ?: false /* kotlin.Boolean */ /* Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness). */,
+        sexualMinors = row[sexualMinors] ?: false /* kotlin.Boolean */ /* Sexual content that includes an individual who is under 18 years old. */,
+        violence = row[violence] ?: false /* kotlin.Boolean */ /* Content that depicts death, violence, or physical injury. */,
+        violenceGraphic = row[violenceGraphic] ?: false /* kotlin.Boolean */ /* Content that depicts death, violence, or physical injury in graphic detail. */
     )
 
     /**
@@ -66,7 +78,11 @@ object CreateModerationResponseResultsInnerCategoriess : BaseTable<CreateModerat
         this.apply {
             set(CreateModerationResponseResultsInnerCategoriess.hate, entity.hate)
             set(CreateModerationResponseResultsInnerCategoriess.hateThreatening, entity.hateThreatening)
+            set(CreateModerationResponseResultsInnerCategoriess.harassment, entity.harassment)
+            set(CreateModerationResponseResultsInnerCategoriess.harassmentThreatening, entity.harassmentThreatening)
             set(CreateModerationResponseResultsInnerCategoriess.selfHarm, entity.selfHarm)
+            set(CreateModerationResponseResultsInnerCategoriess.selfHarmIntent, entity.selfHarmIntent)
+            set(CreateModerationResponseResultsInnerCategoriess.selfHarmInstructions, entity.selfHarmInstructions)
             set(CreateModerationResponseResultsInnerCategoriess.sexual, entity.sexual)
             set(CreateModerationResponseResultsInnerCategoriess.sexualMinors, entity.sexualMinors)
             set(CreateModerationResponseResultsInnerCategoriess.violence, entity.violence)

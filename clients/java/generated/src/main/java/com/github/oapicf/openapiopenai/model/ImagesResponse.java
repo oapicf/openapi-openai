@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,7 +14,7 @@
 package com.github.oapicf.openapiopenai.model;
 
 import java.util.Objects;
-import com.github.oapicf.openapiopenai.model.ImagesResponseDataInner;
+import com.github.oapicf.openapiopenai.model.Image;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,7 +52,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * ImagesResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesResponse {
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
@@ -60,7 +60,7 @@ public class ImagesResponse {
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private List<ImagesResponseDataInner> data = new ArrayList<>();
+  private List<Image> data = new ArrayList<>();
 
   public ImagesResponse() {
   }
@@ -84,12 +84,12 @@ public class ImagesResponse {
   }
 
 
-  public ImagesResponse data(List<ImagesResponseDataInner> data) {
+  public ImagesResponse data(List<Image> data) {
     this.data = data;
     return this;
   }
 
-  public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+  public ImagesResponse addDataItem(Image dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -102,11 +102,11 @@ public class ImagesResponse {
    * @return data
   **/
   @javax.annotation.Nonnull
-  public List<ImagesResponseDataInner> getData() {
+  public List<Image> getData() {
     return data;
   }
 
-  public void setData(List<ImagesResponseDataInner> data) {
+  public void setData(List<Image> data) {
     this.data = data;
   }
 
@@ -203,7 +203,7 @@ public class ImagesResponse {
       JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
       // validate the required field `data` (array)
       for (int i = 0; i < jsonArraydata.size(); i++) {
-        ImagesResponseDataInner.validateJsonElement(jsonArraydata.get(i));
+        Image.validateJsonElement(jsonArraydata.get(i));
       };
   }
 

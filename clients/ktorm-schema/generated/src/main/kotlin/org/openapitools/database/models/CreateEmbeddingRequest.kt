@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -19,21 +19,28 @@ import .*
 
 /**
  * 
- * @param model 
  * @param input 
+ * @param model 
+ * @param encodingFormat The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+ * @param dimensions The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
  * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
  */
 object CreateEmbeddingRequests : BaseTable<CreateEmbeddingRequest>("CreateEmbeddingRequest") {
-    val model = long("model")
     val input = long("input")
+    val model = long("model")
+    val encodingFormat = text("encoding_format").transform({ CreateEmbeddingRequest.EncodingFormat.valueOf(it ?: "float") }, { it.value }) /* null */ /* The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/). */
+
+    val dimensions = int("dimensions") /* null */ /* The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */
     val user = text("user") /* null */ /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
 
     /**
      * Create an entity of type CreateEmbeddingRequest from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = CreateEmbeddingRequest(
-        model = CreateEmbeddingRequestModels.createEntity(row, withReferences) /* CreateEmbeddingRequestModel */,
         input = CreateEmbeddingRequestInputs.createEntity(row, withReferences) /* CreateEmbeddingRequestInput */,
+        model = CreateEmbeddingRequestModels.createEntity(row, withReferences) /* CreateEmbeddingRequestModel */,
+        encodingFormat = row[encodingFormat] ?: EncodingFormat.float /* kotlin.String? */ /* The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/). */,
+        dimensions = row[dimensions]  /* kotlin.Int? */ /* The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */,
         user = row[user]  /* kotlin.String? */ /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
     )
 
@@ -52,8 +59,10 @@ object CreateEmbeddingRequests : BaseTable<CreateEmbeddingRequest>("CreateEmbedd
     */
     fun AssignmentsBuilder.assignFrom(entity: CreateEmbeddingRequest) {
         this.apply {
-            set(CreateEmbeddingRequests.model, entity.model)
             set(CreateEmbeddingRequests.input, entity.input)
+            set(CreateEmbeddingRequests.model, entity.model)
+            set(CreateEmbeddingRequests.encodingFormat, entity.encodingFormat)
+            set(CreateEmbeddingRequests.dimensions, entity.dimensions)
             set(CreateEmbeddingRequests.user, entity.user)
         }
     }

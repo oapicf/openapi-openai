@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -81,9 +81,9 @@ class CreateCompletionResponseChoicesInnerLogprobsTest extends TestCase
     }
 
     /**
-     * Test attribute "tokens"
+     * Test attribute "text_offset"
      */
-    public function testPropertyTokens()
+    public function testPropertyTextOffset()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -99,18 +99,18 @@ class CreateCompletionResponseChoicesInnerLogprobsTest extends TestCase
     }
 
     /**
-     * Test attribute "top_logprobs"
+     * Test attribute "tokens"
      */
-    public function testPropertyTopLogprobs()
+    public function testPropertyTokens()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "text_offset"
+     * Test attribute "top_logprobs"
      */
-    public function testPropertyTextOffset()
+    public function testPropertyTopLogprobs()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

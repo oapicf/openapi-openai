@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -20,11 +20,11 @@ class CREATE_MODERATION_RESPONSE
 feature --Access
 
     id: detachable STRING_32
-      
+      -- The unique identifier for the moderation request.
     model: detachable STRING_32
-      
+      -- The model used to generate the moderation results.
     results: detachable LIST [CREATE_MODERATION_RESPONSE_RESULTS_INNER]
-      
+      -- A list of moderation objects.
 
 feature -- Change Element
 

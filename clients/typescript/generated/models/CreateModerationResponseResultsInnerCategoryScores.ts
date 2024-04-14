@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,13 +12,53 @@
 
 import { HttpFile } from '../http/http';
 
+/**
+* A list of the categories along with their scores as predicted by model.
+*/
 export class CreateModerationResponseResultsInnerCategoryScores {
+    /**
+    * The score for the category \'hate\'.
+    */
     'hate': number;
+    /**
+    * The score for the category \'hate/threatening\'.
+    */
     'hateThreatening': number;
+    /**
+    * The score for the category \'harassment\'.
+    */
+    'harassment': number;
+    /**
+    * The score for the category \'harassment/threatening\'.
+    */
+    'harassmentThreatening': number;
+    /**
+    * The score for the category \'self-harm\'.
+    */
     'selfHarm': number;
+    /**
+    * The score for the category \'self-harm/intent\'.
+    */
+    'selfHarmIntent': number;
+    /**
+    * The score for the category \'self-harm/instructions\'.
+    */
+    'selfHarmInstructions': number;
+    /**
+    * The score for the category \'sexual\'.
+    */
     'sexual': number;
+    /**
+    * The score for the category \'sexual/minors\'.
+    */
     'sexualMinors': number;
+    /**
+    * The score for the category \'violence\'.
+    */
     'violence': number;
+    /**
+    * The score for the category \'violence/graphic\'.
+    */
     'violenceGraphic': number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -37,8 +77,32 @@ export class CreateModerationResponseResultsInnerCategoryScores {
             "format": ""
         },
         {
+            "name": "harassment",
+            "baseName": "harassment",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "harassmentThreatening",
+            "baseName": "harassment/threatening",
+            "type": "number",
+            "format": ""
+        },
+        {
             "name": "selfHarm",
             "baseName": "self-harm",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "selfHarmIntent",
+            "baseName": "self-harm/intent",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "selfHarmInstructions",
+            "baseName": "self-harm/instructions",
             "type": "number",
             "format": ""
         },

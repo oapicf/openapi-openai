@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -26,6 +26,7 @@
 #include "CreateEmbeddingRequest_model.h"
 #include <memory>
 #include <vector>
+#include <array>
 #include <boost/property_tree/ptree.hpp>
 #include "helpers.h"
 
@@ -62,14 +63,26 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    CreateEmbeddingRequest_model getModel() const;
-    void setModel(CreateEmbeddingRequest_model value);
+    CreateEmbeddingRequest_input getInput() const;
+    void setInput(CreateEmbeddingRequest_input value);
 
     /// <summary>
     /// 
     /// </summary>
-    CreateEmbeddingRequest_input getInput() const;
-    void setInput(CreateEmbeddingRequest_input value);
+    CreateEmbeddingRequest_model getModel() const;
+    void setModel(CreateEmbeddingRequest_model value);
+
+    /// <summary>
+    /// The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
+    /// </summary>
+    std::string getEncodingFormat() const;
+    void setEncodingFormat(std::string value);
+
+    /// <summary>
+    /// The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. 
+    /// </summary>
+    int32_t getDimensions() const;
+    void setDimensions(int32_t value);
 
     /// <summary>
     /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
@@ -78,8 +91,10 @@ public:
     void setUser(std::string value);
 
 protected:
-    CreateEmbeddingRequest_model m_Model;
     CreateEmbeddingRequest_input m_Input;
+    CreateEmbeddingRequest_model m_Model;
+    std::string m_Encoding_format = "float";
+    int32_t m_Dimensions = 0;
     std::string m_User = "";
 };
 

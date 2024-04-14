@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,12 +16,12 @@ import ApiClient from '../ApiClient';
 /**
  * The CreateEmbeddingRequestInput model module.
  * @module model/CreateEmbeddingRequestInput
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateEmbeddingRequestInput {
     /**
      * Constructs a new <code>CreateEmbeddingRequestInput</code>.
-     * Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. Each input must not exceed the max input tokens for the model (8191 tokens for &#x60;text-embedding-ada-002&#x60;). [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
+     * Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. The input must not exceed the max input tokens for the model (8192 tokens for &#x60;text-embedding-ada-002&#x60;), cannot be an empty string, and any array must be 2048 dimensions or less. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
      * @alias module:model/CreateEmbeddingRequestInput
      * @param {(module:model/String|module:model/[Number]|module:model/[String]|module:model/[[Number]])} instance The actual instance to initialize CreateEmbeddingRequestInput.
      */
@@ -32,6 +32,7 @@ class CreateEmbeddingRequestInput {
         }
         var match = 0;
         var errorMessages = [];
+        // The string that will be turned into an embedding.
         try {
             // validate string
             if (!(typeof instance === 'string')) {
@@ -44,10 +45,14 @@ class CreateEmbeddingRequestInput {
             errorMessages.push("Failed to construct String: " + err)
         }
 
+        // The array of strings that will be turned into an embedding.
         try {
             // validate array data type
             if (!Array.isArray(instance)) {
                 throw new Error("Invalid data type. Expecting array. Input: " + instance);
+            }
+            if (instance.length > 2048 || instance.length < 1) {
+                throw new Error("Invalid array size. Minimim: 1. Maximum: 2048. Input: " + instance);
             }
             // validate array of string
             for (const item of instance) {
@@ -62,13 +67,14 @@ class CreateEmbeddingRequestInput {
             errorMessages.push("Failed to construct [String]: " + err)
         }
 
+        // The array of integers that will be turned into an embedding.
         try {
             // validate array data type
             if (!Array.isArray(instance)) {
                 throw new Error("Invalid data type. Expecting array. Input: " + instance);
             }
-            if (instance.length < 1) {
-                throw new Error("Invalid array size. Minimim: 1. Input: " + instance);
+            if (instance.length > 2048 || instance.length < 1) {
+                throw new Error("Invalid array size. Minimim: 1. Maximum: 2048. Input: " + instance);
             }
             // validate array of integer
             for (const item of instance) {
@@ -83,13 +89,14 @@ class CreateEmbeddingRequestInput {
             errorMessages.push("Failed to construct [Number]: " + err)
         }
 
+        // The array of arrays containing integers that will be turned into an embedding.
         try {
             // validate array data type
             if (!Array.isArray(instance)) {
                 throw new Error("Invalid data type. Expecting array. Input: " + instance);
             }
-            if (instance.length < 1) {
-                throw new Error("Invalid array size. Minimim: 1. Input: " + instance);
+            if (instance.length > 2048 || instance.length < 1) {
+                throw new Error("Invalid array size. Minimim: 1. Maximum: 2048. Input: " + instance);
             }
             this.actualInstance = instance;
             match++;

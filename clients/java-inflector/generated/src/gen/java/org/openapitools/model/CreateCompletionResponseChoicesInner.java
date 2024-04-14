@@ -13,24 +13,17 @@ import org.openapitools.model.CreateCompletionResponseChoicesInnerLogprobs;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-03-16T01:12:27.532392463Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-04-14T13:37:33.081471369Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateCompletionResponseChoicesInner   {
-  @JsonProperty("text")
-  private String text;
-
-  @JsonProperty("index")
-  private Integer index;
-
-  @JsonProperty("logprobs")
-  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
-
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
    */
   public enum FinishReasonEnum {
     STOP("stop"),
     
-    LENGTH("length");
+    LENGTH("length"),
+    
+    CONTENT_FILTER("content_filter");
 
     private String value;
 
@@ -58,21 +51,31 @@ public class CreateCompletionResponseChoicesInner   {
   @JsonProperty("finish_reason")
   private FinishReasonEnum finishReason;
 
+  @JsonProperty("index")
+  private Integer index;
+
+  @JsonProperty("logprobs")
+  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
+
+  @JsonProperty("text")
+  private String text;
+
   /**
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
    **/
-  public CreateCompletionResponseChoicesInner text(String text) {
-    this.text = text;
+  public CreateCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("text")
-  public String getText() {
-    return text;
+  @ApiModelProperty(required = true, value = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. ")
+  @JsonProperty("finish_reason")
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
   }
-  public void setText(String text) {
-    this.text = text;
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
   }
 
   /**
@@ -111,19 +114,19 @@ public class CreateCompletionResponseChoicesInner   {
 
   /**
    **/
-  public CreateCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public CreateCompletionResponseChoicesInner text(String text) {
+    this.text = text;
     return this;
   }
 
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("finish_reason")
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  @JsonProperty("text")
+  public String getText() {
+    return text;
   }
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -136,15 +139,15 @@ public class CreateCompletionResponseChoicesInner   {
       return false;
     }
     CreateCompletionResponseChoicesInner createCompletionResponseChoicesInner = (CreateCompletionResponseChoicesInner) o;
-    return Objects.equals(text, createCompletionResponseChoicesInner.text) &&
+    return Objects.equals(finishReason, createCompletionResponseChoicesInner.finishReason) &&
         Objects.equals(index, createCompletionResponseChoicesInner.index) &&
         Objects.equals(logprobs, createCompletionResponseChoicesInner.logprobs) &&
-        Objects.equals(finishReason, createCompletionResponseChoicesInner.finishReason);
+        Objects.equals(text, createCompletionResponseChoicesInner.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, index, logprobs, finishReason);
+    return Objects.hash(finishReason, index, logprobs, text);
   }
 
   @Override
@@ -152,10 +155,10 @@ public class CreateCompletionResponseChoicesInner   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInner {\n");
     
-    sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

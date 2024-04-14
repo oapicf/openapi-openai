@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,6 +23,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -41,11 +42,11 @@ public class CreateCompletionResponseChoicesInnerLogprobsTest {
     }
 
     /**
-     * Test the property 'tokens'
+     * Test the property 'textOffset'
      */
     @Test
-    public void tokensTest() {
-        // TODO: test tokens
+    public void textOffsetTest() {
+        // TODO: test textOffset
     }
 
     /**
@@ -57,19 +58,19 @@ public class CreateCompletionResponseChoicesInnerLogprobsTest {
     }
 
     /**
+     * Test the property 'tokens'
+     */
+    @Test
+    public void tokensTest() {
+        // TODO: test tokens
+    }
+
+    /**
      * Test the property 'topLogprobs'
      */
     @Test
     public void topLogprobsTest() {
         // TODO: test topLogprobs
-    }
-
-    /**
-     * Test the property 'textOffset'
-     */
-    @Test
-    public void textOffsetTest() {
-        // TODO: test textOffset
     }
 
 }

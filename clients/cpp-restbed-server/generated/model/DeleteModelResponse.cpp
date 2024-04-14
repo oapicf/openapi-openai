@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -63,8 +63,8 @@ ptree DeleteModelResponse::toPropertyTree() const
 	ptree pt;
 	ptree tmp_node;
 	pt.put("id", m_Id);
-	pt.put("object", m_object);
 	pt.put("deleted", m_Deleted);
+	pt.put("object", m_object);
 	return pt;
 }
 
@@ -72,8 +72,8 @@ void DeleteModelResponse::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
 	m_Id = pt.get("id", "");
-	m_object = pt.get("object", "");
 	m_Deleted = pt.get("deleted", false);
+	m_object = pt.get("object", "");
 }
 
 std::string DeleteModelResponse::getId() const
@@ -87,17 +87,6 @@ void DeleteModelResponse::setId(std::string value)
 }
 
 
-std::string DeleteModelResponse::getObject() const
-{
-    return m_object;
-}
-
-void DeleteModelResponse::setObject(std::string value)
-{
-    m_object = value;
-}
-
-
 bool DeleteModelResponse::isDeleted() const
 {
     return m_Deleted;
@@ -106,6 +95,17 @@ bool DeleteModelResponse::isDeleted() const
 void DeleteModelResponse::setDeleted(bool value)
 {
     m_Deleted = value;
+}
+
+
+std::string DeleteModelResponse::getObject() const
+{
+    return m_object;
+}
+
+void DeleteModelResponse::setObject(std::string value)
+{
+    m_object = value;
 }
 
 

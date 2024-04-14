@@ -104,6 +104,13 @@
 
 - (NSDictionary *) authSettings {
     return @{
+               @"ApiKeyAuth":
+                   @{
+                       @"type": @"bearer",
+                       @"in": @"header",
+                       @"key": @"Authorization",
+                       @"value": [self getAccessToken]
+                   },
                };
 }
 

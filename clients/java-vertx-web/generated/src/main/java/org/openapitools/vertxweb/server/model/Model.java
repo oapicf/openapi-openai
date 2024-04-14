@@ -3,23 +3,45 @@ package org.openapitools.vertxweb.server.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 
+/**
+ * Describes an OpenAI model offering that can be used with the API.
+ **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Model   {
   
   private String id;
-  private String _object;
   private Integer created;
+
+
+  public enum ObjectEnum {
+    MODEL("model");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private ObjectEnum _object;
   private String ownedBy;
 
   public Model () {
 
   }
 
-  public Model (String id, String _object, Integer created, String ownedBy) {
+  public Model (String id, Integer created, ObjectEnum _object, String ownedBy) {
     this.id = id;
-    this._object = _object;
     this.created = created;
+    this._object = _object;
     this.ownedBy = ownedBy;
   }
 
@@ -33,21 +55,21 @@ public class Model   {
   }
 
     
-  @JsonProperty("object")
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-    
   @JsonProperty("created")
   public Integer getCreated() {
     return created;
   }
   public void setCreated(Integer created) {
     this.created = created;
+  }
+
+    
+  @JsonProperty("object")
+  public ObjectEnum getObject() {
+    return _object;
+  }
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
   }
 
     
@@ -70,14 +92,14 @@ public class Model   {
     }
     Model model = (Model) o;
     return Objects.equals(id, model.id) &&
-        Objects.equals(_object, model._object) &&
         Objects.equals(created, model.created) &&
+        Objects.equals(_object, model._object) &&
         Objects.equals(ownedBy, model.ownedBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, ownedBy);
+    return Objects.hash(id, created, _object, ownedBy);
   }
 
   @Override
@@ -86,8 +108,8 @@ public class Model   {
     sb.append("class Model {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    ownedBy: ").append(toIndentedString(ownedBy)).append("\n");
     sb.append("}");
     return sb.toString();

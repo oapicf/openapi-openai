@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -21,11 +21,12 @@ namespace org::openapitools::server::model
 
 ChatCompletionStreamResponseDelta::ChatCompletionStreamResponseDelta()
 {
-    m_Role = "";
-    m_RoleIsSet = false;
     m_Content = "";
     m_ContentIsSet = false;
     m_Function_callIsSet = false;
+    m_Tool_callsIsSet = false;
+    m_Role = "";
+    m_RoleIsSet = false;
     
 }
 
@@ -48,7 +49,28 @@ bool ChatCompletionStreamResponseDelta::validate(std::stringstream& msg, const s
     bool success = true;
     const std::string _pathPrefix = pathPrefix.empty() ? "ChatCompletionStreamResponseDelta" : pathPrefix;
 
+                 
+    if (toolCallsIsSet())
+    {
+        const std::vector<org::openapitools::server::model::ChatCompletionMessageToolCallChunk>& value = m_Tool_calls;
+        const std::string currentValuePath = _pathPrefix + ".toolCalls";
                 
+        
+        { // Recursive validation of array elements
+            const std::string oldValuePath = currentValuePath;
+            int i = 0;
+            for (const org::openapitools::server::model::ChatCompletionMessageToolCallChunk& value : value)
+            { 
+                const std::string currentValuePath = oldValuePath + "[" + std::to_string(i) + "]";
+                        
+        success = value.validate(msg, currentValuePath + ".toolCalls") && success;
+ 
+                i++;
+            }
+        }
+
+    }
+        
     return success;
 }
 
@@ -58,13 +80,16 @@ bool ChatCompletionStreamResponseDelta::operator==(const ChatCompletionStreamRes
     
     
     
-    ((!roleIsSet() && !rhs.roleIsSet()) || (roleIsSet() && rhs.roleIsSet() && getRole() == rhs.getRole())) &&
-    
-    
     ((!contentIsSet() && !rhs.contentIsSet()) || (contentIsSet() && rhs.contentIsSet() && getContent() == rhs.getContent())) &&
     
     
-    ((!functionCallIsSet() && !rhs.functionCallIsSet()) || (functionCallIsSet() && rhs.functionCallIsSet() && getFunctionCall() == rhs.getFunctionCall()))
+    ((!functionCallIsSet() && !rhs.functionCallIsSet()) || (functionCallIsSet() && rhs.functionCallIsSet() && getFunctionCall() == rhs.getFunctionCall())) &&
+    
+    
+    ((!toolCallsIsSet() && !rhs.toolCallsIsSet()) || (toolCallsIsSet() && rhs.toolCallsIsSet() && getToolCalls() == rhs.getToolCalls())) &&
+    
+    
+    ((!roleIsSet() && !rhs.roleIsSet()) || (roleIsSet() && rhs.roleIsSet() && getRole() == rhs.getRole()))
     
     ;
 }
@@ -77,22 +102,19 @@ bool ChatCompletionStreamResponseDelta::operator!=(const ChatCompletionStreamRes
 void to_json(nlohmann::json& j, const ChatCompletionStreamResponseDelta& o)
 {
     j = nlohmann::json::object();
-    if(o.roleIsSet())
-        j["role"] = o.m_Role;
     if(o.contentIsSet())
         j["content"] = o.m_Content;
     if(o.functionCallIsSet())
         j["function_call"] = o.m_Function_call;
+    if(o.toolCallsIsSet() || !o.m_Tool_calls.empty())
+        j["tool_calls"] = o.m_Tool_calls;
+    if(o.roleIsSet())
+        j["role"] = o.m_Role;
     
 }
 
 void from_json(const nlohmann::json& j, ChatCompletionStreamResponseDelta& o)
 {
-    if(j.find("role") != j.end())
-    {
-        j.at("role").get_to(o.m_Role);
-        o.m_RoleIsSet = true;
-    } 
     if(j.find("content") != j.end())
     {
         j.at("content").get_to(o.m_Content);
@@ -103,26 +125,19 @@ void from_json(const nlohmann::json& j, ChatCompletionStreamResponseDelta& o)
         j.at("function_call").get_to(o.m_Function_call);
         o.m_Function_callIsSet = true;
     } 
+    if(j.find("tool_calls") != j.end())
+    {
+        j.at("tool_calls").get_to(o.m_Tool_calls);
+        o.m_Tool_callsIsSet = true;
+    } 
+    if(j.find("role") != j.end())
+    {
+        j.at("role").get_to(o.m_Role);
+        o.m_RoleIsSet = true;
+    } 
     
 }
 
-std::string ChatCompletionStreamResponseDelta::getRole() const
-{
-    return m_Role;
-}
-void ChatCompletionStreamResponseDelta::setRole(std::string const& value)
-{
-    m_Role = value;
-    m_RoleIsSet = true;
-}
-bool ChatCompletionStreamResponseDelta::roleIsSet() const
-{
-    return m_RoleIsSet;
-}
-void ChatCompletionStreamResponseDelta::unsetRole()
-{
-    m_RoleIsSet = false;
-}
 std::string ChatCompletionStreamResponseDelta::getContent() const
 {
     return m_Content;
@@ -140,11 +155,11 @@ void ChatCompletionStreamResponseDelta::unsetContent()
 {
     m_ContentIsSet = false;
 }
-org::openapitools::server::model::ChatCompletionRequestMessage_function_call ChatCompletionStreamResponseDelta::getFunctionCall() const
+org::openapitools::server::model::ChatCompletionStreamResponseDelta_function_call ChatCompletionStreamResponseDelta::getFunctionCall() const
 {
     return m_Function_call;
 }
-void ChatCompletionStreamResponseDelta::setFunctionCall(org::openapitools::server::model::ChatCompletionRequestMessage_function_call const& value)
+void ChatCompletionStreamResponseDelta::setFunctionCall(org::openapitools::server::model::ChatCompletionStreamResponseDelta_function_call const& value)
 {
     m_Function_call = value;
     m_Function_callIsSet = true;
@@ -156,6 +171,40 @@ bool ChatCompletionStreamResponseDelta::functionCallIsSet() const
 void ChatCompletionStreamResponseDelta::unsetFunction_call()
 {
     m_Function_callIsSet = false;
+}
+std::vector<org::openapitools::server::model::ChatCompletionMessageToolCallChunk> ChatCompletionStreamResponseDelta::getToolCalls() const
+{
+    return m_Tool_calls;
+}
+void ChatCompletionStreamResponseDelta::setToolCalls(std::vector<org::openapitools::server::model::ChatCompletionMessageToolCallChunk> const& value)
+{
+    m_Tool_calls = value;
+    m_Tool_callsIsSet = true;
+}
+bool ChatCompletionStreamResponseDelta::toolCallsIsSet() const
+{
+    return m_Tool_callsIsSet;
+}
+void ChatCompletionStreamResponseDelta::unsetTool_calls()
+{
+    m_Tool_callsIsSet = false;
+}
+std::string ChatCompletionStreamResponseDelta::getRole() const
+{
+    return m_Role;
+}
+void ChatCompletionStreamResponseDelta::setRole(std::string const& value)
+{
+    m_Role = value;
+    m_RoleIsSet = true;
+}
+bool ChatCompletionStreamResponseDelta::roleIsSet() const
+{
+    return m_RoleIsSet;
+}
+void ChatCompletionStreamResponseDelta::unsetRole()
+{
+    m_RoleIsSet = false;
 }
 
 

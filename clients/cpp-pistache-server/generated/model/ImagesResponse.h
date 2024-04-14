@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -19,7 +19,7 @@
 #define ImagesResponse_H_
 
 
-#include "ImagesResponse_data_inner.h"
+#include "Image.h"
 #include <vector>
 #include <nlohmann/json.hpp>
 
@@ -67,15 +67,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<org::openapitools::server::model::ImagesResponse_data_inner> getData() const;
-    void setData(std::vector<org::openapitools::server::model::ImagesResponse_data_inner> const& value);
+    std::vector<org::openapitools::server::model::Image> getData() const;
+    void setData(std::vector<org::openapitools::server::model::Image> const& value);
 
     friend  void to_json(nlohmann::json& j, const ImagesResponse& o);
     friend  void from_json(const nlohmann::json& j, ImagesResponse& o);
 protected:
     int32_t m_Created;
 
-    std::vector<org::openapitools::server::model::ImagesResponse_data_inner> m_Data;
+    std::vector<org::openapitools::server::model::Image> m_Data;
 
     
 };

@@ -12,11 +12,14 @@ import AnyCodable
 
 public struct DeleteFileResponse: Codable, JSONEncodable, Hashable {
 
+    public enum Object: String, Codable, CaseIterable {
+        case file = "file"
+    }
     public var id: String
-    public var object: String
+    public var object: Object
     public var deleted: Bool
 
-    public init(id: String, object: String, deleted: Bool) {
+    public init(id: String, object: Object, deleted: Bool) {
         self.id = id
         self.object = object
         self.deleted = deleted

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,11 +23,11 @@ namespace OpenAPI
 void OpenAPIChatCompletionFunctions::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("name")); WriteJsonValue(Writer, Name);
 	if (Description.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("description")); WriteJsonValue(Writer, Description.GetValue());
 	}
+	Writer->WriteIdentifierPrefix(TEXT("name")); WriteJsonValue(Writer, Name);
 	if (Parameters.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("parameters")); WriteJsonValue(Writer, Parameters.GetValue());
@@ -43,8 +43,8 @@ bool OpenAPIChatCompletionFunctions::FromJson(const TSharedPtr<FJsonValue>& Json
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("name"), Name);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("description"), Description);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("name"), Name);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("parameters"), Parameters);
 
 	return ParseSuccess;

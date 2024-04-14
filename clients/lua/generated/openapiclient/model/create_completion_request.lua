@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,23 +19,24 @@ local function cast_create_completion_request(t)
 	return setmetatable(t, create_completion_request_mt)
 end
 
-local function new_create_completion_request(model, prompt, suffix, max_tokens, temperature, top_p, n, stream, logprobs, echo, stop, presence_penalty, frequency_penalty, best_of, logit_bias, user)
+local function new_create_completion_request(model, prompt, best_of, echo, frequency_penalty, logit_bias, logprobs, max_tokens, n, presence_penalty, seed, stop, stream, suffix, temperature, top_p, user)
 	return cast_create_completion_request({
 		["model"] = model;
 		["prompt"] = prompt;
-		["suffix"] = suffix;
+		["best_of"] = best_of;
+		["echo"] = echo;
+		["frequency_penalty"] = frequency_penalty;
+		["logit_bias"] = logit_bias;
+		["logprobs"] = logprobs;
 		["max_tokens"] = max_tokens;
+		["n"] = n;
+		["presence_penalty"] = presence_penalty;
+		["seed"] = seed;
+		["stop"] = stop;
+		["stream"] = stream;
+		["suffix"] = suffix;
 		["temperature"] = temperature;
 		["top_p"] = top_p;
-		["n"] = n;
-		["stream"] = stream;
-		["logprobs"] = logprobs;
-		["echo"] = echo;
-		["stop"] = stop;
-		["presence_penalty"] = presence_penalty;
-		["frequency_penalty"] = frequency_penalty;
-		["best_of"] = best_of;
-		["logit_bias"] = logit_bias;
 		["user"] = user;
 	})
 end

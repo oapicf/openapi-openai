@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,12 +19,45 @@ import javax.annotation.Generated;
  * DeleteFileResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-16T01:13:12.257183065Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-04-14T13:40:33.442815767Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DeleteFileResponse {
 
   private String id;
 
-  private String _object;
+  /**
+   * Gets or Sets _object
+   */
+  public enum ObjectEnum {
+    FILE("file");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  private ObjectEnum _object;
 
   private Boolean deleted;
 
@@ -34,7 +68,7 @@ public class DeleteFileResponse {
   /**
    * Constructor with only required parameters
    */
-  public DeleteFileResponse(String id, String _object, Boolean deleted) {
+  public DeleteFileResponse(String id, ObjectEnum _object, Boolean deleted) {
     this.id = id;
     this._object = _object;
     this.deleted = deleted;
@@ -60,7 +94,7 @@ public class DeleteFileResponse {
     this.id = id;
   }
 
-  public DeleteFileResponse _object(String _object) {
+  public DeleteFileResponse _object(ObjectEnum _object) {
     this._object = _object;
     return this;
   }
@@ -72,11 +106,11 @@ public class DeleteFileResponse {
   @NotNull 
   @Schema(name = "object", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("object")
-  public String getObject() {
+  public ObjectEnum getObject() {
     return _object;
   }
 
-  public void setObject(String _object) {
+  public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 

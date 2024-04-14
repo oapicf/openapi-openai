@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -64,7 +64,11 @@ ptree CreateModerationResponse_results_inner_category_scores::toPropertyTree() c
 	ptree tmp_node;
 	pt.put("hate", m_Hate);
 	pt.put("hate/threatening", m_Hate_threatening);
+	pt.put("harassment", m_Harassment);
+	pt.put("harassment/threatening", m_Harassment_threatening);
 	pt.put("self-harm", m_Self_harm);
+	pt.put("self-harm/intent", m_Self_harm_intent);
+	pt.put("self-harm/instructions", m_Self_harm_instructions);
 	pt.put("sexual", m_Sexual);
 	pt.put("sexual/minors", m_Sexual_minors);
 	pt.put("violence", m_Violence);
@@ -77,7 +81,11 @@ void CreateModerationResponse_results_inner_category_scores::fromPropertyTree(pt
 	ptree tmp_node;
 	m_Hate = pt.get("hate", 0.0);
 	m_Hate_threatening = pt.get("hate/threatening", 0.0);
+	m_Harassment = pt.get("harassment", 0.0);
+	m_Harassment_threatening = pt.get("harassment/threatening", 0.0);
 	m_Self_harm = pt.get("self-harm", 0.0);
+	m_Self_harm_intent = pt.get("self-harm/intent", 0.0);
+	m_Self_harm_instructions = pt.get("self-harm/instructions", 0.0);
 	m_Sexual = pt.get("sexual", 0.0);
 	m_Sexual_minors = pt.get("sexual/minors", 0.0);
 	m_Violence = pt.get("violence", 0.0);
@@ -106,6 +114,28 @@ void CreateModerationResponse_results_inner_category_scores::setHateThreatening(
 }
 
 
+double CreateModerationResponse_results_inner_category_scores::getHarassment() const
+{
+    return m_Harassment;
+}
+
+void CreateModerationResponse_results_inner_category_scores::setHarassment(double value)
+{
+    m_Harassment = value;
+}
+
+
+double CreateModerationResponse_results_inner_category_scores::getHarassmentThreatening() const
+{
+    return m_Harassment_threatening;
+}
+
+void CreateModerationResponse_results_inner_category_scores::setHarassmentThreatening(double value)
+{
+    m_Harassment_threatening = value;
+}
+
+
 double CreateModerationResponse_results_inner_category_scores::getSelfHarm() const
 {
     return m_Self_harm;
@@ -114,6 +144,28 @@ double CreateModerationResponse_results_inner_category_scores::getSelfHarm() con
 void CreateModerationResponse_results_inner_category_scores::setSelfHarm(double value)
 {
     m_Self_harm = value;
+}
+
+
+double CreateModerationResponse_results_inner_category_scores::getSelfHarmIntent() const
+{
+    return m_Self_harm_intent;
+}
+
+void CreateModerationResponse_results_inner_category_scores::setSelfHarmIntent(double value)
+{
+    m_Self_harm_intent = value;
+}
+
+
+double CreateModerationResponse_results_inner_category_scores::getSelfHarmInstructions() const
+{
+    return m_Self_harm_instructions;
+}
+
+void CreateModerationResponse_results_inner_category_scores::setSelfHarmInstructions(double value)
+{
+    m_Self_harm_instructions = value;
 }
 
 

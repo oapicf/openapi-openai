@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ImagesResponseDataInner
+import org.openapitools.client.models.Image
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -34,7 +34,7 @@ data class ImagesResponse (
     val created: kotlin.Int,
 
     @Json(name = "data")
-    val `data`: kotlin.collections.List<ImagesResponseDataInner>
+    val `data`: kotlin.collections.List<Image>
 
 )
 

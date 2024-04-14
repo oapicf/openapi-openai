@@ -1,13 +1,29 @@
 
 <h2>CreateEmbeddingRequest</h2>
 <ul class="parameter">
+  <li class="param-required-true">input : CreateEmbeddingRequest_input
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
   <li class="param-required-true">model : CreateEmbeddingRequest_model
     <br/>
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-true">input : CreateEmbeddingRequest_input
-    <br/>
+  <li class="param-required-false">encodingUnderscoreformat : String
+    <br/>The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>float</dd>
+            <dd>base64</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">dimensions : Integer
+    <br/>The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. 
   </li>
 </ul>
 <ul class="parameter">

@@ -18,9 +18,9 @@ class ListModelsResponse
 
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection21::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection21::class})
-     * @var \App\DTO\Collection21|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection30::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection30::class})
+     * @var \App\DTO\Collection30|null
      */
     public $data;
 

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -50,9 +50,9 @@ import java.util.Set;
 import com.github.oapicf.openapiopenai.JSON;
 
 /**
- * CreateModerationResponse
+ * Represents if a given text input is potentially harmful.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponse {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -75,7 +75,7 @@ public class CreateModerationResponse {
   }
 
    /**
-   * Get id
+   * The unique identifier for the moderation request.
    * @return id
   **/
   @javax.annotation.Nonnull
@@ -94,7 +94,7 @@ public class CreateModerationResponse {
   }
 
    /**
-   * Get model
+   * The model used to generate the moderation results.
    * @return model
   **/
   @javax.annotation.Nonnull
@@ -121,7 +121,7 @@ public class CreateModerationResponse {
   }
 
    /**
-   * Get results
+   * A list of moderation objects.
    * @return results
   **/
   @javax.annotation.Nonnull

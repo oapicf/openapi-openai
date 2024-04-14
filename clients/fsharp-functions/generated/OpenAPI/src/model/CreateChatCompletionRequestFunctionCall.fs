@@ -3,7 +3,7 @@ namespace OpenAPI.Model
 open System
 open System.Collections.Generic
 open Newtonsoft.Json
-open OpenAPI.Model.CreateChatCompletionRequestFunctionCallOneOf
+open OpenAPI.Model.ChatCompletionFunctionCallOption
 
 module CreateChatCompletionRequestFunctionCall =
 

@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageStreamEventOneOf1"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageStreamEventOneOf1"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  MessageObject = openapi_server.resourceTypes.MessageObject
+}
+resourceTypes {
+
+  MessageStreamEventOneOf1 {
+    title = MessageStreamEventOneOf1
+    description = MessageStreamEventOneOf1
+    derivedFrom = Root
+    properties {
+        event {
+          type =  string
+          description = ""
+          enum = ["thread.message.in_progress"]
+          optional = true
+        }
+        data {
+          type = MessageObject
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageStreamEventOneOf1 {
+    title = MessageStreamEventOneOf1
+    description = MessageStreamEventOneOf1
+    implements = openapi_server.resourceTypes.MessageStreamEventOneOf1
+
+  }
+}

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -66,8 +66,32 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property harassment (base name: "harassment")', function() {
+      // uncomment below and update the code to test the property harassment
+      //var instance = new OpenapiOpenai.CreateModerationResponseResultsInnerCategoryScores();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property harassmentThreatening (base name: "harassment/threatening")', function() {
+      // uncomment below and update the code to test the property harassmentThreatening
+      //var instance = new OpenapiOpenai.CreateModerationResponseResultsInnerCategoryScores();
+      //expect(instance).to.be();
+    });
+
     it('should have the property selfHarm (base name: "self-harm")', function() {
       // uncomment below and update the code to test the property selfHarm
+      //var instance = new OpenapiOpenai.CreateModerationResponseResultsInnerCategoryScores();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property selfHarmIntent (base name: "self-harm/intent")', function() {
+      // uncomment below and update the code to test the property selfHarmIntent
+      //var instance = new OpenapiOpenai.CreateModerationResponseResultsInnerCategoryScores();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property selfHarmInstructions (base name: "self-harm/instructions")', function() {
+      // uncomment below and update the code to test the property selfHarmInstructions
       //var instance = new OpenapiOpenai.CreateModerationResponseResultsInnerCategoryScores();
       //expect(instance).to.be();
     });

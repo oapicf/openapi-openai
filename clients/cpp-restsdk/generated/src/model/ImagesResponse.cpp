@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -73,7 +73,7 @@ bool ImagesResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("data")));
         if(!fieldValue.is_null())
         {
-            std::vector<std::shared_ptr<ImagesResponse_data_inner>> refVal_setData;
+            std::vector<std::shared_ptr<Image>> refVal_setData;
             ok &= ModelBase::fromJson(fieldValue, refVal_setData);
             setData(refVal_setData);
         }
@@ -115,7 +115,7 @@ bool ImagesResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("data"))))
     {
-        std::vector<std::shared_ptr<ImagesResponse_data_inner>> refVal_setData;
+        std::vector<std::shared_ptr<Image>> refVal_setData;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("data"))), refVal_setData );
         setData(refVal_setData);
     }
@@ -142,12 +142,12 @@ void ImagesResponse::unsetCreated()
 {
     m_CreatedIsSet = false;
 }
-std::vector<std::shared_ptr<ImagesResponse_data_inner>>& ImagesResponse::getData()
+std::vector<std::shared_ptr<Image>>& ImagesResponse::getData()
 {
     return m_Data;
 }
 
-void ImagesResponse::setData(const std::vector<std::shared_ptr<ImagesResponse_data_inner>>& value)
+void ImagesResponse::setData(const std::vector<std::shared_ptr<Image>>& value)
 {
     m_Data = value;
     m_DataIsSet = true;

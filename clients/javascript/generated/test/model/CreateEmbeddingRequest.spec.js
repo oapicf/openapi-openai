@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -54,14 +54,26 @@
       //expect(instance).to.be.a(OpenapiOpenai.CreateEmbeddingRequest);
     });
 
+    it('should have the property input (base name: "input")', function() {
+      // uncomment below and update the code to test the property input
+      //var instance = new OpenapiOpenai.CreateEmbeddingRequest();
+      //expect(instance).to.be();
+    });
+
     it('should have the property model (base name: "model")', function() {
       // uncomment below and update the code to test the property model
       //var instance = new OpenapiOpenai.CreateEmbeddingRequest();
       //expect(instance).to.be();
     });
 
-    it('should have the property input (base name: "input")', function() {
-      // uncomment below and update the code to test the property input
+    it('should have the property encodingFormat (base name: "encoding_format")', function() {
+      // uncomment below and update the code to test the property encodingFormat
+      //var instance = new OpenapiOpenai.CreateEmbeddingRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property dimensions (base name: "dimensions")', function() {
+      // uncomment below and update the code to test the property dimensions
       //var instance = new OpenapiOpenai.CreateEmbeddingRequest();
       //expect(instance).to.be();
     });

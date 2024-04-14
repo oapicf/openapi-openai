@@ -16,7 +16,7 @@
 # This is a Bash client for OpenAI API.
 #
 # LICENSE:
-# 
+# https://github.com/openai/openai-openapi/blob/master/LICENSE
 #
 # CONTACT:
 # blah+oapicf@cliffano.com
@@ -96,47 +96,131 @@ declare -a result_color_table=( "$WHITE" "$WHITE" "$GREEN" "$YELLOW" "$WHITE" "$
 # 0 - optional
 # 1 - required
 declare -A operation_parameters_minimum_occurrences
-operation_parameters_minimum_occurrences["cancelFineTune:::fine_tune_id"]=1
-operation_parameters_minimum_occurrences["createChatCompletion:::CreateChatCompletionRequest"]=1
-operation_parameters_minimum_occurrences["createCompletion:::CreateCompletionRequest"]=1
-operation_parameters_minimum_occurrences["createEdit:::CreateEditRequest"]=1
-operation_parameters_minimum_occurrences["createEmbedding:::CreateEmbeddingRequest"]=1
-operation_parameters_minimum_occurrences["createFile:::file"]=1
-operation_parameters_minimum_occurrences["createFile:::purpose"]=1
-operation_parameters_minimum_occurrences["createFineTune:::CreateFineTuneRequest"]=1
-operation_parameters_minimum_occurrences["createImage:::CreateImageRequest"]=1
-operation_parameters_minimum_occurrences["createImageEdit:::image"]=1
-operation_parameters_minimum_occurrences["createImageEdit:::prompt"]=1
-operation_parameters_minimum_occurrences["createImageEdit:::mask"]=0
-operation_parameters_minimum_occurrences["createImageEdit:::n"]=0
-operation_parameters_minimum_occurrences["createImageEdit:::size"]=0
-operation_parameters_minimum_occurrences["createImageEdit:::response_format"]=0
-operation_parameters_minimum_occurrences["createImageEdit:::user"]=0
-operation_parameters_minimum_occurrences["createImageVariation:::image"]=1
-operation_parameters_minimum_occurrences["createImageVariation:::n"]=0
-operation_parameters_minimum_occurrences["createImageVariation:::size"]=0
-operation_parameters_minimum_occurrences["createImageVariation:::response_format"]=0
-operation_parameters_minimum_occurrences["createImageVariation:::user"]=0
-operation_parameters_minimum_occurrences["createModeration:::CreateModerationRequest"]=1
+operation_parameters_minimum_occurrences["cancelRun:::thread_id"]=1
+operation_parameters_minimum_occurrences["cancelRun:::run_id"]=1
+operation_parameters_minimum_occurrences["createAssistant:::CreateAssistantRequest"]=1
+operation_parameters_minimum_occurrences["createAssistantFile:::assistant_id"]=1
+operation_parameters_minimum_occurrences["createAssistantFile:::CreateAssistantFileRequest"]=1
+operation_parameters_minimum_occurrences["createMessage:::thread_id"]=1
+operation_parameters_minimum_occurrences["createMessage:::CreateMessageRequest"]=1
+operation_parameters_minimum_occurrences["createRun:::thread_id"]=1
+operation_parameters_minimum_occurrences["createRun:::CreateRunRequest"]=1
+operation_parameters_minimum_occurrences["createThread:::CreateThreadRequest"]=0
+operation_parameters_minimum_occurrences["createThreadAndRun:::CreateThreadAndRunRequest"]=1
+operation_parameters_minimum_occurrences["deleteAssistant:::assistant_id"]=1
+operation_parameters_minimum_occurrences["deleteAssistantFile:::assistant_id"]=1
+operation_parameters_minimum_occurrences["deleteAssistantFile:::file_id"]=1
+operation_parameters_minimum_occurrences["deleteThread:::thread_id"]=1
+operation_parameters_minimum_occurrences["getAssistant:::assistant_id"]=1
+operation_parameters_minimum_occurrences["getAssistantFile:::assistant_id"]=1
+operation_parameters_minimum_occurrences["getAssistantFile:::file_id"]=1
+operation_parameters_minimum_occurrences["getMessage:::thread_id"]=1
+operation_parameters_minimum_occurrences["getMessage:::message_id"]=1
+operation_parameters_minimum_occurrences["getMessageFile:::thread_id"]=1
+operation_parameters_minimum_occurrences["getMessageFile:::message_id"]=1
+operation_parameters_minimum_occurrences["getMessageFile:::file_id"]=1
+operation_parameters_minimum_occurrences["getRun:::thread_id"]=1
+operation_parameters_minimum_occurrences["getRun:::run_id"]=1
+operation_parameters_minimum_occurrences["getRunStep:::thread_id"]=1
+operation_parameters_minimum_occurrences["getRunStep:::run_id"]=1
+operation_parameters_minimum_occurrences["getRunStep:::step_id"]=1
+operation_parameters_minimum_occurrences["getThread:::thread_id"]=1
+operation_parameters_minimum_occurrences["listAssistantFiles:::assistant_id"]=1
+operation_parameters_minimum_occurrences["listAssistantFiles:::limit"]=0
+operation_parameters_minimum_occurrences["listAssistantFiles:::order"]=0
+operation_parameters_minimum_occurrences["listAssistantFiles:::after"]=0
+operation_parameters_minimum_occurrences["listAssistantFiles:::before"]=0
+operation_parameters_minimum_occurrences["listAssistants:::limit"]=0
+operation_parameters_minimum_occurrences["listAssistants:::order"]=0
+operation_parameters_minimum_occurrences["listAssistants:::after"]=0
+operation_parameters_minimum_occurrences["listAssistants:::before"]=0
+operation_parameters_minimum_occurrences["listMessageFiles:::thread_id"]=1
+operation_parameters_minimum_occurrences["listMessageFiles:::message_id"]=1
+operation_parameters_minimum_occurrences["listMessageFiles:::limit"]=0
+operation_parameters_minimum_occurrences["listMessageFiles:::order"]=0
+operation_parameters_minimum_occurrences["listMessageFiles:::after"]=0
+operation_parameters_minimum_occurrences["listMessageFiles:::before"]=0
+operation_parameters_minimum_occurrences["listMessages:::thread_id"]=1
+operation_parameters_minimum_occurrences["listMessages:::limit"]=0
+operation_parameters_minimum_occurrences["listMessages:::order"]=0
+operation_parameters_minimum_occurrences["listMessages:::after"]=0
+operation_parameters_minimum_occurrences["listMessages:::before"]=0
+operation_parameters_minimum_occurrences["listMessages:::run_id"]=0
+operation_parameters_minimum_occurrences["listRunSteps:::thread_id"]=1
+operation_parameters_minimum_occurrences["listRunSteps:::run_id"]=1
+operation_parameters_minimum_occurrences["listRunSteps:::limit"]=0
+operation_parameters_minimum_occurrences["listRunSteps:::order"]=0
+operation_parameters_minimum_occurrences["listRunSteps:::after"]=0
+operation_parameters_minimum_occurrences["listRunSteps:::before"]=0
+operation_parameters_minimum_occurrences["listRuns:::thread_id"]=1
+operation_parameters_minimum_occurrences["listRuns:::limit"]=0
+operation_parameters_minimum_occurrences["listRuns:::order"]=0
+operation_parameters_minimum_occurrences["listRuns:::after"]=0
+operation_parameters_minimum_occurrences["listRuns:::before"]=0
+operation_parameters_minimum_occurrences["modifyAssistant:::assistant_id"]=1
+operation_parameters_minimum_occurrences["modifyAssistant:::ModifyAssistantRequest"]=1
+operation_parameters_minimum_occurrences["modifyMessage:::thread_id"]=1
+operation_parameters_minimum_occurrences["modifyMessage:::message_id"]=1
+operation_parameters_minimum_occurrences["modifyMessage:::ModifyMessageRequest"]=1
+operation_parameters_minimum_occurrences["modifyRun:::thread_id"]=1
+operation_parameters_minimum_occurrences["modifyRun:::run_id"]=1
+operation_parameters_minimum_occurrences["modifyRun:::ModifyRunRequest"]=1
+operation_parameters_minimum_occurrences["modifyThread:::thread_id"]=1
+operation_parameters_minimum_occurrences["modifyThread:::ModifyThreadRequest"]=1
+operation_parameters_minimum_occurrences["submitToolOuputsToRun:::thread_id"]=1
+operation_parameters_minimum_occurrences["submitToolOuputsToRun:::run_id"]=1
+operation_parameters_minimum_occurrences["submitToolOuputsToRun:::SubmitToolOutputsRunRequest"]=1
+operation_parameters_minimum_occurrences["createSpeech:::CreateSpeechRequest"]=1
 operation_parameters_minimum_occurrences["createTranscription:::file"]=1
 operation_parameters_minimum_occurrences["createTranscription:::model"]=1
+operation_parameters_minimum_occurrences["createTranscription:::language"]=0
 operation_parameters_minimum_occurrences["createTranscription:::prompt"]=0
 operation_parameters_minimum_occurrences["createTranscription:::response_format"]=0
 operation_parameters_minimum_occurrences["createTranscription:::temperature"]=0
-operation_parameters_minimum_occurrences["createTranscription:::language"]=0
+operation_parameters_minimum_occurrences["createTranscription:::timestamp_granularities[]"]=0
 operation_parameters_minimum_occurrences["createTranslation:::file"]=1
 operation_parameters_minimum_occurrences["createTranslation:::model"]=1
 operation_parameters_minimum_occurrences["createTranslation:::prompt"]=0
 operation_parameters_minimum_occurrences["createTranslation:::response_format"]=0
 operation_parameters_minimum_occurrences["createTranslation:::temperature"]=0
+operation_parameters_minimum_occurrences["createChatCompletion:::CreateChatCompletionRequest"]=1
+operation_parameters_minimum_occurrences["createCompletion:::CreateCompletionRequest"]=1
+operation_parameters_minimum_occurrences["createEmbedding:::CreateEmbeddingRequest"]=1
+operation_parameters_minimum_occurrences["createFile:::file"]=1
+operation_parameters_minimum_occurrences["createFile:::purpose"]=1
 operation_parameters_minimum_occurrences["deleteFile:::file_id"]=1
-operation_parameters_minimum_occurrences["deleteModel:::model"]=1
 operation_parameters_minimum_occurrences["downloadFile:::file_id"]=1
-operation_parameters_minimum_occurrences["listFineTuneEvents:::fine_tune_id"]=1
-operation_parameters_minimum_occurrences["listFineTuneEvents:::stream"]=0
+operation_parameters_minimum_occurrences["listFiles:::purpose"]=0
 operation_parameters_minimum_occurrences["retrieveFile:::file_id"]=1
-operation_parameters_minimum_occurrences["retrieveFineTune:::fine_tune_id"]=1
+operation_parameters_minimum_occurrences["cancelFineTuningJob:::fine_tuning_job_id"]=1
+operation_parameters_minimum_occurrences["createFineTuningJob:::CreateFineTuningJobRequest"]=1
+operation_parameters_minimum_occurrences["listFineTuningEvents:::fine_tuning_job_id"]=1
+operation_parameters_minimum_occurrences["listFineTuningEvents:::after"]=0
+operation_parameters_minimum_occurrences["listFineTuningEvents:::limit"]=0
+operation_parameters_minimum_occurrences["listFineTuningJobCheckpoints:::fine_tuning_job_id"]=1
+operation_parameters_minimum_occurrences["listFineTuningJobCheckpoints:::after"]=0
+operation_parameters_minimum_occurrences["listFineTuningJobCheckpoints:::limit"]=0
+operation_parameters_minimum_occurrences["listPaginatedFineTuningJobs:::after"]=0
+operation_parameters_minimum_occurrences["listPaginatedFineTuningJobs:::limit"]=0
+operation_parameters_minimum_occurrences["retrieveFineTuningJob:::fine_tuning_job_id"]=1
+operation_parameters_minimum_occurrences["createImage:::CreateImageRequest"]=1
+operation_parameters_minimum_occurrences["createImageEdit:::image"]=1
+operation_parameters_minimum_occurrences["createImageEdit:::prompt"]=1
+operation_parameters_minimum_occurrences["createImageEdit:::mask"]=0
+operation_parameters_minimum_occurrences["createImageEdit:::model"]=0
+operation_parameters_minimum_occurrences["createImageEdit:::n"]=0
+operation_parameters_minimum_occurrences["createImageEdit:::size"]=0
+operation_parameters_minimum_occurrences["createImageEdit:::response_format"]=0
+operation_parameters_minimum_occurrences["createImageEdit:::user"]=0
+operation_parameters_minimum_occurrences["createImageVariation:::image"]=1
+operation_parameters_minimum_occurrences["createImageVariation:::model"]=0
+operation_parameters_minimum_occurrences["createImageVariation:::n"]=0
+operation_parameters_minimum_occurrences["createImageVariation:::response_format"]=0
+operation_parameters_minimum_occurrences["createImageVariation:::size"]=0
+operation_parameters_minimum_occurrences["createImageVariation:::user"]=0
+operation_parameters_minimum_occurrences["deleteModel:::model"]=1
 operation_parameters_minimum_occurrences["retrieveModel:::model"]=1
+operation_parameters_minimum_occurrences["createModeration:::CreateModerationRequest"]=1
 
 ##
 # This array stores the maximum number of allowed occurrences for parameter
@@ -145,93 +229,261 @@ operation_parameters_minimum_occurrences["retrieveModel:::model"]=1
 # N - N values
 # 0 - unlimited
 declare -A operation_parameters_maximum_occurrences
-operation_parameters_maximum_occurrences["cancelFineTune:::fine_tune_id"]=0
-operation_parameters_maximum_occurrences["createChatCompletion:::CreateChatCompletionRequest"]=0
-operation_parameters_maximum_occurrences["createCompletion:::CreateCompletionRequest"]=0
-operation_parameters_maximum_occurrences["createEdit:::CreateEditRequest"]=0
-operation_parameters_maximum_occurrences["createEmbedding:::CreateEmbeddingRequest"]=0
-operation_parameters_maximum_occurrences["createFile:::file"]=0
-operation_parameters_maximum_occurrences["createFile:::purpose"]=0
-operation_parameters_maximum_occurrences["createFineTune:::CreateFineTuneRequest"]=0
-operation_parameters_maximum_occurrences["createImage:::CreateImageRequest"]=0
-operation_parameters_maximum_occurrences["createImageEdit:::image"]=0
-operation_parameters_maximum_occurrences["createImageEdit:::prompt"]=0
-operation_parameters_maximum_occurrences["createImageEdit:::mask"]=0
-operation_parameters_maximum_occurrences["createImageEdit:::n"]=0
-operation_parameters_maximum_occurrences["createImageEdit:::size"]=0
-operation_parameters_maximum_occurrences["createImageEdit:::response_format"]=0
-operation_parameters_maximum_occurrences["createImageEdit:::user"]=0
-operation_parameters_maximum_occurrences["createImageVariation:::image"]=0
-operation_parameters_maximum_occurrences["createImageVariation:::n"]=0
-operation_parameters_maximum_occurrences["createImageVariation:::size"]=0
-operation_parameters_maximum_occurrences["createImageVariation:::response_format"]=0
-operation_parameters_maximum_occurrences["createImageVariation:::user"]=0
-operation_parameters_maximum_occurrences["createModeration:::CreateModerationRequest"]=0
+operation_parameters_maximum_occurrences["cancelRun:::thread_id"]=0
+operation_parameters_maximum_occurrences["cancelRun:::run_id"]=0
+operation_parameters_maximum_occurrences["createAssistant:::CreateAssistantRequest"]=0
+operation_parameters_maximum_occurrences["createAssistantFile:::assistant_id"]=0
+operation_parameters_maximum_occurrences["createAssistantFile:::CreateAssistantFileRequest"]=0
+operation_parameters_maximum_occurrences["createMessage:::thread_id"]=0
+operation_parameters_maximum_occurrences["createMessage:::CreateMessageRequest"]=0
+operation_parameters_maximum_occurrences["createRun:::thread_id"]=0
+operation_parameters_maximum_occurrences["createRun:::CreateRunRequest"]=0
+operation_parameters_maximum_occurrences["createThread:::CreateThreadRequest"]=0
+operation_parameters_maximum_occurrences["createThreadAndRun:::CreateThreadAndRunRequest"]=0
+operation_parameters_maximum_occurrences["deleteAssistant:::assistant_id"]=0
+operation_parameters_maximum_occurrences["deleteAssistantFile:::assistant_id"]=0
+operation_parameters_maximum_occurrences["deleteAssistantFile:::file_id"]=0
+operation_parameters_maximum_occurrences["deleteThread:::thread_id"]=0
+operation_parameters_maximum_occurrences["getAssistant:::assistant_id"]=0
+operation_parameters_maximum_occurrences["getAssistantFile:::assistant_id"]=0
+operation_parameters_maximum_occurrences["getAssistantFile:::file_id"]=0
+operation_parameters_maximum_occurrences["getMessage:::thread_id"]=0
+operation_parameters_maximum_occurrences["getMessage:::message_id"]=0
+operation_parameters_maximum_occurrences["getMessageFile:::thread_id"]=0
+operation_parameters_maximum_occurrences["getMessageFile:::message_id"]=0
+operation_parameters_maximum_occurrences["getMessageFile:::file_id"]=0
+operation_parameters_maximum_occurrences["getRun:::thread_id"]=0
+operation_parameters_maximum_occurrences["getRun:::run_id"]=0
+operation_parameters_maximum_occurrences["getRunStep:::thread_id"]=0
+operation_parameters_maximum_occurrences["getRunStep:::run_id"]=0
+operation_parameters_maximum_occurrences["getRunStep:::step_id"]=0
+operation_parameters_maximum_occurrences["getThread:::thread_id"]=0
+operation_parameters_maximum_occurrences["listAssistantFiles:::assistant_id"]=0
+operation_parameters_maximum_occurrences["listAssistantFiles:::limit"]=0
+operation_parameters_maximum_occurrences["listAssistantFiles:::order"]=0
+operation_parameters_maximum_occurrences["listAssistantFiles:::after"]=0
+operation_parameters_maximum_occurrences["listAssistantFiles:::before"]=0
+operation_parameters_maximum_occurrences["listAssistants:::limit"]=0
+operation_parameters_maximum_occurrences["listAssistants:::order"]=0
+operation_parameters_maximum_occurrences["listAssistants:::after"]=0
+operation_parameters_maximum_occurrences["listAssistants:::before"]=0
+operation_parameters_maximum_occurrences["listMessageFiles:::thread_id"]=0
+operation_parameters_maximum_occurrences["listMessageFiles:::message_id"]=0
+operation_parameters_maximum_occurrences["listMessageFiles:::limit"]=0
+operation_parameters_maximum_occurrences["listMessageFiles:::order"]=0
+operation_parameters_maximum_occurrences["listMessageFiles:::after"]=0
+operation_parameters_maximum_occurrences["listMessageFiles:::before"]=0
+operation_parameters_maximum_occurrences["listMessages:::thread_id"]=0
+operation_parameters_maximum_occurrences["listMessages:::limit"]=0
+operation_parameters_maximum_occurrences["listMessages:::order"]=0
+operation_parameters_maximum_occurrences["listMessages:::after"]=0
+operation_parameters_maximum_occurrences["listMessages:::before"]=0
+operation_parameters_maximum_occurrences["listMessages:::run_id"]=0
+operation_parameters_maximum_occurrences["listRunSteps:::thread_id"]=0
+operation_parameters_maximum_occurrences["listRunSteps:::run_id"]=0
+operation_parameters_maximum_occurrences["listRunSteps:::limit"]=0
+operation_parameters_maximum_occurrences["listRunSteps:::order"]=0
+operation_parameters_maximum_occurrences["listRunSteps:::after"]=0
+operation_parameters_maximum_occurrences["listRunSteps:::before"]=0
+operation_parameters_maximum_occurrences["listRuns:::thread_id"]=0
+operation_parameters_maximum_occurrences["listRuns:::limit"]=0
+operation_parameters_maximum_occurrences["listRuns:::order"]=0
+operation_parameters_maximum_occurrences["listRuns:::after"]=0
+operation_parameters_maximum_occurrences["listRuns:::before"]=0
+operation_parameters_maximum_occurrences["modifyAssistant:::assistant_id"]=0
+operation_parameters_maximum_occurrences["modifyAssistant:::ModifyAssistantRequest"]=0
+operation_parameters_maximum_occurrences["modifyMessage:::thread_id"]=0
+operation_parameters_maximum_occurrences["modifyMessage:::message_id"]=0
+operation_parameters_maximum_occurrences["modifyMessage:::ModifyMessageRequest"]=0
+operation_parameters_maximum_occurrences["modifyRun:::thread_id"]=0
+operation_parameters_maximum_occurrences["modifyRun:::run_id"]=0
+operation_parameters_maximum_occurrences["modifyRun:::ModifyRunRequest"]=0
+operation_parameters_maximum_occurrences["modifyThread:::thread_id"]=0
+operation_parameters_maximum_occurrences["modifyThread:::ModifyThreadRequest"]=0
+operation_parameters_maximum_occurrences["submitToolOuputsToRun:::thread_id"]=0
+operation_parameters_maximum_occurrences["submitToolOuputsToRun:::run_id"]=0
+operation_parameters_maximum_occurrences["submitToolOuputsToRun:::SubmitToolOutputsRunRequest"]=0
+operation_parameters_maximum_occurrences["createSpeech:::CreateSpeechRequest"]=0
 operation_parameters_maximum_occurrences["createTranscription:::file"]=0
 operation_parameters_maximum_occurrences["createTranscription:::model"]=0
+operation_parameters_maximum_occurrences["createTranscription:::language"]=0
 operation_parameters_maximum_occurrences["createTranscription:::prompt"]=0
 operation_parameters_maximum_occurrences["createTranscription:::response_format"]=0
 operation_parameters_maximum_occurrences["createTranscription:::temperature"]=0
-operation_parameters_maximum_occurrences["createTranscription:::language"]=0
+operation_parameters_maximum_occurrences["createTranscription:::timestamp_granularities[]"]=0
 operation_parameters_maximum_occurrences["createTranslation:::file"]=0
 operation_parameters_maximum_occurrences["createTranslation:::model"]=0
 operation_parameters_maximum_occurrences["createTranslation:::prompt"]=0
 operation_parameters_maximum_occurrences["createTranslation:::response_format"]=0
 operation_parameters_maximum_occurrences["createTranslation:::temperature"]=0
+operation_parameters_maximum_occurrences["createChatCompletion:::CreateChatCompletionRequest"]=0
+operation_parameters_maximum_occurrences["createCompletion:::CreateCompletionRequest"]=0
+operation_parameters_maximum_occurrences["createEmbedding:::CreateEmbeddingRequest"]=0
+operation_parameters_maximum_occurrences["createFile:::file"]=0
+operation_parameters_maximum_occurrences["createFile:::purpose"]=0
 operation_parameters_maximum_occurrences["deleteFile:::file_id"]=0
-operation_parameters_maximum_occurrences["deleteModel:::model"]=0
 operation_parameters_maximum_occurrences["downloadFile:::file_id"]=0
-operation_parameters_maximum_occurrences["listFineTuneEvents:::fine_tune_id"]=0
-operation_parameters_maximum_occurrences["listFineTuneEvents:::stream"]=0
+operation_parameters_maximum_occurrences["listFiles:::purpose"]=0
 operation_parameters_maximum_occurrences["retrieveFile:::file_id"]=0
-operation_parameters_maximum_occurrences["retrieveFineTune:::fine_tune_id"]=0
+operation_parameters_maximum_occurrences["cancelFineTuningJob:::fine_tuning_job_id"]=0
+operation_parameters_maximum_occurrences["createFineTuningJob:::CreateFineTuningJobRequest"]=0
+operation_parameters_maximum_occurrences["listFineTuningEvents:::fine_tuning_job_id"]=0
+operation_parameters_maximum_occurrences["listFineTuningEvents:::after"]=0
+operation_parameters_maximum_occurrences["listFineTuningEvents:::limit"]=0
+operation_parameters_maximum_occurrences["listFineTuningJobCheckpoints:::fine_tuning_job_id"]=0
+operation_parameters_maximum_occurrences["listFineTuningJobCheckpoints:::after"]=0
+operation_parameters_maximum_occurrences["listFineTuningJobCheckpoints:::limit"]=0
+operation_parameters_maximum_occurrences["listPaginatedFineTuningJobs:::after"]=0
+operation_parameters_maximum_occurrences["listPaginatedFineTuningJobs:::limit"]=0
+operation_parameters_maximum_occurrences["retrieveFineTuningJob:::fine_tuning_job_id"]=0
+operation_parameters_maximum_occurrences["createImage:::CreateImageRequest"]=0
+operation_parameters_maximum_occurrences["createImageEdit:::image"]=0
+operation_parameters_maximum_occurrences["createImageEdit:::prompt"]=0
+operation_parameters_maximum_occurrences["createImageEdit:::mask"]=0
+operation_parameters_maximum_occurrences["createImageEdit:::model"]=0
+operation_parameters_maximum_occurrences["createImageEdit:::n"]=0
+operation_parameters_maximum_occurrences["createImageEdit:::size"]=0
+operation_parameters_maximum_occurrences["createImageEdit:::response_format"]=0
+operation_parameters_maximum_occurrences["createImageEdit:::user"]=0
+operation_parameters_maximum_occurrences["createImageVariation:::image"]=0
+operation_parameters_maximum_occurrences["createImageVariation:::model"]=0
+operation_parameters_maximum_occurrences["createImageVariation:::n"]=0
+operation_parameters_maximum_occurrences["createImageVariation:::response_format"]=0
+operation_parameters_maximum_occurrences["createImageVariation:::size"]=0
+operation_parameters_maximum_occurrences["createImageVariation:::user"]=0
+operation_parameters_maximum_occurrences["deleteModel:::model"]=0
 operation_parameters_maximum_occurrences["retrieveModel:::model"]=0
+operation_parameters_maximum_occurrences["createModeration:::CreateModerationRequest"]=0
 
 ##
 # The type of collection for specifying multiple values for parameter:
 # - multi, csv, ssv, tsv
 declare -A operation_parameters_collection_type
-operation_parameters_collection_type["cancelFineTune:::fine_tune_id"]=""
-operation_parameters_collection_type["createChatCompletion:::CreateChatCompletionRequest"]=""
-operation_parameters_collection_type["createCompletion:::CreateCompletionRequest"]=""
-operation_parameters_collection_type["createEdit:::CreateEditRequest"]=""
-operation_parameters_collection_type["createEmbedding:::CreateEmbeddingRequest"]=""
-operation_parameters_collection_type["createFile:::file"]=""
-operation_parameters_collection_type["createFile:::purpose"]=""
-operation_parameters_collection_type["createFineTune:::CreateFineTuneRequest"]=""
-operation_parameters_collection_type["createImage:::CreateImageRequest"]=""
-operation_parameters_collection_type["createImageEdit:::image"]=""
-operation_parameters_collection_type["createImageEdit:::prompt"]=""
-operation_parameters_collection_type["createImageEdit:::mask"]=""
-operation_parameters_collection_type["createImageEdit:::n"]=""
-operation_parameters_collection_type["createImageEdit:::size"]=""
-operation_parameters_collection_type["createImageEdit:::response_format"]=""
-operation_parameters_collection_type["createImageEdit:::user"]=""
-operation_parameters_collection_type["createImageVariation:::image"]=""
-operation_parameters_collection_type["createImageVariation:::n"]=""
-operation_parameters_collection_type["createImageVariation:::size"]=""
-operation_parameters_collection_type["createImageVariation:::response_format"]=""
-operation_parameters_collection_type["createImageVariation:::user"]=""
-operation_parameters_collection_type["createModeration:::CreateModerationRequest"]=""
+operation_parameters_collection_type["cancelRun:::thread_id"]=""
+operation_parameters_collection_type["cancelRun:::run_id"]=""
+operation_parameters_collection_type["createAssistant:::CreateAssistantRequest"]=""
+operation_parameters_collection_type["createAssistantFile:::assistant_id"]=""
+operation_parameters_collection_type["createAssistantFile:::CreateAssistantFileRequest"]=""
+operation_parameters_collection_type["createMessage:::thread_id"]=""
+operation_parameters_collection_type["createMessage:::CreateMessageRequest"]=""
+operation_parameters_collection_type["createRun:::thread_id"]=""
+operation_parameters_collection_type["createRun:::CreateRunRequest"]=""
+operation_parameters_collection_type["createThread:::CreateThreadRequest"]=""
+operation_parameters_collection_type["createThreadAndRun:::CreateThreadAndRunRequest"]=""
+operation_parameters_collection_type["deleteAssistant:::assistant_id"]=""
+operation_parameters_collection_type["deleteAssistantFile:::assistant_id"]=""
+operation_parameters_collection_type["deleteAssistantFile:::file_id"]=""
+operation_parameters_collection_type["deleteThread:::thread_id"]=""
+operation_parameters_collection_type["getAssistant:::assistant_id"]=""
+operation_parameters_collection_type["getAssistantFile:::assistant_id"]=""
+operation_parameters_collection_type["getAssistantFile:::file_id"]=""
+operation_parameters_collection_type["getMessage:::thread_id"]=""
+operation_parameters_collection_type["getMessage:::message_id"]=""
+operation_parameters_collection_type["getMessageFile:::thread_id"]=""
+operation_parameters_collection_type["getMessageFile:::message_id"]=""
+operation_parameters_collection_type["getMessageFile:::file_id"]=""
+operation_parameters_collection_type["getRun:::thread_id"]=""
+operation_parameters_collection_type["getRun:::run_id"]=""
+operation_parameters_collection_type["getRunStep:::thread_id"]=""
+operation_parameters_collection_type["getRunStep:::run_id"]=""
+operation_parameters_collection_type["getRunStep:::step_id"]=""
+operation_parameters_collection_type["getThread:::thread_id"]=""
+operation_parameters_collection_type["listAssistantFiles:::assistant_id"]=""
+operation_parameters_collection_type["listAssistantFiles:::limit"]=""
+operation_parameters_collection_type["listAssistantFiles:::order"]=""
+operation_parameters_collection_type["listAssistantFiles:::after"]=""
+operation_parameters_collection_type["listAssistantFiles:::before"]=""
+operation_parameters_collection_type["listAssistants:::limit"]=""
+operation_parameters_collection_type["listAssistants:::order"]=""
+operation_parameters_collection_type["listAssistants:::after"]=""
+operation_parameters_collection_type["listAssistants:::before"]=""
+operation_parameters_collection_type["listMessageFiles:::thread_id"]=""
+operation_parameters_collection_type["listMessageFiles:::message_id"]=""
+operation_parameters_collection_type["listMessageFiles:::limit"]=""
+operation_parameters_collection_type["listMessageFiles:::order"]=""
+operation_parameters_collection_type["listMessageFiles:::after"]=""
+operation_parameters_collection_type["listMessageFiles:::before"]=""
+operation_parameters_collection_type["listMessages:::thread_id"]=""
+operation_parameters_collection_type["listMessages:::limit"]=""
+operation_parameters_collection_type["listMessages:::order"]=""
+operation_parameters_collection_type["listMessages:::after"]=""
+operation_parameters_collection_type["listMessages:::before"]=""
+operation_parameters_collection_type["listMessages:::run_id"]=""
+operation_parameters_collection_type["listRunSteps:::thread_id"]=""
+operation_parameters_collection_type["listRunSteps:::run_id"]=""
+operation_parameters_collection_type["listRunSteps:::limit"]=""
+operation_parameters_collection_type["listRunSteps:::order"]=""
+operation_parameters_collection_type["listRunSteps:::after"]=""
+operation_parameters_collection_type["listRunSteps:::before"]=""
+operation_parameters_collection_type["listRuns:::thread_id"]=""
+operation_parameters_collection_type["listRuns:::limit"]=""
+operation_parameters_collection_type["listRuns:::order"]=""
+operation_parameters_collection_type["listRuns:::after"]=""
+operation_parameters_collection_type["listRuns:::before"]=""
+operation_parameters_collection_type["modifyAssistant:::assistant_id"]=""
+operation_parameters_collection_type["modifyAssistant:::ModifyAssistantRequest"]=""
+operation_parameters_collection_type["modifyMessage:::thread_id"]=""
+operation_parameters_collection_type["modifyMessage:::message_id"]=""
+operation_parameters_collection_type["modifyMessage:::ModifyMessageRequest"]=""
+operation_parameters_collection_type["modifyRun:::thread_id"]=""
+operation_parameters_collection_type["modifyRun:::run_id"]=""
+operation_parameters_collection_type["modifyRun:::ModifyRunRequest"]=""
+operation_parameters_collection_type["modifyThread:::thread_id"]=""
+operation_parameters_collection_type["modifyThread:::ModifyThreadRequest"]=""
+operation_parameters_collection_type["submitToolOuputsToRun:::thread_id"]=""
+operation_parameters_collection_type["submitToolOuputsToRun:::run_id"]=""
+operation_parameters_collection_type["submitToolOuputsToRun:::SubmitToolOutputsRunRequest"]=""
+operation_parameters_collection_type["createSpeech:::CreateSpeechRequest"]=""
 operation_parameters_collection_type["createTranscription:::file"]=""
 operation_parameters_collection_type["createTranscription:::model"]=""
+operation_parameters_collection_type["createTranscription:::language"]=""
 operation_parameters_collection_type["createTranscription:::prompt"]=""
 operation_parameters_collection_type["createTranscription:::response_format"]=""
 operation_parameters_collection_type["createTranscription:::temperature"]=""
-operation_parameters_collection_type["createTranscription:::language"]=""
+operation_parameters_collection_type["createTranscription:::timestamp_granularities[]"]=
 operation_parameters_collection_type["createTranslation:::file"]=""
 operation_parameters_collection_type["createTranslation:::model"]=""
 operation_parameters_collection_type["createTranslation:::prompt"]=""
 operation_parameters_collection_type["createTranslation:::response_format"]=""
 operation_parameters_collection_type["createTranslation:::temperature"]=""
+operation_parameters_collection_type["createChatCompletion:::CreateChatCompletionRequest"]=""
+operation_parameters_collection_type["createCompletion:::CreateCompletionRequest"]=""
+operation_parameters_collection_type["createEmbedding:::CreateEmbeddingRequest"]=""
+operation_parameters_collection_type["createFile:::file"]=""
+operation_parameters_collection_type["createFile:::purpose"]=""
 operation_parameters_collection_type["deleteFile:::file_id"]=""
-operation_parameters_collection_type["deleteModel:::model"]=""
 operation_parameters_collection_type["downloadFile:::file_id"]=""
-operation_parameters_collection_type["listFineTuneEvents:::fine_tune_id"]=""
-operation_parameters_collection_type["listFineTuneEvents:::stream"]=""
+operation_parameters_collection_type["listFiles:::purpose"]=""
 operation_parameters_collection_type["retrieveFile:::file_id"]=""
-operation_parameters_collection_type["retrieveFineTune:::fine_tune_id"]=""
+operation_parameters_collection_type["cancelFineTuningJob:::fine_tuning_job_id"]=""
+operation_parameters_collection_type["createFineTuningJob:::CreateFineTuningJobRequest"]=""
+operation_parameters_collection_type["listFineTuningEvents:::fine_tuning_job_id"]=""
+operation_parameters_collection_type["listFineTuningEvents:::after"]=""
+operation_parameters_collection_type["listFineTuningEvents:::limit"]=""
+operation_parameters_collection_type["listFineTuningJobCheckpoints:::fine_tuning_job_id"]=""
+operation_parameters_collection_type["listFineTuningJobCheckpoints:::after"]=""
+operation_parameters_collection_type["listFineTuningJobCheckpoints:::limit"]=""
+operation_parameters_collection_type["listPaginatedFineTuningJobs:::after"]=""
+operation_parameters_collection_type["listPaginatedFineTuningJobs:::limit"]=""
+operation_parameters_collection_type["retrieveFineTuningJob:::fine_tuning_job_id"]=""
+operation_parameters_collection_type["createImage:::CreateImageRequest"]=""
+operation_parameters_collection_type["createImageEdit:::image"]=""
+operation_parameters_collection_type["createImageEdit:::prompt"]=""
+operation_parameters_collection_type["createImageEdit:::mask"]=""
+operation_parameters_collection_type["createImageEdit:::model"]=""
+operation_parameters_collection_type["createImageEdit:::n"]=""
+operation_parameters_collection_type["createImageEdit:::size"]=""
+operation_parameters_collection_type["createImageEdit:::response_format"]=""
+operation_parameters_collection_type["createImageEdit:::user"]=""
+operation_parameters_collection_type["createImageVariation:::image"]=""
+operation_parameters_collection_type["createImageVariation:::model"]=""
+operation_parameters_collection_type["createImageVariation:::n"]=""
+operation_parameters_collection_type["createImageVariation:::response_format"]=""
+operation_parameters_collection_type["createImageVariation:::size"]=""
+operation_parameters_collection_type["createImageVariation:::user"]=""
+operation_parameters_collection_type["deleteModel:::model"]=""
 operation_parameters_collection_type["retrieveModel:::model"]=""
+operation_parameters_collection_type["createModeration:::CreateModerationRequest"]=""
 
 
 ##
@@ -616,39 +868,120 @@ ${BOLD}${WHITE}Usage${OFF}
                                       JSON as '{ ..., "${YELLOW}KEY${OFF}": ${BLUE}VALUE${OFF}, ... }'
 
 EOF
+    echo -e "${BOLD}${WHITE}Authentication methods${OFF}"
+    echo -e ""
+    echo ""
     echo -e "${BOLD}${WHITE}Operations (grouped by tags)${OFF}"
     echo ""
-    echo -e "${BOLD}${WHITE}[openAI]${OFF}"
+    echo -e "${BOLD}${WHITE}[assistants]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}cancelFineTune${OFF};Immediately cancel a fine-tune job.
-  ${CYAN}createChatCompletion${OFF};Creates a model response for the given chat conversation.
-  ${CYAN}createCompletion${OFF};Creates a completion for the provided prompt and parameters.
-  ${CYAN}createEdit${OFF};Creates a new edit for the provided input, instruction, and parameters.
-  ${CYAN}createEmbedding${OFF};Creates an embedding vector representing the input text.
-  ${CYAN}createFile${OFF};Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit.
-  ${CYAN}createFineTune${OFF};Creates a job that fine-tunes a specified model from a given dataset.
+  ${CYAN}cancelRun${OFF};Cancels a run that is 'in_progress'. (AUTH)
+  ${CYAN}createAssistant${OFF};Create an assistant with a model and instructions. (AUTH)
+  ${CYAN}createAssistantFile${OFF};Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants). (AUTH)
+  ${CYAN}createMessage${OFF};Create a message. (AUTH)
+  ${CYAN}createRun${OFF};Create a run. (AUTH)
+  ${CYAN}createThread${OFF};Create a thread. (AUTH)
+  ${CYAN}createThreadAndRun${OFF};Create a thread and run it in one request. (AUTH)
+  ${CYAN}deleteAssistant${OFF};Delete an assistant. (AUTH)
+  ${CYAN}deleteAssistantFile${OFF};Delete an assistant file. (AUTH)
+  ${CYAN}deleteThread${OFF};Delete a thread. (AUTH)
+  ${CYAN}getAssistant${OFF};Retrieves an assistant. (AUTH)
+  ${CYAN}getAssistantFile${OFF};Retrieves an AssistantFile. (AUTH)
+  ${CYAN}getMessage${OFF};Retrieve a message. (AUTH)
+  ${CYAN}getMessageFile${OFF};Retrieves a message file. (AUTH)
+  ${CYAN}getRun${OFF};Retrieves a run. (AUTH)
+  ${CYAN}getRunStep${OFF};Retrieves a run step. (AUTH)
+  ${CYAN}getThread${OFF};Retrieves a thread. (AUTH)
+  ${CYAN}listAssistantFiles${OFF};Returns a list of assistant files. (AUTH)
+  ${CYAN}listAssistants${OFF};Returns a list of assistants. (AUTH)
+  ${CYAN}listMessageFiles${OFF};Returns a list of message files. (AUTH)
+  ${CYAN}listMessages${OFF};Returns a list of messages for a given thread. (AUTH)
+  ${CYAN}listRunSteps${OFF};Returns a list of run steps belonging to a run. (AUTH)
+  ${CYAN}listRuns${OFF};Returns a list of runs belonging to a thread. (AUTH)
+  ${CYAN}modifyAssistant${OFF};Modifies an assistant. (AUTH)
+  ${CYAN}modifyMessage${OFF};Modifies a message. (AUTH)
+  ${CYAN}modifyRun${OFF};Modifies a run. (AUTH)
+  ${CYAN}modifyThread${OFF};Modifies a thread. (AUTH)
+  ${CYAN}submitToolOuputsToRun${OFF};When a run has the 'status: \"requires_action\"' and 'required_action.type' is 'submit_tool_outputs', this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request. (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[audio]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}createSpeech${OFF};Generates audio from the input text. (AUTH)
+  ${CYAN}createTranscription${OFF};Transcribes audio into the input language. (AUTH)
+  ${CYAN}createTranslation${OFF};Translates audio into English. (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[chat]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}createChatCompletion${OFF};Creates a model response for the given chat conversation. (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[completions]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}createCompletion${OFF};Creates a completion for the provided prompt and parameters. (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[embeddings]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}createEmbedding${OFF};Creates an embedding vector representing the input text. (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[files]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}createFile${OFF};Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.
+
+The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports '.jsonl' files.
+
+Please [contact us](https://help.openai.com/) if you need to increase these storage limits. (AUTH)
+  ${CYAN}deleteFile${OFF};Delete a file. (AUTH)
+  ${CYAN}downloadFile${OFF};Returns the contents of the specified file. (AUTH)
+  ${CYAN}listFiles${OFF};Returns a list of files that belong to the user's organization. (AUTH)
+  ${CYAN}retrieveFile${OFF};Returns information about a specific file. (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[fineTuning]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}cancelFineTuningJob${OFF};Immediately cancel a fine-tune job. (AUTH)
+  ${CYAN}createFineTuningJob${OFF};Creates a fine-tuning job which begins the process of creating a new model from a given dataset.
 
 Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.
 
-[Learn more about Fine-tuning](/docs/guides/fine-tuning)
-  ${CYAN}createImage${OFF};Creates an image given a prompt.
-  ${CYAN}createImageEdit${OFF};Creates an edited or extended image given an original image and a prompt.
-  ${CYAN}createImageVariation${OFF};Creates a variation of a given image.
-  ${CYAN}createModeration${OFF};Classifies if text violates OpenAI's Content Policy
-  ${CYAN}createTranscription${OFF};Transcribes audio into the input language.
-  ${CYAN}createTranslation${OFF};Translates audio into English.
-  ${CYAN}deleteFile${OFF};Delete a file.
-  ${CYAN}deleteModel${OFF};Delete a fine-tuned model. You must have the Owner role in your organization.
-  ${CYAN}downloadFile${OFF};Returns the contents of the specified file
-  ${CYAN}listFiles${OFF};Returns a list of files that belong to the user's organization.
-  ${CYAN}listFineTuneEvents${OFF};Get fine-grained status updates for a fine-tune job.
-  ${CYAN}listFineTunes${OFF};List your organization's fine-tuning jobs
-  ${CYAN}listModels${OFF};Lists the currently available models, and provides basic information about each one such as the owner and availability.
-  ${CYAN}retrieveFile${OFF};Returns information about a specific file.
-  ${CYAN}retrieveFineTune${OFF};Gets info about the fine-tune job.
+[Learn more about fine-tuning](/docs/guides/fine-tuning) (AUTH)
+  ${CYAN}listFineTuningEvents${OFF};Get status updates for a fine-tuning job. (AUTH)
+  ${CYAN}listFineTuningJobCheckpoints${OFF};List checkpoints for a fine-tuning job. (AUTH)
+  ${CYAN}listPaginatedFineTuningJobs${OFF};List your organization's fine-tuning jobs (AUTH)
+  ${CYAN}retrieveFineTuningJob${OFF};Get info about a fine-tuning job.
 
-[Learn more about Fine-tuning](/docs/guides/fine-tuning)
-  ${CYAN}retrieveModel${OFF};Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+[Learn more about fine-tuning](/docs/guides/fine-tuning) (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[images]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}createImage${OFF};Creates an image given a prompt. (AUTH)
+  ${CYAN}createImageEdit${OFF};Creates an edited or extended image given an original image and a prompt. (AUTH)
+  ${CYAN}createImageVariation${OFF};Creates a variation of a given image. (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[models]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}deleteModel${OFF};Delete a fine-tuned model. You must have the Owner role in your organization to delete a model. (AUTH)
+  ${CYAN}listModels${OFF};Lists the currently available models, and provides basic information about each one such as the owner and availability. (AUTH)
+  ${CYAN}retrieveModel${OFF};Retrieves a model instance, providing basic information about the model such as the owner and permissioning. (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[moderations]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}createModeration${OFF};Classifies if text is potentially harmful. (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
@@ -680,12 +1013,12 @@ print_about() {
     echo ""
     echo -e "${BOLD}${WHITE}OpenAI API command line client (API version 2.0.0)${OFF}"
     echo ""
-    echo -e "License: "
+    echo -e "License: MIT"
     echo -e "Contact: blah+oapicf@cliffano.com"
     echo ""
 read -r -d '' appdescription <<EOF
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 EOF
 echo "$appdescription" | paste -sd' ' | fold -sw 80
 }
@@ -704,15 +1037,578 @@ print_version() {
 
 ##############################################################################
 #
-# Print help for cancelFineTune operation
+# Print help for cancelRun operation
 #
 ##############################################################################
-print_cancelFineTune_help() {
+print_cancelRun_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}cancelFineTune - Immediately cancel a fine-tune job.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}cancelRun - Cancels a run that is 'in_progress'.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}fine_tune_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the fine-tune job to cancel ${YELLOW}Specify as: fine_tune_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread to which this run belongs. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the run to cancel. ${YELLOW}Specify as: run_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createAssistant operation
+#
+##############################################################################
+print_createAssistant_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createAssistant - Create an assistant with a model and instructions.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createAssistantFile operation
+#
+##############################################################################
+print_createAssistantFile_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createAssistantFile - Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}assistant_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the assistant for which to create a File. ${YELLOW}Specify as: assistant_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createMessage operation
+#
+##############################################################################
+print_createMessage_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createMessage - Create a message.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the [thread](/docs/api-reference/threads) to create a message for. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createRun operation
+#
+##############################################################################
+print_createRun_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createRun - Create a run.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread to run. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createThread operation
+#
+##############################################################################
+print_createThread_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createThread - Create a thread.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createThreadAndRun operation
+#
+##############################################################################
+print_createThreadAndRun_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createThreadAndRun - Create a thread and run it in one request.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for deleteAssistant operation
+#
+##############################################################################
+print_deleteAssistant_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}deleteAssistant - Delete an assistant.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}assistant_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the assistant to delete. ${YELLOW}Specify as: assistant_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for deleteAssistantFile operation
+#
+##############################################################################
+print_deleteAssistantFile_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}deleteAssistantFile - Delete an assistant file.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}assistant_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the assistant that the file belongs to. ${YELLOW}Specify as: assistant_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}file_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the file to delete. ${YELLOW}Specify as: file_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for deleteThread operation
+#
+##############################################################################
+print_deleteThread_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}deleteThread - Delete a thread.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread to delete. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getAssistant operation
+#
+##############################################################################
+print_getAssistant_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getAssistant - Retrieves an assistant.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}assistant_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the assistant to retrieve. ${YELLOW}Specify as: assistant_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getAssistantFile operation
+#
+##############################################################################
+print_getAssistantFile_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getAssistantFile - Retrieves an AssistantFile.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}assistant_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the assistant who the file belongs to. ${YELLOW}Specify as: assistant_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}file_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the file we're getting. ${YELLOW}Specify as: file_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getMessage operation
+#
+##############################################################################
+print_getMessage_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getMessage - Retrieve a message.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the [thread](/docs/api-reference/threads) to which this message belongs. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}message_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the message to retrieve. ${YELLOW}Specify as: message_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getMessageFile operation
+#
+##############################################################################
+print_getMessageFile_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getMessageFile - Retrieves a message file.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread to which the message and File belong. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}message_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the message the file belongs to. ${YELLOW}Specify as: message_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}file_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the file being retrieved. ${YELLOW}Specify as: file_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getRun operation
+#
+##############################################################################
+print_getRun_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getRun - Retrieves a run.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the [thread](/docs/api-reference/threads) that was run. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the run to retrieve. ${YELLOW}Specify as: run_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getRunStep operation
+#
+##############################################################################
+print_getRunStep_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getRunStep - Retrieves a run step.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread to which the run and run step belongs. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the run to which the run step belongs. ${YELLOW}Specify as: run_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}step_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the run step to retrieve. ${YELLOW}Specify as: step_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getThread operation
+#
+##############################################################################
+print_getThread_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getThread - Retrieves a thread.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread to retrieve. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listAssistantFiles operation
+#
+##############################################################################
+print_listAssistantFiles_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listAssistantFiles - Returns a list of assistant files.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}assistant_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the assistant the file belongs to. ${YELLOW}Specify as: assistant_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 20)${OFF} - A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}order${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: desc)${OFF} - Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order.${YELLOW} Specify as: order=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}after${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.${YELLOW} Specify as: after=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}before${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.${YELLOW} Specify as: before=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listAssistants operation
+#
+##############################################################################
+print_listAssistants_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listAssistants - Returns a list of assistants.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 20)${OFF} - A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}order${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: desc)${OFF} - Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order.${YELLOW} Specify as: order=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}after${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.${YELLOW} Specify as: after=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}before${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.${YELLOW} Specify as: before=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listMessageFiles operation
+#
+##############################################################################
+print_listMessageFiles_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listMessageFiles - Returns a list of message files.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread that the message and files belong to. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}message_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the message that the files belongs to. ${YELLOW}Specify as: message_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 20)${OFF} - A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}order${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: desc)${OFF} - Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order.${YELLOW} Specify as: order=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}after${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.${YELLOW} Specify as: after=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}before${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.${YELLOW} Specify as: before=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listMessages operation
+#
+##############################################################################
+print_listMessages_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listMessages - Returns a list of messages for a given thread.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the [thread](/docs/api-reference/threads) the messages belong to. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 20)${OFF} - A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}order${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: desc)${OFF} - Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order.${YELLOW} Specify as: order=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}after${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.${YELLOW} Specify as: after=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}before${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.${YELLOW} Specify as: before=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run_id${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Filter messages by the run ID that generated them.${YELLOW} Specify as: run_id=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listRunSteps operation
+#
+##############################################################################
+print_listRunSteps_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listRunSteps - Returns a list of run steps belonging to a run.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread the run and run steps belong to. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the run the run steps belong to. ${YELLOW}Specify as: run_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 20)${OFF} - A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}order${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: desc)${OFF} - Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order.${YELLOW} Specify as: order=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}after${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.${YELLOW} Specify as: after=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}before${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.${YELLOW} Specify as: before=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listRuns operation
+#
+##############################################################################
+print_listRuns_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listRuns - Returns a list of runs belonging to a thread.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread the run belongs to. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 20)${OFF} - A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}order${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: desc)${OFF} - Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order.${YELLOW} Specify as: order=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}after${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.${YELLOW} Specify as: after=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}before${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.${YELLOW} Specify as: before=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for modifyAssistant operation
+#
+##############################################################################
+print_modifyAssistant_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}modifyAssistant - Modifies an assistant.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}assistant_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the assistant to modify. ${YELLOW}Specify as: assistant_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for modifyMessage operation
+#
+##############################################################################
+print_modifyMessage_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}modifyMessage - Modifies a message.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread to which this message belongs. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}message_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the message to modify. ${YELLOW}Specify as: message_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for modifyRun operation
+#
+##############################################################################
+print_modifyRun_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}modifyRun - Modifies a run.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the [thread](/docs/api-reference/threads) that was run. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the run to modify. ${YELLOW}Specify as: run_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for modifyThread operation
+#
+##############################################################################
+print_modifyThread_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}modifyThread - Modifies a thread.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the thread to modify. Only the 'metadata' can be modified. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for submitToolOuputsToRun operation
+#
+##############################################################################
+print_submitToolOuputsToRun_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}submitToolOuputsToRun - When a run has the 'status: \"requires_action\"' and 'required_action.type' is 'submit_tool_outputs', this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}thread_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the [thread](/docs/api-reference/threads) to which this run belongs. ${YELLOW}Specify as: thread_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the run that requires the tool output submission. ${YELLOW}Specify as: run_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createSpeech operation
+#
+##############################################################################
+print_createSpeech_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createSpeech - Generates audio from the input text.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+        echo -e "       ${BOLD}${WHITE}Response headers${OFF}"
+        echo -e "       ${BLUE}Transfer-Encoding${OFF} - chunked" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/        /'
+}
+##############################################################################
+#
+# Print help for createTranscription operation
+#
+##############################################################################
+print_createTranscription_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createTranscription - Transcribes audio into the input language.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createTranslation operation
+#
+##############################################################################
+print_createTranslation_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createTranslation - Translates audio into English.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -725,7 +1621,7 @@ print_cancelFineTune_help() {
 ##############################################################################
 print_createChatCompletion_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}createChatCompletion - Creates a model response for the given chat conversation.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createChatCompletion - Creates a model response for the given chat conversation.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -742,24 +1638,7 @@ print_createChatCompletion_help() {
 ##############################################################################
 print_createCompletion_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}createCompletion - Creates a completion for the provided prompt and parameters.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for createEdit operation
-#
-##############################################################################
-print_createEdit_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}createEdit - Creates a new edit for the provided input, instruction, and parameters.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createCompletion - Creates a completion for the provided prompt and parameters.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -776,7 +1655,7 @@ print_createEdit_help() {
 ##############################################################################
 print_createEmbedding_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}createEmbedding - Creates an embedding vector representing the input text.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createEmbedding - Creates an embedding vector representing the input text.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -793,7 +1672,11 @@ print_createEmbedding_help() {
 ##############################################################################
 print_createFile_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}createFile - Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createFile - Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.
+
+The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports '.jsonl' files.
+
+Please [contact us](https://help.openai.com/) if you need to increase these storage limits.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo ""
@@ -803,20 +1686,178 @@ print_createFile_help() {
 }
 ##############################################################################
 #
-# Print help for createFineTune operation
+# Print help for deleteFile operation
 #
 ##############################################################################
-print_createFineTune_help() {
+print_deleteFile_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}createFineTune - Creates a job that fine-tunes a specified model from a given dataset.
+    echo -e "${BOLD}${WHITE}deleteFile - Delete a file.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}file_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the file to use for this request. ${YELLOW}Specify as: file_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for downloadFile operation
+#
+##############################################################################
+print_downloadFile_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}downloadFile - Returns the contents of the specified file.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}file_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the file to use for this request. ${YELLOW}Specify as: file_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listFiles operation
+#
+##############################################################################
+print_listFiles_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listFiles - Returns a list of files that belong to the user's organization.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}purpose${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Only return files with the given purpose.${YELLOW} Specify as: purpose=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for retrieveFile operation
+#
+##############################################################################
+print_retrieveFile_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}retrieveFile - Returns information about a specific file.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}file_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the file to use for this request. ${YELLOW}Specify as: file_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for cancelFineTuningJob operation
+#
+##############################################################################
+print_cancelFineTuningJob_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}cancelFineTuningJob - Immediately cancel a fine-tune job.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}fine_tuning_job_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the fine-tuning job to cancel. ${YELLOW}Specify as: fine_tuning_job_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createFineTuningJob operation
+#
+##############################################################################
+print_createFineTuningJob_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createFineTuningJob - Creates a fine-tuning job which begins the process of creating a new model from a given dataset.
 
 Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.
 
-[Learn more about Fine-tuning](/docs/guides/fine-tuning)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+[Learn more about fine-tuning](/docs/guides/fine-tuning)${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listFineTuningEvents operation
+#
+##############################################################################
+print_listFineTuningEvents_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listFineTuningEvents - Get status updates for a fine-tuning job.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}fine_tuning_job_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the fine-tuning job to get events for. ${YELLOW}Specify as: fine_tuning_job_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}after${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Identifier for the last event from the previous pagination request.${YELLOW} Specify as: after=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 20)${OFF} - Number of events to retrieve.${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listFineTuningJobCheckpoints operation
+#
+##############################################################################
+print_listFineTuningJobCheckpoints_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listFineTuningJobCheckpoints - List checkpoints for a fine-tuning job.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}fine_tuning_job_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the fine-tuning job to get checkpoints for. ${YELLOW}Specify as: fine_tuning_job_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}after${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Identifier for the last checkpoint ID from the previous pagination request.${YELLOW} Specify as: after=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 10)${OFF} - Number of checkpoints to retrieve.${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listPaginatedFineTuningJobs operation
+#
+##############################################################################
+print_listPaginatedFineTuningJobs_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listPaginatedFineTuningJobs - List your organization's fine-tuning jobs${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}after${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Identifier for the last job from the previous pagination request.${YELLOW} Specify as: after=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 20)${OFF} - Number of fine-tuning jobs to retrieve.${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for retrieveFineTuningJob operation
+#
+##############################################################################
+print_retrieveFineTuningJob_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}retrieveFineTuningJob - Get info about a fine-tuning job.
+
+[Learn more about fine-tuning](/docs/guides/fine-tuning)${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}fine_tuning_job_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the fine-tuning job. ${YELLOW}Specify as: fine_tuning_job_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -829,7 +1870,7 @@ Response includes details of the enqueued job including job status and the name 
 ##############################################################################
 print_createImage_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}createImage - Creates an image given a prompt.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createImage - Creates an image given a prompt.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -846,7 +1887,7 @@ print_createImage_help() {
 ##############################################################################
 print_createImageEdit_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}createImageEdit - Creates an edited or extended image given an original image and a prompt.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createImageEdit - Creates an edited or extended image given an original image and a prompt.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo ""
@@ -861,72 +1902,9 @@ print_createImageEdit_help() {
 ##############################################################################
 print_createImageVariation_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}createImageVariation - Creates a variation of a given image.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createImageVariation - Creates a variation of a given image.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for createModeration operation
-#
-##############################################################################
-print_createModeration_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}createModeration - Classifies if text violates OpenAI's Content Policy${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for createTranscription operation
-#
-##############################################################################
-print_createTranscription_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}createTranscription - Transcribes audio into the input language.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for createTranslation operation
-#
-##############################################################################
-print_createTranslation_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}createTranslation - Translates audio into English.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for deleteFile operation
-#
-##############################################################################
-print_deleteFile_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}deleteFile - Delete a file.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}file_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the file to use for this request ${YELLOW}Specify as: file_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -939,79 +1917,10 @@ print_deleteFile_help() {
 ##############################################################################
 print_deleteModel_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}deleteModel - Delete a fine-tuned model. You must have the Owner role in your organization.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}deleteModel - Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}model${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The model to delete ${YELLOW}Specify as: model=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for downloadFile operation
-#
-##############################################################################
-print_downloadFile_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}downloadFile - Returns the contents of the specified file${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}file_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the file to use for this request ${YELLOW}Specify as: file_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for listFiles operation
-#
-##############################################################################
-print_listFiles_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}listFiles - Returns a list of files that belong to the user's organization.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for listFineTuneEvents operation
-#
-##############################################################################
-print_listFineTuneEvents_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}listFineTuneEvents - Get fine-grained status updates for a fine-tune job.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}fine_tune_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the fine-tune job to get events for. ${YELLOW}Specify as: fine_tune_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}stream${OFF} ${BLUE}[boolean]${OFF} ${CYAN}(default: false)${OFF} - Whether to stream events for the fine-tune job. If set to true,
-events will be sent as data-only
-[server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format)
-as they become available. The stream will terminate with a
-'data: [DONE]' message when the job is finished (succeeded, cancelled,
-or failed).
-
-If set to false, only events generated so far will be returned.${YELLOW} Specify as: stream=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for listFineTunes operation
-#
-##############################################################################
-print_listFineTunes_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}listFineTunes - List your organization's fine-tuning jobs${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1024,42 +1933,8 @@ print_listFineTunes_help() {
 ##############################################################################
 print_listModels_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}listModels - Lists the currently available models, and provides basic information about each one such as the owner and availability.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}listModels - Lists the currently available models, and provides basic information about each one such as the owner and availability.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for retrieveFile operation
-#
-##############################################################################
-print_retrieveFile_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}retrieveFile - Returns information about a specific file.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}file_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the file to use for this request ${YELLOW}Specify as: file_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for retrieveFineTune operation
-#
-##############################################################################
-print_retrieveFineTune_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}retrieveFineTune - Gets info about the fine-tune job.
-
-[Learn more about Fine-tuning](/docs/guides/fine-tuning)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}fine_tune_id${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the fine-tune job ${YELLOW}Specify as: fine_tune_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1072,10 +1947,27 @@ print_retrieveFineTune_help() {
 ##############################################################################
 print_retrieveModel_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}retrieveModel - Retrieves a model instance, providing basic information about the model such as the owner and permissioning.${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}retrieveModel - Retrieves a model instance, providing basic information about the model such as the owner and permissioning.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}model${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the model to use for this request ${YELLOW}Specify as: model=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for createModeration operation
+#
+##############################################################################
+print_createModeration_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}createModeration - Classifies if text is potentially harmful.${OFF}${BLUE}(AUTH - )${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1085,19 +1977,19 @@ print_retrieveModel_help() {
 
 ##############################################################################
 #
-# Call cancelFineTune operation
+# Call cancelRun operation
 #
 ##############################################################################
-call_cancelFineTune() {
+call_cancelRun() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local path_parameter_names=(fine_tune_id)
+    local path_parameter_names=(thread_id run_id)
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/fine-tunes/{fine_tune_id}/cancel" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/runs/{run_id}/cancel" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -1121,6 +2013,1592 @@ call_cancelFineTune() {
 
 ##############################################################################
 #
+# Call createAssistant operation
+#
+##############################################################################
+call_createAssistant() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/assistants" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call createAssistantFile operation
+#
+##############################################################################
+call_createAssistantFile() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(assistant_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/assistants/{assistant_id}/files" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call createMessage operation
+#
+##############################################################################
+call_createMessage() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/messages" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call createRun operation
+#
+##############################################################################
+call_createRun() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/runs" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call createThread operation
+#
+##############################################################################
+call_createThread() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call createThreadAndRun operation
+#
+##############################################################################
+call_createThreadAndRun() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/runs" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call deleteAssistant operation
+#
+##############################################################################
+call_deleteAssistant() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(assistant_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/assistants/{assistant_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="DELETE"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call deleteAssistantFile operation
+#
+##############################################################################
+call_deleteAssistantFile() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(assistant_id file_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/assistants/{assistant_id}/files/{file_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="DELETE"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call deleteThread operation
+#
+##############################################################################
+call_deleteThread() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="DELETE"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getAssistant operation
+#
+##############################################################################
+call_getAssistant() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(assistant_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/assistants/{assistant_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getAssistantFile operation
+#
+##############################################################################
+call_getAssistantFile() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(assistant_id file_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/assistants/{assistant_id}/files/{file_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getMessage operation
+#
+##############################################################################
+call_getMessage() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id message_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/messages/{message_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getMessageFile operation
+#
+##############################################################################
+call_getMessageFile() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id message_id file_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getRun operation
+#
+##############################################################################
+call_getRun() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id run_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/runs/{run_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getRunStep operation
+#
+##############################################################################
+call_getRunStep() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id run_id step_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getThread operation
+#
+##############################################################################
+call_getThread() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listAssistantFiles operation
+#
+##############################################################################
+call_listAssistantFiles() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(assistant_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(limit order after before  )
+    local path
+
+    if ! path=$(build_request_path "/v1/assistants/{assistant_id}/files" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listAssistants operation
+#
+##############################################################################
+call_listAssistants() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(limit order after before  )
+    local path
+
+    if ! path=$(build_request_path "/v1/assistants" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listMessageFiles operation
+#
+##############################################################################
+call_listMessageFiles() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id message_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(limit order after before  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/messages/{message_id}/files" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listMessages operation
+#
+##############################################################################
+call_listMessages() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(limit order after before run_id  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/messages" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listRunSteps operation
+#
+##############################################################################
+call_listRunSteps() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id run_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(limit order after before  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/runs/{run_id}/steps" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listRuns operation
+#
+##############################################################################
+call_listRuns() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(limit order after before  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/runs" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call modifyAssistant operation
+#
+##############################################################################
+call_modifyAssistant() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(assistant_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/assistants/{assistant_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call modifyMessage operation
+#
+##############################################################################
+call_modifyMessage() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id message_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/messages/{message_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call modifyRun operation
+#
+##############################################################################
+call_modifyRun() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id run_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/runs/{run_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call modifyThread operation
+#
+##############################################################################
+call_modifyThread() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call submitToolOuputsToRun operation
+#
+##############################################################################
+call_submitToolOuputsToRun() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(thread_id run_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/threads/{thread_id}/runs/{run_id}/submit_tool_outputs" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call createSpeech operation
+#
+##############################################################################
+call_createSpeech() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/audio/speech" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call createTranscription operation
+#
+##############################################################################
+call_createTranscription() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/audio/transcriptions" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    body_form_urlencoded=$(body_parameters_to_form_urlencoded)
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${body_form_urlencoded} ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${body_form_urlencoded} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call createTranslation operation
+#
+##############################################################################
+call_createTranslation() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/audio/translations" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    body_form_urlencoded=$(body_parameters_to_form_urlencoded)
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${body_form_urlencoded} ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${body_form_urlencoded} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
 # Call createChatCompletion operation
 #
 ##############################################################################
@@ -1130,7 +3608,7 @@ call_createChatCompletion() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/v1/chat/completions" path_parameter_names query_parameter_names); then
@@ -1208,88 +3686,10 @@ call_createCompletion() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/v1/completions" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="POST"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    local body_json_curl=""
-
-    #
-    # Check if the user provided 'Content-type' headers in the
-    # command line. If not try to set them based on the OpenAPI specification
-    # if values produces and consumes are defined unambiguously
-    #
-    if [[ -z $header_content_type ]]; then
-        header_content_type="application/json"
-    fi
-
-
-    if [[ -z $header_content_type && "$force" = false ]]; then
-        :
-        echo "ERROR: Request's content-type not specified!!!"
-        echo "This operation expects content-type in one of the following formats:"
-        echo -e "\\t- application/json"
-        echo ""
-        echo "Use '--content-type' to set proper content type"
-        exit 1
-    else
-        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
-    fi
-
-
-    #
-    # If we have received some body content over pipe, pass it from the
-    # temporary file to cURL
-    #
-    if [[ -n $body_content_temp_file ]]; then
-        if [[ "$print_curl" = true ]]; then
-            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        else
-            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        fi
-        rm "${body_content_temp_file}"
-    #
-    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
-    #
-    else
-        body_json_curl=$(body_parameters_to_json)
-        if [[ "$print_curl" = true ]]; then
-            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        else
-            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        fi
-    fi
-}
-
-##############################################################################
-#
-# Call createEdit operation
-#
-##############################################################################
-call_createEdit() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/edits" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -1364,7 +3764,7 @@ call_createEmbedding() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/v1/embeddings" path_parameter_names query_parameter_names); then
@@ -1442,7 +3842,7 @@ call_createFile() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/v1/files" path_parameter_names query_parameter_names); then
@@ -1470,19 +3870,199 @@ call_createFile() {
 
 ##############################################################################
 #
-# Call createFineTune operation
+# Call deleteFile operation
 #
 ##############################################################################
-call_createFineTune() {
+call_deleteFile() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(file_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/files/{file_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="DELETE"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call downloadFile operation
+#
+##############################################################################
+call_downloadFile() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(file_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/files/{file_id}/content" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listFiles operation
+#
+##############################################################################
+call_listFiles() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(purpose  )
     local path
 
-    if ! path=$(build_request_path "/v1/fine-tunes" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/files" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call retrieveFile operation
+#
+##############################################################################
+call_retrieveFile() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(file_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/files/{file_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call cancelFineTuningJob operation
+#
+##############################################################################
+call_cancelFineTuningJob() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(fine_tuning_job_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/fine_tuning/jobs/{fine_tuning_job_id}/cancel" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call createFineTuningJob operation
+#
+##############################################################################
+call_createFineTuningJob() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/fine_tuning/jobs" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -1548,6 +4128,150 @@ call_createFineTune() {
 
 ##############################################################################
 #
+# Call listFineTuningEvents operation
+#
+##############################################################################
+call_listFineTuningEvents() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(fine_tuning_job_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(after limit  )
+    local path
+
+    if ! path=$(build_request_path "/v1/fine_tuning/jobs/{fine_tuning_job_id}/events" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listFineTuningJobCheckpoints operation
+#
+##############################################################################
+call_listFineTuningJobCheckpoints() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(fine_tuning_job_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(after limit  )
+    local path
+
+    if ! path=$(build_request_path "/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listPaginatedFineTuningJobs operation
+#
+##############################################################################
+call_listPaginatedFineTuningJobs() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(after limit  )
+    local path
+
+    if ! path=$(build_request_path "/v1/fine_tuning/jobs" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call retrieveFineTuningJob operation
+#
+##############################################################################
+call_retrieveFineTuningJob() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(fine_tuning_job_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/fine_tuning/jobs/{fine_tuning_job_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
 # Call createImage operation
 #
 ##############################################################################
@@ -1557,7 +4281,7 @@ call_createImage() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/v1/images/generations" path_parameter_names query_parameter_names); then
@@ -1635,7 +4359,7 @@ call_createImageEdit() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/v1/images/edits" path_parameter_names query_parameter_names); then
@@ -1672,7 +4396,7 @@ call_createImageVariation() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/v1/images/variations" path_parameter_names query_parameter_names); then
@@ -1700,6 +4424,114 @@ call_createImageVariation() {
 
 ##############################################################################
 #
+# Call deleteModel operation
+#
+##############################################################################
+call_deleteModel() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(model)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/models/{model}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="DELETE"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listModels operation
+#
+##############################################################################
+call_listModels() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/models" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call retrieveModel operation
+#
+##############################################################################
+call_retrieveModel() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(model)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/models/{model}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
 # Call createModeration operation
 #
 ##############################################################################
@@ -1709,7 +4541,7 @@ call_createModeration() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/v1/moderations" path_parameter_names query_parameter_names); then
@@ -1773,440 +4605,6 @@ call_createModeration() {
         else
             eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
         fi
-    fi
-}
-
-##############################################################################
-#
-# Call createTranscription operation
-#
-##############################################################################
-call_createTranscription() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/audio/transcriptions" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="POST"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    body_form_urlencoded=$(body_parameters_to_form_urlencoded)
-    if [[ "$print_curl" = true ]]; then
-        echo "curl ${body_form_urlencoded} ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl ${body_form_urlencoded} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call createTranslation operation
-#
-##############################################################################
-call_createTranslation() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/audio/translations" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="POST"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    body_form_urlencoded=$(body_parameters_to_form_urlencoded)
-    if [[ "$print_curl" = true ]]; then
-        echo "curl ${body_form_urlencoded} ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl ${body_form_urlencoded} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call deleteFile operation
-#
-##############################################################################
-call_deleteFile() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(file_id)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/files/{file_id}" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="DELETE"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call deleteModel operation
-#
-##############################################################################
-call_deleteModel() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(model)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/models/{model}" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="DELETE"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call downloadFile operation
-#
-##############################################################################
-call_downloadFile() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(file_id)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/files/{file_id}/content" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call listFiles operation
-#
-##############################################################################
-call_listFiles() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/files" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call listFineTuneEvents operation
-#
-##############################################################################
-call_listFineTuneEvents() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(fine_tune_id)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(stream)
-    local path
-
-    if ! path=$(build_request_path "/v1/fine-tunes/{fine_tune_id}/events" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call listFineTunes operation
-#
-##############################################################################
-call_listFineTunes() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/fine-tunes" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call listModels operation
-#
-##############################################################################
-call_listModels() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/models" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call retrieveFile operation
-#
-##############################################################################
-call_retrieveFile() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(file_id)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/files/{file_id}" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call retrieveFineTune operation
-#
-##############################################################################
-call_retrieveFineTune() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(fine_tune_id)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/fine-tunes/{fine_tune_id}" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call retrieveModel operation
-#
-##############################################################################
-call_retrieveModel() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(model)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=()
-    local path
-
-    if ! path=$(build_request_path "/v1/models/{model}" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2307,8 +4705,98 @@ case $key in
         OFF=""
         result_color_table=( "" "" "" "" "" "" "" )
     ;;
-    cancelFineTune)
-    operation="cancelFineTune"
+    cancelRun)
+    operation="cancelRun"
+    ;;
+    createAssistant)
+    operation="createAssistant"
+    ;;
+    createAssistantFile)
+    operation="createAssistantFile"
+    ;;
+    createMessage)
+    operation="createMessage"
+    ;;
+    createRun)
+    operation="createRun"
+    ;;
+    createThread)
+    operation="createThread"
+    ;;
+    createThreadAndRun)
+    operation="createThreadAndRun"
+    ;;
+    deleteAssistant)
+    operation="deleteAssistant"
+    ;;
+    deleteAssistantFile)
+    operation="deleteAssistantFile"
+    ;;
+    deleteThread)
+    operation="deleteThread"
+    ;;
+    getAssistant)
+    operation="getAssistant"
+    ;;
+    getAssistantFile)
+    operation="getAssistantFile"
+    ;;
+    getMessage)
+    operation="getMessage"
+    ;;
+    getMessageFile)
+    operation="getMessageFile"
+    ;;
+    getRun)
+    operation="getRun"
+    ;;
+    getRunStep)
+    operation="getRunStep"
+    ;;
+    getThread)
+    operation="getThread"
+    ;;
+    listAssistantFiles)
+    operation="listAssistantFiles"
+    ;;
+    listAssistants)
+    operation="listAssistants"
+    ;;
+    listMessageFiles)
+    operation="listMessageFiles"
+    ;;
+    listMessages)
+    operation="listMessages"
+    ;;
+    listRunSteps)
+    operation="listRunSteps"
+    ;;
+    listRuns)
+    operation="listRuns"
+    ;;
+    modifyAssistant)
+    operation="modifyAssistant"
+    ;;
+    modifyMessage)
+    operation="modifyMessage"
+    ;;
+    modifyRun)
+    operation="modifyRun"
+    ;;
+    modifyThread)
+    operation="modifyThread"
+    ;;
+    submitToolOuputsToRun)
+    operation="submitToolOuputsToRun"
+    ;;
+    createSpeech)
+    operation="createSpeech"
+    ;;
+    createTranscription)
+    operation="createTranscription"
+    ;;
+    createTranslation)
+    operation="createTranslation"
     ;;
     createChatCompletion)
     operation="createChatCompletion"
@@ -2316,17 +4804,41 @@ case $key in
     createCompletion)
     operation="createCompletion"
     ;;
-    createEdit)
-    operation="createEdit"
-    ;;
     createEmbedding)
     operation="createEmbedding"
     ;;
     createFile)
     operation="createFile"
     ;;
-    createFineTune)
-    operation="createFineTune"
+    deleteFile)
+    operation="deleteFile"
+    ;;
+    downloadFile)
+    operation="downloadFile"
+    ;;
+    listFiles)
+    operation="listFiles"
+    ;;
+    retrieveFile)
+    operation="retrieveFile"
+    ;;
+    cancelFineTuningJob)
+    operation="cancelFineTuningJob"
+    ;;
+    createFineTuningJob)
+    operation="createFineTuningJob"
+    ;;
+    listFineTuningEvents)
+    operation="listFineTuningEvents"
+    ;;
+    listFineTuningJobCheckpoints)
+    operation="listFineTuningJobCheckpoints"
+    ;;
+    listPaginatedFineTuningJobs)
+    operation="listPaginatedFineTuningJobs"
+    ;;
+    retrieveFineTuningJob)
+    operation="retrieveFineTuningJob"
     ;;
     createImage)
     operation="createImage"
@@ -2337,44 +4849,17 @@ case $key in
     createImageVariation)
     operation="createImageVariation"
     ;;
-    createModeration)
-    operation="createModeration"
-    ;;
-    createTranscription)
-    operation="createTranscription"
-    ;;
-    createTranslation)
-    operation="createTranslation"
-    ;;
-    deleteFile)
-    operation="deleteFile"
-    ;;
     deleteModel)
     operation="deleteModel"
-    ;;
-    downloadFile)
-    operation="downloadFile"
-    ;;
-    listFiles)
-    operation="listFiles"
-    ;;
-    listFineTuneEvents)
-    operation="listFineTuneEvents"
-    ;;
-    listFineTunes)
-    operation="listFineTunes"
     ;;
     listModels)
     operation="listModels"
     ;;
-    retrieveFile)
-    operation="retrieveFile"
-    ;;
-    retrieveFineTune)
-    operation="retrieveFineTune"
-    ;;
     retrieveModel)
     operation="retrieveModel"
+    ;;
+    createModeration)
+    operation="createModeration"
     ;;
     *==*)
     # Parse body arguments and convert them into top level
@@ -2463,8 +4948,98 @@ fi
 
 # Run cURL command based on the operation ID
 case $operation in
-    cancelFineTune)
-    call_cancelFineTune
+    cancelRun)
+    call_cancelRun
+    ;;
+    createAssistant)
+    call_createAssistant
+    ;;
+    createAssistantFile)
+    call_createAssistantFile
+    ;;
+    createMessage)
+    call_createMessage
+    ;;
+    createRun)
+    call_createRun
+    ;;
+    createThread)
+    call_createThread
+    ;;
+    createThreadAndRun)
+    call_createThreadAndRun
+    ;;
+    deleteAssistant)
+    call_deleteAssistant
+    ;;
+    deleteAssistantFile)
+    call_deleteAssistantFile
+    ;;
+    deleteThread)
+    call_deleteThread
+    ;;
+    getAssistant)
+    call_getAssistant
+    ;;
+    getAssistantFile)
+    call_getAssistantFile
+    ;;
+    getMessage)
+    call_getMessage
+    ;;
+    getMessageFile)
+    call_getMessageFile
+    ;;
+    getRun)
+    call_getRun
+    ;;
+    getRunStep)
+    call_getRunStep
+    ;;
+    getThread)
+    call_getThread
+    ;;
+    listAssistantFiles)
+    call_listAssistantFiles
+    ;;
+    listAssistants)
+    call_listAssistants
+    ;;
+    listMessageFiles)
+    call_listMessageFiles
+    ;;
+    listMessages)
+    call_listMessages
+    ;;
+    listRunSteps)
+    call_listRunSteps
+    ;;
+    listRuns)
+    call_listRuns
+    ;;
+    modifyAssistant)
+    call_modifyAssistant
+    ;;
+    modifyMessage)
+    call_modifyMessage
+    ;;
+    modifyRun)
+    call_modifyRun
+    ;;
+    modifyThread)
+    call_modifyThread
+    ;;
+    submitToolOuputsToRun)
+    call_submitToolOuputsToRun
+    ;;
+    createSpeech)
+    call_createSpeech
+    ;;
+    createTranscription)
+    call_createTranscription
+    ;;
+    createTranslation)
+    call_createTranslation
     ;;
     createChatCompletion)
     call_createChatCompletion
@@ -2472,17 +5047,41 @@ case $operation in
     createCompletion)
     call_createCompletion
     ;;
-    createEdit)
-    call_createEdit
-    ;;
     createEmbedding)
     call_createEmbedding
     ;;
     createFile)
     call_createFile
     ;;
-    createFineTune)
-    call_createFineTune
+    deleteFile)
+    call_deleteFile
+    ;;
+    downloadFile)
+    call_downloadFile
+    ;;
+    listFiles)
+    call_listFiles
+    ;;
+    retrieveFile)
+    call_retrieveFile
+    ;;
+    cancelFineTuningJob)
+    call_cancelFineTuningJob
+    ;;
+    createFineTuningJob)
+    call_createFineTuningJob
+    ;;
+    listFineTuningEvents)
+    call_listFineTuningEvents
+    ;;
+    listFineTuningJobCheckpoints)
+    call_listFineTuningJobCheckpoints
+    ;;
+    listPaginatedFineTuningJobs)
+    call_listPaginatedFineTuningJobs
+    ;;
+    retrieveFineTuningJob)
+    call_retrieveFineTuningJob
     ;;
     createImage)
     call_createImage
@@ -2493,44 +5092,17 @@ case $operation in
     createImageVariation)
     call_createImageVariation
     ;;
-    createModeration)
-    call_createModeration
-    ;;
-    createTranscription)
-    call_createTranscription
-    ;;
-    createTranslation)
-    call_createTranslation
-    ;;
-    deleteFile)
-    call_deleteFile
-    ;;
     deleteModel)
     call_deleteModel
-    ;;
-    downloadFile)
-    call_downloadFile
-    ;;
-    listFiles)
-    call_listFiles
-    ;;
-    listFineTuneEvents)
-    call_listFineTuneEvents
-    ;;
-    listFineTunes)
-    call_listFineTunes
     ;;
     listModels)
     call_listModels
     ;;
-    retrieveFile)
-    call_retrieveFile
-    ;;
-    retrieveFineTune)
-    call_retrieveFineTune
-    ;;
     retrieveModel)
     call_retrieveModel
+    ;;
+    createModeration)
+    call_createModeration
     ;;
     *)
     ERROR_MSG="ERROR: Unknown operation: $operation"

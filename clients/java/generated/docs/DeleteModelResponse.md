@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  |
-|**_object** | **String** |  |  |
 |**deleted** | **Boolean** |  |  |
+|**_object** | **String** |  |  |
 
 
 

@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -44,15 +44,6 @@ use JMS\Serializer\Annotation\SerializedName;
 class ListFilesResponse 
 {
         /**
-     * @var string|null
-     * @SerializedName("object")
-     * @Assert\NotNull()
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected ?string $object = null;
-
-    /**
      * @var OpenAIFile[]|null
      * @SerializedName("data")
      * @Assert\NotNull()
@@ -65,41 +56,25 @@ class ListFilesResponse
     protected ?array $data = null;
 
     /**
+     * @var string|null
+     * @SerializedName("object")
+     * @Assert\NotNull()
+     * @Assert\Choice({ "list" })
+     * @Assert\Type("string")
+     * @Type("string")
+     */
+    protected ?string $object = null;
+
+    /**
      * Constructor
      * @param array|null $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
     {
         if (is_array($data)) {
-            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
             $this->data = array_key_exists('data', $data) ? $data['data'] : $this->data;
+            $this->object = array_key_exists('object', $data) ? $data['object'] : $this->object;
         }
-    }
-
-    /**
-     * Gets object.
-     *
-     * @return string|null
-     */
-    public function getObject(): ?string
-    {
-        return $this->object;
-    }
-
-
-
-    /**
-     * Sets object.
-     *
-     * @param string|null $object
-     *
-     * @return $this
-     */
-    public function setObject(?string $object): self
-    {
-        $this->object = $object;
-
-        return $this;
     }
 
     /**
@@ -124,6 +99,32 @@ class ListFilesResponse
     public function setData(?array $data): self
     {
         $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * Gets object.
+     *
+     * @return string|null
+     */
+    public function getObject(): ?string
+    {
+        return $this->object;
+    }
+
+
+
+    /**
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
+    public function setObject(?string $object): self
+    {
+        $this->object = $object;
 
         return $this;
     }

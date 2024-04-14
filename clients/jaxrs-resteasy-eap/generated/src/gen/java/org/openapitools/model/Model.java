@@ -4,24 +4,45 @@ import java.util.Objects;
 import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-16T01:13:41.666812110Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@ApiModel(description="Describes an OpenAI model offering that can be used with the API.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-04-14T13:42:04.201119898Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Model   {
   
   private String id;
-  private String _object;
   private Integer created;
+
+  /**
+   * The object type, which is always \&quot;model\&quot;.
+   */
+  public enum ObjectEnum {
+    MODEL("model");
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+  }
+
+  private ObjectEnum _object;
   private String ownedBy;
 
   /**
+   * The model identifier, which can be referenced in the API endpoints.
    **/
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model identifier, which can be referenced in the API endpoints.")
   @JsonProperty("id")
   @NotNull
   public String getId() {
@@ -32,22 +53,10 @@ public class Model   {
   }
 
   /**
+   * The Unix timestamp (in seconds) when the model was created.
    **/
   
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("object")
-  @NotNull
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-  /**
-   **/
-  
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) when the model was created.")
   @JsonProperty("created")
   @NotNull
   public Integer getCreated() {
@@ -58,9 +67,24 @@ public class Model   {
   }
 
   /**
+   * The object type, which is always \&quot;model\&quot;.
    **/
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The object type, which is always \"model\".")
+  @JsonProperty("object")
+  @NotNull
+  public ObjectEnum getObject() {
+    return _object;
+  }
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+  /**
+   * The organization that owns the model.
+   **/
+  
+  @ApiModelProperty(required = true, value = "The organization that owns the model.")
   @JsonProperty("owned_by")
   @NotNull
   public String getOwnedBy() {
@@ -81,14 +105,14 @@ public class Model   {
     }
     Model model = (Model) o;
     return Objects.equals(this.id, model.id) &&
-        Objects.equals(this._object, model._object) &&
         Objects.equals(this.created, model.created) &&
+        Objects.equals(this._object, model._object) &&
         Objects.equals(this.ownedBy, model.ownedBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, ownedBy);
+    return Objects.hash(id, created, _object, ownedBy);
   }
 
   @Override
@@ -97,8 +121,8 @@ public class Model   {
     sb.append("class Model {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    ownedBy: ").append(toIndentedString(ownedBy)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -7,9 +7,10 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
 
 import java.math.BigDecimal;
+import org.openapitools.model.CreateSpeechRequest;
+import org.openapitools.model.CreateTranscription200Response;
 import org.openapitools.model.CreateTranscriptionRequestModel;
-import org.openapitools.model.CreateTranscriptionResponse;
-import org.openapitools.model.CreateTranslationResponse;
+import org.openapitools.model.CreateTranslation200Response;
 import java.io.File;
 
 import java.util.Map;
@@ -33,7 +34,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the audio API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class AudioApi  {
    private final AudioApiService delegate;
 
@@ -59,28 +60,46 @@ public class AudioApi  {
    }
 
     @javax.ws.rs.POST
+    @Path("/speech")
+    @Consumes({ "application/json" })
+    @Produces({ "application/octet-stream" })
+    @io.swagger.annotations.ApiOperation(value = "Generates audio from the input text.", notes = "", response = File.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Audio", })
+    @io.swagger.annotations.ApiResponses(value = {
+        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = File.class)
+    })
+    public Response createSpeech(@ApiParam(value = "", required = true) @NotNull @Valid  CreateSpeechRequest createSpeechRequest,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.createSpeech(createSpeechRequest, securityContext);
+    }
+    @javax.ws.rs.POST
     @Path("/transcriptions")
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Transcribes audio into the input language.", notes = "", response = CreateTranscriptionResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Transcribes audio into the input language.", notes = "", response = CreateTranscription200Response.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Audio", })
     @io.swagger.annotations.ApiResponses(value = {
-        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = CreateTranscriptionResponse.class)
+        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = CreateTranscription200Response.class)
     })
     public Response createTranscription(
- @FormDataParam("file") FormDataBodyPart _fileBodypart ,@ApiParam(value = "", required=true)@FormDataParam("model")  CreateTranscriptionRequestModel model,@ApiParam(value = "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. ")@FormDataParam("prompt")  String prompt,@ApiParam(value = "The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. ", defaultValue="json")@FormDataParam("response_format")  String responseFormat,@ApiParam(value = "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ", defaultValue="0")@FormDataParam("temperature")  BigDecimal temperature,@ApiParam(value = "The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. ")@FormDataParam("language")  String language,@Context SecurityContext securityContext)
+ @FormDataParam("file") FormDataBodyPart _fileBodypart ,@ApiParam(value = "", required=true)@FormDataParam("model")  CreateTranscriptionRequestModel model,@ApiParam(value = "The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. ")@FormDataParam("language")  String language,@ApiParam(value = "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. ")@FormDataParam("prompt")  String prompt,@ApiParam(value = "The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. ", allowableValues="json, text, srt, verbose_json, vtt", defaultValue="json")@FormDataParam("response_format")  String responseFormat,@ApiParam(value = "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ", defaultValue="0")@FormDataParam("temperature")  BigDecimal temperature,@ApiParam(value = "The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. ", allowableValues="word, segment")@FormDataParam("timestamp_granularities[]")  List<String> timestampGranularities,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.createTranscription(_fileBodypart, model, prompt, responseFormat, temperature, language, securityContext);
+        return delegate.createTranscription(_fileBodypart, model, language, prompt, responseFormat, temperature, timestampGranularities, securityContext);
     }
     @javax.ws.rs.POST
     @Path("/translations")
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Translates audio into English.", notes = "", response = CreateTranslationResponse.class, tags={ "OpenAI", })
+    @io.swagger.annotations.ApiOperation(value = "Translates audio into English.", notes = "", response = CreateTranslation200Response.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
+    }, tags={ "Audio", })
     @io.swagger.annotations.ApiResponses(value = {
-        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = CreateTranslationResponse.class)
+        @io.swagger.annotations.ApiResponse(code = 200, message = "OK", response = CreateTranslation200Response.class)
     })
     public Response createTranslation(
- @FormDataParam("file") FormDataBodyPart _fileBodypart ,@ApiParam(value = "", required=true)@FormDataParam("model")  CreateTranscriptionRequestModel model,@ApiParam(value = "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. ")@FormDataParam("prompt")  String prompt,@ApiParam(value = "The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt. ", defaultValue="json")@FormDataParam("response_format")  String responseFormat,@ApiParam(value = "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ", defaultValue="0")@FormDataParam("temperature")  BigDecimal temperature,@Context SecurityContext securityContext)
+ @FormDataParam("file") FormDataBodyPart _fileBodypart ,@ApiParam(value = "", required=true)@FormDataParam("model")  CreateTranscriptionRequestModel model,@ApiParam(value = "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. ")@FormDataParam("prompt")  String prompt,@ApiParam(value = "The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. ", defaultValue="json")@FormDataParam("response_format")  String responseFormat,@ApiParam(value = "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ", defaultValue="0")@FormDataParam("temperature")  BigDecimal temperature,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.createTranslation(_fileBodypart, model, prompt, responseFormat, temperature, securityContext);
     }

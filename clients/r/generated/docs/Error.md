@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **character** |  | 
+**code** | **character** |  | 
 **message** | **character** |  | 
 **param** | **character** |  | 
-**code** | **character** |  | 
+**type** | **character** |  | 
 
 

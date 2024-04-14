@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,8 +23,12 @@ namespace model {
 
 CreateEmbeddingRequest::CreateEmbeddingRequest()
 {
-    m_ModelIsSet = false;
     m_InputIsSet = false;
+    m_ModelIsSet = false;
+    m_Encoding_format = utility::conversions::to_string_t("");
+    m_Encoding_formatIsSet = false;
+    m_Dimensions = 0;
+    m_DimensionsIsSet = false;
     m_User = utility::conversions::to_string_t("");
     m_UserIsSet = false;
 }
@@ -43,13 +47,21 @@ web::json::value CreateEmbeddingRequest::toJson() const
 
     web::json::value val = web::json::value::object();
     
+    if(m_InputIsSet)
+    {
+        val[utility::conversions::to_string_t(U("input"))] = ModelBase::toJson(m_Input);
+    }
     if(m_ModelIsSet)
     {
         val[utility::conversions::to_string_t(U("model"))] = ModelBase::toJson(m_Model);
     }
-    if(m_InputIsSet)
+    if(m_Encoding_formatIsSet)
     {
-        val[utility::conversions::to_string_t(U("input"))] = ModelBase::toJson(m_Input);
+        val[utility::conversions::to_string_t(U("encoding_format"))] = ModelBase::toJson(m_Encoding_format);
+    }
+    if(m_DimensionsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("dimensions"))] = ModelBase::toJson(m_Dimensions);
     }
     if(m_UserIsSet)
     {
@@ -63,6 +75,16 @@ bool CreateEmbeddingRequest::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t(U("input"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("input")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<CreateEmbeddingRequest_input> refVal_setInput;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setInput);
+            setInput(refVal_setInput);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("model"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("model")));
@@ -73,14 +95,24 @@ bool CreateEmbeddingRequest::fromJson(const web::json::value& val)
             setModel(refVal_setModel);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("input"))))
+    if(val.has_field(utility::conversions::to_string_t(U("encoding_format"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("input")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("encoding_format")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<CreateEmbeddingRequest_input> refVal_setInput;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setInput);
-            setInput(refVal_setInput);
+            utility::string_t refVal_setEncodingFormat;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setEncodingFormat);
+            setEncodingFormat(refVal_setEncodingFormat);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("dimensions"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("dimensions")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setDimensions;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDimensions);
+            setDimensions(refVal_setDimensions);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("user"))))
@@ -103,13 +135,21 @@ void CreateEmbeddingRequest::toMultipart(std::shared_ptr<MultipartFormData> mult
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
+    if(m_InputIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("input")), m_Input));
+    }
     if(m_ModelIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("model")), m_Model));
     }
-    if(m_InputIsSet)
+    if(m_Encoding_formatIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("input")), m_Input));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("encoding_format")), m_Encoding_format));
+    }
+    if(m_DimensionsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("dimensions")), m_Dimensions));
     }
     if(m_UserIsSet)
     {
@@ -126,17 +166,29 @@ bool CreateEmbeddingRequest::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(U("input"))))
+    {
+        std::shared_ptr<CreateEmbeddingRequest_input> refVal_setInput;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("input"))), refVal_setInput );
+        setInput(refVal_setInput);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("model"))))
     {
         std::shared_ptr<CreateEmbeddingRequest_model> refVal_setModel;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("model"))), refVal_setModel );
         setModel(refVal_setModel);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("input"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("encoding_format"))))
     {
-        std::shared_ptr<CreateEmbeddingRequest_input> refVal_setInput;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("input"))), refVal_setInput );
-        setInput(refVal_setInput);
+        utility::string_t refVal_setEncodingFormat;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("encoding_format"))), refVal_setEncodingFormat );
+        setEncodingFormat(refVal_setEncodingFormat);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("dimensions"))))
+    {
+        int32_t refVal_setDimensions;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("dimensions"))), refVal_setDimensions );
+        setDimensions(refVal_setDimensions);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("user"))))
     {
@@ -147,6 +199,26 @@ bool CreateEmbeddingRequest::fromMultiPart(std::shared_ptr<MultipartFormData> mu
     return ok;
 }
 
+std::shared_ptr<CreateEmbeddingRequest_input> CreateEmbeddingRequest::getInput() const
+{
+    return m_Input;
+}
+
+void CreateEmbeddingRequest::setInput(const std::shared_ptr<CreateEmbeddingRequest_input>& value)
+{
+    m_Input = value;
+    m_InputIsSet = true;
+}
+
+bool CreateEmbeddingRequest::inputIsSet() const
+{
+    return m_InputIsSet;
+}
+
+void CreateEmbeddingRequest::unsetInput()
+{
+    m_InputIsSet = false;
+}
 std::shared_ptr<CreateEmbeddingRequest_model> CreateEmbeddingRequest::getModel() const
 {
     return m_Model;
@@ -167,25 +239,45 @@ void CreateEmbeddingRequest::unsetModel()
 {
     m_ModelIsSet = false;
 }
-std::shared_ptr<CreateEmbeddingRequest_input> CreateEmbeddingRequest::getInput() const
+utility::string_t CreateEmbeddingRequest::getEncodingFormat() const
 {
-    return m_Input;
+    return m_Encoding_format;
 }
 
-void CreateEmbeddingRequest::setInput(const std::shared_ptr<CreateEmbeddingRequest_input>& value)
+void CreateEmbeddingRequest::setEncodingFormat(const utility::string_t& value)
 {
-    m_Input = value;
-    m_InputIsSet = true;
+    m_Encoding_format = value;
+    m_Encoding_formatIsSet = true;
 }
 
-bool CreateEmbeddingRequest::inputIsSet() const
+bool CreateEmbeddingRequest::encodingFormatIsSet() const
 {
-    return m_InputIsSet;
+    return m_Encoding_formatIsSet;
 }
 
-void CreateEmbeddingRequest::unsetInput()
+void CreateEmbeddingRequest::unsetEncoding_format()
 {
-    m_InputIsSet = false;
+    m_Encoding_formatIsSet = false;
+}
+int32_t CreateEmbeddingRequest::getDimensions() const
+{
+    return m_Dimensions;
+}
+
+void CreateEmbeddingRequest::setDimensions(int32_t value)
+{
+    m_Dimensions = value;
+    m_DimensionsIsSet = true;
+}
+
+bool CreateEmbeddingRequest::dimensionsIsSet() const
+{
+    return m_DimensionsIsSet;
+}
+
+void CreateEmbeddingRequest::unsetDimensions()
+{
+    m_DimensionsIsSet = false;
 }
 utility::string_t CreateEmbeddingRequest::getUser() const
 {

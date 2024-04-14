@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 #pragma once
 
 #include "OpenAPIBaseModel.h"
-#include "OpenAPIImagesResponseDataInner.h"
+#include "OpenAPIImage.h"
 
 namespace OpenAPI
 {
@@ -31,7 +31,7 @@ public:
 	void WriteJson(JsonWriter& Writer) const final;
 
 	int32 Created = 0;
-	TArray<OpenAPIImagesResponseDataInner> Data;
+	TArray<OpenAPIImage> Data;
 };
 
 }

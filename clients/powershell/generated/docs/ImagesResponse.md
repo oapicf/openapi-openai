@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Created** | **Int32** |  | 
-**VarData** | [**ImagesResponseDataInner[]**](ImagesResponseDataInner.md) |  | 
+**VarData** | [**Image[]**](Image.md) |  | 
 
 ## Examples
 

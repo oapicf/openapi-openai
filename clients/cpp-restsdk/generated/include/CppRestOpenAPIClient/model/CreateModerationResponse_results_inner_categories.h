@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * CreateModerationResponse_results_inner_categories.h
  *
- * 
+ * A list of the categories, and whether they are flagged or not.
  */
 
 #ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_CreateModerationResponse_results_inner_categories_H_
@@ -30,7 +30,7 @@ namespace model {
 
 
 /// <summary>
-/// 
+/// A list of the categories, and whether they are flagged or not.
 /// </summary>
 class  CreateModerationResponse_results_inner_categories
     : public ModelBase
@@ -54,7 +54,7 @@ public:
     /// CreateModerationResponse_results_inner_categories members
 
     /// <summary>
-    /// 
+    /// Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
     /// </summary>
     bool isHate() const;
     bool hateIsSet() const;
@@ -63,7 +63,7 @@ public:
     void setHate(bool value);
 
     /// <summary>
-    /// 
+    /// Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
     /// </summary>
     bool isHateThreatening() const;
     bool hateThreateningIsSet() const;
@@ -72,7 +72,25 @@ public:
     void setHateThreatening(bool value);
 
     /// <summary>
-    /// 
+    /// Content that expresses, incites, or promotes harassing language towards any target.
+    /// </summary>
+    bool isHarassment() const;
+    bool harassmentIsSet() const;
+    void unsetHarassment();
+
+    void setHarassment(bool value);
+
+    /// <summary>
+    /// Harassment content that also includes violence or serious harm towards any target.
+    /// </summary>
+    bool isHarassmentThreatening() const;
+    bool harassmentThreateningIsSet() const;
+    void unsetHarassment_threatening();
+
+    void setHarassmentThreatening(bool value);
+
+    /// <summary>
+    /// Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
     /// </summary>
     bool isSelfHarm() const;
     bool selfHarmIsSet() const;
@@ -81,7 +99,25 @@ public:
     void setSelfHarm(bool value);
 
     /// <summary>
-    /// 
+    /// Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+    /// </summary>
+    bool isSelfHarmIntent() const;
+    bool selfHarmIntentIsSet() const;
+    void unsetSelf_harm_intent();
+
+    void setSelfHarmIntent(bool value);
+
+    /// <summary>
+    /// Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+    /// </summary>
+    bool isSelfHarmInstructions() const;
+    bool selfHarmInstructionsIsSet() const;
+    void unsetSelf_harm_instructions();
+
+    void setSelfHarmInstructions(bool value);
+
+    /// <summary>
+    /// Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
     /// </summary>
     bool isSexual() const;
     bool sexualIsSet() const;
@@ -90,7 +126,7 @@ public:
     void setSexual(bool value);
 
     /// <summary>
-    /// 
+    /// Sexual content that includes an individual who is under 18 years old.
     /// </summary>
     bool isSexualMinors() const;
     bool sexualMinorsIsSet() const;
@@ -99,7 +135,7 @@ public:
     void setSexualMinors(bool value);
 
     /// <summary>
-    /// 
+    /// Content that depicts death, violence, or physical injury.
     /// </summary>
     bool isViolence() const;
     bool violenceIsSet() const;
@@ -108,7 +144,7 @@ public:
     void setViolence(bool value);
 
     /// <summary>
-    /// 
+    /// Content that depicts death, violence, or physical injury in graphic detail.
     /// </summary>
     bool isViolenceGraphic() const;
     bool violenceGraphicIsSet() const;
@@ -122,8 +158,16 @@ protected:
     bool m_HateIsSet;
     bool m_Hate_threatening;
     bool m_Hate_threateningIsSet;
+    bool m_Harassment;
+    bool m_HarassmentIsSet;
+    bool m_Harassment_threatening;
+    bool m_Harassment_threateningIsSet;
     bool m_Self_harm;
     bool m_Self_harmIsSet;
+    bool m_Self_harm_intent;
+    bool m_Self_harm_intentIsSet;
+    bool m_Self_harm_instructions;
+    bool m_Self_harm_instructionsIsSet;
     bool m_Sexual;
     bool m_SexualIsSet;
     bool m_Sexual_minors;

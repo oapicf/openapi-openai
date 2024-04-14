@@ -3,6 +3,7 @@ package org.openapitools.client.model
 
 
 case class CreateModerationResponseResultsInner (
+    /* Whether any of the below categories are flagged. */
     _flagged: Boolean,
     _categories: CreateModerationResponseResultsInnerCategories,
     _categoryScores: CreateModerationResponseResultsInnerCategoryScores

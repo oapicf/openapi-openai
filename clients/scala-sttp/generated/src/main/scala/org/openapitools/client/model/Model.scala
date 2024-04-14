@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,10 +12,26 @@
 package org.openapitools.client.model
 
 
+  /**
+   * Model
+   * Describes an OpenAI model offering that can be used with the API.
+   */
 case class Model(
+  /* The model identifier, which can be referenced in the API endpoints. */
   id: String,
-  `object`: String,
+  /* The Unix timestamp (in seconds) when the model was created. */
   created: Int,
+  /* The object type, which is always \"model\". */
+  `object`: ModelEnums.`Object`,
+  /* The organization that owns the model. */
   ownedBy: String
 )
 
+object ModelEnums {
+
+  type `Object` = `Object`.Value
+  object `Object` extends Enumeration {
+    val Model = Value("model")
+  }
+
+}

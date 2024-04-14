@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -34,14 +34,14 @@ OAICreateEmbeddingResponse::~OAICreateEmbeddingResponse() {}
 
 void OAICreateEmbeddingResponse::initializeModel() {
 
-    m_object_isSet = false;
-    m_object_isValid = false;
+    m_data_isSet = false;
+    m_data_isValid = false;
 
     m_model_isSet = false;
     m_model_isValid = false;
 
-    m_data_isSet = false;
-    m_data_isValid = false;
+    m_object_isSet = false;
+    m_object_isValid = false;
 
     m_usage_isSet = false;
     m_usage_isValid = false;
@@ -56,14 +56,14 @@ void OAICreateEmbeddingResponse::fromJson(QString jsonString) {
 
 void OAICreateEmbeddingResponse::fromJsonObject(QJsonObject json) {
 
-    m_object_isValid = ::OpenAPI::fromJsonValue(m_object, json[QString("object")]);
-    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
+    m_data_isValid = ::OpenAPI::fromJsonValue(m_data, json[QString("data")]);
+    m_data_isSet = !json[QString("data")].isNull() && m_data_isValid;
 
     m_model_isValid = ::OpenAPI::fromJsonValue(m_model, json[QString("model")]);
     m_model_isSet = !json[QString("model")].isNull() && m_model_isValid;
 
-    m_data_isValid = ::OpenAPI::fromJsonValue(m_data, json[QString("data")]);
-    m_data_isSet = !json[QString("data")].isNull() && m_data_isValid;
+    m_object_isValid = ::OpenAPI::fromJsonValue(m_object, json[QString("object")]);
+    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
 
     m_usage_isValid = ::OpenAPI::fromJsonValue(m_usage, json[QString("usage")]);
     m_usage_isSet = !json[QString("usage")].isNull() && m_usage_isValid;
@@ -78,14 +78,14 @@ QString OAICreateEmbeddingResponse::asJson() const {
 
 QJsonObject OAICreateEmbeddingResponse::asJsonObject() const {
     QJsonObject obj;
-    if (m_object_isSet) {
-        obj.insert(QString("object"), ::OpenAPI::toJsonValue(m_object));
+    if (m_data.size() > 0) {
+        obj.insert(QString("data"), ::OpenAPI::toJsonValue(m_data));
     }
     if (m_model_isSet) {
         obj.insert(QString("model"), ::OpenAPI::toJsonValue(m_model));
     }
-    if (m_data.size() > 0) {
-        obj.insert(QString("data"), ::OpenAPI::toJsonValue(m_data));
+    if (m_object_isSet) {
+        obj.insert(QString("object"), ::OpenAPI::toJsonValue(m_object));
     }
     if (m_usage.isSet()) {
         obj.insert(QString("usage"), ::OpenAPI::toJsonValue(m_usage));
@@ -93,20 +93,20 @@ QJsonObject OAICreateEmbeddingResponse::asJsonObject() const {
     return obj;
 }
 
-QString OAICreateEmbeddingResponse::getObject() const {
-    return m_object;
+QList<OAIEmbedding> OAICreateEmbeddingResponse::getData() const {
+    return m_data;
 }
-void OAICreateEmbeddingResponse::setObject(const QString &object) {
-    m_object = object;
-    m_object_isSet = true;
-}
-
-bool OAICreateEmbeddingResponse::is_object_Set() const{
-    return m_object_isSet;
+void OAICreateEmbeddingResponse::setData(const QList<OAIEmbedding> &data) {
+    m_data = data;
+    m_data_isSet = true;
 }
 
-bool OAICreateEmbeddingResponse::is_object_Valid() const{
-    return m_object_isValid;
+bool OAICreateEmbeddingResponse::is_data_Set() const{
+    return m_data_isSet;
+}
+
+bool OAICreateEmbeddingResponse::is_data_Valid() const{
+    return m_data_isValid;
 }
 
 QString OAICreateEmbeddingResponse::getModel() const {
@@ -125,20 +125,20 @@ bool OAICreateEmbeddingResponse::is_model_Valid() const{
     return m_model_isValid;
 }
 
-QList<OAICreateEmbeddingResponse_data_inner> OAICreateEmbeddingResponse::getData() const {
-    return m_data;
+QString OAICreateEmbeddingResponse::getObject() const {
+    return m_object;
 }
-void OAICreateEmbeddingResponse::setData(const QList<OAICreateEmbeddingResponse_data_inner> &data) {
-    m_data = data;
-    m_data_isSet = true;
-}
-
-bool OAICreateEmbeddingResponse::is_data_Set() const{
-    return m_data_isSet;
+void OAICreateEmbeddingResponse::setObject(const QString &object) {
+    m_object = object;
+    m_object_isSet = true;
 }
 
-bool OAICreateEmbeddingResponse::is_data_Valid() const{
-    return m_data_isValid;
+bool OAICreateEmbeddingResponse::is_object_Set() const{
+    return m_object_isSet;
+}
+
+bool OAICreateEmbeddingResponse::is_object_Valid() const{
+    return m_object_isValid;
 }
 
 OAICreateEmbeddingResponse_usage OAICreateEmbeddingResponse::getUsage() const {
@@ -160,7 +160,7 @@ bool OAICreateEmbeddingResponse::is_usage_Valid() const{
 bool OAICreateEmbeddingResponse::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_object_isSet) {
+        if (m_data.size() > 0) {
             isObjectUpdated = true;
             break;
         }
@@ -170,7 +170,7 @@ bool OAICreateEmbeddingResponse::isSet() const {
             break;
         }
 
-        if (m_data.size() > 0) {
+        if (m_object_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -185,7 +185,7 @@ bool OAICreateEmbeddingResponse::isSet() const {
 
 bool OAICreateEmbeddingResponse::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_object_isValid && m_model_isValid && m_data_isValid && m_usage_isValid && true;
+    return m_data_isValid && m_model_isValid && m_object_isValid && m_usage_isValid && true;
 }
 
 } // namespace OpenAPI

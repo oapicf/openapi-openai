@@ -4,18 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Object** | **string** |  | 
-**Created** | **int32** |  | 
-**Model** | **string** |  | 
-**Choices** | [**[]CreateCompletionResponseChoicesInner**](CreateCompletionResponseChoicesInner.md) |  | 
-**Usage** | Pointer to [**CreateCompletionResponseUsage**](CreateCompletionResponseUsage.md) |  | [optional] 
+**Id** | **string** | A unique identifier for the completion. | 
+**Choices** | [**[]CreateCompletionResponseChoicesInner**](CreateCompletionResponseChoicesInner.md) | The list of completion choices the model generated for the input prompt. | 
+**Created** | **int32** | The Unix timestamp (in seconds) of when the completion was created. | 
+**Model** | **string** | The model used for completion. | 
+**SystemFingerprint** | Pointer to **string** | This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism.  | [optional] 
+**Object** | **string** | The object type, which is always \&quot;text_completion\&quot; | 
+**Usage** | Pointer to [**CompletionUsage**](CompletionUsage.md) |  | [optional] 
 
 ## Methods
 
 ### NewCreateCompletionResponse
 
-`func NewCreateCompletionResponse(id string, object string, created int32, model string, choices []CreateCompletionResponseChoicesInner, ) *CreateCompletionResponse`
+`func NewCreateCompletionResponse(id string, choices []CreateCompletionResponseChoicesInner, created int32, model string, object string, ) *CreateCompletionResponse`
 
 NewCreateCompletionResponse instantiates a new CreateCompletionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -50,24 +51,24 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetObject
+### GetChoices
 
-`func (o *CreateCompletionResponse) GetObject() string`
+`func (o *CreateCompletionResponse) GetChoices() []CreateCompletionResponseChoicesInner`
 
-GetObject returns the Object field if non-nil, zero value otherwise.
+GetChoices returns the Choices field if non-nil, zero value otherwise.
 
-### GetObjectOk
+### GetChoicesOk
 
-`func (o *CreateCompletionResponse) GetObjectOk() (*string, bool)`
+`func (o *CreateCompletionResponse) GetChoicesOk() (*[]CreateCompletionResponseChoicesInner, bool)`
 
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+GetChoicesOk returns a tuple with the Choices field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetObject
+### SetChoices
 
-`func (o *CreateCompletionResponse) SetObject(v string)`
+`func (o *CreateCompletionResponse) SetChoices(v []CreateCompletionResponseChoicesInner)`
 
-SetObject sets Object field to given value.
+SetChoices sets Choices field to given value.
 
 
 ### GetCreated
@@ -110,42 +111,67 @@ and a boolean to check if the value has been set.
 SetModel sets Model field to given value.
 
 
-### GetChoices
+### GetSystemFingerprint
 
-`func (o *CreateCompletionResponse) GetChoices() []CreateCompletionResponseChoicesInner`
+`func (o *CreateCompletionResponse) GetSystemFingerprint() string`
 
-GetChoices returns the Choices field if non-nil, zero value otherwise.
+GetSystemFingerprint returns the SystemFingerprint field if non-nil, zero value otherwise.
 
-### GetChoicesOk
+### GetSystemFingerprintOk
 
-`func (o *CreateCompletionResponse) GetChoicesOk() (*[]CreateCompletionResponseChoicesInner, bool)`
+`func (o *CreateCompletionResponse) GetSystemFingerprintOk() (*string, bool)`
 
-GetChoicesOk returns a tuple with the Choices field if it's non-nil, zero value otherwise
+GetSystemFingerprintOk returns a tuple with the SystemFingerprint field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetChoices
+### SetSystemFingerprint
 
-`func (o *CreateCompletionResponse) SetChoices(v []CreateCompletionResponseChoicesInner)`
+`func (o *CreateCompletionResponse) SetSystemFingerprint(v string)`
 
-SetChoices sets Choices field to given value.
+SetSystemFingerprint sets SystemFingerprint field to given value.
+
+### HasSystemFingerprint
+
+`func (o *CreateCompletionResponse) HasSystemFingerprint() bool`
+
+HasSystemFingerprint returns a boolean if a field has been set.
+
+### GetObject
+
+`func (o *CreateCompletionResponse) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *CreateCompletionResponse) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *CreateCompletionResponse) SetObject(v string)`
+
+SetObject sets Object field to given value.
 
 
 ### GetUsage
 
-`func (o *CreateCompletionResponse) GetUsage() CreateCompletionResponseUsage`
+`func (o *CreateCompletionResponse) GetUsage() CompletionUsage`
 
 GetUsage returns the Usage field if non-nil, zero value otherwise.
 
 ### GetUsageOk
 
-`func (o *CreateCompletionResponse) GetUsageOk() (*CreateCompletionResponseUsage, bool)`
+`func (o *CreateCompletionResponse) GetUsageOk() (*CompletionUsage, bool)`
 
 GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsage
 
-`func (o *CreateCompletionResponse) SetUsage(v CreateCompletionResponseUsage)`
+`func (o *CreateCompletionResponse) SetUsage(v CompletionUsage)`
 
 SetUsage sets Usage field to given value.
 

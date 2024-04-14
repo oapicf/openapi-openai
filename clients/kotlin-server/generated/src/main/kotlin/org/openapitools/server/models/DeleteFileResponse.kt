@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -20,7 +20,16 @@ package org.openapitools.server.models
  */
 data class DeleteFileResponse(
     val id: kotlin.String,
-    val `object`: kotlin.String,
+    val `object`: DeleteFileResponse.`Object`,
     val deleted: kotlin.Boolean
 ) 
+{
+    /**
+    * 
+    * Values: file
+    */
+    enum class `Object`(val value: kotlin.String){
+        file("file");
+    }
+}
 

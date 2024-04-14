@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -40,7 +40,11 @@ class TestCreateModerationResponseResultsInner(unittest.TestCase):
                 categories = openapiopenai.models.create_moderation_response_results_inner_categories.CreateModerationResponse_results_inner_categories(
                     hate = True, 
                     hate/threatening = True, 
+                    harassment = True, 
+                    harassment/threatening = True, 
                     self_harm = True, 
+                    self_harm/intent = True, 
+                    self_harm/instructions = True, 
                     sexual = True, 
                     sexual/minors = True, 
                     violence = True, 
@@ -48,7 +52,11 @@ class TestCreateModerationResponseResultsInner(unittest.TestCase):
                 category_scores = openapiopenai.models.create_moderation_response_results_inner_category_scores.CreateModerationResponse_results_inner_category_scores(
                     hate = 1.337, 
                     hate/threatening = 1.337, 
+                    harassment = 1.337, 
+                    harassment/threatening = 1.337, 
                     self_harm = 1.337, 
+                    self_harm/intent = 1.337, 
+                    self_harm/instructions = 1.337, 
                     sexual = 1.337, 
                     sexual/minors = 1.337, 
                     violence = 1.337, 
@@ -60,7 +68,11 @@ class TestCreateModerationResponseResultsInner(unittest.TestCase):
                 categories = openapiopenai.models.create_moderation_response_results_inner_categories.CreateModerationResponse_results_inner_categories(
                     hate = True, 
                     hate/threatening = True, 
+                    harassment = True, 
+                    harassment/threatening = True, 
                     self_harm = True, 
+                    self_harm/intent = True, 
+                    self_harm/instructions = True, 
                     sexual = True, 
                     sexual/minors = True, 
                     violence = True, 
@@ -68,7 +80,11 @@ class TestCreateModerationResponseResultsInner(unittest.TestCase):
                 category_scores = openapiopenai.models.create_moderation_response_results_inner_category_scores.CreateModerationResponse_results_inner_category_scores(
                     hate = 1.337, 
                     hate/threatening = 1.337, 
+                    harassment = 1.337, 
+                    harassment/threatening = 1.337, 
                     self_harm = 1.337, 
+                    self_harm/intent = 1.337, 
+                    self_harm/instructions = 1.337, 
                     sexual = 1.337, 
                     sexual/minors = 1.337, 
                     violence = 1.337, 

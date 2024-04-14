@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -87,17 +87,6 @@ class ChatCompletionRequestMessageTest extends TestCase
     }
 
     /**
-     * Test attribute "role"
-     *
-     * @group unit
-     * @small
-     */
-    public function testPropertyRole(): void
-    {
-        $this->markTestSkipped('Test for property role not implemented');
-    }
-
-    /**
      * Test attribute "content"
      *
      * @group unit
@@ -106,6 +95,17 @@ class ChatCompletionRequestMessageTest extends TestCase
     public function testPropertyContent(): void
     {
         $this->markTestSkipped('Test for property content not implemented');
+    }
+
+    /**
+     * Test attribute "role"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyRole(): void
+    {
+        $this->markTestSkipped('Test for property role not implemented');
     }
 
     /**
@@ -120,6 +120,17 @@ class ChatCompletionRequestMessageTest extends TestCase
     }
 
     /**
+     * Test attribute "toolCalls"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyToolCalls(): void
+    {
+        $this->markTestSkipped('Test for property toolCalls not implemented');
+    }
+
+    /**
      * Test attribute "functionCall"
      *
      * @group unit
@@ -128,5 +139,16 @@ class ChatCompletionRequestMessageTest extends TestCase
     public function testPropertyFunctionCall(): void
     {
         $this->markTestSkipped('Test for property functionCall not implemented');
+    }
+
+    /**
+     * Test attribute "toolCallId"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyToolCallId(): void
+    {
+        $this->markTestSkipped('Test for property toolCallId not implemented');
     }
 }

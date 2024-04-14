@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -13,16 +13,29 @@ package org.openapitools.server.models
 
 
 /**
- * 
- * @param id 
- * @param `object` 
- * @param created 
- * @param ownedBy 
+ * Describes an OpenAI model offering that can be used with the API.
+ * @param id The model identifier, which can be referenced in the API endpoints.
+ * @param created The Unix timestamp (in seconds) when the model was created.
+ * @param `object` The object type, which is always \"model\".
+ * @param ownedBy The organization that owns the model.
  */
 data class Model(
+    /* The model identifier, which can be referenced in the API endpoints. */
     val id: kotlin.String,
-    val `object`: kotlin.String,
+    /* The Unix timestamp (in seconds) when the model was created. */
     val created: kotlin.Int,
+    /* The object type, which is always \"model\". */
+    val `object`: Model.`Object`,
+    /* The organization that owns the model. */
     val ownedBy: kotlin.String
 ) 
+{
+    /**
+    * The object type, which is always \"model\".
+    * Values: model
+    */
+    enum class `Object`(val value: kotlin.String){
+        model("model");
+    }
+}
 

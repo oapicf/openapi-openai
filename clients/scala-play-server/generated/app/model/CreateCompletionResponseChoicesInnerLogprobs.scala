@@ -5,12 +5,12 @@ import play.api.libs.json._
 /**
   * Represents the Swagger definition for CreateCompletionResponse_choices_inner_logprobs.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-16T01:17:28.392125286Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-04-14T13:53:34.453725706Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 case class CreateCompletionResponseChoicesInnerLogprobs(
-  tokens: Option[List[String]],
+  textOffset: Option[List[Int]],
   tokenLogprobs: Option[List[BigDecimal]],
-  topLogprobs: Option[List[JsObject]],
-  textOffset: Option[List[Int]]
+  tokens: Option[List[String]],
+  topLogprobs: Option[List[Map[String, BigDecimal]]]
 )
 
 object CreateCompletionResponseChoicesInnerLogprobs {

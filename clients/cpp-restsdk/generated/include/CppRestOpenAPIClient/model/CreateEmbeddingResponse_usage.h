@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * CreateEmbeddingResponse_usage.h
  *
- * 
+ * The usage information for the request.
  */
 
 #ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_CreateEmbeddingResponse_usage_H_
@@ -30,7 +30,7 @@ namespace model {
 
 
 /// <summary>
-/// 
+/// The usage information for the request.
 /// </summary>
 class  CreateEmbeddingResponse_usage
     : public ModelBase
@@ -54,7 +54,7 @@ public:
     /// CreateEmbeddingResponse_usage members
 
     /// <summary>
-    /// 
+    /// The number of tokens used by the prompt.
     /// </summary>
     int32_t getPromptTokens() const;
     bool promptTokensIsSet() const;
@@ -63,7 +63,7 @@ public:
     void setPromptTokens(int32_t value);
 
     /// <summary>
-    /// 
+    /// The total number of tokens used by the request.
     /// </summary>
     int32_t getTotalTokens() const;
     bool totalTokensIsSet() const;

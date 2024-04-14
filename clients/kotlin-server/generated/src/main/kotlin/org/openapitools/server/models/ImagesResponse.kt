@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -11,7 +11,7 @@
 */
 package org.openapitools.server.models
 
-import org.openapitools.server.models.ImagesResponseDataInner
+import org.openapitools.server.models.Image
 
 /**
  * 
@@ -20,6 +20,6 @@ import org.openapitools.server.models.ImagesResponseDataInner
  */
 data class ImagesResponse(
     val created: kotlin.Int,
-    val `data`: kotlin.collections.List<ImagesResponseDataInner>
+    val `data`: kotlin.collections.List<Image>
 ) 
 

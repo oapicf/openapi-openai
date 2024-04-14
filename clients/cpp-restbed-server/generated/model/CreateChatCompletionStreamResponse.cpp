@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <regex>
+#include <algorithm>
 #include <boost/lexical_cast.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -63,9 +64,6 @@ ptree CreateChatCompletionStreamResponse::toPropertyTree() const
 	ptree pt;
 	ptree tmp_node;
 	pt.put("id", m_Id);
-	pt.put("object", m_object);
-	pt.put("created", m_Created);
-	pt.put("model", m_Model);
 	// generate tree for Choices
     tmp_node.clear();
 	if (!m_Choices.empty()) {
@@ -73,6 +71,10 @@ ptree CreateChatCompletionStreamResponse::toPropertyTree() const
 		pt.add_child("choices", tmp_node);
 		tmp_node.clear();
 	}
+	pt.put("created", m_Created);
+	pt.put("model", m_Model);
+	pt.put("system_fingerprint", m_System_fingerprint);
+	pt.put("object", m_object);
 	return pt;
 }
 
@@ -80,13 +82,14 @@ void CreateChatCompletionStreamResponse::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
 	m_Id = pt.get("id", "");
-	m_object = pt.get("object", "");
-	m_Created = pt.get("created", 0);
-	m_Model = pt.get("model", "");
 	// push all items of Choices into member
 	if (pt.get_child_optional("choices")) {
         m_Choices = fromPt<std::vector<CreateChatCompletionStreamResponse_choices_inner>>(pt.get_child("choices"));
 	}
+	m_Created = pt.get("created", 0);
+	m_Model = pt.get("model", "");
+	m_System_fingerprint = pt.get("system_fingerprint", "");
+	setObject(pt.get("object", ""));
 }
 
 std::string CreateChatCompletionStreamResponse::getId() const
@@ -100,14 +103,14 @@ void CreateChatCompletionStreamResponse::setId(std::string value)
 }
 
 
-std::string CreateChatCompletionStreamResponse::getObject() const
+std::vector<CreateChatCompletionStreamResponse_choices_inner> CreateChatCompletionStreamResponse::getChoices() const
 {
-    return m_object;
+    return m_Choices;
 }
 
-void CreateChatCompletionStreamResponse::setObject(std::string value)
+void CreateChatCompletionStreamResponse::setChoices(std::vector<CreateChatCompletionStreamResponse_choices_inner> value)
 {
-    m_object = value;
+    m_Choices = value;
 }
 
 
@@ -133,14 +136,33 @@ void CreateChatCompletionStreamResponse::setModel(std::string value)
 }
 
 
-std::vector<CreateChatCompletionStreamResponse_choices_inner> CreateChatCompletionStreamResponse::getChoices() const
+std::string CreateChatCompletionStreamResponse::getSystemFingerprint() const
 {
-    return m_Choices;
+    return m_System_fingerprint;
 }
 
-void CreateChatCompletionStreamResponse::setChoices(std::vector<CreateChatCompletionStreamResponse_choices_inner> value)
+void CreateChatCompletionStreamResponse::setSystemFingerprint(std::string value)
 {
-    m_Choices = value;
+    m_System_fingerprint = value;
+}
+
+
+std::string CreateChatCompletionStreamResponse::getObject() const
+{
+    return m_object;
+}
+
+void CreateChatCompletionStreamResponse::setObject(std::string value)
+{
+    static const std::array<std::string, 1> allowedValues = {
+        "chat.completion.chunk"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_object = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 

@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -21,10 +21,10 @@ namespace org::openapitools::server::model
 
 Error::Error()
 {
-    m_Type = "";
+    m_Code = "";
     m_Message = "";
     m_Param = "";
-    m_Code = "";
+    m_Type = "";
     
 }
 
@@ -56,7 +56,7 @@ bool Error::operator==(const Error& rhs) const
     return
     
     
-    (getType() == rhs.getType())
+    (getCode() == rhs.getCode())
      &&
     
     (getMessage() == rhs.getMessage())
@@ -65,7 +65,7 @@ bool Error::operator==(const Error& rhs) const
     (getParam() == rhs.getParam())
      &&
     
-    (getCode() == rhs.getCode())
+    (getType() == rhs.getType())
     
     
     ;
@@ -79,29 +79,29 @@ bool Error::operator!=(const Error& rhs) const
 void to_json(nlohmann::json& j, const Error& o)
 {
     j = nlohmann::json::object();
-    j["type"] = o.m_Type;
+    j["code"] = o.m_Code;
     j["message"] = o.m_Message;
     j["param"] = o.m_Param;
-    j["code"] = o.m_Code;
+    j["type"] = o.m_Type;
     
 }
 
 void from_json(const nlohmann::json& j, Error& o)
 {
-    j.at("type").get_to(o.m_Type);
+    j.at("code").get_to(o.m_Code);
     j.at("message").get_to(o.m_Message);
     j.at("param").get_to(o.m_Param);
-    j.at("code").get_to(o.m_Code);
+    j.at("type").get_to(o.m_Type);
     
 }
 
-std::string Error::getType() const
+std::string Error::getCode() const
 {
-    return m_Type;
+    return m_Code;
 }
-void Error::setType(std::string const& value)
+void Error::setCode(std::string const& value)
 {
-    m_Type = value;
+    m_Code = value;
 }
 std::string Error::getMessage() const
 {
@@ -119,13 +119,13 @@ void Error::setParam(std::string const& value)
 {
     m_Param = value;
 }
-std::string Error::getCode() const
+std::string Error::getType() const
 {
-    return m_Code;
+    return m_Type;
 }
-void Error::setCode(std::string const& value)
+void Error::setType(std::string const& value)
 {
-    m_Code = value;
+    m_Type = value;
 }
 
 

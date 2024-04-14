@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * CreateModerationResponseResultsInnerCategoryScoresTest Class Doc Comment
  *
  * @category    Class
- * @description CreateModerationResponseResultsInnerCategoryScores
+ * @description A list of the categories along with their scores as predicted by model.
  * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
  * @link        https://github.com/openapitools/openapi-generator
@@ -109,6 +109,28 @@ class CreateModerationResponseResultsInnerCategoryScoresTest extends TestCase
     }
 
     /**
+     * Test attribute "harassment"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyHarassment(): void
+    {
+        $this->markTestSkipped('Test for property harassment not implemented');
+    }
+
+    /**
+     * Test attribute "harassmentThreatening"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyHarassmentThreatening(): void
+    {
+        $this->markTestSkipped('Test for property harassmentThreatening not implemented');
+    }
+
+    /**
      * Test attribute "selfHarm"
      *
      * @group unit
@@ -117,6 +139,28 @@ class CreateModerationResponseResultsInnerCategoryScoresTest extends TestCase
     public function testPropertySelfHarm(): void
     {
         $this->markTestSkipped('Test for property selfHarm not implemented');
+    }
+
+    /**
+     * Test attribute "selfHarmIntent"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertySelfHarmIntent(): void
+    {
+        $this->markTestSkipped('Test for property selfHarmIntent not implemented');
+    }
+
+    /**
+     * Test attribute "selfHarmInstructions"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertySelfHarmInstructions(): void
+    {
+        $this->markTestSkipped('Test for property selfHarmInstructions not implemented');
     }
 
     /**

@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
     s.summary          = "OpenAI API"
     s.description      = <<-DESC
-                         APIs for sampling from and fine-tuning language models
+                         The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
                          DESC
 
     s.platform     = :ios, '7.0'

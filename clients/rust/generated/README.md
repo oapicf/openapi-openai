@@ -1,6 +1,6 @@
 # Rust API client for openapi
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 For more information, please visit [https://github.com/oapicf/openapi-openai](https://github.com/oapicf/openapi-openai)
 
@@ -27,45 +27,115 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OpenAiApi* | [**cancel_fine_tune**](docs/OpenAiApi.md#cancel_fine_tune) | **POST** /fine-tunes/{fine_tune_id}/cancel | Immediately cancel a fine-tune job. 
-*OpenAiApi* | [**create_chat_completion**](docs/OpenAiApi.md#create_chat_completion) | **POST** /chat/completions | Creates a model response for the given chat conversation.
-*OpenAiApi* | [**create_completion**](docs/OpenAiApi.md#create_completion) | **POST** /completions | Creates a completion for the provided prompt and parameters.
-*OpenAiApi* | [**create_edit**](docs/OpenAiApi.md#create_edit) | **POST** /edits | Creates a new edit for the provided input, instruction, and parameters.
-*OpenAiApi* | [**create_embedding**](docs/OpenAiApi.md#create_embedding) | **POST** /embeddings | Creates an embedding vector representing the input text.
-*OpenAiApi* | [**create_file**](docs/OpenAiApi.md#create_file) | **POST** /files | Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit. 
-*OpenAiApi* | [**create_fine_tune**](docs/OpenAiApi.md#create_fine_tune) | **POST** /fine-tunes | Creates a job that fine-tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-*OpenAiApi* | [**create_image**](docs/OpenAiApi.md#create_image) | **POST** /images/generations | Creates an image given a prompt.
-*OpenAiApi* | [**create_image_edit**](docs/OpenAiApi.md#create_image_edit) | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
-*OpenAiApi* | [**create_image_variation**](docs/OpenAiApi.md#create_image_variation) | **POST** /images/variations | Creates a variation of a given image.
-*OpenAiApi* | [**create_moderation**](docs/OpenAiApi.md#create_moderation) | **POST** /moderations | Classifies if text violates OpenAI's Content Policy
-*OpenAiApi* | [**create_transcription**](docs/OpenAiApi.md#create_transcription) | **POST** /audio/transcriptions | Transcribes audio into the input language.
-*OpenAiApi* | [**create_translation**](docs/OpenAiApi.md#create_translation) | **POST** /audio/translations | Translates audio into English.
-*OpenAiApi* | [**delete_file**](docs/OpenAiApi.md#delete_file) | **DELETE** /files/{file_id} | Delete a file.
-*OpenAiApi* | [**delete_model**](docs/OpenAiApi.md#delete_model) | **DELETE** /models/{model} | Delete a fine-tuned model. You must have the Owner role in your organization.
-*OpenAiApi* | [**download_file**](docs/OpenAiApi.md#download_file) | **GET** /files/{file_id}/content | Returns the contents of the specified file
-*OpenAiApi* | [**list_files**](docs/OpenAiApi.md#list_files) | **GET** /files | Returns a list of files that belong to the user's organization.
-*OpenAiApi* | [**list_fine_tune_events**](docs/OpenAiApi.md#list_fine_tune_events) | **GET** /fine-tunes/{fine_tune_id}/events | Get fine-grained status updates for a fine-tune job. 
-*OpenAiApi* | [**list_fine_tunes**](docs/OpenAiApi.md#list_fine_tunes) | **GET** /fine-tunes | List your organization's fine-tuning jobs 
-*OpenAiApi* | [**list_models**](docs/OpenAiApi.md#list_models) | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
-*OpenAiApi* | [**retrieve_file**](docs/OpenAiApi.md#retrieve_file) | **GET** /files/{file_id} | Returns information about a specific file.
-*OpenAiApi* | [**retrieve_fine_tune**](docs/OpenAiApi.md#retrieve_fine_tune) | **GET** /fine-tunes/{fine_tune_id} | Gets info about the fine-tune job.  [Learn more about Fine-tuning](/docs/guides/fine-tuning) 
-*OpenAiApi* | [**retrieve_model**](docs/OpenAiApi.md#retrieve_model) | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+*AssistantsApi* | [**cancel_run**](docs/AssistantsApi.md#cancel_run) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is `in_progress`.
+*AssistantsApi* | [**create_assistant**](docs/AssistantsApi.md#create_assistant) | **POST** /assistants | Create an assistant with a model and instructions.
+*AssistantsApi* | [**create_assistant_file**](docs/AssistantsApi.md#create_assistant_file) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
+*AssistantsApi* | [**create_message**](docs/AssistantsApi.md#create_message) | **POST** /threads/{thread_id}/messages | Create a message.
+*AssistantsApi* | [**create_run**](docs/AssistantsApi.md#create_run) | **POST** /threads/{thread_id}/runs | Create a run.
+*AssistantsApi* | [**create_thread**](docs/AssistantsApi.md#create_thread) | **POST** /threads | Create a thread.
+*AssistantsApi* | [**create_thread_and_run**](docs/AssistantsApi.md#create_thread_and_run) | **POST** /threads/runs | Create a thread and run it in one request.
+*AssistantsApi* | [**delete_assistant**](docs/AssistantsApi.md#delete_assistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
+*AssistantsApi* | [**delete_assistant_file**](docs/AssistantsApi.md#delete_assistant_file) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+*AssistantsApi* | [**delete_thread**](docs/AssistantsApi.md#delete_thread) | **DELETE** /threads/{thread_id} | Delete a thread.
+*AssistantsApi* | [**get_assistant**](docs/AssistantsApi.md#get_assistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
+*AssistantsApi* | [**get_assistant_file**](docs/AssistantsApi.md#get_assistant_file) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
+*AssistantsApi* | [**get_message**](docs/AssistantsApi.md#get_message) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
+*AssistantsApi* | [**get_message_file**](docs/AssistantsApi.md#get_message_file) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
+*AssistantsApi* | [**get_run**](docs/AssistantsApi.md#get_run) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
+*AssistantsApi* | [**get_run_step**](docs/AssistantsApi.md#get_run_step) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
+*AssistantsApi* | [**get_thread**](docs/AssistantsApi.md#get_thread) | **GET** /threads/{thread_id} | Retrieves a thread.
+*AssistantsApi* | [**list_assistant_files**](docs/AssistantsApi.md#list_assistant_files) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
+*AssistantsApi* | [**list_assistants**](docs/AssistantsApi.md#list_assistants) | **GET** /assistants | Returns a list of assistants.
+*AssistantsApi* | [**list_message_files**](docs/AssistantsApi.md#list_message_files) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
+*AssistantsApi* | [**list_messages**](docs/AssistantsApi.md#list_messages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
+*AssistantsApi* | [**list_run_steps**](docs/AssistantsApi.md#list_run_steps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
+*AssistantsApi* | [**list_runs**](docs/AssistantsApi.md#list_runs) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
+*AssistantsApi* | [**modify_assistant**](docs/AssistantsApi.md#modify_assistant) | **POST** /assistants/{assistant_id} | Modifies an assistant.
+*AssistantsApi* | [**modify_message**](docs/AssistantsApi.md#modify_message) | **POST** /threads/{thread_id}/messages/{message_id} | Modifies a message.
+*AssistantsApi* | [**modify_run**](docs/AssistantsApi.md#modify_run) | **POST** /threads/{thread_id}/runs/{run_id} | Modifies a run.
+*AssistantsApi* | [**modify_thread**](docs/AssistantsApi.md#modify_thread) | **POST** /threads/{thread_id} | Modifies a thread.
+*AssistantsApi* | [**submit_tool_ouputs_to_run**](docs/AssistantsApi.md#submit_tool_ouputs_to_run) | **POST** /threads/{thread_id}/runs/{run_id}/submit_tool_outputs | When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request. 
+*AudioApi* | [**create_speech**](docs/AudioApi.md#create_speech) | **POST** /audio/speech | Generates audio from the input text.
+*AudioApi* | [**create_transcription**](docs/AudioApi.md#create_transcription) | **POST** /audio/transcriptions | Transcribes audio into the input language.
+*AudioApi* | [**create_translation**](docs/AudioApi.md#create_translation) | **POST** /audio/translations | Translates audio into English.
+*ChatApi* | [**create_chat_completion**](docs/ChatApi.md#create_chat_completion) | **POST** /chat/completions | Creates a model response for the given chat conversation.
+*CompletionsApi* | [**create_completion**](docs/CompletionsApi.md#create_completion) | **POST** /completions | Creates a completion for the provided prompt and parameters.
+*EmbeddingsApi* | [**create_embedding**](docs/EmbeddingsApi.md#create_embedding) | **POST** /embeddings | Creates an embedding vector representing the input text.
+*FilesApi* | [**create_file**](docs/FilesApi.md#create_file) | **POST** /files | Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+*FilesApi* | [**delete_file**](docs/FilesApi.md#delete_file) | **DELETE** /files/{file_id} | Delete a file.
+*FilesApi* | [**download_file**](docs/FilesApi.md#download_file) | **GET** /files/{file_id}/content | Returns the contents of the specified file.
+*FilesApi* | [**list_files**](docs/FilesApi.md#list_files) | **GET** /files | Returns a list of files that belong to the user's organization.
+*FilesApi* | [**retrieve_file**](docs/FilesApi.md#retrieve_file) | **GET** /files/{file_id} | Returns information about a specific file.
+*FineTuningApi* | [**cancel_fine_tuning_job**](docs/FineTuningApi.md#cancel_fine_tuning_job) | **POST** /fine_tuning/jobs/{fine_tuning_job_id}/cancel | Immediately cancel a fine-tune job. 
+*FineTuningApi* | [**create_fine_tuning_job**](docs/FineTuningApi.md#create_fine_tuning_job) | **POST** /fine_tuning/jobs | Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+*FineTuningApi* | [**list_fine_tuning_events**](docs/FineTuningApi.md#list_fine_tuning_events) | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/events | Get status updates for a fine-tuning job. 
+*FineTuningApi* | [**list_fine_tuning_job_checkpoints**](docs/FineTuningApi.md#list_fine_tuning_job_checkpoints) | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/checkpoints | List checkpoints for a fine-tuning job. 
+*FineTuningApi* | [**list_paginated_fine_tuning_jobs**](docs/FineTuningApi.md#list_paginated_fine_tuning_jobs) | **GET** /fine_tuning/jobs | List your organization's fine-tuning jobs 
+*FineTuningApi* | [**retrieve_fine_tuning_job**](docs/FineTuningApi.md#retrieve_fine_tuning_job) | **GET** /fine_tuning/jobs/{fine_tuning_job_id} | Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+*ImagesApi* | [**create_image**](docs/ImagesApi.md#create_image) | **POST** /images/generations | Creates an image given a prompt.
+*ImagesApi* | [**create_image_edit**](docs/ImagesApi.md#create_image_edit) | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
+*ImagesApi* | [**create_image_variation**](docs/ImagesApi.md#create_image_variation) | **POST** /images/variations | Creates a variation of a given image.
+*ModelsApi* | [**delete_model**](docs/ModelsApi.md#delete_model) | **DELETE** /models/{model} | Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
+*ModelsApi* | [**list_models**](docs/ModelsApi.md#list_models) | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
+*ModelsApi* | [**retrieve_model**](docs/ModelsApi.md#retrieve_model) | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+*ModerationsApi* | [**create_moderation**](docs/ModerationsApi.md#create_moderation) | **POST** /moderations | Classifies if text is potentially harmful.
 
 
 ## Documentation For Models
 
+ - [AssistantFileObject](docs/AssistantFileObject.md)
+ - [AssistantObject](docs/AssistantObject.md)
+ - [AssistantObjectToolsInner](docs/AssistantObjectToolsInner.md)
+ - [AssistantStreamEvent](docs/AssistantStreamEvent.md)
+ - [AssistantToolsCode](docs/AssistantToolsCode.md)
+ - [AssistantToolsFunction](docs/AssistantToolsFunction.md)
+ - [AssistantToolsRetrieval](docs/AssistantToolsRetrieval.md)
+ - [AssistantsApiNamedToolChoice](docs/AssistantsApiNamedToolChoice.md)
+ - [AssistantsApiResponseFormat](docs/AssistantsApiResponseFormat.md)
+ - [AssistantsApiResponseFormatOption](docs/AssistantsApiResponseFormatOption.md)
+ - [AssistantsApiToolChoiceOption](docs/AssistantsApiToolChoiceOption.md)
+ - [ChatCompletionFunctionCallOption](docs/ChatCompletionFunctionCallOption.md)
  - [ChatCompletionFunctions](docs/ChatCompletionFunctions.md)
+ - [ChatCompletionMessageToolCall](docs/ChatCompletionMessageToolCall.md)
+ - [ChatCompletionMessageToolCallChunk](docs/ChatCompletionMessageToolCallChunk.md)
+ - [ChatCompletionMessageToolCallChunkFunction](docs/ChatCompletionMessageToolCallChunkFunction.md)
+ - [ChatCompletionMessageToolCallFunction](docs/ChatCompletionMessageToolCallFunction.md)
+ - [ChatCompletionNamedToolChoice](docs/ChatCompletionNamedToolChoice.md)
+ - [ChatCompletionNamedToolChoiceFunction](docs/ChatCompletionNamedToolChoiceFunction.md)
+ - [ChatCompletionRequestAssistantMessage](docs/ChatCompletionRequestAssistantMessage.md)
+ - [ChatCompletionRequestAssistantMessageFunctionCall](docs/ChatCompletionRequestAssistantMessageFunctionCall.md)
+ - [ChatCompletionRequestFunctionMessage](docs/ChatCompletionRequestFunctionMessage.md)
  - [ChatCompletionRequestMessage](docs/ChatCompletionRequestMessage.md)
- - [ChatCompletionRequestMessageFunctionCall](docs/ChatCompletionRequestMessageFunctionCall.md)
+ - [ChatCompletionRequestMessageContentPart](docs/ChatCompletionRequestMessageContentPart.md)
+ - [ChatCompletionRequestMessageContentPartImage](docs/ChatCompletionRequestMessageContentPartImage.md)
+ - [ChatCompletionRequestMessageContentPartImageImageUrl](docs/ChatCompletionRequestMessageContentPartImageImageUrl.md)
+ - [ChatCompletionRequestMessageContentPartText](docs/ChatCompletionRequestMessageContentPartText.md)
+ - [ChatCompletionRequestSystemMessage](docs/ChatCompletionRequestSystemMessage.md)
+ - [ChatCompletionRequestToolMessage](docs/ChatCompletionRequestToolMessage.md)
+ - [ChatCompletionRequestUserMessage](docs/ChatCompletionRequestUserMessage.md)
+ - [ChatCompletionRequestUserMessageContent](docs/ChatCompletionRequestUserMessageContent.md)
  - [ChatCompletionResponseMessage](docs/ChatCompletionResponseMessage.md)
+ - [ChatCompletionRole](docs/ChatCompletionRole.md)
  - [ChatCompletionStreamResponseDelta](docs/ChatCompletionStreamResponseDelta.md)
+ - [ChatCompletionStreamResponseDeltaFunctionCall](docs/ChatCompletionStreamResponseDeltaFunctionCall.md)
+ - [ChatCompletionTokenLogprob](docs/ChatCompletionTokenLogprob.md)
+ - [ChatCompletionTokenLogprobTopLogprobsInner](docs/ChatCompletionTokenLogprobTopLogprobsInner.md)
+ - [ChatCompletionTool](docs/ChatCompletionTool.md)
+ - [ChatCompletionToolChoiceOption](docs/ChatCompletionToolChoiceOption.md)
+ - [CompletionUsage](docs/CompletionUsage.md)
+ - [CreateAssistantFileRequest](docs/CreateAssistantFileRequest.md)
+ - [CreateAssistantRequest](docs/CreateAssistantRequest.md)
+ - [CreateAssistantRequestModel](docs/CreateAssistantRequestModel.md)
+ - [CreateChatCompletionFunctionResponse](docs/CreateChatCompletionFunctionResponse.md)
+ - [CreateChatCompletionFunctionResponseChoicesInner](docs/CreateChatCompletionFunctionResponseChoicesInner.md)
  - [CreateChatCompletionRequest](docs/CreateChatCompletionRequest.md)
  - [CreateChatCompletionRequestFunctionCall](docs/CreateChatCompletionRequestFunctionCall.md)
- - [CreateChatCompletionRequestFunctionCallOneOf](docs/CreateChatCompletionRequestFunctionCallOneOf.md)
  - [CreateChatCompletionRequestModel](docs/CreateChatCompletionRequestModel.md)
+ - [CreateChatCompletionRequestResponseFormat](docs/CreateChatCompletionRequestResponseFormat.md)
  - [CreateChatCompletionRequestStop](docs/CreateChatCompletionRequestStop.md)
  - [CreateChatCompletionResponse](docs/CreateChatCompletionResponse.md)
  - [CreateChatCompletionResponseChoicesInner](docs/CreateChatCompletionResponseChoicesInner.md)
+ - [CreateChatCompletionResponseChoicesInnerLogprobs](docs/CreateChatCompletionResponseChoicesInnerLogprobs.md)
  - [CreateChatCompletionStreamResponse](docs/CreateChatCompletionStreamResponse.md)
  - [CreateChatCompletionStreamResponseChoicesInner](docs/CreateChatCompletionStreamResponseChoicesInner.md)
  - [CreateCompletionRequest](docs/CreateCompletionRequest.md)
@@ -75,20 +145,24 @@ Class | Method | HTTP request | Description
  - [CreateCompletionResponse](docs/CreateCompletionResponse.md)
  - [CreateCompletionResponseChoicesInner](docs/CreateCompletionResponseChoicesInner.md)
  - [CreateCompletionResponseChoicesInnerLogprobs](docs/CreateCompletionResponseChoicesInnerLogprobs.md)
- - [CreateCompletionResponseUsage](docs/CreateCompletionResponseUsage.md)
- - [CreateEditRequest](docs/CreateEditRequest.md)
- - [CreateEditRequestModel](docs/CreateEditRequestModel.md)
- - [CreateEditResponse](docs/CreateEditResponse.md)
- - [CreateEditResponseChoicesInner](docs/CreateEditResponseChoicesInner.md)
  - [CreateEmbeddingRequest](docs/CreateEmbeddingRequest.md)
  - [CreateEmbeddingRequestInput](docs/CreateEmbeddingRequestInput.md)
  - [CreateEmbeddingRequestModel](docs/CreateEmbeddingRequestModel.md)
  - [CreateEmbeddingResponse](docs/CreateEmbeddingResponse.md)
- - [CreateEmbeddingResponseDataInner](docs/CreateEmbeddingResponseDataInner.md)
  - [CreateEmbeddingResponseUsage](docs/CreateEmbeddingResponseUsage.md)
- - [CreateFineTuneRequest](docs/CreateFineTuneRequest.md)
- - [CreateFineTuneRequestModel](docs/CreateFineTuneRequestModel.md)
+ - [CreateFineTuningJobRequest](docs/CreateFineTuningJobRequest.md)
+ - [CreateFineTuningJobRequestHyperparameters](docs/CreateFineTuningJobRequestHyperparameters.md)
+ - [CreateFineTuningJobRequestHyperparametersBatchSize](docs/CreateFineTuningJobRequestHyperparametersBatchSize.md)
+ - [CreateFineTuningJobRequestHyperparametersLearningRateMultiplier](docs/CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.md)
+ - [CreateFineTuningJobRequestHyperparametersNEpochs](docs/CreateFineTuningJobRequestHyperparametersNEpochs.md)
+ - [CreateFineTuningJobRequestIntegrationsInner](docs/CreateFineTuningJobRequestIntegrationsInner.md)
+ - [CreateFineTuningJobRequestIntegrationsInnerType](docs/CreateFineTuningJobRequestIntegrationsInnerType.md)
+ - [CreateFineTuningJobRequestIntegrationsInnerWandb](docs/CreateFineTuningJobRequestIntegrationsInnerWandb.md)
+ - [CreateFineTuningJobRequestModel](docs/CreateFineTuningJobRequestModel.md)
+ - [CreateImageEditRequestModel](docs/CreateImageEditRequestModel.md)
  - [CreateImageRequest](docs/CreateImageRequest.md)
+ - [CreateImageRequestModel](docs/CreateImageRequestModel.md)
+ - [CreateMessageRequest](docs/CreateMessageRequest.md)
  - [CreateModerationRequest](docs/CreateModerationRequest.md)
  - [CreateModerationRequestInput](docs/CreateModerationRequestInput.md)
  - [CreateModerationRequestModel](docs/CreateModerationRequestModel.md)
@@ -96,23 +170,159 @@ Class | Method | HTTP request | Description
  - [CreateModerationResponseResultsInner](docs/CreateModerationResponseResultsInner.md)
  - [CreateModerationResponseResultsInnerCategories](docs/CreateModerationResponseResultsInnerCategories.md)
  - [CreateModerationResponseResultsInnerCategoryScores](docs/CreateModerationResponseResultsInnerCategoryScores.md)
+ - [CreateRunRequest](docs/CreateRunRequest.md)
+ - [CreateRunRequestModel](docs/CreateRunRequestModel.md)
+ - [CreateSpeechRequest](docs/CreateSpeechRequest.md)
+ - [CreateSpeechRequestModel](docs/CreateSpeechRequestModel.md)
+ - [CreateThreadAndRunRequest](docs/CreateThreadAndRunRequest.md)
+ - [CreateThreadAndRunRequestToolsInner](docs/CreateThreadAndRunRequestToolsInner.md)
+ - [CreateThreadRequest](docs/CreateThreadRequest.md)
+ - [CreateTranscription200Response](docs/CreateTranscription200Response.md)
  - [CreateTranscriptionRequestModel](docs/CreateTranscriptionRequestModel.md)
- - [CreateTranscriptionResponse](docs/CreateTranscriptionResponse.md)
- - [CreateTranslationResponse](docs/CreateTranslationResponse.md)
+ - [CreateTranscriptionResponseJson](docs/CreateTranscriptionResponseJson.md)
+ - [CreateTranscriptionResponseVerboseJson](docs/CreateTranscriptionResponseVerboseJson.md)
+ - [CreateTranslation200Response](docs/CreateTranslation200Response.md)
+ - [CreateTranslationResponseJson](docs/CreateTranslationResponseJson.md)
+ - [CreateTranslationResponseVerboseJson](docs/CreateTranslationResponseVerboseJson.md)
+ - [DeleteAssistantFileResponse](docs/DeleteAssistantFileResponse.md)
+ - [DeleteAssistantResponse](docs/DeleteAssistantResponse.md)
  - [DeleteFileResponse](docs/DeleteFileResponse.md)
+ - [DeleteMessageResponse](docs/DeleteMessageResponse.md)
  - [DeleteModelResponse](docs/DeleteModelResponse.md)
+ - [DeleteThreadResponse](docs/DeleteThreadResponse.md)
+ - [DoneEvent](docs/DoneEvent.md)
+ - [Embedding](docs/Embedding.md)
  - [Error](docs/Error.md)
+ - [ErrorEvent](docs/ErrorEvent.md)
  - [ErrorResponse](docs/ErrorResponse.md)
- - [FineTune](docs/FineTune.md)
- - [FineTuneEvent](docs/FineTuneEvent.md)
+ - [FineTuningIntegration](docs/FineTuningIntegration.md)
+ - [FineTuningJob](docs/FineTuningJob.md)
+ - [FineTuningJobCheckpoint](docs/FineTuningJobCheckpoint.md)
+ - [FineTuningJobCheckpointMetrics](docs/FineTuningJobCheckpointMetrics.md)
+ - [FineTuningJobError](docs/FineTuningJobError.md)
+ - [FineTuningJobEvent](docs/FineTuningJobEvent.md)
+ - [FineTuningJobHyperparameters](docs/FineTuningJobHyperparameters.md)
+ - [FineTuningJobHyperparametersNEpochs](docs/FineTuningJobHyperparametersNEpochs.md)
+ - [FineTuningJobIntegrationsInner](docs/FineTuningJobIntegrationsInner.md)
+ - [FunctionObject](docs/FunctionObject.md)
+ - [Image](docs/Image.md)
  - [ImagesResponse](docs/ImagesResponse.md)
- - [ImagesResponseDataInner](docs/ImagesResponseDataInner.md)
+ - [ListAssistantFilesResponse](docs/ListAssistantFilesResponse.md)
+ - [ListAssistantsResponse](docs/ListAssistantsResponse.md)
  - [ListFilesResponse](docs/ListFilesResponse.md)
- - [ListFineTuneEventsResponse](docs/ListFineTuneEventsResponse.md)
- - [ListFineTunesResponse](docs/ListFineTunesResponse.md)
+ - [ListFineTuningJobCheckpointsResponse](docs/ListFineTuningJobCheckpointsResponse.md)
+ - [ListFineTuningJobEventsResponse](docs/ListFineTuningJobEventsResponse.md)
+ - [ListMessageFilesResponse](docs/ListMessageFilesResponse.md)
+ - [ListMessagesResponse](docs/ListMessagesResponse.md)
  - [ListModelsResponse](docs/ListModelsResponse.md)
+ - [ListPaginatedFineTuningJobsResponse](docs/ListPaginatedFineTuningJobsResponse.md)
+ - [ListRunStepsResponse](docs/ListRunStepsResponse.md)
+ - [ListRunsResponse](docs/ListRunsResponse.md)
+ - [ListThreadsResponse](docs/ListThreadsResponse.md)
+ - [MessageContentImageFileObject](docs/MessageContentImageFileObject.md)
+ - [MessageContentImageFileObjectImageFile](docs/MessageContentImageFileObjectImageFile.md)
+ - [MessageContentTextAnnotationsFileCitationObject](docs/MessageContentTextAnnotationsFileCitationObject.md)
+ - [MessageContentTextAnnotationsFileCitationObjectFileCitation](docs/MessageContentTextAnnotationsFileCitationObjectFileCitation.md)
+ - [MessageContentTextAnnotationsFilePathObject](docs/MessageContentTextAnnotationsFilePathObject.md)
+ - [MessageContentTextAnnotationsFilePathObjectFilePath](docs/MessageContentTextAnnotationsFilePathObjectFilePath.md)
+ - [MessageContentTextObject](docs/MessageContentTextObject.md)
+ - [MessageContentTextObjectText](docs/MessageContentTextObjectText.md)
+ - [MessageContentTextObjectTextAnnotationsInner](docs/MessageContentTextObjectTextAnnotationsInner.md)
+ - [MessageDeltaContentImageFileObject](docs/MessageDeltaContentImageFileObject.md)
+ - [MessageDeltaContentImageFileObjectImageFile](docs/MessageDeltaContentImageFileObjectImageFile.md)
+ - [MessageDeltaContentTextAnnotationsFileCitationObject](docs/MessageDeltaContentTextAnnotationsFileCitationObject.md)
+ - [MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation](docs/MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.md)
+ - [MessageDeltaContentTextAnnotationsFilePathObject](docs/MessageDeltaContentTextAnnotationsFilePathObject.md)
+ - [MessageDeltaContentTextAnnotationsFilePathObjectFilePath](docs/MessageDeltaContentTextAnnotationsFilePathObjectFilePath.md)
+ - [MessageDeltaContentTextObject](docs/MessageDeltaContentTextObject.md)
+ - [MessageDeltaContentTextObjectText](docs/MessageDeltaContentTextObjectText.md)
+ - [MessageDeltaContentTextObjectTextAnnotationsInner](docs/MessageDeltaContentTextObjectTextAnnotationsInner.md)
+ - [MessageDeltaObject](docs/MessageDeltaObject.md)
+ - [MessageDeltaObjectDelta](docs/MessageDeltaObjectDelta.md)
+ - [MessageDeltaObjectDeltaContentInner](docs/MessageDeltaObjectDeltaContentInner.md)
+ - [MessageFileObject](docs/MessageFileObject.md)
+ - [MessageObject](docs/MessageObject.md)
+ - [MessageObjectContentInner](docs/MessageObjectContentInner.md)
+ - [MessageObjectIncompleteDetails](docs/MessageObjectIncompleteDetails.md)
+ - [MessageStreamEvent](docs/MessageStreamEvent.md)
+ - [MessageStreamEventOneOf](docs/MessageStreamEventOneOf.md)
+ - [MessageStreamEventOneOf1](docs/MessageStreamEventOneOf1.md)
+ - [MessageStreamEventOneOf2](docs/MessageStreamEventOneOf2.md)
+ - [MessageStreamEventOneOf3](docs/MessageStreamEventOneOf3.md)
+ - [MessageStreamEventOneOf4](docs/MessageStreamEventOneOf4.md)
  - [Model](docs/Model.md)
+ - [ModifyAssistantRequest](docs/ModifyAssistantRequest.md)
+ - [ModifyMessageRequest](docs/ModifyMessageRequest.md)
+ - [ModifyRunRequest](docs/ModifyRunRequest.md)
+ - [ModifyThreadRequest](docs/ModifyThreadRequest.md)
  - [OpenAiFile](docs/OpenAiFile.md)
+ - [RunCompletionUsage](docs/RunCompletionUsage.md)
+ - [RunObject](docs/RunObject.md)
+ - [RunObjectIncompleteDetails](docs/RunObjectIncompleteDetails.md)
+ - [RunObjectLastError](docs/RunObjectLastError.md)
+ - [RunObjectRequiredAction](docs/RunObjectRequiredAction.md)
+ - [RunObjectRequiredActionSubmitToolOutputs](docs/RunObjectRequiredActionSubmitToolOutputs.md)
+ - [RunStepCompletionUsage](docs/RunStepCompletionUsage.md)
+ - [RunStepDeltaObject](docs/RunStepDeltaObject.md)
+ - [RunStepDeltaObjectDelta](docs/RunStepDeltaObjectDelta.md)
+ - [RunStepDeltaObjectDeltaStepDetails](docs/RunStepDeltaObjectDeltaStepDetails.md)
+ - [RunStepDeltaStepDetailsMessageCreationObject](docs/RunStepDeltaStepDetailsMessageCreationObject.md)
+ - [RunStepDeltaStepDetailsMessageCreationObjectMessageCreation](docs/RunStepDeltaStepDetailsMessageCreationObjectMessageCreation.md)
+ - [RunStepDeltaStepDetailsToolCallsCodeObject](docs/RunStepDeltaStepDetailsToolCallsCodeObject.md)
+ - [RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter](docs/RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.md)
+ - [RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner](docs/RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner.md)
+ - [RunStepDeltaStepDetailsToolCallsCodeOutputImageObject](docs/RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.md)
+ - [RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage](docs/RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.md)
+ - [RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject](docs/RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.md)
+ - [RunStepDeltaStepDetailsToolCallsFunctionObject](docs/RunStepDeltaStepDetailsToolCallsFunctionObject.md)
+ - [RunStepDeltaStepDetailsToolCallsFunctionObjectFunction](docs/RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.md)
+ - [RunStepDeltaStepDetailsToolCallsObject](docs/RunStepDeltaStepDetailsToolCallsObject.md)
+ - [RunStepDeltaStepDetailsToolCallsObjectToolCallsInner](docs/RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.md)
+ - [RunStepDeltaStepDetailsToolCallsRetrievalObject](docs/RunStepDeltaStepDetailsToolCallsRetrievalObject.md)
+ - [RunStepDetailsMessageCreationObject](docs/RunStepDetailsMessageCreationObject.md)
+ - [RunStepDetailsMessageCreationObjectMessageCreation](docs/RunStepDetailsMessageCreationObjectMessageCreation.md)
+ - [RunStepDetailsToolCallsCodeObject](docs/RunStepDetailsToolCallsCodeObject.md)
+ - [RunStepDetailsToolCallsCodeObjectCodeInterpreter](docs/RunStepDetailsToolCallsCodeObjectCodeInterpreter.md)
+ - [RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner](docs/RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner.md)
+ - [RunStepDetailsToolCallsCodeOutputImageObject](docs/RunStepDetailsToolCallsCodeOutputImageObject.md)
+ - [RunStepDetailsToolCallsCodeOutputImageObjectImage](docs/RunStepDetailsToolCallsCodeOutputImageObjectImage.md)
+ - [RunStepDetailsToolCallsCodeOutputLogsObject](docs/RunStepDetailsToolCallsCodeOutputLogsObject.md)
+ - [RunStepDetailsToolCallsFunctionObject](docs/RunStepDetailsToolCallsFunctionObject.md)
+ - [RunStepDetailsToolCallsFunctionObjectFunction](docs/RunStepDetailsToolCallsFunctionObjectFunction.md)
+ - [RunStepDetailsToolCallsObject](docs/RunStepDetailsToolCallsObject.md)
+ - [RunStepDetailsToolCallsObjectToolCallsInner](docs/RunStepDetailsToolCallsObjectToolCallsInner.md)
+ - [RunStepDetailsToolCallsRetrievalObject](docs/RunStepDetailsToolCallsRetrievalObject.md)
+ - [RunStepObject](docs/RunStepObject.md)
+ - [RunStepObjectLastError](docs/RunStepObjectLastError.md)
+ - [RunStepObjectStepDetails](docs/RunStepObjectStepDetails.md)
+ - [RunStepStreamEvent](docs/RunStepStreamEvent.md)
+ - [RunStepStreamEventOneOf](docs/RunStepStreamEventOneOf.md)
+ - [RunStepStreamEventOneOf1](docs/RunStepStreamEventOneOf1.md)
+ - [RunStepStreamEventOneOf2](docs/RunStepStreamEventOneOf2.md)
+ - [RunStepStreamEventOneOf3](docs/RunStepStreamEventOneOf3.md)
+ - [RunStepStreamEventOneOf4](docs/RunStepStreamEventOneOf4.md)
+ - [RunStepStreamEventOneOf5](docs/RunStepStreamEventOneOf5.md)
+ - [RunStepStreamEventOneOf6](docs/RunStepStreamEventOneOf6.md)
+ - [RunStreamEvent](docs/RunStreamEvent.md)
+ - [RunStreamEventOneOf](docs/RunStreamEventOneOf.md)
+ - [RunStreamEventOneOf1](docs/RunStreamEventOneOf1.md)
+ - [RunStreamEventOneOf2](docs/RunStreamEventOneOf2.md)
+ - [RunStreamEventOneOf3](docs/RunStreamEventOneOf3.md)
+ - [RunStreamEventOneOf4](docs/RunStreamEventOneOf4.md)
+ - [RunStreamEventOneOf5](docs/RunStreamEventOneOf5.md)
+ - [RunStreamEventOneOf6](docs/RunStreamEventOneOf6.md)
+ - [RunStreamEventOneOf7](docs/RunStreamEventOneOf7.md)
+ - [RunStreamEventOneOf8](docs/RunStreamEventOneOf8.md)
+ - [RunToolCallObject](docs/RunToolCallObject.md)
+ - [RunToolCallObjectFunction](docs/RunToolCallObjectFunction.md)
+ - [SubmitToolOutputsRunRequest](docs/SubmitToolOutputsRunRequest.md)
+ - [SubmitToolOutputsRunRequestToolOutputsInner](docs/SubmitToolOutputsRunRequestToolOutputsInner.md)
+ - [ThreadObject](docs/ThreadObject.md)
+ - [ThreadStreamEvent](docs/ThreadStreamEvent.md)
+ - [ThreadStreamEventOneOf](docs/ThreadStreamEventOneOf.md)
+ - [TranscriptionSegment](docs/TranscriptionSegment.md)
+ - [TranscriptionWord](docs/TranscriptionWord.md)
+ - [TruncationObject](docs/TruncationObject.md)
 
 
 To get access to the crate's generated documentation, use:

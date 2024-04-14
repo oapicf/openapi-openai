@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * OAICreateModerationResponse_results_inner_category_scores.h
  *
- * 
+ * A list of the categories along with their scores as predicted by model.
  */
 
 #ifndef OAICreateModerationResponse_results_inner_category_scores_H
@@ -48,10 +48,30 @@ public:
     bool is_hate_threatening_Set() const;
     bool is_hate_threatening_Valid() const;
 
+    double getHarassment() const;
+    void setHarassment(const double &harassment);
+    bool is_harassment_Set() const;
+    bool is_harassment_Valid() const;
+
+    double getHarassmentThreatening() const;
+    void setHarassmentThreatening(const double &harassment_threatening);
+    bool is_harassment_threatening_Set() const;
+    bool is_harassment_threatening_Valid() const;
+
     double getSelfHarm() const;
     void setSelfHarm(const double &self_harm);
     bool is_self_harm_Set() const;
     bool is_self_harm_Valid() const;
+
+    double getSelfHarmIntent() const;
+    void setSelfHarmIntent(const double &self_harm_intent);
+    bool is_self_harm_intent_Set() const;
+    bool is_self_harm_intent_Valid() const;
+
+    double getSelfHarmInstructions() const;
+    void setSelfHarmInstructions(const double &self_harm_instructions);
+    bool is_self_harm_instructions_Set() const;
+    bool is_self_harm_instructions_Valid() const;
 
     double getSexual() const;
     void setSexual(const double &sexual);
@@ -87,9 +107,25 @@ private:
     bool m_hate_threatening_isSet;
     bool m_hate_threatening_isValid;
 
+    double harassment;
+    bool m_harassment_isSet;
+    bool m_harassment_isValid;
+
+    double harassment_threatening;
+    bool m_harassment_threatening_isSet;
+    bool m_harassment_threatening_isValid;
+
     double self_harm;
     bool m_self_harm_isSet;
     bool m_self_harm_isValid;
+
+    double self_harm_intent;
+    bool m_self_harm_intent_isSet;
+    bool m_self_harm_intent_isValid;
+
+    double self_harm_instructions;
+    bool m_self_harm_instructions_isSet;
+    bool m_self_harm_instructions_isValid;
 
     double sexual;
     bool m_sexual_isSet;

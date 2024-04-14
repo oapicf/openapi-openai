@@ -1,7 +1,7 @@
 /*
  * CreateModerationResponse_results_inner_category_scores.h
  *
- * 
+ * A list of the categories along with their scores as predicted by model.
  */
 
 #ifndef _CreateModerationResponse_results_inner_category_scores_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief A list of the categories along with their scores as predicted by model.
  *
  *  \ingroup Models
  *
@@ -45,60 +45,92 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get The score for the category 'hate'.
 	 */
 	long long getHate();
 
-	/*! \brief Set 
+	/*! \brief Set The score for the category 'hate'.
 	 */
 	void setHate(long long  hate);
-	/*! \brief Get 
+	/*! \brief Get The score for the category 'hate/threatening'.
 	 */
 	long long getHatethreatening();
 
-	/*! \brief Set 
+	/*! \brief Set The score for the category 'hate/threatening'.
 	 */
 	void setHatethreatening(long long  hatethreatening);
-	/*! \brief Get 
+	/*! \brief Get The score for the category 'harassment'.
+	 */
+	long long getHarassment();
+
+	/*! \brief Set The score for the category 'harassment'.
+	 */
+	void setHarassment(long long  harassment);
+	/*! \brief Get The score for the category 'harassment/threatening'.
+	 */
+	long long getHarassmentthreatening();
+
+	/*! \brief Set The score for the category 'harassment/threatening'.
+	 */
+	void setHarassmentthreatening(long long  harassmentthreatening);
+	/*! \brief Get The score for the category 'self-harm'.
 	 */
 	long long getSelfharm();
 
-	/*! \brief Set 
+	/*! \brief Set The score for the category 'self-harm'.
 	 */
 	void setSelfharm(long long  selfharm);
-	/*! \brief Get 
+	/*! \brief Get The score for the category 'self-harm/intent'.
+	 */
+	long long getSelfharmintent();
+
+	/*! \brief Set The score for the category 'self-harm/intent'.
+	 */
+	void setSelfharmintent(long long  selfharmintent);
+	/*! \brief Get The score for the category 'self-harm/instructions'.
+	 */
+	long long getSelfharminstructions();
+
+	/*! \brief Set The score for the category 'self-harm/instructions'.
+	 */
+	void setSelfharminstructions(long long  selfharminstructions);
+	/*! \brief Get The score for the category 'sexual'.
 	 */
 	long long getSexual();
 
-	/*! \brief Set 
+	/*! \brief Set The score for the category 'sexual'.
 	 */
 	void setSexual(long long  sexual);
-	/*! \brief Get 
+	/*! \brief Get The score for the category 'sexual/minors'.
 	 */
 	long long getSexualminors();
 
-	/*! \brief Set 
+	/*! \brief Set The score for the category 'sexual/minors'.
 	 */
 	void setSexualminors(long long  sexualminors);
-	/*! \brief Get 
+	/*! \brief Get The score for the category 'violence'.
 	 */
 	long long getViolence();
 
-	/*! \brief Set 
+	/*! \brief Set The score for the category 'violence'.
 	 */
 	void setViolence(long long  violence);
-	/*! \brief Get 
+	/*! \brief Get The score for the category 'violence/graphic'.
 	 */
 	long long getViolencegraphic();
 
-	/*! \brief Set 
+	/*! \brief Set The score for the category 'violence/graphic'.
 	 */
 	void setViolencegraphic(long long  violencegraphic);
 
 private:
 	long long hate;
 	long long hatethreatening;
+	long long harassment;
+	long long harassmentthreatening;
 	long long selfharm;
+	long long selfharmintent;
+	long long selfharminstructions;
 	long long sexual;
 	long long sexualminors;
 	long long violence;

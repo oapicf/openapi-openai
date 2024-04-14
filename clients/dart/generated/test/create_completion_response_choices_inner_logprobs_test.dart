@@ -16,8 +16,8 @@ void main() {
   // final instance = CreateCompletionResponseChoicesInnerLogprobs();
 
   group('test CreateCompletionResponseChoicesInnerLogprobs', () {
-    // List<String> tokens (default value: const [])
-    test('to test the property `tokens`', () async {
+    // List<int> textOffset (default value: const [])
+    test('to test the property `textOffset`', () async {
       // TODO
     });
 
@@ -26,13 +26,13 @@ void main() {
       // TODO
     });
 
-    // List<Object> topLogprobs (default value: const [])
-    test('to test the property `topLogprobs`', () async {
+    // List<String> tokens (default value: const [])
+    test('to test the property `tokens`', () async {
       // TODO
     });
 
-    // List<int> textOffset (default value: const [])
-    test('to test the property `textOffset`', () async {
+    // List<Map<String, num>> topLogprobs (default value: const [])
+    test('to test the property `topLogprobs`', () async {
       // TODO
     });
 

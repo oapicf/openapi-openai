@@ -1,5 +1,5 @@
 --  OpenAI API
---  APIs for sampling from and fine_tuning language models
+--  The OpenAI REST API. Please see https://platform.openai.com/docs/api_reference for more details.
 --
 --  The version of the OpenAPI document: 2.0.0
 --  Contact: blah+oapicf@cliffano.com
@@ -17,37 +17,43 @@ package body .Skeletons is
 
    use Swagger.Streams;
 
-   Mime_1 : aliased constant String := "multipart/form-data";
+   Mime_1 : aliased constant String := "application/octet-stream";
+   Mime_2 : aliased constant String := "multipart/form-data";
    Media_List_1 : aliased constant Swagger.Mime_List := (
      1 => Swagger.Mime_Json);   Media_List_2 : aliased constant Swagger.Mime_List := (
-     1 => Mime_1'Access);
+     1 => Mime_1'Access);   Media_List_3 : aliased constant Swagger.Mime_List := (
+     1 => Mime_2'Access);
 
    package body Skeleton is
 
 
-      package API_Cancel_Fine_Tune is
+      package API_Cancel_Run is
          new Swagger.Servers.Operation
-            (Handler => Cancel_Fine_Tune,
+            (Handler => Cancel_Run,
              Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/fine-tunes/{fine_tune_id}/cancel",
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}/cancel",
              Mimes   => Media_List_1'Access);
 
-      --  Immediately cancel a fine_tune job.
-      procedure Cancel_Fine_Tune
+      --  Cancels a run that is `in_progress`.
+      procedure Cancel_Run
          (Req     : in out Swagger.Servers.Request'Class;
           Reply   : in out Swagger.Servers.Response'Class;
           Stream  : in out Swagger.Servers.Output_Stream'Class;
           Context : in out Swagger.Servers.Context_Type) is
          Impl : Implementation_Type;
-         Fine_Tune_Id : Swagger.UString;
-         Result : .Models.FineTune_Type;
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Result : .Models.RunObject_Type;
       begin
          
          
-         Fine_Tune_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
 
-         Impl.Cancel_Fine_Tune
-            (Fine_Tune_Id, Result, Context);
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Impl.Cancel_Run
+            (Thread_Id,
+             Run_Id, Result, Context);
          if Context.Get_Status = 200 then
             Context.Set_Description ("OK");
 
@@ -57,7 +63,1306 @@ package body .Skeletons is
             return;
          end if;
 
-      end Cancel_Fine_Tune;
+      end Cancel_Run;
+
+      package API_Create_Assistant is
+         new Swagger.Servers.Operation
+            (Handler => Create_Assistant,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/assistants",
+             Mimes   => Media_List_1'Access);
+
+      --  Create an assistant with a model and instructions.
+      procedure Create_Assistant
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Create_Assistant_Request_Type : CreateAssistantRequest_Type;
+         Result : .Models.AssistantObject_Type;
+      begin
+         
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "CreateAssistantRequest_Type", Create_Assistant_Request_Type);
+         Impl.Create_Assistant
+            (Create_Assistant_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Assistant;
+
+      package API_Create_Assistant_File is
+         new Swagger.Servers.Operation
+            (Handler => Create_Assistant_File,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/assistants/{assistant_id}/files",
+             Mimes   => Media_List_1'Access);
+
+      --  Create an assistant file by attaching a [File](/docs/api_reference/files) to an [assistant](/docs/api_reference/assistants).
+      procedure Create_Assistant_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Assistant_Id : Swagger.UString;
+         Create_Assistant_File_Request_Type : CreateAssistantFileRequest_Type;
+         Result : .Models.AssistantFileObject_Type;
+      begin
+         
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "CreateAssistantFileRequest_Type", Create_Assistant_File_Request_Type);
+         Impl.Create_Assistant_File
+            (Assistant_Id,
+             Create_Assistant_File_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Assistant_File;
+
+      package API_Create_Message is
+         new Swagger.Servers.Operation
+            (Handler => Create_Message,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages",
+             Mimes   => Media_List_1'Access);
+
+      --  Create a message.
+      procedure Create_Message
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Create_Message_Request_Type : CreateMessageRequest_Type;
+         Result : .Models.MessageObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "CreateMessageRequest_Type", Create_Message_Request_Type);
+         Impl.Create_Message
+            (Thread_Id,
+             Create_Message_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Message;
+
+      package API_Create_Run is
+         new Swagger.Servers.Operation
+            (Handler => Create_Run,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs",
+             Mimes   => Media_List_1'Access);
+
+      --  Create a run.
+      procedure Create_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Create_Run_Request_Type : CreateRunRequest_Type;
+         Result : .Models.RunObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "CreateRunRequest_Type", Create_Run_Request_Type);
+         Impl.Create_Run
+            (Thread_Id,
+             Create_Run_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Run;
+
+      package API_Create_Thread is
+         new Swagger.Servers.Operation
+            (Handler => Create_Thread,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads",
+             Mimes   => Media_List_1'Access);
+
+      --  Create a thread.
+      procedure Create_Thread
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Create_Thread_Request_Type : CreateThreadRequest_Type;
+         Result : .Models.ThreadObject_Type;
+      begin
+         
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "CreateThreadRequest_Type", Create_Thread_Request_Type);
+         Impl.Create_Thread
+            (Create_Thread_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Thread;
+
+      package API_Create_Thread_And_Run is
+         new Swagger.Servers.Operation
+            (Handler => Create_Thread_And_Run,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/runs",
+             Mimes   => Media_List_1'Access);
+
+      --  Create a thread and run it in one request.
+      procedure Create_Thread_And_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Create_Thread_And_Run_Request_Type : CreateThreadAndRunRequest_Type;
+         Result : .Models.RunObject_Type;
+      begin
+         
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "CreateThreadAndRunRequest_Type", Create_Thread_And_Run_Request_Type);
+         Impl.Create_Thread_And_Run
+            (Create_Thread_And_Run_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Thread_And_Run;
+
+      package API_Delete_Assistant is
+         new Swagger.Servers.Operation
+            (Handler => Delete_Assistant,
+             Method  => Swagger.Servers.DELETE,
+             URI     => URI_Prefix & "/assistants/{assistant_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Delete an assistant.
+      procedure Delete_Assistant
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Assistant_Id : Swagger.UString;
+         Result : .Models.DeleteAssistantResponse_Type;
+      begin
+         
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.Delete_Assistant
+            (Assistant_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Delete_Assistant;
+
+      package API_Delete_Assistant_File is
+         new Swagger.Servers.Operation
+            (Handler => Delete_Assistant_File,
+             Method  => Swagger.Servers.DELETE,
+             URI     => URI_Prefix & "/assistants/{assistant_id}/files/{file_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Delete an assistant file.
+      procedure Delete_Assistant_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Assistant_Id : Swagger.UString;
+         File_Id : Swagger.UString;
+         Result : .Models.DeleteAssistantFileResponse_Type;
+      begin
+         
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Impl.Delete_Assistant_File
+            (Assistant_Id,
+             File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Delete_Assistant_File;
+
+      package API_Delete_Thread is
+         new Swagger.Servers.Operation
+            (Handler => Delete_Thread,
+             Method  => Swagger.Servers.DELETE,
+             URI     => URI_Prefix & "/threads/{thread_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Delete a thread.
+      procedure Delete_Thread
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Result : .Models.DeleteThreadResponse_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.Delete_Thread
+            (Thread_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Delete_Thread;
+
+      package API_Get_Assistant is
+         new Swagger.Servers.Operation
+            (Handler => Get_Assistant,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/assistants/{assistant_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Retrieves an assistant.
+      procedure Get_Assistant
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Assistant_Id : Swagger.UString;
+         Result : .Models.AssistantObject_Type;
+      begin
+         
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.Get_Assistant
+            (Assistant_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Assistant;
+
+      package API_Get_Assistant_File is
+         new Swagger.Servers.Operation
+            (Handler => Get_Assistant_File,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/assistants/{assistant_id}/files/{file_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Retrieves an AssistantFile.
+      procedure Get_Assistant_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Assistant_Id : Swagger.UString;
+         File_Id : Swagger.UString;
+         Result : .Models.AssistantFileObject_Type;
+      begin
+         
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Impl.Get_Assistant_File
+            (Assistant_Id,
+             File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Assistant_File;
+
+      package API_Get_Message is
+         new Swagger.Servers.Operation
+            (Handler => Get_Message,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages/{message_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Retrieve a message.
+      procedure Get_Message
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Message_Id : Swagger.UString;
+         Result : .Models.MessageObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Message_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Impl.Get_Message
+            (Thread_Id,
+             Message_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Message;
+
+      package API_Get_Message_File is
+         new Swagger.Servers.Operation
+            (Handler => Get_Message_File,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages/{message_id}/files/{file_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Retrieves a message file.
+      procedure Get_Message_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Message_Id : Swagger.UString;
+         File_Id : Swagger.UString;
+         Result : .Models.MessageFileObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Message_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 3));
+
+         Impl.Get_Message_File
+            (Thread_Id,
+             Message_Id,
+             File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Message_File;
+
+      package API_Get_Run is
+         new Swagger.Servers.Operation
+            (Handler => Get_Run,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Retrieves a run.
+      procedure Get_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Result : .Models.RunObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Impl.Get_Run
+            (Thread_Id,
+             Run_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Run;
+
+      package API_Get_Run_Step is
+         new Swagger.Servers.Operation
+            (Handler => Get_Run_Step,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}/steps/{step_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Retrieves a run step.
+      procedure Get_Run_Step
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Step_Id : Swagger.UString;
+         Result : .Models.RunStepObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Step_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 3));
+
+         Impl.Get_Run_Step
+            (Thread_Id,
+             Run_Id,
+             Step_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Run_Step;
+
+      package API_Get_Thread is
+         new Swagger.Servers.Operation
+            (Handler => Get_Thread,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Retrieves a thread.
+      procedure Get_Thread
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Result : .Models.ThreadObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.Get_Thread
+            (Thread_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Thread;
+
+      package API_List_Assistant_Files is
+         new Swagger.Servers.Operation
+            (Handler => List_Assistant_Files,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/assistants/{assistant_id}/files",
+             Mimes   => Media_List_1'Access);
+
+      --  Returns a list of assistant files.
+      procedure List_Assistant_Files
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Assistant_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListAssistantFilesResponse_Type;
+      begin
+         
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.List_Assistant_Files
+            (Assistant_Id,
+             Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Assistant_Files;
+
+      package API_List_Assistants is
+         new Swagger.Servers.Operation
+            (Handler => List_Assistants,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/assistants",
+             Mimes   => Media_List_1'Access);
+
+      --  Returns a list of assistants.
+      procedure List_Assistants
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListAssistantsResponse_Type;
+      begin
+         
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Impl.List_Assistants
+            (Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Assistants;
+
+      package API_List_Message_Files is
+         new Swagger.Servers.Operation
+            (Handler => List_Message_Files,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages/{message_id}/files",
+             Mimes   => Media_List_1'Access);
+
+      --  Returns a list of message files.
+      procedure List_Message_Files
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Message_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListMessageFilesResponse_Type;
+      begin
+         
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Message_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Impl.List_Message_Files
+            (Thread_Id,
+             Message_Id,
+             Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Message_Files;
+
+      package API_List_Messages is
+         new Swagger.Servers.Operation
+            (Handler => List_Messages,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages",
+             Mimes   => Media_List_1'Access);
+
+      --  Returns a list of messages for a given thread.
+      procedure List_Messages
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Run_Id : Swagger.Nullable_UString;
+         Result : .Models.ListMessagesResponse_Type;
+      begin
+         
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "run_id"));
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.List_Messages
+            (Thread_Id,
+             Limit,
+             Order,
+             After,
+             Before,
+             Run_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Messages;
+
+      package API_List_Run_Steps is
+         new Swagger.Servers.Operation
+            (Handler => List_Run_Steps,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}/steps",
+             Mimes   => Media_List_1'Access);
+
+      --  Returns a list of run steps belonging to a run.
+      procedure List_Run_Steps
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListRunStepsResponse_Type;
+      begin
+         
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Impl.List_Run_Steps
+            (Thread_Id,
+             Run_Id,
+             Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Run_Steps;
+
+      package API_List_Runs is
+         new Swagger.Servers.Operation
+            (Handler => List_Runs,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs",
+             Mimes   => Media_List_1'Access);
+
+      --  Returns a list of runs belonging to a thread.
+      procedure List_Runs
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListRunsResponse_Type;
+      begin
+         
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.List_Runs
+            (Thread_Id,
+             Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Runs;
+
+      package API_Modify_Assistant is
+         new Swagger.Servers.Operation
+            (Handler => Modify_Assistant,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/assistants/{assistant_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Modifies an assistant.
+      procedure Modify_Assistant
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Assistant_Id : Swagger.UString;
+         Modify_Assistant_Request_Type : ModifyAssistantRequest_Type;
+         Result : .Models.AssistantObject_Type;
+      begin
+         
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "ModifyAssistantRequest_Type", Modify_Assistant_Request_Type);
+         Impl.Modify_Assistant
+            (Assistant_Id,
+             Modify_Assistant_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Modify_Assistant;
+
+      package API_Modify_Message is
+         new Swagger.Servers.Operation
+            (Handler => Modify_Message,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages/{message_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Modifies a message.
+      procedure Modify_Message
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Message_Id : Swagger.UString;
+         Modify_Message_Request_Type : ModifyMessageRequest_Type;
+         Result : .Models.MessageObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Message_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "ModifyMessageRequest_Type", Modify_Message_Request_Type);
+         Impl.Modify_Message
+            (Thread_Id,
+             Message_Id,
+             Modify_Message_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Modify_Message;
+
+      package API_Modify_Run is
+         new Swagger.Servers.Operation
+            (Handler => Modify_Run,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Modifies a run.
+      procedure Modify_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Modify_Run_Request_Type : ModifyRunRequest_Type;
+         Result : .Models.RunObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "ModifyRunRequest_Type", Modify_Run_Request_Type);
+         Impl.Modify_Run
+            (Thread_Id,
+             Run_Id,
+             Modify_Run_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Modify_Run;
+
+      package API_Modify_Thread is
+         new Swagger.Servers.Operation
+            (Handler => Modify_Thread,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Modifies a thread.
+      procedure Modify_Thread
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Modify_Thread_Request_Type : ModifyThreadRequest_Type;
+         Result : .Models.ThreadObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "ModifyThreadRequest_Type", Modify_Thread_Request_Type);
+         Impl.Modify_Thread
+            (Thread_Id,
+             Modify_Thread_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Modify_Thread;
+
+      package API_Submit_Tool_Ouputs_To_Run is
+         new Swagger.Servers.Operation
+            (Handler => Submit_Tool_Ouputs_To_Run,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
+             Mimes   => Media_List_1'Access);
+
+      --  When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request.
+      procedure Submit_Tool_Ouputs_To_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Submit_Tool_Outputs_Run_Request_Type : SubmitToolOutputsRunRequest_Type;
+         Result : .Models.RunObject_Type;
+      begin
+         
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "SubmitToolOutputsRunRequest_Type", Submit_Tool_Outputs_Run_Request_Type);
+         Impl.Submit_Tool_Ouputs_To_Run
+            (Thread_Id,
+             Run_Id,
+             Submit_Tool_Outputs_Run_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Submit_Tool_Ouputs_To_Run;
+
+      package API_Create_Speech is
+         new Swagger.Servers.Operation
+            (Handler => Create_Speech,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/audio/speech",
+             Mimes   => Media_List_2'Access);
+
+      --  Generates audio from the input text.
+      procedure Create_Speech
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Create_Speech_Request_Type : CreateSpeechRequest_Type;
+         Result : Swagger.Blob_Ref;
+      begin
+         
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "CreateSpeechRequest_Type", Create_Speech_Request_Type);
+         Impl.Create_Speech
+            (Create_Speech_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+            Swagger.Streams.Write (Stream, Result);
+
+
+            return;
+         end if;
+
+      end Create_Speech;
+
+      package API_Create_Transcription is
+         new Swagger.Servers.Operation
+            (Handler => Create_Transcription,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/audio/transcriptions",
+             Mimes   => Media_List_1'Access);
+
+      --  Transcribes audio into the input language.
+      procedure Create_Transcription
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         File : Swagger.File_Part_Type;
+         Model : .Models.CreateTranscriptionRequestModel_Type;
+         Language : Swagger.Nullable_UString;
+         Prompt : Swagger.Nullable_UString;
+         Response_Format : Swagger.Nullable_UString;
+         Temperature : Swagger.Number;
+         Timestamp_Granularities_Left_Square_Bracket_Right_Square_Bracket : Swagger.UString_Vectors.Vector;
+         Result : .Models.CreateTranscription200Response_Type;
+      begin
+         
+         
+         Swagger.Servers.Get_Parameter (Context, "file", File);
+         Swagger.Servers.Get_Parameter (Context, "model", Model);
+         Swagger.Servers.Get_Parameter (Context, "language", Language);
+         Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
+         Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
+         Swagger.Servers.Get_Parameter (Context, "temperature", Temperature);
+         Swagger.Servers.Get_Parameter (Context, "timestamp_granularities[]", Timestamp_Granularities_Left_Square_Bracket_Right_Square_Bracket);
+         Impl.Create_Transcription
+            (File,
+             Model,
+             Language,
+             Prompt,
+             Response_Format,
+             Temperature,
+             Timestamp_Granularities_Left_Square_Bracket_Right_Square_Bracket, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Transcription;
+
+      package API_Create_Translation is
+         new Swagger.Servers.Operation
+            (Handler => Create_Translation,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/audio/translations",
+             Mimes   => Media_List_1'Access);
+
+      --  Translates audio into English.
+      procedure Create_Translation
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         File : Swagger.File_Part_Type;
+         Model : .Models.CreateTranscriptionRequestModel_Type;
+         Prompt : Swagger.Nullable_UString;
+         Response_Format : Swagger.Nullable_UString;
+         Temperature : Swagger.Number;
+         Result : .Models.CreateTranslation200Response_Type;
+      begin
+         
+         
+         Swagger.Servers.Get_Parameter (Context, "file", File);
+         Swagger.Servers.Get_Parameter (Context, "model", Model);
+         Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
+         Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
+         Swagger.Servers.Get_Parameter (Context, "temperature", Temperature);
+         Impl.Create_Translation
+            (File,
+             Model,
+             Prompt,
+             Response_Format,
+             Temperature, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Translation;
 
       package API_Create_Chat_Completion is
          new Swagger.Servers.Operation
@@ -139,46 +1444,6 @@ package body .Skeletons is
 
       end Create_Completion;
 
-      package API_Create_Edit is
-         new Swagger.Servers.Operation
-            (Handler => Create_Edit,
-             Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/edits",
-             Mimes   => Media_List_1'Access);
-
-      --  Creates a new edit for the provided input, instruction, and parameters.
-      procedure Create_Edit
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Input   : Swagger.Value_Type;
-         Impl : Implementation_Type;
-         Create_Edit_Request_Type : CreateEditRequest_Type;
-         Result : .Models.CreateEditResponse_Type;
-      begin
-         
-         
-         Swagger.Servers.Read (Req, Media_List_1, Input);
-         if Swagger.Is_Null (Input) then
-            Context.Set_Error (415, "Invalid content");
-            return;
-         end if;
-
-         .Models.Deserialize (Input, "CreateEditRequest_Type", Create_Edit_Request_Type);
-         Impl.Create_Edit
-            (Create_Edit_Request_Type, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Create_Edit;
-
       package API_Create_Embedding is
          new Swagger.Servers.Operation
             (Handler => Create_Embedding,
@@ -226,7 +1491,7 @@ package body .Skeletons is
              URI     => URI_Prefix & "/files",
              Mimes   => Media_List_1'Access);
 
-      --  Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit.
+      --  Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine_tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
       procedure Create_File
          (Req     : in out Swagger.Servers.Request'Class;
           Reply   : in out Swagger.Servers.Response'Class;
@@ -255,35 +1520,29 @@ package body .Skeletons is
 
       end Create_File;
 
-      package API_Create_Fine_Tune is
+      package API_Delete_File is
          new Swagger.Servers.Operation
-            (Handler => Create_Fine_Tune,
-             Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/fine-tunes",
+            (Handler => Delete_File,
+             Method  => Swagger.Servers.DELETE,
+             URI     => URI_Prefix & "/files/{file_id}",
              Mimes   => Media_List_1'Access);
 
-      --  Creates a job that fine_tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine_tuned models once complete.  [Learn more about Fine_tuning](/docs/guides/fine_tuning)
-      procedure Create_Fine_Tune
+      --  Delete a file.
+      procedure Delete_File
          (Req     : in out Swagger.Servers.Request'Class;
           Reply   : in out Swagger.Servers.Response'Class;
           Stream  : in out Swagger.Servers.Output_Stream'Class;
           Context : in out Swagger.Servers.Context_Type) is
-         Input   : Swagger.Value_Type;
          Impl : Implementation_Type;
-         Create_Fine_Tune_Request_Type : CreateFineTuneRequest_Type;
-         Result : .Models.FineTune_Type;
+         File_Id : Swagger.UString;
+         Result : .Models.DeleteFileResponse_Type;
       begin
          
          
-         Swagger.Servers.Read (Req, Media_List_1, Input);
-         if Swagger.Is_Null (Input) then
-            Context.Set_Error (415, "Invalid content");
-            return;
-         end if;
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
 
-         .Models.Deserialize (Input, "CreateFineTuneRequest_Type", Create_Fine_Tune_Request_Type);
-         Impl.Create_Fine_Tune
-            (Create_Fine_Tune_Request_Type, Result, Context);
+         Impl.Delete_File
+            (File_Id, Result, Context);
          if Context.Get_Status = 200 then
             Context.Set_Description ("OK");
 
@@ -293,7 +1552,341 @@ package body .Skeletons is
             return;
          end if;
 
-      end Create_Fine_Tune;
+      end Delete_File;
+
+      package API_Download_File is
+         new Swagger.Servers.Operation
+            (Handler => Download_File,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/files/{file_id}/content",
+             Mimes   => Media_List_1'Access);
+
+      --  Returns the contents of the specified file.
+      procedure Download_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         File_Id : Swagger.UString;
+         Result : Swagger.UString;
+      begin
+         
+         
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.Download_File
+            (File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            if not Value..Is_Null then
+               Stream.Write_Entity ("", Result);
+            end if;
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Download_File;
+
+      package API_List_Files is
+         new Swagger.Servers.Operation
+            (Handler => List_Files,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/files",
+             Mimes   => Media_List_1'Access);
+
+      --  Returns a list of files that belong to the user's organization.
+      procedure List_Files
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Purpose : Swagger.Nullable_UString;
+         Result : .Models.ListFilesResponse_Type;
+      begin
+         
+         Purpose := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "purpose"));
+
+         
+         Impl.List_Files
+            (Purpose, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Files;
+
+      package API_Retrieve_File is
+         new Swagger.Servers.Operation
+            (Handler => Retrieve_File,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/files/{file_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Returns information about a specific file.
+      procedure Retrieve_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         File_Id : Swagger.UString;
+         Result : .Models.OpenAIFile_Type;
+      begin
+         
+         
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.Retrieve_File
+            (File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Retrieve_File;
+
+      package API_Cancel_Fine_Tuning_Job is
+         new Swagger.Servers.Operation
+            (Handler => Cancel_Fine_Tuning_Job,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
+             Mimes   => Media_List_1'Access);
+
+      --  Immediately cancel a fine_tune job.
+      procedure Cancel_Fine_Tuning_Job
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Fine_Tuning_Job_Id : Swagger.UString;
+         Result : .Models.FineTuningJob_Type;
+      begin
+         
+         
+         Fine_Tuning_Job_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.Cancel_Fine_Tuning_Job
+            (Fine_Tuning_Job_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Cancel_Fine_Tuning_Job;
+
+      package API_Create_Fine_Tuning_Job is
+         new Swagger.Servers.Operation
+            (Handler => Create_Fine_Tuning_Job,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/fine_tuning/jobs",
+             Mimes   => Media_List_1'Access);
+
+      --  Creates a fine_tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine_tuned models once complete.  [Learn more about fine_tuning](/docs/guides/fine_tuning)
+      procedure Create_Fine_Tuning_Job
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Create_Fine_Tuning_Job_Request_Type : CreateFineTuningJobRequest_Type;
+         Result : .Models.FineTuningJob_Type;
+      begin
+         
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
+
+         .Models.Deserialize (Input, "CreateFineTuningJobRequest_Type", Create_Fine_Tuning_Job_Request_Type);
+         Impl.Create_Fine_Tuning_Job
+            (Create_Fine_Tuning_Job_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Fine_Tuning_Job;
+
+      package API_List_Fine_Tuning_Events is
+         new Swagger.Servers.Operation
+            (Handler => List_Fine_Tuning_Events,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/fine_tuning/jobs/{fine_tuning_job_id}/events",
+             Mimes   => Media_List_1'Access);
+
+      --  Get status updates for a fine_tuning job.
+      procedure List_Fine_Tuning_Events
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Fine_Tuning_Job_Id : Swagger.UString;
+         After : Swagger.Nullable_UString;
+         Limit : Swagger.Nullable_Integer;
+         Result : .Models.ListFineTuningJobEventsResponse_Type;
+      begin
+         
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         
+         Fine_Tuning_Job_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.List_Fine_Tuning_Events
+            (Fine_Tuning_Job_Id,
+             After,
+             Limit, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Fine_Tuning_Events;
+
+      package API_List_Fine_Tuning_Job_Checkpoints is
+         new Swagger.Servers.Operation
+            (Handler => List_Fine_Tuning_Job_Checkpoints,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints",
+             Mimes   => Media_List_1'Access);
+
+      --  List checkpoints for a fine_tuning job.
+      procedure List_Fine_Tuning_Job_Checkpoints
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Fine_Tuning_Job_Id : Swagger.UString;
+         After : Swagger.Nullable_UString;
+         Limit : Swagger.Nullable_Integer;
+         Result : .Models.ListFineTuningJobCheckpointsResponse_Type;
+      begin
+         
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         
+         Fine_Tuning_Job_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.List_Fine_Tuning_Job_Checkpoints
+            (Fine_Tuning_Job_Id,
+             After,
+             Limit, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Fine_Tuning_Job_Checkpoints;
+
+      package API_List_Paginated_Fine_Tuning_Jobs is
+         new Swagger.Servers.Operation
+            (Handler => List_Paginated_Fine_Tuning_Jobs,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/fine_tuning/jobs",
+             Mimes   => Media_List_1'Access);
+
+      --  List your organization's fine_tuning jobs
+      procedure List_Paginated_Fine_Tuning_Jobs
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         After : Swagger.Nullable_UString;
+         Limit : Swagger.Nullable_Integer;
+         Result : .Models.ListPaginatedFineTuningJobsResponse_Type;
+      begin
+         
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         
+         Impl.List_Paginated_Fine_Tuning_Jobs
+            (After,
+             Limit, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Paginated_Fine_Tuning_Jobs;
+
+      package API_Retrieve_Fine_Tuning_Job is
+         new Swagger.Servers.Operation
+            (Handler => Retrieve_Fine_Tuning_Job,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/fine_tuning/jobs/{fine_tuning_job_id}",
+             Mimes   => Media_List_1'Access);
+
+      --  Get info about a fine_tuning job.  [Learn more about fine_tuning](/docs/guides/fine_tuning)
+      procedure Retrieve_Fine_Tuning_Job
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Impl : Implementation_Type;
+         Fine_Tuning_Job_Id : Swagger.UString;
+         Result : .Models.FineTuningJob_Type;
+      begin
+         
+         
+         Fine_Tuning_Job_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Impl.Retrieve_Fine_Tuning_Job
+            (Fine_Tuning_Job_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Retrieve_Fine_Tuning_Job;
 
       package API_Create_Image is
          new Swagger.Servers.Operation
@@ -352,6 +1945,7 @@ package body .Skeletons is
          Image : Swagger.File_Part_Type;
          Prompt : Swagger.UString;
          Mask : Swagger.File_Part_Type;
+         Model : .Models.CreateImageEditRequestModel_Type;
          N : Swagger.Nullable_Integer;
          Size : Swagger.Nullable_UString;
          Response_Format : Swagger.Nullable_UString;
@@ -361,8 +1955,9 @@ package body .Skeletons is
          
          
          Swagger.Servers.Get_Parameter (Context, "image", Image);
-         Swagger.Servers.Get_Parameter (Context, "mask", Mask);
          Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
+         Swagger.Servers.Get_Parameter (Context, "mask", Mask);
+         Swagger.Servers.Get_Parameter (Context, "model", Model);
          Swagger.Servers.Get_Parameter (Context, "n", N);
          Swagger.Servers.Get_Parameter (Context, "size", Size);
          Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
@@ -371,6 +1966,7 @@ package body .Skeletons is
             (Image,
              Prompt,
              Mask,
+             Model,
              N,
              Size,
              Response_Format,
@@ -401,24 +1997,27 @@ package body .Skeletons is
           Context : in out Swagger.Servers.Context_Type) is
          Impl : Implementation_Type;
          Image : Swagger.File_Part_Type;
+         Model : .Models.CreateImageEditRequestModel_Type;
          N : Swagger.Nullable_Integer;
-         Size : Swagger.Nullable_UString;
          Response_Format : Swagger.Nullable_UString;
+         Size : Swagger.Nullable_UString;
          User : Swagger.Nullable_UString;
          Result : .Models.ImagesResponse_Type;
       begin
          
          
          Swagger.Servers.Get_Parameter (Context, "image", Image);
+         Swagger.Servers.Get_Parameter (Context, "model", Model);
          Swagger.Servers.Get_Parameter (Context, "n", N);
-         Swagger.Servers.Get_Parameter (Context, "size", Size);
          Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
+         Swagger.Servers.Get_Parameter (Context, "size", Size);
          Swagger.Servers.Get_Parameter (Context, "user", User);
          Impl.Create_Image_Variation
             (Image,
+             Model,
              N,
-             Size,
              Response_Format,
+             Size,
              User, Result, Context);
          if Context.Get_Status = 200 then
             Context.Set_Description ("OK");
@@ -431,173 +2030,6 @@ package body .Skeletons is
 
       end Create_Image_Variation;
 
-      package API_Create_Moderation is
-         new Swagger.Servers.Operation
-            (Handler => Create_Moderation,
-             Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/moderations",
-             Mimes   => Media_List_1'Access);
-
-      --  Classifies if text violates OpenAI's Content Policy
-      procedure Create_Moderation
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Input   : Swagger.Value_Type;
-         Impl : Implementation_Type;
-         Create_Moderation_Request_Type : CreateModerationRequest_Type;
-         Result : .Models.CreateModerationResponse_Type;
-      begin
-         
-         
-         Swagger.Servers.Read (Req, Media_List_1, Input);
-         if Swagger.Is_Null (Input) then
-            Context.Set_Error (415, "Invalid content");
-            return;
-         end if;
-
-         .Models.Deserialize (Input, "CreateModerationRequest_Type", Create_Moderation_Request_Type);
-         Impl.Create_Moderation
-            (Create_Moderation_Request_Type, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Create_Moderation;
-
-      package API_Create_Transcription is
-         new Swagger.Servers.Operation
-            (Handler => Create_Transcription,
-             Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/audio/transcriptions",
-             Mimes   => Media_List_1'Access);
-
-      --  Transcribes audio into the input language.
-      procedure Create_Transcription
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Impl : Implementation_Type;
-         File : Swagger.File_Part_Type;
-         Model : .Models.CreateTranscriptionRequestModel_Type;
-         Prompt : Swagger.Nullable_UString;
-         Response_Format : Swagger.Nullable_UString;
-         Temperature : Swagger.Number;
-         Language : Swagger.Nullable_UString;
-         Result : .Models.CreateTranscriptionResponse_Type;
-      begin
-         
-         
-         Swagger.Servers.Get_Parameter (Context, "file", File);
-         Swagger.Servers.Get_Parameter (Context, "model", Model);
-         Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
-         Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
-         Swagger.Servers.Get_Parameter (Context, "temperature", Temperature);
-         Swagger.Servers.Get_Parameter (Context, "language", Language);
-         Impl.Create_Transcription
-            (File,
-             Model,
-             Prompt,
-             Response_Format,
-             Temperature,
-             Language, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Create_Transcription;
-
-      package API_Create_Translation is
-         new Swagger.Servers.Operation
-            (Handler => Create_Translation,
-             Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/audio/translations",
-             Mimes   => Media_List_1'Access);
-
-      --  Translates audio into English.
-      procedure Create_Translation
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Impl : Implementation_Type;
-         File : Swagger.File_Part_Type;
-         Model : .Models.CreateTranscriptionRequestModel_Type;
-         Prompt : Swagger.Nullable_UString;
-         Response_Format : Swagger.Nullable_UString;
-         Temperature : Swagger.Number;
-         Result : .Models.CreateTranslationResponse_Type;
-      begin
-         
-         
-         Swagger.Servers.Get_Parameter (Context, "file", File);
-         Swagger.Servers.Get_Parameter (Context, "model", Model);
-         Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
-         Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
-         Swagger.Servers.Get_Parameter (Context, "temperature", Temperature);
-         Impl.Create_Translation
-            (File,
-             Model,
-             Prompt,
-             Response_Format,
-             Temperature, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Create_Translation;
-
-      package API_Delete_File is
-         new Swagger.Servers.Operation
-            (Handler => Delete_File,
-             Method  => Swagger.Servers.DELETE,
-             URI     => URI_Prefix & "/files/{file_id}",
-             Mimes   => Media_List_1'Access);
-
-      --  Delete a file.
-      procedure Delete_File
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Impl : Implementation_Type;
-         File_Id : Swagger.UString;
-         Result : .Models.DeleteFileResponse_Type;
-      begin
-         
-         
-         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Impl.Delete_File
-            (File_Id, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Delete_File;
-
       package API_Delete_Model is
          new Swagger.Servers.Operation
             (Handler => Delete_Model,
@@ -605,7 +2037,7 @@ package body .Skeletons is
              URI     => URI_Prefix & "/models/{model}",
              Mimes   => Media_List_1'Access);
 
-      --  Delete a fine_tuned model. You must have the Owner role in your organization.
+      --  Delete a fine_tuned model. You must have the Owner role in your organization to delete a model.
       procedure Delete_Model
          (Req     : in out Swagger.Servers.Request'Class;
           Reply   : in out Swagger.Servers.Response'Class;
@@ -631,140 +2063,6 @@ package body .Skeletons is
          end if;
 
       end Delete_Model;
-
-      package API_Download_File is
-         new Swagger.Servers.Operation
-            (Handler => Download_File,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/files/{file_id}/content",
-             Mimes   => Media_List_1'Access);
-
-      --  Returns the contents of the specified file
-      procedure Download_File
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Impl : Implementation_Type;
-         File_Id : Swagger.UString;
-         Result : Swagger.UString;
-      begin
-         
-         
-         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Impl.Download_File
-            (File_Id, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            if not Value..Is_Null then
-               Stream.Write_Entity ("", Result);
-            end if;
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Download_File;
-
-      package API_List_Files is
-         new Swagger.Servers.Operation
-            (Handler => List_Files,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/files",
-             Mimes   => Media_List_1'Access);
-
-      --  Returns a list of files that belong to the user's organization.
-      procedure List_Files
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Impl : Implementation_Type;
-         Result : .Models.ListFilesResponse_Type;
-      begin
-         
-         
-         Impl.List_Files (Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end List_Files;
-
-      package API_List_Fine_Tune_Events is
-         new Swagger.Servers.Operation
-            (Handler => List_Fine_Tune_Events,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/fine-tunes/{fine_tune_id}/events",
-             Mimes   => Media_List_1'Access);
-
-      --  Get fine_grained status updates for a fine_tune job.
-      procedure List_Fine_Tune_Events
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Impl : Implementation_Type;
-         Fine_Tune_Id : Swagger.UString;
-         Stream : Swagger.Nullable_Boolean;
-         Result : .Models.ListFineTuneEventsResponse_Type;
-      begin
-         
-         Stream := To_Boolean (Swagger.Servers.Get_Query_Parameter (Req, "stream"));
-
-         
-         Fine_Tune_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Impl.List_Fine_Tune_Events
-            (Fine_Tune_Id,
-             Stream, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end List_Fine_Tune_Events;
-
-      package API_List_Fine_Tunes is
-         new Swagger.Servers.Operation
-            (Handler => List_Fine_Tunes,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/fine-tunes",
-             Mimes   => Media_List_1'Access);
-
-      --  List your organization's fine_tuning jobs
-      procedure List_Fine_Tunes
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Impl : Implementation_Type;
-         Result : .Models.ListFineTunesResponse_Type;
-      begin
-         
-         
-         Impl.List_Fine_Tunes (Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end List_Fine_Tunes;
 
       package API_List_Models is
          new Swagger.Servers.Operation
@@ -795,74 +2093,6 @@ package body .Skeletons is
          end if;
 
       end List_Models;
-
-      package API_Retrieve_File is
-         new Swagger.Servers.Operation
-            (Handler => Retrieve_File,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/files/{file_id}",
-             Mimes   => Media_List_1'Access);
-
-      --  Returns information about a specific file.
-      procedure Retrieve_File
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Impl : Implementation_Type;
-         File_Id : Swagger.UString;
-         Result : .Models.OpenAIFile_Type;
-      begin
-         
-         
-         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Impl.Retrieve_File
-            (File_Id, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Retrieve_File;
-
-      package API_Retrieve_Fine_Tune is
-         new Swagger.Servers.Operation
-            (Handler => Retrieve_Fine_Tune,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/fine-tunes/{fine_tune_id}",
-             Mimes   => Media_List_1'Access);
-
-      --  Gets info about the fine_tune job.  [Learn more about Fine_tuning](/docs/guides/fine_tuning)
-      procedure Retrieve_Fine_Tune
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Impl : Implementation_Type;
-         Fine_Tune_Id : Swagger.UString;
-         Result : .Models.FineTune_Type;
-      begin
-         
-         
-         Fine_Tune_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Impl.Retrieve_Fine_Tune
-            (Fine_Tune_Id, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Retrieve_Fine_Tune;
 
       package API_Retrieve_Model is
          new Swagger.Servers.Operation
@@ -898,53 +2128,35 @@ package body .Skeletons is
 
       end Retrieve_Model;
 
-      procedure Register (Server : in out Swagger.Servers.Application_Type'Class) is
-      begin
-         Swagger.Servers.Register (Server, API_Cancel_Fine_Tune.Definition);
-         Swagger.Servers.Register (Server, API_Create_Chat_Completion.Definition);
-         Swagger.Servers.Register (Server, API_Create_Completion.Definition);
-         Swagger.Servers.Register (Server, API_Create_Edit.Definition);
-         Swagger.Servers.Register (Server, API_Create_Embedding.Definition);
-         Swagger.Servers.Register (Server, API_Create_File.Definition);
-         Swagger.Servers.Register (Server, API_Create_Fine_Tune.Definition);
-         Swagger.Servers.Register (Server, API_Create_Image.Definition);
-         Swagger.Servers.Register (Server, API_Create_Image_Edit.Definition);
-         Swagger.Servers.Register (Server, API_Create_Image_Variation.Definition);
-         Swagger.Servers.Register (Server, API_Create_Moderation.Definition);
-         Swagger.Servers.Register (Server, API_Create_Transcription.Definition);
-         Swagger.Servers.Register (Server, API_Create_Translation.Definition);
-         Swagger.Servers.Register (Server, API_Delete_File.Definition);
-         Swagger.Servers.Register (Server, API_Delete_Model.Definition);
-         Swagger.Servers.Register (Server, API_Download_File.Definition);
-         Swagger.Servers.Register (Server, API_List_Files.Definition);
-         Swagger.Servers.Register (Server, API_List_Fine_Tune_Events.Definition);
-         Swagger.Servers.Register (Server, API_List_Fine_Tunes.Definition);
-         Swagger.Servers.Register (Server, API_List_Models.Definition);
-         Swagger.Servers.Register (Server, API_Retrieve_File.Definition);
-         Swagger.Servers.Register (Server, API_Retrieve_Fine_Tune.Definition);
-         Swagger.Servers.Register (Server, API_Retrieve_Model.Definition);
-      end Register;
+      package API_Create_Moderation is
+         new Swagger.Servers.Operation
+            (Handler => Create_Moderation,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/moderations",
+             Mimes   => Media_List_1'Access);
 
-   end Skeleton;
-
-   package body Shared_Instance is
-
-
-      --  Immediately cancel a fine_tune job.
-      procedure Cancel_Fine_Tune
+      --  Classifies if text is potentially harmful.
+      procedure Create_Moderation
          (Req     : in out Swagger.Servers.Request'Class;
           Reply   : in out Swagger.Servers.Response'Class;
           Stream  : in out Swagger.Servers.Output_Stream'Class;
           Context : in out Swagger.Servers.Context_Type) is
-         Fine_Tune_Id : Swagger.UString;
-         Result : .Models.FineTune_Type;
+         Input   : Swagger.Value_Type;
+         Impl : Implementation_Type;
+         Create_Moderation_Request_Type : CreateModerationRequest_Type;
+         Result : .Models.CreateModerationResponse_Type;
       begin
-
          
-         Fine_Tune_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         if Swagger.Is_Null (Input) then
+            Context.Set_Error (415, "Invalid content");
+            return;
+         end if;
 
-         Server.Cancel_Fine_Tune
-            (Fine_Tune_Id, Result, Context);
+         .Models.Deserialize (Input, "CreateModerationRequest_Type", Create_Moderation_Request_Type);
+         Impl.Create_Moderation
+            (Create_Moderation_Request_Type, Result, Context);
          if Context.Get_Status = 200 then
             Context.Set_Description ("OK");
 
@@ -954,13 +2166,1330 @@ package body .Skeletons is
             return;
          end if;
 
-      end Cancel_Fine_Tune;
+      end Create_Moderation;
 
-      package API_Cancel_Fine_Tune is
+      procedure Register (Server : in out Swagger.Servers.Application_Type'Class) is
+      begin
+         Swagger.Servers.Register (Server, API_Cancel_Run.Definition);
+         Swagger.Servers.Register (Server, API_Create_Assistant.Definition);
+         Swagger.Servers.Register (Server, API_Create_Assistant_File.Definition);
+         Swagger.Servers.Register (Server, API_Create_Message.Definition);
+         Swagger.Servers.Register (Server, API_Create_Run.Definition);
+         Swagger.Servers.Register (Server, API_Create_Thread.Definition);
+         Swagger.Servers.Register (Server, API_Create_Thread_And_Run.Definition);
+         Swagger.Servers.Register (Server, API_Delete_Assistant.Definition);
+         Swagger.Servers.Register (Server, API_Delete_Assistant_File.Definition);
+         Swagger.Servers.Register (Server, API_Delete_Thread.Definition);
+         Swagger.Servers.Register (Server, API_Get_Assistant.Definition);
+         Swagger.Servers.Register (Server, API_Get_Assistant_File.Definition);
+         Swagger.Servers.Register (Server, API_Get_Message.Definition);
+         Swagger.Servers.Register (Server, API_Get_Message_File.Definition);
+         Swagger.Servers.Register (Server, API_Get_Run.Definition);
+         Swagger.Servers.Register (Server, API_Get_Run_Step.Definition);
+         Swagger.Servers.Register (Server, API_Get_Thread.Definition);
+         Swagger.Servers.Register (Server, API_List_Assistant_Files.Definition);
+         Swagger.Servers.Register (Server, API_List_Assistants.Definition);
+         Swagger.Servers.Register (Server, API_List_Message_Files.Definition);
+         Swagger.Servers.Register (Server, API_List_Messages.Definition);
+         Swagger.Servers.Register (Server, API_List_Run_Steps.Definition);
+         Swagger.Servers.Register (Server, API_List_Runs.Definition);
+         Swagger.Servers.Register (Server, API_Modify_Assistant.Definition);
+         Swagger.Servers.Register (Server, API_Modify_Message.Definition);
+         Swagger.Servers.Register (Server, API_Modify_Run.Definition);
+         Swagger.Servers.Register (Server, API_Modify_Thread.Definition);
+         Swagger.Servers.Register (Server, API_Submit_Tool_Ouputs_To_Run.Definition);
+         Swagger.Servers.Register (Server, API_Create_Speech.Definition);
+         Swagger.Servers.Register (Server, API_Create_Transcription.Definition);
+         Swagger.Servers.Register (Server, API_Create_Translation.Definition);
+         Swagger.Servers.Register (Server, API_Create_Chat_Completion.Definition);
+         Swagger.Servers.Register (Server, API_Create_Completion.Definition);
+         Swagger.Servers.Register (Server, API_Create_Embedding.Definition);
+         Swagger.Servers.Register (Server, API_Create_File.Definition);
+         Swagger.Servers.Register (Server, API_Delete_File.Definition);
+         Swagger.Servers.Register (Server, API_Download_File.Definition);
+         Swagger.Servers.Register (Server, API_List_Files.Definition);
+         Swagger.Servers.Register (Server, API_Retrieve_File.Definition);
+         Swagger.Servers.Register (Server, API_Cancel_Fine_Tuning_Job.Definition);
+         Swagger.Servers.Register (Server, API_Create_Fine_Tuning_Job.Definition);
+         Swagger.Servers.Register (Server, API_List_Fine_Tuning_Events.Definition);
+         Swagger.Servers.Register (Server, API_List_Fine_Tuning_Job_Checkpoints.Definition);
+         Swagger.Servers.Register (Server, API_List_Paginated_Fine_Tuning_Jobs.Definition);
+         Swagger.Servers.Register (Server, API_Retrieve_Fine_Tuning_Job.Definition);
+         Swagger.Servers.Register (Server, API_Create_Image.Definition);
+         Swagger.Servers.Register (Server, API_Create_Image_Edit.Definition);
+         Swagger.Servers.Register (Server, API_Create_Image_Variation.Definition);
+         Swagger.Servers.Register (Server, API_Delete_Model.Definition);
+         Swagger.Servers.Register (Server, API_List_Models.Definition);
+         Swagger.Servers.Register (Server, API_Retrieve_Model.Definition);
+         Swagger.Servers.Register (Server, API_Create_Moderation.Definition);
+      end Register;
+
+   end Skeleton;
+
+   package body Shared_Instance is
+
+
+      --  Cancels a run that is `in_progress`.
+      procedure Cancel_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Result : .Models.RunObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Server.Cancel_Run
+            (Thread_Id,
+             Run_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Cancel_Run;
+
+      package API_Cancel_Run is
          new Swagger.Servers.Operation
-            (Handler => Cancel_Fine_Tune,
+            (Handler => Cancel_Run,
              Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/fine-tunes/{fine_tune_id}/cancel",
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}/cancel",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Create an assistant with a model and instructions.
+      procedure Create_Assistant
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Create_Assistant_Request_Type : CreateAssistantRequest_Type;
+         Result : .Models.AssistantObject_Type;
+      begin
+
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "CreateAssistantRequest_Type", Create_Assistant_Request_Type);
+         Server.Create_Assistant
+            (Create_Assistant_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Assistant;
+
+      package API_Create_Assistant is
+         new Swagger.Servers.Operation
+            (Handler => Create_Assistant,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/assistants",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Create an assistant file by attaching a [File](/docs/api_reference/files) to an [assistant](/docs/api_reference/assistants).
+      procedure Create_Assistant_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Assistant_Id : Swagger.UString;
+         Create_Assistant_File_Request_Type : CreateAssistantFileRequest_Type;
+         Result : .Models.AssistantFileObject_Type;
+      begin
+
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "CreateAssistantFileRequest_Type", Create_Assistant_File_Request_Type);
+         Server.Create_Assistant_File
+            (Assistant_Id,
+             Create_Assistant_File_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Assistant_File;
+
+      package API_Create_Assistant_File is
+         new Swagger.Servers.Operation
+            (Handler => Create_Assistant_File,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/assistants/{assistant_id}/files",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Create a message.
+      procedure Create_Message
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Thread_Id : Swagger.UString;
+         Create_Message_Request_Type : CreateMessageRequest_Type;
+         Result : .Models.MessageObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "CreateMessageRequest_Type", Create_Message_Request_Type);
+         Server.Create_Message
+            (Thread_Id,
+             Create_Message_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Message;
+
+      package API_Create_Message is
+         new Swagger.Servers.Operation
+            (Handler => Create_Message,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Create a run.
+      procedure Create_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Thread_Id : Swagger.UString;
+         Create_Run_Request_Type : CreateRunRequest_Type;
+         Result : .Models.RunObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "CreateRunRequest_Type", Create_Run_Request_Type);
+         Server.Create_Run
+            (Thread_Id,
+             Create_Run_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Run;
+
+      package API_Create_Run is
+         new Swagger.Servers.Operation
+            (Handler => Create_Run,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Create a thread.
+      procedure Create_Thread
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Create_Thread_Request_Type : CreateThreadRequest_Type;
+         Result : .Models.ThreadObject_Type;
+      begin
+
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "CreateThreadRequest_Type", Create_Thread_Request_Type);
+         Server.Create_Thread
+            (Create_Thread_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Thread;
+
+      package API_Create_Thread is
+         new Swagger.Servers.Operation
+            (Handler => Create_Thread,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Create a thread and run it in one request.
+      procedure Create_Thread_And_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Create_Thread_And_Run_Request_Type : CreateThreadAndRunRequest_Type;
+         Result : .Models.RunObject_Type;
+      begin
+
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "CreateThreadAndRunRequest_Type", Create_Thread_And_Run_Request_Type);
+         Server.Create_Thread_And_Run
+            (Create_Thread_And_Run_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Thread_And_Run;
+
+      package API_Create_Thread_And_Run is
+         new Swagger.Servers.Operation
+            (Handler => Create_Thread_And_Run,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/runs",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Delete an assistant.
+      procedure Delete_Assistant
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Assistant_Id : Swagger.UString;
+         Result : .Models.DeleteAssistantResponse_Type;
+      begin
+
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.Delete_Assistant
+            (Assistant_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Delete_Assistant;
+
+      package API_Delete_Assistant is
+         new Swagger.Servers.Operation
+            (Handler => Delete_Assistant,
+             Method  => Swagger.Servers.DELETE,
+             URI     => URI_Prefix & "/assistants/{assistant_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Delete an assistant file.
+      procedure Delete_Assistant_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Assistant_Id : Swagger.UString;
+         File_Id : Swagger.UString;
+         Result : .Models.DeleteAssistantFileResponse_Type;
+      begin
+
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Server.Delete_Assistant_File
+            (Assistant_Id,
+             File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Delete_Assistant_File;
+
+      package API_Delete_Assistant_File is
+         new Swagger.Servers.Operation
+            (Handler => Delete_Assistant_File,
+             Method  => Swagger.Servers.DELETE,
+             URI     => URI_Prefix & "/assistants/{assistant_id}/files/{file_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Delete a thread.
+      procedure Delete_Thread
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Result : .Models.DeleteThreadResponse_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.Delete_Thread
+            (Thread_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Delete_Thread;
+
+      package API_Delete_Thread is
+         new Swagger.Servers.Operation
+            (Handler => Delete_Thread,
+             Method  => Swagger.Servers.DELETE,
+             URI     => URI_Prefix & "/threads/{thread_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Retrieves an assistant.
+      procedure Get_Assistant
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Assistant_Id : Swagger.UString;
+         Result : .Models.AssistantObject_Type;
+      begin
+
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.Get_Assistant
+            (Assistant_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Assistant;
+
+      package API_Get_Assistant is
+         new Swagger.Servers.Operation
+            (Handler => Get_Assistant,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/assistants/{assistant_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Retrieves an AssistantFile.
+      procedure Get_Assistant_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Assistant_Id : Swagger.UString;
+         File_Id : Swagger.UString;
+         Result : .Models.AssistantFileObject_Type;
+      begin
+
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Server.Get_Assistant_File
+            (Assistant_Id,
+             File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Assistant_File;
+
+      package API_Get_Assistant_File is
+         new Swagger.Servers.Operation
+            (Handler => Get_Assistant_File,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/assistants/{assistant_id}/files/{file_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Retrieve a message.
+      procedure Get_Message
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Message_Id : Swagger.UString;
+         Result : .Models.MessageObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Message_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Server.Get_Message
+            (Thread_Id,
+             Message_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Message;
+
+      package API_Get_Message is
+         new Swagger.Servers.Operation
+            (Handler => Get_Message,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages/{message_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Retrieves a message file.
+      procedure Get_Message_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Message_Id : Swagger.UString;
+         File_Id : Swagger.UString;
+         Result : .Models.MessageFileObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Message_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 3));
+
+         Server.Get_Message_File
+            (Thread_Id,
+             Message_Id,
+             File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Message_File;
+
+      package API_Get_Message_File is
+         new Swagger.Servers.Operation
+            (Handler => Get_Message_File,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages/{message_id}/files/{file_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Retrieves a run.
+      procedure Get_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Result : .Models.RunObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Server.Get_Run
+            (Thread_Id,
+             Run_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Run;
+
+      package API_Get_Run is
+         new Swagger.Servers.Operation
+            (Handler => Get_Run,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Retrieves a run step.
+      procedure Get_Run_Step
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Step_Id : Swagger.UString;
+         Result : .Models.RunStepObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Step_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 3));
+
+         Server.Get_Run_Step
+            (Thread_Id,
+             Run_Id,
+             Step_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Run_Step;
+
+      package API_Get_Run_Step is
+         new Swagger.Servers.Operation
+            (Handler => Get_Run_Step,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}/steps/{step_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Retrieves a thread.
+      procedure Get_Thread
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Result : .Models.ThreadObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.Get_Thread
+            (Thread_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Get_Thread;
+
+      package API_Get_Thread is
+         new Swagger.Servers.Operation
+            (Handler => Get_Thread,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Returns a list of assistant files.
+      procedure List_Assistant_Files
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Assistant_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListAssistantFilesResponse_Type;
+      begin
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.List_Assistant_Files
+            (Assistant_Id,
+             Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Assistant_Files;
+
+      package API_List_Assistant_Files is
+         new Swagger.Servers.Operation
+            (Handler => List_Assistant_Files,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/assistants/{assistant_id}/files",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Returns a list of assistants.
+      procedure List_Assistants
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListAssistantsResponse_Type;
+      begin
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Server.List_Assistants
+            (Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Assistants;
+
+      package API_List_Assistants is
+         new Swagger.Servers.Operation
+            (Handler => List_Assistants,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/assistants",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Returns a list of message files.
+      procedure List_Message_Files
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Message_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListMessageFilesResponse_Type;
+      begin
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Message_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Server.List_Message_Files
+            (Thread_Id,
+             Message_Id,
+             Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Message_Files;
+
+      package API_List_Message_Files is
+         new Swagger.Servers.Operation
+            (Handler => List_Message_Files,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages/{message_id}/files",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Returns a list of messages for a given thread.
+      procedure List_Messages
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Run_Id : Swagger.Nullable_UString;
+         Result : .Models.ListMessagesResponse_Type;
+      begin
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "run_id"));
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.List_Messages
+            (Thread_Id,
+             Limit,
+             Order,
+             After,
+             Before,
+             Run_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Messages;
+
+      package API_List_Messages is
+         new Swagger.Servers.Operation
+            (Handler => List_Messages,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Returns a list of run steps belonging to a run.
+      procedure List_Run_Steps
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListRunStepsResponse_Type;
+      begin
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Server.List_Run_Steps
+            (Thread_Id,
+             Run_Id,
+             Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Run_Steps;
+
+      package API_List_Run_Steps is
+         new Swagger.Servers.Operation
+            (Handler => List_Run_Steps,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}/steps",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Returns a list of runs belonging to a thread.
+      procedure List_Runs
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Thread_Id : Swagger.UString;
+         Limit : Swagger.Nullable_Integer;
+         Order : Swagger.Nullable_UString;
+         After : Swagger.Nullable_UString;
+         Before : Swagger.Nullable_UString;
+         Result : .Models.ListRunsResponse_Type;
+      begin
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+         Order := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "order"));
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+         Before := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "before"));
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.List_Runs
+            (Thread_Id,
+             Limit,
+             Order,
+             After,
+             Before, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Runs;
+
+      package API_List_Runs is
+         new Swagger.Servers.Operation
+            (Handler => List_Runs,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Modifies an assistant.
+      procedure Modify_Assistant
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Assistant_Id : Swagger.UString;
+         Modify_Assistant_Request_Type : ModifyAssistantRequest_Type;
+         Result : .Models.AssistantObject_Type;
+      begin
+
+         
+         Assistant_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "ModifyAssistantRequest_Type", Modify_Assistant_Request_Type);
+         Server.Modify_Assistant
+            (Assistant_Id,
+             Modify_Assistant_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Modify_Assistant;
+
+      package API_Modify_Assistant is
+         new Swagger.Servers.Operation
+            (Handler => Modify_Assistant,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/assistants/{assistant_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Modifies a message.
+      procedure Modify_Message
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Thread_Id : Swagger.UString;
+         Message_Id : Swagger.UString;
+         Modify_Message_Request_Type : ModifyMessageRequest_Type;
+         Result : .Models.MessageObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Message_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "ModifyMessageRequest_Type", Modify_Message_Request_Type);
+         Server.Modify_Message
+            (Thread_Id,
+             Message_Id,
+             Modify_Message_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Modify_Message;
+
+      package API_Modify_Message is
+         new Swagger.Servers.Operation
+            (Handler => Modify_Message,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/messages/{message_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Modifies a run.
+      procedure Modify_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Modify_Run_Request_Type : ModifyRunRequest_Type;
+         Result : .Models.RunObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "ModifyRunRequest_Type", Modify_Run_Request_Type);
+         Server.Modify_Run
+            (Thread_Id,
+             Run_Id,
+             Modify_Run_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Modify_Run;
+
+      package API_Modify_Run is
+         new Swagger.Servers.Operation
+            (Handler => Modify_Run,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Modifies a thread.
+      procedure Modify_Thread
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Thread_Id : Swagger.UString;
+         Modify_Thread_Request_Type : ModifyThreadRequest_Type;
+         Result : .Models.ThreadObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "ModifyThreadRequest_Type", Modify_Thread_Request_Type);
+         Server.Modify_Thread
+            (Thread_Id,
+             Modify_Thread_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Modify_Thread;
+
+      package API_Modify_Thread is
+         new Swagger.Servers.Operation
+            (Handler => Modify_Thread,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request.
+      procedure Submit_Tool_Ouputs_To_Run
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Thread_Id : Swagger.UString;
+         Run_Id : Swagger.UString;
+         Submit_Tool_Outputs_Run_Request_Type : SubmitToolOutputsRunRequest_Type;
+         Result : .Models.RunObject_Type;
+      begin
+
+         
+         Thread_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Run_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 2));
+
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "SubmitToolOutputsRunRequest_Type", Submit_Tool_Outputs_Run_Request_Type);
+         Server.Submit_Tool_Ouputs_To_Run
+            (Thread_Id,
+             Run_Id,
+             Submit_Tool_Outputs_Run_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Submit_Tool_Ouputs_To_Run;
+
+      package API_Submit_Tool_Ouputs_To_Run is
+         new Swagger.Servers.Operation
+            (Handler => Submit_Tool_Ouputs_To_Run,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Generates audio from the input text.
+      procedure Create_Speech
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Create_Speech_Request_Type : CreateSpeechRequest_Type;
+         Result : Swagger.Blob_Ref;
+      begin
+
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "CreateSpeechRequest_Type", Create_Speech_Request_Type);
+         Server.Create_Speech
+            (Create_Speech_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+            Swagger.Streams.Write (Stream, Result);
+
+
+            return;
+         end if;
+
+      end Create_Speech;
+
+      package API_Create_Speech is
+         new Swagger.Servers.Operation
+            (Handler => Create_Speech,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/audio/speech",
+             Mimes   => Media_List_2'Access);
+
+
+      --  Transcribes audio into the input language.
+      procedure Create_Transcription
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         File : Swagger.File_Part_Type;
+         Model : .Models.CreateTranscriptionRequestModel_Type;
+         Language : Swagger.Nullable_UString;
+         Prompt : Swagger.Nullable_UString;
+         Response_Format : Swagger.Nullable_UString;
+         Temperature : Swagger.Number;
+         Timestamp_Granularities_Left_Square_Bracket_Right_Square_Bracket : Swagger.UString_Vectors.Vector;
+         Result : .Models.CreateTranscription200Response_Type;
+      begin
+
+         
+         Swagger.Servers.Get_Parameter (Context, "file", File);
+         Swagger.Servers.Get_Parameter (Context, "model", Model);
+         Swagger.Servers.Get_Parameter (Context, "language", Language);
+         Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
+         Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
+         Swagger.Servers.Get_Parameter (Context, "temperature", Temperature);
+         Swagger.Servers.Get_Parameter (Context, "timestamp_granularities[]", Timestamp_Granularities_Left_Square_Bracket_Right_Square_Bracket);
+         Server.Create_Transcription
+            (File,
+             Model,
+             Language,
+             Prompt,
+             Response_Format,
+             Temperature,
+             Timestamp_Granularities_Left_Square_Bracket_Right_Square_Bracket, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Transcription;
+
+      package API_Create_Transcription is
+         new Swagger.Servers.Operation
+            (Handler => Create_Transcription,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/audio/transcriptions",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Translates audio into English.
+      procedure Create_Translation
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         File : Swagger.File_Part_Type;
+         Model : .Models.CreateTranscriptionRequestModel_Type;
+         Prompt : Swagger.Nullable_UString;
+         Response_Format : Swagger.Nullable_UString;
+         Temperature : Swagger.Number;
+         Result : .Models.CreateTranslation200Response_Type;
+      begin
+
+         
+         Swagger.Servers.Get_Parameter (Context, "file", File);
+         Swagger.Servers.Get_Parameter (Context, "model", Model);
+         Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
+         Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
+         Swagger.Servers.Get_Parameter (Context, "temperature", Temperature);
+         Server.Create_Translation
+            (File,
+             Model,
+             Prompt,
+             Response_Format,
+             Temperature, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Translation;
+
+      package API_Create_Translation is
+         new Swagger.Servers.Operation
+            (Handler => Create_Translation,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/audio/translations",
              Mimes   => Media_List_1'Access);
 
 
@@ -1036,42 +3565,6 @@ package body .Skeletons is
              Mimes   => Media_List_1'Access);
 
 
-      --  Creates a new edit for the provided input, instruction, and parameters.
-      procedure Create_Edit
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Input   : Swagger.Value_Type;
-         Create_Edit_Request_Type : CreateEditRequest_Type;
-         Result : .Models.CreateEditResponse_Type;
-      begin
-
-         
-         Swagger.Servers.Read (Req, Media_List_1, Input);
-         
-         .Models.Deserialize (Input, "CreateEditRequest_Type", Create_Edit_Request_Type);
-         Server.Create_Edit
-            (Create_Edit_Request_Type, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Create_Edit;
-
-      package API_Create_Edit is
-         new Swagger.Servers.Operation
-            (Handler => Create_Edit,
-             Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/edits",
-             Mimes   => Media_List_1'Access);
-
-
       --  Creates an embedding vector representing the input text.
       procedure Create_Embedding
          (Req     : in out Swagger.Servers.Request'Class;
@@ -1108,7 +3601,7 @@ package body .Skeletons is
              Mimes   => Media_List_1'Access);
 
 
-      --  Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit.
+      --  Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine_tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
       procedure Create_File
          (Req     : in out Swagger.Servers.Request'Class;
           Reply   : in out Swagger.Servers.Response'Class;
@@ -1144,23 +3637,21 @@ package body .Skeletons is
              Mimes   => Media_List_1'Access);
 
 
-      --  Creates a job that fine_tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine_tuned models once complete.  [Learn more about Fine_tuning](/docs/guides/fine_tuning)
-      procedure Create_Fine_Tune
+      --  Delete a file.
+      procedure Delete_File
          (Req     : in out Swagger.Servers.Request'Class;
           Reply   : in out Swagger.Servers.Response'Class;
           Stream  : in out Swagger.Servers.Output_Stream'Class;
           Context : in out Swagger.Servers.Context_Type) is
-         Input   : Swagger.Value_Type;
-         Create_Fine_Tune_Request_Type : CreateFineTuneRequest_Type;
-         Result : .Models.FineTune_Type;
+         File_Id : Swagger.UString;
+         Result : .Models.DeleteFileResponse_Type;
       begin
 
          
-         Swagger.Servers.Read (Req, Media_List_1, Input);
-         
-         .Models.Deserialize (Input, "CreateFineTuneRequest_Type", Create_Fine_Tune_Request_Type);
-         Server.Create_Fine_Tune
-            (Create_Fine_Tune_Request_Type, Result, Context);
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.Delete_File
+            (File_Id, Result, Context);
          if Context.Get_Status = 200 then
             Context.Set_Description ("OK");
 
@@ -1170,13 +3661,336 @@ package body .Skeletons is
             return;
          end if;
 
-      end Create_Fine_Tune;
+      end Delete_File;
 
-      package API_Create_Fine_Tune is
+      package API_Delete_File is
          new Swagger.Servers.Operation
-            (Handler => Create_Fine_Tune,
+            (Handler => Delete_File,
+             Method  => Swagger.Servers.DELETE,
+             URI     => URI_Prefix & "/files/{file_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Returns the contents of the specified file.
+      procedure Download_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         File_Id : Swagger.UString;
+         Result : Swagger.UString;
+      begin
+
+         
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.Download_File
+            (File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            if not Value..Is_Null then
+               Stream.Write_Entity ("", Result);
+            end if;
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Download_File;
+
+      package API_Download_File is
+         new Swagger.Servers.Operation
+            (Handler => Download_File,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/files/{file_id}/content",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Returns a list of files that belong to the user's organization.
+      procedure List_Files
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Purpose : Swagger.Nullable_UString;
+         Result : .Models.ListFilesResponse_Type;
+      begin
+         Purpose := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "purpose"));
+
+         
+         Server.List_Files
+            (Purpose, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Files;
+
+      package API_List_Files is
+         new Swagger.Servers.Operation
+            (Handler => List_Files,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/files",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Returns information about a specific file.
+      procedure Retrieve_File
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         File_Id : Swagger.UString;
+         Result : .Models.OpenAIFile_Type;
+      begin
+
+         
+         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.Retrieve_File
+            (File_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Retrieve_File;
+
+      package API_Retrieve_File is
+         new Swagger.Servers.Operation
+            (Handler => Retrieve_File,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/files/{file_id}",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Immediately cancel a fine_tune job.
+      procedure Cancel_Fine_Tuning_Job
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Fine_Tuning_Job_Id : Swagger.UString;
+         Result : .Models.FineTuningJob_Type;
+      begin
+
+         
+         Fine_Tuning_Job_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.Cancel_Fine_Tuning_Job
+            (Fine_Tuning_Job_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Cancel_Fine_Tuning_Job;
+
+      package API_Cancel_Fine_Tuning_Job is
+         new Swagger.Servers.Operation
+            (Handler => Cancel_Fine_Tuning_Job,
              Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/fine-tunes",
+             URI     => URI_Prefix & "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Creates a fine_tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine_tuned models once complete.  [Learn more about fine_tuning](/docs/guides/fine_tuning)
+      procedure Create_Fine_Tuning_Job
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Create_Fine_Tuning_Job_Request_Type : CreateFineTuningJobRequest_Type;
+         Result : .Models.FineTuningJob_Type;
+      begin
+
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "CreateFineTuningJobRequest_Type", Create_Fine_Tuning_Job_Request_Type);
+         Server.Create_Fine_Tuning_Job
+            (Create_Fine_Tuning_Job_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Fine_Tuning_Job;
+
+      package API_Create_Fine_Tuning_Job is
+         new Swagger.Servers.Operation
+            (Handler => Create_Fine_Tuning_Job,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/fine_tuning/jobs",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Get status updates for a fine_tuning job.
+      procedure List_Fine_Tuning_Events
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Fine_Tuning_Job_Id : Swagger.UString;
+         After : Swagger.Nullable_UString;
+         Limit : Swagger.Nullable_Integer;
+         Result : .Models.ListFineTuningJobEventsResponse_Type;
+      begin
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         
+         Fine_Tuning_Job_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.List_Fine_Tuning_Events
+            (Fine_Tuning_Job_Id,
+             After,
+             Limit, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Fine_Tuning_Events;
+
+      package API_List_Fine_Tuning_Events is
+         new Swagger.Servers.Operation
+            (Handler => List_Fine_Tuning_Events,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/fine_tuning/jobs/{fine_tuning_job_id}/events",
+             Mimes   => Media_List_1'Access);
+
+
+      --  List checkpoints for a fine_tuning job.
+      procedure List_Fine_Tuning_Job_Checkpoints
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Fine_Tuning_Job_Id : Swagger.UString;
+         After : Swagger.Nullable_UString;
+         Limit : Swagger.Nullable_Integer;
+         Result : .Models.ListFineTuningJobCheckpointsResponse_Type;
+      begin
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         
+         Fine_Tuning_Job_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.List_Fine_Tuning_Job_Checkpoints
+            (Fine_Tuning_Job_Id,
+             After,
+             Limit, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Fine_Tuning_Job_Checkpoints;
+
+      package API_List_Fine_Tuning_Job_Checkpoints is
+         new Swagger.Servers.Operation
+            (Handler => List_Fine_Tuning_Job_Checkpoints,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints",
+             Mimes   => Media_List_1'Access);
+
+
+      --  List your organization's fine_tuning jobs
+      procedure List_Paginated_Fine_Tuning_Jobs
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         After : Swagger.Nullable_UString;
+         Limit : Swagger.Nullable_Integer;
+         Result : .Models.ListPaginatedFineTuningJobsResponse_Type;
+      begin
+         After := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "after"));
+         Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
+
+         
+         Server.List_Paginated_Fine_Tuning_Jobs
+            (After,
+             Limit, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end List_Paginated_Fine_Tuning_Jobs;
+
+      package API_List_Paginated_Fine_Tuning_Jobs is
+         new Swagger.Servers.Operation
+            (Handler => List_Paginated_Fine_Tuning_Jobs,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/fine_tuning/jobs",
+             Mimes   => Media_List_1'Access);
+
+
+      --  Get info about a fine_tuning job.  [Learn more about fine_tuning](/docs/guides/fine_tuning)
+      procedure Retrieve_Fine_Tuning_Job
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Fine_Tuning_Job_Id : Swagger.UString;
+         Result : .Models.FineTuningJob_Type;
+      begin
+
+         
+         Fine_Tuning_Job_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
+
+         Server.Retrieve_Fine_Tuning_Job
+            (Fine_Tuning_Job_Id, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Retrieve_Fine_Tuning_Job;
+
+      package API_Retrieve_Fine_Tuning_Job is
+         new Swagger.Servers.Operation
+            (Handler => Retrieve_Fine_Tuning_Job,
+             Method  => Swagger.Servers.GET,
+             URI     => URI_Prefix & "/fine_tuning/jobs/{fine_tuning_job_id}",
              Mimes   => Media_List_1'Access);
 
 
@@ -1225,6 +4039,7 @@ package body .Skeletons is
          Image : Swagger.File_Part_Type;
          Prompt : Swagger.UString;
          Mask : Swagger.File_Part_Type;
+         Model : .Models.CreateImageEditRequestModel_Type;
          N : Swagger.Nullable_Integer;
          Size : Swagger.Nullable_UString;
          Response_Format : Swagger.Nullable_UString;
@@ -1234,8 +4049,9 @@ package body .Skeletons is
 
          
          Swagger.Servers.Get_Parameter (Context, "image", Image);
-         Swagger.Servers.Get_Parameter (Context, "mask", Mask);
          Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
+         Swagger.Servers.Get_Parameter (Context, "mask", Mask);
+         Swagger.Servers.Get_Parameter (Context, "model", Model);
          Swagger.Servers.Get_Parameter (Context, "n", N);
          Swagger.Servers.Get_Parameter (Context, "size", Size);
          Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
@@ -1244,6 +4060,7 @@ package body .Skeletons is
             (Image,
              Prompt,
              Mask,
+             Model,
              N,
              Size,
              Response_Format,
@@ -1274,24 +4091,27 @@ package body .Skeletons is
           Stream  : in out Swagger.Servers.Output_Stream'Class;
           Context : in out Swagger.Servers.Context_Type) is
          Image : Swagger.File_Part_Type;
+         Model : .Models.CreateImageEditRequestModel_Type;
          N : Swagger.Nullable_Integer;
-         Size : Swagger.Nullable_UString;
          Response_Format : Swagger.Nullable_UString;
+         Size : Swagger.Nullable_UString;
          User : Swagger.Nullable_UString;
          Result : .Models.ImagesResponse_Type;
       begin
 
          
          Swagger.Servers.Get_Parameter (Context, "image", Image);
+         Swagger.Servers.Get_Parameter (Context, "model", Model);
          Swagger.Servers.Get_Parameter (Context, "n", N);
-         Swagger.Servers.Get_Parameter (Context, "size", Size);
          Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
+         Swagger.Servers.Get_Parameter (Context, "size", Size);
          Swagger.Servers.Get_Parameter (Context, "user", User);
          Server.Create_Image_Variation
             (Image,
+             Model,
              N,
-             Size,
              Response_Format,
+             Size,
              User, Result, Context);
          if Context.Get_Status = 200 then
             Context.Set_Description ("OK");
@@ -1312,170 +4132,7 @@ package body .Skeletons is
              Mimes   => Media_List_1'Access);
 
 
-      --  Classifies if text violates OpenAI's Content Policy
-      procedure Create_Moderation
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Input   : Swagger.Value_Type;
-         Create_Moderation_Request_Type : CreateModerationRequest_Type;
-         Result : .Models.CreateModerationResponse_Type;
-      begin
-
-         
-         Swagger.Servers.Read (Req, Media_List_1, Input);
-         
-         .Models.Deserialize (Input, "CreateModerationRequest_Type", Create_Moderation_Request_Type);
-         Server.Create_Moderation
-            (Create_Moderation_Request_Type, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Create_Moderation;
-
-      package API_Create_Moderation is
-         new Swagger.Servers.Operation
-            (Handler => Create_Moderation,
-             Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/moderations",
-             Mimes   => Media_List_1'Access);
-
-
-      --  Transcribes audio into the input language.
-      procedure Create_Transcription
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         File : Swagger.File_Part_Type;
-         Model : .Models.CreateTranscriptionRequestModel_Type;
-         Prompt : Swagger.Nullable_UString;
-         Response_Format : Swagger.Nullable_UString;
-         Temperature : Swagger.Number;
-         Language : Swagger.Nullable_UString;
-         Result : .Models.CreateTranscriptionResponse_Type;
-      begin
-
-         
-         Swagger.Servers.Get_Parameter (Context, "file", File);
-         Swagger.Servers.Get_Parameter (Context, "model", Model);
-         Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
-         Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
-         Swagger.Servers.Get_Parameter (Context, "temperature", Temperature);
-         Swagger.Servers.Get_Parameter (Context, "language", Language);
-         Server.Create_Transcription
-            (File,
-             Model,
-             Prompt,
-             Response_Format,
-             Temperature,
-             Language, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Create_Transcription;
-
-      package API_Create_Transcription is
-         new Swagger.Servers.Operation
-            (Handler => Create_Transcription,
-             Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/audio/transcriptions",
-             Mimes   => Media_List_1'Access);
-
-
-      --  Translates audio into English.
-      procedure Create_Translation
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         File : Swagger.File_Part_Type;
-         Model : .Models.CreateTranscriptionRequestModel_Type;
-         Prompt : Swagger.Nullable_UString;
-         Response_Format : Swagger.Nullable_UString;
-         Temperature : Swagger.Number;
-         Result : .Models.CreateTranslationResponse_Type;
-      begin
-
-         
-         Swagger.Servers.Get_Parameter (Context, "file", File);
-         Swagger.Servers.Get_Parameter (Context, "model", Model);
-         Swagger.Servers.Get_Parameter (Context, "prompt", Prompt);
-         Swagger.Servers.Get_Parameter (Context, "response_format", Response_Format);
-         Swagger.Servers.Get_Parameter (Context, "temperature", Temperature);
-         Server.Create_Translation
-            (File,
-             Model,
-             Prompt,
-             Response_Format,
-             Temperature, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Create_Translation;
-
-      package API_Create_Translation is
-         new Swagger.Servers.Operation
-            (Handler => Create_Translation,
-             Method  => Swagger.Servers.POST,
-             URI     => URI_Prefix & "/audio/translations",
-             Mimes   => Media_List_1'Access);
-
-
-      --  Delete a file.
-      procedure Delete_File
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         File_Id : Swagger.UString;
-         Result : .Models.DeleteFileResponse_Type;
-      begin
-
-         
-         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Server.Delete_File
-            (File_Id, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Delete_File;
-
-      package API_Delete_File is
-         new Swagger.Servers.Operation
-            (Handler => Delete_File,
-             Method  => Swagger.Servers.DELETE,
-             URI     => URI_Prefix & "/files/{file_id}",
-             Mimes   => Media_List_1'Access);
-
-
-      --  Delete a fine_tuned model. You must have the Owner role in your organization.
+      --  Delete a fine_tuned model. You must have the Owner role in your organization to delete a model.
       procedure Delete_Model
          (Req     : in out Swagger.Servers.Request'Class;
           Reply   : in out Swagger.Servers.Response'Class;
@@ -1509,139 +4166,6 @@ package body .Skeletons is
              Mimes   => Media_List_1'Access);
 
 
-      --  Returns the contents of the specified file
-      procedure Download_File
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         File_Id : Swagger.UString;
-         Result : Swagger.UString;
-      begin
-
-         
-         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Server.Download_File
-            (File_Id, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            if not Value..Is_Null then
-               Stream.Write_Entity ("", Result);
-            end if;
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Download_File;
-
-      package API_Download_File is
-         new Swagger.Servers.Operation
-            (Handler => Download_File,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/files/{file_id}/content",
-             Mimes   => Media_List_1'Access);
-
-
-      --  Returns a list of files that belong to the user's organization.
-      procedure List_Files
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Result : .Models.ListFilesResponse_Type;
-      begin
-
-         
-         Server.List_Files (Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end List_Files;
-
-      package API_List_Files is
-         new Swagger.Servers.Operation
-            (Handler => List_Files,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/files",
-             Mimes   => Media_List_1'Access);
-
-
-      --  Get fine_grained status updates for a fine_tune job.
-      procedure List_Fine_Tune_Events
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Fine_Tune_Id : Swagger.UString;
-         Stream : Swagger.Nullable_Boolean;
-         Result : .Models.ListFineTuneEventsResponse_Type;
-      begin
-         Stream := To_Boolean (Swagger.Servers.Get_Query_Parameter (Req, "stream"));
-
-         
-         Fine_Tune_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Server.List_Fine_Tune_Events
-            (Fine_Tune_Id,
-             Stream, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end List_Fine_Tune_Events;
-
-      package API_List_Fine_Tune_Events is
-         new Swagger.Servers.Operation
-            (Handler => List_Fine_Tune_Events,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/fine-tunes/{fine_tune_id}/events",
-             Mimes   => Media_List_1'Access);
-
-
-      --  List your organization's fine_tuning jobs
-      procedure List_Fine_Tunes
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Result : .Models.ListFineTunesResponse_Type;
-      begin
-
-         
-         Server.List_Fine_Tunes (Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end List_Fine_Tunes;
-
-      package API_List_Fine_Tunes is
-         new Swagger.Servers.Operation
-            (Handler => List_Fine_Tunes,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/fine-tunes",
-             Mimes   => Media_List_1'Access);
-
-
       --  Lists the currently available models, and provides basic information about each one such as the owner and availability.
       procedure List_Models
          (Req     : in out Swagger.Servers.Request'Class;
@@ -1669,74 +4193,6 @@ package body .Skeletons is
             (Handler => List_Models,
              Method  => Swagger.Servers.GET,
              URI     => URI_Prefix & "/models",
-             Mimes   => Media_List_1'Access);
-
-
-      --  Returns information about a specific file.
-      procedure Retrieve_File
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         File_Id : Swagger.UString;
-         Result : .Models.OpenAIFile_Type;
-      begin
-
-         
-         File_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Server.Retrieve_File
-            (File_Id, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Retrieve_File;
-
-      package API_Retrieve_File is
-         new Swagger.Servers.Operation
-            (Handler => Retrieve_File,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/files/{file_id}",
-             Mimes   => Media_List_1'Access);
-
-
-      --  Gets info about the fine_tune job.  [Learn more about Fine_tuning](/docs/guides/fine_tuning)
-      procedure Retrieve_Fine_Tune
-         (Req     : in out Swagger.Servers.Request'Class;
-          Reply   : in out Swagger.Servers.Response'Class;
-          Stream  : in out Swagger.Servers.Output_Stream'Class;
-          Context : in out Swagger.Servers.Context_Type) is
-         Fine_Tune_Id : Swagger.UString;
-         Result : .Models.FineTune_Type;
-      begin
-
-         
-         Fine_Tune_Id := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
-
-         Server.Retrieve_Fine_Tune
-            (Fine_Tune_Id, Result, Context);
-         if Context.Get_Status = 200 then
-            Context.Set_Description ("OK");
-
-            Stream.Start_Document;
-            Serialize (Stream, "", Result);
-            Stream.End_Document;
-            return;
-         end if;
-
-      end Retrieve_Fine_Tune;
-
-      package API_Retrieve_Fine_Tune is
-         new Swagger.Servers.Operation
-            (Handler => Retrieve_Fine_Tune,
-             Method  => Swagger.Servers.GET,
-             URI     => URI_Prefix & "/fine-tunes/{fine_tune_id}",
              Mimes   => Media_List_1'Access);
 
 
@@ -1774,45 +4230,582 @@ package body .Skeletons is
              Mimes   => Media_List_1'Access);
 
 
+      --  Classifies if text is potentially harmful.
+      procedure Create_Moderation
+         (Req     : in out Swagger.Servers.Request'Class;
+          Reply   : in out Swagger.Servers.Response'Class;
+          Stream  : in out Swagger.Servers.Output_Stream'Class;
+          Context : in out Swagger.Servers.Context_Type) is
+         Input   : Swagger.Value_Type;
+         Create_Moderation_Request_Type : CreateModerationRequest_Type;
+         Result : .Models.CreateModerationResponse_Type;
+      begin
+
+         
+         Swagger.Servers.Read (Req, Media_List_1, Input);
+         
+         .Models.Deserialize (Input, "CreateModerationRequest_Type", Create_Moderation_Request_Type);
+         Server.Create_Moderation
+            (Create_Moderation_Request_Type, Result, Context);
+         if Context.Get_Status = 200 then
+            Context.Set_Description ("OK");
+
+            Stream.Start_Document;
+            Serialize (Stream, "", Result);
+            Stream.End_Document;
+            return;
+         end if;
+
+      end Create_Moderation;
+
+      package API_Create_Moderation is
+         new Swagger.Servers.Operation
+            (Handler => Create_Moderation,
+             Method  => Swagger.Servers.POST,
+             URI     => URI_Prefix & "/moderations",
+             Mimes   => Media_List_1'Access);
+
+
       procedure Register (Server : in out Swagger.Servers.Application_Type'Class) is
       begin
-         Swagger.Servers.Register (Server, API_Cancel_Fine_Tune.Definition);
+         Swagger.Servers.Register (Server, API_Cancel_Run.Definition);
+         Swagger.Servers.Register (Server, API_Create_Assistant.Definition);
+         Swagger.Servers.Register (Server, API_Create_Assistant_File.Definition);
+         Swagger.Servers.Register (Server, API_Create_Message.Definition);
+         Swagger.Servers.Register (Server, API_Create_Run.Definition);
+         Swagger.Servers.Register (Server, API_Create_Thread.Definition);
+         Swagger.Servers.Register (Server, API_Create_Thread_And_Run.Definition);
+         Swagger.Servers.Register (Server, API_Delete_Assistant.Definition);
+         Swagger.Servers.Register (Server, API_Delete_Assistant_File.Definition);
+         Swagger.Servers.Register (Server, API_Delete_Thread.Definition);
+         Swagger.Servers.Register (Server, API_Get_Assistant.Definition);
+         Swagger.Servers.Register (Server, API_Get_Assistant_File.Definition);
+         Swagger.Servers.Register (Server, API_Get_Message.Definition);
+         Swagger.Servers.Register (Server, API_Get_Message_File.Definition);
+         Swagger.Servers.Register (Server, API_Get_Run.Definition);
+         Swagger.Servers.Register (Server, API_Get_Run_Step.Definition);
+         Swagger.Servers.Register (Server, API_Get_Thread.Definition);
+         Swagger.Servers.Register (Server, API_List_Assistant_Files.Definition);
+         Swagger.Servers.Register (Server, API_List_Assistants.Definition);
+         Swagger.Servers.Register (Server, API_List_Message_Files.Definition);
+         Swagger.Servers.Register (Server, API_List_Messages.Definition);
+         Swagger.Servers.Register (Server, API_List_Run_Steps.Definition);
+         Swagger.Servers.Register (Server, API_List_Runs.Definition);
+         Swagger.Servers.Register (Server, API_Modify_Assistant.Definition);
+         Swagger.Servers.Register (Server, API_Modify_Message.Definition);
+         Swagger.Servers.Register (Server, API_Modify_Run.Definition);
+         Swagger.Servers.Register (Server, API_Modify_Thread.Definition);
+         Swagger.Servers.Register (Server, API_Submit_Tool_Ouputs_To_Run.Definition);
+         Swagger.Servers.Register (Server, API_Create_Speech.Definition);
+         Swagger.Servers.Register (Server, API_Create_Transcription.Definition);
+         Swagger.Servers.Register (Server, API_Create_Translation.Definition);
          Swagger.Servers.Register (Server, API_Create_Chat_Completion.Definition);
          Swagger.Servers.Register (Server, API_Create_Completion.Definition);
-         Swagger.Servers.Register (Server, API_Create_Edit.Definition);
          Swagger.Servers.Register (Server, API_Create_Embedding.Definition);
          Swagger.Servers.Register (Server, API_Create_File.Definition);
-         Swagger.Servers.Register (Server, API_Create_Fine_Tune.Definition);
+         Swagger.Servers.Register (Server, API_Delete_File.Definition);
+         Swagger.Servers.Register (Server, API_Download_File.Definition);
+         Swagger.Servers.Register (Server, API_List_Files.Definition);
+         Swagger.Servers.Register (Server, API_Retrieve_File.Definition);
+         Swagger.Servers.Register (Server, API_Cancel_Fine_Tuning_Job.Definition);
+         Swagger.Servers.Register (Server, API_Create_Fine_Tuning_Job.Definition);
+         Swagger.Servers.Register (Server, API_List_Fine_Tuning_Events.Definition);
+         Swagger.Servers.Register (Server, API_List_Fine_Tuning_Job_Checkpoints.Definition);
+         Swagger.Servers.Register (Server, API_List_Paginated_Fine_Tuning_Jobs.Definition);
+         Swagger.Servers.Register (Server, API_Retrieve_Fine_Tuning_Job.Definition);
          Swagger.Servers.Register (Server, API_Create_Image.Definition);
          Swagger.Servers.Register (Server, API_Create_Image_Edit.Definition);
          Swagger.Servers.Register (Server, API_Create_Image_Variation.Definition);
-         Swagger.Servers.Register (Server, API_Create_Moderation.Definition);
-         Swagger.Servers.Register (Server, API_Create_Transcription.Definition);
-         Swagger.Servers.Register (Server, API_Create_Translation.Definition);
-         Swagger.Servers.Register (Server, API_Delete_File.Definition);
          Swagger.Servers.Register (Server, API_Delete_Model.Definition);
-         Swagger.Servers.Register (Server, API_Download_File.Definition);
-         Swagger.Servers.Register (Server, API_List_Files.Definition);
-         Swagger.Servers.Register (Server, API_List_Fine_Tune_Events.Definition);
-         Swagger.Servers.Register (Server, API_List_Fine_Tunes.Definition);
          Swagger.Servers.Register (Server, API_List_Models.Definition);
-         Swagger.Servers.Register (Server, API_Retrieve_File.Definition);
-         Swagger.Servers.Register (Server, API_Retrieve_Fine_Tune.Definition);
          Swagger.Servers.Register (Server, API_Retrieve_Model.Definition);
+         Swagger.Servers.Register (Server, API_Create_Moderation.Definition);
       end Register;
 
       protected body Server is
-         --  Immediately cancel a fine_tune job.
-         procedure Cancel_Fine_Tune
-            (Fine_Tune_Id : in Swagger.UString;
-             Result : out .Models.FineTune_Type;
+         --  Cancels a run that is `in_progress`.
+         procedure Cancel_Run
+            (Thread_Id : in Swagger.UString;
+             Run_Id : in Swagger.UString;
+             Result : out .Models.RunObject_Type;
              Context : in out Swagger.Servers.Context_Type) is
          begin
-            Impl.Cancel_Fine_Tune
-               (Fine_Tune_Id,
+            Impl.Cancel_Run
+               (Thread_Id,
+                Run_Id,
                 Result,
                 Context);
-         end Cancel_Fine_Tune;
+         end Cancel_Run;
+
+         --  Create an assistant with a model and instructions.
+         procedure Create_Assistant
+            (Create_Assistant_Request_Type : in CreateAssistantRequest_Type;
+             Result : out .Models.AssistantObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Assistant
+               (Create_Assistant_Request_Type,
+                Result,
+                Context);
+         end Create_Assistant;
+
+         --  Create an assistant file by attaching a [File](/docs/api_reference/files) to an [assistant](/docs/api_reference/assistants).
+         procedure Create_Assistant_File
+            (Assistant_Id : in Swagger.UString;
+             Create_Assistant_File_Request_Type : in CreateAssistantFileRequest_Type;
+             Result : out .Models.AssistantFileObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Assistant_File
+               (Assistant_Id,
+                Create_Assistant_File_Request_Type,
+                Result,
+                Context);
+         end Create_Assistant_File;
+
+         --  Create a message.
+         procedure Create_Message
+            (Thread_Id : in Swagger.UString;
+             Create_Message_Request_Type : in CreateMessageRequest_Type;
+             Result : out .Models.MessageObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Message
+               (Thread_Id,
+                Create_Message_Request_Type,
+                Result,
+                Context);
+         end Create_Message;
+
+         --  Create a run.
+         procedure Create_Run
+            (Thread_Id : in Swagger.UString;
+             Create_Run_Request_Type : in CreateRunRequest_Type;
+             Result : out .Models.RunObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Run
+               (Thread_Id,
+                Create_Run_Request_Type,
+                Result,
+                Context);
+         end Create_Run;
+
+         --  Create a thread.
+         procedure Create_Thread
+            (Create_Thread_Request_Type : in CreateThreadRequest_Type;
+             Result : out .Models.ThreadObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Thread
+               (Create_Thread_Request_Type,
+                Result,
+                Context);
+         end Create_Thread;
+
+         --  Create a thread and run it in one request.
+         procedure Create_Thread_And_Run
+            (Create_Thread_And_Run_Request_Type : in CreateThreadAndRunRequest_Type;
+             Result : out .Models.RunObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Thread_And_Run
+               (Create_Thread_And_Run_Request_Type,
+                Result,
+                Context);
+         end Create_Thread_And_Run;
+
+         --  Delete an assistant.
+         procedure Delete_Assistant
+            (Assistant_Id : in Swagger.UString;
+             Result : out .Models.DeleteAssistantResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Delete_Assistant
+               (Assistant_Id,
+                Result,
+                Context);
+         end Delete_Assistant;
+
+         --  Delete an assistant file.
+         procedure Delete_Assistant_File
+            (Assistant_Id : in Swagger.UString;
+             File_Id : in Swagger.UString;
+             Result : out .Models.DeleteAssistantFileResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Delete_Assistant_File
+               (Assistant_Id,
+                File_Id,
+                Result,
+                Context);
+         end Delete_Assistant_File;
+
+         --  Delete a thread.
+         procedure Delete_Thread
+            (Thread_Id : in Swagger.UString;
+             Result : out .Models.DeleteThreadResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Delete_Thread
+               (Thread_Id,
+                Result,
+                Context);
+         end Delete_Thread;
+
+         --  Retrieves an assistant.
+         procedure Get_Assistant
+            (Assistant_Id : in Swagger.UString;
+             Result : out .Models.AssistantObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Get_Assistant
+               (Assistant_Id,
+                Result,
+                Context);
+         end Get_Assistant;
+
+         --  Retrieves an AssistantFile.
+         procedure Get_Assistant_File
+            (Assistant_Id : in Swagger.UString;
+             File_Id : in Swagger.UString;
+             Result : out .Models.AssistantFileObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Get_Assistant_File
+               (Assistant_Id,
+                File_Id,
+                Result,
+                Context);
+         end Get_Assistant_File;
+
+         --  Retrieve a message.
+         procedure Get_Message
+            (Thread_Id : in Swagger.UString;
+             Message_Id : in Swagger.UString;
+             Result : out .Models.MessageObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Get_Message
+               (Thread_Id,
+                Message_Id,
+                Result,
+                Context);
+         end Get_Message;
+
+         --  Retrieves a message file.
+         procedure Get_Message_File
+            (Thread_Id : in Swagger.UString;
+             Message_Id : in Swagger.UString;
+             File_Id : in Swagger.UString;
+             Result : out .Models.MessageFileObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Get_Message_File
+               (Thread_Id,
+                Message_Id,
+                File_Id,
+                Result,
+                Context);
+         end Get_Message_File;
+
+         --  Retrieves a run.
+         procedure Get_Run
+            (Thread_Id : in Swagger.UString;
+             Run_Id : in Swagger.UString;
+             Result : out .Models.RunObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Get_Run
+               (Thread_Id,
+                Run_Id,
+                Result,
+                Context);
+         end Get_Run;
+
+         --  Retrieves a run step.
+         procedure Get_Run_Step
+            (Thread_Id : in Swagger.UString;
+             Run_Id : in Swagger.UString;
+             Step_Id : in Swagger.UString;
+             Result : out .Models.RunStepObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Get_Run_Step
+               (Thread_Id,
+                Run_Id,
+                Step_Id,
+                Result,
+                Context);
+         end Get_Run_Step;
+
+         --  Retrieves a thread.
+         procedure Get_Thread
+            (Thread_Id : in Swagger.UString;
+             Result : out .Models.ThreadObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Get_Thread
+               (Thread_Id,
+                Result,
+                Context);
+         end Get_Thread;
+
+         --  Returns a list of assistant files.
+         procedure List_Assistant_Files
+            (Assistant_Id : in Swagger.UString;
+             Limit : in Swagger.Nullable_Integer;
+             Order : in Swagger.Nullable_UString;
+             After : in Swagger.Nullable_UString;
+             Before : in Swagger.Nullable_UString;
+             Result : out .Models.ListAssistantFilesResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Assistant_Files
+               (Assistant_Id,
+                Limit,
+                Order,
+                After,
+                Before,
+                Result,
+                Context);
+         end List_Assistant_Files;
+
+         --  Returns a list of assistants.
+         procedure List_Assistants
+            (Limit : in Swagger.Nullable_Integer;
+             Order : in Swagger.Nullable_UString;
+             After : in Swagger.Nullable_UString;
+             Before : in Swagger.Nullable_UString;
+             Result : out .Models.ListAssistantsResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Assistants
+               (Limit,
+                Order,
+                After,
+                Before,
+                Result,
+                Context);
+         end List_Assistants;
+
+         --  Returns a list of message files.
+         procedure List_Message_Files
+            (Thread_Id : in Swagger.UString;
+             Message_Id : in Swagger.UString;
+             Limit : in Swagger.Nullable_Integer;
+             Order : in Swagger.Nullable_UString;
+             After : in Swagger.Nullable_UString;
+             Before : in Swagger.Nullable_UString;
+             Result : out .Models.ListMessageFilesResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Message_Files
+               (Thread_Id,
+                Message_Id,
+                Limit,
+                Order,
+                After,
+                Before,
+                Result,
+                Context);
+         end List_Message_Files;
+
+         --  Returns a list of messages for a given thread.
+         procedure List_Messages
+            (Thread_Id : in Swagger.UString;
+             Limit : in Swagger.Nullable_Integer;
+             Order : in Swagger.Nullable_UString;
+             After : in Swagger.Nullable_UString;
+             Before : in Swagger.Nullable_UString;
+             Run_Id : in Swagger.Nullable_UString;
+             Result : out .Models.ListMessagesResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Messages
+               (Thread_Id,
+                Limit,
+                Order,
+                After,
+                Before,
+                Run_Id,
+                Result,
+                Context);
+         end List_Messages;
+
+         --  Returns a list of run steps belonging to a run.
+         procedure List_Run_Steps
+            (Thread_Id : in Swagger.UString;
+             Run_Id : in Swagger.UString;
+             Limit : in Swagger.Nullable_Integer;
+             Order : in Swagger.Nullable_UString;
+             After : in Swagger.Nullable_UString;
+             Before : in Swagger.Nullable_UString;
+             Result : out .Models.ListRunStepsResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Run_Steps
+               (Thread_Id,
+                Run_Id,
+                Limit,
+                Order,
+                After,
+                Before,
+                Result,
+                Context);
+         end List_Run_Steps;
+
+         --  Returns a list of runs belonging to a thread.
+         procedure List_Runs
+            (Thread_Id : in Swagger.UString;
+             Limit : in Swagger.Nullable_Integer;
+             Order : in Swagger.Nullable_UString;
+             After : in Swagger.Nullable_UString;
+             Before : in Swagger.Nullable_UString;
+             Result : out .Models.ListRunsResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Runs
+               (Thread_Id,
+                Limit,
+                Order,
+                After,
+                Before,
+                Result,
+                Context);
+         end List_Runs;
+
+         --  Modifies an assistant.
+         procedure Modify_Assistant
+            (Assistant_Id : in Swagger.UString;
+             Modify_Assistant_Request_Type : in ModifyAssistantRequest_Type;
+             Result : out .Models.AssistantObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Modify_Assistant
+               (Assistant_Id,
+                Modify_Assistant_Request_Type,
+                Result,
+                Context);
+         end Modify_Assistant;
+
+         --  Modifies a message.
+         procedure Modify_Message
+            (Thread_Id : in Swagger.UString;
+             Message_Id : in Swagger.UString;
+             Modify_Message_Request_Type : in ModifyMessageRequest_Type;
+             Result : out .Models.MessageObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Modify_Message
+               (Thread_Id,
+                Message_Id,
+                Modify_Message_Request_Type,
+                Result,
+                Context);
+         end Modify_Message;
+
+         --  Modifies a run.
+         procedure Modify_Run
+            (Thread_Id : in Swagger.UString;
+             Run_Id : in Swagger.UString;
+             Modify_Run_Request_Type : in ModifyRunRequest_Type;
+             Result : out .Models.RunObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Modify_Run
+               (Thread_Id,
+                Run_Id,
+                Modify_Run_Request_Type,
+                Result,
+                Context);
+         end Modify_Run;
+
+         --  Modifies a thread.
+         procedure Modify_Thread
+            (Thread_Id : in Swagger.UString;
+             Modify_Thread_Request_Type : in ModifyThreadRequest_Type;
+             Result : out .Models.ThreadObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Modify_Thread
+               (Thread_Id,
+                Modify_Thread_Request_Type,
+                Result,
+                Context);
+         end Modify_Thread;
+
+         --  When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request.
+         procedure Submit_Tool_Ouputs_To_Run
+            (Thread_Id : in Swagger.UString;
+             Run_Id : in Swagger.UString;
+             Submit_Tool_Outputs_Run_Request_Type : in SubmitToolOutputsRunRequest_Type;
+             Result : out .Models.RunObject_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Submit_Tool_Ouputs_To_Run
+               (Thread_Id,
+                Run_Id,
+                Submit_Tool_Outputs_Run_Request_Type,
+                Result,
+                Context);
+         end Submit_Tool_Ouputs_To_Run;
+
+         --  Generates audio from the input text.
+         procedure Create_Speech
+            (Create_Speech_Request_Type : in CreateSpeechRequest_Type;
+             Result : out Swagger.Blob_Ref;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Speech
+               (Create_Speech_Request_Type,
+                Result,
+                Context);
+         end Create_Speech;
+
+         --  Transcribes audio into the input language.
+         procedure Create_Transcription
+            (File : in Swagger.File_Part_Type;
+             Model : in .Models.CreateTranscriptionRequestModel_Type;
+             Language : in Swagger.Nullable_UString;
+             Prompt : in Swagger.Nullable_UString;
+             Response_Format : in Swagger.Nullable_UString;
+             Temperature : in Swagger.Number;
+             Timestamp_Granularities_Left_Square_Bracket_Right_Square_Bracket : in Swagger.UString_Vectors.Vector;
+             Result : out .Models.CreateTranscription200Response_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Transcription
+               (File,
+                Model,
+                Language,
+                Prompt,
+                Response_Format,
+                Temperature,
+                Timestamp_Granularities_Left_Square_Bracket_Right_Square_Bracket,
+                Result,
+                Context);
+         end Create_Transcription;
+
+         --  Translates audio into English.
+         procedure Create_Translation
+            (File : in Swagger.File_Part_Type;
+             Model : in .Models.CreateTranscriptionRequestModel_Type;
+             Prompt : in Swagger.Nullable_UString;
+             Response_Format : in Swagger.Nullable_UString;
+             Temperature : in Swagger.Number;
+             Result : out .Models.CreateTranslation200Response_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Translation
+               (File,
+                Model,
+                Prompt,
+                Response_Format,
+                Temperature,
+                Result,
+                Context);
+         end Create_Translation;
 
          --  Creates a model response for the given chat conversation.
          procedure Create_Chat_Completion
@@ -1838,18 +4831,6 @@ package body .Skeletons is
                 Context);
          end Create_Completion;
 
-         --  Creates a new edit for the provided input, instruction, and parameters.
-         procedure Create_Edit
-            (Create_Edit_Request_Type : in CreateEditRequest_Type;
-             Result : out .Models.CreateEditResponse_Type;
-             Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.Create_Edit
-               (Create_Edit_Request_Type,
-                Result,
-                Context);
-         end Create_Edit;
-
          --  Creates an embedding vector representing the input text.
          procedure Create_Embedding
             (Create_Embedding_Request_Type : in CreateEmbeddingRequest_Type;
@@ -1862,7 +4843,7 @@ package body .Skeletons is
                 Context);
          end Create_Embedding;
 
-         --  Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded by one organization can be up to 1 GB. Please contact us if you need to increase the storage limit.
+         --  Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine_tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
          procedure Create_File
             (File : in Swagger.File_Part_Type;
              Purpose : in Swagger.UString;
@@ -1876,17 +4857,135 @@ package body .Skeletons is
                 Context);
          end Create_File;
 
-         --  Creates a job that fine_tunes a specified model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine_tuned models once complete.  [Learn more about Fine_tuning](/docs/guides/fine_tuning)
-         procedure Create_Fine_Tune
-            (Create_Fine_Tune_Request_Type : in CreateFineTuneRequest_Type;
-             Result : out .Models.FineTune_Type;
+         --  Delete a file.
+         procedure Delete_File
+            (File_Id : in Swagger.UString;
+             Result : out .Models.DeleteFileResponse_Type;
              Context : in out Swagger.Servers.Context_Type) is
          begin
-            Impl.Create_Fine_Tune
-               (Create_Fine_Tune_Request_Type,
+            Impl.Delete_File
+               (File_Id,
                 Result,
                 Context);
-         end Create_Fine_Tune;
+         end Delete_File;
+
+         --  Returns the contents of the specified file.
+         procedure Download_File
+            (File_Id : in Swagger.UString;
+             Result : out Swagger.UString;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Download_File
+               (File_Id,
+                Result,
+                Context);
+         end Download_File;
+
+         --  Returns a list of files that belong to the user's organization.
+         procedure List_Files
+            (Purpose : in Swagger.Nullable_UString;
+             Result : out .Models.ListFilesResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Files
+               (Purpose,
+                Result,
+                Context);
+         end List_Files;
+
+         --  Returns information about a specific file.
+         procedure Retrieve_File
+            (File_Id : in Swagger.UString;
+             Result : out .Models.OpenAIFile_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Retrieve_File
+               (File_Id,
+                Result,
+                Context);
+         end Retrieve_File;
+
+         --  Immediately cancel a fine_tune job.
+         procedure Cancel_Fine_Tuning_Job
+            (Fine_Tuning_Job_Id : in Swagger.UString;
+             Result : out .Models.FineTuningJob_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Cancel_Fine_Tuning_Job
+               (Fine_Tuning_Job_Id,
+                Result,
+                Context);
+         end Cancel_Fine_Tuning_Job;
+
+         --  Creates a fine_tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine_tuned models once complete.  [Learn more about fine_tuning](/docs/guides/fine_tuning)
+         procedure Create_Fine_Tuning_Job
+            (Create_Fine_Tuning_Job_Request_Type : in CreateFineTuningJobRequest_Type;
+             Result : out .Models.FineTuningJob_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Fine_Tuning_Job
+               (Create_Fine_Tuning_Job_Request_Type,
+                Result,
+                Context);
+         end Create_Fine_Tuning_Job;
+
+         --  Get status updates for a fine_tuning job.
+         procedure List_Fine_Tuning_Events
+            (Fine_Tuning_Job_Id : in Swagger.UString;
+             After : in Swagger.Nullable_UString;
+             Limit : in Swagger.Nullable_Integer;
+             Result : out .Models.ListFineTuningJobEventsResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Fine_Tuning_Events
+               (Fine_Tuning_Job_Id,
+                After,
+                Limit,
+                Result,
+                Context);
+         end List_Fine_Tuning_Events;
+
+         --  List checkpoints for a fine_tuning job.
+         procedure List_Fine_Tuning_Job_Checkpoints
+            (Fine_Tuning_Job_Id : in Swagger.UString;
+             After : in Swagger.Nullable_UString;
+             Limit : in Swagger.Nullable_Integer;
+             Result : out .Models.ListFineTuningJobCheckpointsResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Fine_Tuning_Job_Checkpoints
+               (Fine_Tuning_Job_Id,
+                After,
+                Limit,
+                Result,
+                Context);
+         end List_Fine_Tuning_Job_Checkpoints;
+
+         --  List your organization's fine_tuning jobs
+         procedure List_Paginated_Fine_Tuning_Jobs
+            (After : in Swagger.Nullable_UString;
+             Limit : in Swagger.Nullable_Integer;
+             Result : out .Models.ListPaginatedFineTuningJobsResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.List_Paginated_Fine_Tuning_Jobs
+               (After,
+                Limit,
+                Result,
+                Context);
+         end List_Paginated_Fine_Tuning_Jobs;
+
+         --  Get info about a fine_tuning job.  [Learn more about fine_tuning](/docs/guides/fine_tuning)
+         procedure Retrieve_Fine_Tuning_Job
+            (Fine_Tuning_Job_Id : in Swagger.UString;
+             Result : out .Models.FineTuningJob_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Retrieve_Fine_Tuning_Job
+               (Fine_Tuning_Job_Id,
+                Result,
+                Context);
+         end Retrieve_Fine_Tuning_Job;
 
          --  Creates an image given a prompt.
          procedure Create_Image
@@ -1905,6 +5004,7 @@ package body .Skeletons is
             (Image : in Swagger.File_Part_Type;
              Prompt : in Swagger.UString;
              Mask : in Swagger.File_Part_Type;
+             Model : in .Models.CreateImageEditRequestModel_Type;
              N : in Swagger.Nullable_Integer;
              Size : in Swagger.Nullable_UString;
              Response_Format : in Swagger.Nullable_UString;
@@ -1916,6 +5016,7 @@ package body .Skeletons is
                (Image,
                 Prompt,
                 Mask,
+                Model,
                 N,
                 Size,
                 Response_Format,
@@ -1927,90 +5028,26 @@ package body .Skeletons is
          --  Creates a variation of a given image.
          procedure Create_Image_Variation
             (Image : in Swagger.File_Part_Type;
+             Model : in .Models.CreateImageEditRequestModel_Type;
              N : in Swagger.Nullable_Integer;
-             Size : in Swagger.Nullable_UString;
              Response_Format : in Swagger.Nullable_UString;
+             Size : in Swagger.Nullable_UString;
              User : in Swagger.Nullable_UString;
              Result : out .Models.ImagesResponse_Type;
              Context : in out Swagger.Servers.Context_Type) is
          begin
             Impl.Create_Image_Variation
                (Image,
+                Model,
                 N,
-                Size,
                 Response_Format,
+                Size,
                 User,
                 Result,
                 Context);
          end Create_Image_Variation;
 
-         --  Classifies if text violates OpenAI's Content Policy
-         procedure Create_Moderation
-            (Create_Moderation_Request_Type : in CreateModerationRequest_Type;
-             Result : out .Models.CreateModerationResponse_Type;
-             Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.Create_Moderation
-               (Create_Moderation_Request_Type,
-                Result,
-                Context);
-         end Create_Moderation;
-
-         --  Transcribes audio into the input language.
-         procedure Create_Transcription
-            (File : in Swagger.File_Part_Type;
-             Model : in .Models.CreateTranscriptionRequestModel_Type;
-             Prompt : in Swagger.Nullable_UString;
-             Response_Format : in Swagger.Nullable_UString;
-             Temperature : in Swagger.Number;
-             Language : in Swagger.Nullable_UString;
-             Result : out .Models.CreateTranscriptionResponse_Type;
-             Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.Create_Transcription
-               (File,
-                Model,
-                Prompt,
-                Response_Format,
-                Temperature,
-                Language,
-                Result,
-                Context);
-         end Create_Transcription;
-
-         --  Translates audio into English.
-         procedure Create_Translation
-            (File : in Swagger.File_Part_Type;
-             Model : in .Models.CreateTranscriptionRequestModel_Type;
-             Prompt : in Swagger.Nullable_UString;
-             Response_Format : in Swagger.Nullable_UString;
-             Temperature : in Swagger.Number;
-             Result : out .Models.CreateTranslationResponse_Type;
-             Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.Create_Translation
-               (File,
-                Model,
-                Prompt,
-                Response_Format,
-                Temperature,
-                Result,
-                Context);
-         end Create_Translation;
-
-         --  Delete a file.
-         procedure Delete_File
-            (File_Id : in Swagger.UString;
-             Result : out .Models.DeleteFileResponse_Type;
-             Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.Delete_File
-               (File_Id,
-                Result,
-                Context);
-         end Delete_File;
-
-         --  Delete a fine_tuned model. You must have the Owner role in your organization.
+         --  Delete a fine_tuned model. You must have the Owner role in your organization to delete a model.
          procedure Delete_Model
             (Model : in Swagger.UString;
              Result : out .Models.DeleteModelResponse_Type;
@@ -2022,76 +5059,12 @@ package body .Skeletons is
                 Context);
          end Delete_Model;
 
-         --  Returns the contents of the specified file
-         procedure Download_File
-            (File_Id : in Swagger.UString;
-             Result : out Swagger.UString;
-             Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.Download_File
-               (File_Id,
-                Result,
-                Context);
-         end Download_File;
-
-         --  Returns a list of files that belong to the user's organization.
-         procedure List_Files (Result : out .Models.ListFilesResponse_Type;
-         Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.List_Files (Result, Context);
-         end List_Files;
-
-         --  Get fine_grained status updates for a fine_tune job.
-         procedure List_Fine_Tune_Events
-            (Fine_Tune_Id : in Swagger.UString;
-             Stream : in Swagger.Nullable_Boolean;
-             Result : out .Models.ListFineTuneEventsResponse_Type;
-             Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.List_Fine_Tune_Events
-               (Fine_Tune_Id,
-                Stream,
-                Result,
-                Context);
-         end List_Fine_Tune_Events;
-
-         --  List your organization's fine_tuning jobs
-         procedure List_Fine_Tunes (Result : out .Models.ListFineTunesResponse_Type;
-         Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.List_Fine_Tunes (Result, Context);
-         end List_Fine_Tunes;
-
          --  Lists the currently available models, and provides basic information about each one such as the owner and availability.
          procedure List_Models (Result : out .Models.ListModelsResponse_Type;
          Context : in out Swagger.Servers.Context_Type) is
          begin
             Impl.List_Models (Result, Context);
          end List_Models;
-
-         --  Returns information about a specific file.
-         procedure Retrieve_File
-            (File_Id : in Swagger.UString;
-             Result : out .Models.OpenAIFile_Type;
-             Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.Retrieve_File
-               (File_Id,
-                Result,
-                Context);
-         end Retrieve_File;
-
-         --  Gets info about the fine_tune job.  [Learn more about Fine_tuning](/docs/guides/fine_tuning)
-         procedure Retrieve_Fine_Tune
-            (Fine_Tune_Id : in Swagger.UString;
-             Result : out .Models.FineTune_Type;
-             Context : in out Swagger.Servers.Context_Type) is
-         begin
-            Impl.Retrieve_Fine_Tune
-               (Fine_Tune_Id,
-                Result,
-                Context);
-         end Retrieve_Fine_Tune;
 
          --  Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
          procedure Retrieve_Model
@@ -2104,6 +5077,18 @@ package body .Skeletons is
                 Result,
                 Context);
          end Retrieve_Model;
+
+         --  Classifies if text is potentially harmful.
+         procedure Create_Moderation
+            (Create_Moderation_Request_Type : in CreateModerationRequest_Type;
+             Result : out .Models.CreateModerationResponse_Type;
+             Context : in out Swagger.Servers.Context_Type) is
+         begin
+            Impl.Create_Moderation
+               (Create_Moderation_Request_Type,
+                Result,
+                Context);
+         end Create_Moderation;
 
       end Server;
 

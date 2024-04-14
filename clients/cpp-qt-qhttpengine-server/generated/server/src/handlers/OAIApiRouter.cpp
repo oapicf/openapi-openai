@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,7 +17,16 @@
 
 
 #include "OAIApiRouter.h"
-#include "OAIOpenAIApiRequest.h"
+#include "OAIAssistantsApiRequest.h"
+#include "OAIAudioApiRequest.h"
+#include "OAIChatApiRequest.h"
+#include "OAICompletionsApiRequest.h"
+#include "OAIEmbeddingsApiRequest.h"
+#include "OAIFilesApiRequest.h"
+#include "OAIFineTuningApiRequest.h"
+#include "OAIImagesApiRequest.h"
+#include "OAIModelsApiRequest.h"
+#include "OAIModerationsApiRequest.h"
 
 
 namespace OpenAPI {
@@ -31,75 +40,127 @@ OAIApiRouter::~OAIApiRouter(){
 }
 
 void OAIApiRouter::createApiHandlers() { 
-    mOAIOpenAIApiHandler = QSharedPointer<OAIOpenAIApiHandler>::create();
+    mOAIAssistantsApiHandler = QSharedPointer<OAIAssistantsApiHandler>::create();
+    mOAIAudioApiHandler = QSharedPointer<OAIAudioApiHandler>::create();
+    mOAIChatApiHandler = QSharedPointer<OAIChatApiHandler>::create();
+    mOAICompletionsApiHandler = QSharedPointer<OAICompletionsApiHandler>::create();
+    mOAIEmbeddingsApiHandler = QSharedPointer<OAIEmbeddingsApiHandler>::create();
+    mOAIFilesApiHandler = QSharedPointer<OAIFilesApiHandler>::create();
+    mOAIFineTuningApiHandler = QSharedPointer<OAIFineTuningApiHandler>::create();
+    mOAIImagesApiHandler = QSharedPointer<OAIImagesApiHandler>::create();
+    mOAIModelsApiHandler = QSharedPointer<OAIModelsApiHandler>::create();
+    mOAIModerationsApiHandler = QSharedPointer<OAIModerationsApiHandler>::create();
 }
 
 
-void OAIApiRouter::setOAIOpenAIApiHandler(QSharedPointer<OAIOpenAIApiHandler> handler){
-    mOAIOpenAIApiHandler = handler;
+void OAIApiRouter::setOAIAssistantsApiHandler(QSharedPointer<OAIAssistantsApiHandler> handler){
+    mOAIAssistantsApiHandler = handler;
+}
+void OAIApiRouter::setOAIAudioApiHandler(QSharedPointer<OAIAudioApiHandler> handler){
+    mOAIAudioApiHandler = handler;
+}
+void OAIApiRouter::setOAIChatApiHandler(QSharedPointer<OAIChatApiHandler> handler){
+    mOAIChatApiHandler = handler;
+}
+void OAIApiRouter::setOAICompletionsApiHandler(QSharedPointer<OAICompletionsApiHandler> handler){
+    mOAICompletionsApiHandler = handler;
+}
+void OAIApiRouter::setOAIEmbeddingsApiHandler(QSharedPointer<OAIEmbeddingsApiHandler> handler){
+    mOAIEmbeddingsApiHandler = handler;
+}
+void OAIApiRouter::setOAIFilesApiHandler(QSharedPointer<OAIFilesApiHandler> handler){
+    mOAIFilesApiHandler = handler;
+}
+void OAIApiRouter::setOAIFineTuningApiHandler(QSharedPointer<OAIFineTuningApiHandler> handler){
+    mOAIFineTuningApiHandler = handler;
+}
+void OAIApiRouter::setOAIImagesApiHandler(QSharedPointer<OAIImagesApiHandler> handler){
+    mOAIImagesApiHandler = handler;
+}
+void OAIApiRouter::setOAIModelsApiHandler(QSharedPointer<OAIModelsApiHandler> handler){
+    mOAIModelsApiHandler = handler;
+}
+void OAIApiRouter::setOAIModerationsApiHandler(QSharedPointer<OAIModerationsApiHandler> handler){
+    mOAIModerationsApiHandler = handler;
 }
 
 void OAIApiRouter::setUpRoutes() {
     
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/chat/completions").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createChatCompletionRequest();
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/assistants").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+            reqObj->createAssistantRequest();
     });
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/completions").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createCompletionRequest();
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/threads").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+            reqObj->createThreadRequest();
     });
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/edits").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createEditRequest();
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/threads/runs").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+            reqObj->createThreadAndRunRequest();
     });
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/embeddings").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createEmbeddingRequest();
+    Routes.insert(QString("%1 %2").arg("GET").arg("/v1/assistants").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+            reqObj->listAssistantsRequest();
     });
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/files").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createFileRequest();
-    });
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/fine-tunes").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createFineTuneRequest();
-    });
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/images/generations").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createImageRequest();
-    });
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/images/edits").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createImageEditRequest();
-    });
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/images/variations").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createImageVariationRequest();
-    });
-    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/moderations").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->createModerationRequest();
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/audio/speech").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIAudioApiRequest(socket, mOAIAudioApiHandler);
+            reqObj->createSpeechRequest();
     });
     Routes.insert(QString("%1 %2").arg("POST").arg("/v1/audio/transcriptions").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
+            auto reqObj = new OAIAudioApiRequest(socket, mOAIAudioApiHandler);
             reqObj->createTranscriptionRequest();
     });
     Routes.insert(QString("%1 %2").arg("POST").arg("/v1/audio/translations").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
+            auto reqObj = new OAIAudioApiRequest(socket, mOAIAudioApiHandler);
             reqObj->createTranslationRequest();
     });
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/chat/completions").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIChatApiRequest(socket, mOAIChatApiHandler);
+            reqObj->createChatCompletionRequest();
+    });
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/completions").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAICompletionsApiRequest(socket, mOAICompletionsApiHandler);
+            reqObj->createCompletionRequest();
+    });
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/embeddings").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIEmbeddingsApiRequest(socket, mOAIEmbeddingsApiHandler);
+            reqObj->createEmbeddingRequest();
+    });
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/files").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIFilesApiRequest(socket, mOAIFilesApiHandler);
+            reqObj->createFileRequest();
+    });
     Routes.insert(QString("%1 %2").arg("GET").arg("/v1/files").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
+            auto reqObj = new OAIFilesApiRequest(socket, mOAIFilesApiHandler);
             reqObj->listFilesRequest();
     });
-    Routes.insert(QString("%1 %2").arg("GET").arg("/v1/fine-tunes").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-            reqObj->listFineTunesRequest();
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/fine_tuning/jobs").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIFineTuningApiRequest(socket, mOAIFineTuningApiHandler);
+            reqObj->createFineTuningJobRequest();
+    });
+    Routes.insert(QString("%1 %2").arg("GET").arg("/v1/fine_tuning/jobs").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIFineTuningApiRequest(socket, mOAIFineTuningApiHandler);
+            reqObj->listPaginatedFineTuningJobsRequest();
+    });
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/images/generations").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIImagesApiRequest(socket, mOAIImagesApiHandler);
+            reqObj->createImageRequest();
+    });
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/images/edits").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIImagesApiRequest(socket, mOAIImagesApiHandler);
+            reqObj->createImageEditRequest();
+    });
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/images/variations").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIImagesApiRequest(socket, mOAIImagesApiHandler);
+            reqObj->createImageVariationRequest();
     });
     Routes.insert(QString("%1 %2").arg("GET").arg("/v1/models").toLower(), [this](QHttpEngine::Socket *socket) {
-            auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
+            auto reqObj = new OAIModelsApiRequest(socket, mOAIModelsApiHandler);
             reqObj->listModelsRequest();
+    });
+    Routes.insert(QString("%1 %2").arg("POST").arg("/v1/moderations").toLower(), [this](QHttpEngine::Socket *socket) {
+            auto reqObj = new OAIModerationsApiRequest(socket, mOAIModerationsApiHandler);
+            reqObj->createModerationRequest();
     });
 }
 
@@ -129,13 +190,303 @@ bool OAIApiRouter::handleRequest(QHttpEngine::Socket *socket){
 bool OAIApiRouter::handleRequestAndExtractPathParam(QHttpEngine::Socket *socket){
     auto reqPath = QString("%1 %2").arg(fromQHttpEngineMethod(socket->method())).arg(socket->path()).toLower();
     {
-        auto completePath = QString("%1 %2").arg("POST").arg("/v1/fine-tunes/{fine_tune_id}/cancel").toLower();
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/threads/{thread_id}/runs/{run_id}/cancel").toLower();
         if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
             QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
             if ( match.hasMatch() ){
-                QString fine_tune_id = match.captured(QString("fine_tune_id").toLower());
-                auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-                reqObj->cancelFineTuneRequest(fine_tune_id);
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString run_id = match.captured(QString("run_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->cancelRunRequest(thread_id, run_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/assistants/{assistant_id}/files").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString assistant_id = match.captured(QString("assistant_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->createAssistantFileRequest(assistant_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/threads/{thread_id}/messages").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->createMessageRequest(thread_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/threads/{thread_id}/runs").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->createRunRequest(thread_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("DELETE").arg("/v1/assistants/{assistant_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString assistant_id = match.captured(QString("assistant_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->deleteAssistantRequest(assistant_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("DELETE").arg("/v1/assistants/{assistant_id}/files/{file_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString assistant_id = match.captured(QString("assistant_id").toLower());
+                QString file_id = match.captured(QString("file_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->deleteAssistantFileRequest(assistant_id, file_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("DELETE").arg("/v1/threads/{thread_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->deleteThreadRequest(thread_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/assistants/{assistant_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString assistant_id = match.captured(QString("assistant_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->getAssistantRequest(assistant_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/assistants/{assistant_id}/files/{file_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString assistant_id = match.captured(QString("assistant_id").toLower());
+                QString file_id = match.captured(QString("file_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->getAssistantFileRequest(assistant_id, file_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/threads/{thread_id}/messages/{message_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString message_id = match.captured(QString("message_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->getMessageRequest(thread_id, message_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString message_id = match.captured(QString("message_id").toLower());
+                QString file_id = match.captured(QString("file_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->getMessageFileRequest(thread_id, message_id, file_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/threads/{thread_id}/runs/{run_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString run_id = match.captured(QString("run_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->getRunRequest(thread_id, run_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString run_id = match.captured(QString("run_id").toLower());
+                QString step_id = match.captured(QString("step_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->getRunStepRequest(thread_id, run_id, step_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/threads/{thread_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->getThreadRequest(thread_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/assistants/{assistant_id}/files").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString assistant_id = match.captured(QString("assistant_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->listAssistantFilesRequest(assistant_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/threads/{thread_id}/messages/{message_id}/files").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString message_id = match.captured(QString("message_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->listMessageFilesRequest(thread_id, message_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/threads/{thread_id}/messages").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->listMessagesRequest(thread_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/threads/{thread_id}/runs/{run_id}/steps").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString run_id = match.captured(QString("run_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->listRunStepsRequest(thread_id, run_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/threads/{thread_id}/runs").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->listRunsRequest(thread_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/assistants/{assistant_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString assistant_id = match.captured(QString("assistant_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->modifyAssistantRequest(assistant_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/threads/{thread_id}/messages/{message_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString message_id = match.captured(QString("message_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->modifyMessageRequest(thread_id, message_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/threads/{thread_id}/runs/{run_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString run_id = match.captured(QString("run_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->modifyRunRequest(thread_id, run_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/threads/{thread_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->modifyThreadRequest(thread_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/threads/{thread_id}/runs/{run_id}/submit_tool_outputs").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString thread_id = match.captured(QString("thread_id").toLower());
+                QString run_id = match.captured(QString("run_id").toLower());
+                auto reqObj = new OAIAssistantsApiRequest(socket, mOAIAssistantsApiHandler);
+                reqObj->submitToolOuputsToRunRequest(thread_id, run_id);
                 return true;
             }
         }
@@ -146,20 +497,8 @@ bool OAIApiRouter::handleRequestAndExtractPathParam(QHttpEngine::Socket *socket)
             QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
             if ( match.hasMatch() ){
                 QString file_id = match.captured(QString("file_id").toLower());
-                auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
+                auto reqObj = new OAIFilesApiRequest(socket, mOAIFilesApiHandler);
                 reqObj->deleteFileRequest(file_id);
-                return true;
-            }
-        }
-    }
-    {
-        auto completePath = QString("%1 %2").arg("DELETE").arg("/v1/models/{model}").toLower();
-        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
-            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
-            if ( match.hasMatch() ){
-                QString model = match.captured(QString("model").toLower());
-                auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-                reqObj->deleteModelRequest(model);
                 return true;
             }
         }
@@ -170,20 +509,8 @@ bool OAIApiRouter::handleRequestAndExtractPathParam(QHttpEngine::Socket *socket)
             QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
             if ( match.hasMatch() ){
                 QString file_id = match.captured(QString("file_id").toLower());
-                auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
+                auto reqObj = new OAIFilesApiRequest(socket, mOAIFilesApiHandler);
                 reqObj->downloadFileRequest(file_id);
-                return true;
-            }
-        }
-    }
-    {
-        auto completePath = QString("%1 %2").arg("GET").arg("/v1/fine-tunes/{fine_tune_id}/events").toLower();
-        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
-            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
-            if ( match.hasMatch() ){
-                QString fine_tune_id = match.captured(QString("fine_tune_id").toLower());
-                auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-                reqObj->listFineTuneEventsRequest(fine_tune_id);
                 return true;
             }
         }
@@ -194,20 +521,68 @@ bool OAIApiRouter::handleRequestAndExtractPathParam(QHttpEngine::Socket *socket)
             QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
             if ( match.hasMatch() ){
                 QString file_id = match.captured(QString("file_id").toLower());
-                auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
+                auto reqObj = new OAIFilesApiRequest(socket, mOAIFilesApiHandler);
                 reqObj->retrieveFileRequest(file_id);
                 return true;
             }
         }
     }
     {
-        auto completePath = QString("%1 %2").arg("GET").arg("/v1/fine-tunes/{fine_tune_id}").toLower();
+        auto completePath = QString("%1 %2").arg("POST").arg("/v1/fine_tuning/jobs/{fine_tuning_job_id}/cancel").toLower();
         if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
             QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
             if ( match.hasMatch() ){
-                QString fine_tune_id = match.captured(QString("fine_tune_id").toLower());
-                auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
-                reqObj->retrieveFineTuneRequest(fine_tune_id);
+                QString fine_tuning_job_id = match.captured(QString("fine_tuning_job_id").toLower());
+                auto reqObj = new OAIFineTuningApiRequest(socket, mOAIFineTuningApiHandler);
+                reqObj->cancelFineTuningJobRequest(fine_tuning_job_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/fine_tuning/jobs/{fine_tuning_job_id}/events").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString fine_tuning_job_id = match.captured(QString("fine_tuning_job_id").toLower());
+                auto reqObj = new OAIFineTuningApiRequest(socket, mOAIFineTuningApiHandler);
+                reqObj->listFineTuningEventsRequest(fine_tuning_job_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString fine_tuning_job_id = match.captured(QString("fine_tuning_job_id").toLower());
+                auto reqObj = new OAIFineTuningApiRequest(socket, mOAIFineTuningApiHandler);
+                reqObj->listFineTuningJobCheckpointsRequest(fine_tuning_job_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("GET").arg("/v1/fine_tuning/jobs/{fine_tuning_job_id}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString fine_tuning_job_id = match.captured(QString("fine_tuning_job_id").toLower());
+                auto reqObj = new OAIFineTuningApiRequest(socket, mOAIFineTuningApiHandler);
+                reqObj->retrieveFineTuningJobRequest(fine_tuning_job_id);
+                return true;
+            }
+        }
+    }
+    {
+        auto completePath = QString("%1 %2").arg("DELETE").arg("/v1/models/{model}").toLower();
+        if ( reqPath.startsWith(completePath.leftRef( completePath.indexOf(QString("/{")))) ) {
+            QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
+            if ( match.hasMatch() ){
+                QString model = match.captured(QString("model").toLower());
+                auto reqObj = new OAIModelsApiRequest(socket, mOAIModelsApiHandler);
+                reqObj->deleteModelRequest(model);
                 return true;
             }
         }
@@ -218,7 +593,7 @@ bool OAIApiRouter::handleRequestAndExtractPathParam(QHttpEngine::Socket *socket)
             QRegularExpressionMatch match = getRequestMatch( completePath, reqPath );
             if ( match.hasMatch() ){
                 QString model = match.captured(QString("model").toLower());
-                auto reqObj = new OAIOpenAIApiRequest(socket, mOAIOpenAIApiHandler);
+                auto reqObj = new OAIModelsApiRequest(socket, mOAIModelsApiHandler);
                 reqObj->retrieveModelRequest(model);
                 return true;
             }

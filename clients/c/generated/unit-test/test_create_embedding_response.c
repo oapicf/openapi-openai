@@ -23,17 +23,17 @@ create_embedding_response_t* instantiate_create_embedding_response(int include_o
   create_embedding_response_t* create_embedding_response = NULL;
   if (include_optional) {
     create_embedding_response = create_embedding_response_create(
-      "0",
-      "0",
       list_createList(),
+      "0",
+      openai_api_create_embedding_response_OBJECT_list,
        // false, not to have infinite recursion
       instantiate_create_embedding_response_usage(0)
     );
   } else {
     create_embedding_response = create_embedding_response_create(
-      "0",
-      "0",
       list_createList(),
+      "0",
+      openai_api_create_embedding_response_OBJECT_list,
       NULL
     );
   }

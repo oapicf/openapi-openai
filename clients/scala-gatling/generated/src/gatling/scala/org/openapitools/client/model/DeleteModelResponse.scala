@@ -4,14 +4,14 @@ package org.openapitools.client.model
 
 case class DeleteModelResponse (
     _id: String,
-    _object: String,
-    _deleted: Boolean
+    _deleted: Boolean,
+    _object: String
 )
 object DeleteModelResponse {
-    def toStringBody(var_id: Object, var_object: Object, var_deleted: Object) =
+    def toStringBody(var_id: Object, var_deleted: Object, var_object: Object) =
         s"""
         | {
-        | "id":$var_id,"object":$var_object,"deleted":$var_deleted
+        | "id":$var_id,"deleted":$var_deleted,"object":$var_object
         | }
         """.stripMargin
 }

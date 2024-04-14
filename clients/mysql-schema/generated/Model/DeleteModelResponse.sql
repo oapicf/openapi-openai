@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `DeleteModelResponse`
 --
-SELECT `id`, `object`, `deleted` FROM `DeleteModelResponse` WHERE 1;
+SELECT `id`, `deleted`, `object` FROM `DeleteModelResponse` WHERE 1;
 
 --
 -- INSERT template for table `DeleteModelResponse`
 --
-INSERT INTO `DeleteModelResponse`(`id`, `object`, `deleted`) VALUES (?, ?, ?);
+INSERT INTO `DeleteModelResponse`(`id`, `deleted`, `object`) VALUES (?, ?, ?);
 
 --
 -- UPDATE template for table `DeleteModelResponse`
 --
-UPDATE `DeleteModelResponse` SET `id` = ?, `object` = ?, `deleted` = ? WHERE 1;
+UPDATE `DeleteModelResponse` SET `id` = ?, `deleted` = ?, `object` = ? WHERE 1;
 
 --
 -- DELETE template for table `DeleteModelResponse`

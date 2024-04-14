@@ -12,16 +12,17 @@ import javax.validation.Valid;
 import io.swagger.annotations.*;
 import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-16T01:13:37.006745963Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@ApiModel(description="The usage information for the request.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-04-14T13:41:51.736364282Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateEmbeddingResponseUsage   {
   
   private Integer promptTokens;
   private Integer totalTokens;
 
   /**
+   * The number of tokens used by the prompt.
    **/
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The number of tokens used by the prompt.")
   @JsonProperty("prompt_tokens")
   @NotNull
   public Integer getPromptTokens() {
@@ -32,9 +33,10 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   /**
+   * The total number of tokens used by the request.
    **/
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The total number of tokens used by the request.")
   @JsonProperty("total_tokens")
   @NotNull
   public Integer getTotalTokens() {

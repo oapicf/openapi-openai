@@ -8,9 +8,9 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * CreateModerationResponseResultsInnerCategories
+ * A list of the categories, and whether they are flagged or not.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-16T01:12:54.315235707Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-04-14T13:39:27.767845477Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateModerationResponseResultsInnerCategories   {
   @JsonProperty("hate")
@@ -23,10 +23,30 @@ public class CreateModerationResponseResultsInnerCategories   {
 
   private Boolean hateThreatening;
 
+  @JsonProperty("harassment")
+  @NotNull
+
+  private Boolean harassment;
+
+  @JsonProperty("harassment/threatening")
+  @NotNull
+
+  private Boolean harassmentThreatening;
+
   @JsonProperty("self-harm")
   @NotNull
 
   private Boolean selfHarm;
+
+  @JsonProperty("self-harm/intent")
+  @NotNull
+
+  private Boolean selfHarmIntent;
+
+  @JsonProperty("self-harm/instructions")
+  @NotNull
+
+  private Boolean selfHarmInstructions;
 
   @JsonProperty("sexual")
   @NotNull
@@ -54,7 +74,7 @@ public class CreateModerationResponseResultsInnerCategories   {
   }
 
    /**
-   * Get hate
+   * Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
    * @return hate
   **/
   public Boolean getHate() {
@@ -71,7 +91,7 @@ public class CreateModerationResponseResultsInnerCategories   {
   }
 
    /**
-   * Get hateThreatening
+   * Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
    * @return hateThreatening
   **/
   public Boolean getHateThreatening() {
@@ -82,13 +102,47 @@ public class CreateModerationResponseResultsInnerCategories   {
     this.hateThreatening = hateThreatening;
   }
 
+  public CreateModerationResponseResultsInnerCategories harassment(Boolean harassment) {
+    this.harassment = harassment;
+    return this;
+  }
+
+   /**
+   * Content that expresses, incites, or promotes harassing language towards any target.
+   * @return harassment
+  **/
+  public Boolean getHarassment() {
+    return harassment;
+  }
+
+  public void setHarassment(Boolean harassment) {
+    this.harassment = harassment;
+  }
+
+  public CreateModerationResponseResultsInnerCategories harassmentThreatening(Boolean harassmentThreatening) {
+    this.harassmentThreatening = harassmentThreatening;
+    return this;
+  }
+
+   /**
+   * Harassment content that also includes violence or serious harm towards any target.
+   * @return harassmentThreatening
+  **/
+  public Boolean getHarassmentThreatening() {
+    return harassmentThreatening;
+  }
+
+  public void setHarassmentThreatening(Boolean harassmentThreatening) {
+    this.harassmentThreatening = harassmentThreatening;
+  }
+
   public CreateModerationResponseResultsInnerCategories selfHarm(Boolean selfHarm) {
     this.selfHarm = selfHarm;
     return this;
   }
 
    /**
-   * Get selfHarm
+   * Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
    * @return selfHarm
   **/
   public Boolean getSelfHarm() {
@@ -99,13 +153,47 @@ public class CreateModerationResponseResultsInnerCategories   {
     this.selfHarm = selfHarm;
   }
 
+  public CreateModerationResponseResultsInnerCategories selfHarmIntent(Boolean selfHarmIntent) {
+    this.selfHarmIntent = selfHarmIntent;
+    return this;
+  }
+
+   /**
+   * Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+   * @return selfHarmIntent
+  **/
+  public Boolean getSelfHarmIntent() {
+    return selfHarmIntent;
+  }
+
+  public void setSelfHarmIntent(Boolean selfHarmIntent) {
+    this.selfHarmIntent = selfHarmIntent;
+  }
+
+  public CreateModerationResponseResultsInnerCategories selfHarmInstructions(Boolean selfHarmInstructions) {
+    this.selfHarmInstructions = selfHarmInstructions;
+    return this;
+  }
+
+   /**
+   * Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+   * @return selfHarmInstructions
+  **/
+  public Boolean getSelfHarmInstructions() {
+    return selfHarmInstructions;
+  }
+
+  public void setSelfHarmInstructions(Boolean selfHarmInstructions) {
+    this.selfHarmInstructions = selfHarmInstructions;
+  }
+
   public CreateModerationResponseResultsInnerCategories sexual(Boolean sexual) {
     this.sexual = sexual;
     return this;
   }
 
    /**
-   * Get sexual
+   * Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
    * @return sexual
   **/
   public Boolean getSexual() {
@@ -122,7 +210,7 @@ public class CreateModerationResponseResultsInnerCategories   {
   }
 
    /**
-   * Get sexualMinors
+   * Sexual content that includes an individual who is under 18 years old.
    * @return sexualMinors
   **/
   public Boolean getSexualMinors() {
@@ -139,7 +227,7 @@ public class CreateModerationResponseResultsInnerCategories   {
   }
 
    /**
-   * Get violence
+   * Content that depicts death, violence, or physical injury.
    * @return violence
   **/
   public Boolean getViolence() {
@@ -156,7 +244,7 @@ public class CreateModerationResponseResultsInnerCategories   {
   }
 
    /**
-   * Get violenceGraphic
+   * Content that depicts death, violence, or physical injury in graphic detail.
    * @return violenceGraphic
   **/
   public Boolean getViolenceGraphic() {
@@ -179,7 +267,11 @@ public class CreateModerationResponseResultsInnerCategories   {
     CreateModerationResponseResultsInnerCategories createModerationResponseResultsInnerCategories = (CreateModerationResponseResultsInnerCategories) o;
     return Objects.equals(hate, createModerationResponseResultsInnerCategories.hate) &&
         Objects.equals(hateThreatening, createModerationResponseResultsInnerCategories.hateThreatening) &&
+        Objects.equals(harassment, createModerationResponseResultsInnerCategories.harassment) &&
+        Objects.equals(harassmentThreatening, createModerationResponseResultsInnerCategories.harassmentThreatening) &&
         Objects.equals(selfHarm, createModerationResponseResultsInnerCategories.selfHarm) &&
+        Objects.equals(selfHarmIntent, createModerationResponseResultsInnerCategories.selfHarmIntent) &&
+        Objects.equals(selfHarmInstructions, createModerationResponseResultsInnerCategories.selfHarmInstructions) &&
         Objects.equals(sexual, createModerationResponseResultsInnerCategories.sexual) &&
         Objects.equals(sexualMinors, createModerationResponseResultsInnerCategories.sexualMinors) &&
         Objects.equals(violence, createModerationResponseResultsInnerCategories.violence) &&
@@ -188,7 +280,7 @@ public class CreateModerationResponseResultsInnerCategories   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic);
+    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -199,7 +291,11 @@ public class CreateModerationResponseResultsInnerCategories   {
     
     sb.append("    hate: ").append(toIndentedString(hate)).append("\n");
     sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
+    sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
+    sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
     sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
+    sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
+    sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");
     sb.append("    sexual: ").append(toIndentedString(sexual)).append("\n");
     sb.append("    sexualMinors: ").append(toIndentedString(sexualMinors)).append("\n");
     sb.append("    violence: ").append(toIndentedString(violence)).append("\n");

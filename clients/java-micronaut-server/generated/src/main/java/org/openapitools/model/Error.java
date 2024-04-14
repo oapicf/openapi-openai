@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -26,17 +26,17 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * Error
  */
 @JsonPropertyOrder({
-  Error.JSON_PROPERTY_TYPE,
+  Error.JSON_PROPERTY_CODE,
   Error.JSON_PROPERTY_MESSAGE,
   Error.JSON_PROPERTY_PARAM,
-  Error.JSON_PROPERTY_CODE
+  Error.JSON_PROPERTY_TYPE
 })
 @JsonTypeName("Error")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-03-16T01:12:38.762786439Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2024-04-14T13:38:24.957235058Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class Error {
-    public static final String JSON_PROPERTY_TYPE = "type";
-    private String type;
+    public static final String JSON_PROPERTY_CODE = "code";
+    private String code;
 
     public static final String JSON_PROPERTY_MESSAGE = "message";
     private String message;
@@ -44,37 +44,37 @@ public class Error {
     public static final String JSON_PROPERTY_PARAM = "param";
     private String param;
 
-    public static final String JSON_PROPERTY_CODE = "code";
-    private String code;
+    public static final String JSON_PROPERTY_TYPE = "type";
+    private String type;
 
-    public Error(String type, String message, String param, String code) {
-        this.type = type;
+    public Error(String code, String message, String param, String type) {
+        this.code = code;
         this.message = message;
         this.param = param;
-        this.code = code;
+        this.type = type;
     }
 
-    public Error type(String type) {
-        this.type = type;
+    public Error code(String code) {
+        this.code = code;
         return this;
     }
 
     /**
-     * Get type
-     * @return type
+     * Get code
+     * @return code
      **/
-    @NotNull
-    @Schema(name = "type", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonProperty(JSON_PROPERTY_TYPE)
+    @Nullable
+    @Schema(name = "code", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(JSON_PROPERTY_CODE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public String getType() {
-        return type;
+    public String getCode() {
+        return code;
     }
 
-    @JsonProperty(JSON_PROPERTY_TYPE)
+    @JsonProperty(JSON_PROPERTY_CODE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setType(String type) {
-        this.type = type;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Error message(String message) {
@@ -123,27 +123,27 @@ public class Error {
         this.param = param;
     }
 
-    public Error code(String code) {
-        this.code = code;
+    public Error type(String type) {
+        this.type = type;
         return this;
     }
 
     /**
-     * Get code
-     * @return code
+     * Get type
+     * @return type
      **/
-    @Nullable
-    @Schema(name = "code", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonProperty(JSON_PROPERTY_CODE)
+    @NotNull
+    @Schema(name = "type", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(JSON_PROPERTY_TYPE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public String getCode() {
-        return code;
+    public String getType() {
+        return type;
     }
 
-    @JsonProperty(JSON_PROPERTY_CODE)
+    @JsonProperty(JSON_PROPERTY_TYPE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setCode(String code) {
-        this.code = code;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
@@ -155,25 +155,25 @@ public class Error {
             return false;
         }
         Error error = (Error) o;
-        return Objects.equals(this.type, error.type) &&
+        return Objects.equals(this.code, error.code) &&
             Objects.equals(this.message, error.message) &&
             Objects.equals(this.param, error.param) &&
-            Objects.equals(this.code, error.code);
+            Objects.equals(this.type, error.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, message, param, code);
+        return Objects.hash(code, message, param, type);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class Error {\n");
-        sb.append("    type: ").append(toIndentedString(type)).append("\n");
+        sb.append("    code: ").append(toIndentedString(code)).append("\n");
         sb.append("    message: ").append(toIndentedString(message)).append("\n");
         sb.append("    param: ").append(toIndentedString(param)).append("\n");
-        sb.append("    code: ").append(toIndentedString(code)).append("\n");
+        sb.append("    type: ").append(toIndentedString(type)).append("\n");
         sb.append("}");
         return sb.toString();
     }

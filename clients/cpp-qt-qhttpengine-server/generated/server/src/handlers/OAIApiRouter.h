@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,7 +25,16 @@
 #include <qhttpengine/handler.h>
 #include <qhttpengine/qobjecthandler.h>
 
-#include "OAIOpenAIApiHandler.h"
+#include "OAIAssistantsApiHandler.h"
+#include "OAIAudioApiHandler.h"
+#include "OAIChatApiHandler.h"
+#include "OAICompletionsApiHandler.h"
+#include "OAIEmbeddingsApiHandler.h"
+#include "OAIFilesApiHandler.h"
+#include "OAIFineTuningApiHandler.h"
+#include "OAIImagesApiHandler.h"
+#include "OAIModelsApiHandler.h"
+#include "OAIModerationsApiHandler.h"
 
 
 namespace OpenAPI {
@@ -62,7 +71,16 @@ public:
     void setUpRoutes();
     void processRequest(QHttpEngine::Socket *socket);
     
-    void setOAIOpenAIApiHandler(QSharedPointer<OAIOpenAIApiHandler> handler);
+    void setOAIAssistantsApiHandler(QSharedPointer<OAIAssistantsApiHandler> handler);
+    void setOAIAudioApiHandler(QSharedPointer<OAIAudioApiHandler> handler);
+    void setOAIChatApiHandler(QSharedPointer<OAIChatApiHandler> handler);
+    void setOAICompletionsApiHandler(QSharedPointer<OAICompletionsApiHandler> handler);
+    void setOAIEmbeddingsApiHandler(QSharedPointer<OAIEmbeddingsApiHandler> handler);
+    void setOAIFilesApiHandler(QSharedPointer<OAIFilesApiHandler> handler);
+    void setOAIFineTuningApiHandler(QSharedPointer<OAIFineTuningApiHandler> handler);
+    void setOAIImagesApiHandler(QSharedPointer<OAIImagesApiHandler> handler);
+    void setOAIModelsApiHandler(QSharedPointer<OAIModelsApiHandler> handler);
+    void setOAIModerationsApiHandler(QSharedPointer<OAIModerationsApiHandler> handler);
 private:
     QMap<QString, std::function<void(QHttpEngine::Socket *)>> Routes;
     QMultiMap<QString, std::function<void(QHttpEngine::Socket *)>> RoutesWithPathParam;
@@ -71,7 +89,16 @@ private:
     bool handleRequestAndExtractPathParam(QHttpEngine::Socket *socket);
 
     
-    QSharedPointer<OAIOpenAIApiHandler> mOAIOpenAIApiHandler;
+    QSharedPointer<OAIAssistantsApiHandler> mOAIAssistantsApiHandler;
+    QSharedPointer<OAIAudioApiHandler> mOAIAudioApiHandler;
+    QSharedPointer<OAIChatApiHandler> mOAIChatApiHandler;
+    QSharedPointer<OAICompletionsApiHandler> mOAICompletionsApiHandler;
+    QSharedPointer<OAIEmbeddingsApiHandler> mOAIEmbeddingsApiHandler;
+    QSharedPointer<OAIFilesApiHandler> mOAIFilesApiHandler;
+    QSharedPointer<OAIFineTuningApiHandler> mOAIFineTuningApiHandler;
+    QSharedPointer<OAIImagesApiHandler> mOAIImagesApiHandler;
+    QSharedPointer<OAIModelsApiHandler> mOAIModelsApiHandler;
+    QSharedPointer<OAIModerationsApiHandler> mOAIModerationsApiHandler;
 protected:
     // override this method to provide custom class derived from ApiHandler classes
     virtual void createApiHandlers();

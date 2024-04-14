@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **str** |  | 
 **data** | [**List[OpenAIFile]**](OpenAIFile.md) |  | 
+**object** | **str** |  | 
 
 ## Example
 

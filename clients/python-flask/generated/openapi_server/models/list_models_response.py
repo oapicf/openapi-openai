@@ -64,8 +64,12 @@ class ListModelsResponse(Model):
         :param object: The object of this ListModelsResponse.
         :type object: str
         """
-        if object is None:
-            raise ValueError("Invalid value for `object`, must not be `None`")  # noqa: E501
+        allowed_values = ["list"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
 
         self._object = object
 

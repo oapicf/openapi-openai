@@ -3,6 +3,7 @@ package com.prokarma.pkmst.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 /**
@@ -14,13 +15,42 @@ import io.swagger.annotations.ApiModelProperty;
  * DeleteFileResponse
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-16T01:12:49.513446343Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-04-14T13:39:11.640510243Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DeleteFileResponse   {
   @JsonProperty("id")
   private String id;
 
+  /**
+   * Gets or Sets _object
+   */
+  public enum ObjectEnum {
+    FILE("file");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String text) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+    }
+  }
+
   @JsonProperty("object")
-  private String _object;
+  private ObjectEnum _object;
 
   @JsonProperty("deleted")
   private Boolean deleted;
@@ -43,7 +73,7 @@ public class DeleteFileResponse   {
     this.id = id;
   }
 
-  public DeleteFileResponse _object(String _object) {
+  public DeleteFileResponse _object(ObjectEnum _object) {
     this._object = _object;
     return this;
   }
@@ -53,11 +83,11 @@ public class DeleteFileResponse   {
    * @return _object
   **/
   @ApiModelProperty(required = true, value = "")
-  public String getObject() {
+  public ObjectEnum getObject() {
     return _object;
   }
 
-  public void setObject(String _object) {
+  public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 

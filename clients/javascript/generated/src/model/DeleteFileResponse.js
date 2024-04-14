@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,14 +16,14 @@ import ApiClient from '../ApiClient';
 /**
  * The DeleteFileResponse model module.
  * @module model/DeleteFileResponse
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class DeleteFileResponse {
     /**
      * Constructs a new <code>DeleteFileResponse</code>.
      * @alias module:model/DeleteFileResponse
      * @param id {String} 
-     * @param object {String} 
+     * @param object {module:model/DeleteFileResponse.ObjectEnum} 
      * @param deleted {Boolean} 
      */
     constructor(id, object, deleted) { 
@@ -101,7 +101,7 @@ DeleteFileResponse.RequiredProperties = ["id", "object", "deleted"];
 DeleteFileResponse.prototype['id'] = undefined;
 
 /**
- * @member {String} object
+ * @member {module:model/DeleteFileResponse.ObjectEnum} object
  */
 DeleteFileResponse.prototype['object'] = undefined;
 
@@ -112,6 +112,21 @@ DeleteFileResponse.prototype['deleted'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>object</code> property.
+ * @enum {String}
+ * @readonly
+ */
+DeleteFileResponse['ObjectEnum'] = {
+
+    /**
+     * value: "file"
+     * @const
+     */
+    "file": "file"
+};
 
 
 

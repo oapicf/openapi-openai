@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -81,15 +81,6 @@ class CreateChatCompletionRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "model"
-     */
-    public function testPropertyModel()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "messages"
      */
     public function testPropertyMessages()
@@ -99,81 +90,9 @@ class CreateChatCompletionRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "functions"
+     * Test attribute "model"
      */
-    public function testPropertyFunctions()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "function_call"
-     */
-    public function testPropertyFunctionCall()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "temperature"
-     */
-    public function testPropertyTemperature()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "top_p"
-     */
-    public function testPropertyTopP()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "n"
-     */
-    public function testPropertyN()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "stream"
-     */
-    public function testPropertyStream()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "stop"
-     */
-    public function testPropertyStop()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "max_tokens"
-     */
-    public function testPropertyMaxTokens()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "presence_penalty"
-     */
-    public function testPropertyPresencePenalty()
+    public function testPropertyModel()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -198,9 +117,144 @@ class CreateChatCompletionRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "logprobs"
+     */
+    public function testPropertyLogprobs()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "top_logprobs"
+     */
+    public function testPropertyTopLogprobs()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "max_tokens"
+     */
+    public function testPropertyMaxTokens()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "n"
+     */
+    public function testPropertyN()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "presence_penalty"
+     */
+    public function testPropertyPresencePenalty()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "response_format"
+     */
+    public function testPropertyResponseFormat()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "seed"
+     */
+    public function testPropertySeed()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "stop"
+     */
+    public function testPropertyStop()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "stream"
+     */
+    public function testPropertyStream()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "temperature"
+     */
+    public function testPropertyTemperature()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "top_p"
+     */
+    public function testPropertyTopP()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tools"
+     */
+    public function testPropertyTools()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tool_choice"
+     */
+    public function testPropertyToolChoice()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "user"
      */
     public function testPropertyUser()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "function_call"
+     */
+    public function testPropertyFunctionCall()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "functions"
+     */
+    public function testPropertyFunctions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

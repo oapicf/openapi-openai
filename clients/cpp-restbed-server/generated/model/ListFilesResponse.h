@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -26,6 +26,7 @@
 #include <vector>
 #include <memory>
 #include <vector>
+#include <array>
 #include <boost/property_tree/ptree.hpp>
 #include "helpers.h"
 
@@ -62,18 +63,18 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::string getObject() const;
-    void setObject(std::string value);
+    std::vector<OpenAIFile> getData() const;
+    void setData(std::vector<OpenAIFile> value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::vector<OpenAIFile> getData() const;
-    void setData(std::vector<OpenAIFile> value);
+    std::string getObject() const;
+    void setObject(std::string value);
 
 protected:
-    std::string m_object = "";
     std::vector<OpenAIFile> m_Data;
+    std::string m_object = "";
 };
 
 std::vector<ListFilesResponse> createListFilesResponseVectorFromJsonString(const std::string& json);

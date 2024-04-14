@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner = openapi_server.resourceTypes.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+}
+resourceTypes {
+
+  RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter {
+    title = RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+    description = RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+    derivedFrom = Root
+    properties {
+        input {
+          type =  string
+          description = "The input to the Code Interpreter tool call."
+          optional = false
+        }
+        outputs {
+          type = array
+          items.type = RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+          description = "The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (&#x60;logs&#x60;) or images (&#x60;image&#x60;). Each of these are represented by a different object type."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter {
+    title = RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+    description = RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+    implements = openapi_server.resourceTypes.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+
+  }
+}

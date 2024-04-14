@@ -1,5 +1,6 @@
 package org.openapitools.api
 
+import org.openapitools.model.CreateImageEditRequestModel
 import org.openapitools.model.CreateImageRequest
 import org.openapitools.model.ImagesResponse
 import io.swagger.v3.oas.annotations.*
@@ -39,7 +40,8 @@ class ImagesApiController() {
         operationId = "createImage",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ImagesResponse::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ImagesResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -56,7 +58,8 @@ class ImagesApiController() {
         operationId = "createImageEdit",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ImagesResponse::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ImagesResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -64,7 +67,7 @@ class ImagesApiController() {
         produces = ["application/json"],
         consumes = ["multipart/form-data"]
     )
-    fun createImageEdit(@Parameter(description = "The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.") @Valid @RequestPart("image", required = true) image: org.springframework.core.io.Resource,@Parameter(description = "A text description of the desired image(s). The maximum length is 1000 characters.", required = true) @RequestParam(value = "prompt", required = true) prompt: kotlin.String ,@Parameter(description = "An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`.") @Valid @RequestPart("mask", required = false) mask: org.springframework.core.io.Resource?,@Parameter(description = "The number of images to generate. Must be between 1 and 10.", schema = Schema(defaultValue = "1")) @RequestParam(value = "n", required = false) n: kotlin.Int ,@Parameter(description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", schema = Schema(allowableValues = ["256x256", "512x512", "1024x1024"], defaultValue = "1024x1024")) @RequestParam(value = "size", required = false) size: kotlin.String ,@Parameter(description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`.", schema = Schema(allowableValues = ["url", "b64_json"], defaultValue = "url")) @RequestParam(value = "response_format", required = false) responseFormat: kotlin.String ,@Parameter(description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @RequestParam(value = "user", required = false) user: kotlin.String? ): ResponseEntity<ImagesResponse> {
+    fun createImageEdit(@Parameter(description = "The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.") @Valid @RequestPart("image", required = true) image: org.springframework.core.io.Resource,@Parameter(description = "A text description of the desired image(s). The maximum length is 1000 characters.", required = true) @RequestParam(value = "prompt", required = true) prompt: kotlin.String ,@Parameter(description = "An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`.") @Valid @RequestPart("mask", required = false) mask: org.springframework.core.io.Resource?,@Parameter(description = "") @RequestParam(value = "model", required = false) model: CreateImageEditRequestModel? ,@Parameter(description = "The number of images to generate. Must be between 1 and 10.", schema = Schema(defaultValue = "1")) @RequestParam(value = "n", required = false) n: kotlin.Int ,@Parameter(description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", schema = Schema(allowableValues = ["256x256", "512x512", "1024x1024"], defaultValue = "1024x1024")) @RequestParam(value = "size", required = false) size: kotlin.String ,@Parameter(description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.", schema = Schema(allowableValues = ["url", "b64_json"], defaultValue = "url")) @RequestParam(value = "response_format", required = false) responseFormat: kotlin.String ,@Parameter(description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @RequestParam(value = "user", required = false) user: kotlin.String? ): ResponseEntity<ImagesResponse> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -73,7 +76,8 @@ class ImagesApiController() {
         operationId = "createImageVariation",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ImagesResponse::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ImagesResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -81,7 +85,7 @@ class ImagesApiController() {
         produces = ["application/json"],
         consumes = ["multipart/form-data"]
     )
-    fun createImageVariation(@Parameter(description = "The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.") @Valid @RequestPart("image", required = true) image: org.springframework.core.io.Resource,@Parameter(description = "The number of images to generate. Must be between 1 and 10.", schema = Schema(defaultValue = "1")) @RequestParam(value = "n", required = false) n: kotlin.Int ,@Parameter(description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", schema = Schema(allowableValues = ["256x256", "512x512", "1024x1024"], defaultValue = "1024x1024")) @RequestParam(value = "size", required = false) size: kotlin.String ,@Parameter(description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`.", schema = Schema(allowableValues = ["url", "b64_json"], defaultValue = "url")) @RequestParam(value = "response_format", required = false) responseFormat: kotlin.String ,@Parameter(description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @RequestParam(value = "user", required = false) user: kotlin.String? ): ResponseEntity<ImagesResponse> {
+    fun createImageVariation(@Parameter(description = "The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.") @Valid @RequestPart("image", required = true) image: org.springframework.core.io.Resource,@Parameter(description = "") @RequestParam(value = "model", required = false) model: CreateImageEditRequestModel? ,@Parameter(description = "The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.", schema = Schema(defaultValue = "1")) @RequestParam(value = "n", required = false) n: kotlin.Int ,@Parameter(description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.", schema = Schema(allowableValues = ["url", "b64_json"], defaultValue = "url")) @RequestParam(value = "response_format", required = false) responseFormat: kotlin.String ,@Parameter(description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", schema = Schema(allowableValues = ["256x256", "512x512", "1024x1024"], defaultValue = "1024x1024")) @RequestParam(value = "size", required = false) size: kotlin.String ,@Parameter(description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @RequestParam(value = "user", required = false) user: kotlin.String? ): ResponseEntity<ImagesResponse> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 }

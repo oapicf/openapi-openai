@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,8 +37,8 @@ void OAICreateCompletionResponse::initializeModel() {
     m_id_isSet = false;
     m_id_isValid = false;
 
-    m_object_isSet = false;
-    m_object_isValid = false;
+    m_choices_isSet = false;
+    m_choices_isValid = false;
 
     m_created_isSet = false;
     m_created_isValid = false;
@@ -46,8 +46,11 @@ void OAICreateCompletionResponse::initializeModel() {
     m_model_isSet = false;
     m_model_isValid = false;
 
-    m_choices_isSet = false;
-    m_choices_isValid = false;
+    m_system_fingerprint_isSet = false;
+    m_system_fingerprint_isValid = false;
+
+    m_object_isSet = false;
+    m_object_isValid = false;
 
     m_usage_isSet = false;
     m_usage_isValid = false;
@@ -65,8 +68,8 @@ void OAICreateCompletionResponse::fromJsonObject(QJsonObject json) {
     m_id_isValid = ::OpenAPI::fromJsonValue(m_id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
-    m_object_isValid = ::OpenAPI::fromJsonValue(m_object, json[QString("object")]);
-    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
+    m_choices_isValid = ::OpenAPI::fromJsonValue(m_choices, json[QString("choices")]);
+    m_choices_isSet = !json[QString("choices")].isNull() && m_choices_isValid;
 
     m_created_isValid = ::OpenAPI::fromJsonValue(m_created, json[QString("created")]);
     m_created_isSet = !json[QString("created")].isNull() && m_created_isValid;
@@ -74,8 +77,11 @@ void OAICreateCompletionResponse::fromJsonObject(QJsonObject json) {
     m_model_isValid = ::OpenAPI::fromJsonValue(m_model, json[QString("model")]);
     m_model_isSet = !json[QString("model")].isNull() && m_model_isValid;
 
-    m_choices_isValid = ::OpenAPI::fromJsonValue(m_choices, json[QString("choices")]);
-    m_choices_isSet = !json[QString("choices")].isNull() && m_choices_isValid;
+    m_system_fingerprint_isValid = ::OpenAPI::fromJsonValue(m_system_fingerprint, json[QString("system_fingerprint")]);
+    m_system_fingerprint_isSet = !json[QString("system_fingerprint")].isNull() && m_system_fingerprint_isValid;
+
+    m_object_isValid = ::OpenAPI::fromJsonValue(m_object, json[QString("object")]);
+    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
 
     m_usage_isValid = ::OpenAPI::fromJsonValue(m_usage, json[QString("usage")]);
     m_usage_isSet = !json[QString("usage")].isNull() && m_usage_isValid;
@@ -93,8 +99,8 @@ QJsonObject OAICreateCompletionResponse::asJsonObject() const {
     if (m_id_isSet) {
         obj.insert(QString("id"), ::OpenAPI::toJsonValue(m_id));
     }
-    if (m_object_isSet) {
-        obj.insert(QString("object"), ::OpenAPI::toJsonValue(m_object));
+    if (m_choices.size() > 0) {
+        obj.insert(QString("choices"), ::OpenAPI::toJsonValue(m_choices));
     }
     if (m_created_isSet) {
         obj.insert(QString("created"), ::OpenAPI::toJsonValue(m_created));
@@ -102,8 +108,11 @@ QJsonObject OAICreateCompletionResponse::asJsonObject() const {
     if (m_model_isSet) {
         obj.insert(QString("model"), ::OpenAPI::toJsonValue(m_model));
     }
-    if (m_choices.size() > 0) {
-        obj.insert(QString("choices"), ::OpenAPI::toJsonValue(m_choices));
+    if (m_system_fingerprint_isSet) {
+        obj.insert(QString("system_fingerprint"), ::OpenAPI::toJsonValue(m_system_fingerprint));
+    }
+    if (m_object_isSet) {
+        obj.insert(QString("object"), ::OpenAPI::toJsonValue(m_object));
     }
     if (m_usage.isSet()) {
         obj.insert(QString("usage"), ::OpenAPI::toJsonValue(m_usage));
@@ -127,20 +136,20 @@ bool OAICreateCompletionResponse::is_id_Valid() const{
     return m_id_isValid;
 }
 
-QString OAICreateCompletionResponse::getObject() const {
-    return m_object;
+QList<OAICreateCompletionResponse_choices_inner> OAICreateCompletionResponse::getChoices() const {
+    return m_choices;
 }
-void OAICreateCompletionResponse::setObject(const QString &object) {
-    m_object = object;
-    m_object_isSet = true;
-}
-
-bool OAICreateCompletionResponse::is_object_Set() const{
-    return m_object_isSet;
+void OAICreateCompletionResponse::setChoices(const QList<OAICreateCompletionResponse_choices_inner> &choices) {
+    m_choices = choices;
+    m_choices_isSet = true;
 }
 
-bool OAICreateCompletionResponse::is_object_Valid() const{
-    return m_object_isValid;
+bool OAICreateCompletionResponse::is_choices_Set() const{
+    return m_choices_isSet;
+}
+
+bool OAICreateCompletionResponse::is_choices_Valid() const{
+    return m_choices_isValid;
 }
 
 qint32 OAICreateCompletionResponse::getCreated() const {
@@ -175,26 +184,42 @@ bool OAICreateCompletionResponse::is_model_Valid() const{
     return m_model_isValid;
 }
 
-QList<OAICreateCompletionResponse_choices_inner> OAICreateCompletionResponse::getChoices() const {
-    return m_choices;
+QString OAICreateCompletionResponse::getSystemFingerprint() const {
+    return m_system_fingerprint;
 }
-void OAICreateCompletionResponse::setChoices(const QList<OAICreateCompletionResponse_choices_inner> &choices) {
-    m_choices = choices;
-    m_choices_isSet = true;
-}
-
-bool OAICreateCompletionResponse::is_choices_Set() const{
-    return m_choices_isSet;
+void OAICreateCompletionResponse::setSystemFingerprint(const QString &system_fingerprint) {
+    m_system_fingerprint = system_fingerprint;
+    m_system_fingerprint_isSet = true;
 }
 
-bool OAICreateCompletionResponse::is_choices_Valid() const{
-    return m_choices_isValid;
+bool OAICreateCompletionResponse::is_system_fingerprint_Set() const{
+    return m_system_fingerprint_isSet;
 }
 
-OAICreateCompletionResponse_usage OAICreateCompletionResponse::getUsage() const {
+bool OAICreateCompletionResponse::is_system_fingerprint_Valid() const{
+    return m_system_fingerprint_isValid;
+}
+
+QString OAICreateCompletionResponse::getObject() const {
+    return m_object;
+}
+void OAICreateCompletionResponse::setObject(const QString &object) {
+    m_object = object;
+    m_object_isSet = true;
+}
+
+bool OAICreateCompletionResponse::is_object_Set() const{
+    return m_object_isSet;
+}
+
+bool OAICreateCompletionResponse::is_object_Valid() const{
+    return m_object_isValid;
+}
+
+OAICompletionUsage OAICreateCompletionResponse::getUsage() const {
     return m_usage;
 }
-void OAICreateCompletionResponse::setUsage(const OAICreateCompletionResponse_usage &usage) {
+void OAICreateCompletionResponse::setUsage(const OAICompletionUsage &usage) {
     m_usage = usage;
     m_usage_isSet = true;
 }
@@ -215,7 +240,7 @@ bool OAICreateCompletionResponse::isSet() const {
             break;
         }
 
-        if (m_object_isSet) {
+        if (m_choices.size() > 0) {
             isObjectUpdated = true;
             break;
         }
@@ -230,7 +255,12 @@ bool OAICreateCompletionResponse::isSet() const {
             break;
         }
 
-        if (m_choices.size() > 0) {
+        if (m_system_fingerprint_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_object_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -245,7 +275,7 @@ bool OAICreateCompletionResponse::isSet() const {
 
 bool OAICreateCompletionResponse::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_object_isValid && m_created_isValid && m_model_isValid && m_choices_isValid && true;
+    return m_id_isValid && m_choices_isValid && m_created_isValid && m_model_isValid && m_object_isValid && true;
 }
 
 } // namespace OpenAPI

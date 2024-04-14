@@ -33,9 +33,9 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Validated
-@Tag(name = "OpenAI", description = "The OpenAI REST API")
+@Tag(name = "Embeddings", description = "Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms.")
 public interface EmbeddingsApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -51,11 +51,14 @@ public interface EmbeddingsApi {
     @Operation(
         operationId = "createEmbedding",
         summary = "Creates an embedding vector representing the input text.",
-        tags = { "OpenAI" },
+        tags = { "Embeddings" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = CreateEmbeddingResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -71,7 +74,7 @@ public interface EmbeddingsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"data\" : [ { \"index\" : 0, \"embedding\" : [ 6.027456183070403, 6.027456183070403 ], \"object\" : \"object\" }, { \"index\" : 0, \"embedding\" : [ 6.027456183070403, 6.027456183070403 ], \"object\" : \"object\" } ], \"usage\" : { \"prompt_tokens\" : 1, \"total_tokens\" : 5 }, \"model\" : \"model\", \"object\" : \"object\" }";
+                    String exampleString = "{ \"data\" : [ { \"index\" : 0, \"embedding\" : [ 6.027456183070403, 6.027456183070403 ], \"object\" : \"embedding\" }, { \"index\" : 0, \"embedding\" : [ 6.027456183070403, 6.027456183070403 ], \"object\" : \"embedding\" } ], \"usage\" : { \"prompt_tokens\" : 1, \"total_tokens\" : 5 }, \"model\" : \"model\", \"object\" : \"list\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

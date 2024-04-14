@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -30,8 +30,8 @@ inline FString ToString(const OpenAPIChatCompletionStreamResponseDelta::RoleEnum
 		return TEXT("user");
 	case OpenAPIChatCompletionStreamResponseDelta::RoleEnum::Assistant:
 		return TEXT("assistant");
-	case OpenAPIChatCompletionStreamResponseDelta::RoleEnum::Function:
-		return TEXT("function");
+	case OpenAPIChatCompletionStreamResponseDelta::RoleEnum::Tool:
+		return TEXT("tool");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIChatCompletionStreamResponseDelta::RoleEnum Value (%d)"), (int)Value);
@@ -49,7 +49,7 @@ inline bool FromString(const FString& EnumAsString, OpenAPIChatCompletionStreamR
 		{ TEXT("system"), OpenAPIChatCompletionStreamResponseDelta::RoleEnum::System },
 		{ TEXT("user"), OpenAPIChatCompletionStreamResponseDelta::RoleEnum::User },
 		{ TEXT("assistant"), OpenAPIChatCompletionStreamResponseDelta::RoleEnum::Assistant },
-		{ TEXT("function"), OpenAPIChatCompletionStreamResponseDelta::RoleEnum::Function }, };
+		{ TEXT("tool"), OpenAPIChatCompletionStreamResponseDelta::RoleEnum::Tool }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -82,10 +82,6 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIChat
 void OpenAPIChatCompletionStreamResponseDelta::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	if (Role.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("role")); WriteJsonValue(Writer, Role.GetValue());
-	}
 	if (Content.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("content")); WriteJsonValue(Writer, Content.GetValue());
@@ -93,6 +89,14 @@ void OpenAPIChatCompletionStreamResponseDelta::WriteJson(JsonWriter& Writer) con
 	if (FunctionCall.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("function_call")); WriteJsonValue(Writer, FunctionCall.GetValue());
+	}
+	if (ToolCalls.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("tool_calls")); WriteJsonValue(Writer, ToolCalls.GetValue());
+	}
+	if (Role.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("role")); WriteJsonValue(Writer, Role.GetValue());
 	}
 	Writer->WriteObjectEnd();
 }
@@ -105,9 +109,10 @@ bool OpenAPIChatCompletionStreamResponseDelta::FromJson(const TSharedPtr<FJsonVa
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("role"), Role);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("content"), Content);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("function_call"), FunctionCall);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("tool_calls"), ToolCalls);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("role"), Role);
 
 	return ParseSuccess;
 }

@@ -19,7 +19,16 @@ open System.Diagnostics
 open Giraffe.GiraffeViewEngine
 open AspNet.Security.ApiKey.Providers
 
-open OpenAIApiHandlerParams
+open AssistantsApiHandlerParams
+open AudioApiHandlerParams
+open ChatApiHandlerParams
+open CompletionsApiHandlerParams
+open EmbeddingsApiHandlerParams
+open FilesApiHandlerParams
+open FineTuningApiHandlerParams
+open ImagesApiHandlerParams
+open ModelsApiHandlerParams
+open ModerationsApiHandlerParams
 open Giraffe
 
 module App =
@@ -46,29 +55,58 @@ module App =
 
   let webApp =
     choose (CustomHandlers.handlers @ [
-      HttpPost >=> routeBind<CancelFineTunePathParams> "/v1/fine-tunes/{fine_tune_id}/cancel"  (fun x ->  OpenAIApiHandler.CancelFineTune x);
-      HttpPost >=> route "/v1/chat/completions" >=>  OpenAIApiHandler.CreateChatCompletion;
-      HttpPost >=> route "/v1/completions" >=>  OpenAIApiHandler.CreateCompletion;
-      HttpPost >=> route "/v1/edits" >=>  OpenAIApiHandler.CreateEdit;
-      HttpPost >=> route "/v1/embeddings" >=>  OpenAIApiHandler.CreateEmbedding;
-      HttpPost >=> route "/v1/files" >=>  OpenAIApiHandler.CreateFile;
-      HttpPost >=> route "/v1/fine-tunes" >=>  OpenAIApiHandler.CreateFineTune;
-      HttpPost >=> route "/v1/images/generations" >=>  OpenAIApiHandler.CreateImage;
-      HttpPost >=> route "/v1/images/edits" >=>  OpenAIApiHandler.CreateImageEdit;
-      HttpPost >=> route "/v1/images/variations" >=>  OpenAIApiHandler.CreateImageVariation;
-      HttpPost >=> route "/v1/moderations" >=>  OpenAIApiHandler.CreateModeration;
-      HttpPost >=> route "/v1/audio/transcriptions" >=>  OpenAIApiHandler.CreateTranscription;
-      HttpPost >=> route "/v1/audio/translations" >=>  OpenAIApiHandler.CreateTranslation;
-      HttpDelete >=> routeBind<DeleteFilePathParams> "/v1/files/{file_id}"  (fun x ->  OpenAIApiHandler.DeleteFile x);
-      HttpDelete >=> routeBind<DeleteModelPathParams> "/v1/models/{model}"  (fun x ->  OpenAIApiHandler.DeleteModel x);
-      HttpGet >=> routeBind<DownloadFilePathParams> "/v1/files/{file_id}/content"  (fun x ->  OpenAIApiHandler.DownloadFile x);
-      HttpGet >=> route "/v1/files" >=>  OpenAIApiHandler.ListFiles;
-      HttpGet >=> routeBind<ListFineTuneEventsPathParams> "/v1/fine-tunes/{fine_tune_id}/events"  (fun x ->  OpenAIApiHandler.ListFineTuneEvents x);
-      HttpGet >=> route "/v1/fine-tunes" >=>  OpenAIApiHandler.ListFineTunes;
-      HttpGet >=> route "/v1/models" >=>  OpenAIApiHandler.ListModels;
-      HttpGet >=> routeBind<RetrieveFilePathParams> "/v1/files/{file_id}"  (fun x ->  OpenAIApiHandler.RetrieveFile x);
-      HttpGet >=> routeBind<RetrieveFineTunePathParams> "/v1/fine-tunes/{fine_tune_id}"  (fun x ->  OpenAIApiHandler.RetrieveFineTune x);
-      HttpGet >=> routeBind<RetrieveModelPathParams> "/v1/models/{model}"  (fun x ->  OpenAIApiHandler.RetrieveModel x);
+      HttpPost >=> routeBind<CancelRunPathParams> "/v1/threads/{thread_id}/runs/{run_id}/cancel"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.CancelRun x) x);
+      HttpPost >=> route "/v1/assistants" >=>  >=>  AssistantsApiHandler.CreateAssistant;
+      HttpPost >=> routeBind<CreateAssistantFilePathParams> "/v1/assistants/{assistant_id}/files"  (fun x ->  >=>  AssistantsApiHandler.CreateAssistantFile x);
+      HttpPost >=> routeBind<CreateMessagePathParams> "/v1/threads/{thread_id}/messages"  (fun x ->  >=>  AssistantsApiHandler.CreateMessage x);
+      HttpPost >=> routeBind<CreateRunPathParams> "/v1/threads/{thread_id}/runs"  (fun x ->  >=>  AssistantsApiHandler.CreateRun x);
+      HttpPost >=> route "/v1/threads" >=>  >=>  AssistantsApiHandler.CreateThread;
+      HttpPost >=> route "/v1/threads/runs" >=>  >=>  AssistantsApiHandler.CreateThreadAndRun;
+      HttpDelete >=> routeBind<DeleteAssistantPathParams> "/v1/assistants/{assistant_id}"  (fun x ->  >=>  AssistantsApiHandler.DeleteAssistant x);
+      HttpDelete >=> routeBind<DeleteAssistantFilePathParams> "/v1/assistants/{assistant_id}/files/{file_id}"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.DeleteAssistantFile x) x);
+      HttpDelete >=> routeBind<DeleteThreadPathParams> "/v1/threads/{thread_id}"  (fun x ->  >=>  AssistantsApiHandler.DeleteThread x);
+      HttpGet >=> routeBind<GetAssistantPathParams> "/v1/assistants/{assistant_id}"  (fun x ->  >=>  AssistantsApiHandler.GetAssistant x);
+      HttpGet >=> routeBind<GetAssistantFilePathParams> "/v1/assistants/{assistant_id}/files/{file_id}"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.GetAssistantFile x) x);
+      HttpGet >=> routeBind<GetMessagePathParams> "/v1/threads/{thread_id}/messages/{message_id}"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.GetMessage x) x);
+      HttpGet >=> routeBind<GetMessageFilePathParams> "/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}"  (fun x -> (fun x -> (fun x ->  >=>  AssistantsApiHandler.GetMessageFile x) x) x);
+      HttpGet >=> routeBind<GetRunPathParams> "/v1/threads/{thread_id}/runs/{run_id}"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.GetRun x) x);
+      HttpGet >=> routeBind<GetRunStepPathParams> "/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}"  (fun x -> (fun x -> (fun x ->  >=>  AssistantsApiHandler.GetRunStep x) x) x);
+      HttpGet >=> routeBind<GetThreadPathParams> "/v1/threads/{thread_id}"  (fun x ->  >=>  AssistantsApiHandler.GetThread x);
+      HttpGet >=> routeBind<ListAssistantFilesPathParams> "/v1/assistants/{assistant_id}/files"  (fun x ->  >=>  AssistantsApiHandler.ListAssistantFiles x);
+      HttpGet >=> route "/v1/assistants" >=>  >=>  AssistantsApiHandler.ListAssistants;
+      HttpGet >=> routeBind<ListMessageFilesPathParams> "/v1/threads/{thread_id}/messages/{message_id}/files"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.ListMessageFiles x) x);
+      HttpGet >=> routeBind<ListMessagesPathParams> "/v1/threads/{thread_id}/messages"  (fun x ->  >=>  AssistantsApiHandler.ListMessages x);
+      HttpGet >=> routeBind<ListRunStepsPathParams> "/v1/threads/{thread_id}/runs/{run_id}/steps"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.ListRunSteps x) x);
+      HttpGet >=> routeBind<ListRunsPathParams> "/v1/threads/{thread_id}/runs"  (fun x ->  >=>  AssistantsApiHandler.ListRuns x);
+      HttpPost >=> routeBind<ModifyAssistantPathParams> "/v1/assistants/{assistant_id}"  (fun x ->  >=>  AssistantsApiHandler.ModifyAssistant x);
+      HttpPost >=> routeBind<ModifyMessagePathParams> "/v1/threads/{thread_id}/messages/{message_id}"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.ModifyMessage x) x);
+      HttpPost >=> routeBind<ModifyRunPathParams> "/v1/threads/{thread_id}/runs/{run_id}"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.ModifyRun x) x);
+      HttpPost >=> routeBind<ModifyThreadPathParams> "/v1/threads/{thread_id}"  (fun x ->  >=>  AssistantsApiHandler.ModifyThread x);
+      HttpPost >=> routeBind<SubmitToolOuputsToRunPathParams> "/v1/threads/{thread_id}/runs/{run_id}/submit_tool_outputs"  (fun x -> (fun x ->  >=>  AssistantsApiHandler.SubmitToolOuputsToRun x) x);
+      HttpPost >=> route "/v1/audio/speech" >=>  >=>  AudioApiHandler.CreateSpeech;
+      HttpPost >=> route "/v1/audio/transcriptions" >=>  >=>  AudioApiHandler.CreateTranscription;
+      HttpPost >=> route "/v1/audio/translations" >=>  >=>  AudioApiHandler.CreateTranslation;
+      HttpPost >=> route "/v1/chat/completions" >=>  >=>  ChatApiHandler.CreateChatCompletion;
+      HttpPost >=> route "/v1/completions" >=>  >=>  CompletionsApiHandler.CreateCompletion;
+      HttpPost >=> route "/v1/embeddings" >=>  >=>  EmbeddingsApiHandler.CreateEmbedding;
+      HttpPost >=> route "/v1/files" >=>  >=>  FilesApiHandler.CreateFile;
+      HttpDelete >=> routeBind<DeleteFilePathParams> "/v1/files/{file_id}"  (fun x ->  >=>  FilesApiHandler.DeleteFile x);
+      HttpGet >=> routeBind<DownloadFilePathParams> "/v1/files/{file_id}/content"  (fun x ->  >=>  FilesApiHandler.DownloadFile x);
+      HttpGet >=> route "/v1/files" >=>  >=>  FilesApiHandler.ListFiles;
+      HttpGet >=> routeBind<RetrieveFilePathParams> "/v1/files/{file_id}"  (fun x ->  >=>  FilesApiHandler.RetrieveFile x);
+      HttpPost >=> routeBind<CancelFineTuningJobPathParams> "/v1/fine_tuning/jobs/{fine_tuning_job_id}/cancel"  (fun x ->  >=>  FineTuningApiHandler.CancelFineTuningJob x);
+      HttpPost >=> route "/v1/fine_tuning/jobs" >=>  >=>  FineTuningApiHandler.CreateFineTuningJob;
+      HttpGet >=> routeBind<ListFineTuningEventsPathParams> "/v1/fine_tuning/jobs/{fine_tuning_job_id}/events"  (fun x ->  >=>  FineTuningApiHandler.ListFineTuningEvents x);
+      HttpGet >=> routeBind<ListFineTuningJobCheckpointsPathParams> "/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints"  (fun x ->  >=>  FineTuningApiHandler.ListFineTuningJobCheckpoints x);
+      HttpGet >=> route "/v1/fine_tuning/jobs" >=>  >=>  FineTuningApiHandler.ListPaginatedFineTuningJobs;
+      HttpGet >=> routeBind<RetrieveFineTuningJobPathParams> "/v1/fine_tuning/jobs/{fine_tuning_job_id}"  (fun x ->  >=>  FineTuningApiHandler.RetrieveFineTuningJob x);
+      HttpPost >=> route "/v1/images/generations" >=>  >=>  ImagesApiHandler.CreateImage;
+      HttpPost >=> route "/v1/images/edits" >=>  >=>  ImagesApiHandler.CreateImageEdit;
+      HttpPost >=> route "/v1/images/variations" >=>  >=>  ImagesApiHandler.CreateImageVariation;
+      HttpDelete >=> routeBind<DeleteModelPathParams> "/v1/models/{model}"  (fun x ->  >=>  ModelsApiHandler.DeleteModel x);
+      HttpGet >=> route "/v1/models" >=>  >=>  ModelsApiHandler.ListModels;
+      HttpGet >=> routeBind<RetrieveModelPathParams> "/v1/models/{model}"  (fun x ->  >=>  ModelsApiHandler.RetrieveModel x);
+      HttpPost >=> route "/v1/moderations" >=>  >=>  ModerationsApiHandler.CreateModeration;
       RequestErrors.notFound (text "Not Found")
     ])
   // ---------------------------------

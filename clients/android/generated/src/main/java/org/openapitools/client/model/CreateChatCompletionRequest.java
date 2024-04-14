@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,10 +14,14 @@ package org.openapitools.client.model;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.Map;
 import org.openapitools.client.model.ChatCompletionFunctions;
 import org.openapitools.client.model.ChatCompletionRequestMessage;
+import org.openapitools.client.model.ChatCompletionTool;
+import org.openapitools.client.model.ChatCompletionToolChoiceOption;
 import org.openapitools.client.model.CreateChatCompletionRequestFunctionCall;
 import org.openapitools.client.model.CreateChatCompletionRequestModel;
+import org.openapitools.client.model.CreateChatCompletionRequestResponseFormat;
 import org.openapitools.client.model.CreateChatCompletionRequestStop;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -25,34 +29,57 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class CreateChatCompletionRequest {
   
-  @SerializedName("model")
-  private CreateChatCompletionRequestModel model = null;
   @SerializedName("messages")
   private List<ChatCompletionRequestMessage> messages = null;
-  @SerializedName("functions")
-  private List<ChatCompletionFunctions> functions = null;
-  @SerializedName("function_call")
-  private CreateChatCompletionRequestFunctionCall functionCall = null;
+  @SerializedName("model")
+  private CreateChatCompletionRequestModel model = null;
+  @SerializedName("frequency_penalty")
+  private BigDecimal frequencyPenalty = 0;
+  @SerializedName("logit_bias")
+  private Map<String, Integer> logitBias = null;
+  @SerializedName("logprobs")
+  private Boolean logprobs = false;
+  @SerializedName("top_logprobs")
+  private Integer topLogprobs = null;
+  @SerializedName("max_tokens")
+  private Integer maxTokens = null;
+  @SerializedName("n")
+  private Integer n = 1;
+  @SerializedName("presence_penalty")
+  private BigDecimal presencePenalty = 0;
+  @SerializedName("response_format")
+  private CreateChatCompletionRequestResponseFormat responseFormat = null;
+  @SerializedName("seed")
+  private Integer seed = null;
+  @SerializedName("stop")
+  private CreateChatCompletionRequestStop stop = null;
+  @SerializedName("stream")
+  private Boolean stream = false;
   @SerializedName("temperature")
   private BigDecimal temperature = 1;
   @SerializedName("top_p")
   private BigDecimal topP = 1;
-  @SerializedName("n")
-  private Integer n = 1;
-  @SerializedName("stream")
-  private Boolean stream = false;
-  @SerializedName("stop")
-  private CreateChatCompletionRequestStop stop = null;
-  @SerializedName("max_tokens")
-  private Integer maxTokens = null;
-  @SerializedName("presence_penalty")
-  private BigDecimal presencePenalty = 0;
-  @SerializedName("frequency_penalty")
-  private BigDecimal frequencyPenalty = 0;
-  @SerializedName("logit_bias")
-  private Object logitBias = null;
+  @SerializedName("tools")
+  private List<ChatCompletionTool> tools = null;
+  @SerializedName("tool_choice")
+  private ChatCompletionToolChoiceOption toolChoice = null;
   @SerializedName("user")
   private String user = null;
+  @SerializedName("function_call")
+  private CreateChatCompletionRequestFunctionCall functionCall = null;
+  @SerializedName("functions")
+  private List<ChatCompletionFunctions> functions = null;
+
+  /**
+   * A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+   **/
+  @ApiModelProperty(required = true, value = "A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).")
+  public List<ChatCompletionRequestMessage> getMessages() {
+    return messages;
+  }
+  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+    this.messages = messages;
+  }
 
   /**
    **/
@@ -65,35 +92,132 @@ public class CreateChatCompletionRequest {
   }
 
   /**
-   * A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * minimum: -2
+   * maximum: 2
    **/
-  @ApiModelProperty(required = true, value = "A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).")
-  public List<ChatCompletionRequestMessage> getMessages() {
-    return messages;
+  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ")
+  public BigDecimal getFrequencyPenalty() {
+    return frequencyPenalty;
   }
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
-    this.messages = messages;
+  public void setFrequencyPenalty(BigDecimal frequencyPenalty) {
+    this.frequencyPenalty = frequencyPenalty;
   }
 
   /**
-   * A list of functions the model may generate JSON inputs for.
+   * Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
    **/
-  @ApiModelProperty(value = "A list of functions the model may generate JSON inputs for.")
-  public List<ChatCompletionFunctions> getFunctions() {
-    return functions;
+  @ApiModelProperty(value = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. ")
+  public Map<String, Integer> getLogitBias() {
+    return logitBias;
   }
-  public void setFunctions(List<ChatCompletionFunctions> functions) {
-    this.functions = functions;
+  public void setLogitBias(Map<String, Integer> logitBias) {
+    this.logitBias = logitBias;
+  }
+
+  /**
+   * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+   **/
+  @ApiModelProperty(value = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.")
+  public Boolean getLogprobs() {
+    return logprobs;
+  }
+  public void setLogprobs(Boolean logprobs) {
+    this.logprobs = logprobs;
+  }
+
+  /**
+   * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+   * minimum: 0
+   * maximum: 20
+   **/
+  @ApiModelProperty(value = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.")
+  public Integer getTopLogprobs() {
+    return topLogprobs;
+  }
+  public void setTopLogprobs(Integer topLogprobs) {
+    this.topLogprobs = topLogprobs;
+  }
+
+  /**
+   * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+   **/
+  @ApiModelProperty(value = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. ")
+  public Integer getMaxTokens() {
+    return maxTokens;
+  }
+  public void setMaxTokens(Integer maxTokens) {
+    this.maxTokens = maxTokens;
+  }
+
+  /**
+   * How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
+   * minimum: 1
+   * maximum: 128
+   **/
+  @ApiModelProperty(value = "How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.")
+  public Integer getN() {
+    return n;
+  }
+  public void setN(Integer n) {
+    this.n = n;
+  }
+
+  /**
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * minimum: -2
+   * maximum: 2
+   **/
+  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ")
+  public BigDecimal getPresencePenalty() {
+    return presencePenalty;
+  }
+  public void setPresencePenalty(BigDecimal presencePenalty) {
+    this.presencePenalty = presencePenalty;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public CreateChatCompletionRequestFunctionCall getFunctionCall() {
-    return functionCall;
+  public CreateChatCompletionRequestResponseFormat getResponseFormat() {
+    return responseFormat;
   }
-  public void setFunctionCall(CreateChatCompletionRequestFunctionCall functionCall) {
-    this.functionCall = functionCall;
+  public void setResponseFormat(CreateChatCompletionRequestResponseFormat responseFormat) {
+    this.responseFormat = responseFormat;
+  }
+
+  /**
+   * This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. 
+   * minimum: -9223372036854775808
+   * maximum: 9223372036854775807
+   **/
+  @ApiModelProperty(value = "This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ")
+  public Integer getSeed() {
+    return seed;
+  }
+  public void setSeed(Integer seed) {
+    this.seed = seed;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public CreateChatCompletionRequestStop getStop() {
+    return stop;
+  }
+  public void setStop(CreateChatCompletionRequestStop stop) {
+    this.stop = stop;
+  }
+
+  /**
+   * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
+   **/
+  @ApiModelProperty(value = "If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). ")
+  public Boolean getStream() {
+    return stream;
+  }
+  public void setStream(Boolean stream) {
+    this.stream = stream;
   }
 
   /**
@@ -123,85 +247,24 @@ public class CreateChatCompletionRequest {
   }
 
   /**
-   * How many chat completion choices to generate for each input message.
-   * minimum: 1
-   * maximum: 128
+   * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. 
    **/
-  @ApiModelProperty(value = "How many chat completion choices to generate for each input message.")
-  public Integer getN() {
-    return n;
+  @ApiModelProperty(value = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ")
+  public List<ChatCompletionTool> getTools() {
+    return tools;
   }
-  public void setN(Integer n) {
-    this.n = n;
-  }
-
-  /**
-   * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). 
-   **/
-  @ApiModelProperty(value = "If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). ")
-  public Boolean getStream() {
-    return stream;
-  }
-  public void setStream(Boolean stream) {
-    this.stream = stream;
+  public void setTools(List<ChatCompletionTool> tools) {
+    this.tools = tools;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public CreateChatCompletionRequestStop getStop() {
-    return stop;
+  public ChatCompletionToolChoiceOption getToolChoice() {
+    return toolChoice;
   }
-  public void setStop(CreateChatCompletionRequestStop stop) {
-    this.stop = stop;
-  }
-
-  /**
-   * The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
-   **/
-  @ApiModelProperty(value = "The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. ")
-  public Integer getMaxTokens() {
-    return maxTokens;
-  }
-  public void setMaxTokens(Integer maxTokens) {
-    this.maxTokens = maxTokens;
-  }
-
-  /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-   * minimum: -2
-   * maximum: 2
-   **/
-  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) ")
-  public BigDecimal getPresencePenalty() {
-    return presencePenalty;
-  }
-  public void setPresencePenalty(BigDecimal presencePenalty) {
-    this.presencePenalty = presencePenalty;
-  }
-
-  /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-   * minimum: -2
-   * maximum: 2
-   **/
-  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) ")
-  public BigDecimal getFrequencyPenalty() {
-    return frequencyPenalty;
-  }
-  public void setFrequencyPenalty(BigDecimal frequencyPenalty) {
-    this.frequencyPenalty = frequencyPenalty;
-  }
-
-  /**
-   * Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
-   **/
-  @ApiModelProperty(value = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. ")
-  public Object getLogitBias() {
-    return logitBias;
-  }
-  public void setLogitBias(Object logitBias) {
-    this.logitBias = logitBias;
+  public void setToolChoice(ChatCompletionToolChoiceOption toolChoice) {
+    this.toolChoice = toolChoice;
   }
 
   /**
@@ -215,6 +278,27 @@ public class CreateChatCompletionRequest {
     this.user = user;
   }
 
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public CreateChatCompletionRequestFunctionCall getFunctionCall() {
+    return functionCall;
+  }
+  public void setFunctionCall(CreateChatCompletionRequestFunctionCall functionCall) {
+    this.functionCall = functionCall;
+  }
+
+  /**
+   * Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. 
+   **/
+  @ApiModelProperty(value = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ")
+  public List<ChatCompletionFunctions> getFunctions() {
+    return functions;
+  }
+  public void setFunctions(List<ChatCompletionFunctions> functions) {
+    this.functions = functions;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -225,39 +309,51 @@ public class CreateChatCompletionRequest {
       return false;
     }
     CreateChatCompletionRequest createChatCompletionRequest = (CreateChatCompletionRequest) o;
-    return (this.model == null ? createChatCompletionRequest.model == null : this.model.equals(createChatCompletionRequest.model)) &&
-        (this.messages == null ? createChatCompletionRequest.messages == null : this.messages.equals(createChatCompletionRequest.messages)) &&
-        (this.functions == null ? createChatCompletionRequest.functions == null : this.functions.equals(createChatCompletionRequest.functions)) &&
-        (this.functionCall == null ? createChatCompletionRequest.functionCall == null : this.functionCall.equals(createChatCompletionRequest.functionCall)) &&
-        (this.temperature == null ? createChatCompletionRequest.temperature == null : this.temperature.equals(createChatCompletionRequest.temperature)) &&
-        (this.topP == null ? createChatCompletionRequest.topP == null : this.topP.equals(createChatCompletionRequest.topP)) &&
-        (this.n == null ? createChatCompletionRequest.n == null : this.n.equals(createChatCompletionRequest.n)) &&
-        (this.stream == null ? createChatCompletionRequest.stream == null : this.stream.equals(createChatCompletionRequest.stream)) &&
-        (this.stop == null ? createChatCompletionRequest.stop == null : this.stop.equals(createChatCompletionRequest.stop)) &&
-        (this.maxTokens == null ? createChatCompletionRequest.maxTokens == null : this.maxTokens.equals(createChatCompletionRequest.maxTokens)) &&
-        (this.presencePenalty == null ? createChatCompletionRequest.presencePenalty == null : this.presencePenalty.equals(createChatCompletionRequest.presencePenalty)) &&
+    return (this.messages == null ? createChatCompletionRequest.messages == null : this.messages.equals(createChatCompletionRequest.messages)) &&
+        (this.model == null ? createChatCompletionRequest.model == null : this.model.equals(createChatCompletionRequest.model)) &&
         (this.frequencyPenalty == null ? createChatCompletionRequest.frequencyPenalty == null : this.frequencyPenalty.equals(createChatCompletionRequest.frequencyPenalty)) &&
         (this.logitBias == null ? createChatCompletionRequest.logitBias == null : this.logitBias.equals(createChatCompletionRequest.logitBias)) &&
-        (this.user == null ? createChatCompletionRequest.user == null : this.user.equals(createChatCompletionRequest.user));
+        (this.logprobs == null ? createChatCompletionRequest.logprobs == null : this.logprobs.equals(createChatCompletionRequest.logprobs)) &&
+        (this.topLogprobs == null ? createChatCompletionRequest.topLogprobs == null : this.topLogprobs.equals(createChatCompletionRequest.topLogprobs)) &&
+        (this.maxTokens == null ? createChatCompletionRequest.maxTokens == null : this.maxTokens.equals(createChatCompletionRequest.maxTokens)) &&
+        (this.n == null ? createChatCompletionRequest.n == null : this.n.equals(createChatCompletionRequest.n)) &&
+        (this.presencePenalty == null ? createChatCompletionRequest.presencePenalty == null : this.presencePenalty.equals(createChatCompletionRequest.presencePenalty)) &&
+        (this.responseFormat == null ? createChatCompletionRequest.responseFormat == null : this.responseFormat.equals(createChatCompletionRequest.responseFormat)) &&
+        (this.seed == null ? createChatCompletionRequest.seed == null : this.seed.equals(createChatCompletionRequest.seed)) &&
+        (this.stop == null ? createChatCompletionRequest.stop == null : this.stop.equals(createChatCompletionRequest.stop)) &&
+        (this.stream == null ? createChatCompletionRequest.stream == null : this.stream.equals(createChatCompletionRequest.stream)) &&
+        (this.temperature == null ? createChatCompletionRequest.temperature == null : this.temperature.equals(createChatCompletionRequest.temperature)) &&
+        (this.topP == null ? createChatCompletionRequest.topP == null : this.topP.equals(createChatCompletionRequest.topP)) &&
+        (this.tools == null ? createChatCompletionRequest.tools == null : this.tools.equals(createChatCompletionRequest.tools)) &&
+        (this.toolChoice == null ? createChatCompletionRequest.toolChoice == null : this.toolChoice.equals(createChatCompletionRequest.toolChoice)) &&
+        (this.user == null ? createChatCompletionRequest.user == null : this.user.equals(createChatCompletionRequest.user)) &&
+        (this.functionCall == null ? createChatCompletionRequest.functionCall == null : this.functionCall.equals(createChatCompletionRequest.functionCall)) &&
+        (this.functions == null ? createChatCompletionRequest.functions == null : this.functions.equals(createChatCompletionRequest.functions));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
-    result = 31 * result + (this.model == null ? 0: this.model.hashCode());
     result = 31 * result + (this.messages == null ? 0: this.messages.hashCode());
-    result = 31 * result + (this.functions == null ? 0: this.functions.hashCode());
-    result = 31 * result + (this.functionCall == null ? 0: this.functionCall.hashCode());
-    result = 31 * result + (this.temperature == null ? 0: this.temperature.hashCode());
-    result = 31 * result + (this.topP == null ? 0: this.topP.hashCode());
-    result = 31 * result + (this.n == null ? 0: this.n.hashCode());
-    result = 31 * result + (this.stream == null ? 0: this.stream.hashCode());
-    result = 31 * result + (this.stop == null ? 0: this.stop.hashCode());
-    result = 31 * result + (this.maxTokens == null ? 0: this.maxTokens.hashCode());
-    result = 31 * result + (this.presencePenalty == null ? 0: this.presencePenalty.hashCode());
+    result = 31 * result + (this.model == null ? 0: this.model.hashCode());
     result = 31 * result + (this.frequencyPenalty == null ? 0: this.frequencyPenalty.hashCode());
     result = 31 * result + (this.logitBias == null ? 0: this.logitBias.hashCode());
+    result = 31 * result + (this.logprobs == null ? 0: this.logprobs.hashCode());
+    result = 31 * result + (this.topLogprobs == null ? 0: this.topLogprobs.hashCode());
+    result = 31 * result + (this.maxTokens == null ? 0: this.maxTokens.hashCode());
+    result = 31 * result + (this.n == null ? 0: this.n.hashCode());
+    result = 31 * result + (this.presencePenalty == null ? 0: this.presencePenalty.hashCode());
+    result = 31 * result + (this.responseFormat == null ? 0: this.responseFormat.hashCode());
+    result = 31 * result + (this.seed == null ? 0: this.seed.hashCode());
+    result = 31 * result + (this.stop == null ? 0: this.stop.hashCode());
+    result = 31 * result + (this.stream == null ? 0: this.stream.hashCode());
+    result = 31 * result + (this.temperature == null ? 0: this.temperature.hashCode());
+    result = 31 * result + (this.topP == null ? 0: this.topP.hashCode());
+    result = 31 * result + (this.tools == null ? 0: this.tools.hashCode());
+    result = 31 * result + (this.toolChoice == null ? 0: this.toolChoice.hashCode());
     result = 31 * result + (this.user == null ? 0: this.user.hashCode());
+    result = 31 * result + (this.functionCall == null ? 0: this.functionCall.hashCode());
+    result = 31 * result + (this.functions == null ? 0: this.functions.hashCode());
     return result;
   }
 
@@ -266,20 +362,26 @@ public class CreateChatCompletionRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionRequest {\n");
     
-    sb.append("  model: ").append(model).append("\n");
     sb.append("  messages: ").append(messages).append("\n");
-    sb.append("  functions: ").append(functions).append("\n");
-    sb.append("  functionCall: ").append(functionCall).append("\n");
-    sb.append("  temperature: ").append(temperature).append("\n");
-    sb.append("  topP: ").append(topP).append("\n");
-    sb.append("  n: ").append(n).append("\n");
-    sb.append("  stream: ").append(stream).append("\n");
-    sb.append("  stop: ").append(stop).append("\n");
-    sb.append("  maxTokens: ").append(maxTokens).append("\n");
-    sb.append("  presencePenalty: ").append(presencePenalty).append("\n");
+    sb.append("  model: ").append(model).append("\n");
     sb.append("  frequencyPenalty: ").append(frequencyPenalty).append("\n");
     sb.append("  logitBias: ").append(logitBias).append("\n");
+    sb.append("  logprobs: ").append(logprobs).append("\n");
+    sb.append("  topLogprobs: ").append(topLogprobs).append("\n");
+    sb.append("  maxTokens: ").append(maxTokens).append("\n");
+    sb.append("  n: ").append(n).append("\n");
+    sb.append("  presencePenalty: ").append(presencePenalty).append("\n");
+    sb.append("  responseFormat: ").append(responseFormat).append("\n");
+    sb.append("  seed: ").append(seed).append("\n");
+    sb.append("  stop: ").append(stop).append("\n");
+    sb.append("  stream: ").append(stream).append("\n");
+    sb.append("  temperature: ").append(temperature).append("\n");
+    sb.append("  topP: ").append(topP).append("\n");
+    sb.append("  tools: ").append(tools).append("\n");
+    sb.append("  toolChoice: ").append(toolChoice).append("\n");
     sb.append("  user: ").append(user).append("\n");
+    sb.append("  functionCall: ").append(functionCall).append("\n");
+    sb.append("  functions: ").append(functions).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -7,50 +7,24 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateCompletionResponseChoicesInnerLogprobs   {
   
-  private List<String> tokens;
-  private List<BigDecimal> tokenLogprobs;
-  private List<Object> topLogprobs;
   private List<Integer> textOffset;
+  private List<BigDecimal> tokenLogprobs;
+  private List<String> tokens;
+  private List<Map<String, BigDecimal>> topLogprobs;
 
   public CreateCompletionResponseChoicesInnerLogprobs () {
 
   }
 
-  public CreateCompletionResponseChoicesInnerLogprobs (List<String> tokens, List<BigDecimal> tokenLogprobs, List<Object> topLogprobs, List<Integer> textOffset) {
-    this.tokens = tokens;
-    this.tokenLogprobs = tokenLogprobs;
-    this.topLogprobs = topLogprobs;
+  public CreateCompletionResponseChoicesInnerLogprobs (List<Integer> textOffset, List<BigDecimal> tokenLogprobs, List<String> tokens, List<Map<String, BigDecimal>> topLogprobs) {
     this.textOffset = textOffset;
-  }
-
-    
-  @JsonProperty("tokens")
-  public List<String> getTokens() {
-    return tokens;
-  }
-  public void setTokens(List<String> tokens) {
-    this.tokens = tokens;
-  }
-
-    
-  @JsonProperty("token_logprobs")
-  public List<BigDecimal> getTokenLogprobs() {
-    return tokenLogprobs;
-  }
-  public void setTokenLogprobs(List<BigDecimal> tokenLogprobs) {
     this.tokenLogprobs = tokenLogprobs;
-  }
-
-    
-  @JsonProperty("top_logprobs")
-  public List<Object> getTopLogprobs() {
-    return topLogprobs;
-  }
-  public void setTopLogprobs(List<Object> topLogprobs) {
+    this.tokens = tokens;
     this.topLogprobs = topLogprobs;
   }
 
@@ -63,6 +37,33 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
     this.textOffset = textOffset;
   }
 
+    
+  @JsonProperty("token_logprobs")
+  public List<BigDecimal> getTokenLogprobs() {
+    return tokenLogprobs;
+  }
+  public void setTokenLogprobs(List<BigDecimal> tokenLogprobs) {
+    this.tokenLogprobs = tokenLogprobs;
+  }
+
+    
+  @JsonProperty("tokens")
+  public List<String> getTokens() {
+    return tokens;
+  }
+  public void setTokens(List<String> tokens) {
+    this.tokens = tokens;
+  }
+
+    
+  @JsonProperty("top_logprobs")
+  public List<Map<String, BigDecimal>> getTopLogprobs() {
+    return topLogprobs;
+  }
+  public void setTopLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
+    this.topLogprobs = topLogprobs;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -73,15 +74,15 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
       return false;
     }
     CreateCompletionResponseChoicesInnerLogprobs createCompletionResponseChoicesInnerLogprobs = (CreateCompletionResponseChoicesInnerLogprobs) o;
-    return Objects.equals(tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+    return Objects.equals(textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset) &&
         Objects.equals(tokenLogprobs, createCompletionResponseChoicesInnerLogprobs.tokenLogprobs) &&
-        Objects.equals(topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs) &&
-        Objects.equals(textOffset, createCompletionResponseChoicesInnerLogprobs.textOffset);
+        Objects.equals(tokens, createCompletionResponseChoicesInnerLogprobs.tokens) &&
+        Objects.equals(topLogprobs, createCompletionResponseChoicesInnerLogprobs.topLogprobs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tokens, tokenLogprobs, topLogprobs, textOffset);
+    return Objects.hash(textOffset, tokenLogprobs, tokens, topLogprobs);
   }
 
   @Override
@@ -89,10 +90,10 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInnerLogprobs {\n");
     
-    sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
-    sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
-    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("    textOffset: ").append(toIndentedString(textOffset)).append("\n");
+    sb.append("    tokenLogprobs: ").append(toIndentedString(tokenLogprobs)).append("\n");
+    sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
+    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

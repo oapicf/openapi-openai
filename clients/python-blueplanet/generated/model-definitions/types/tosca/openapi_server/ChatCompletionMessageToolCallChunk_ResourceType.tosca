@@ -1,0 +1,52 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionMessageToolCallChunk"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionMessageToolCallChunk"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionMessageToolCallChunkFunction = openapi_server.resourceTypes.ChatCompletionMessageToolCallChunkFunction
+}
+resourceTypes {
+
+  ChatCompletionMessageToolCallChunk {
+    title = ChatCompletionMessageToolCallChunk
+    description = ChatCompletionMessageToolCallChunk
+    derivedFrom = Root
+    properties {
+        index {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        id {
+          type =  string
+          description = "The ID of the tool call."
+          optional = false
+        }
+        type {
+          type =  string
+          description = "The type of the tool. Currently, only &#x60;function&#x60; is supported."
+          enum = ["function"]
+          optional = false
+        }
+        function {
+          type = ChatCompletionMessageToolCallChunkFunction
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionMessageToolCallChunk {
+    title = ChatCompletionMessageToolCallChunk
+    description = ChatCompletionMessageToolCallChunk
+    implements = openapi_server.resourceTypes.ChatCompletionMessageToolCallChunk
+
+  }
+}

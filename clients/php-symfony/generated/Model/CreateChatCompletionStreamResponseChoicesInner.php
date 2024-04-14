@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -44,29 +44,45 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateChatCompletionStreamResponseChoicesInner 
 {
         /**
-     * @var int|null
-     * @SerializedName("index")
-     * @Assert\Type("int")
-     * @Type("int")
-     */
-    protected ?int $index = null;
-
-    /**
      * @var ChatCompletionStreamResponseDelta|null
      * @SerializedName("delta")
+     * @Assert\NotNull()
+     * @Assert\Valid()
      * @Assert\Type("OpenAPI\Server\Model\ChatCompletionStreamResponseDelta")
      * @Type("OpenAPI\Server\Model\ChatCompletionStreamResponseDelta")
      */
     protected ?ChatCompletionStreamResponseDelta $delta = null;
 
     /**
+     * @var CreateChatCompletionResponseChoicesInnerLogprobs|null
+     * @SerializedName("logprobs")
+     * @Assert\Type("OpenAPI\Server\Model\CreateChatCompletionResponseChoicesInnerLogprobs")
+     * @Type("OpenAPI\Server\Model\CreateChatCompletionResponseChoicesInnerLogprobs")
+     */
+    protected ?CreateChatCompletionResponseChoicesInnerLogprobs $logprobs = null;
+
+    /**
+     * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function.
+     *
      * @var string|null
      * @SerializedName("finish_reason")
-     * @Assert\Choice({ "stop", "length", "function_call" })
+     * @Assert\NotNull()
+     * @Assert\Choice({ "stop", "length", "tool_calls", "content_filter", "function_call" })
      * @Assert\Type("string")
      * @Type("string")
      */
     protected ?string $finishReason = null;
+
+    /**
+     * The index of the choice in the list of choices.
+     *
+     * @var int|null
+     * @SerializedName("index")
+     * @Assert\NotNull()
+     * @Assert\Type("int")
+     * @Type("int")
+     */
+    protected ?int $index = null;
 
     /**
      * Constructor
@@ -75,36 +91,11 @@ class CreateChatCompletionStreamResponseChoicesInner
     public function __construct(array $data = null)
     {
         if (is_array($data)) {
-            $this->index = array_key_exists('index', $data) ? $data['index'] : $this->index;
             $this->delta = array_key_exists('delta', $data) ? $data['delta'] : $this->delta;
+            $this->logprobs = array_key_exists('logprobs', $data) ? $data['logprobs'] : $this->logprobs;
             $this->finishReason = array_key_exists('finishReason', $data) ? $data['finishReason'] : $this->finishReason;
+            $this->index = array_key_exists('index', $data) ? $data['index'] : $this->index;
         }
-    }
-
-    /**
-     * Gets index.
-     *
-     * @return int|null
-     */
-    public function getIndex(): ?int
-    {
-        return $this->index;
-    }
-
-
-
-    /**
-     * Sets index.
-     *
-     * @param int|null $index
-     *
-     * @return $this
-     */
-    public function setIndex(?int $index = null): self
-    {
-        $this->index = $index;
-
-        return $this;
     }
 
     /**
@@ -126,9 +117,35 @@ class CreateChatCompletionStreamResponseChoicesInner
      *
      * @return $this
      */
-    public function setDelta(?ChatCompletionStreamResponseDelta $delta = null): self
+    public function setDelta(?ChatCompletionStreamResponseDelta $delta): self
     {
         $this->delta = $delta;
+
+        return $this;
+    }
+
+    /**
+     * Gets logprobs.
+     *
+     * @return CreateChatCompletionResponseChoicesInnerLogprobs|null
+     */
+    public function getLogprobs(): ?CreateChatCompletionResponseChoicesInnerLogprobs
+    {
+        return $this->logprobs;
+    }
+
+
+
+    /**
+     * Sets logprobs.
+     *
+     * @param CreateChatCompletionResponseChoicesInnerLogprobs|null $logprobs
+     *
+     * @return $this
+     */
+    public function setLogprobs(?CreateChatCompletionResponseChoicesInnerLogprobs $logprobs = null): self
+    {
+        $this->logprobs = $logprobs;
 
         return $this;
     }
@@ -148,13 +165,39 @@ class CreateChatCompletionStreamResponseChoicesInner
     /**
      * Sets finishReason.
      *
-     * @param string|null $finishReason
+     * @param string|null $finishReason  The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
      *
      * @return $this
      */
-    public function setFinishReason(?string $finishReason = null): self
+    public function setFinishReason(?string $finishReason): self
     {
         $this->finishReason = $finishReason;
+
+        return $this;
+    }
+
+    /**
+     * Gets index.
+     *
+     * @return int|null
+     */
+    public function getIndex(): ?int
+    {
+        return $this->index;
+    }
+
+
+
+    /**
+     * Sets index.
+     *
+     * @param int|null $index  The index of the choice in the list of choices.
+     *
+     * @return $this
+     */
+    public function setIndex(?int $index): self
+    {
+        $this->index = $index;
 
         return $this;
     }

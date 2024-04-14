@@ -11,9 +11,10 @@
     "label": "Details",
     "model": "properties",
     "children": [
-      {"model": "role" },
       {"model": "content" },
       {"model": "function_call" },
+      {"model": "tool_calls" },
+      {"model": "role" },
     ]
   }]
 }

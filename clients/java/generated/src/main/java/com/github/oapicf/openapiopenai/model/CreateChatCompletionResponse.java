@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,8 +14,8 @@
 package com.github.oapicf.openapiopenai.model;
 
 import java.util.Objects;
+import com.github.oapicf.openapiopenai.model.CompletionUsage;
 import com.github.oapicf.openapiopenai.model.CreateChatCompletionResponseChoicesInner;
-import com.github.oapicf.openapiopenai.model.CreateCompletionResponseUsage;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,17 +51,17 @@ import java.util.Set;
 import com.github.oapicf.openapiopenai.JSON;
 
 /**
- * CreateChatCompletionResponse
+ * Represents a chat completion response returned by model, based on the provided input.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionResponse {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  public static final String SERIALIZED_NAME_OBJECT = "object";
-  @SerializedName(SERIALIZED_NAME_OBJECT)
-  private String _object;
+  public static final String SERIALIZED_NAME_CHOICES = "choices";
+  @SerializedName(SERIALIZED_NAME_CHOICES)
+  private List<CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
@@ -71,13 +71,67 @@ public class CreateChatCompletionResponse {
   @SerializedName(SERIALIZED_NAME_MODEL)
   private String model;
 
-  public static final String SERIALIZED_NAME_CHOICES = "choices";
-  @SerializedName(SERIALIZED_NAME_CHOICES)
-  private List<CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
+  public static final String SERIALIZED_NAME_SYSTEM_FINGERPRINT = "system_fingerprint";
+  @SerializedName(SERIALIZED_NAME_SYSTEM_FINGERPRINT)
+  private String systemFingerprint;
+
+  /**
+   * The object type, which is always &#x60;chat.completion&#x60;.
+   */
+  @JsonAdapter(ObjectEnum.Adapter.class)
+  public enum ObjectEnum {
+    CHAT_COMPLETION("chat.completion");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ObjectEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ObjectEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ObjectEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ObjectEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ObjectEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_OBJECT = "object";
+  @SerializedName(SERIALIZED_NAME_OBJECT)
+  private ObjectEnum _object;
 
   public static final String SERIALIZED_NAME_USAGE = "usage";
   @SerializedName(SERIALIZED_NAME_USAGE)
-  private CreateCompletionResponseUsage usage;
+  private CompletionUsage usage;
 
   public CreateChatCompletionResponse() {
   }
@@ -88,7 +142,7 @@ public class CreateChatCompletionResponse {
   }
 
    /**
-   * Get id
+   * A unique identifier for the chat completion.
    * @return id
   **/
   @javax.annotation.Nonnull
@@ -101,22 +155,30 @@ public class CreateChatCompletionResponse {
   }
 
 
-  public CreateChatCompletionResponse _object(String _object) {
-    this._object = _object;
+  public CreateChatCompletionResponse choices(List<CreateChatCompletionResponseChoicesInner> choices) {
+    this.choices = choices;
+    return this;
+  }
+
+  public CreateChatCompletionResponse addChoicesItem(CreateChatCompletionResponseChoicesInner choicesItem) {
+    if (this.choices == null) {
+      this.choices = new ArrayList<>();
+    }
+    this.choices.add(choicesItem);
     return this;
   }
 
    /**
-   * Get _object
-   * @return _object
+   * A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
+   * @return choices
   **/
   @javax.annotation.Nonnull
-  public String getObject() {
-    return _object;
+  public List<CreateChatCompletionResponseChoicesInner> getChoices() {
+    return choices;
   }
 
-  public void setObject(String _object) {
-    this._object = _object;
+  public void setChoices(List<CreateChatCompletionResponseChoicesInner> choices) {
+    this.choices = choices;
   }
 
 
@@ -126,7 +188,7 @@ public class CreateChatCompletionResponse {
   }
 
    /**
-   * Get created
+   * The Unix timestamp (in seconds) of when the chat completion was created.
    * @return created
   **/
   @javax.annotation.Nonnull
@@ -145,7 +207,7 @@ public class CreateChatCompletionResponse {
   }
 
    /**
-   * Get model
+   * The model used for the chat completion.
    * @return model
   **/
   @javax.annotation.Nonnull
@@ -158,34 +220,45 @@ public class CreateChatCompletionResponse {
   }
 
 
-  public CreateChatCompletionResponse choices(List<CreateChatCompletionResponseChoicesInner> choices) {
-    this.choices = choices;
-    return this;
-  }
-
-  public CreateChatCompletionResponse addChoicesItem(CreateChatCompletionResponseChoicesInner choicesItem) {
-    if (this.choices == null) {
-      this.choices = new ArrayList<>();
-    }
-    this.choices.add(choicesItem);
+  public CreateChatCompletionResponse systemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
     return this;
   }
 
    /**
-   * Get choices
-   * @return choices
+   * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
+   * @return systemFingerprint
+  **/
+  @javax.annotation.Nullable
+  public String getSystemFingerprint() {
+    return systemFingerprint;
+  }
+
+  public void setSystemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+  }
+
+
+  public CreateChatCompletionResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * The object type, which is always &#x60;chat.completion&#x60;.
+   * @return _object
   **/
   @javax.annotation.Nonnull
-  public List<CreateChatCompletionResponseChoicesInner> getChoices() {
-    return choices;
+  public ObjectEnum getObject() {
+    return _object;
   }
 
-  public void setChoices(List<CreateChatCompletionResponseChoicesInner> choices) {
-    this.choices = choices;
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
   }
 
 
-  public CreateChatCompletionResponse usage(CreateCompletionResponseUsage usage) {
+  public CreateChatCompletionResponse usage(CompletionUsage usage) {
     this.usage = usage;
     return this;
   }
@@ -195,11 +268,11 @@ public class CreateChatCompletionResponse {
    * @return usage
   **/
   @javax.annotation.Nullable
-  public CreateCompletionResponseUsage getUsage() {
+  public CompletionUsage getUsage() {
     return usage;
   }
 
-  public void setUsage(CreateCompletionResponseUsage usage) {
+  public void setUsage(CompletionUsage usage) {
     this.usage = usage;
   }
 
@@ -215,16 +288,17 @@ public class CreateChatCompletionResponse {
     }
     CreateChatCompletionResponse createChatCompletionResponse = (CreateChatCompletionResponse) o;
     return Objects.equals(this.id, createChatCompletionResponse.id) &&
-        Objects.equals(this._object, createChatCompletionResponse._object) &&
+        Objects.equals(this.choices, createChatCompletionResponse.choices) &&
         Objects.equals(this.created, createChatCompletionResponse.created) &&
         Objects.equals(this.model, createChatCompletionResponse.model) &&
-        Objects.equals(this.choices, createChatCompletionResponse.choices) &&
+        Objects.equals(this.systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
+        Objects.equals(this._object, createChatCompletionResponse._object) &&
         Objects.equals(this.usage, createChatCompletionResponse.usage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, model, choices, usage);
+    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
   }
 
   @Override
@@ -232,10 +306,11 @@ public class CreateChatCompletionResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionResponse {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
-    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
+    sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -260,19 +335,20 @@ public class CreateChatCompletionResponse {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
-    openapiFields.add("object");
+    openapiFields.add("choices");
     openapiFields.add("created");
     openapiFields.add("model");
-    openapiFields.add("choices");
+    openapiFields.add("system_fingerprint");
+    openapiFields.add("object");
     openapiFields.add("usage");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
-    openapiRequiredFields.add("object");
+    openapiRequiredFields.add("choices");
     openapiRequiredFields.add("created");
     openapiRequiredFields.add("model");
-    openapiRequiredFields.add("choices");
+    openapiRequiredFields.add("object");
   }
 
  /**
@@ -306,12 +382,6 @@ public class CreateChatCompletionResponse {
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if (!jsonObj.get("object").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `object` to be a primitive type in the JSON string but got `%s`", jsonObj.get("object").toString()));
-      }
-      if (!jsonObj.get("model").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `model` to be a primitive type in the JSON string but got `%s`", jsonObj.get("model").toString()));
-      }
       // ensure the json data is an array
       if (!jsonObj.get("choices").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `choices` to be an array in the JSON string but got `%s`", jsonObj.get("choices").toString()));
@@ -322,9 +392,20 @@ public class CreateChatCompletionResponse {
       for (int i = 0; i < jsonArraychoices.size(); i++) {
         CreateChatCompletionResponseChoicesInner.validateJsonElement(jsonArraychoices.get(i));
       };
+      if (!jsonObj.get("model").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `model` to be a primitive type in the JSON string but got `%s`", jsonObj.get("model").toString()));
+      }
+      if ((jsonObj.get("system_fingerprint") != null && !jsonObj.get("system_fingerprint").isJsonNull()) && !jsonObj.get("system_fingerprint").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `system_fingerprint` to be a primitive type in the JSON string but got `%s`", jsonObj.get("system_fingerprint").toString()));
+      }
+      if (!jsonObj.get("object").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `object` to be a primitive type in the JSON string but got `%s`", jsonObj.get("object").toString()));
+      }
+      // validate the required field `object`
+      ObjectEnum.validateJsonElement(jsonObj.get("object"));
       // validate the optional field `usage`
       if (jsonObj.get("usage") != null && !jsonObj.get("usage").isJsonNull()) {
-        CreateCompletionResponseUsage.validateJsonElement(jsonObj.get("usage"));
+        CompletionUsage.validateJsonElement(jsonObj.get("usage"));
       }
   }
 

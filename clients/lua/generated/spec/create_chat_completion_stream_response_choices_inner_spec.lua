@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -16,13 +16,6 @@ Please update as you see appropriate
 describe("create_chat_completion_stream_response_choices_inner", function()
   local openapiclient_create_chat_completion_stream_response_choices_inner = require "openapiclient.model.create_chat_completion_stream_response_choices_inner"
 
-  -- unit tests for the property 'index'
-  describe("property index test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
   -- unit tests for the property 'delta'
   describe("property delta test", function()
     it("should work", function()
@@ -30,8 +23,22 @@ describe("create_chat_completion_stream_response_choices_inner", function()
     end)
   end)
 
+  -- unit tests for the property 'logprobs'
+  describe("property logprobs test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'finish_reason'
   describe("property finish_reason test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'index'
+  describe("property index test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

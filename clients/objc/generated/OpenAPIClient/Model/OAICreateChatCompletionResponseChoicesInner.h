@@ -3,7 +3,7 @@
 
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -15,8 +15,11 @@
 
 
 #import "OAIChatCompletionResponseMessage.h"
+#import "OAICreateChatCompletionResponseChoicesInnerLogprobs.h"
 @protocol OAIChatCompletionResponseMessage;
 @class OAIChatCompletionResponseMessage;
+@protocol OAICreateChatCompletionResponseChoicesInnerLogprobs;
+@class OAICreateChatCompletionResponseChoicesInnerLogprobs;
 
 
 
@@ -25,11 +28,15 @@
 
 @interface OAICreateChatCompletionResponseChoicesInner : OAIObject
 
-
+/* The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.  
+ */
+@property(nonatomic) NSString* finishReason;
+/* The index of the choice in the list of choices. 
+ */
 @property(nonatomic) NSNumber* index;
 
 @property(nonatomic) OAIChatCompletionResponseMessage* message;
 
-@property(nonatomic) NSString* finishReason;
+@property(nonatomic) OAICreateChatCompletionResponseChoicesInnerLogprobs* logprobs;
 
 @end

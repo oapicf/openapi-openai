@@ -1,5 +1,6 @@
 package org.openapitools.api;
 
+import org.openapitools.model.CreateImageEditRequestModel;
 import org.openapitools.model.CreateImageRequest;
 import java.io.File;
 import org.openapitools.model.ImagesResponse;
@@ -20,14 +21,17 @@ import javax.validation.Valid;
 */
 @Path("/images")
 @Api(description = "the images API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ImagesApi {
 
     @POST
     @Path("/generations")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Creates an image given a prompt.", notes = "", response = ImagesResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Creates an image given a prompt.", notes = "", response = ImagesResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Images" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ImagesResponse.class)
     })
@@ -39,11 +43,14 @@ public class ImagesApi {
     @Path("/edits")
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Creates an edited or extended image given an original image and a prompt.", notes = "", response = ImagesResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Creates an edited or extended image given an original image and a prompt.", notes = "", response = ImagesResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Images" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ImagesResponse.class)
     })
-    public Response createImageEdit( @FormParam(value = "image") InputStream imageInputStream,@FormParam(value = "prompt")  String prompt, @FormParam(value = "mask") InputStream maskInputStream,@FormParam(value = "n")  Integer n,@FormParam(value = "size")  String size,@FormParam(value = "response_format")  String responseFormat,@FormParam(value = "user")  String user) {
+    public Response createImageEdit( @FormParam(value = "image") InputStream imageInputStream,@FormParam(value = "prompt")  String prompt, @FormParam(value = "mask") InputStream maskInputStream,@FormParam(value = "model")  CreateImageEditRequestModel model,@FormParam(value = "n")  Integer n,@FormParam(value = "size")  String size,@FormParam(value = "response_format")  String responseFormat,@FormParam(value = "user")  String user) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -51,11 +58,14 @@ public class ImagesApi {
     @Path("/variations")
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Creates a variation of a given image.", notes = "", response = ImagesResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Creates a variation of a given image.", notes = "", response = ImagesResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Images" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ImagesResponse.class)
     })
-    public Response createImageVariation( @FormParam(value = "image") InputStream imageInputStream,@FormParam(value = "n")  Integer n,@FormParam(value = "size")  String size,@FormParam(value = "response_format")  String responseFormat,@FormParam(value = "user")  String user) {
+    public Response createImageVariation( @FormParam(value = "image") InputStream imageInputStream,@FormParam(value = "model")  CreateImageEditRequestModel model,@FormParam(value = "n")  Integer n,@FormParam(value = "response_format")  String responseFormat,@FormParam(value = "size")  String size,@FormParam(value = "user")  String user) {
         return Response.ok().entity("magic!").build();
     }
 }

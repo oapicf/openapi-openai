@@ -9,8 +9,10 @@
 -export_type([openapi_create_embedding_request/0]).
 
 -type openapi_create_embedding_request() ::
-  [ {'model', openapi_create_embedding_request_model:openapi_create_embedding_request_model() }
-  | {'input', openapi_create_embedding_request_input:openapi_create_embedding_request_input() }
+  [ {'input', openapi_create_embedding_request_input:openapi_create_embedding_request_input() }
+  | {'model', openapi_create_embedding_request_model:openapi_create_embedding_request_model() }
+  | {'encoding_format', binary() }
+  | {'dimensions', integer() }
   | {'user', binary() }
   ].
 
@@ -19,8 +21,10 @@ openapi_create_embedding_request() ->
     openapi_create_embedding_request([]).
 
 openapi_create_embedding_request(Fields) ->
-  Default = [ {'model', openapi_create_embedding_request_model:openapi_create_embedding_request_model() }
-            , {'input', openapi_create_embedding_request_input:openapi_create_embedding_request_input() }
+  Default = [ {'input', openapi_create_embedding_request_input:openapi_create_embedding_request_input() }
+            , {'model', openapi_create_embedding_request_model:openapi_create_embedding_request_model() }
+            , {'encoding_format', elements([<<"float">>, <<"base64">>]) }
+            , {'dimensions', integer(1) }
             , {'user', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

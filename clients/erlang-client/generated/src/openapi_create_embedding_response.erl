@@ -5,19 +5,19 @@
 -export_type([openapi_create_embedding_response/0]).
 
 -type openapi_create_embedding_response() ::
-    #{ 'object' := binary(),
+    #{ 'data' := list(),
        'model' := binary(),
-       'data' := list(),
+       'object' := binary(),
        'usage' := openapi_create_embedding_response_usage:openapi_create_embedding_response_usage()
      }.
 
-encode(#{ 'object' := Object,
+encode(#{ 'data' := Data,
           'model' := Model,
-          'data' := Data,
+          'object' := Object,
           'usage' := Usage
         }) ->
-    #{ 'object' => Object,
+    #{ 'data' => Data,
        'model' => Model,
-       'data' => Data,
+       'object' => Object,
        'usage' => Usage
      }.

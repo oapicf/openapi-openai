@@ -14,12 +14,16 @@ class CreateModerationResponseResultsInnerCategories(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, hate: bool=None, hate_threatening: bool=None, self_harm: bool=None, sexual: bool=None, sexual_minors: bool=None, violence: bool=None, violence_graphic: bool=None):
+    def __init__(self, hate: bool=None, hate_threatening: bool=None, harassment: bool=None, harassment_threatening: bool=None, self_harm: bool=None, self_harm_intent: bool=None, self_harm_instructions: bool=None, sexual: bool=None, sexual_minors: bool=None, violence: bool=None, violence_graphic: bool=None):
         """CreateModerationResponseResultsInnerCategories - a model defined in OpenAPI
 
         :param hate: The hate of this CreateModerationResponseResultsInnerCategories.
         :param hate_threatening: The hate_threatening of this CreateModerationResponseResultsInnerCategories.
+        :param harassment: The harassment of this CreateModerationResponseResultsInnerCategories.
+        :param harassment_threatening: The harassment_threatening of this CreateModerationResponseResultsInnerCategories.
         :param self_harm: The self_harm of this CreateModerationResponseResultsInnerCategories.
+        :param self_harm_intent: The self_harm_intent of this CreateModerationResponseResultsInnerCategories.
+        :param self_harm_instructions: The self_harm_instructions of this CreateModerationResponseResultsInnerCategories.
         :param sexual: The sexual of this CreateModerationResponseResultsInnerCategories.
         :param sexual_minors: The sexual_minors of this CreateModerationResponseResultsInnerCategories.
         :param violence: The violence of this CreateModerationResponseResultsInnerCategories.
@@ -28,7 +32,11 @@ class CreateModerationResponseResultsInnerCategories(Model):
         self.openapi_types = {
             'hate': bool,
             'hate_threatening': bool,
+            'harassment': bool,
+            'harassment_threatening': bool,
             'self_harm': bool,
+            'self_harm_intent': bool,
+            'self_harm_instructions': bool,
             'sexual': bool,
             'sexual_minors': bool,
             'violence': bool,
@@ -38,7 +46,11 @@ class CreateModerationResponseResultsInnerCategories(Model):
         self.attribute_map = {
             'hate': 'hate',
             'hate_threatening': 'hate/threatening',
+            'harassment': 'harassment',
+            'harassment_threatening': 'harassment/threatening',
             'self_harm': 'self-harm',
+            'self_harm_intent': 'self-harm/intent',
+            'self_harm_instructions': 'self-harm/instructions',
             'sexual': 'sexual',
             'sexual_minors': 'sexual/minors',
             'violence': 'violence',
@@ -47,7 +59,11 @@ class CreateModerationResponseResultsInnerCategories(Model):
 
         self._hate = hate
         self._hate_threatening = hate_threatening
+        self._harassment = harassment
+        self._harassment_threatening = harassment_threatening
         self._self_harm = self_harm
+        self._self_harm_intent = self_harm_intent
+        self._self_harm_instructions = self_harm_instructions
         self._sexual = sexual
         self._sexual_minors = sexual_minors
         self._violence = violence
@@ -66,6 +82,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def hate(self):
         """Gets the hate of this CreateModerationResponseResultsInnerCategories.
 
+        Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
 
         :return: The hate of this CreateModerationResponseResultsInnerCategories.
         :rtype: bool
@@ -76,6 +93,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def hate(self, hate):
         """Sets the hate of this CreateModerationResponseResultsInnerCategories.
 
+        Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
 
         :param hate: The hate of this CreateModerationResponseResultsInnerCategories.
         :type hate: bool
@@ -89,6 +107,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def hate_threatening(self):
         """Gets the hate_threatening of this CreateModerationResponseResultsInnerCategories.
 
+        Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
 
         :return: The hate_threatening of this CreateModerationResponseResultsInnerCategories.
         :rtype: bool
@@ -99,6 +118,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def hate_threatening(self, hate_threatening):
         """Sets the hate_threatening of this CreateModerationResponseResultsInnerCategories.
 
+        Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
 
         :param hate_threatening: The hate_threatening of this CreateModerationResponseResultsInnerCategories.
         :type hate_threatening: bool
@@ -109,9 +129,60 @@ class CreateModerationResponseResultsInnerCategories(Model):
         self._hate_threatening = hate_threatening
 
     @property
+    def harassment(self):
+        """Gets the harassment of this CreateModerationResponseResultsInnerCategories.
+
+        Content that expresses, incites, or promotes harassing language towards any target.
+
+        :return: The harassment of this CreateModerationResponseResultsInnerCategories.
+        :rtype: bool
+        """
+        return self._harassment
+
+    @harassment.setter
+    def harassment(self, harassment):
+        """Sets the harassment of this CreateModerationResponseResultsInnerCategories.
+
+        Content that expresses, incites, or promotes harassing language towards any target.
+
+        :param harassment: The harassment of this CreateModerationResponseResultsInnerCategories.
+        :type harassment: bool
+        """
+        if harassment is None:
+            raise ValueError("Invalid value for `harassment`, must not be `None`")
+
+        self._harassment = harassment
+
+    @property
+    def harassment_threatening(self):
+        """Gets the harassment_threatening of this CreateModerationResponseResultsInnerCategories.
+
+        Harassment content that also includes violence or serious harm towards any target.
+
+        :return: The harassment_threatening of this CreateModerationResponseResultsInnerCategories.
+        :rtype: bool
+        """
+        return self._harassment_threatening
+
+    @harassment_threatening.setter
+    def harassment_threatening(self, harassment_threatening):
+        """Sets the harassment_threatening of this CreateModerationResponseResultsInnerCategories.
+
+        Harassment content that also includes violence or serious harm towards any target.
+
+        :param harassment_threatening: The harassment_threatening of this CreateModerationResponseResultsInnerCategories.
+        :type harassment_threatening: bool
+        """
+        if harassment_threatening is None:
+            raise ValueError("Invalid value for `harassment_threatening`, must not be `None`")
+
+        self._harassment_threatening = harassment_threatening
+
+    @property
     def self_harm(self):
         """Gets the self_harm of this CreateModerationResponseResultsInnerCategories.
 
+        Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
 
         :return: The self_harm of this CreateModerationResponseResultsInnerCategories.
         :rtype: bool
@@ -122,6 +193,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def self_harm(self, self_harm):
         """Sets the self_harm of this CreateModerationResponseResultsInnerCategories.
 
+        Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
 
         :param self_harm: The self_harm of this CreateModerationResponseResultsInnerCategories.
         :type self_harm: bool
@@ -132,9 +204,60 @@ class CreateModerationResponseResultsInnerCategories(Model):
         self._self_harm = self_harm
 
     @property
+    def self_harm_intent(self):
+        """Gets the self_harm_intent of this CreateModerationResponseResultsInnerCategories.
+
+        Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+
+        :return: The self_harm_intent of this CreateModerationResponseResultsInnerCategories.
+        :rtype: bool
+        """
+        return self._self_harm_intent
+
+    @self_harm_intent.setter
+    def self_harm_intent(self, self_harm_intent):
+        """Sets the self_harm_intent of this CreateModerationResponseResultsInnerCategories.
+
+        Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+
+        :param self_harm_intent: The self_harm_intent of this CreateModerationResponseResultsInnerCategories.
+        :type self_harm_intent: bool
+        """
+        if self_harm_intent is None:
+            raise ValueError("Invalid value for `self_harm_intent`, must not be `None`")
+
+        self._self_harm_intent = self_harm_intent
+
+    @property
+    def self_harm_instructions(self):
+        """Gets the self_harm_instructions of this CreateModerationResponseResultsInnerCategories.
+
+        Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+
+        :return: The self_harm_instructions of this CreateModerationResponseResultsInnerCategories.
+        :rtype: bool
+        """
+        return self._self_harm_instructions
+
+    @self_harm_instructions.setter
+    def self_harm_instructions(self, self_harm_instructions):
+        """Sets the self_harm_instructions of this CreateModerationResponseResultsInnerCategories.
+
+        Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+
+        :param self_harm_instructions: The self_harm_instructions of this CreateModerationResponseResultsInnerCategories.
+        :type self_harm_instructions: bool
+        """
+        if self_harm_instructions is None:
+            raise ValueError("Invalid value for `self_harm_instructions`, must not be `None`")
+
+        self._self_harm_instructions = self_harm_instructions
+
+    @property
     def sexual(self):
         """Gets the sexual of this CreateModerationResponseResultsInnerCategories.
 
+        Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
 
         :return: The sexual of this CreateModerationResponseResultsInnerCategories.
         :rtype: bool
@@ -145,6 +268,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def sexual(self, sexual):
         """Sets the sexual of this CreateModerationResponseResultsInnerCategories.
 
+        Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
 
         :param sexual: The sexual of this CreateModerationResponseResultsInnerCategories.
         :type sexual: bool
@@ -158,6 +282,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def sexual_minors(self):
         """Gets the sexual_minors of this CreateModerationResponseResultsInnerCategories.
 
+        Sexual content that includes an individual who is under 18 years old.
 
         :return: The sexual_minors of this CreateModerationResponseResultsInnerCategories.
         :rtype: bool
@@ -168,6 +293,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def sexual_minors(self, sexual_minors):
         """Sets the sexual_minors of this CreateModerationResponseResultsInnerCategories.
 
+        Sexual content that includes an individual who is under 18 years old.
 
         :param sexual_minors: The sexual_minors of this CreateModerationResponseResultsInnerCategories.
         :type sexual_minors: bool
@@ -181,6 +307,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def violence(self):
         """Gets the violence of this CreateModerationResponseResultsInnerCategories.
 
+        Content that depicts death, violence, or physical injury.
 
         :return: The violence of this CreateModerationResponseResultsInnerCategories.
         :rtype: bool
@@ -191,6 +318,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def violence(self, violence):
         """Sets the violence of this CreateModerationResponseResultsInnerCategories.
 
+        Content that depicts death, violence, or physical injury.
 
         :param violence: The violence of this CreateModerationResponseResultsInnerCategories.
         :type violence: bool
@@ -204,6 +332,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def violence_graphic(self):
         """Gets the violence_graphic of this CreateModerationResponseResultsInnerCategories.
 
+        Content that depicts death, violence, or physical injury in graphic detail.
 
         :return: The violence_graphic of this CreateModerationResponseResultsInnerCategories.
         :rtype: bool
@@ -214,6 +343,7 @@ class CreateModerationResponseResultsInnerCategories(Model):
     def violence_graphic(self, violence_graphic):
         """Sets the violence_graphic of this CreateModerationResponseResultsInnerCategories.
 
+        Content that depicts death, violence, or physical injury in graphic detail.
 
         :param violence_graphic: The violence_graphic of this CreateModerationResponseResultsInnerCategories.
         :type violence_graphic: bool

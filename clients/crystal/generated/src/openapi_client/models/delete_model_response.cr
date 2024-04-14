@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -20,15 +20,15 @@ module OpenAPIClient
     @[JSON::Field(key: "id", type: String, nillable: false, emit_null: false)]
     property id : String
 
-    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
-    property object : String
-
     @[JSON::Field(key: "deleted", type: Bool, nillable: false, emit_null: false)]
     property deleted : Bool
 
+    @[JSON::Field(key: "object", type: String, nillable: false, emit_null: false)]
+    property object : String
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@id : String, @object : String, @deleted : Bool)
+    def initialize(@id : String, @deleted : Bool, @object : String)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -50,8 +50,8 @@ module OpenAPIClient
       return true if self.same?(o)
       self.class == o.class &&
           id == o.id &&
-          object == o.object &&
-          deleted == o.deleted
+          deleted == o.deleted &&
+          object == o.object
     end
 
     # @see the `==` method
@@ -63,7 +63,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, object, deleted].hash
+      [id, deleted, object].hash
     end
 
     # Builds the object from hash

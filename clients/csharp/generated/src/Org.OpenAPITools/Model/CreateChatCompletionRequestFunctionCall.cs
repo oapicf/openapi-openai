@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -28,7 +28,7 @@ using System.Reflection;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// Controls how the model responds to function calls. \&quot;none\&quot; means the model does not call a function, and responds to the end-user. \&quot;auto\&quot; means the model can pick between an end-user or calling a function.  Specifying a particular function via &#x60;{\&quot;name\&quot;:\\ \&quot;my_function\&quot;}&#x60; forces the model to call that function. \&quot;none\&quot; is the default when no functions are present. \&quot;auto\&quot; is the default if functions are present.
+    /// Deprecated in favor of &#x60;tool_choice&#x60;.  Controls which (if any) function is called by the model. &#x60;none&#x60; means the model will not call a function and instead generates a message. &#x60;auto&#x60; means the model can pick between generating a message or calling a function. Specifying a particular function via &#x60;{\&quot;name\&quot;: \&quot;my_function\&quot;}&#x60; forces the model to call that function.  &#x60;none&#x60; is the default when no functions are present. &#x60;auto&#x60; is the default if functions are present. 
     /// </summary>
     [JsonConverter(typeof(CreateChatCompletionRequestFunctionCallJsonConverter))]
     [DataContract(Name = "CreateChatCompletionRequest_function_call")]
@@ -48,10 +48,10 @@ namespace Org.OpenAPITools.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateChatCompletionRequestFunctionCall" /> class
-        /// with the <see cref="CreateChatCompletionRequestFunctionCallOneOf" /> class
+        /// with the <see cref="ChatCompletionFunctionCallOption" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of CreateChatCompletionRequestFunctionCallOneOf.</param>
-        public CreateChatCompletionRequestFunctionCall(CreateChatCompletionRequestFunctionCallOneOf actualInstance)
+        /// <param name="actualInstance">An instance of ChatCompletionFunctionCallOption.</param>
+        public CreateChatCompletionRequestFunctionCall(ChatCompletionFunctionCallOption actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
             }
             set
             {
-                if (value.GetType() == typeof(CreateChatCompletionRequestFunctionCallOneOf))
+                if (value.GetType() == typeof(ChatCompletionFunctionCallOption))
                 {
                     this._actualInstance = value;
                 }
@@ -82,7 +82,7 @@ namespace Org.OpenAPITools.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: CreateChatCompletionRequestFunctionCallOneOf, string");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: ChatCompletionFunctionCallOption, string");
                 }
             }
         }
@@ -98,13 +98,13 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// Get the actual instance of `CreateChatCompletionRequestFunctionCallOneOf`. If the actual instance is not `CreateChatCompletionRequestFunctionCallOneOf`,
+        /// Get the actual instance of `ChatCompletionFunctionCallOption`. If the actual instance is not `ChatCompletionFunctionCallOption`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of CreateChatCompletionRequestFunctionCallOneOf</returns>
-        public CreateChatCompletionRequestFunctionCallOneOf GetCreateChatCompletionRequestFunctionCallOneOf()
+        /// <returns>An instance of ChatCompletionFunctionCallOption</returns>
+        public ChatCompletionFunctionCallOption GetChatCompletionFunctionCallOption()
         {
-            return (CreateChatCompletionRequestFunctionCallOneOf)this.ActualInstance;
+            return (ChatCompletionFunctionCallOption)this.ActualInstance;
         }
 
         /// <summary>
@@ -148,21 +148,21 @@ namespace Org.OpenAPITools.Model
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CreateChatCompletionRequestFunctionCallOneOf).GetProperty("AdditionalProperties") == null)
+                if (typeof(ChatCompletionFunctionCallOption).GetProperty("AdditionalProperties") == null)
                 {
-                    newCreateChatCompletionRequestFunctionCall = new CreateChatCompletionRequestFunctionCall(JsonConvert.DeserializeObject<CreateChatCompletionRequestFunctionCallOneOf>(jsonString, CreateChatCompletionRequestFunctionCall.SerializerSettings));
+                    newCreateChatCompletionRequestFunctionCall = new CreateChatCompletionRequestFunctionCall(JsonConvert.DeserializeObject<ChatCompletionFunctionCallOption>(jsonString, CreateChatCompletionRequestFunctionCall.SerializerSettings));
                 }
                 else
                 {
-                    newCreateChatCompletionRequestFunctionCall = new CreateChatCompletionRequestFunctionCall(JsonConvert.DeserializeObject<CreateChatCompletionRequestFunctionCallOneOf>(jsonString, CreateChatCompletionRequestFunctionCall.AdditionalPropertiesSerializerSettings));
+                    newCreateChatCompletionRequestFunctionCall = new CreateChatCompletionRequestFunctionCall(JsonConvert.DeserializeObject<ChatCompletionFunctionCallOption>(jsonString, CreateChatCompletionRequestFunctionCall.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CreateChatCompletionRequestFunctionCallOneOf");
+                matchedTypes.Add("ChatCompletionFunctionCallOption");
                 match++;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CreateChatCompletionRequestFunctionCallOneOf: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ChatCompletionFunctionCallOption: {1}", jsonString, exception.ToString()));
             }
 
             try

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,7 +15,7 @@ import org.openapitools.client.core.ApiModel
 
 case class DeleteModelResponse (
   id: String,
-  `object`: String,
-  deleted: Boolean
+  deleted: Boolean,
+  `object`: String
 ) extends ApiModel
 

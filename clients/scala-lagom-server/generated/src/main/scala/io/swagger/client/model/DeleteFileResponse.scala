@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,7 +15,7 @@ import play.api.libs.json._
 
 case class DeleteFileResponse (
                   id: String,
-                  `object`: String,
+                  `object`:  Option[DeleteFileResponse&#x60;object&#x60;Enum.DeleteFileResponse&#x60;object&#x60;Enum],
                   deleted: Boolean
 )
 
@@ -23,3 +23,8 @@ object DeleteFileResponse {
 implicit val format: Format[DeleteFileResponse] = Json.format
 }
 
+object DeleteFileResponse&#x60;object&#x60;Enum extends Enumeration {
+  val   file = Value
+  type DeleteFileResponse&#x60;object&#x60;Enum = Value
+  implicit val format: Format[Value] = Format(Reads.enumNameReads(this), Writes.enumNameWrites[DeleteFileResponse&#x60;object&#x60;Enum.type])
+}

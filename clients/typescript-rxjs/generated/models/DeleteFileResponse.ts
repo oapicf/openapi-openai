@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,10 +25,19 @@ export interface DeleteFileResponse {
      * @type {string}
      * @memberof DeleteFileResponse
      */
-    object: string;
+    object: DeleteFileResponseObjectEnum;
     /**
      * @type {boolean}
      * @memberof DeleteFileResponse
      */
     deleted: boolean;
 }
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum DeleteFileResponseObjectEnum {
+    File = 'file'
+}
+

@@ -12,9 +12,12 @@ import org.joda.time.DateTime
 import CreateModerationResponse._
 
 case class CreateModerationResponse (
+  /* The unique identifier for the moderation request. */
   id: String,
-model: String,
-results: List[CreateModerationResponseResultsInner])
+/* The model used to generate the moderation results. */
+  model: String,
+/* A list of moderation objects. */
+  results: List[CreateModerationResponseResultsInner])
 
 object CreateModerationResponse {
   import DateTimeCodecs._

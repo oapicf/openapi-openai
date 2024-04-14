@@ -10,25 +10,43 @@ dependencies:
 Articus\PathHandler\RouteInjectionFactory:
   paths:
     '/v1':
+    - App\Handler\Assistants
+    - App\Handler\AssistantsAssistantId
+    - App\Handler\AssistantsAssistantIdFiles
+    - App\Handler\AssistantsAssistantIdFilesFileId
+    - App\Handler\AudioSpeech
     - App\Handler\AudioTranscriptions
     - App\Handler\AudioTranslations
     - App\Handler\ChatCompletions
     - App\Handler\Completions
-    - App\Handler\Edits
     - App\Handler\Embeddings
     - App\Handler\Files
     - App\Handler\FilesFileId
     - App\Handler\FilesFileIdContent
-    - App\Handler\FineTunes
-    - App\Handler\FineTunesFineTuneId
-    - App\Handler\FineTunesFineTuneIdCancel
-    - App\Handler\FineTunesFineTuneIdEvents
+    - App\Handler\FineTuningJobs
+    - App\Handler\FineTuningJobsFineTuningJobId
+    - App\Handler\FineTuningJobsFineTuningJobIdCancel
+    - App\Handler\FineTuningJobsFineTuningJobIdCheckpoints
+    - App\Handler\FineTuningJobsFineTuningJobIdEvents
     - App\Handler\ImagesEdits
     - App\Handler\ImagesGenerations
     - App\Handler\ImagesVariations
     - App\Handler\Models
     - App\Handler\ModelsModel
     - App\Handler\Moderations
+    - App\Handler\Threads
+    - App\Handler\ThreadsRuns
+    - App\Handler\ThreadsThreadId
+    - App\Handler\ThreadsThreadIdMessages
+    - App\Handler\ThreadsThreadIdMessagesMessageId
+    - App\Handler\ThreadsThreadIdMessagesMessageIdFiles
+    - App\Handler\ThreadsThreadIdMessagesMessageIdFilesFileId
+    - App\Handler\ThreadsThreadIdRuns
+    - App\Handler\ThreadsThreadIdRunsRunId
+    - App\Handler\ThreadsThreadIdRunsRunIdCancel
+    - App\Handler\ThreadsThreadIdRunsRunIdSteps
+    - App\Handler\ThreadsThreadIdRunsRunIdStepsStepId
+    - App\Handler\ThreadsThreadIdRunsRunIdSubmitToolOutputs
 
 Articus\PathHandler\Handler\PluginManager:
   abstract_factories:
@@ -47,22 +65,40 @@ Articus\PathHandler\Handler\PluginManager:
 #  invokables:
 
 Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory:
+  App\Handler\Assistants: []
+  App\Handler\AssistantsAssistantId: []
+  App\Handler\AssistantsAssistantIdFiles: []
+  App\Handler\AssistantsAssistantIdFilesFileId: []
+  App\Handler\AudioSpeech: []
   App\Handler\AudioTranscriptions: []
   App\Handler\AudioTranslations: []
   App\Handler\ChatCompletions: []
   App\Handler\Completions: []
-  App\Handler\Edits: []
   App\Handler\Embeddings: []
   App\Handler\Files: []
   App\Handler\FilesFileId: []
   App\Handler\FilesFileIdContent: []
-  App\Handler\FineTunes: []
-  App\Handler\FineTunesFineTuneId: []
-  App\Handler\FineTunesFineTuneIdCancel: []
-  App\Handler\FineTunesFineTuneIdEvents: []
+  App\Handler\FineTuningJobs: []
+  App\Handler\FineTuningJobsFineTuningJobId: []
+  App\Handler\FineTuningJobsFineTuningJobIdCancel: []
+  App\Handler\FineTuningJobsFineTuningJobIdCheckpoints: []
+  App\Handler\FineTuningJobsFineTuningJobIdEvents: []
   App\Handler\ImagesEdits: []
   App\Handler\ImagesGenerations: []
   App\Handler\ImagesVariations: []
   App\Handler\Models: []
   App\Handler\ModelsModel: []
   App\Handler\Moderations: []
+  App\Handler\Threads: []
+  App\Handler\ThreadsRuns: []
+  App\Handler\ThreadsThreadId: []
+  App\Handler\ThreadsThreadIdMessages: []
+  App\Handler\ThreadsThreadIdMessagesMessageId: []
+  App\Handler\ThreadsThreadIdMessagesMessageIdFiles: []
+  App\Handler\ThreadsThreadIdMessagesMessageIdFilesFileId: []
+  App\Handler\ThreadsThreadIdRuns: []
+  App\Handler\ThreadsThreadIdRunsRunId: []
+  App\Handler\ThreadsThreadIdRunsRunIdCancel: []
+  App\Handler\ThreadsThreadIdRunsRunIdSteps: []
+  App\Handler\ThreadsThreadIdRunsRunIdStepsStepId: []
+  App\Handler\ThreadsThreadIdRunsRunIdSubmitToolOutputs: []

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -50,7 +50,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateTranscriptionRequestModel extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateTranscriptionRequestModel.class.getName());
 
@@ -78,7 +78,7 @@ public class CreateTranscriptionRequestModel extends AbstractOpenApiSchema {
                       elementAdapter.write(out, primitive);
                       return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: String");
+                    throw new IOException("Failed to serialize as the type doesn't match anyOf schemae: String");
                 }
 
                 @Override
@@ -86,7 +86,6 @@ public class CreateTranscriptionRequestModel extends AbstractOpenApiSchema {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
-                    int match = 0;
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
@@ -97,35 +96,30 @@ public class CreateTranscriptionRequestModel extends AbstractOpenApiSchema {
                         throw new IllegalArgumentException(String.format("Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
                       }
                       actualAdapter = adapterString;
-                      match++;
-                      log.log(Level.FINER, "Input data matches schema 'String'");
+                      CreateTranscriptionRequestModel ret = new CreateTranscriptionRequestModel();
+                      ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                      return ret;
                     } catch (Exception e) {
                       // deserialization failed, continue
                       errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
                       log.log(Level.FINER, "Input data does not match schema 'String'", e);
                     }
 
-                    if (match == 1) {
-                        CreateTranscriptionRequestModel ret = new CreateTranscriptionRequestModel();
-                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
-                        return ret;
-                    }
-
-                    throw new IOException(String.format("Failed deserialization for CreateTranscriptionRequestModel: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
+                    throw new IOException(String.format("Failed deserialization for CreateTranscriptionRequestModel: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
     }
 
-    // store a list of schema names defined in oneOf
+    // store a list of schema names defined in anyOf
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
     public CreateTranscriptionRequestModel() {
-        super("oneOf", Boolean.FALSE);
+        super("anyOf", Boolean.FALSE);
     }
 
     public CreateTranscriptionRequestModel(String o) {
-        super("oneOf", Boolean.FALSE);
+        super("anyOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
@@ -139,11 +133,11 @@ public class CreateTranscriptionRequestModel extends AbstractOpenApiSchema {
     }
 
     /**
-     * Set the instance that matches the oneOf child schema, check
-     * the instance parameter is valid against the oneOf child schemas:
+     * Set the instance that matches the anyOf child schema, check
+     * the instance parameter is valid against the anyOf child schemas:
      * String
      *
-     * It could be an instance of the 'oneOf' schemas.
+     * It could be an instance of the 'anyOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
@@ -184,22 +178,20 @@ public class CreateTranscriptionRequestModel extends AbstractOpenApiSchema {
   * @throws IOException if the JSON Element is invalid with respect to CreateTranscriptionRequestModel
   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    // validate oneOf schemas one by one
-    int validCount = 0;
+    // validate anyOf schemas one by one
     ArrayList<String> errorMessages = new ArrayList<>();
     // validate the json string with String
     try {
       if(!jsonElement.getAsJsonPrimitive().isString()) {
         throw new IllegalArgumentException(String.format("Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
       }
-      validCount++;
+      return;
     } catch (Exception e) {
       errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
-    if (validCount != 1) {
-      throw new IOException(String.format("The JSON string is invalid for CreateTranscriptionRequestModel with oneOf schemas: String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-    }
+    throw new IOException(String.format("The JSON string is invalid for CreateTranscriptionRequestModel with anyOf schemas: String. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
+    
   }
 
  /**

@@ -7,8 +7,10 @@
   if (self) {
     // initialize property's default value, if any
     self.n = @1;
-    self.size = @"1024x1024";
+    self.quality = @"standard";
     self.responseFormat = @"url";
+    self.size = @"1024x1024";
+    self.style = @"vivid";
     
   }
   return self;
@@ -20,7 +22,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"prompt": @"prompt", @"n": @"n", @"size": @"size", @"responseFormat": @"response_format", @"user": @"user" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"prompt": @"prompt", @"model": @"model", @"n": @"n", @"quality": @"quality", @"responseFormat": @"response_format", @"size": @"size", @"style": @"style", @"user": @"user" }];
 }
 
 /**
@@ -30,7 +32,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"n", @"size", @"responseFormat", @"user"];
+  NSArray *optionalProperties = @[@"model", @"n", @"quality", @"responseFormat", @"size", @"style", @"user"];
   return [optionalProperties containsObject:propertyName];
 }
 

@@ -5,10 +5,10 @@ module.exports = {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
-                key: `${keyPrefix}tokens`,
-                label: `[${labelPrefix}tokens]`,
+                key: `${keyPrefix}text_offset`,
+                label: `[${labelPrefix}text_offset]`,
                 list: true,
-                type: 'string',
+                type: 'integer',
             },
             {
                 key: `${keyPrefix}token_logprobs`,
@@ -17,26 +17,26 @@ module.exports = {
                 type: 'number',
             },
             {
+                key: `${keyPrefix}tokens`,
+                label: `[${labelPrefix}tokens]`,
+                list: true,
+                type: 'string',
+            },
+            {
                 key: `${keyPrefix}top_logprobs`,
                 label: `[${labelPrefix}top_logprobs]`,
                 list: true,
                 type: 'object',
-            },
-            {
-                key: `${keyPrefix}text_offset`,
-                label: `[${labelPrefix}text_offset]`,
-                list: true,
-                type: 'integer',
             },
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'tokens': bundle.inputData?.[`${keyPrefix}tokens`],
-            'token_logprobs': bundle.inputData?.[`${keyPrefix}token_logprobs`],
-            'top_logprobs': bundle.inputData?.[`${keyPrefix}top_logprobs`],
             'text_offset': bundle.inputData?.[`${keyPrefix}text_offset`],
+            'token_logprobs': bundle.inputData?.[`${keyPrefix}token_logprobs`],
+            'tokens': bundle.inputData?.[`${keyPrefix}tokens`],
+            'top_logprobs': bundle.inputData?.[`${keyPrefix}top_logprobs`],
         }
     },
 }

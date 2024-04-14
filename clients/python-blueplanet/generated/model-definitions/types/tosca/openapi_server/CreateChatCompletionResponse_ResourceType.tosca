@@ -7,8 +7,8 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
+  CompletionUsage = openapi_server.resourceTypes.CompletionUsage
   CreateChatCompletionResponseChoicesInner = openapi_server.resourceTypes.CreateChatCompletionResponseChoicesInner
-  CreateCompletionResponseUsage = openapi_server.resourceTypes.CreateCompletionResponseUsage
 }
 resourceTypes {
 
@@ -19,32 +19,38 @@ resourceTypes {
     properties {
         id {
           type =  string
-          description = ""
-          optional = true
-        }
-        object {
-          type =  string
-          description = ""
-          optional = true
-        }
-        created {
-          type =  integer
-          description = ""
-          optional = true
-        }
-        model {
-          type =  string
-          description = ""
+          description = "A unique identifier for the chat completion."
           optional = true
         }
         choices {
           type = array
           items.type = CreateChatCompletionResponseChoicesInner
-          description = ""
+          description = "A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1."
+          optional = true
+        }
+        created {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of when the chat completion was created."
+          optional = true
+        }
+        model {
+          type =  string
+          description = "The model used for the chat completion."
+          optional = true
+        }
+        system_fingerprint {
+          type =  string
+          description = "This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. "
+          optional = false
+        }
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;chat.completion&#x60;."
+          enum = ["chat.completion"]
           optional = true
         }
         usage {
-          type = CreateCompletionResponseUsage
+          type = CompletionUsage
           description = ""
           optional = false
         }

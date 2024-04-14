@@ -9,8 +9,29 @@ import org.openapitools.model.Model;
 
 @Canonical
 class ListModelsResponse {
+
+    enum ObjectEnum {
     
-    String _object
+        LIST("list")
+    
+        private final String value
+    
+        ObjectEnum(String value) {
+            this.value = value
+        }
+    
+        String getValue() {
+            value
+        }
+    
+        @Override
+        String toString() {
+            String.valueOf(value)
+        }
+    }
+
+    
+    ObjectEnum _object
     
     List<Model> data = new ArrayList<>()
 }

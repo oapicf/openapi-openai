@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,18 +27,56 @@ namespace Org.OpenAPITools.Models
     public partial class CreateEmbeddingRequest : IEquatable<CreateEmbeddingRequest>
     {
         /// <summary>
+        /// Gets or Sets Input
+        /// </summary>
+        [Required]
+        [DataMember(Name="input", EmitDefaultValue=false)]
+        public CreateEmbeddingRequestInput Input { get; set; }
+
+        /// <summary>
         /// Gets or Sets Model
         /// </summary>
         [Required]
         [DataMember(Name="model", EmitDefaultValue=false)]
         public CreateEmbeddingRequestModel Model { get; set; }
 
+
         /// <summary>
-        /// Gets or Sets Input
+        /// The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
         /// </summary>
-        [Required]
-        [DataMember(Name="input", EmitDefaultValue=false)]
-        public CreateEmbeddingRequestInput Input { get; set; }
+        /// <value>The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).</value>
+        [TypeConverter(typeof(CustomEnumConverter<EncodingFormatEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum EncodingFormatEnum
+        {
+            
+            /// <summary>
+            /// Enum FloatEnum for float
+            /// </summary>
+            [EnumMember(Value = "float")]
+            FloatEnum = 1,
+            
+            /// <summary>
+            /// Enum Base64Enum for base64
+            /// </summary>
+            [EnumMember(Value = "base64")]
+            Base64Enum = 2
+        }
+
+        /// <summary>
+        /// The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
+        /// </summary>
+        /// <value>The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).</value>
+        /// <example>float</example>
+        [DataMember(Name="encoding_format", EmitDefaultValue=true)]
+        public EncodingFormatEnum EncodingFormat { get; set; } = EncodingFormatEnum.FloatEnum;
+
+        /// <summary>
+        /// The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. 
+        /// </summary>
+        /// <value>The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. </value>
+        [DataMember(Name="dimensions", EmitDefaultValue=true)]
+        public int Dimensions { get; set; }
 
         /// <summary>
         /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
@@ -56,8 +94,10 @@ namespace Org.OpenAPITools.Models
         {
             var sb = new StringBuilder();
             sb.Append("class CreateEmbeddingRequest {\n");
-            sb.Append("  Model: ").Append(Model).Append("\n");
             sb.Append("  Input: ").Append(Input).Append("\n");
+            sb.Append("  Model: ").Append(Model).Append("\n");
+            sb.Append("  EncodingFormat: ").Append(EncodingFormat).Append("\n");
+            sb.Append("  Dimensions: ").Append(Dimensions).Append("\n");
             sb.Append("  User: ").Append(User).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -96,14 +136,24 @@ namespace Org.OpenAPITools.Models
 
             return 
                 (
+                    Input == other.Input ||
+                    Input != null &&
+                    Input.Equals(other.Input)
+                ) && 
+                (
                     Model == other.Model ||
                     Model != null &&
                     Model.Equals(other.Model)
                 ) && 
                 (
-                    Input == other.Input ||
-                    Input != null &&
-                    Input.Equals(other.Input)
+                    EncodingFormat == other.EncodingFormat ||
+                    
+                    EncodingFormat.Equals(other.EncodingFormat)
+                ) && 
+                (
+                    Dimensions == other.Dimensions ||
+                    
+                    Dimensions.Equals(other.Dimensions)
                 ) && 
                 (
                     User == other.User ||
@@ -122,10 +172,14 @@ namespace Org.OpenAPITools.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Model != null)
-                    hashCode = hashCode * 59 + Model.GetHashCode();
                     if (Input != null)
                     hashCode = hashCode * 59 + Input.GetHashCode();
+                    if (Model != null)
+                    hashCode = hashCode * 59 + Model.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + EncodingFormat.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + Dimensions.GetHashCode();
                     if (User != null)
                     hashCode = hashCode * 59 + User.GetHashCode();
                 return hashCode;

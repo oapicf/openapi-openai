@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ImagesResponseDataInner } from './ImagesResponseDataInner';
+import type { Image } from './Image';
 import {
-    ImagesResponseDataInnerFromJSON,
-    ImagesResponseDataInnerFromJSONTyped,
-    ImagesResponseDataInnerToJSON,
-} from './ImagesResponseDataInner';
+    ImageFromJSON,
+    ImageFromJSONTyped,
+    ImageToJSON,
+} from './Image';
 
 /**
  * 
@@ -34,10 +34,10 @@ export interface ImagesResponse {
     created: number;
     /**
      * 
-     * @type {Array<ImagesResponseDataInner>}
+     * @type {Array<Image>}
      * @memberof ImagesResponse
      */
-    data: Array<ImagesResponseDataInner>;
+    data: Array<Image>;
 }
 
 /**
@@ -60,7 +60,7 @@ export function ImagesResponseFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'created': json['created'],
-        'data': ((json['data'] as Array<any>).map(ImagesResponseDataInnerFromJSON)),
+        'data': ((json['data'] as Array<any>).map(ImageFromJSON)),
     };
 }
 
@@ -71,7 +71,7 @@ export function ImagesResponseToJSON(value?: ImagesResponse | null): any {
     return {
         
         'created': value['created'],
-        'data': ((value['data'] as Array<any>).map(ImagesResponseDataInnerToJSON)),
+        'data': ((value['data'] as Array<any>).map(ImageToJSON)),
     };
 }
 

@@ -10,7 +10,7 @@ module DeleteModelResponse =
 
   type DeleteModelResponse = {
     Id : string;
-    Object : string;
     Deleted : bool;
+    Object : string;
   }
   //#endregion

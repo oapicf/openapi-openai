@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.model.ChatCompletionResponseMessage;
+import org.openapitools.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,20 +23,20 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("CreateChatCompletionResponse_choices_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionResponseChoicesInner {
 
-  private Integer index;
-
-  private ChatCompletionResponseMessage message;
-
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
    */
   public enum FinishReasonEnum {
     STOP("stop"),
     
     LENGTH("length"),
+    
+    TOOL_CALLS("tool_calls"),
+    
+    CONTENT_FILTER("content_filter"),
     
     FUNCTION_CALL("function_call");
 
@@ -68,17 +69,57 @@ public class CreateChatCompletionResponseChoicesInner {
 
   private FinishReasonEnum finishReason;
 
+  private Integer index;
+
+  private ChatCompletionResponseMessage message;
+
+  private JsonNullable<CreateChatCompletionResponseChoicesInnerLogprobs> logprobs = JsonNullable.<CreateChatCompletionResponseChoicesInnerLogprobs>undefined();
+
+  public CreateChatCompletionResponseChoicesInner() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public CreateChatCompletionResponseChoicesInner(FinishReasonEnum finishReason, Integer index, ChatCompletionResponseMessage message, CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.finishReason = finishReason;
+    this.index = index;
+    this.message = message;
+    this.logprobs = JsonNullable.of(logprobs);
+  }
+
+  public CreateChatCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
+    return this;
+  }
+
+  /**
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+   * @return finishReason
+  */
+  @NotNull 
+  @Schema(name = "finish_reason", description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("finish_reason")
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
+  }
+
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
+  }
+
   public CreateChatCompletionResponseChoicesInner index(Integer index) {
     this.index = index;
     return this;
   }
 
   /**
-   * Get index
+   * The index of the choice in the list of choices.
    * @return index
   */
-  
-  @Schema(name = "index", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "index", description = "The index of the choice in the list of choices.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("index")
   public Integer getIndex() {
     return index;
@@ -97,8 +138,8 @@ public class CreateChatCompletionResponseChoicesInner {
    * Get message
    * @return message
   */
-  @Valid 
-  @Schema(name = "message", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull @Valid 
+  @Schema(name = "message", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("message")
   public ChatCompletionResponseMessage getMessage() {
     return message;
@@ -108,24 +149,24 @@ public class CreateChatCompletionResponseChoicesInner {
     this.message = message;
   }
 
-  public CreateChatCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public CreateChatCompletionResponseChoicesInner logprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = JsonNullable.of(logprobs);
     return this;
   }
 
   /**
-   * Get finishReason
-   * @return finishReason
+   * Get logprobs
+   * @return logprobs
   */
-  
-  @Schema(name = "finish_reason", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("finish_reason")
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  @NotNull @Valid 
+  @Schema(name = "logprobs", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("logprobs")
+  public JsonNullable<CreateChatCompletionResponseChoicesInnerLogprobs> getLogprobs() {
+    return logprobs;
   }
 
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setLogprobs(JsonNullable<CreateChatCompletionResponseChoicesInnerLogprobs> logprobs) {
+    this.logprobs = logprobs;
   }
 
   @Override
@@ -137,23 +178,25 @@ public class CreateChatCompletionResponseChoicesInner {
       return false;
     }
     CreateChatCompletionResponseChoicesInner createChatCompletionResponseChoicesInner = (CreateChatCompletionResponseChoicesInner) o;
-    return Objects.equals(this.index, createChatCompletionResponseChoicesInner.index) &&
+    return Objects.equals(this.finishReason, createChatCompletionResponseChoicesInner.finishReason) &&
+        Objects.equals(this.index, createChatCompletionResponseChoicesInner.index) &&
         Objects.equals(this.message, createChatCompletionResponseChoicesInner.message) &&
-        Objects.equals(this.finishReason, createChatCompletionResponseChoicesInner.finishReason);
+        Objects.equals(this.logprobs, createChatCompletionResponseChoicesInner.logprobs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, message, finishReason);
+    return Objects.hash(finishReason, index, message, logprobs);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionResponseChoicesInner {\n");
+    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

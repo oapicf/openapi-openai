@@ -17,15 +17,26 @@ resourceTypes {
     description = CreateEmbeddingRequest
     derivedFrom = Root
     properties {
+        input {
+          type = CreateEmbeddingRequestInput
+          description = ""
+          optional = true
+        }
         model {
           type = CreateEmbeddingRequestModel
           description = ""
           optional = true
         }
-        input {
-          type = CreateEmbeddingRequestInput
-          description = ""
-          optional = true
+        encoding_format {
+          type =  string
+          description = "The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/)."
+          enum = ["float", "base64"]
+          optional = false
+        }
+        dimensions {
+          type =  integer
+          description = "The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. "
+          optional = false
         }
         user {
           type =  string

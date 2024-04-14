@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageContentTextObjectText"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageContentTextObjectText"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  MessageContentTextObjectTextAnnotationsInner = openapi_server.resourceTypes.MessageContentTextObjectTextAnnotationsInner
+}
+resourceTypes {
+
+  MessageContentTextObjectText {
+    title = MessageContentTextObjectText
+    description = MessageContentTextObjectText
+    derivedFrom = Root
+    properties {
+        value {
+          type =  string
+          description = "The data that makes up the text."
+          optional = true
+        }
+        annotations {
+          type = array
+          items.type = MessageContentTextObjectTextAnnotationsInner
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageContentTextObjectText {
+    title = MessageContentTextObjectText
+    description = MessageContentTextObjectText
+    implements = openapi_server.resourceTypes.MessageContentTextObjectText
+
+  }
+}

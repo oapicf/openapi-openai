@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,6 +12,7 @@ package openapi
 
 type CreateModerationResponseResultsInner struct {
 
+	// Whether any of the below categories are flagged.
 	Flagged bool `json:"flagged"`
 
 	Categories CreateModerationResponseResultsInnerCategories `json:"categories"`

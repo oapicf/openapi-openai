@@ -8,9 +8,14 @@ The class is defined in **[ListFilesResponse.java](../../src/main/java/org/opena
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_object** | `String` |  | 
 **data** | [`List&lt;OpenAIFile&gt;`](OpenAIFile.md) |  | 
+**_object** | [**ObjectEnum**](#ObjectEnum) |  | 
 
 
+## ObjectEnum
+
+Name | Value
+---- | -----
+LIST | `"list"`
 
 

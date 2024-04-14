@@ -1,7 +1,7 @@
 /*
  * CreateTranscriptionRequest_model.h
  *
- * ID of the model to use. Only &#x60;whisper-1&#x60; is currently available. 
+ * ID of the model to use. Only &#x60;whisper-1&#x60; (which is powered by our open source Whisper V2 model) is currently available. 
  */
 
 #ifndef _CreateTranscriptionRequest_model_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief ID of the model to use. Only `whisper-1` is currently available. 
+/*! \brief ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available. 
  *
  *  \ingroup Models
  *

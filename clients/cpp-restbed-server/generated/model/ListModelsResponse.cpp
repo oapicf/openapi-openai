@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <regex>
+#include <algorithm>
 #include <boost/lexical_cast.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -76,7 +77,7 @@ ptree ListModelsResponse::toPropertyTree() const
 void ListModelsResponse::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	m_object = pt.get("object", "");
+	setObject(pt.get("object", ""));
 	// push all items of Data into member
 	if (pt.get_child_optional("data")) {
         m_Data = fromPt<std::vector<Model>>(pt.get_child("data"));
@@ -90,7 +91,15 @@ std::string ListModelsResponse::getObject() const
 
 void ListModelsResponse::setObject(std::string value)
 {
-    m_object = value;
+    static const std::array<std::string, 1> allowedValues = {
+        "list"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_object = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
 }
 
 

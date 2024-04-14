@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * CreateModerationResponse.h
  *
- * 
+ * Represents if a given text input is potentially harmful.
  */
 
 #ifndef CreateModerationResponse_H_
@@ -35,7 +35,7 @@ namespace server {
 namespace model {
 
 /// <summary>
-/// 
+/// Represents if a given text input is potentially harmful.
 /// </summary>
 class  CreateModerationResponse 
 {
@@ -60,19 +60,19 @@ public:
     /// CreateModerationResponse members
 
     /// <summary>
-    /// 
+    /// The unique identifier for the moderation request.
     /// </summary>
     std::string getId() const;
     void setId(std::string value);
 
     /// <summary>
-    /// 
+    /// The model used to generate the moderation results.
     /// </summary>
     std::string getModel() const;
     void setModel(std::string value);
 
     /// <summary>
-    /// 
+    /// A list of moderation objects.
     /// </summary>
     std::vector<CreateModerationResponse_results_inner> getResults() const;
     void setResults(std::vector<CreateModerationResponse_results_inner> value);

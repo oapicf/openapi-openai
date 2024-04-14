@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,21 +15,28 @@ package org.openapitools.client.model;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
-@ApiModel(description = "")
+/**
+ * Describes an OpenAI model offering that can be used with the API.
+ **/
+@ApiModel(description = "Describes an OpenAI model offering that can be used with the API.")
 public class Model {
   
   @SerializedName("id")
   private String id = null;
-  @SerializedName("object")
-  private String _object = null;
   @SerializedName("created")
   private Integer created = null;
+  public enum _objectEnum {
+     model, 
+  };
+  @SerializedName("object")
+  private _objectEnum _object = null;
   @SerializedName("owned_by")
   private String ownedBy = null;
 
   /**
+   * The model identifier, which can be referenced in the API endpoints.
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model identifier, which can be referenced in the API endpoints.")
   public String getId() {
     return id;
   }
@@ -38,18 +45,9 @@ public class Model {
   }
 
   /**
+   * The Unix timestamp (in seconds) when the model was created.
    **/
-  @ApiModelProperty(required = true, value = "")
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) when the model was created.")
   public Integer getCreated() {
     return created;
   }
@@ -58,8 +56,20 @@ public class Model {
   }
 
   /**
+   * The object type, which is always \"model\".
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The object type, which is always \"model\".")
+  public _objectEnum getObject() {
+    return _object;
+  }
+  public void setObject(_objectEnum _object) {
+    this._object = _object;
+  }
+
+  /**
+   * The organization that owns the model.
+   **/
+  @ApiModelProperty(required = true, value = "The organization that owns the model.")
   public String getOwnedBy() {
     return ownedBy;
   }
@@ -78,8 +88,8 @@ public class Model {
     }
     Model model = (Model) o;
     return (this.id == null ? model.id == null : this.id.equals(model.id)) &&
-        (this._object == null ? model._object == null : this._object.equals(model._object)) &&
         (this.created == null ? model.created == null : this.created.equals(model.created)) &&
+        (this._object == null ? model._object == null : this._object.equals(model._object)) &&
         (this.ownedBy == null ? model.ownedBy == null : this.ownedBy.equals(model.ownedBy));
   }
 
@@ -87,8 +97,8 @@ public class Model {
   public int hashCode() {
     int result = 17;
     result = 31 * result + (this.id == null ? 0: this.id.hashCode());
-    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
     result = 31 * result + (this.created == null ? 0: this.created.hashCode());
+    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
     result = 31 * result + (this.ownedBy == null ? 0: this.ownedBy.hashCode());
     return result;
   }
@@ -99,8 +109,8 @@ public class Model {
     sb.append("class Model {\n");
     
     sb.append("  id: ").append(id).append("\n");
-    sb.append("  _object: ").append(_object).append("\n");
     sb.append("  created: ").append(created).append("\n");
+    sb.append("  _object: ").append(_object).append("\n");
     sb.append("  ownedBy: ").append(ownedBy).append("\n");
     sb.append("}\n");
     return sb.toString();

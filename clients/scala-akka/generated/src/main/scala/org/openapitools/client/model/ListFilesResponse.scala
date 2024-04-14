@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,7 +14,15 @@ package org.openapitools.client.model
 import org.openapitools.client.core.ApiModel
 
 case class ListFilesResponse (
-  `object`: String,
-  data: Seq[OpenAIFile]
+  data: Seq[OpenAIFile],
+  `object`: ListFilesResponseEnums.`Object`
 ) extends ApiModel
 
+object ListFilesResponseEnums {
+
+  type `Object` = `Object`.Value
+  object `Object` extends Enumeration {
+    val List = Value("list")
+  }
+
+}

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**promptTokens** | **Number** |  | 
-**totalTokens** | **Number** |  | 
+**promptTokens** | **Number** | The number of tokens used by the prompt. | 
+**totalTokens** | **Number** | The total number of tokens used by the request. | 
 
 

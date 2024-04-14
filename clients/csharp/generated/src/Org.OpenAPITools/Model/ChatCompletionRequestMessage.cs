@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,93 +23,167 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
     /// ChatCompletionRequestMessage
     /// </summary>
+    [JsonConverter(typeof(ChatCompletionRequestMessageJsonConverter))]
     [DataContract(Name = "ChatCompletionRequestMessage")]
-    public partial class ChatCompletionRequestMessage : IValidatableObject
+    public partial class ChatCompletionRequestMessage : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.
+        /// Initializes a new instance of the <see cref="ChatCompletionRequestMessage" /> class
+        /// with the <see cref="ChatCompletionRequestSystemMessage" /> class
         /// </summary>
-        /// <value>The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum RoleEnum
+        /// <param name="actualInstance">An instance of ChatCompletionRequestSystemMessage.</param>
+        public ChatCompletionRequestMessage(ChatCompletionRequestSystemMessage actualInstance)
         {
-            /// <summary>
-            /// Enum System for value: system
-            /// </summary>
-            [EnumMember(Value = "system")]
-            System = 1,
-
-            /// <summary>
-            /// Enum User for value: user
-            /// </summary>
-            [EnumMember(Value = "user")]
-            User = 2,
-
-            /// <summary>
-            /// Enum Assistant for value: assistant
-            /// </summary>
-            [EnumMember(Value = "assistant")]
-            Assistant = 3,
-
-            /// <summary>
-            /// Enum Function for value: function
-            /// </summary>
-            [EnumMember(Value = "function")]
-            Function = 4
-        }
-
-
-        /// <summary>
-        /// The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.
-        /// </summary>
-        /// <value>The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.</value>
-        [DataMember(Name = "role", IsRequired = true, EmitDefaultValue = true)]
-        public RoleEnum Role { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChatCompletionRequestMessage" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected ChatCompletionRequestMessage() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChatCompletionRequestMessage" /> class.
-        /// </summary>
-        /// <param name="role">The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;. (required).</param>
-        /// <param name="content">The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls..</param>
-        /// <param name="name">The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters..</param>
-        /// <param name="functionCall">functionCall.</param>
-        public ChatCompletionRequestMessage(RoleEnum role = default(RoleEnum), string content = default(string), string name = default(string), ChatCompletionRequestMessageFunctionCall functionCall = default(ChatCompletionRequestMessageFunctionCall))
-        {
-            this.Role = role;
-            this.Content = content;
-            this.Name = name;
-            this.FunctionCall = functionCall;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls.
+        /// Initializes a new instance of the <see cref="ChatCompletionRequestMessage" /> class
+        /// with the <see cref="ChatCompletionRequestUserMessage" /> class
         /// </summary>
-        /// <value>The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls.</value>
-        [DataMember(Name = "content", EmitDefaultValue = false)]
-        public string Content { get; set; }
+        /// <param name="actualInstance">An instance of ChatCompletionRequestUserMessage.</param>
+        public ChatCompletionRequestMessage(ChatCompletionRequestUserMessage actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
+        /// Initializes a new instance of the <see cref="ChatCompletionRequestMessage" /> class
+        /// with the <see cref="ChatCompletionRequestAssistantMessage" /> class
         /// </summary>
-        /// <value>The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
-        public string Name { get; set; }
+        /// <param name="actualInstance">An instance of ChatCompletionRequestAssistantMessage.</param>
+        public ChatCompletionRequestMessage(ChatCompletionRequestAssistantMessage actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Gets or Sets FunctionCall
+        /// Initializes a new instance of the <see cref="ChatCompletionRequestMessage" /> class
+        /// with the <see cref="ChatCompletionRequestToolMessage" /> class
         /// </summary>
-        [DataMember(Name = "function_call", EmitDefaultValue = false)]
-        public ChatCompletionRequestMessageFunctionCall FunctionCall { get; set; }
+        /// <param name="actualInstance">An instance of ChatCompletionRequestToolMessage.</param>
+        public ChatCompletionRequestMessage(ChatCompletionRequestToolMessage actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionRequestMessage" /> class
+        /// with the <see cref="ChatCompletionRequestFunctionMessage" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of ChatCompletionRequestFunctionMessage.</param>
+        public ChatCompletionRequestMessage(ChatCompletionRequestFunctionMessage actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
+
+        /// <summary>
+        /// Gets or Sets ActualInstance
+        /// </summary>
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(ChatCompletionRequestAssistantMessage))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(ChatCompletionRequestFunctionMessage))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(ChatCompletionRequestSystemMessage))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(ChatCompletionRequestToolMessage))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(ChatCompletionRequestUserMessage))
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ChatCompletionRequestSystemMessage`. If the actual instance is not `ChatCompletionRequestSystemMessage`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ChatCompletionRequestSystemMessage</returns>
+        public ChatCompletionRequestSystemMessage GetChatCompletionRequestSystemMessage()
+        {
+            return (ChatCompletionRequestSystemMessage)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ChatCompletionRequestUserMessage`. If the actual instance is not `ChatCompletionRequestUserMessage`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ChatCompletionRequestUserMessage</returns>
+        public ChatCompletionRequestUserMessage GetChatCompletionRequestUserMessage()
+        {
+            return (ChatCompletionRequestUserMessage)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ChatCompletionRequestAssistantMessage`. If the actual instance is not `ChatCompletionRequestAssistantMessage`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ChatCompletionRequestAssistantMessage</returns>
+        public ChatCompletionRequestAssistantMessage GetChatCompletionRequestAssistantMessage()
+        {
+            return (ChatCompletionRequestAssistantMessage)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ChatCompletionRequestToolMessage`. If the actual instance is not `ChatCompletionRequestToolMessage`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ChatCompletionRequestToolMessage</returns>
+        public ChatCompletionRequestToolMessage GetChatCompletionRequestToolMessage()
+        {
+            return (ChatCompletionRequestToolMessage)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ChatCompletionRequestFunctionMessage`. If the actual instance is not `ChatCompletionRequestFunctionMessage`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ChatCompletionRequestFunctionMessage</returns>
+        public ChatCompletionRequestFunctionMessage GetChatCompletionRequestFunctionMessage()
+        {
+            return (ChatCompletionRequestFunctionMessage)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,12 +191,9 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class ChatCompletionRequestMessage {\n");
-            sb.Append("  Role: ").Append(Role).Append("\n");
-            sb.Append("  Content: ").Append(Content).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  FunctionCall: ").Append(FunctionCall).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -131,10 +202,140 @@ namespace Org.OpenAPITools.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, ChatCompletionRequestMessage.SerializerSettings);
         }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of ChatCompletionRequestMessage
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of ChatCompletionRequestMessage</returns>
+        public static ChatCompletionRequestMessage FromJson(string jsonString)
+        {
+            ChatCompletionRequestMessage newChatCompletionRequestMessage = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newChatCompletionRequestMessage;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(ChatCompletionRequestAssistantMessage).GetProperty("AdditionalProperties") == null)
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestAssistantMessage>(jsonString, ChatCompletionRequestMessage.SerializerSettings));
+                }
+                else
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestAssistantMessage>(jsonString, ChatCompletionRequestMessage.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("ChatCompletionRequestAssistantMessage");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ChatCompletionRequestAssistantMessage: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(ChatCompletionRequestFunctionMessage).GetProperty("AdditionalProperties") == null)
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestFunctionMessage>(jsonString, ChatCompletionRequestMessage.SerializerSettings));
+                }
+                else
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestFunctionMessage>(jsonString, ChatCompletionRequestMessage.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("ChatCompletionRequestFunctionMessage");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ChatCompletionRequestFunctionMessage: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(ChatCompletionRequestSystemMessage).GetProperty("AdditionalProperties") == null)
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestSystemMessage>(jsonString, ChatCompletionRequestMessage.SerializerSettings));
+                }
+                else
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestSystemMessage>(jsonString, ChatCompletionRequestMessage.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("ChatCompletionRequestSystemMessage");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ChatCompletionRequestSystemMessage: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(ChatCompletionRequestToolMessage).GetProperty("AdditionalProperties") == null)
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestToolMessage>(jsonString, ChatCompletionRequestMessage.SerializerSettings));
+                }
+                else
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestToolMessage>(jsonString, ChatCompletionRequestMessage.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("ChatCompletionRequestToolMessage");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ChatCompletionRequestToolMessage: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(ChatCompletionRequestUserMessage).GetProperty("AdditionalProperties") == null)
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestUserMessage>(jsonString, ChatCompletionRequestMessage.SerializerSettings));
+                }
+                else
+                {
+                    newChatCompletionRequestMessage = new ChatCompletionRequestMessage(JsonConvert.DeserializeObject<ChatCompletionRequestUserMessage>(jsonString, ChatCompletionRequestMessage.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("ChatCompletionRequestUserMessage");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ChatCompletionRequestUserMessage: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newChatCompletionRequestMessage;
+        }
+
 
         /// <summary>
         /// To validate all properties of the instance
@@ -144,6 +345,54 @@ namespace Org.OpenAPITools.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for ChatCompletionRequestMessage
+    /// </summary>
+    public class ChatCompletionRequestMessageJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(ChatCompletionRequestMessage).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            switch(reader.TokenType) 
+            {
+                case JsonToken.StartObject:
+                    return ChatCompletionRequestMessage.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return ChatCompletionRequestMessage.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

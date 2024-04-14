@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,11 +27,32 @@ using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// Model
+    /// Describes an OpenAI model offering that can be used with the API.
     /// </summary>
     [DataContract(Name = "Model")]
     public partial class Model : IValidatableObject
     {
+        /// <summary>
+        /// The object type, which is always \&quot;model\&quot;.
+        /// </summary>
+        /// <value>The object type, which is always \&quot;model\&quot;.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            /// <summary>
+            /// Enum Model for value: model
+            /// </summary>
+            [EnumMember(Value = "model")]
+            Model = 1
+        }
+
+
+        /// <summary>
+        /// The object type, which is always \&quot;model\&quot;.
+        /// </summary>
+        /// <value>The object type, which is always \&quot;model\&quot;.</value>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public ObjectEnum VarObject { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Model" /> class.
         /// </summary>
@@ -40,11 +61,11 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Model" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="varObject">varObject (required).</param>
-        /// <param name="created">created (required).</param>
-        /// <param name="ownedBy">ownedBy (required).</param>
-        public Model(string id = default(string), string varObject = default(string), int created = default(int), string ownedBy = default(string))
+        /// <param name="id">The model identifier, which can be referenced in the API endpoints. (required).</param>
+        /// <param name="created">The Unix timestamp (in seconds) when the model was created. (required).</param>
+        /// <param name="varObject">The object type, which is always \&quot;model\&quot;. (required).</param>
+        /// <param name="ownedBy">The organization that owns the model. (required).</param>
+        public Model(string id = default(string), int created = default(int), ObjectEnum varObject = default(ObjectEnum), string ownedBy = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -52,13 +73,8 @@ namespace Org.OpenAPITools.Model
                 throw new ArgumentNullException("id is a required property for Model and cannot be null");
             }
             this.Id = id;
-            // to ensure "varObject" is required (not null)
-            if (varObject == null)
-            {
-                throw new ArgumentNullException("varObject is a required property for Model and cannot be null");
-            }
-            this.VarObject = varObject;
             this.Created = created;
+            this.VarObject = varObject;
             // to ensure "ownedBy" is required (not null)
             if (ownedBy == null)
             {
@@ -68,26 +84,23 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// The model identifier, which can be referenced in the API endpoints.
         /// </summary>
+        /// <value>The model identifier, which can be referenced in the API endpoints.</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarObject
+        /// The Unix timestamp (in seconds) when the model was created.
         /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string VarObject { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Created
-        /// </summary>
+        /// <value>The Unix timestamp (in seconds) when the model was created.</value>
         [DataMember(Name = "created", IsRequired = true, EmitDefaultValue = true)]
         public int Created { get; set; }
 
         /// <summary>
-        /// Gets or Sets OwnedBy
+        /// The organization that owns the model.
         /// </summary>
+        /// <value>The organization that owns the model.</value>
         [DataMember(Name = "owned_by", IsRequired = true, EmitDefaultValue = true)]
         public string OwnedBy { get; set; }
 
@@ -100,8 +113,8 @@ namespace Org.OpenAPITools.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class Model {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  OwnedBy: ").Append(OwnedBy).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

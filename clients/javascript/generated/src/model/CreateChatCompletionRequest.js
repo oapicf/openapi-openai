@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,25 +14,28 @@
 import ApiClient from '../ApiClient';
 import ChatCompletionFunctions from './ChatCompletionFunctions';
 import ChatCompletionRequestMessage from './ChatCompletionRequestMessage';
+import ChatCompletionTool from './ChatCompletionTool';
+import ChatCompletionToolChoiceOption from './ChatCompletionToolChoiceOption';
 import CreateChatCompletionRequestFunctionCall from './CreateChatCompletionRequestFunctionCall';
 import CreateChatCompletionRequestModel from './CreateChatCompletionRequestModel';
+import CreateChatCompletionRequestResponseFormat from './CreateChatCompletionRequestResponseFormat';
 import CreateChatCompletionRequestStop from './CreateChatCompletionRequestStop';
 
 /**
  * The CreateChatCompletionRequest model module.
  * @module model/CreateChatCompletionRequest
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateChatCompletionRequest {
     /**
      * Constructs a new <code>CreateChatCompletionRequest</code>.
      * @alias module:model/CreateChatCompletionRequest
+     * @param messages {Array.<module:model/ChatCompletionRequestMessage>} A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
      * @param model {module:model/CreateChatCompletionRequestModel} 
-     * @param messages {Array.<module:model/ChatCompletionRequestMessage>} A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
      */
-    constructor(model, messages) { 
+    constructor(messages, model) { 
         
-        CreateChatCompletionRequest.initialize(this, model, messages);
+        CreateChatCompletionRequest.initialize(this, messages, model);
     }
 
     /**
@@ -40,9 +43,9 @@ class CreateChatCompletionRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, model, messages) { 
-        obj['model'] = model;
+    static initialize(obj, messages, model) { 
         obj['messages'] = messages;
+        obj['model'] = model;
     }
 
     /**
@@ -56,17 +59,44 @@ class CreateChatCompletionRequest {
         if (data) {
             obj = obj || new CreateChatCompletionRequest();
 
-            if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateChatCompletionRequestModel.constructFromObject(data['model']);
-            }
             if (data.hasOwnProperty('messages')) {
                 obj['messages'] = ApiClient.convertToType(data['messages'], [ChatCompletionRequestMessage]);
             }
-            if (data.hasOwnProperty('functions')) {
-                obj['functions'] = ApiClient.convertToType(data['functions'], [ChatCompletionFunctions]);
+            if (data.hasOwnProperty('model')) {
+                obj['model'] = CreateChatCompletionRequestModel.constructFromObject(data['model']);
             }
-            if (data.hasOwnProperty('function_call')) {
-                obj['function_call'] = CreateChatCompletionRequestFunctionCall.constructFromObject(data['function_call']);
+            if (data.hasOwnProperty('frequency_penalty')) {
+                obj['frequency_penalty'] = ApiClient.convertToType(data['frequency_penalty'], 'Number');
+            }
+            if (data.hasOwnProperty('logit_bias')) {
+                obj['logit_bias'] = ApiClient.convertToType(data['logit_bias'], {'String': 'Number'});
+            }
+            if (data.hasOwnProperty('logprobs')) {
+                obj['logprobs'] = ApiClient.convertToType(data['logprobs'], 'Boolean');
+            }
+            if (data.hasOwnProperty('top_logprobs')) {
+                obj['top_logprobs'] = ApiClient.convertToType(data['top_logprobs'], 'Number');
+            }
+            if (data.hasOwnProperty('max_tokens')) {
+                obj['max_tokens'] = ApiClient.convertToType(data['max_tokens'], 'Number');
+            }
+            if (data.hasOwnProperty('n')) {
+                obj['n'] = ApiClient.convertToType(data['n'], 'Number');
+            }
+            if (data.hasOwnProperty('presence_penalty')) {
+                obj['presence_penalty'] = ApiClient.convertToType(data['presence_penalty'], 'Number');
+            }
+            if (data.hasOwnProperty('response_format')) {
+                obj['response_format'] = CreateChatCompletionRequestResponseFormat.constructFromObject(data['response_format']);
+            }
+            if (data.hasOwnProperty('seed')) {
+                obj['seed'] = ApiClient.convertToType(data['seed'], 'Number');
+            }
+            if (data.hasOwnProperty('stop')) {
+                obj['stop'] = CreateChatCompletionRequestStop.constructFromObject(data['stop']);
+            }
+            if (data.hasOwnProperty('stream')) {
+                obj['stream'] = ApiClient.convertToType(data['stream'], 'Boolean');
             }
             if (data.hasOwnProperty('temperature')) {
                 obj['temperature'] = ApiClient.convertToType(data['temperature'], 'Number');
@@ -74,29 +104,20 @@ class CreateChatCompletionRequest {
             if (data.hasOwnProperty('top_p')) {
                 obj['top_p'] = ApiClient.convertToType(data['top_p'], 'Number');
             }
-            if (data.hasOwnProperty('n')) {
-                obj['n'] = ApiClient.convertToType(data['n'], 'Number');
+            if (data.hasOwnProperty('tools')) {
+                obj['tools'] = ApiClient.convertToType(data['tools'], [ChatCompletionTool]);
             }
-            if (data.hasOwnProperty('stream')) {
-                obj['stream'] = ApiClient.convertToType(data['stream'], 'Boolean');
-            }
-            if (data.hasOwnProperty('stop')) {
-                obj['stop'] = CreateChatCompletionRequestStop.constructFromObject(data['stop']);
-            }
-            if (data.hasOwnProperty('max_tokens')) {
-                obj['max_tokens'] = ApiClient.convertToType(data['max_tokens'], 'Number');
-            }
-            if (data.hasOwnProperty('presence_penalty')) {
-                obj['presence_penalty'] = ApiClient.convertToType(data['presence_penalty'], 'Number');
-            }
-            if (data.hasOwnProperty('frequency_penalty')) {
-                obj['frequency_penalty'] = ApiClient.convertToType(data['frequency_penalty'], 'Number');
-            }
-            if (data.hasOwnProperty('logit_bias')) {
-                obj['logit_bias'] = ApiClient.convertToType(data['logit_bias'], Object);
+            if (data.hasOwnProperty('tool_choice')) {
+                obj['tool_choice'] = ChatCompletionToolChoiceOption.constructFromObject(data['tool_choice']);
             }
             if (data.hasOwnProperty('user')) {
                 obj['user'] = ApiClient.convertToType(data['user'], 'String');
+            }
+            if (data.hasOwnProperty('function_call')) {
+                obj['function_call'] = CreateChatCompletionRequestFunctionCall.constructFromObject(data['function_call']);
+            }
+            if (data.hasOwnProperty('functions')) {
+                obj['functions'] = ApiClient.convertToType(data['functions'], [ChatCompletionFunctions]);
             }
         }
         return obj;
@@ -114,10 +135,6 @@ class CreateChatCompletionRequest {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateChatCompletionRequestModel.validateJSON(data['model']);
-        }
         if (data['messages']) { // data not null
             // ensure the json data is an array
             if (!Array.isArray(data['messages'])) {
@@ -127,6 +144,40 @@ class CreateChatCompletionRequest {
             for (const item of data['messages']) {
                 ChatCompletionRequestMessage.validateJSON(item);
             };
+        }
+        // validate the optional field `model`
+        if (data['model']) { // data not null
+          CreateChatCompletionRequestModel.validateJSON(data['model']);
+        }
+        // validate the optional field `response_format`
+        if (data['response_format']) { // data not null
+          CreateChatCompletionRequestResponseFormat.validateJSON(data['response_format']);
+        }
+        // validate the optional field `stop`
+        if (data['stop']) { // data not null
+          CreateChatCompletionRequestStop.validateJSON(data['stop']);
+        }
+        if (data['tools']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['tools'])) {
+                throw new Error("Expected the field `tools` to be an array in the JSON data but got " + data['tools']);
+            }
+            // validate the optional field `tools` (array)
+            for (const item of data['tools']) {
+                ChatCompletionTool.validateJSON(item);
+            };
+        }
+        // validate the optional field `tool_choice`
+        if (data['tool_choice']) { // data not null
+          ChatCompletionToolChoiceOption.validateJSON(data['tool_choice']);
+        }
+        // ensure the json data is a string
+        if (data['user'] && !(typeof data['user'] === 'string' || data['user'] instanceof String)) {
+            throw new Error("Expected the field `user` to be a primitive type in the JSON string but got " + data['user']);
+        }
+        // validate the optional field `function_call`
+        if (data['function_call']) { // data not null
+          CreateChatCompletionRequestFunctionCall.validateJSON(data['function_call']);
         }
         if (data['functions']) { // data not null
             // ensure the json data is an array
@@ -138,18 +189,6 @@ class CreateChatCompletionRequest {
                 ChatCompletionFunctions.validateJSON(item);
             };
         }
-        // validate the optional field `function_call`
-        if (data['function_call']) { // data not null
-          CreateChatCompletionRequestFunctionCall.validateJSON(data['function_call']);
-        }
-        // validate the optional field `stop`
-        if (data['stop']) { // data not null
-          CreateChatCompletionRequestStop.validateJSON(data['stop']);
-        }
-        // ensure the json data is a string
-        if (data['user'] && !(typeof data['user'] === 'string' || data['user'] instanceof String)) {
-            throw new Error("Expected the field `user` to be a primitive type in the JSON string but got " + data['user']);
-        }
 
         return true;
     }
@@ -157,7 +196,13 @@ class CreateChatCompletionRequest {
 
 }
 
-CreateChatCompletionRequest.RequiredProperties = ["model", "messages"];
+CreateChatCompletionRequest.RequiredProperties = ["messages", "model"];
+
+/**
+ * A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+ * @member {Array.<module:model/ChatCompletionRequestMessage>} messages
+ */
+CreateChatCompletionRequest.prototype['messages'] = undefined;
 
 /**
  * @member {module:model/CreateChatCompletionRequestModel} model
@@ -165,21 +210,73 @@ CreateChatCompletionRequest.RequiredProperties = ["model", "messages"];
 CreateChatCompletionRequest.prototype['model'] = undefined;
 
 /**
- * A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
- * @member {Array.<module:model/ChatCompletionRequestMessage>} messages
+ * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+ * @member {Number} frequency_penalty
+ * @default 0
  */
-CreateChatCompletionRequest.prototype['messages'] = undefined;
+CreateChatCompletionRequest.prototype['frequency_penalty'] = 0;
 
 /**
- * A list of functions the model may generate JSON inputs for.
- * @member {Array.<module:model/ChatCompletionFunctions>} functions
+ * Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
+ * @member {Object.<String, Number>} logit_bias
  */
-CreateChatCompletionRequest.prototype['functions'] = undefined;
+CreateChatCompletionRequest.prototype['logit_bias'] = undefined;
 
 /**
- * @member {module:model/CreateChatCompletionRequestFunctionCall} function_call
+ * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+ * @member {Boolean} logprobs
+ * @default false
  */
-CreateChatCompletionRequest.prototype['function_call'] = undefined;
+CreateChatCompletionRequest.prototype['logprobs'] = false;
+
+/**
+ * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+ * @member {Number} top_logprobs
+ */
+CreateChatCompletionRequest.prototype['top_logprobs'] = undefined;
+
+/**
+ * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+ * @member {Number} max_tokens
+ */
+CreateChatCompletionRequest.prototype['max_tokens'] = undefined;
+
+/**
+ * How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
+ * @member {Number} n
+ * @default 1
+ */
+CreateChatCompletionRequest.prototype['n'] = 1;
+
+/**
+ * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+ * @member {Number} presence_penalty
+ * @default 0
+ */
+CreateChatCompletionRequest.prototype['presence_penalty'] = 0;
+
+/**
+ * @member {module:model/CreateChatCompletionRequestResponseFormat} response_format
+ */
+CreateChatCompletionRequest.prototype['response_format'] = undefined;
+
+/**
+ * This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. 
+ * @member {Number} seed
+ */
+CreateChatCompletionRequest.prototype['seed'] = undefined;
+
+/**
+ * @member {module:model/CreateChatCompletionRequestStop} stop
+ */
+CreateChatCompletionRequest.prototype['stop'] = undefined;
+
+/**
+ * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
+ * @member {Boolean} stream
+ * @default false
+ */
+CreateChatCompletionRequest.prototype['stream'] = false;
 
 /**
  * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
@@ -196,55 +293,32 @@ CreateChatCompletionRequest.prototype['temperature'] = 1;
 CreateChatCompletionRequest.prototype['top_p'] = 1;
 
 /**
- * How many chat completion choices to generate for each input message.
- * @member {Number} n
- * @default 1
+ * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. 
+ * @member {Array.<module:model/ChatCompletionTool>} tools
  */
-CreateChatCompletionRequest.prototype['n'] = 1;
+CreateChatCompletionRequest.prototype['tools'] = undefined;
 
 /**
- * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). 
- * @member {Boolean} stream
- * @default false
+ * @member {module:model/ChatCompletionToolChoiceOption} tool_choice
  */
-CreateChatCompletionRequest.prototype['stream'] = false;
-
-/**
- * @member {module:model/CreateChatCompletionRequestStop} stop
- */
-CreateChatCompletionRequest.prototype['stop'] = undefined;
-
-/**
- * The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
- * @member {Number} max_tokens
- */
-CreateChatCompletionRequest.prototype['max_tokens'] = undefined;
-
-/**
- * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
- * @member {Number} presence_penalty
- * @default 0
- */
-CreateChatCompletionRequest.prototype['presence_penalty'] = 0;
-
-/**
- * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
- * @member {Number} frequency_penalty
- * @default 0
- */
-CreateChatCompletionRequest.prototype['frequency_penalty'] = 0;
-
-/**
- * Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
- * @member {Object} logit_bias
- */
-CreateChatCompletionRequest.prototype['logit_bias'] = undefined;
+CreateChatCompletionRequest.prototype['tool_choice'] = undefined;
 
 /**
  * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
  * @member {String} user
  */
 CreateChatCompletionRequest.prototype['user'] = undefined;
+
+/**
+ * @member {module:model/CreateChatCompletionRequestFunctionCall} function_call
+ */
+CreateChatCompletionRequest.prototype['function_call'] = undefined;
+
+/**
+ * Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. 
+ * @member {Array.<module:model/ChatCompletionFunctions>} functions
+ */
+CreateChatCompletionRequest.prototype['functions'] = undefined;
 
 
 

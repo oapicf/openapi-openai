@@ -1,19 +1,23 @@
 #' Create a new CreateModerationResponseResultsInnerCategoryScores
 #'
 #' @description
-#' CreateModerationResponseResultsInnerCategoryScores Class
+#' A list of the categories along with their scores as predicted by model.
 #'
 #' @docType class
 #' @title CreateModerationResponseResultsInnerCategoryScores
 #' @description CreateModerationResponseResultsInnerCategoryScores Class
 #' @format An \code{R6Class} generator object
-#' @field hate  numeric
-#' @field hate/threatening  numeric
-#' @field self-harm  numeric
-#' @field sexual  numeric
-#' @field sexual/minors  numeric
-#' @field violence  numeric
-#' @field violence/graphic  numeric
+#' @field hate The score for the category 'hate'. numeric
+#' @field hate/threatening The score for the category 'hate/threatening'. numeric
+#' @field harassment The score for the category 'harassment'. numeric
+#' @field harassment/threatening The score for the category 'harassment/threatening'. numeric
+#' @field self-harm The score for the category 'self-harm'. numeric
+#' @field self-harm/intent The score for the category 'self-harm/intent'. numeric
+#' @field self-harm/instructions The score for the category 'self-harm/instructions'. numeric
+#' @field sexual The score for the category 'sexual'. numeric
+#' @field sexual/minors The score for the category 'sexual/minors'. numeric
+#' @field violence The score for the category 'violence'. numeric
+#' @field violence/graphic The score for the category 'violence/graphic'. numeric
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -22,7 +26,11 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
   public = list(
     `hate` = NULL,
     `hate/threatening` = NULL,
+    `harassment` = NULL,
+    `harassment/threatening` = NULL,
     `self-harm` = NULL,
+    `self-harm/intent` = NULL,
+    `self-harm/instructions` = NULL,
     `sexual` = NULL,
     `sexual/minors` = NULL,
     `violence` = NULL,
@@ -32,24 +40,40 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
     #' @description
     #' Initialize a new CreateModerationResponseResultsInnerCategoryScores class.
     #'
-    #' @param hate hate
-    #' @param hate/threatening hate/threatening
-    #' @param self-harm self-harm
-    #' @param sexual sexual
-    #' @param sexual/minors sexual/minors
-    #' @param violence violence
-    #' @param violence/graphic violence/graphic
+    #' @param hate The score for the category 'hate'.
+    #' @param hate/threatening The score for the category 'hate/threatening'.
+    #' @param harassment The score for the category 'harassment'.
+    #' @param harassment/threatening The score for the category 'harassment/threatening'.
+    #' @param self-harm The score for the category 'self-harm'.
+    #' @param self-harm/intent The score for the category 'self-harm/intent'.
+    #' @param self-harm/instructions The score for the category 'self-harm/instructions'.
+    #' @param sexual The score for the category 'sexual'.
+    #' @param sexual/minors The score for the category 'sexual/minors'.
+    #' @param violence The score for the category 'violence'.
+    #' @param violence/graphic The score for the category 'violence/graphic'.
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`hate`, `hate/threatening`, `self-harm`, `sexual`, `sexual/minors`, `violence`, `violence/graphic`, ...) {
+    initialize = function(`hate`, `hate/threatening`, `harassment`, `harassment/threatening`, `self-harm`, `self-harm/intent`, `self-harm/instructions`, `sexual`, `sexual/minors`, `violence`, `violence/graphic`, ...) {
       if (!missing(`hate`)) {
         self$`hate` <- `hate`
       }
       if (!missing(`hate/threatening`)) {
         self$`hate/threatening` <- `hate/threatening`
       }
+      if (!missing(`harassment`)) {
+        self$`harassment` <- `harassment`
+      }
+      if (!missing(`harassment/threatening`)) {
+        self$`harassment/threatening` <- `harassment/threatening`
+      }
       if (!missing(`self-harm`)) {
         self$`self-harm` <- `self-harm`
+      }
+      if (!missing(`self-harm/intent`)) {
+        self$`self-harm/intent` <- `self-harm/intent`
+      }
+      if (!missing(`self-harm/instructions`)) {
+        self$`self-harm/instructions` <- `self-harm/instructions`
       }
       if (!missing(`sexual`)) {
         self$`sexual` <- `sexual`
@@ -81,9 +105,25 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
         CreateModerationResponseResultsInnerCategoryScoresObject[["hate/threatening"]] <-
           self$`hate/threatening`
       }
+      if (!is.null(self$`harassment`)) {
+        CreateModerationResponseResultsInnerCategoryScoresObject[["harassment"]] <-
+          self$`harassment`
+      }
+      if (!is.null(self$`harassment/threatening`)) {
+        CreateModerationResponseResultsInnerCategoryScoresObject[["harassment/threatening"]] <-
+          self$`harassment/threatening`
+      }
       if (!is.null(self$`self-harm`)) {
         CreateModerationResponseResultsInnerCategoryScoresObject[["self-harm"]] <-
           self$`self-harm`
+      }
+      if (!is.null(self$`self-harm/intent`)) {
+        CreateModerationResponseResultsInnerCategoryScoresObject[["self-harm/intent"]] <-
+          self$`self-harm/intent`
+      }
+      if (!is.null(self$`self-harm/instructions`)) {
+        CreateModerationResponseResultsInnerCategoryScoresObject[["self-harm/instructions"]] <-
+          self$`self-harm/instructions`
       }
       if (!is.null(self$`sexual`)) {
         CreateModerationResponseResultsInnerCategoryScoresObject[["sexual"]] <-
@@ -119,8 +159,20 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
       if (!is.null(this_object$`hate/threatening`)) {
         self$`hate/threatening` <- this_object$`hate/threatening`
       }
+      if (!is.null(this_object$`harassment`)) {
+        self$`harassment` <- this_object$`harassment`
+      }
+      if (!is.null(this_object$`harassment/threatening`)) {
+        self$`harassment/threatening` <- this_object$`harassment/threatening`
+      }
       if (!is.null(this_object$`self-harm`)) {
         self$`self-harm` <- this_object$`self-harm`
+      }
+      if (!is.null(this_object$`self-harm/intent`)) {
+        self$`self-harm/intent` <- this_object$`self-harm/intent`
+      }
+      if (!is.null(this_object$`self-harm/instructions`)) {
+        self$`self-harm/instructions` <- this_object$`self-harm/instructions`
       }
       if (!is.null(this_object$`sexual`)) {
         self$`sexual` <- this_object$`sexual`
@@ -161,12 +213,44 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
           self$`hate/threatening`
           )
         },
+        if (!is.null(self$`harassment`)) {
+          sprintf(
+          '"harassment":
+            %d
+                    ',
+          self$`harassment`
+          )
+        },
+        if (!is.null(self$`harassment/threatening`)) {
+          sprintf(
+          '"harassment/threatening":
+            %d
+                    ',
+          self$`harassment/threatening`
+          )
+        },
         if (!is.null(self$`self-harm`)) {
           sprintf(
           '"self-harm":
             %d
                     ',
           self$`self-harm`
+          )
+        },
+        if (!is.null(self$`self-harm/intent`)) {
+          sprintf(
+          '"self-harm/intent":
+            %d
+                    ',
+          self$`self-harm/intent`
+          )
+        },
+        if (!is.null(self$`self-harm/instructions`)) {
+          sprintf(
+          '"self-harm/instructions":
+            %d
+                    ',
+          self$`self-harm/instructions`
           )
         },
         if (!is.null(self$`sexual`)) {
@@ -217,7 +301,11 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`hate` <- this_object$`hate`
       self$`hate/threatening` <- this_object$`hate/threatening`
+      self$`harassment` <- this_object$`harassment`
+      self$`harassment/threatening` <- this_object$`harassment/threatening`
       self$`self-harm` <- this_object$`self-harm`
+      self$`self-harm/intent` <- this_object$`self-harm/intent`
+      self$`self-harm/instructions` <- this_object$`self-harm/instructions`
       self$`sexual` <- this_object$`sexual`
       self$`sexual/minors` <- this_object$`sexual/minors`
       self$`violence` <- this_object$`violence`
@@ -243,10 +331,30 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategoryScores: the required field `hate/threatening` is missing."))
       }
+      # check the required field `harassment`
+      if (!is.null(input_json$`harassment`)) {
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategoryScores: the required field `harassment` is missing."))
+      }
+      # check the required field `harassment/threatening`
+      if (!is.null(input_json$`harassment/threatening`)) {
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategoryScores: the required field `harassment/threatening` is missing."))
+      }
       # check the required field `self-harm`
       if (!is.null(input_json$`self-harm`)) {
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategoryScores: the required field `self-harm` is missing."))
+      }
+      # check the required field `self-harm/intent`
+      if (!is.null(input_json$`self-harm/intent`)) {
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategoryScores: the required field `self-harm/intent` is missing."))
+      }
+      # check the required field `self-harm/instructions`
+      if (!is.null(input_json$`self-harm/instructions`)) {
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategoryScores: the required field `self-harm/instructions` is missing."))
       }
       # check the required field `sexual`
       if (!is.null(input_json$`sexual`)) {
@@ -297,8 +405,28 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
         return(FALSE)
       }
 
+      # check if the required `harassment` is null
+      if (is.null(self$`harassment`)) {
+        return(FALSE)
+      }
+
+      # check if the required `harassment/threatening` is null
+      if (is.null(self$`harassment/threatening`)) {
+        return(FALSE)
+      }
+
       # check if the required `self-harm` is null
       if (is.null(self$`self-harm`)) {
+        return(FALSE)
+      }
+
+      # check if the required `self-harm/intent` is null
+      if (is.null(self$`self-harm/intent`)) {
+        return(FALSE)
+      }
+
+      # check if the required `self-harm/instructions` is null
+      if (is.null(self$`self-harm/instructions`)) {
         return(FALSE)
       }
 
@@ -343,9 +471,29 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
         invalid_fields["hate/threatening"] <- "Non-nullable required field `hate/threatening` cannot be null."
       }
 
+      # check if the required `harassment` is null
+      if (is.null(self$`harassment`)) {
+        invalid_fields["harassment"] <- "Non-nullable required field `harassment` cannot be null."
+      }
+
+      # check if the required `harassment/threatening` is null
+      if (is.null(self$`harassment/threatening`)) {
+        invalid_fields["harassment/threatening"] <- "Non-nullable required field `harassment/threatening` cannot be null."
+      }
+
       # check if the required `self-harm` is null
       if (is.null(self$`self-harm`)) {
         invalid_fields["self-harm"] <- "Non-nullable required field `self-harm` cannot be null."
+      }
+
+      # check if the required `self-harm/intent` is null
+      if (is.null(self$`self-harm/intent`)) {
+        invalid_fields["self-harm/intent"] <- "Non-nullable required field `self-harm/intent` cannot be null."
+      }
+
+      # check if the required `self-harm/instructions` is null
+      if (is.null(self$`self-harm/instructions`)) {
+        invalid_fields["self-harm/instructions"] <- "Non-nullable required field `self-harm/instructions` cannot be null."
       }
 
       # check if the required `sexual` is null

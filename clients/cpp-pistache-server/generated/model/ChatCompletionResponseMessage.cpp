@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -21,9 +21,9 @@ namespace org::openapitools::server::model
 
 ChatCompletionResponseMessage::ChatCompletionResponseMessage()
 {
-    m_Role = "";
     m_Content = "";
-    m_ContentIsSet = false;
+    m_Tool_callsIsSet = false;
+    m_Role = "";
     m_Function_callIsSet = false;
     
 }
@@ -47,7 +47,28 @@ bool ChatCompletionResponseMessage::validate(std::stringstream& msg, const std::
     bool success = true;
     const std::string _pathPrefix = pathPrefix.empty() ? "ChatCompletionResponseMessage" : pathPrefix;
 
+             
+    if (toolCallsIsSet())
+    {
+        const std::vector<org::openapitools::server::model::ChatCompletionMessageToolCall>& value = m_Tool_calls;
+        const std::string currentValuePath = _pathPrefix + ".toolCalls";
                 
+        
+        { // Recursive validation of array elements
+            const std::string oldValuePath = currentValuePath;
+            int i = 0;
+            for (const org::openapitools::server::model::ChatCompletionMessageToolCall& value : value)
+            { 
+                const std::string currentValuePath = oldValuePath + "[" + std::to_string(i) + "]";
+                        
+        success = value.validate(msg, currentValuePath + ".toolCalls") && success;
+ 
+                i++;
+            }
+        }
+
+    }
+            
     return success;
 }
 
@@ -56,11 +77,14 @@ bool ChatCompletionResponseMessage::operator==(const ChatCompletionResponseMessa
     return
     
     
-    (getRole() == rhs.getRole())
+    (getContent() == rhs.getContent())
      &&
     
     
-    ((!contentIsSet() && !rhs.contentIsSet()) || (contentIsSet() && rhs.contentIsSet() && getContent() == rhs.getContent())) &&
+    ((!toolCallsIsSet() && !rhs.toolCallsIsSet()) || (toolCallsIsSet() && rhs.toolCallsIsSet() && getToolCalls() == rhs.getToolCalls())) &&
+    
+    (getRole() == rhs.getRole())
+     &&
     
     
     ((!functionCallIsSet() && !rhs.functionCallIsSet()) || (functionCallIsSet() && rhs.functionCallIsSet() && getFunctionCall() == rhs.getFunctionCall()))
@@ -76,9 +100,10 @@ bool ChatCompletionResponseMessage::operator!=(const ChatCompletionResponseMessa
 void to_json(nlohmann::json& j, const ChatCompletionResponseMessage& o)
 {
     j = nlohmann::json::object();
+    j["content"] = o.m_Content;
+    if(o.toolCallsIsSet() || !o.m_Tool_calls.empty())
+        j["tool_calls"] = o.m_Tool_calls;
     j["role"] = o.m_Role;
-    if(o.contentIsSet())
-        j["content"] = o.m_Content;
     if(o.functionCallIsSet())
         j["function_call"] = o.m_Function_call;
     
@@ -86,12 +111,13 @@ void to_json(nlohmann::json& j, const ChatCompletionResponseMessage& o)
 
 void from_json(const nlohmann::json& j, ChatCompletionResponseMessage& o)
 {
-    j.at("role").get_to(o.m_Role);
-    if(j.find("content") != j.end())
+    j.at("content").get_to(o.m_Content);
+    if(j.find("tool_calls") != j.end())
     {
-        j.at("content").get_to(o.m_Content);
-        o.m_ContentIsSet = true;
+        j.at("tool_calls").get_to(o.m_Tool_calls);
+        o.m_Tool_callsIsSet = true;
     } 
+    j.at("role").get_to(o.m_Role);
     if(j.find("function_call") != j.end())
     {
         j.at("function_call").get_to(o.m_Function_call);
@@ -100,6 +126,31 @@ void from_json(const nlohmann::json& j, ChatCompletionResponseMessage& o)
     
 }
 
+std::string ChatCompletionResponseMessage::getContent() const
+{
+    return m_Content;
+}
+void ChatCompletionResponseMessage::setContent(std::string const& value)
+{
+    m_Content = value;
+}
+std::vector<org::openapitools::server::model::ChatCompletionMessageToolCall> ChatCompletionResponseMessage::getToolCalls() const
+{
+    return m_Tool_calls;
+}
+void ChatCompletionResponseMessage::setToolCalls(std::vector<org::openapitools::server::model::ChatCompletionMessageToolCall> const& value)
+{
+    m_Tool_calls = value;
+    m_Tool_callsIsSet = true;
+}
+bool ChatCompletionResponseMessage::toolCallsIsSet() const
+{
+    return m_Tool_callsIsSet;
+}
+void ChatCompletionResponseMessage::unsetTool_calls()
+{
+    m_Tool_callsIsSet = false;
+}
 std::string ChatCompletionResponseMessage::getRole() const
 {
     return m_Role;
@@ -108,28 +159,11 @@ void ChatCompletionResponseMessage::setRole(std::string const& value)
 {
     m_Role = value;
 }
-std::string ChatCompletionResponseMessage::getContent() const
-{
-    return m_Content;
-}
-void ChatCompletionResponseMessage::setContent(std::string const& value)
-{
-    m_Content = value;
-    m_ContentIsSet = true;
-}
-bool ChatCompletionResponseMessage::contentIsSet() const
-{
-    return m_ContentIsSet;
-}
-void ChatCompletionResponseMessage::unsetContent()
-{
-    m_ContentIsSet = false;
-}
-org::openapitools::server::model::ChatCompletionRequestMessage_function_call ChatCompletionResponseMessage::getFunctionCall() const
+org::openapitools::server::model::ChatCompletionRequestAssistantMessage_function_call ChatCompletionResponseMessage::getFunctionCall() const
 {
     return m_Function_call;
 }
-void ChatCompletionResponseMessage::setFunctionCall(org::openapitools::server::model::ChatCompletionRequestMessage_function_call const& value)
+void ChatCompletionResponseMessage::setFunctionCall(org::openapitools::server::model::ChatCompletionRequestAssistantMessage_function_call const& value)
 {
     m_Function_call = value;
     m_Function_callIsSet = true;

@@ -66,12 +66,12 @@ ImagesResponse::fromJson(char* jsonStr)
 		{
 			JsonArray* arr = json_node_get_array(node);
 			JsonNode*  temp_json;
-			list<ImagesResponse_data_inner> new_list;
-			ImagesResponse_data_inner inst;
+			list<Image> new_list;
+			Image inst;
 			for (guint i=0;i<json_array_get_length(arr);i++) {
 				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("ImagesResponse_data_inner")) {
-					jsonToValue(&inst, temp_json, "ImagesResponse_data_inner", "");
+				if (isprimitive("Image")) {
+					jsonToValue(&inst, temp_json, "Image", "");
 				} else {
 					
 					inst.fromJson(json_to_string(temp_json, false));
@@ -104,18 +104,18 @@ ImagesResponse::toJson()
 	}
 	const gchar *createdKey = "created";
 	json_object_set_member(pJsonObject, createdKey, node);
-	if (isprimitive("ImagesResponse_data_inner")) {
-		list<ImagesResponse_data_inner> new_list = static_cast<list <ImagesResponse_data_inner> > (getData());
-		node = converttoJson(&new_list, "ImagesResponse_data_inner", "array");
+	if (isprimitive("Image")) {
+		list<Image> new_list = static_cast<list <Image> > (getData());
+		node = converttoJson(&new_list, "Image", "array");
 	} else {
 		node = json_node_alloc();
-		list<ImagesResponse_data_inner> new_list = static_cast<list <ImagesResponse_data_inner> > (getData());
+		list<Image> new_list = static_cast<list <Image> > (getData());
 		JsonArray* json_array = json_array_new();
 		GError *mygerror;
 		
-		for (list<ImagesResponse_data_inner>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+		for (list<Image>::iterator it = new_list.begin(); it != new_list.end(); it++) {
 			mygerror = NULL;
-			ImagesResponse_data_inner obj = *it;
+			Image obj = *it;
 			JsonNode *node_temp = json_from_string(obj.toJson(), &mygerror);
 			json_array_add_element(json_array, node_temp);
 			g_clear_error(&mygerror);
@@ -149,14 +149,14 @@ ImagesResponse::setCreated(int  created)
 	this->created = created;
 }
 
-std::list<ImagesResponse_data_inner>
+std::list<Image>
 ImagesResponse::getData()
 {
 	return data;
 }
 
 void
-ImagesResponse::setData(std::list <ImagesResponse_data_inner> data)
+ImagesResponse::setData(std::list <Image> data)
 {
 	this->data = data;
 }

@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `CreateCompletionResponse_choices_inner_logprobs`
 --
-SELECT `tokens`, `token_logprobs`, `top_logprobs`, `text_offset` FROM `CreateCompletionResponse_choices_inner_logprobs` WHERE 1;
+SELECT `text_offset`, `token_logprobs`, `tokens`, `top_logprobs` FROM `CreateCompletionResponse_choices_inner_logprobs` WHERE 1;
 
 --
 -- INSERT template for table `CreateCompletionResponse_choices_inner_logprobs`
 --
-INSERT INTO `CreateCompletionResponse_choices_inner_logprobs`(`tokens`, `token_logprobs`, `top_logprobs`, `text_offset`) VALUES (?, ?, ?, ?);
+INSERT INTO `CreateCompletionResponse_choices_inner_logprobs`(`text_offset`, `token_logprobs`, `tokens`, `top_logprobs`) VALUES (?, ?, ?, ?);
 
 --
 -- UPDATE template for table `CreateCompletionResponse_choices_inner_logprobs`
 --
-UPDATE `CreateCompletionResponse_choices_inner_logprobs` SET `tokens` = ?, `token_logprobs` = ?, `top_logprobs` = ?, `text_offset` = ? WHERE 1;
+UPDATE `CreateCompletionResponse_choices_inner_logprobs` SET `text_offset` = ?, `token_logprobs` = ?, `tokens` = ?, `top_logprobs` = ? WHERE 1;
 
 --
 -- DELETE template for table `CreateCompletionResponse_choices_inner_logprobs`

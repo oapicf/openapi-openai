@@ -23,3 +23,7 @@ API.Client.DeleteFileResponse.prototype.object;
  */
 API.Client.DeleteFileResponse.prototype.deleted;
 
+/** @enum {string} */
+API.Client.DeleteFileResponse.ObjectEnum = { 
+  file: 'file',
+}

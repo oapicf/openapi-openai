@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,8 +16,11 @@ package com.github.oapicf.openapiopenai.model;
 import java.util.Objects;
 import com.github.oapicf.openapiopenai.model.ChatCompletionFunctions;
 import com.github.oapicf.openapiopenai.model.ChatCompletionRequestMessage;
+import com.github.oapicf.openapiopenai.model.ChatCompletionTool;
+import com.github.oapicf.openapiopenai.model.ChatCompletionToolChoiceOption;
 import com.github.oapicf.openapiopenai.model.CreateChatCompletionRequestFunctionCall;
 import com.github.oapicf.openapiopenai.model.CreateChatCompletionRequestModel;
+import com.github.oapicf.openapiopenai.model.CreateChatCompletionRequestResponseFormat;
 import com.github.oapicf.openapiopenai.model.CreateChatCompletionRequestStop;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -28,7 +31,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -58,23 +63,59 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateChatCompletionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionRequest {
-  public static final String SERIALIZED_NAME_MODEL = "model";
-  @SerializedName(SERIALIZED_NAME_MODEL)
-  private CreateChatCompletionRequestModel model;
-
   public static final String SERIALIZED_NAME_MESSAGES = "messages";
   @SerializedName(SERIALIZED_NAME_MESSAGES)
   private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_FUNCTIONS = "functions";
-  @SerializedName(SERIALIZED_NAME_FUNCTIONS)
-  private List<ChatCompletionFunctions> functions;
+  public static final String SERIALIZED_NAME_MODEL = "model";
+  @SerializedName(SERIALIZED_NAME_MODEL)
+  private CreateChatCompletionRequestModel model;
 
-  public static final String SERIALIZED_NAME_FUNCTION_CALL = "function_call";
-  @SerializedName(SERIALIZED_NAME_FUNCTION_CALL)
-  private CreateChatCompletionRequestFunctionCall functionCall;
+  public static final String SERIALIZED_NAME_FREQUENCY_PENALTY = "frequency_penalty";
+  @SerializedName(SERIALIZED_NAME_FREQUENCY_PENALTY)
+  private BigDecimal frequencyPenalty = new BigDecimal("0");
+
+  public static final String SERIALIZED_NAME_LOGIT_BIAS = "logit_bias";
+  @SerializedName(SERIALIZED_NAME_LOGIT_BIAS)
+  private Map<String, Integer> logitBias;
+
+  public static final String SERIALIZED_NAME_LOGPROBS = "logprobs";
+  @SerializedName(SERIALIZED_NAME_LOGPROBS)
+  private Boolean logprobs = false;
+
+  public static final String SERIALIZED_NAME_TOP_LOGPROBS = "top_logprobs";
+  @SerializedName(SERIALIZED_NAME_TOP_LOGPROBS)
+  private Integer topLogprobs;
+
+  public static final String SERIALIZED_NAME_MAX_TOKENS = "max_tokens";
+  @SerializedName(SERIALIZED_NAME_MAX_TOKENS)
+  private Integer maxTokens;
+
+  public static final String SERIALIZED_NAME_N = "n";
+  @SerializedName(SERIALIZED_NAME_N)
+  private Integer n = 1;
+
+  public static final String SERIALIZED_NAME_PRESENCE_PENALTY = "presence_penalty";
+  @SerializedName(SERIALIZED_NAME_PRESENCE_PENALTY)
+  private BigDecimal presencePenalty = new BigDecimal("0");
+
+  public static final String SERIALIZED_NAME_RESPONSE_FORMAT = "response_format";
+  @SerializedName(SERIALIZED_NAME_RESPONSE_FORMAT)
+  private CreateChatCompletionRequestResponseFormat responseFormat;
+
+  public static final String SERIALIZED_NAME_SEED = "seed";
+  @SerializedName(SERIALIZED_NAME_SEED)
+  private Integer seed;
+
+  public static final String SERIALIZED_NAME_STOP = "stop";
+  @SerializedName(SERIALIZED_NAME_STOP)
+  private CreateChatCompletionRequestStop stop = null;
+
+  public static final String SERIALIZED_NAME_STREAM = "stream";
+  @SerializedName(SERIALIZED_NAME_STREAM)
+  private Boolean stream = false;
 
   public static final String SERIALIZED_NAME_TEMPERATURE = "temperature";
   @SerializedName(SERIALIZED_NAME_TEMPERATURE)
@@ -84,40 +125,57 @@ public class CreateChatCompletionRequest {
   @SerializedName(SERIALIZED_NAME_TOP_P)
   private BigDecimal topP = new BigDecimal("1");
 
-  public static final String SERIALIZED_NAME_N = "n";
-  @SerializedName(SERIALIZED_NAME_N)
-  private Integer n = 1;
+  public static final String SERIALIZED_NAME_TOOLS = "tools";
+  @SerializedName(SERIALIZED_NAME_TOOLS)
+  private List<ChatCompletionTool> tools;
 
-  public static final String SERIALIZED_NAME_STREAM = "stream";
-  @SerializedName(SERIALIZED_NAME_STREAM)
-  private Boolean stream = false;
-
-  public static final String SERIALIZED_NAME_STOP = "stop";
-  @SerializedName(SERIALIZED_NAME_STOP)
-  private CreateChatCompletionRequestStop stop = null;
-
-  public static final String SERIALIZED_NAME_MAX_TOKENS = "max_tokens";
-  @SerializedName(SERIALIZED_NAME_MAX_TOKENS)
-  private Integer maxTokens;
-
-  public static final String SERIALIZED_NAME_PRESENCE_PENALTY = "presence_penalty";
-  @SerializedName(SERIALIZED_NAME_PRESENCE_PENALTY)
-  private BigDecimal presencePenalty = new BigDecimal("0");
-
-  public static final String SERIALIZED_NAME_FREQUENCY_PENALTY = "frequency_penalty";
-  @SerializedName(SERIALIZED_NAME_FREQUENCY_PENALTY)
-  private BigDecimal frequencyPenalty = new BigDecimal("0");
-
-  public static final String SERIALIZED_NAME_LOGIT_BIAS = "logit_bias";
-  @SerializedName(SERIALIZED_NAME_LOGIT_BIAS)
-  private Object logitBias;
+  public static final String SERIALIZED_NAME_TOOL_CHOICE = "tool_choice";
+  @SerializedName(SERIALIZED_NAME_TOOL_CHOICE)
+  private ChatCompletionToolChoiceOption toolChoice;
 
   public static final String SERIALIZED_NAME_USER = "user";
   @SerializedName(SERIALIZED_NAME_USER)
   private String user;
 
+  public static final String SERIALIZED_NAME_FUNCTION_CALL = "function_call";
+  @Deprecated
+  @SerializedName(SERIALIZED_NAME_FUNCTION_CALL)
+  private CreateChatCompletionRequestFunctionCall functionCall;
+
+  public static final String SERIALIZED_NAME_FUNCTIONS = "functions";
+  @Deprecated
+  @SerializedName(SERIALIZED_NAME_FUNCTIONS)
+  private List<ChatCompletionFunctions> functions;
+
   public CreateChatCompletionRequest() {
   }
+
+  public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+    this.messages = messages;
+    return this;
+  }
+
+  public CreateChatCompletionRequest addMessagesItem(ChatCompletionRequestMessage messagesItem) {
+    if (this.messages == null) {
+      this.messages = new ArrayList<>();
+    }
+    this.messages.add(messagesItem);
+    return this;
+  }
+
+   /**
+   * A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+   * @return messages
+  **/
+  @javax.annotation.Nonnull
+  public List<ChatCompletionRequestMessage> getMessages() {
+    return messages;
+  }
+
+  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+    this.messages = messages;
+  }
+
 
   public CreateChatCompletionRequest model(CreateChatCompletionRequestModel model) {
     this.model = model;
@@ -138,76 +196,230 @@ public class CreateChatCompletionRequest {
   }
 
 
-  public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
-    this.messages = messages;
-    return this;
-  }
-
-  public CreateChatCompletionRequest addMessagesItem(ChatCompletionRequestMessage messagesItem) {
-    if (this.messages == null) {
-      this.messages = new ArrayList<>();
-    }
-    this.messages.add(messagesItem);
+  public CreateChatCompletionRequest frequencyPenalty(BigDecimal frequencyPenalty) {
+    this.frequencyPenalty = frequencyPenalty;
     return this;
   }
 
    /**
-   * A list of messages comprising the conversation so far. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
-   * @return messages
-  **/
-  @javax.annotation.Nonnull
-  public List<ChatCompletionRequestMessage> getMessages() {
-    return messages;
-  }
-
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
-    this.messages = messages;
-  }
-
-
-  public CreateChatCompletionRequest functions(List<ChatCompletionFunctions> functions) {
-    this.functions = functions;
-    return this;
-  }
-
-  public CreateChatCompletionRequest addFunctionsItem(ChatCompletionFunctions functionsItem) {
-    if (this.functions == null) {
-      this.functions = new ArrayList<>();
-    }
-    this.functions.add(functionsItem);
-    return this;
-  }
-
-   /**
-   * A list of functions the model may generate JSON inputs for.
-   * @return functions
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * minimum: -2
+   * maximum: 2
+   * @return frequencyPenalty
   **/
   @javax.annotation.Nullable
-  public List<ChatCompletionFunctions> getFunctions() {
-    return functions;
+  public BigDecimal getFrequencyPenalty() {
+    return frequencyPenalty;
   }
 
-  public void setFunctions(List<ChatCompletionFunctions> functions) {
-    this.functions = functions;
+  public void setFrequencyPenalty(BigDecimal frequencyPenalty) {
+    this.frequencyPenalty = frequencyPenalty;
   }
 
 
-  public CreateChatCompletionRequest functionCall(CreateChatCompletionRequestFunctionCall functionCall) {
-    this.functionCall = functionCall;
+  public CreateChatCompletionRequest logitBias(Map<String, Integer> logitBias) {
+    this.logitBias = logitBias;
+    return this;
+  }
+
+  public CreateChatCompletionRequest putLogitBiasItem(String key, Integer logitBiasItem) {
+    if (this.logitBias == null) {
+      this.logitBias = new HashMap<>();
+    }
+    this.logitBias.put(key, logitBiasItem);
     return this;
   }
 
    /**
-   * Get functionCall
-   * @return functionCall
+   * Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
+   * @return logitBias
   **/
   @javax.annotation.Nullable
-  public CreateChatCompletionRequestFunctionCall getFunctionCall() {
-    return functionCall;
+  public Map<String, Integer> getLogitBias() {
+    return logitBias;
   }
 
-  public void setFunctionCall(CreateChatCompletionRequestFunctionCall functionCall) {
-    this.functionCall = functionCall;
+  public void setLogitBias(Map<String, Integer> logitBias) {
+    this.logitBias = logitBias;
+  }
+
+
+  public CreateChatCompletionRequest logprobs(Boolean logprobs) {
+    this.logprobs = logprobs;
+    return this;
+  }
+
+   /**
+   * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the &#x60;content&#x60; of &#x60;message&#x60;.
+   * @return logprobs
+  **/
+  @javax.annotation.Nullable
+  public Boolean getLogprobs() {
+    return logprobs;
+  }
+
+  public void setLogprobs(Boolean logprobs) {
+    this.logprobs = logprobs;
+  }
+
+
+  public CreateChatCompletionRequest topLogprobs(Integer topLogprobs) {
+    this.topLogprobs = topLogprobs;
+    return this;
+  }
+
+   /**
+   * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. &#x60;logprobs&#x60; must be set to &#x60;true&#x60; if this parameter is used.
+   * minimum: 0
+   * maximum: 20
+   * @return topLogprobs
+  **/
+  @javax.annotation.Nullable
+  public Integer getTopLogprobs() {
+    return topLogprobs;
+  }
+
+  public void setTopLogprobs(Integer topLogprobs) {
+    this.topLogprobs = topLogprobs;
+  }
+
+
+  public CreateChatCompletionRequest maxTokens(Integer maxTokens) {
+    this.maxTokens = maxTokens;
+    return this;
+  }
+
+   /**
+   * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model&#39;s context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+   * @return maxTokens
+  **/
+  @javax.annotation.Nullable
+  public Integer getMaxTokens() {
+    return maxTokens;
+  }
+
+  public void setMaxTokens(Integer maxTokens) {
+    this.maxTokens = maxTokens;
+  }
+
+
+  public CreateChatCompletionRequest n(Integer n) {
+    this.n = n;
+    return this;
+  }
+
+   /**
+   * How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep &#x60;n&#x60; as &#x60;1&#x60; to minimize costs.
+   * minimum: 1
+   * maximum: 128
+   * @return n
+  **/
+  @javax.annotation.Nullable
+  public Integer getN() {
+    return n;
+  }
+
+  public void setN(Integer n) {
+    this.n = n;
+  }
+
+
+  public CreateChatCompletionRequest presencePenalty(BigDecimal presencePenalty) {
+    this.presencePenalty = presencePenalty;
+    return this;
+  }
+
+   /**
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * minimum: -2
+   * maximum: 2
+   * @return presencePenalty
+  **/
+  @javax.annotation.Nullable
+  public BigDecimal getPresencePenalty() {
+    return presencePenalty;
+  }
+
+  public void setPresencePenalty(BigDecimal presencePenalty) {
+    this.presencePenalty = presencePenalty;
+  }
+
+
+  public CreateChatCompletionRequest responseFormat(CreateChatCompletionRequestResponseFormat responseFormat) {
+    this.responseFormat = responseFormat;
+    return this;
+  }
+
+   /**
+   * Get responseFormat
+   * @return responseFormat
+  **/
+  @javax.annotation.Nullable
+  public CreateChatCompletionRequestResponseFormat getResponseFormat() {
+    return responseFormat;
+  }
+
+  public void setResponseFormat(CreateChatCompletionRequestResponseFormat responseFormat) {
+    this.responseFormat = responseFormat;
+  }
+
+
+  public CreateChatCompletionRequest seed(Integer seed) {
+    this.seed = seed;
+    return this;
+  }
+
+   /**
+   * This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same &#x60;seed&#x60; and parameters should return the same result. Determinism is not guaranteed, and you should refer to the &#x60;system_fingerprint&#x60; response parameter to monitor changes in the backend. 
+   * minimum: -9223372036854775808
+   * maximum: 9223372036854775807
+   * @return seed
+  **/
+  @javax.annotation.Nullable
+  public Integer getSeed() {
+    return seed;
+  }
+
+  public void setSeed(Integer seed) {
+    this.seed = seed;
+  }
+
+
+  public CreateChatCompletionRequest stop(CreateChatCompletionRequestStop stop) {
+    this.stop = stop;
+    return this;
+  }
+
+   /**
+   * Get stop
+   * @return stop
+  **/
+  @javax.annotation.Nullable
+  public CreateChatCompletionRequestStop getStop() {
+    return stop;
+  }
+
+  public void setStop(CreateChatCompletionRequestStop stop) {
+    this.stop = stop;
+  }
+
+
+  public CreateChatCompletionRequest stream(Boolean stream) {
+    this.stream = stream;
+    return this;
+  }
+
+   /**
+   * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
+   * @return stream
+  **/
+  @javax.annotation.Nullable
+  public Boolean getStream() {
+    return stream;
+  }
+
+  public void setStream(Boolean stream) {
+    this.stream = stream;
   }
 
 
@@ -253,142 +465,49 @@ public class CreateChatCompletionRequest {
   }
 
 
-  public CreateChatCompletionRequest n(Integer n) {
-    this.n = n;
+  public CreateChatCompletionRequest tools(List<ChatCompletionTool> tools) {
+    this.tools = tools;
+    return this;
+  }
+
+  public CreateChatCompletionRequest addToolsItem(ChatCompletionTool toolsItem) {
+    if (this.tools == null) {
+      this.tools = new ArrayList<>();
+    }
+    this.tools.add(toolsItem);
     return this;
   }
 
    /**
-   * How many chat completion choices to generate for each input message.
-   * minimum: 1
-   * maximum: 128
-   * @return n
+   * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. 
+   * @return tools
   **/
   @javax.annotation.Nullable
-  public Integer getN() {
-    return n;
+  public List<ChatCompletionTool> getTools() {
+    return tools;
   }
 
-  public void setN(Integer n) {
-    this.n = n;
+  public void setTools(List<ChatCompletionTool> tools) {
+    this.tools = tools;
   }
 
 
-  public CreateChatCompletionRequest stream(Boolean stream) {
-    this.stream = stream;
+  public CreateChatCompletionRequest toolChoice(ChatCompletionToolChoiceOption toolChoice) {
+    this.toolChoice = toolChoice;
     return this;
   }
 
    /**
-   * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb). 
-   * @return stream
+   * Get toolChoice
+   * @return toolChoice
   **/
   @javax.annotation.Nullable
-  public Boolean getStream() {
-    return stream;
+  public ChatCompletionToolChoiceOption getToolChoice() {
+    return toolChoice;
   }
 
-  public void setStream(Boolean stream) {
-    this.stream = stream;
-  }
-
-
-  public CreateChatCompletionRequest stop(CreateChatCompletionRequestStop stop) {
-    this.stop = stop;
-    return this;
-  }
-
-   /**
-   * Get stop
-   * @return stop
-  **/
-  @javax.annotation.Nullable
-  public CreateChatCompletionRequestStop getStop() {
-    return stop;
-  }
-
-  public void setStop(CreateChatCompletionRequestStop stop) {
-    this.stop = stop;
-  }
-
-
-  public CreateChatCompletionRequest maxTokens(Integer maxTokens) {
-    this.maxTokens = maxTokens;
-    return this;
-  }
-
-   /**
-   * The maximum number of [tokens](/tokenizer) to generate in the chat completion.  The total length of input tokens and generated tokens is limited by the model&#39;s context length. [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb) for counting tokens. 
-   * @return maxTokens
-  **/
-  @javax.annotation.Nullable
-  public Integer getMaxTokens() {
-    return maxTokens;
-  }
-
-  public void setMaxTokens(Integer maxTokens) {
-    this.maxTokens = maxTokens;
-  }
-
-
-  public CreateChatCompletionRequest presencePenalty(BigDecimal presencePenalty) {
-    this.presencePenalty = presencePenalty;
-    return this;
-  }
-
-   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-   * minimum: -2
-   * maximum: 2
-   * @return presencePenalty
-  **/
-  @javax.annotation.Nullable
-  public BigDecimal getPresencePenalty() {
-    return presencePenalty;
-  }
-
-  public void setPresencePenalty(BigDecimal presencePenalty) {
-    this.presencePenalty = presencePenalty;
-  }
-
-
-  public CreateChatCompletionRequest frequencyPenalty(BigDecimal frequencyPenalty) {
-    this.frequencyPenalty = frequencyPenalty;
-    return this;
-  }
-
-   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details) 
-   * minimum: -2
-   * maximum: 2
-   * @return frequencyPenalty
-  **/
-  @javax.annotation.Nullable
-  public BigDecimal getFrequencyPenalty() {
-    return frequencyPenalty;
-  }
-
-  public void setFrequencyPenalty(BigDecimal frequencyPenalty) {
-    this.frequencyPenalty = frequencyPenalty;
-  }
-
-
-  public CreateChatCompletionRequest logitBias(Object logitBias) {
-    this.logitBias = logitBias;
-    return this;
-  }
-
-   /**
-   * Modify the likelihood of specified tokens appearing in the completion.  Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
-   * @return logitBias
-  **/
-  @javax.annotation.Nullable
-  public Object getLogitBias() {
-    return logitBias;
-  }
-
-  public void setLogitBias(Object logitBias) {
-    this.logitBias = logitBias;
+  public void setToolChoice(ChatCompletionToolChoiceOption toolChoice) {
+    this.toolChoice = toolChoice;
   }
 
 
@@ -411,6 +530,60 @@ public class CreateChatCompletionRequest {
   }
 
 
+  @Deprecated
+  public CreateChatCompletionRequest functionCall(CreateChatCompletionRequestFunctionCall functionCall) {
+    this.functionCall = functionCall;
+    return this;
+  }
+
+   /**
+   * Get functionCall
+   * @return functionCall
+   * @deprecated
+  **/
+  @Deprecated
+  @javax.annotation.Nullable
+  public CreateChatCompletionRequestFunctionCall getFunctionCall() {
+    return functionCall;
+  }
+
+  @Deprecated
+  public void setFunctionCall(CreateChatCompletionRequestFunctionCall functionCall) {
+    this.functionCall = functionCall;
+  }
+
+
+  @Deprecated
+  public CreateChatCompletionRequest functions(List<ChatCompletionFunctions> functions) {
+    this.functions = functions;
+    return this;
+  }
+
+  public CreateChatCompletionRequest addFunctionsItem(ChatCompletionFunctions functionsItem) {
+    if (this.functions == null) {
+      this.functions = new ArrayList<>();
+    }
+    this.functions.add(functionsItem);
+    return this;
+  }
+
+   /**
+   * Deprecated in favor of &#x60;tools&#x60;.  A list of functions the model may generate JSON inputs for. 
+   * @return functions
+   * @deprecated
+  **/
+  @Deprecated
+  @javax.annotation.Nullable
+  public List<ChatCompletionFunctions> getFunctions() {
+    return functions;
+  }
+
+  @Deprecated
+  public void setFunctions(List<ChatCompletionFunctions> functions) {
+    this.functions = functions;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -421,20 +594,26 @@ public class CreateChatCompletionRequest {
       return false;
     }
     CreateChatCompletionRequest createChatCompletionRequest = (CreateChatCompletionRequest) o;
-    return Objects.equals(this.model, createChatCompletionRequest.model) &&
-        Objects.equals(this.messages, createChatCompletionRequest.messages) &&
-        Objects.equals(this.functions, createChatCompletionRequest.functions) &&
-        Objects.equals(this.functionCall, createChatCompletionRequest.functionCall) &&
-        Objects.equals(this.temperature, createChatCompletionRequest.temperature) &&
-        Objects.equals(this.topP, createChatCompletionRequest.topP) &&
-        Objects.equals(this.n, createChatCompletionRequest.n) &&
-        Objects.equals(this.stream, createChatCompletionRequest.stream) &&
-        Objects.equals(this.stop, createChatCompletionRequest.stop) &&
-        Objects.equals(this.maxTokens, createChatCompletionRequest.maxTokens) &&
-        Objects.equals(this.presencePenalty, createChatCompletionRequest.presencePenalty) &&
+    return Objects.equals(this.messages, createChatCompletionRequest.messages) &&
+        Objects.equals(this.model, createChatCompletionRequest.model) &&
         Objects.equals(this.frequencyPenalty, createChatCompletionRequest.frequencyPenalty) &&
         Objects.equals(this.logitBias, createChatCompletionRequest.logitBias) &&
-        Objects.equals(this.user, createChatCompletionRequest.user);
+        Objects.equals(this.logprobs, createChatCompletionRequest.logprobs) &&
+        Objects.equals(this.topLogprobs, createChatCompletionRequest.topLogprobs) &&
+        Objects.equals(this.maxTokens, createChatCompletionRequest.maxTokens) &&
+        Objects.equals(this.n, createChatCompletionRequest.n) &&
+        Objects.equals(this.presencePenalty, createChatCompletionRequest.presencePenalty) &&
+        Objects.equals(this.responseFormat, createChatCompletionRequest.responseFormat) &&
+        Objects.equals(this.seed, createChatCompletionRequest.seed) &&
+        Objects.equals(this.stop, createChatCompletionRequest.stop) &&
+        Objects.equals(this.stream, createChatCompletionRequest.stream) &&
+        Objects.equals(this.temperature, createChatCompletionRequest.temperature) &&
+        Objects.equals(this.topP, createChatCompletionRequest.topP) &&
+        Objects.equals(this.tools, createChatCompletionRequest.tools) &&
+        Objects.equals(this.toolChoice, createChatCompletionRequest.toolChoice) &&
+        Objects.equals(this.user, createChatCompletionRequest.user) &&
+        Objects.equals(this.functionCall, createChatCompletionRequest.functionCall) &&
+        Objects.equals(this.functions, createChatCompletionRequest.functions);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -443,7 +622,7 @@ public class CreateChatCompletionRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, messages, functions, functionCall, temperature, topP, n, stream, stop, maxTokens, presencePenalty, frequencyPenalty, logitBias, user);
+    return Objects.hash(messages, model, frequencyPenalty, logitBias, logprobs, topLogprobs, maxTokens, n, presencePenalty, responseFormat, seed, stop, stream, temperature, topP, tools, toolChoice, user, functionCall, functions);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -457,20 +636,26 @@ public class CreateChatCompletionRequest {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionRequest {\n");
-    sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
-    sb.append("    functions: ").append(toIndentedString(functions)).append("\n");
-    sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
-    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
-    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
-    sb.append("    n: ").append(toIndentedString(n)).append("\n");
-    sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
-    sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
-    sb.append("    maxTokens: ").append(toIndentedString(maxTokens)).append("\n");
-    sb.append("    presencePenalty: ").append(toIndentedString(presencePenalty)).append("\n");
+    sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    frequencyPenalty: ").append(toIndentedString(frequencyPenalty)).append("\n");
     sb.append("    logitBias: ").append(toIndentedString(logitBias)).append("\n");
+    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
+    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
+    sb.append("    maxTokens: ").append(toIndentedString(maxTokens)).append("\n");
+    sb.append("    n: ").append(toIndentedString(n)).append("\n");
+    sb.append("    presencePenalty: ").append(toIndentedString(presencePenalty)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
+    sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
+    sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
+    sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
+    sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
+    sb.append("    functions: ").append(toIndentedString(functions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -493,25 +678,31 @@ public class CreateChatCompletionRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("model");
     openapiFields.add("messages");
-    openapiFields.add("functions");
-    openapiFields.add("function_call");
-    openapiFields.add("temperature");
-    openapiFields.add("top_p");
-    openapiFields.add("n");
-    openapiFields.add("stream");
-    openapiFields.add("stop");
-    openapiFields.add("max_tokens");
-    openapiFields.add("presence_penalty");
+    openapiFields.add("model");
     openapiFields.add("frequency_penalty");
     openapiFields.add("logit_bias");
+    openapiFields.add("logprobs");
+    openapiFields.add("top_logprobs");
+    openapiFields.add("max_tokens");
+    openapiFields.add("n");
+    openapiFields.add("presence_penalty");
+    openapiFields.add("response_format");
+    openapiFields.add("seed");
+    openapiFields.add("stop");
+    openapiFields.add("stream");
+    openapiFields.add("temperature");
+    openapiFields.add("top_p");
+    openapiFields.add("tools");
+    openapiFields.add("tool_choice");
     openapiFields.add("user");
+    openapiFields.add("function_call");
+    openapiFields.add("functions");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("model");
     openapiRequiredFields.add("messages");
+    openapiRequiredFields.add("model");
   }
 
  /**
@@ -542,8 +733,6 @@ public class CreateChatCompletionRequest {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `model`
-      CreateChatCompletionRequestModel.validateJsonElement(jsonObj.get("model"));
       // ensure the json data is an array
       if (!jsonObj.get("messages").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `messages` to be an array in the JSON string but got `%s`", jsonObj.get("messages").toString()));
@@ -554,6 +743,41 @@ public class CreateChatCompletionRequest {
       for (int i = 0; i < jsonArraymessages.size(); i++) {
         ChatCompletionRequestMessage.validateJsonElement(jsonArraymessages.get(i));
       };
+      // validate the required field `model`
+      CreateChatCompletionRequestModel.validateJsonElement(jsonObj.get("model"));
+      // validate the optional field `response_format`
+      if (jsonObj.get("response_format") != null && !jsonObj.get("response_format").isJsonNull()) {
+        CreateChatCompletionRequestResponseFormat.validateJsonElement(jsonObj.get("response_format"));
+      }
+      // validate the optional field `stop`
+      if (jsonObj.get("stop") != null && !jsonObj.get("stop").isJsonNull()) {
+        CreateChatCompletionRequestStop.validateJsonElement(jsonObj.get("stop"));
+      }
+      if (jsonObj.get("tools") != null && !jsonObj.get("tools").isJsonNull()) {
+        JsonArray jsonArraytools = jsonObj.getAsJsonArray("tools");
+        if (jsonArraytools != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("tools").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `tools` to be an array in the JSON string but got `%s`", jsonObj.get("tools").toString()));
+          }
+
+          // validate the optional field `tools` (array)
+          for (int i = 0; i < jsonArraytools.size(); i++) {
+            ChatCompletionTool.validateJsonElement(jsonArraytools.get(i));
+          };
+        }
+      }
+      // validate the optional field `tool_choice`
+      if (jsonObj.get("tool_choice") != null && !jsonObj.get("tool_choice").isJsonNull()) {
+        ChatCompletionToolChoiceOption.validateJsonElement(jsonObj.get("tool_choice"));
+      }
+      if ((jsonObj.get("user") != null && !jsonObj.get("user").isJsonNull()) && !jsonObj.get("user").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `user` to be a primitive type in the JSON string but got `%s`", jsonObj.get("user").toString()));
+      }
+      // validate the optional field `function_call`
+      if (jsonObj.get("function_call") != null && !jsonObj.get("function_call").isJsonNull()) {
+        CreateChatCompletionRequestFunctionCall.validateJsonElement(jsonObj.get("function_call"));
+      }
       if (jsonObj.get("functions") != null && !jsonObj.get("functions").isJsonNull()) {
         JsonArray jsonArrayfunctions = jsonObj.getAsJsonArray("functions");
         if (jsonArrayfunctions != null) {
@@ -567,17 +791,6 @@ public class CreateChatCompletionRequest {
             ChatCompletionFunctions.validateJsonElement(jsonArrayfunctions.get(i));
           };
         }
-      }
-      // validate the optional field `function_call`
-      if (jsonObj.get("function_call") != null && !jsonObj.get("function_call").isJsonNull()) {
-        CreateChatCompletionRequestFunctionCall.validateJsonElement(jsonObj.get("function_call"));
-      }
-      // validate the optional field `stop`
-      if (jsonObj.get("stop") != null && !jsonObj.get("stop").isJsonNull()) {
-        CreateChatCompletionRequestStop.validateJsonElement(jsonObj.get("stop"));
-      }
-      if ((jsonObj.get("user") != null && !jsonObj.get("user").isJsonNull()) && !jsonObj.get("user").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `user` to be a primitive type in the JSON string but got `%s`", jsonObj.get("user").toString()));
       }
   }
 

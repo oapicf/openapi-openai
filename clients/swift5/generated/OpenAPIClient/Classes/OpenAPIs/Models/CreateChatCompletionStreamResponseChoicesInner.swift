@@ -15,31 +15,39 @@ public struct CreateChatCompletionStreamResponseChoicesInner: Codable, JSONEncod
     public enum FinishReason: String, Codable, CaseIterable {
         case stop = "stop"
         case length = "length"
+        case toolCalls = "tool_calls"
+        case contentFilter = "content_filter"
         case functionCall = "function_call"
     }
-    public var index: Int?
-    public var delta: ChatCompletionStreamResponseDelta?
+    public var delta: ChatCompletionStreamResponseDelta
+    public var logprobs: CreateChatCompletionResponseChoicesInnerLogprobs?
+    /** The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.  */
     public var finishReason: FinishReason?
+    /** The index of the choice in the list of choices. */
+    public var index: Int
 
-    public init(index: Int? = nil, delta: ChatCompletionStreamResponseDelta? = nil, finishReason: FinishReason? = nil) {
-        self.index = index
+    public init(delta: ChatCompletionStreamResponseDelta, logprobs: CreateChatCompletionResponseChoicesInnerLogprobs? = nil, finishReason: FinishReason?, index: Int) {
         self.delta = delta
+        self.logprobs = logprobs
         self.finishReason = finishReason
+        self.index = index
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case index
         case delta
+        case logprobs
         case finishReason = "finish_reason"
+        case index
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(index, forKey: .index)
-        try container.encodeIfPresent(delta, forKey: .delta)
-        try container.encodeIfPresent(finishReason, forKey: .finishReason)
+        try container.encode(delta, forKey: .delta)
+        try container.encodeIfPresent(logprobs, forKey: .logprobs)
+        try container.encode(finishReason, forKey: .finishReason)
+        try container.encode(index, forKey: .index)
     }
 }
 

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,17 +47,13 @@ import java.util.Set;
 import com.github.oapicf.openapiopenai.JSON;
 
 /**
- * OpenAIFile
+ * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class OpenAIFile {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
-
-  public static final String SERIALIZED_NAME_OBJECT = "object";
-  @SerializedName(SERIALIZED_NAME_OBJECT)
-  private String _object;
 
   public static final String SERIALIZED_NAME_BYTES = "bytes";
   @SerializedName(SERIALIZED_NAME_BYTES)
@@ -72,17 +67,183 @@ public class OpenAIFile {
   @SerializedName(SERIALIZED_NAME_FILENAME)
   private String filename;
 
+  /**
+   * The object type, which is always &#x60;file&#x60;.
+   */
+  @JsonAdapter(ObjectEnum.Adapter.class)
+  public enum ObjectEnum {
+    FILE("file");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ObjectEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ObjectEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ObjectEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ObjectEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ObjectEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_OBJECT = "object";
+  @SerializedName(SERIALIZED_NAME_OBJECT)
+  private ObjectEnum _object;
+
+  /**
+   * The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
+   */
+  @JsonAdapter(PurposeEnum.Adapter.class)
+  public enum PurposeEnum {
+    FINE_TUNE("fine-tune"),
+    
+    FINE_TUNE_RESULTS("fine-tune-results"),
+    
+    ASSISTANTS("assistants"),
+    
+    ASSISTANTS_OUTPUT("assistants_output");
+
+    private String value;
+
+    PurposeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PurposeEnum fromValue(String value) {
+      for (PurposeEnum b : PurposeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<PurposeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PurposeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PurposeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PurposeEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      PurposeEnum.fromValue(value);
+    }
+  }
+
   public static final String SERIALIZED_NAME_PURPOSE = "purpose";
   @SerializedName(SERIALIZED_NAME_PURPOSE)
-  private String purpose;
+  private PurposeEnum purpose;
+
+  /**
+   * Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    UPLOADED("uploaded"),
+    
+    PROCESSED("processed"),
+    
+    ERROR("error");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
+    }
+  }
 
   public static final String SERIALIZED_NAME_STATUS = "status";
+  @Deprecated
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+  private StatusEnum status;
 
   public static final String SERIALIZED_NAME_STATUS_DETAILS = "status_details";
+  @Deprecated
   @SerializedName(SERIALIZED_NAME_STATUS_DETAILS)
-  private Object statusDetails;
+  private String statusDetails;
 
   public OpenAIFile() {
   }
@@ -93,7 +254,7 @@ public class OpenAIFile {
   }
 
    /**
-   * Get id
+   * The file identifier, which can be referenced in the API endpoints.
    * @return id
   **/
   @javax.annotation.Nonnull
@@ -106,32 +267,13 @@ public class OpenAIFile {
   }
 
 
-  public OpenAIFile _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  @javax.annotation.Nonnull
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-
   public OpenAIFile bytes(Integer bytes) {
     this.bytes = bytes;
     return this;
   }
 
    /**
-   * Get bytes
+   * The size of the file, in bytes.
    * @return bytes
   **/
   @javax.annotation.Nonnull
@@ -150,7 +292,7 @@ public class OpenAIFile {
   }
 
    /**
-   * Get createdAt
+   * The Unix timestamp (in seconds) for when the file was created.
    * @return createdAt
   **/
   @javax.annotation.Nonnull
@@ -169,7 +311,7 @@ public class OpenAIFile {
   }
 
    /**
-   * Get filename
+   * The name of the file.
    * @return filename
   **/
   @javax.annotation.Nonnull
@@ -182,59 +324,86 @@ public class OpenAIFile {
   }
 
 
-  public OpenAIFile purpose(String purpose) {
+  public OpenAIFile _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * The object type, which is always &#x60;file&#x60;.
+   * @return _object
+  **/
+  @javax.annotation.Nonnull
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+
+  public OpenAIFile purpose(PurposeEnum purpose) {
     this.purpose = purpose;
     return this;
   }
 
    /**
-   * Get purpose
+   * The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
    * @return purpose
   **/
   @javax.annotation.Nonnull
-  public String getPurpose() {
+  public PurposeEnum getPurpose() {
     return purpose;
   }
 
-  public void setPurpose(String purpose) {
+  public void setPurpose(PurposeEnum purpose) {
     this.purpose = purpose;
   }
 
 
-  public OpenAIFile status(String status) {
+  @Deprecated
+  public OpenAIFile status(StatusEnum status) {
     this.status = status;
     return this;
   }
 
    /**
-   * Get status
+   * Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.
    * @return status
+   * @deprecated
   **/
-  @javax.annotation.Nullable
-  public String getStatus() {
+  @Deprecated
+  @javax.annotation.Nonnull
+  public StatusEnum getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  @Deprecated
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
 
-  public OpenAIFile statusDetails(Object statusDetails) {
+  @Deprecated
+  public OpenAIFile statusDetails(String statusDetails) {
     this.statusDetails = statusDetails;
     return this;
   }
 
    /**
-   * Get statusDetails
+   * Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;.
    * @return statusDetails
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
-  public Object getStatusDetails() {
+  public String getStatusDetails() {
     return statusDetails;
   }
 
-  public void setStatusDetails(Object statusDetails) {
+  @Deprecated
+  public void setStatusDetails(String statusDetails) {
     this.statusDetails = statusDetails;
   }
 
@@ -250,29 +419,18 @@ public class OpenAIFile {
     }
     OpenAIFile openAIFile = (OpenAIFile) o;
     return Objects.equals(this.id, openAIFile.id) &&
-        Objects.equals(this._object, openAIFile._object) &&
         Objects.equals(this.bytes, openAIFile.bytes) &&
         Objects.equals(this.createdAt, openAIFile.createdAt) &&
         Objects.equals(this.filename, openAIFile.filename) &&
+        Objects.equals(this._object, openAIFile._object) &&
         Objects.equals(this.purpose, openAIFile.purpose) &&
         Objects.equals(this.status, openAIFile.status) &&
         Objects.equals(this.statusDetails, openAIFile.statusDetails);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, bytes, createdAt, filename, purpose, status, statusDetails);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(id, bytes, createdAt, filename, _object, purpose, status, statusDetails);
   }
 
   @Override
@@ -280,10 +438,10 @@ public class OpenAIFile {
     StringBuilder sb = new StringBuilder();
     sb.append("class OpenAIFile {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    bytes: ").append(toIndentedString(bytes)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    statusDetails: ").append(toIndentedString(statusDetails)).append("\n");
@@ -310,10 +468,10 @@ public class OpenAIFile {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
-    openapiFields.add("object");
     openapiFields.add("bytes");
     openapiFields.add("created_at");
     openapiFields.add("filename");
+    openapiFields.add("object");
     openapiFields.add("purpose");
     openapiFields.add("status");
     openapiFields.add("status_details");
@@ -321,11 +479,12 @@ public class OpenAIFile {
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
-    openapiRequiredFields.add("object");
     openapiRequiredFields.add("bytes");
     openapiRequiredFields.add("created_at");
     openapiRequiredFields.add("filename");
+    openapiRequiredFields.add("object");
     openapiRequiredFields.add("purpose");
+    openapiRequiredFields.add("status");
   }
 
  /**
@@ -359,17 +518,26 @@ public class OpenAIFile {
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if (!jsonObj.get("object").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `object` to be a primitive type in the JSON string but got `%s`", jsonObj.get("object").toString()));
-      }
       if (!jsonObj.get("filename").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `filename` to be a primitive type in the JSON string but got `%s`", jsonObj.get("filename").toString()));
       }
+      if (!jsonObj.get("object").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `object` to be a primitive type in the JSON string but got `%s`", jsonObj.get("object").toString()));
+      }
+      // validate the required field `object`
+      ObjectEnum.validateJsonElement(jsonObj.get("object"));
       if (!jsonObj.get("purpose").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `purpose` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purpose").toString()));
       }
-      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+      // validate the required field `purpose`
+      PurposeEnum.validateJsonElement(jsonObj.get("purpose"));
+      if (!jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      // validate the required field `status`
+      StatusEnum.validateJsonElement(jsonObj.get("status"));
+      if ((jsonObj.get("status_details") != null && !jsonObj.get("status_details").isJsonNull()) && !jsonObj.get("status_details").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status_details` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status_details").toString()));
       }
   }
 

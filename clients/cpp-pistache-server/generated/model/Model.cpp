@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -22,8 +22,8 @@ namespace org::openapitools::server::model
 Model::Model()
 {
     m_Id = "";
-    m_object = "";
     m_Created = 0;
+    m_object = "";
     m_Owned_by = "";
     
 }
@@ -59,10 +59,10 @@ bool Model::operator==(const Model& rhs) const
     (getId() == rhs.getId())
      &&
     
-    (getObject() == rhs.getObject())
+    (getCreated() == rhs.getCreated())
      &&
     
-    (getCreated() == rhs.getCreated())
+    (getObject() == rhs.getObject())
      &&
     
     (getOwnedBy() == rhs.getOwnedBy())
@@ -80,8 +80,8 @@ void to_json(nlohmann::json& j, const Model& o)
 {
     j = nlohmann::json::object();
     j["id"] = o.m_Id;
-    j["object"] = o.m_object;
     j["created"] = o.m_Created;
+    j["object"] = o.m_object;
     j["owned_by"] = o.m_Owned_by;
     
 }
@@ -89,8 +89,8 @@ void to_json(nlohmann::json& j, const Model& o)
 void from_json(const nlohmann::json& j, Model& o)
 {
     j.at("id").get_to(o.m_Id);
-    j.at("object").get_to(o.m_object);
     j.at("created").get_to(o.m_Created);
+    j.at("object").get_to(o.m_object);
     j.at("owned_by").get_to(o.m_Owned_by);
     
 }
@@ -103,14 +103,6 @@ void Model::setId(std::string const& value)
 {
     m_Id = value;
 }
-std::string Model::getObject() const
-{
-    return m_object;
-}
-void Model::setObject(std::string const& value)
-{
-    m_object = value;
-}
 int32_t Model::getCreated() const
 {
     return m_Created;
@@ -118,6 +110,14 @@ int32_t Model::getCreated() const
 void Model::setCreated(int32_t const value)
 {
     m_Created = value;
+}
+std::string Model::getObject() const
+{
+    return m_object;
+}
+void Model::setObject(std::string const& value)
+{
+    m_object = value;
 }
 std::string Model::getOwnedBy() const
 {

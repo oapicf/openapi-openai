@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,14 +14,25 @@ package io.swagger.client.model
 import play.api.libs.json._
 
 case class CreateChatCompletionStreamResponse (
+            /* A unique identifier for the chat completion. Each chunk has the same ID. */
                   id: String,
-                  `object`: String,
+            /* A list of chat completion choices. Can be more than one if `n` is greater than 1. */
+                  choices: Seq[CreateChatCompletionStreamResponseChoicesInner],
+            /* The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. */
                   created: Int,
+            /* The model to generate the completion. */
                   model: String,
-                  choices: Seq[CreateChatCompletionStreamResponseChoicesInner]
+            /* This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
+                  systemFingerprint: Option[String],
+                  `object`:  Option[CreateChatCompletionStreamResponse&#x60;object&#x60;Enum.CreateChatCompletionStreamResponse&#x60;object&#x60;Enum]
 )
 
 object CreateChatCompletionStreamResponse {
 implicit val format: Format[CreateChatCompletionStreamResponse] = Json.format
 }
 
+object CreateChatCompletionStreamResponse&#x60;object&#x60;Enum extends Enumeration {
+  val   chat.completion.chunk = Value
+  type CreateChatCompletionStreamResponse&#x60;object&#x60;Enum = Value
+  implicit val format: Format[Value] = Format(Reads.enumNameReads(this), Writes.enumNameWrites[CreateChatCompletionStreamResponse&#x60;object&#x60;Enum.type])
+}

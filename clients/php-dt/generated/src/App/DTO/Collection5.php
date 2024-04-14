@@ -6,9 +6,9 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
- * @DTA\Strategy(name="ScalarList", options={"type":"float"})
+ * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\ChatCompletionMessageToolCall::class})
  * @DTA\Validator(name="Collection", options={"validators":{
- *     {"name":"Scalar", "options":{"type":"float"}}
+ *     {"name":"TypeCompliant", "options":{"type":\App\DTO\ChatCompletionMessageToolCall::class}}
  * }})
  */
 class Collection5 extends \ArrayObject

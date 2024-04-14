@@ -11,10 +11,10 @@ module ListFilesResponse =
 
   [<CLIMutable>]
   type ListFilesResponse = {
-    [<JsonProperty(PropertyName = "object")>]
-    Object : string;
     [<JsonProperty(PropertyName = "data")>]
     Data : OpenAIFile[];
+    [<JsonProperty(PropertyName = "object")>]
+    Object : string;
   }
 
   //#endregion

@@ -1,0 +1,19 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The function definition.",
+  "name": "RunToolCallObjectFunction",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "doc": "The name of the function."
+    },
+    {
+      "name": "arguments",
+      "type": "string",
+      "doc": "The arguments that the model expects you to pass to the function."
+    }
+  ]
+
+}

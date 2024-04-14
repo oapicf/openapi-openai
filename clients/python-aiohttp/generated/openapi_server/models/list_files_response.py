@@ -15,24 +15,24 @@ class ListFilesResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, object: str=None, data: List[OpenAIFile]=None):
+    def __init__(self, data: List[OpenAIFile]=None, object: str=None):
         """ListFilesResponse - a model defined in OpenAPI
 
-        :param object: The object of this ListFilesResponse.
         :param data: The data of this ListFilesResponse.
+        :param object: The object of this ListFilesResponse.
         """
         self.openapi_types = {
-            'object': str,
-            'data': List[OpenAIFile]
+            'data': List[OpenAIFile],
+            'object': str
         }
 
         self.attribute_map = {
-            'object': 'object',
-            'data': 'data'
+            'data': 'data',
+            'object': 'object'
         }
 
-        self._object = object
         self._data = data
+        self._object = object
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'ListFilesResponse':
@@ -42,29 +42,6 @@ class ListFilesResponse(Model):
         :return: The ListFilesResponse of this ListFilesResponse.
         """
         return util.deserialize_model(dikt, cls)
-
-    @property
-    def object(self):
-        """Gets the object of this ListFilesResponse.
-
-
-        :return: The object of this ListFilesResponse.
-        :rtype: str
-        """
-        return self._object
-
-    @object.setter
-    def object(self, object):
-        """Sets the object of this ListFilesResponse.
-
-
-        :param object: The object of this ListFilesResponse.
-        :type object: str
-        """
-        if object is None:
-            raise ValueError("Invalid value for `object`, must not be `None`")
-
-        self._object = object
 
     @property
     def data(self):
@@ -88,3 +65,30 @@ class ListFilesResponse(Model):
             raise ValueError("Invalid value for `data`, must not be `None`")
 
         self._data = data
+
+    @property
+    def object(self):
+        """Gets the object of this ListFilesResponse.
+
+
+        :return: The object of this ListFilesResponse.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object):
+        """Sets the object of this ListFilesResponse.
+
+
+        :param object: The object of this ListFilesResponse.
+        :type object: str
+        """
+        allowed_values = ["list"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
+
+        self._object = object

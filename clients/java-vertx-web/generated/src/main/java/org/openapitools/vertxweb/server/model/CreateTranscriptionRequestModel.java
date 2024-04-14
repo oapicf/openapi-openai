@@ -3,7 +3,7 @@ package org.openapitools.vertxweb.server.model;
 import java.util.Objects;
 
 /**
- * ID of the model to use. Only &#x60;whisper-1&#x60; is currently available. 
+ * ID of the model to use. Only &#x60;whisper-1&#x60; (which is powered by our open source Whisper V2 model) is currently available. 
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateTranscriptionRequestModel   {

@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -13,34 +13,58 @@ require "json"
 require "time"
 
 module OpenAPIClient
+  # A list of the categories, and whether they are flagged or not.
   class CreateModerationResponseResultsInnerCategories
     include JSON::Serializable
 
     # Required properties
+    # Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
     @[JSON::Field(key: "hate", type: Bool, nillable: false, emit_null: false)]
     property hate : Bool
 
+    # Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
     @[JSON::Field(key: "hate/threatening", type: Bool, nillable: false, emit_null: false)]
     property hate_threatening : Bool
 
+    # Content that expresses, incites, or promotes harassing language towards any target.
+    @[JSON::Field(key: "harassment", type: Bool, nillable: false, emit_null: false)]
+    property harassment : Bool
+
+    # Harassment content that also includes violence or serious harm towards any target.
+    @[JSON::Field(key: "harassment/threatening", type: Bool, nillable: false, emit_null: false)]
+    property harassment_threatening : Bool
+
+    # Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
     @[JSON::Field(key: "self-harm", type: Bool, nillable: false, emit_null: false)]
     property self_harm : Bool
 
+    # Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+    @[JSON::Field(key: "self-harm/intent", type: Bool, nillable: false, emit_null: false)]
+    property self_harm_intent : Bool
+
+    # Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+    @[JSON::Field(key: "self-harm/instructions", type: Bool, nillable: false, emit_null: false)]
+    property self_harm_instructions : Bool
+
+    # Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
     @[JSON::Field(key: "sexual", type: Bool, nillable: false, emit_null: false)]
     property sexual : Bool
 
+    # Sexual content that includes an individual who is under 18 years old.
     @[JSON::Field(key: "sexual/minors", type: Bool, nillable: false, emit_null: false)]
     property sexual_minors : Bool
 
+    # Content that depicts death, violence, or physical injury.
     @[JSON::Field(key: "violence", type: Bool, nillable: false, emit_null: false)]
     property violence : Bool
 
+    # Content that depicts death, violence, or physical injury in graphic detail.
     @[JSON::Field(key: "violence/graphic", type: Bool, nillable: false, emit_null: false)]
     property violence_graphic : Bool
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@hate : Bool, @hate_threatening : Bool, @self_harm : Bool, @sexual : Bool, @sexual_minors : Bool, @violence : Bool, @violence_graphic : Bool)
+    def initialize(@hate : Bool, @hate_threatening : Bool, @harassment : Bool, @harassment_threatening : Bool, @self_harm : Bool, @self_harm_intent : Bool, @self_harm_instructions : Bool, @sexual : Bool, @sexual_minors : Bool, @violence : Bool, @violence_graphic : Bool)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -63,7 +87,11 @@ module OpenAPIClient
       self.class == o.class &&
           hate == o.hate &&
           hate_threatening == o.hate_threatening &&
+          harassment == o.harassment &&
+          harassment_threatening == o.harassment_threatening &&
           self_harm == o.self_harm &&
+          self_harm_intent == o.self_harm_intent &&
+          self_harm_instructions == o.self_harm_instructions &&
           sexual == o.sexual &&
           sexual_minors == o.sexual_minors &&
           violence == o.violence &&
@@ -79,7 +107,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [hate, hate_threatening, self_harm, sexual, sexual_minors, violence, violence_graphic].hash
+      [hate, hate_threatening, harassment, harassment_threatening, self_harm, self_harm_intent, self_harm_instructions, sexual, sexual_minors, violence, violence_graphic].hash
     end
 
     # Builds the object from hash

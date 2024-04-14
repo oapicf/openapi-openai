@@ -3,7 +3,7 @@
 =begin
 #OpenAI API
 
-#APIs for sampling from and fine-tuning language models
+#The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 The version of the OpenAPI document: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.email       = ["blah+oapicf@cliffano.com"]
   s.homepage    = "https://github.com/oapicf/openapi-openai"
   s.summary     = "OpenAI API Ruby Gem"
-  s.description = "APIs for sampling from and fine-tuning language models"
+  s.description = "The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details."
   s.license     = "MIT"
   s.required_ruby_version = ">= 2.0"
   s.metadata    = {}

@@ -15,9 +15,9 @@ resourceTypes {
     description = CreateCompletionResponseChoicesInnerLogprobs
     derivedFrom = Root
     properties {
-        tokens {
+        text_offset {
           type = array
-          items.type =  string
+          items.type =  integer
           description = ""
           optional = false
         }
@@ -27,15 +27,15 @@ resourceTypes {
           description = ""
           optional = false
         }
-        top_logprobs {
+        tokens {
           type = array
-          items.type =  
+          items.type =  string
           description = ""
           optional = false
         }
-        text_offset {
+        top_logprobs {
           type = array
-          items.type =  integer
+          items.type =  
           description = ""
           optional = false
         }

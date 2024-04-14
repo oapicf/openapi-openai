@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -20,21 +20,21 @@ import .*
 /**
  * 
  * @param id 
- * @param object 
  * @param deleted 
+ * @param object 
  */
 object DeleteModelResponses : BaseTable<DeleteModelResponse>("DeleteModelResponse") {
     val id = text("id")
-    val object = text("object")
     val deleted = boolean("deleted")
+    val object = text("object")
 
     /**
      * Create an entity of type DeleteModelResponse from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = DeleteModelResponse(
         id = row[id] ?: "" /* kotlin.String */,
-        object = row[object] ?: "" /* kotlin.String */,
-        deleted = row[deleted] ?: false /* kotlin.Boolean */
+        deleted = row[deleted] ?: false /* kotlin.Boolean */,
+        object = row[object] ?: "" /* kotlin.String */
     )
 
     /**
@@ -53,8 +53,8 @@ object DeleteModelResponses : BaseTable<DeleteModelResponse>("DeleteModelRespons
     fun AssignmentsBuilder.assignFrom(entity: DeleteModelResponse) {
         this.apply {
             set(DeleteModelResponses.id, entity.id)
-            set(DeleteModelResponses.object, entity.object)
             set(DeleteModelResponses.deleted, entity.deleted)
+            set(DeleteModelResponses.object, entity.object)
         }
     }
 

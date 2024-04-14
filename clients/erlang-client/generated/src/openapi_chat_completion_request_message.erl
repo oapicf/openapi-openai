@@ -5,19 +5,25 @@
 -export_type([openapi_chat_completion_request_message/0]).
 
 -type openapi_chat_completion_request_message() ::
-    #{ 'role' := binary(),
-       'content' => binary(),
-       'name' => binary(),
-       'function_call' => openapi_chat_completion_request_message_function_call:openapi_chat_completion_request_message_function_call()
+    #{ 'content' := binary(),
+       'role' := binary(),
+       'name' := binary(),
+       'tool_calls' => list(),
+       'function_call' => openapi_chat_completion_request_assistant_message_function_call:openapi_chat_completion_request_assistant_message_function_call(),
+       'tool_call_id' := binary()
      }.
 
-encode(#{ 'role' := Role,
-          'content' := Content,
+encode(#{ 'content' := Content,
+          'role' := Role,
           'name' := Name,
-          'function_call' := FunctionCall
+          'tool_calls' := ToolCalls,
+          'function_call' := FunctionCall,
+          'tool_call_id' := ToolCallId
         }) ->
-    #{ 'role' => Role,
-       'content' => Content,
+    #{ 'content' => Content,
+       'role' => Role,
        'name' => Name,
-       'function_call' => FunctionCall
+       'tool_calls' => ToolCalls,
+       'function_call' => FunctionCall,
+       'tool_call_id' => ToolCallId
      }.

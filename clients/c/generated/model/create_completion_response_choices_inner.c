@@ -5,13 +5,13 @@
 
 
 char* create_completion_response_choices_inner_finish_reason_ToString(openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason) {
-    char* finish_reasonArray[] =  { "NULL", "stop", "length" };
+    char* finish_reasonArray[] =  { "NULL", "stop", "length", "content_filter" };
     return finish_reasonArray[finish_reason];
 }
 
 openai_api_create_completion_response_choices_inner_FINISHREASON_e create_completion_response_choices_inner_finish_reason_FromString(char* finish_reason){
     int stringToReturn = 0;
-    char *finish_reasonArray[] =  { "NULL", "stop", "length" };
+    char *finish_reasonArray[] =  { "NULL", "stop", "length", "content_filter" };
     size_t sizeofArray = sizeof(finish_reasonArray) / sizeof(finish_reasonArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(finish_reason, finish_reasonArray[stringToReturn]) == 0) {
@@ -23,19 +23,19 @@ openai_api_create_completion_response_choices_inner_FINISHREASON_e create_comple
 }
 
 create_completion_response_choices_inner_t *create_completion_response_choices_inner_create(
-    char *text,
+    openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason,
     int index,
     create_completion_response_choices_inner_logprobs_t *logprobs,
-    openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason
+    char *text
     ) {
     create_completion_response_choices_inner_t *create_completion_response_choices_inner_local_var = malloc(sizeof(create_completion_response_choices_inner_t));
     if (!create_completion_response_choices_inner_local_var) {
         return NULL;
     }
-    create_completion_response_choices_inner_local_var->text = text;
+    create_completion_response_choices_inner_local_var->finish_reason = finish_reason;
     create_completion_response_choices_inner_local_var->index = index;
     create_completion_response_choices_inner_local_var->logprobs = logprobs;
-    create_completion_response_choices_inner_local_var->finish_reason = finish_reason;
+    create_completion_response_choices_inner_local_var->text = text;
 
     return create_completion_response_choices_inner_local_var;
 }
@@ -46,13 +46,13 @@ void create_completion_response_choices_inner_free(create_completion_response_ch
         return ;
     }
     listEntry_t *listEntry;
-    if (create_completion_response_choices_inner->text) {
-        free(create_completion_response_choices_inner->text);
-        create_completion_response_choices_inner->text = NULL;
-    }
     if (create_completion_response_choices_inner->logprobs) {
         create_completion_response_choices_inner_logprobs_free(create_completion_response_choices_inner->logprobs);
         create_completion_response_choices_inner->logprobs = NULL;
+    }
+    if (create_completion_response_choices_inner->text) {
+        free(create_completion_response_choices_inner->text);
+        create_completion_response_choices_inner->text = NULL;
     }
     free(create_completion_response_choices_inner);
 }
@@ -60,12 +60,13 @@ void create_completion_response_choices_inner_free(create_completion_response_ch
 cJSON *create_completion_response_choices_inner_convertToJSON(create_completion_response_choices_inner_t *create_completion_response_choices_inner) {
     cJSON *item = cJSON_CreateObject();
 
-    // create_completion_response_choices_inner->text
-    if (!create_completion_response_choices_inner->text) {
+    // create_completion_response_choices_inner->finish_reason
+    if (openai_api_create_completion_response_choices_inner_FINISHREASON_NULL == create_completion_response_choices_inner->finish_reason) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "text", create_completion_response_choices_inner->text) == NULL) {
-    goto fail; //String
+    if(cJSON_AddStringToObject(item, "finish_reason", finish_reasoncreate_completion_response_choices_inner_ToString(create_completion_response_choices_inner->finish_reason)) == NULL)
+    {
+    goto fail; //Enum
     }
 
 
@@ -92,13 +93,12 @@ cJSON *create_completion_response_choices_inner_convertToJSON(create_completion_
     }
 
 
-    // create_completion_response_choices_inner->finish_reason
-    if (openai_api_create_completion_response_choices_inner_FINISHREASON_NULL == create_completion_response_choices_inner->finish_reason) {
+    // create_completion_response_choices_inner->text
+    if (!create_completion_response_choices_inner->text) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "finish_reason", finish_reasoncreate_completion_response_choices_inner_ToString(create_completion_response_choices_inner->finish_reason)) == NULL)
-    {
-    goto fail; //Enum
+    if(cJSON_AddStringToObject(item, "text", create_completion_response_choices_inner->text) == NULL) {
+    goto fail; //String
     }
 
     return item;
@@ -116,17 +116,19 @@ create_completion_response_choices_inner_t *create_completion_response_choices_i
     // define the local variable for create_completion_response_choices_inner->logprobs
     create_completion_response_choices_inner_logprobs_t *logprobs_local_nonprim = NULL;
 
-    // create_completion_response_choices_inner->text
-    cJSON *text = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_innerJSON, "text");
-    if (!text) {
+    // create_completion_response_choices_inner->finish_reason
+    cJSON *finish_reason = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_innerJSON, "finish_reason");
+    if (!finish_reason) {
         goto end;
     }
 
+    openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reasonVariable;
     
-    if(!cJSON_IsString(text))
+    if(!cJSON_IsString(finish_reason))
     {
-    goto end; //String
+    goto end; //Enum
     }
+    finish_reasonVariable = create_completion_response_choices_inner_finish_reason_FromString(finish_reason->valuestring);
 
     // create_completion_response_choices_inner->index
     cJSON *index = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_innerJSON, "index");
@@ -149,26 +151,24 @@ create_completion_response_choices_inner_t *create_completion_response_choices_i
     
     logprobs_local_nonprim = create_completion_response_choices_inner_logprobs_parseFromJSON(logprobs); //nonprimitive
 
-    // create_completion_response_choices_inner->finish_reason
-    cJSON *finish_reason = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_innerJSON, "finish_reason");
-    if (!finish_reason) {
+    // create_completion_response_choices_inner->text
+    cJSON *text = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_innerJSON, "text");
+    if (!text) {
         goto end;
     }
 
-    openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reasonVariable;
     
-    if(!cJSON_IsString(finish_reason))
+    if(!cJSON_IsString(text))
     {
-    goto end; //Enum
+    goto end; //String
     }
-    finish_reasonVariable = create_completion_response_choices_inner_finish_reason_FromString(finish_reason->valuestring);
 
 
     create_completion_response_choices_inner_local_var = create_completion_response_choices_inner_create (
-        strdup(text->valuestring),
+        finish_reasonVariable,
         index->valuedouble,
         logprobs_local_nonprim,
-        finish_reasonVariable
+        strdup(text->valuestring)
         );
 
     return create_completion_response_choices_inner_local_var;

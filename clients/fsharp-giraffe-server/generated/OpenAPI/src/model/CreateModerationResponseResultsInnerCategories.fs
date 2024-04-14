@@ -11,7 +11,11 @@ module CreateModerationResponseResultsInnerCategories =
   type CreateModerationResponse_results_inner_categories = {
     Hate : bool;
     HateThreatening : bool;
+    Harassment : bool;
+    HarassmentThreatening : bool;
     SelfHarm : bool;
+    SelfHarmIntent : bool;
+    SelfHarmInstructions : bool;
     Sexual : bool;
     SexualMinors : bool;
     Violence : bool;

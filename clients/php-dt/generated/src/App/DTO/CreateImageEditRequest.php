@@ -15,6 +15,13 @@ class CreateImageEditRequest
     public ?string $image = null;
 
     /**
+     * A text description of the desired image(s). The maximum length is 1000 characters.
+     * @DTA\Data(field="prompt")
+     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     */
+    public ?string $prompt = null;
+
+    /**
      * An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;.
      * @DTA\Data(field="mask", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
@@ -22,11 +29,11 @@ class CreateImageEditRequest
     public ?string $mask = null;
 
     /**
-     * A text description of the desired image(s). The maximum length is 1000 characters.
-     * @DTA\Data(field="prompt")
-     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     * @DTA\Data(field="model", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\CreateImageEditRequestModel::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\CreateImageEditRequestModel::class})
      */
-    public ?string $prompt = null;
+    public ?\App\DTO\CreateImageEditRequestModel $model = null;
 
     /**
      * The number of images to generate. Must be between 1 and 10.
@@ -44,7 +51,7 @@ class CreateImageEditRequest
     public ?string $size = null;
 
     /**
-     * The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
+     * The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
      * @DTA\Data(field="response_format", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      */

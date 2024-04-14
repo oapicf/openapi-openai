@@ -21,8 +21,26 @@
 
   <ItemGroup>
     <Compile Include="TestHelper.fs"/>
-    <Compile Include="OpenAIApiTestsHelper.fs" />
-    <Compile Include="OpenAIApiTests.fs" />
+    <Compile Include="AssistantsApiTestsHelper.fs" />
+    <Compile Include="AssistantsApiTests.fs" />
+    <Compile Include="AudioApiTestsHelper.fs" />
+    <Compile Include="AudioApiTests.fs" />
+    <Compile Include="ChatApiTestsHelper.fs" />
+    <Compile Include="ChatApiTests.fs" />
+    <Compile Include="CompletionsApiTestsHelper.fs" />
+    <Compile Include="CompletionsApiTests.fs" />
+    <Compile Include="EmbeddingsApiTestsHelper.fs" />
+    <Compile Include="EmbeddingsApiTests.fs" />
+    <Compile Include="FilesApiTestsHelper.fs" />
+    <Compile Include="FilesApiTests.fs" />
+    <Compile Include="FineTuningApiTestsHelper.fs" />
+    <Compile Include="FineTuningApiTests.fs" />
+    <Compile Include="ImagesApiTestsHelper.fs" />
+    <Compile Include="ImagesApiTests.fs" />
+    <Compile Include="ModelsApiTestsHelper.fs" />
+    <Compile Include="ModelsApiTests.fs" />
+    <Compile Include="ModerationsApiTestsHelper.fs" />
+    <Compile Include="ModerationsApiTests.fs" />
   </ItemGroup>
 
 </Project>

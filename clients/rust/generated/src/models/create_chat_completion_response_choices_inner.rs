@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,30 +12,39 @@ use crate::models;
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateChatCompletionResponseChoicesInner {
-    #[serde(rename = "index", skip_serializing_if = "Option::is_none")]
-    pub index: Option<i32>,
-    #[serde(rename = "message", skip_serializing_if = "Option::is_none")]
-    pub message: Option<Box<models::ChatCompletionResponseMessage>>,
-    #[serde(rename = "finish_reason", skip_serializing_if = "Option::is_none")]
-    pub finish_reason: Option<FinishReason>,
+    /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+    #[serde(rename = "finish_reason")]
+    pub finish_reason: FinishReason,
+    /// The index of the choice in the list of choices.
+    #[serde(rename = "index")]
+    pub index: i32,
+    #[serde(rename = "message")]
+    pub message: Box<models::ChatCompletionResponseMessage>,
+    #[serde(rename = "logprobs", deserialize_with = "Option::deserialize")]
+    pub logprobs: Option<Box<models::CreateChatCompletionResponseChoicesInnerLogprobs>>,
 }
 
 impl CreateChatCompletionResponseChoicesInner {
-    pub fn new() -> CreateChatCompletionResponseChoicesInner {
+    pub fn new(finish_reason: FinishReason, index: i32, message: models::ChatCompletionResponseMessage, logprobs: Option<models::CreateChatCompletionResponseChoicesInnerLogprobs>) -> CreateChatCompletionResponseChoicesInner {
         CreateChatCompletionResponseChoicesInner {
-            index: None,
-            message: None,
-            finish_reason: None,
+            finish_reason,
+            index,
+            message: Box::new(message),
+            logprobs: if let Some(x) = logprobs {Some(Box::new(x))} else {None},
         }
     }
 }
-/// 
+/// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum FinishReason {
     #[serde(rename = "stop")]
     Stop,
     #[serde(rename = "length")]
     Length,
+    #[serde(rename = "tool_calls")]
+    ToolCalls,
+    #[serde(rename = "content_filter")]
+    ContentFilter,
     #[serde(rename = "function_call")]
     FunctionCall,
 }

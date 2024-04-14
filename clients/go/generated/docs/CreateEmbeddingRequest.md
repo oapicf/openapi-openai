@@ -4,15 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Model** | [**CreateEmbeddingRequestModel**](CreateEmbeddingRequestModel.md) |  | 
 **Input** | [**CreateEmbeddingRequestInput**](CreateEmbeddingRequestInput.md) |  | 
+**Model** | [**CreateEmbeddingRequestModel**](CreateEmbeddingRequestModel.md) |  | 
+**EncodingFormat** | Pointer to **string** | The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/). | [optional] [default to "float"]
+**Dimensions** | Pointer to **int32** | The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models.  | [optional] 
 **User** | Pointer to **string** | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | [optional] 
 
 ## Methods
 
 ### NewCreateEmbeddingRequest
 
-`func NewCreateEmbeddingRequest(model CreateEmbeddingRequestModel, input CreateEmbeddingRequestInput, ) *CreateEmbeddingRequest`
+`func NewCreateEmbeddingRequest(input CreateEmbeddingRequestInput, model CreateEmbeddingRequestModel, ) *CreateEmbeddingRequest`
 
 NewCreateEmbeddingRequest instantiates a new CreateEmbeddingRequest object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +28,26 @@ will change when the set of required properties is changed
 NewCreateEmbeddingRequestWithDefaults instantiates a new CreateEmbeddingRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetInput
+
+`func (o *CreateEmbeddingRequest) GetInput() CreateEmbeddingRequestInput`
+
+GetInput returns the Input field if non-nil, zero value otherwise.
+
+### GetInputOk
+
+`func (o *CreateEmbeddingRequest) GetInputOk() (*CreateEmbeddingRequestInput, bool)`
+
+GetInputOk returns a tuple with the Input field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInput
+
+`func (o *CreateEmbeddingRequest) SetInput(v CreateEmbeddingRequestInput)`
+
+SetInput sets Input field to given value.
+
 
 ### GetModel
 
@@ -47,25 +69,55 @@ and a boolean to check if the value has been set.
 SetModel sets Model field to given value.
 
 
-### GetInput
+### GetEncodingFormat
 
-`func (o *CreateEmbeddingRequest) GetInput() CreateEmbeddingRequestInput`
+`func (o *CreateEmbeddingRequest) GetEncodingFormat() string`
 
-GetInput returns the Input field if non-nil, zero value otherwise.
+GetEncodingFormat returns the EncodingFormat field if non-nil, zero value otherwise.
 
-### GetInputOk
+### GetEncodingFormatOk
 
-`func (o *CreateEmbeddingRequest) GetInputOk() (*CreateEmbeddingRequestInput, bool)`
+`func (o *CreateEmbeddingRequest) GetEncodingFormatOk() (*string, bool)`
 
-GetInputOk returns a tuple with the Input field if it's non-nil, zero value otherwise
+GetEncodingFormatOk returns a tuple with the EncodingFormat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInput
+### SetEncodingFormat
 
-`func (o *CreateEmbeddingRequest) SetInput(v CreateEmbeddingRequestInput)`
+`func (o *CreateEmbeddingRequest) SetEncodingFormat(v string)`
 
-SetInput sets Input field to given value.
+SetEncodingFormat sets EncodingFormat field to given value.
 
+### HasEncodingFormat
+
+`func (o *CreateEmbeddingRequest) HasEncodingFormat() bool`
+
+HasEncodingFormat returns a boolean if a field has been set.
+
+### GetDimensions
+
+`func (o *CreateEmbeddingRequest) GetDimensions() int32`
+
+GetDimensions returns the Dimensions field if non-nil, zero value otherwise.
+
+### GetDimensionsOk
+
+`func (o *CreateEmbeddingRequest) GetDimensionsOk() (*int32, bool)`
+
+GetDimensionsOk returns a tuple with the Dimensions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDimensions
+
+`func (o *CreateEmbeddingRequest) SetDimensions(v int32)`
+
+SetDimensions sets Dimensions field to given value.
+
+### HasDimensions
+
+`func (o *CreateEmbeddingRequest) HasDimensions() bool`
+
+HasDimensions returns a boolean if a field has been set.
 
 ### GetUser
 

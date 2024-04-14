@@ -11,7 +11,11 @@
 -type openapi_create_moderation_response_results_inner_categories() ::
   [ {'hate', boolean() }
   | {'hate_threatening', boolean() }
+  | {'harassment', boolean() }
+  | {'harassment_threatening', boolean() }
   | {'self_harm', boolean() }
+  | {'self_harm_intent', boolean() }
+  | {'self_harm_instructions', boolean() }
   | {'sexual', boolean() }
   | {'sexual_minors', boolean() }
   | {'violence', boolean() }
@@ -25,7 +29,11 @@ openapi_create_moderation_response_results_inner_categories() ->
 openapi_create_moderation_response_results_inner_categories(Fields) ->
   Default = [ {'hate', boolean() }
             , {'hate/threatening', boolean() }
+            , {'harassment', boolean() }
+            , {'harassment/threatening', boolean() }
             , {'self-harm', boolean() }
+            , {'self-harm/intent', boolean() }
+            , {'self-harm/instructions', boolean() }
             , {'sexual', boolean() }
             , {'sexual/minors', boolean() }
             , {'violence', boolean() }

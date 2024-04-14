@@ -1,0 +1,22 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The Code Interpreter tool call definition.",
+  "name": "RunStepDetailsToolCallsCodeObjectCodeInterpreter",
+  "fields": [
+    {
+      "name": "input",
+      "type": "string",
+      "doc": "The input to the Code Interpreter tool call."
+    },
+    {
+      "name": "outputs",
+      "type": {
+        "type": "array",
+        "items": "model.RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner"
+      },
+      "doc": "The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type."
+    }
+  ]
+
+}

@@ -2,18 +2,21 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
-open OpenAPI.Model.CreateEmbeddingResponseDataInner
 open OpenAPI.Model.CreateEmbeddingResponseUsage
+open OpenAPI.Model.Embedding
 
 module CreateEmbeddingResponse =
 
   //#region CreateEmbeddingResponse
 
+  //#region enums
+  type ObjectEnum = ListEnum of string  
+  //#endregion
 
   type CreateEmbeddingResponse = {
-    Object : string;
+    Data : Embedding[];
     Model : string;
-    Data : CreateEmbeddingResponseDataInner[];
+    Object : ObjectEnum;
     Usage : CreateEmbeddingResponseUsage;
   }
   //#endregion

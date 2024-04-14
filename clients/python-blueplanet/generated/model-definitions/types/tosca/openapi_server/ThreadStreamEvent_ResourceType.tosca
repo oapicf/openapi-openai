@@ -1,0 +1,43 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ThreadStreamEvent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ThreadStreamEvent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ThreadObject = openapi_server.resourceTypes.ThreadObject
+  ThreadStreamEventOneOf = openapi_server.resourceTypes.ThreadStreamEventOneOf
+}
+resourceTypes {
+
+  ThreadStreamEvent {
+    title = ThreadStreamEvent
+    description = ThreadStreamEvent
+    derivedFrom = Root
+    properties {
+        event {
+          type =  string
+          description = ""
+          enum = ["thread.created"]
+          optional = true
+        }
+        data {
+          type = ThreadObject
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ThreadStreamEvent {
+    title = ThreadStreamEvent
+    description = ThreadStreamEvent
+    implements = openapi_server.resourceTypes.ThreadStreamEvent
+
+  }
+}

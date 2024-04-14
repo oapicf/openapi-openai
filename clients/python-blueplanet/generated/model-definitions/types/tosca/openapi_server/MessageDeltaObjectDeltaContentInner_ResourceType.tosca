@@ -1,0 +1,55 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageDeltaObjectDeltaContentInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageDeltaObjectDeltaContentInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  MessageDeltaContentImageFileObject = openapi_server.resourceTypes.MessageDeltaContentImageFileObject
+  MessageDeltaContentImageFileObjectImageFile = openapi_server.resourceTypes.MessageDeltaContentImageFileObjectImageFile
+  MessageDeltaContentTextObject = openapi_server.resourceTypes.MessageDeltaContentTextObject
+  MessageDeltaContentTextObjectText = openapi_server.resourceTypes.MessageDeltaContentTextObjectText
+}
+resourceTypes {
+
+  MessageDeltaObjectDeltaContentInner {
+    title = MessageDeltaObjectDeltaContentInner
+    description = MessageDeltaObjectDeltaContentInner
+    derivedFrom = Root
+    properties {
+        index {
+          type =  integer
+          description = "The index of the content part in the message."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "Always &#x60;image_file&#x60;."
+          enum = ["image_file", "text"]
+          optional = true
+        }
+        image_file {
+          type = MessageDeltaContentImageFileObjectImageFile
+          description = ""
+          optional = false
+        }
+        text {
+          type = MessageDeltaContentTextObjectText
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageDeltaObjectDeltaContentInner {
+    title = MessageDeltaObjectDeltaContentInner
+    description = MessageDeltaObjectDeltaContentInner
+    implements = openapi_server.resourceTypes.MessageDeltaObjectDeltaContentInner
+
+  }
+}

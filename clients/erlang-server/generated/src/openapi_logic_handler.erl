@@ -1,7 +1,6 @@
 -module(openapi_logic_handler).
 
 -export([handle_request/4]).
--export([authorize_api_key/3]).
 -type context() :: #{binary() => any()}.
 -type handler_response() ::{
     Status :: cowboy:http_status(),
@@ -26,7 +25,3 @@
 handle_request(Handler, OperationID, Req, Context) ->
     Handler:handle_request(OperationID, Req, Context).
 
--spec authorize_api_key(Handler :: atom(), OperationID :: openapi_api:operation_id(), ApiKey :: binary()) ->
-    Result :: false.
-authorize_api_key(_Handler, _OperationID, _ApiKey) ->
-    false.

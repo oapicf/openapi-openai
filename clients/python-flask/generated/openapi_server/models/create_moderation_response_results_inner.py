@@ -57,6 +57,7 @@ class CreateModerationResponseResultsInner(Model):
     def flagged(self) -> bool:
         """Gets the flagged of this CreateModerationResponseResultsInner.
 
+        Whether any of the below categories are flagged.  # noqa: E501
 
         :return: The flagged of this CreateModerationResponseResultsInner.
         :rtype: bool
@@ -67,6 +68,7 @@ class CreateModerationResponseResultsInner(Model):
     def flagged(self, flagged: bool):
         """Sets the flagged of this CreateModerationResponseResultsInner.
 
+        Whether any of the below categories are flagged.  # noqa: E501
 
         :param flagged: The flagged of this CreateModerationResponseResultsInner.
         :type flagged: bool

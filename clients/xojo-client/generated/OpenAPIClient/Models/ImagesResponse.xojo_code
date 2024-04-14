@@ -7,7 +7,7 @@ Protected Class ImagesResponse
 
 
 	#tag Property, Flags = &h0
-		data() As OpenAPIClient.Models.ImagesResponseDataInner
+		data() As OpenAPIClient.Models.Image
 	#tag EndProperty
 
 
@@ -60,7 +60,7 @@ Protected Class ImagesResponse
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="ImagesResponseDataInner"
+			Type="Image"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

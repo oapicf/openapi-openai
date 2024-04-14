@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Error  {
   
   @ApiModelProperty(required = true, value = "")
-  private String type;
+  private String code;
 
   @ApiModelProperty(required = true, value = "")
   private String message;
@@ -20,23 +20,23 @@ public class Error  {
   private String param;
 
   @ApiModelProperty(required = true, value = "")
-  private String code;
+  private String type;
  /**
-   * Get type
-   * @return type
+   * Get code
+   * @return code
   **/
-  @JsonProperty("type")
+  @JsonProperty("code")
   @NotNull
-  public String getType() {
-    return type;
+  public String getCode() {
+    return code;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setCode(String code) {
+    this.code = code;
   }
 
-  public Error type(String type) {
-    this.type = type;
+  public Error code(String code) {
+    this.code = code;
     return this;
   }
 
@@ -79,21 +79,21 @@ public class Error  {
   }
 
  /**
-   * Get code
-   * @return code
+   * Get type
+   * @return type
   **/
-  @JsonProperty("code")
+  @JsonProperty("type")
   @NotNull
-  public String getCode() {
-    return code;
+  public String getType() {
+    return type;
   }
 
-  public void setCode(String code) {
-    this.code = code;
+  public void setType(String type) {
+    this.type = type;
   }
 
-  public Error code(String code) {
-    this.code = code;
+  public Error type(String type) {
+    this.type = type;
     return this;
   }
 
@@ -106,15 +106,15 @@ public class Error  {
       return false;
     }
     Error error = (Error) o;
-    return Objects.equals(this.type, error.type) &&
+    return Objects.equals(this.code, error.code) &&
         Objects.equals(this.message, error.message) &&
         Objects.equals(this.param, error.param) &&
-        Objects.equals(this.code, error.code);
+        Objects.equals(this.type, error.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, message, param, code);
+    return Objects.hash(code, message, param, type);
   }
 
   @Override
@@ -122,10 +122,10 @@ public class Error  {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    param: ").append(toIndentedString(param)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

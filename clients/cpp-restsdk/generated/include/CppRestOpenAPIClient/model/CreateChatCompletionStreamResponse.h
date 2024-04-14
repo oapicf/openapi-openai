@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * CreateChatCompletionStreamResponse.h
  *
- * 
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
  */
 
 #ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_CreateChatCompletionStreamResponse_H_
@@ -34,7 +34,7 @@ namespace model {
 class CreateChatCompletionStreamResponse_choices_inner;
 
 /// <summary>
-/// 
+/// Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
 /// </summary>
 class  CreateChatCompletionStreamResponse
     : public ModelBase
@@ -58,7 +58,7 @@ public:
     /// CreateChatCompletionStreamResponse members
 
     /// <summary>
-    /// 
+    /// A unique identifier for the chat completion. Each chunk has the same ID.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -67,16 +67,16 @@ public:
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// 
+    /// A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
     /// </summary>
-    utility::string_t getObject() const;
-    bool objectIsSet() const;
-    void unsetobject();
+    std::vector<std::shared_ptr<CreateChatCompletionStreamResponse_choices_inner>>& getChoices();
+    bool choicesIsSet() const;
+    void unsetChoices();
 
-    void setObject(const utility::string_t& value);
+    void setChoices(const std::vector<std::shared_ptr<CreateChatCompletionStreamResponse_choices_inner>>& value);
 
     /// <summary>
-    /// 
+    /// The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
     /// </summary>
     int32_t getCreated() const;
     bool createdIsSet() const;
@@ -85,7 +85,7 @@ public:
     void setCreated(int32_t value);
 
     /// <summary>
-    /// 
+    /// The model to generate the completion.
     /// </summary>
     utility::string_t getModel() const;
     bool modelIsSet() const;
@@ -94,26 +94,37 @@ public:
     void setModel(const utility::string_t& value);
 
     /// <summary>
-    /// 
+    /// This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
     /// </summary>
-    std::vector<std::shared_ptr<CreateChatCompletionStreamResponse_choices_inner>>& getChoices();
-    bool choicesIsSet() const;
-    void unsetChoices();
+    utility::string_t getSystemFingerprint() const;
+    bool systemFingerprintIsSet() const;
+    void unsetSystem_fingerprint();
 
-    void setChoices(const std::vector<std::shared_ptr<CreateChatCompletionStreamResponse_choices_inner>>& value);
+    void setSystemFingerprint(const utility::string_t& value);
+
+    /// <summary>
+    /// The object type, which is always &#x60;chat.completion.chunk&#x60;.
+    /// </summary>
+    utility::string_t getObject() const;
+    bool objectIsSet() const;
+    void unsetobject();
+
+    void setObject(const utility::string_t& value);
 
 
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
-    utility::string_t m_object;
-    bool m_objectIsSet;
+    std::vector<std::shared_ptr<CreateChatCompletionStreamResponse_choices_inner>> m_Choices;
+    bool m_ChoicesIsSet;
     int32_t m_Created;
     bool m_CreatedIsSet;
     utility::string_t m_Model;
     bool m_ModelIsSet;
-    std::vector<std::shared_ptr<CreateChatCompletionStreamResponse_choices_inner>> m_Choices;
-    bool m_ChoicesIsSet;
+    utility::string_t m_System_fingerprint;
+    bool m_System_fingerprintIsSet;
+    utility::string_t m_object;
+    bool m_objectIsSet;
 };
 
 

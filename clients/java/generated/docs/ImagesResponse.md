@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**created** | **Integer** |  |  |
-|**data** | [**List&lt;ImagesResponseDataInner&gt;**](ImagesResponseDataInner.md) |  |  |
+|**data** | [**List&lt;Image&gt;**](Image.md) |  |  |
 
 
 

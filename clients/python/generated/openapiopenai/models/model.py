@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -18,20 +18,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
 class Model(BaseModel):
     """
-    Model
+    Describes an OpenAI model offering that can be used with the API.
     """ # noqa: E501
-    id: StrictStr
-    object: StrictStr
-    created: StrictInt
-    owned_by: StrictStr
-    __properties: ClassVar[List[str]] = ["id", "object", "created", "owned_by"]
+    id: StrictStr = Field(description="The model identifier, which can be referenced in the API endpoints.")
+    created: StrictInt = Field(description="The Unix timestamp (in seconds) when the model was created.")
+    object: StrictStr = Field(description="The object type, which is always \"model\".")
+    owned_by: StrictStr = Field(description="The organization that owns the model.")
+    __properties: ClassVar[List[str]] = ["id", "created", "object", "owned_by"]
+
+    @field_validator('object')
+    def object_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['model']):
+            raise ValueError("must be one of enum values ('model')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,8 +92,8 @@ class Model(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "object": obj.get("object"),
             "created": obj.get("created"),
+            "object": obj.get("object"),
             "owned_by": obj.get("owned_by")
         })
         return _obj

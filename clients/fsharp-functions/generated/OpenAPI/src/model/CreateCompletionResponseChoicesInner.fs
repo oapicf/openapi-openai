@@ -11,14 +11,14 @@ module CreateCompletionResponseChoicesInner =
 
   [<CLIMutable>]
   type CreateCompletionResponseChoicesInner = {
-    [<JsonProperty(PropertyName = "text")>]
-    Text : string;
+    [<JsonProperty(PropertyName = "finish_reason")>]
+    FinishReason : string;
     [<JsonProperty(PropertyName = "index")>]
     Index : int;
     [<JsonProperty(PropertyName = "logprobs")>]
     Logprobs : CreateCompletionResponseChoicesInnerLogprobs;
-    [<JsonProperty(PropertyName = "finish_reason")>]
-    FinishReason : string;
+    [<JsonProperty(PropertyName = "text")>]
+    Text : string;
   }
 
   //#endregion

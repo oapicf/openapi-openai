@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PromptTokens** | **int32** |  | 
-**TotalTokens** | **int32** |  | 
+**PromptTokens** | **int32** | The number of tokens used by the prompt. | 
+**TotalTokens** | **int32** | The total number of tokens used by the request. | 
 
 ## Methods
 

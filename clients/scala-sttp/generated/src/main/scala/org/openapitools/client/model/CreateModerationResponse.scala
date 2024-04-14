@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,9 +12,15 @@
 package org.openapitools.client.model
 
 
+  /**
+   * Represents if a given text input is potentially harmful.
+   */
 case class CreateModerationResponse(
+  /* The unique identifier for the moderation request. */
   id: String,
+  /* The model used to generate the moderation results. */
   model: String,
+  /* A list of moderation objects. */
   results: Seq[CreateModerationResponseResultsInner]
 )
 

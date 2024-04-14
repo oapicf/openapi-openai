@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,255 +14,342 @@
 package com.github.oapicf.openapiopenai.model;
 
 import java.util.Objects;
-import com.github.oapicf.openapiopenai.model.ChatCompletionRequestMessageFunctionCall;
+import com.github.oapicf.openapiopenai.model.ChatCompletionMessageToolCall;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestAssistantMessage;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestAssistantMessageFunctionCall;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestFunctionMessage;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestSystemMessage;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestToolMessage;
+import com.github.oapicf.openapiopenai.model.ChatCompletionRequestUserMessage;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-/**
- * ChatCompletionRequestMessage
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
-public class ChatCompletionRequestMessage {
-  /**
-   * The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.
-   */
-  @JsonAdapter(RoleEnum.Adapter.class)
-  public enum RoleEnum {
-    SYSTEM("system"),
-    
-    USER("user"),
-    
-    ASSISTANT("assistant"),
-    
-    FUNCTION("function");
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+public class ChatCompletionRequestMessage extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(ChatCompletionRequestMessage.class.getName());
 
-    private String value;
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ChatCompletionRequestMessage.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ChatCompletionRequestMessage' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ChatCompletionRequestSystemMessage> adapterChatCompletionRequestSystemMessage = gson.getDelegateAdapter(this, TypeToken.get(ChatCompletionRequestSystemMessage.class));
+            final TypeAdapter<ChatCompletionRequestUserMessage> adapterChatCompletionRequestUserMessage = gson.getDelegateAdapter(this, TypeToken.get(ChatCompletionRequestUserMessage.class));
+            final TypeAdapter<ChatCompletionRequestAssistantMessage> adapterChatCompletionRequestAssistantMessage = gson.getDelegateAdapter(this, TypeToken.get(ChatCompletionRequestAssistantMessage.class));
+            final TypeAdapter<ChatCompletionRequestToolMessage> adapterChatCompletionRequestToolMessage = gson.getDelegateAdapter(this, TypeToken.get(ChatCompletionRequestToolMessage.class));
+            final TypeAdapter<ChatCompletionRequestFunctionMessage> adapterChatCompletionRequestFunctionMessage = gson.getDelegateAdapter(this, TypeToken.get(ChatCompletionRequestFunctionMessage.class));
 
-    RoleEnum(String value) {
-      this.value = value;
+            return (TypeAdapter<T>) new TypeAdapter<ChatCompletionRequestMessage>() {
+                @Override
+                public void write(JsonWriter out, ChatCompletionRequestMessage value) throws IOException {
+                    if (value == null || value.getActualInstance() == null) {
+                        elementAdapter.write(out, null);
+                        return;
+                    }
+
+                    // check if the actual instance is of the type `ChatCompletionRequestSystemMessage`
+                    if (value.getActualInstance() instanceof ChatCompletionRequestSystemMessage) {
+                      JsonElement element = adapterChatCompletionRequestSystemMessage.toJsonTree((ChatCompletionRequestSystemMessage)value.getActualInstance());
+                      elementAdapter.write(out, element);
+                      return;
+                    }
+                    // check if the actual instance is of the type `ChatCompletionRequestUserMessage`
+                    if (value.getActualInstance() instanceof ChatCompletionRequestUserMessage) {
+                      JsonElement element = adapterChatCompletionRequestUserMessage.toJsonTree((ChatCompletionRequestUserMessage)value.getActualInstance());
+                      elementAdapter.write(out, element);
+                      return;
+                    }
+                    // check if the actual instance is of the type `ChatCompletionRequestAssistantMessage`
+                    if (value.getActualInstance() instanceof ChatCompletionRequestAssistantMessage) {
+                      JsonElement element = adapterChatCompletionRequestAssistantMessage.toJsonTree((ChatCompletionRequestAssistantMessage)value.getActualInstance());
+                      elementAdapter.write(out, element);
+                      return;
+                    }
+                    // check if the actual instance is of the type `ChatCompletionRequestToolMessage`
+                    if (value.getActualInstance() instanceof ChatCompletionRequestToolMessage) {
+                      JsonElement element = adapterChatCompletionRequestToolMessage.toJsonTree((ChatCompletionRequestToolMessage)value.getActualInstance());
+                      elementAdapter.write(out, element);
+                      return;
+                    }
+                    // check if the actual instance is of the type `ChatCompletionRequestFunctionMessage`
+                    if (value.getActualInstance() instanceof ChatCompletionRequestFunctionMessage) {
+                      JsonElement element = adapterChatCompletionRequestFunctionMessage.toJsonTree((ChatCompletionRequestFunctionMessage)value.getActualInstance());
+                      elementAdapter.write(out, element);
+                      return;
+                    }
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage");
+                }
+
+                @Override
+                public ChatCompletionRequestMessage read(JsonReader in) throws IOException {
+                    Object deserialized = null;
+                    JsonElement jsonElement = elementAdapter.read(in);
+
+                    int match = 0;
+                    ArrayList<String> errorMessages = new ArrayList<>();
+                    TypeAdapter actualAdapter = elementAdapter;
+
+                    // deserialize ChatCompletionRequestSystemMessage
+                    try {
+                      // validate the JSON object to see if any exception is thrown
+                      ChatCompletionRequestSystemMessage.validateJsonElement(jsonElement);
+                      actualAdapter = adapterChatCompletionRequestSystemMessage;
+                      match++;
+                      log.log(Level.FINER, "Input data matches schema 'ChatCompletionRequestSystemMessage'");
+                    } catch (Exception e) {
+                      // deserialization failed, continue
+                      errorMessages.add(String.format("Deserialization for ChatCompletionRequestSystemMessage failed with `%s`.", e.getMessage()));
+                      log.log(Level.FINER, "Input data does not match schema 'ChatCompletionRequestSystemMessage'", e);
+                    }
+                    // deserialize ChatCompletionRequestUserMessage
+                    try {
+                      // validate the JSON object to see if any exception is thrown
+                      ChatCompletionRequestUserMessage.validateJsonElement(jsonElement);
+                      actualAdapter = adapterChatCompletionRequestUserMessage;
+                      match++;
+                      log.log(Level.FINER, "Input data matches schema 'ChatCompletionRequestUserMessage'");
+                    } catch (Exception e) {
+                      // deserialization failed, continue
+                      errorMessages.add(String.format("Deserialization for ChatCompletionRequestUserMessage failed with `%s`.", e.getMessage()));
+                      log.log(Level.FINER, "Input data does not match schema 'ChatCompletionRequestUserMessage'", e);
+                    }
+                    // deserialize ChatCompletionRequestAssistantMessage
+                    try {
+                      // validate the JSON object to see if any exception is thrown
+                      ChatCompletionRequestAssistantMessage.validateJsonElement(jsonElement);
+                      actualAdapter = adapterChatCompletionRequestAssistantMessage;
+                      match++;
+                      log.log(Level.FINER, "Input data matches schema 'ChatCompletionRequestAssistantMessage'");
+                    } catch (Exception e) {
+                      // deserialization failed, continue
+                      errorMessages.add(String.format("Deserialization for ChatCompletionRequestAssistantMessage failed with `%s`.", e.getMessage()));
+                      log.log(Level.FINER, "Input data does not match schema 'ChatCompletionRequestAssistantMessage'", e);
+                    }
+                    // deserialize ChatCompletionRequestToolMessage
+                    try {
+                      // validate the JSON object to see if any exception is thrown
+                      ChatCompletionRequestToolMessage.validateJsonElement(jsonElement);
+                      actualAdapter = adapterChatCompletionRequestToolMessage;
+                      match++;
+                      log.log(Level.FINER, "Input data matches schema 'ChatCompletionRequestToolMessage'");
+                    } catch (Exception e) {
+                      // deserialization failed, continue
+                      errorMessages.add(String.format("Deserialization for ChatCompletionRequestToolMessage failed with `%s`.", e.getMessage()));
+                      log.log(Level.FINER, "Input data does not match schema 'ChatCompletionRequestToolMessage'", e);
+                    }
+                    // deserialize ChatCompletionRequestFunctionMessage
+                    try {
+                      // validate the JSON object to see if any exception is thrown
+                      ChatCompletionRequestFunctionMessage.validateJsonElement(jsonElement);
+                      actualAdapter = adapterChatCompletionRequestFunctionMessage;
+                      match++;
+                      log.log(Level.FINER, "Input data matches schema 'ChatCompletionRequestFunctionMessage'");
+                    } catch (Exception e) {
+                      // deserialization failed, continue
+                      errorMessages.add(String.format("Deserialization for ChatCompletionRequestFunctionMessage failed with `%s`.", e.getMessage()));
+                      log.log(Level.FINER, "Input data does not match schema 'ChatCompletionRequestFunctionMessage'", e);
+                    }
+
+                    if (match == 1) {
+                        ChatCompletionRequestMessage ret = new ChatCompletionRequestMessage();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
+                    }
+
+                    throw new IOException(String.format("Failed deserialization for ChatCompletionRequestMessage: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
+                }
+            }.nullSafe();
+        }
     }
 
-    public String getValue() {
-      return value;
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
+
+    public ChatCompletionRequestMessage() {
+        super("oneOf", Boolean.FALSE);
+    }
+
+    public ChatCompletionRequestMessage(ChatCompletionRequestAssistantMessage o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public ChatCompletionRequestMessage(ChatCompletionRequestFunctionMessage o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public ChatCompletionRequestMessage(ChatCompletionRequestSystemMessage o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public ChatCompletionRequestMessage(ChatCompletionRequestToolMessage o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public ChatCompletionRequestMessage(ChatCompletionRequestUserMessage o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("ChatCompletionRequestSystemMessage", ChatCompletionRequestSystemMessage.class);
+        schemas.put("ChatCompletionRequestUserMessage", ChatCompletionRequestUserMessage.class);
+        schemas.put("ChatCompletionRequestAssistantMessage", ChatCompletionRequestAssistantMessage.class);
+        schemas.put("ChatCompletionRequestToolMessage", ChatCompletionRequestToolMessage.class);
+        schemas.put("ChatCompletionRequestFunctionMessage", ChatCompletionRequestFunctionMessage.class);
     }
 
     @Override
-    public String toString() {
-      return String.valueOf(value);
+    public Map<String, Class<?>> getSchemas() {
+        return ChatCompletionRequestMessage.schemas;
     }
 
-    public static RoleEnum fromValue(String value) {
-      for (RoleEnum b : RoleEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (instance instanceof ChatCompletionRequestSystemMessage) {
+            super.setActualInstance(instance);
+            return;
         }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+
+        if (instance instanceof ChatCompletionRequestUserMessage) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ChatCompletionRequestAssistantMessage) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ChatCompletionRequestToolMessage) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ChatCompletionRequestFunctionMessage) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage");
     }
 
-    public static class Adapter extends TypeAdapter<RoleEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final RoleEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public RoleEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return RoleEnum.fromValue(value);
-      }
+    /**
+     * Get the actual instance, which can be the following:
+     * ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage
+     *
+     * @return The actual instance (ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
     }
 
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      RoleEnum.fromValue(value);
+    /**
+     * Get the actual instance of `ChatCompletionRequestSystemMessage`. If the actual instance is not `ChatCompletionRequestSystemMessage`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ChatCompletionRequestSystemMessage`
+     * @throws ClassCastException if the instance is not `ChatCompletionRequestSystemMessage`
+     */
+    public ChatCompletionRequestSystemMessage getChatCompletionRequestSystemMessage() throws ClassCastException {
+        return (ChatCompletionRequestSystemMessage)super.getActualInstance();
     }
-  }
-
-  public static final String SERIALIZED_NAME_ROLE = "role";
-  @SerializedName(SERIALIZED_NAME_ROLE)
-  private RoleEnum role;
-
-  public static final String SERIALIZED_NAME_CONTENT = "content";
-  @SerializedName(SERIALIZED_NAME_CONTENT)
-  private String content;
-
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_FUNCTION_CALL = "function_call";
-  @SerializedName(SERIALIZED_NAME_FUNCTION_CALL)
-  private ChatCompletionRequestMessageFunctionCall functionCall;
-
-  public ChatCompletionRequestMessage() {
-  }
-
-  public ChatCompletionRequestMessage role(RoleEnum role) {
-    this.role = role;
-    return this;
-  }
-
-   /**
-   * The role of the messages author. One of &#x60;system&#x60;, &#x60;user&#x60;, &#x60;assistant&#x60;, or &#x60;function&#x60;.
-   * @return role
-  **/
-  @javax.annotation.Nonnull
-  public RoleEnum getRole() {
-    return role;
-  }
-
-  public void setRole(RoleEnum role) {
-    this.role = role;
-  }
-
-
-  public ChatCompletionRequestMessage content(String content) {
-    this.content = content;
-    return this;
-  }
-
-   /**
-   * The contents of the message. &#x60;content&#x60; is required for all messages except assistant messages with function calls.
-   * @return content
-  **/
-  @javax.annotation.Nullable
-  public String getContent() {
-    return content;
-  }
-
-  public void setContent(String content) {
-    this.content = content;
-  }
-
-
-  public ChatCompletionRequestMessage name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the author of this message. &#x60;name&#x60; is required if role is &#x60;function&#x60;, and it should be the name of the function whose response is in the &#x60;content&#x60;. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ChatCompletionRequestMessage functionCall(ChatCompletionRequestMessageFunctionCall functionCall) {
-    this.functionCall = functionCall;
-    return this;
-  }
-
-   /**
-   * Get functionCall
-   * @return functionCall
-  **/
-  @javax.annotation.Nullable
-  public ChatCompletionRequestMessageFunctionCall getFunctionCall() {
-    return functionCall;
-  }
-
-  public void setFunctionCall(ChatCompletionRequestMessageFunctionCall functionCall) {
-    this.functionCall = functionCall;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Get the actual instance of `ChatCompletionRequestUserMessage`. If the actual instance is not `ChatCompletionRequestUserMessage`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ChatCompletionRequestUserMessage`
+     * @throws ClassCastException if the instance is not `ChatCompletionRequestUserMessage`
+     */
+    public ChatCompletionRequestUserMessage getChatCompletionRequestUserMessage() throws ClassCastException {
+        return (ChatCompletionRequestUserMessage)super.getActualInstance();
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+    /**
+     * Get the actual instance of `ChatCompletionRequestAssistantMessage`. If the actual instance is not `ChatCompletionRequestAssistantMessage`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ChatCompletionRequestAssistantMessage`
+     * @throws ClassCastException if the instance is not `ChatCompletionRequestAssistantMessage`
+     */
+    public ChatCompletionRequestAssistantMessage getChatCompletionRequestAssistantMessage() throws ClassCastException {
+        return (ChatCompletionRequestAssistantMessage)super.getActualInstance();
     }
-    ChatCompletionRequestMessage chatCompletionRequestMessage = (ChatCompletionRequestMessage) o;
-    return Objects.equals(this.role, chatCompletionRequestMessage.role) &&
-        Objects.equals(this.content, chatCompletionRequestMessage.content) &&
-        Objects.equals(this.name, chatCompletionRequestMessage.name) &&
-        Objects.equals(this.functionCall, chatCompletionRequestMessage.functionCall);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(role, content, name, functionCall);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ChatCompletionRequestMessage {\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    /**
+     * Get the actual instance of `ChatCompletionRequestToolMessage`. If the actual instance is not `ChatCompletionRequestToolMessage`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ChatCompletionRequestToolMessage`
+     * @throws ClassCastException if the instance is not `ChatCompletionRequestToolMessage`
+     */
+    public ChatCompletionRequestToolMessage getChatCompletionRequestToolMessage() throws ClassCastException {
+        return (ChatCompletionRequestToolMessage)super.getActualInstance();
     }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("role");
-    openapiFields.add("content");
-    openapiFields.add("name");
-    openapiFields.add("function_call");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("role");
-  }
+    /**
+     * Get the actual instance of `ChatCompletionRequestFunctionMessage`. If the actual instance is not `ChatCompletionRequestFunctionMessage`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ChatCompletionRequestFunctionMessage`
+     * @throws ClassCastException if the instance is not `ChatCompletionRequestFunctionMessage`
+     */
+    public ChatCompletionRequestFunctionMessage getChatCompletionRequestFunctionMessage() throws ClassCastException {
+        return (ChatCompletionRequestFunctionMessage)super.getActualInstance();
+    }
 
  /**
   * Validates the JSON Element and throws an exception if issues found
@@ -271,70 +358,51 @@ public class ChatCompletionRequestMessage {
   * @throws IOException if the JSON Element is invalid with respect to ChatCompletionRequestMessage
   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ChatCompletionRequestMessage.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ChatCompletionRequestMessage is not found in the empty JSON string", ChatCompletionRequestMessage.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ChatCompletionRequestMessage.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ChatCompletionRequestMessage` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ChatCompletionRequestMessage.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("role").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `role` to be a primitive type in the JSON string but got `%s`", jsonObj.get("role").toString()));
-      }
-      // validate the required field `role`
-      RoleEnum.validateJsonElement(jsonObj.get("role"));
-      if ((jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull()) && !jsonObj.get("content").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `content` to be a primitive type in the JSON string but got `%s`", jsonObj.get("content").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // validate the optional field `function_call`
-      if (jsonObj.get("function_call") != null && !jsonObj.get("function_call").isJsonNull()) {
-        ChatCompletionRequestMessageFunctionCall.validateJsonElement(jsonObj.get("function_call"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ChatCompletionRequestMessage.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ChatCompletionRequestMessage' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ChatCompletionRequestMessage> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ChatCompletionRequestMessage.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ChatCompletionRequestMessage>() {
-           @Override
-           public void write(JsonWriter out, ChatCompletionRequestMessage value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ChatCompletionRequestMessage read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    // validate oneOf schemas one by one
+    int validCount = 0;
+    ArrayList<String> errorMessages = new ArrayList<>();
+    // validate the json string with ChatCompletionRequestSystemMessage
+    try {
+      ChatCompletionRequestSystemMessage.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(String.format("Deserialization for ChatCompletionRequestSystemMessage failed with `%s`.", e.getMessage()));
+      // continue to the next one
+    }
+    // validate the json string with ChatCompletionRequestUserMessage
+    try {
+      ChatCompletionRequestUserMessage.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(String.format("Deserialization for ChatCompletionRequestUserMessage failed with `%s`.", e.getMessage()));
+      // continue to the next one
+    }
+    // validate the json string with ChatCompletionRequestAssistantMessage
+    try {
+      ChatCompletionRequestAssistantMessage.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(String.format("Deserialization for ChatCompletionRequestAssistantMessage failed with `%s`.", e.getMessage()));
+      // continue to the next one
+    }
+    // validate the json string with ChatCompletionRequestToolMessage
+    try {
+      ChatCompletionRequestToolMessage.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(String.format("Deserialization for ChatCompletionRequestToolMessage failed with `%s`.", e.getMessage()));
+      // continue to the next one
+    }
+    // validate the json string with ChatCompletionRequestFunctionMessage
+    try {
+      ChatCompletionRequestFunctionMessage.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(String.format("Deserialization for ChatCompletionRequestFunctionMessage failed with `%s`.", e.getMessage()));
+      // continue to the next one
+    }
+    if (validCount != 1) {
+      throw new IOException(String.format("The JSON string is invalid for ChatCompletionRequestMessage with oneOf schemas: ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
     }
   }
 

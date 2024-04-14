@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,21 +21,23 @@ using Org.OpenAPITools.Converters;
 namespace Org.OpenAPITools.Models
 { 
     /// <summary>
-    /// 
+    /// The usage information for the request.
     /// </summary>
     [DataContract]
     public partial class CreateEmbeddingResponseUsage : IEquatable<CreateEmbeddingResponseUsage>
     {
         /// <summary>
-        /// Gets or Sets PromptTokens
+        /// The number of tokens used by the prompt.
         /// </summary>
+        /// <value>The number of tokens used by the prompt.</value>
         [Required]
         [DataMember(Name="prompt_tokens", EmitDefaultValue=true)]
         public int PromptTokens { get; set; }
 
         /// <summary>
-        /// Gets or Sets TotalTokens
+        /// The total number of tokens used by the request.
         /// </summary>
+        /// <value>The total number of tokens used by the request.</value>
         [Required]
         [DataMember(Name="total_tokens", EmitDefaultValue=true)]
         public int TotalTokens { get; set; }

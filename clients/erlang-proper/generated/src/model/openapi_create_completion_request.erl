@@ -11,19 +11,20 @@
 -type openapi_create_completion_request() ::
   [ {'model', openapi_create_completion_request_model:openapi_create_completion_request_model() }
   | {'prompt', openapi_create_completion_request_prompt:openapi_create_completion_request_prompt() }
-  | {'suffix', binary() }
+  | {'best_of', integer() }
+  | {'echo', boolean() }
+  | {'frequency_penalty', integer() }
+  | {'logit_bias', map() }
+  | {'logprobs', integer() }
   | {'max_tokens', integer() }
+  | {'n', integer() }
+  | {'presence_penalty', integer() }
+  | {'seed', integer() }
+  | {'stop', openapi_create_completion_request_stop:openapi_create_completion_request_stop() }
+  | {'stream', boolean() }
+  | {'suffix', binary() }
   | {'temperature', integer() }
   | {'top_p', integer() }
-  | {'n', integer() }
-  | {'stream', boolean() }
-  | {'logprobs', integer() }
-  | {'echo', boolean() }
-  | {'stop', openapi_create_completion_request_stop:openapi_create_completion_request_stop() }
-  | {'presence_penalty', integer() }
-  | {'frequency_penalty', integer() }
-  | {'best_of', integer() }
-  | {'logit_bias', map() }
   | {'user', binary() }
   ].
 
@@ -34,19 +35,20 @@ openapi_create_completion_request() ->
 openapi_create_completion_request(Fields) ->
   Default = [ {'model', openapi_create_completion_request_model:openapi_create_completion_request_model() }
             , {'prompt', openapi_create_completion_request_prompt:openapi_create_completion_request_prompt() }
-            , {'suffix', binary() }
+            , {'best_of', integer(0, 20) }
+            , {'echo', boolean() }
+            , {'frequency_penalty', integer() }
+            , {'logit_bias', map() }
+            , {'logprobs', integer(0, 5) }
             , {'max_tokens', integer(0) }
+            , {'n', integer(1, 128) }
+            , {'presence_penalty', integer() }
+            , {'seed', integer(-9223372036854775808, 9223372036854775807) }
+            , {'stop', openapi_create_completion_request_stop:openapi_create_completion_request_stop() }
+            , {'stream', boolean() }
+            , {'suffix', binary() }
             , {'temperature', integer() }
             , {'top_p', integer() }
-            , {'n', integer(1, 128) }
-            , {'stream', boolean() }
-            , {'logprobs', integer(0, 5) }
-            , {'echo', boolean() }
-            , {'stop', openapi_create_completion_request_stop:openapi_create_completion_request_stop() }
-            , {'presence_penalty', integer() }
-            , {'frequency_penalty', integer() }
-            , {'best_of', integer(0, 20) }
-            , {'logit_bias', map() }
             , {'user', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

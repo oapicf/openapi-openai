@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -35,23 +35,23 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCompletionResponseChoicesInnerLogprobs" /> class.
         /// </summary>
-        /// <param name="tokens">tokens.</param>
-        /// <param name="tokenLogprobs">tokenLogprobs.</param>
-        /// <param name="topLogprobs">topLogprobs.</param>
         /// <param name="textOffset">textOffset.</param>
-        public CreateCompletionResponseChoicesInnerLogprobs(List<string> tokens = default(List<string>), List<decimal> tokenLogprobs = default(List<decimal>), List<Object> topLogprobs = default(List<Object>), List<int> textOffset = default(List<int>))
+        /// <param name="tokenLogprobs">tokenLogprobs.</param>
+        /// <param name="tokens">tokens.</param>
+        /// <param name="topLogprobs">topLogprobs.</param>
+        public CreateCompletionResponseChoicesInnerLogprobs(List<int> textOffset = default(List<int>), List<decimal> tokenLogprobs = default(List<decimal>), List<string> tokens = default(List<string>), List<Dictionary<string, decimal>> topLogprobs = default(List<Dictionary<string, decimal>>))
         {
-            this.Tokens = tokens;
-            this.TokenLogprobs = tokenLogprobs;
-            this.TopLogprobs = topLogprobs;
             this.TextOffset = textOffset;
+            this.TokenLogprobs = tokenLogprobs;
+            this.Tokens = tokens;
+            this.TopLogprobs = topLogprobs;
         }
 
         /// <summary>
-        /// Gets or Sets Tokens
+        /// Gets or Sets TextOffset
         /// </summary>
-        [DataMember(Name = "tokens", EmitDefaultValue = false)]
-        public List<string> Tokens { get; set; }
+        [DataMember(Name = "text_offset", EmitDefaultValue = false)]
+        public List<int> TextOffset { get; set; }
 
         /// <summary>
         /// Gets or Sets TokenLogprobs
@@ -60,16 +60,16 @@ namespace Org.OpenAPITools.Model
         public List<decimal> TokenLogprobs { get; set; }
 
         /// <summary>
+        /// Gets or Sets Tokens
+        /// </summary>
+        [DataMember(Name = "tokens", EmitDefaultValue = false)]
+        public List<string> Tokens { get; set; }
+
+        /// <summary>
         /// Gets or Sets TopLogprobs
         /// </summary>
         [DataMember(Name = "top_logprobs", EmitDefaultValue = false)]
-        public List<Object> TopLogprobs { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TextOffset
-        /// </summary>
-        [DataMember(Name = "text_offset", EmitDefaultValue = false)]
-        public List<int> TextOffset { get; set; }
+        public List<Dictionary<string, decimal>> TopLogprobs { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,10 +79,10 @@ namespace Org.OpenAPITools.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateCompletionResponseChoicesInnerLogprobs {\n");
-            sb.Append("  Tokens: ").Append(Tokens).Append("\n");
-            sb.Append("  TokenLogprobs: ").Append(TokenLogprobs).Append("\n");
-            sb.Append("  TopLogprobs: ").Append(TopLogprobs).Append("\n");
             sb.Append("  TextOffset: ").Append(TextOffset).Append("\n");
+            sb.Append("  TokenLogprobs: ").Append(TokenLogprobs).Append("\n");
+            sb.Append("  Tokens: ").Append(Tokens).Append("\n");
+            sb.Append("  TopLogprobs: ").Append(TopLogprobs).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

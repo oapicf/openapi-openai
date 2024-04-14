@@ -5,6 +5,13 @@ context("Test CreateEmbeddingRequest")
 
 model_instance <- CreateEmbeddingRequest$new()
 
+test_that("input", {
+  # tests for the property `input` (CreateEmbeddingRequestInput)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`input`, "EXPECTED_RESULT")
+})
+
 test_that("model", {
   # tests for the property `model` (CreateEmbeddingRequestModel)
 
@@ -12,11 +19,20 @@ test_that("model", {
   #expect_equal(model.instance$`model`, "EXPECTED_RESULT")
 })
 
-test_that("input", {
-  # tests for the property `input` (CreateEmbeddingRequestInput)
+test_that("encoding_format", {
+  # tests for the property `encoding_format` (character)
+  # The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`input`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`encoding_format`, "EXPECTED_RESULT")
+})
+
+test_that("dimensions", {
+  # tests for the property `dimensions` (integer)
+  # The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`dimensions`, "EXPECTED_RESULT")
 })
 
 test_that("user", {

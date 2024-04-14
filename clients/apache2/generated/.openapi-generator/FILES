@@ -1,2 +1,11 @@
 .openapi-generator-ignore
-OpenAIApi.conf
+AssistantsApi.conf
+AudioApi.conf
+ChatApi.conf
+CompletionsApi.conf
+EmbeddingsApi.conf
+FilesApi.conf
+FineTuningApi.conf
+ImagesApi.conf
+ModelsApi.conf
+ModerationsApi.conf

@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateAssistantFileRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateAssistantFileRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateAssistantFileRequest {
+    title = CreateAssistantFileRequest
+    description = CreateAssistantFileRequest
+    derivedFrom = Root
+    properties {
+        file_id {
+          type =  string
+          description = "A [File](/docs/api-reference/files) ID (with &#x60;purpose&#x3D;\&quot;assistants\&quot;&#x60;) that the assistant should use. Useful for tools like &#x60;retrieval&#x60; and &#x60;code_interpreter&#x60; that can access files."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateAssistantFileRequest {
+    title = CreateAssistantFileRequest
+    description = CreateAssistantFileRequest
+    implements = openapi_server.resourceTypes.CreateAssistantFileRequest
+
+  }
+}

@@ -20,15 +20,15 @@ typedef struct chat_completion_functions_t chat_completion_functions_t;
 
 
 typedef struct chat_completion_functions_t {
-    char *name; // string
     char *description; // string
+    char *name; // string
     list_t* parameters; //map
 
 } chat_completion_functions_t;
 
 chat_completion_functions_t *chat_completion_functions_create(
-    char *name,
     char *description,
+    char *name,
     list_t* parameters
 );
 

@@ -6,9 +6,9 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
- * @DTA\Strategy(name="ScalarMap", options={"type":"mixed"})
+ * @DTA\Strategy(name="ScalarMap", options={"type":"int"})
  * @DTA\Validator(name="Collection", options={"validators":{
- *     {"name":"Scalar", "options":{"type":"mixed"}}
+ *     {"name":"Scalar", "options":{"type":"int"}}
  * }})
  */
 class Collection1 extends \ArrayObject

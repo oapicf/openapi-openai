@@ -19,13 +19,44 @@ import java.util.Objects;
 
 public class ListModelsResponse   {
   
-  private String _object;
+
+public enum ObjectEnum {
+
+    @JsonProperty("list") LIST(String.valueOf("list"));
+
+
+    private String value;
+
+    ObjectEnum(String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private ObjectEnum _object;
 
   private List<@Valid Model> data = new ArrayList<>();
 
   /**
    **/
-  public ListModelsResponse _object(String _object) {
+  public ListModelsResponse _object(ObjectEnum _object) {
     this._object = _object;
     return this;
   }
@@ -34,10 +65,10 @@ public class ListModelsResponse   {
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("object")
   @NotNull
-  public String getObject() {
+  public ObjectEnum getObject() {
     return _object;
   }
-  public void setObject(String _object) {
+  public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 

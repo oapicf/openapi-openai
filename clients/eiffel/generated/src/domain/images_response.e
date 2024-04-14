@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -21,7 +21,7 @@ feature --Access
 
     created: INTEGER_32
       
-    data: detachable LIST [IMAGES_RESPONSE_DATA_INNER]
+    data: detachable LIST [IMAGE]
       
 
 feature -- Change Element

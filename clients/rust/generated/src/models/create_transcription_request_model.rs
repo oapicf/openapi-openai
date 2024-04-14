@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -10,18 +10,16 @@
 
 use crate::models;
 
-/// CreateTranscriptionRequestModel : ID of the model to use. Only `whisper-1` is currently available. 
-/// ID of the model to use. Only `whisper-1` is currently available. 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateTranscriptionRequestModel {
-    String(String),
-    String(String),
+/// CreateTranscriptionRequestModel : ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available. 
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+pub struct CreateTranscriptionRequestModel {
 }
 
-impl Default for CreateTranscriptionRequestModel {
-    fn default() -> Self {
-        Self::String(Default::default())
+impl CreateTranscriptionRequestModel {
+    /// ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available. 
+    pub fn new() -> CreateTranscriptionRequestModel {
+        CreateTranscriptionRequestModel {
+        }
     }
 }
 

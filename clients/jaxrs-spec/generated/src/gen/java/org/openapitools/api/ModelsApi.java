@@ -20,13 +20,16 @@ import javax.validation.Valid;
 */
 @Path("/models")
 @Api(description = "the models API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ModelsApi {
 
     @DELETE
     @Path("/{model}")
     @Produces({ "application/json" })
-    @ApiOperation(value = "Delete a fine-tuned model. You must have the Owner role in your organization.", notes = "", response = DeleteModelResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.", notes = "", response = DeleteModelResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Models" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = DeleteModelResponse.class)
     })
@@ -36,7 +39,10 @@ public class ModelsApi {
 
     @GET
     @Produces({ "application/json" })
-    @ApiOperation(value = "Lists the currently available models, and provides basic information about each one such as the owner and availability.", notes = "", response = ListModelsResponse.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Lists the currently available models, and provides basic information about each one such as the owner and availability.", notes = "", response = ListModelsResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Models" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListModelsResponse.class)
     })
@@ -47,7 +53,10 @@ public class ModelsApi {
     @GET
     @Path("/{model}")
     @Produces({ "application/json" })
-    @ApiOperation(value = "Retrieves a model instance, providing basic information about the model such as the owner and permissioning.", notes = "", response = Model.class, tags={ "OpenAI" })
+    @ApiOperation(value = "Retrieves a model instance, providing basic information about the model such as the owner and permissioning.", notes = "", response = Model.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Models" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Model.class)
     })

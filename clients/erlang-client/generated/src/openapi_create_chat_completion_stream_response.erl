@@ -6,21 +6,24 @@
 
 -type openapi_create_chat_completion_stream_response() ::
     #{ 'id' := binary(),
-       'object' := binary(),
+       'choices' := list(),
        'created' := integer(),
        'model' := binary(),
-       'choices' := list()
+       'system_fingerprint' => binary(),
+       'object' := binary()
      }.
 
 encode(#{ 'id' := Id,
-          'object' := Object,
+          'choices' := Choices,
           'created' := Created,
           'model' := Model,
-          'choices' := Choices
+          'system_fingerprint' := SystemFingerprint,
+          'object' := Object
         }) ->
     #{ 'id' => Id,
-       'object' => Object,
+       'choices' => Choices,
        'created' => Created,
        'model' => Model,
-       'choices' => Choices
+       'system_fingerprint' => SystemFingerprint,
+       'object' => Object
      }.

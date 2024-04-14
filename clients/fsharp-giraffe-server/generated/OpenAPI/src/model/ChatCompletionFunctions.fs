@@ -11,8 +11,8 @@ module ChatCompletionFunctions =
 
 
   type ChatCompletionFunctions = {
-    Name : string;
     Description : string;
+    Name : string;
     Parameters : IDictionary<string, AnyType>;
   }
   //#endregion

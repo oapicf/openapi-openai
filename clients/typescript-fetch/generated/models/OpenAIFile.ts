@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,71 +14,105 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * The `File` object represents a document that has been uploaded to OpenAI.
  * @export
  * @interface OpenAIFile
  */
 export interface OpenAIFile {
     /**
-     * 
+     * The file identifier, which can be referenced in the API endpoints.
      * @type {string}
      * @memberof OpenAIFile
      */
     id: string;
     /**
-     * 
-     * @type {string}
-     * @memberof OpenAIFile
-     */
-    object: string;
-    /**
-     * 
+     * The size of the file, in bytes.
      * @type {number}
      * @memberof OpenAIFile
      */
     bytes: number;
     /**
-     * 
+     * The Unix timestamp (in seconds) for when the file was created.
      * @type {number}
      * @memberof OpenAIFile
      */
     createdAt: number;
     /**
-     * 
+     * The name of the file.
      * @type {string}
      * @memberof OpenAIFile
      */
     filename: string;
     /**
-     * 
+     * The object type, which is always `file`.
      * @type {string}
      * @memberof OpenAIFile
      */
-    purpose: string;
+    object: OpenAIFileObjectEnum;
     /**
-     * 
+     * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
      * @type {string}
      * @memberof OpenAIFile
      */
-    status?: string;
+    purpose: OpenAIFilePurposeEnum;
     /**
-     * 
-     * @type {object}
+     * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+     * @type {string}
      * @memberof OpenAIFile
+     * @deprecated
      */
-    statusDetails?: object;
+    status: OpenAIFileStatusEnum;
+    /**
+     * Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
+     * @type {string}
+     * @memberof OpenAIFile
+     * @deprecated
+     */
+    statusDetails?: string;
 }
+
+
+/**
+ * @export
+ */
+export const OpenAIFileObjectEnum = {
+    File: 'file'
+} as const;
+export type OpenAIFileObjectEnum = typeof OpenAIFileObjectEnum[keyof typeof OpenAIFileObjectEnum];
+
+/**
+ * @export
+ */
+export const OpenAIFilePurposeEnum = {
+    FineTune: 'fine-tune',
+    FineTuneResults: 'fine-tune-results',
+    Assistants: 'assistants',
+    AssistantsOutput: 'assistants_output'
+} as const;
+export type OpenAIFilePurposeEnum = typeof OpenAIFilePurposeEnum[keyof typeof OpenAIFilePurposeEnum];
+
+/**
+ * @export
+ */
+export const OpenAIFileStatusEnum = {
+    Uploaded: 'uploaded',
+    Processed: 'processed',
+    Error: 'error'
+} as const;
+export type OpenAIFileStatusEnum = typeof OpenAIFileStatusEnum[keyof typeof OpenAIFileStatusEnum];
+
 
 /**
  * Check if a given object implements the OpenAIFile interface.
  */
 export function instanceOfOpenAIFile(value: object): boolean {
     if (!('id' in value)) return false;
-    if (!('object' in value)) return false;
     if (!('bytes' in value)) return false;
     if (!('createdAt' in value)) return false;
     if (!('filename' in value)) return false;
+    if (!('object' in value)) return false;
     if (!('purpose' in value)) return false;
+    if (!('status' in value)) return false;
     return true;
 }
 
@@ -93,12 +127,12 @@ export function OpenAIFileFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'id': json['id'],
-        'object': json['object'],
         'bytes': json['bytes'],
         'createdAt': json['created_at'],
         'filename': json['filename'],
+        'object': json['object'],
         'purpose': json['purpose'],
-        'status': json['status'] == null ? undefined : json['status'],
+        'status': json['status'],
         'statusDetails': json['status_details'] == null ? undefined : json['status_details'],
     };
 }
@@ -110,10 +144,10 @@ export function OpenAIFileToJSON(value?: OpenAIFile | null): any {
     return {
         
         'id': value['id'],
-        'object': value['object'],
         'bytes': value['bytes'],
         'created_at': value['createdAt'],
         'filename': value['filename'],
+        'object': value['object'],
         'purpose': value['purpose'],
         'status': value['status'],
         'status_details': value['statusDetails'],

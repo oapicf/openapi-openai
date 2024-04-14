@@ -23,23 +23,35 @@ CreateEmbeddingRequest::~CreateEmbeddingRequest()
 void
 CreateEmbeddingRequest::__init()
 {
-	//model = new CreateEmbeddingRequest_model();
 	//input = new CreateEmbeddingRequest_input();
+	//model = new CreateEmbeddingRequest_model();
+	//encoding_format = std::string();
+	//dimensions = int(0);
 	//user = std::string();
 }
 
 void
 CreateEmbeddingRequest::__cleanup()
 {
+	//if(input != NULL) {
+	//
+	//delete input;
+	//input = NULL;
+	//}
 	//if(model != NULL) {
 	//
 	//delete model;
 	//model = NULL;
 	//}
-	//if(input != NULL) {
+	//if(encoding_format != NULL) {
 	//
-	//delete input;
-	//input = NULL;
+	//delete encoding_format;
+	//encoding_format = NULL;
+	//}
+	//if(dimensions != NULL) {
+	//
+	//delete dimensions;
+	//dimensions = NULL;
 	//}
 	//if(user != NULL) {
 	//
@@ -54,6 +66,20 @@ CreateEmbeddingRequest::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
+	const gchar *inputKey = "input";
+	node = json_object_get_member(pJsonObject, inputKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("CreateEmbeddingRequest_input")) {
+			jsonToValue(&input, node, "CreateEmbeddingRequest_input", "CreateEmbeddingRequest_input");
+		} else {
+			
+			CreateEmbeddingRequest_input* obj = static_cast<CreateEmbeddingRequest_input*> (&input);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
 	const gchar *modelKey = "model";
 	node = json_object_get_member(pJsonObject, modelKey);
 	if (node !=NULL) {
@@ -68,17 +94,25 @@ CreateEmbeddingRequest::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *inputKey = "input";
-	node = json_object_get_member(pJsonObject, inputKey);
+	const gchar *encoding_formatKey = "encoding_format";
+	node = json_object_get_member(pJsonObject, encoding_formatKey);
 	if (node !=NULL) {
 	
 
-		if (isprimitive("CreateEmbeddingRequest_input")) {
-			jsonToValue(&input, node, "CreateEmbeddingRequest_input", "CreateEmbeddingRequest_input");
+		if (isprimitive("std::string")) {
+			jsonToValue(&encoding_format, node, "std::string", "");
 		} else {
 			
-			CreateEmbeddingRequest_input* obj = static_cast<CreateEmbeddingRequest_input*> (&input);
-			obj->fromJson(json_to_string(node, false));
+		}
+	}
+	const gchar *dimensionsKey = "dimensions";
+	node = json_object_get_member(pJsonObject, dimensionsKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("int")) {
+			jsonToValue(&dimensions, node, "int", "");
+		} else {
 			
 		}
 	}
@@ -105,20 +139,6 @@ CreateEmbeddingRequest::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
-	if (isprimitive("CreateEmbeddingRequest_model")) {
-		CreateEmbeddingRequest_model obj = getModel();
-		node = converttoJson(&obj, "CreateEmbeddingRequest_model", "");
-	}
-	else {
-		
-		CreateEmbeddingRequest_model obj = static_cast<CreateEmbeddingRequest_model> (getModel());
-		GError *mygerror;
-		mygerror = NULL;
-		node = json_from_string(obj.toJson(), &mygerror);
-		
-	}
-	const gchar *modelKey = "model";
-	json_object_set_member(pJsonObject, modelKey, node);
 	if (isprimitive("CreateEmbeddingRequest_input")) {
 		CreateEmbeddingRequest_input obj = getInput();
 		node = converttoJson(&obj, "CreateEmbeddingRequest_input", "");
@@ -133,6 +153,38 @@ CreateEmbeddingRequest::toJson()
 	}
 	const gchar *inputKey = "input";
 	json_object_set_member(pJsonObject, inputKey, node);
+	if (isprimitive("CreateEmbeddingRequest_model")) {
+		CreateEmbeddingRequest_model obj = getModel();
+		node = converttoJson(&obj, "CreateEmbeddingRequest_model", "");
+	}
+	else {
+		
+		CreateEmbeddingRequest_model obj = static_cast<CreateEmbeddingRequest_model> (getModel());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *modelKey = "model";
+	json_object_set_member(pJsonObject, modelKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getEncodingFormat();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *encoding_formatKey = "encoding_format";
+	json_object_set_member(pJsonObject, encoding_formatKey, node);
+	if (isprimitive("int")) {
+		int obj = getDimensions();
+		node = converttoJson(&obj, "int", "");
+	}
+	else {
+		
+	}
+	const gchar *dimensionsKey = "dimensions";
+	json_object_set_member(pJsonObject, dimensionsKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getUser();
 		node = converttoJson(&obj, "std::string", "");
@@ -150,6 +202,18 @@ CreateEmbeddingRequest::toJson()
 	return ret;
 }
 
+CreateEmbeddingRequest_input
+CreateEmbeddingRequest::getInput()
+{
+	return input;
+}
+
+void
+CreateEmbeddingRequest::setInput(CreateEmbeddingRequest_input  input)
+{
+	this->input = input;
+}
+
 CreateEmbeddingRequest_model
 CreateEmbeddingRequest::getModel()
 {
@@ -162,16 +226,28 @@ CreateEmbeddingRequest::setModel(CreateEmbeddingRequest_model  model)
 	this->model = model;
 }
 
-CreateEmbeddingRequest_input
-CreateEmbeddingRequest::getInput()
+std::string
+CreateEmbeddingRequest::getEncodingFormat()
 {
-	return input;
+	return encoding_format;
 }
 
 void
-CreateEmbeddingRequest::setInput(CreateEmbeddingRequest_input  input)
+CreateEmbeddingRequest::setEncodingFormat(std::string  encoding_format)
 {
-	this->input = input;
+	this->encoding_format = encoding_format;
+}
+
+int
+CreateEmbeddingRequest::getDimensions()
+{
+	return dimensions;
+}
+
+void
+CreateEmbeddingRequest::setDimensions(int  dimensions)
+{
+	this->dimensions = dimensions;
 }
 
 std::string

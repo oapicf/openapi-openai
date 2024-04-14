@@ -15,13 +15,13 @@ public class Bootstrap extends HttpServlet {
   public void init(ServletConfig config) throws ServletException {
     Info info = new Info()
       .title("OpenAPI Server")
-      .description("APIs for sampling from and fine-tuning language models")
-      .termsOfService("")
+      .description("The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.")
+      .termsOfService("https://openai.com/policies/terms-of-use")
       .contact(new Contact()
         .email("blah+oapicf@cliffano.com"))
       .license(new License()
-        .name("")
-        .url("http://unlicense.org"));
+        .name("MIT")
+        .url("https://github.com/openai/openai-openapi/blob/master/LICENSE"));
 
     ServletContext context = config.getServletContext();
     Swagger swagger = new Swagger().info(info);

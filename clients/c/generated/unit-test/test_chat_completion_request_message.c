@@ -16,25 +16,29 @@
 #include "../model/chat_completion_request_message.h"
 chat_completion_request_message_t* instantiate_chat_completion_request_message(int include_optional);
 
-#include "test_chat_completion_request_message_function_call.c"
+#include "test_chat_completion_request_assistant_message_function_call.c"
 
 
 chat_completion_request_message_t* instantiate_chat_completion_request_message(int include_optional) {
   chat_completion_request_message_t* chat_completion_request_message = NULL;
   if (include_optional) {
     chat_completion_request_message = chat_completion_request_message_create(
-      openai_api_chat_completion_request_message_ROLE_system,
       "0",
+      openai_api_chat_completion_request_message_ROLE_function,
       "0",
+      list_createList(),
        // false, not to have infinite recursion
-      instantiate_chat_completion_request_message_function_call(0)
+      instantiate_chat_completion_request_assistant_message_function_call(0),
+      "0"
     );
   } else {
     chat_completion_request_message = chat_completion_request_message_create(
-      openai_api_chat_completion_request_message_ROLE_system,
       "0",
+      openai_api_chat_completion_request_message_ROLE_function,
       "0",
-      NULL
+      list_createList(),
+      NULL,
+      "0"
     );
   }
 

@@ -11,12 +11,15 @@ import org.openapitools.model.CreateModerationResponseResultsInner;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+/**
+ * Represents if a given text input is potentially harmful.
+ **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-
+@ApiModel(description = "Represents if a given text input is potentially harmful.")
 public class CreateModerationResponse   {
   
   private String id;
@@ -26,6 +29,7 @@ public class CreateModerationResponse   {
   private List<@Valid CreateModerationResponseResultsInner> results = new ArrayList<>();
 
   /**
+   * The unique identifier for the moderation request.
    **/
   public CreateModerationResponse id(String id) {
     this.id = id;
@@ -33,7 +37,7 @@ public class CreateModerationResponse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier for the moderation request.")
   @JsonProperty("id")
   @NotNull
   public String getId() {
@@ -45,6 +49,7 @@ public class CreateModerationResponse   {
 
 
   /**
+   * The model used to generate the moderation results.
    **/
   public CreateModerationResponse model(String model) {
     this.model = model;
@@ -52,7 +57,7 @@ public class CreateModerationResponse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model used to generate the moderation results.")
   @JsonProperty("model")
   @NotNull
   public String getModel() {
@@ -64,6 +69,7 @@ public class CreateModerationResponse   {
 
 
   /**
+   * A list of moderation objects.
    **/
   public CreateModerationResponse results(List<@Valid CreateModerationResponseResultsInner> results) {
     this.results = results;
@@ -71,7 +77,7 @@ public class CreateModerationResponse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A list of moderation objects.")
   @JsonProperty("results")
   @NotNull
   public List<@Valid CreateModerationResponseResultsInner> getResults() {

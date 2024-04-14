@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,22 +11,24 @@
  */
 
 import { ChatCompletionStreamResponseDelta } from '../models/ChatCompletionStreamResponseDelta';
+import { CreateChatCompletionResponseChoicesInnerLogprobs } from '../models/CreateChatCompletionResponseChoicesInnerLogprobs';
 import { HttpFile } from '../http/http';
 
 export class CreateChatCompletionStreamResponseChoicesInner {
-    'index'?: number;
-    'delta'?: ChatCompletionStreamResponseDelta;
-    'finishReason'?: CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum;
+    'delta': ChatCompletionStreamResponseDelta;
+    'logprobs'?: CreateChatCompletionResponseChoicesInnerLogprobs | null;
+    /**
+    * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+    */
+    'finishReason': CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum | null;
+    /**
+    * The index of the choice in the list of choices.
+    */
+    'index': number;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "index",
-            "baseName": "index",
-            "type": "number",
-            "format": ""
-        },
         {
             "name": "delta",
             "baseName": "delta",
@@ -34,9 +36,21 @@ export class CreateChatCompletionStreamResponseChoicesInner {
             "format": ""
         },
         {
+            "name": "logprobs",
+            "baseName": "logprobs",
+            "type": "CreateChatCompletionResponseChoicesInnerLogprobs",
+            "format": ""
+        },
+        {
             "name": "finishReason",
             "baseName": "finish_reason",
             "type": "CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum",
+            "format": ""
+        },
+        {
+            "name": "index",
+            "baseName": "index",
+            "type": "number",
             "format": ""
         }    ];
 
@@ -52,6 +66,8 @@ export class CreateChatCompletionStreamResponseChoicesInner {
 export enum CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum {
     Stop = 'stop',
     Length = 'length',
+    ToolCalls = 'tool_calls',
+    ContentFilter = 'content_filter',
     FunctionCall = 'function_call'
 }
 

@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,15 +12,42 @@
 
 import { RequestFile } from './models';
 
+/**
+* The `File` object represents a document that has been uploaded to OpenAI.
+*/
 export class OpenAIFile {
+    /**
+    * The file identifier, which can be referenced in the API endpoints.
+    */
     'id': string;
-    'object': string;
+    /**
+    * The size of the file, in bytes.
+    */
     'bytes': number;
+    /**
+    * The Unix timestamp (in seconds) for when the file was created.
+    */
     'createdAt': number;
+    /**
+    * The name of the file.
+    */
     'filename': string;
-    'purpose': string;
-    'status'?: string;
-    'statusDetails'?: object | null;
+    /**
+    * The object type, which is always `file`.
+    */
+    'object': OpenAIFile.ObjectEnum;
+    /**
+    * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+    */
+    'purpose': OpenAIFile.PurposeEnum;
+    /**
+    * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+    */
+    'status': OpenAIFile.StatusEnum;
+    /**
+    * Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
+    */
+    'statusDetails'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -28,11 +55,6 @@ export class OpenAIFile {
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
-        },
-        {
-            "name": "object",
-            "baseName": "object",
             "type": "string"
         },
         {
@@ -51,19 +73,24 @@ export class OpenAIFile {
             "type": "string"
         },
         {
+            "name": "object",
+            "baseName": "object",
+            "type": "OpenAIFile.ObjectEnum"
+        },
+        {
             "name": "purpose",
             "baseName": "purpose",
-            "type": "string"
+            "type": "OpenAIFile.PurposeEnum"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string"
+            "type": "OpenAIFile.StatusEnum"
         },
         {
             "name": "statusDetails",
             "baseName": "status_details",
-            "type": "object"
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -71,3 +98,19 @@ export class OpenAIFile {
     }
 }
 
+export namespace OpenAIFile {
+    export enum ObjectEnum {
+        File = <any> 'file'
+    }
+    export enum PurposeEnum {
+        FineTune = <any> 'fine-tune',
+        FineTuneResults = <any> 'fine-tune-results',
+        Assistants = <any> 'assistants',
+        AssistantsOutput = <any> 'assistants_output'
+    }
+    export enum StatusEnum {
+        Uploaded = <any> 'uploaded',
+        Processed = <any> 'processed',
+        Error = <any> 'error'
+    }
+}

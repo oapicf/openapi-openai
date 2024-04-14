@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -40,10 +40,10 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    QString getText() const;
-    void setText(const QString &text);
-    bool is_text_Set() const;
-    bool is_text_Valid() const;
+    QString getFinishReason() const;
+    void setFinishReason(const QString &finish_reason);
+    bool is_finish_reason_Set() const;
+    bool is_finish_reason_Valid() const;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);
@@ -55,10 +55,10 @@ public:
     bool is_logprobs_Set() const;
     bool is_logprobs_Valid() const;
 
-    QString getFinishReason() const;
-    void setFinishReason(const QString &finish_reason);
-    bool is_finish_reason_Set() const;
-    bool is_finish_reason_Valid() const;
+    QString getText() const;
+    void setText(const QString &text);
+    bool is_text_Set() const;
+    bool is_text_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -66,9 +66,9 @@ public:
 private:
     void initializeModel();
 
-    QString text;
-    bool m_text_isSet;
-    bool m_text_isValid;
+    QString finish_reason;
+    bool m_finish_reason_isSet;
+    bool m_finish_reason_isValid;
 
     qint32 index;
     bool m_index_isSet;
@@ -78,9 +78,9 @@ private:
     bool m_logprobs_isSet;
     bool m_logprobs_isValid;
 
-    QString finish_reason;
-    bool m_finish_reason_isSet;
-    bool m_finish_reason_isValid;
+    QString text;
+    bool m_text_isSet;
+    bool m_text_isValid;
 };
 
 } // namespace OpenAPI

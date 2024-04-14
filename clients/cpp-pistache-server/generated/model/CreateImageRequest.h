@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -20,6 +20,7 @@
 
 
 #include <string>
+#include "CreateImageRequest_model.h"
 #include <nlohmann/json.hpp>
 
 namespace org::openapitools::server::model
@@ -59,31 +60,52 @@ public:
     /// CreateImageRequest members
 
     /// <summary>
-    /// A text description of the desired image(s). The maximum length is 1000 characters.
+    /// A text description of the desired image(s). The maximum length is 1000 characters for &#x60;dall-e-2&#x60; and 4000 characters for &#x60;dall-e-3&#x60;.
     /// </summary>
     std::string getPrompt() const;
     void setPrompt(std::string const& value);
     /// <summary>
-    /// The number of images to generate. Must be between 1 and 10.
+    /// 
+    /// </summary>
+    org::openapitools::server::model::CreateImageRequest_model getModel() const;
+    void setModel(org::openapitools::server::model::CreateImageRequest_model const& value);
+    bool modelIsSet() const;
+    void unsetModel();
+    /// <summary>
+    /// The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.
     /// </summary>
     int32_t getN() const;
     void setN(int32_t const value);
     bool NIsSet() const;
     void unsetn();
     /// <summary>
-    /// The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
+    /// The quality of the image that will be generated. &#x60;hd&#x60; creates images with finer details and greater consistency across the image. This param is only supported for &#x60;dall-e-3&#x60;.
+    /// </summary>
+    std::string getQuality() const;
+    void setQuality(std::string const& value);
+    bool qualityIsSet() const;
+    void unsetQuality();
+    /// <summary>
+    /// The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
+    /// </summary>
+    std::string getResponseFormat() const;
+    void setResponseFormat(std::string const& value);
+    bool responseFormatIsSet() const;
+    void unsetResponse_format();
+    /// <summary>
+    /// The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60; for &#x60;dall-e-2&#x60;. Must be one of &#x60;1024x1024&#x60;, &#x60;1792x1024&#x60;, or &#x60;1024x1792&#x60; for &#x60;dall-e-3&#x60; models.
     /// </summary>
     std::string getSize() const;
     void setSize(std::string const& value);
     bool sizeIsSet() const;
     void unsetSize();
     /// <summary>
-    /// The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
+    /// The style of the generated images. Must be one of &#x60;vivid&#x60; or &#x60;natural&#x60;. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for &#x60;dall-e-3&#x60;.
     /// </summary>
-    std::string getResponseFormat() const;
-    void setResponseFormat(std::string const& value);
-    bool responseFormatIsSet() const;
-    void unsetResponse_format();
+    std::string getStyle() const;
+    void setStyle(std::string const& value);
+    bool styleIsSet() const;
+    void unsetStyle();
     /// <summary>
     /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
     /// </summary>
@@ -97,12 +119,18 @@ public:
 protected:
     std::string m_Prompt;
 
+    org::openapitools::server::model::CreateImageRequest_model m_Model;
+    bool m_ModelIsSet;
     int32_t m_n;
     bool m_nIsSet;
-    std::string m_Size;
-    bool m_SizeIsSet;
+    std::string m_Quality;
+    bool m_QualityIsSet;
     std::string m_Response_format;
     bool m_Response_formatIsSet;
+    std::string m_Size;
+    bool m_SizeIsSet;
+    std::string m_Style;
+    bool m_StyleIsSet;
     std::string m_User;
     bool m_UserIsSet;
     

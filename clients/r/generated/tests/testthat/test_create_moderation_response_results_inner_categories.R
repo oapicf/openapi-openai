@@ -7,6 +7,7 @@ model_instance <- CreateModerationResponseResultsInnerCategories$new()
 
 test_that("hate", {
   # tests for the property `hate` (character)
+  # Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`hate`, "EXPECTED_RESULT")
@@ -14,20 +15,55 @@ test_that("hate", {
 
 test_that("hate/threatening", {
   # tests for the property `hate/threatening` (character)
+  # Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`hate/threatening`, "EXPECTED_RESULT")
 })
 
+test_that("harassment", {
+  # tests for the property `harassment` (character)
+  # Content that expresses, incites, or promotes harassing language towards any target.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`harassment`, "EXPECTED_RESULT")
+})
+
+test_that("harassment/threatening", {
+  # tests for the property `harassment/threatening` (character)
+  # Harassment content that also includes violence or serious harm towards any target.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`harassment/threatening`, "EXPECTED_RESULT")
+})
+
 test_that("self-harm", {
   # tests for the property `self-harm` (character)
+  # Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`self-harm`, "EXPECTED_RESULT")
 })
 
+test_that("self-harm/intent", {
+  # tests for the property `self-harm/intent` (character)
+  # Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`self-harm/intent`, "EXPECTED_RESULT")
+})
+
+test_that("self-harm/instructions", {
+  # tests for the property `self-harm/instructions` (character)
+  # Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`self-harm/instructions`, "EXPECTED_RESULT")
+})
+
 test_that("sexual", {
   # tests for the property `sexual` (character)
+  # Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
 
   # uncomment below to test the property
   #expect_equal(model.instance$`sexual`, "EXPECTED_RESULT")
@@ -35,6 +71,7 @@ test_that("sexual", {
 
 test_that("sexual/minors", {
   # tests for the property `sexual/minors` (character)
+  # Sexual content that includes an individual who is under 18 years old.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`sexual/minors`, "EXPECTED_RESULT")
@@ -42,6 +79,7 @@ test_that("sexual/minors", {
 
 test_that("violence", {
   # tests for the property `violence` (character)
+  # Content that depicts death, violence, or physical injury.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`violence`, "EXPECTED_RESULT")
@@ -49,6 +87,7 @@ test_that("violence", {
 
 test_that("violence/graphic", {
   # tests for the property `violence/graphic` (character)
+  # Content that depicts death, violence, or physical injury in graphic detail.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`violence/graphic`, "EXPECTED_RESULT")

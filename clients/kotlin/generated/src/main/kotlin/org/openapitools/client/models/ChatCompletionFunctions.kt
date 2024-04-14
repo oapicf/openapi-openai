@@ -23,10 +23,11 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
- * @param description The description of what the function does.
- * @param parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+ * @param description A description of what the function does, used by the model to choose when and how to call the function.
+ * @param parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
  */
 
+@Deprecated(message = "This schema is deprecated.")
 
 data class ChatCompletionFunctions (
 
@@ -34,11 +35,11 @@ data class ChatCompletionFunctions (
     @Json(name = "name")
     val name: kotlin.String,
 
-    /* The description of what the function does. */
+    /* A description of what the function does, used by the model to choose when and how to call the function. */
     @Json(name = "description")
     val description: kotlin.String? = null,
 
-    /* The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. */
+    /* The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. */
     @Json(name = "parameters")
     val parameters: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
 

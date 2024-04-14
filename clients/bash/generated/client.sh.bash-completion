@@ -69,61 +69,117 @@ _()
     # The list of available operation in the REST service
     # It's modelled as an associative array for efficient key lookup
     declare -A operations
-    operations["cancelFineTune"]=1
+    operations["cancelRun"]=1
+    operations["createAssistant"]=1
+    operations["createAssistantFile"]=1
+    operations["createMessage"]=1
+    operations["createRun"]=1
+    operations["createThread"]=1
+    operations["createThreadAndRun"]=1
+    operations["deleteAssistant"]=1
+    operations["deleteAssistantFile"]=1
+    operations["deleteThread"]=1
+    operations["getAssistant"]=1
+    operations["getAssistantFile"]=1
+    operations["getMessage"]=1
+    operations["getMessageFile"]=1
+    operations["getRun"]=1
+    operations["getRunStep"]=1
+    operations["getThread"]=1
+    operations["listAssistantFiles"]=1
+    operations["listAssistants"]=1
+    operations["listMessageFiles"]=1
+    operations["listMessages"]=1
+    operations["listRunSteps"]=1
+    operations["listRuns"]=1
+    operations["modifyAssistant"]=1
+    operations["modifyMessage"]=1
+    operations["modifyRun"]=1
+    operations["modifyThread"]=1
+    operations["submitToolOuputsToRun"]=1
+    operations["createSpeech"]=1
+    operations["createTranscription"]=1
+    operations["createTranslation"]=1
     operations["createChatCompletion"]=1
     operations["createCompletion"]=1
-    operations["createEdit"]=1
     operations["createEmbedding"]=1
     operations["createFile"]=1
-    operations["createFineTune"]=1
+    operations["deleteFile"]=1
+    operations["downloadFile"]=1
+    operations["listFiles"]=1
+    operations["retrieveFile"]=1
+    operations["cancelFineTuningJob"]=1
+    operations["createFineTuningJob"]=1
+    operations["listFineTuningEvents"]=1
+    operations["listFineTuningJobCheckpoints"]=1
+    operations["listPaginatedFineTuningJobs"]=1
+    operations["retrieveFineTuningJob"]=1
     operations["createImage"]=1
     operations["createImageEdit"]=1
     operations["createImageVariation"]=1
-    operations["createModeration"]=1
-    operations["createTranscription"]=1
-    operations["createTranslation"]=1
-    operations["deleteFile"]=1
     operations["deleteModel"]=1
-    operations["downloadFile"]=1
-    operations["listFiles"]=1
-    operations["listFineTuneEvents"]=1
-    operations["listFineTunes"]=1
     operations["listModels"]=1
-    operations["retrieveFile"]=1
-    operations["retrieveFineTune"]=1
     operations["retrieveModel"]=1
+    operations["createModeration"]=1
 
     # An associative array of operations to their parameters
     # Only include path, query and header parameters
     declare -A operation_parameters
-    operation_parameters["cancelFineTune"]="fine_tune_id= "
+    operation_parameters["cancelRun"]="thread_id= run_id= "
+    operation_parameters["createAssistant"]=""
+    operation_parameters["createAssistantFile"]="assistant_id= "
+    operation_parameters["createMessage"]="thread_id= "
+    operation_parameters["createRun"]="thread_id= "
+    operation_parameters["createThread"]=""
+    operation_parameters["createThreadAndRun"]=""
+    operation_parameters["deleteAssistant"]="assistant_id= "
+    operation_parameters["deleteAssistantFile"]="assistant_id= file_id= "
+    operation_parameters["deleteThread"]="thread_id= "
+    operation_parameters["getAssistant"]="assistant_id= "
+    operation_parameters["getAssistantFile"]="assistant_id= file_id= "
+    operation_parameters["getMessage"]="thread_id= message_id= "
+    operation_parameters["getMessageFile"]="thread_id= message_id= file_id= "
+    operation_parameters["getRun"]="thread_id= run_id= "
+    operation_parameters["getRunStep"]="thread_id= run_id= step_id= "
+    operation_parameters["getThread"]="thread_id= "
+    operation_parameters["listAssistantFiles"]="assistant_id= limit= order= after= before= "
+    operation_parameters["listAssistants"]="limit= order= after= before= "
+    operation_parameters["listMessageFiles"]="thread_id= message_id= limit= order= after= before= "
+    operation_parameters["listMessages"]="thread_id= limit= order= after= before= run_id= "
+    operation_parameters["listRunSteps"]="thread_id= run_id= limit= order= after= before= "
+    operation_parameters["listRuns"]="thread_id= limit= order= after= before= "
+    operation_parameters["modifyAssistant"]="assistant_id= "
+    operation_parameters["modifyMessage"]="thread_id= message_id= "
+    operation_parameters["modifyRun"]="thread_id= run_id= "
+    operation_parameters["modifyThread"]="thread_id= "
+    operation_parameters["submitToolOuputsToRun"]="thread_id= run_id= "
+    operation_parameters["createSpeech"]=""
+    operation_parameters["createTranscription"]=""
+    operation_parameters["createTranslation"]=""
     operation_parameters["createChatCompletion"]=""
     operation_parameters["createCompletion"]=""
-    operation_parameters["createEdit"]=""
     operation_parameters["createEmbedding"]=""
     operation_parameters["createFile"]=""
-    operation_parameters["createFineTune"]=""
+    operation_parameters["deleteFile"]="file_id= "
+    operation_parameters["downloadFile"]="file_id= "
+    operation_parameters["listFiles"]="purpose= "
+    operation_parameters["retrieveFile"]="file_id= "
+    operation_parameters["cancelFineTuningJob"]="fine_tuning_job_id= "
+    operation_parameters["createFineTuningJob"]=""
+    operation_parameters["listFineTuningEvents"]="fine_tuning_job_id= after= limit= "
+    operation_parameters["listFineTuningJobCheckpoints"]="fine_tuning_job_id= after= limit= "
+    operation_parameters["listPaginatedFineTuningJobs"]="after= limit= "
+    operation_parameters["retrieveFineTuningJob"]="fine_tuning_job_id= "
     operation_parameters["createImage"]=""
     operation_parameters["createImageEdit"]=""
     operation_parameters["createImageVariation"]=""
-    operation_parameters["createModeration"]=""
-    operation_parameters["createTranscription"]=""
-    operation_parameters["createTranslation"]=""
-    operation_parameters["deleteFile"]="file_id= "
     operation_parameters["deleteModel"]="model= "
-    operation_parameters["downloadFile"]="file_id= "
-    operation_parameters["listFiles"]=""
-    operation_parameters["listFineTuneEvents"]="fine_tune_id= stream= "
-    operation_parameters["listFineTunes"]=""
     operation_parameters["listModels"]=""
-    operation_parameters["retrieveFile"]="file_id= "
-    operation_parameters["retrieveFineTune"]="fine_tune_id= "
     operation_parameters["retrieveModel"]="model= "
+    operation_parameters["createModeration"]=""
 
     # An associative array of possible values for enum parameters
     declare -A operation_parameters_enum_values
-    operation_parameters_enum_values["listFineTuneEvents::stream"]="true false"
-    operation_parameters_enum_values["listFineTuneEvents::stream"]="true false"
 
     #
     # Check if this is OSX and use special __osx_init_completion function

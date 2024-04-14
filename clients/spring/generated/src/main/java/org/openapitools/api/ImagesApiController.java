@@ -1,5 +1,6 @@
 package org.openapitools.api;
 
+import org.openapitools.model.CreateImageEditRequestModel;
 import org.openapitools.model.CreateImageRequest;
 import org.openapitools.model.ImagesResponse;
 
@@ -27,7 +28,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Controller
 @RequestMapping("${openapi.openAI.base-path:/v1}")
 public class ImagesApiController implements ImagesApi {

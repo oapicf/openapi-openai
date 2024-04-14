@@ -33,9 +33,9 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Validated
-@Tag(name = "OpenAI", description = "The OpenAI REST API")
+@Tag(name = "Completions", description = "Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.")
 public interface CompletionsApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -51,11 +51,14 @@ public interface CompletionsApi {
     @Operation(
         operationId = "createCompletion",
         summary = "Creates a completion for the provided prompt and parameters.",
-        tags = { "OpenAI" },
+        tags = { "Completions" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = CreateCompletionResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -71,7 +74,7 @@ public interface CompletionsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"created\" : 0, \"usage\" : { \"completion_tokens\" : 5, \"prompt_tokens\" : 1, \"total_tokens\" : 5 }, \"model\" : \"model\", \"id\" : \"id\", \"choices\" : [ { \"finish_reason\" : \"stop\", \"index\" : 6, \"text\" : \"text\", \"logprobs\" : { \"top_logprobs\" : [ \"{}\", \"{}\" ], \"token_logprobs\" : [ 1.4658129805029452, 1.4658129805029452 ], \"tokens\" : [ \"tokens\", \"tokens\" ], \"text_offset\" : [ 5, 5 ] } }, { \"finish_reason\" : \"stop\", \"index\" : 6, \"text\" : \"text\", \"logprobs\" : { \"top_logprobs\" : [ \"{}\", \"{}\" ], \"token_logprobs\" : [ 1.4658129805029452, 1.4658129805029452 ], \"tokens\" : [ \"tokens\", \"tokens\" ], \"text_offset\" : [ 5, 5 ] } } ], \"object\" : \"object\" }";
+                    String exampleString = "{ \"created\" : 5, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"model\" : \"model\", \"id\" : \"id\", \"choices\" : [ { \"finish_reason\" : \"stop\", \"index\" : 0, \"text\" : \"text\", \"logprobs\" : { \"top_logprobs\" : [ { \"key\" : 5.962133916683182 }, { \"key\" : 5.962133916683182 } ], \"token_logprobs\" : [ 1.4658129805029452, 1.4658129805029452 ], \"tokens\" : [ \"tokens\", \"tokens\" ], \"text_offset\" : [ 6, 6 ] } }, { \"finish_reason\" : \"stop\", \"index\" : 0, \"text\" : \"text\", \"logprobs\" : { \"top_logprobs\" : [ { \"key\" : 5.962133916683182 }, { \"key\" : 5.962133916683182 } ], \"token_logprobs\" : [ 1.4658129805029452, 1.4658129805029452 ], \"tokens\" : [ \"tokens\", \"tokens\" ], \"text_offset\" : [ 6, 6 ] } } ], \"system_fingerprint\" : \"system_fingerprint\", \"object\" : \"text_completion\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

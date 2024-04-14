@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,10 +23,10 @@ namespace OpenAPI
 void OpenAPIError::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("type")); WriteJsonValue(Writer, Type);
+	Writer->WriteIdentifierPrefix(TEXT("code")); WriteJsonValue(Writer, Code);
 	Writer->WriteIdentifierPrefix(TEXT("message")); WriteJsonValue(Writer, Message);
 	Writer->WriteIdentifierPrefix(TEXT("param")); WriteJsonValue(Writer, Param);
-	Writer->WriteIdentifierPrefix(TEXT("code")); WriteJsonValue(Writer, Code);
+	Writer->WriteIdentifierPrefix(TEXT("type")); WriteJsonValue(Writer, Type);
 	Writer->WriteObjectEnd();
 }
 
@@ -38,10 +38,10 @@ bool OpenAPIError::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("type"), Type);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("code"), Code);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("message"), Message);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("param"), Param);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("code"), Code);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("type"), Type);
 
 	return ParseSuccess;
 }

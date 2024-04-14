@@ -12,13 +12,28 @@ import org.joda.time.DateTime
 import CreateModerationResponseResultsInnerCategoryScores._
 
 case class CreateModerationResponseResultsInnerCategoryScores (
+  /* The score for the category 'hate'. */
   hate: BigDecimal,
-hateThreatening: BigDecimal,
-selfHarm: BigDecimal,
-sexual: BigDecimal,
-sexualMinors: BigDecimal,
-violence: BigDecimal,
-violenceGraphic: BigDecimal)
+/* The score for the category 'hate/threatening'. */
+  hateThreatening: BigDecimal,
+/* The score for the category 'harassment'. */
+  harassment: BigDecimal,
+/* The score for the category 'harassment/threatening'. */
+  harassmentThreatening: BigDecimal,
+/* The score for the category 'self-harm'. */
+  selfHarm: BigDecimal,
+/* The score for the category 'self-harm/intent'. */
+  selfHarmIntent: BigDecimal,
+/* The score for the category 'self-harm/instructions'. */
+  selfHarmInstructions: BigDecimal,
+/* The score for the category 'sexual'. */
+  sexual: BigDecimal,
+/* The score for the category 'sexual/minors'. */
+  sexualMinors: BigDecimal,
+/* The score for the category 'violence'. */
+  violence: BigDecimal,
+/* The score for the category 'violence/graphic'. */
+  violenceGraphic: BigDecimal)
 
 object CreateModerationResponseResultsInnerCategoryScores {
   import DateTimeCodecs._

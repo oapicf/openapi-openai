@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,7 +14,7 @@ type DeleteModelResponse struct {
 
 	Id string `json:"id"`
 
-	Object string `json:"object"`
-
 	Deleted bool `json:"deleted"`
+
+	Object string `json:"object"`
 }

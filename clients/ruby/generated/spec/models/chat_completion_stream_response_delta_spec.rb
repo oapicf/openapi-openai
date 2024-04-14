@@ -1,7 +1,7 @@
 =begin
 #OpenAI API
 
-#APIs for sampling from and fine-tuning language models
+#The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 The version of the OpenAPI document: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -27,16 +27,6 @@ describe OpenApiOpenAIClient::ChatCompletionStreamResponseDelta do
     end
   end
 
-  describe 'test attribute "role"' do
-    it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["system", "user", "assistant", "function"])
-      # validator.allowable_values.each do |value|
-      #   expect { instance.role = value }.not_to raise_error
-      # end
-    end
-  end
-
   describe 'test attribute "content"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
@@ -46,6 +36,22 @@ describe OpenApiOpenAIClient::ChatCompletionStreamResponseDelta do
   describe 'test attribute "function_call"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
+  describe 'test attribute "tool_calls"' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
+  describe 'test attribute "role"' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["system", "user", "assistant", "tool"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.role = value }.not_to raise_error
+      # end
     end
   end
 

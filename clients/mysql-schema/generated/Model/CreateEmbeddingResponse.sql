@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `CreateEmbeddingResponse`
 --
-SELECT `object`, `model`, `data`, `usage` FROM `CreateEmbeddingResponse` WHERE 1;
+SELECT `data`, `model`, `object`, `usage` FROM `CreateEmbeddingResponse` WHERE 1;
 
 --
 -- INSERT template for table `CreateEmbeddingResponse`
 --
-INSERT INTO `CreateEmbeddingResponse`(`object`, `model`, `data`, `usage`) VALUES (?, ?, ?, ?);
+INSERT INTO `CreateEmbeddingResponse`(`data`, `model`, `object`, `usage`) VALUES (?, ?, ?, ?);
 
 --
 -- UPDATE template for table `CreateEmbeddingResponse`
 --
-UPDATE `CreateEmbeddingResponse` SET `object` = ?, `model` = ?, `data` = ?, `usage` = ? WHERE 1;
+UPDATE `CreateEmbeddingResponse` SET `data` = ?, `model` = ?, `object` = ?, `usage` = ? WHERE 1;
 
 --
 -- DELETE template for table `CreateEmbeddingResponse`

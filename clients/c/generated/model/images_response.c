@@ -27,7 +27,7 @@ void images_response_free(images_response_t *images_response) {
     listEntry_t *listEntry;
     if (images_response->data) {
         list_ForEach(listEntry, images_response->data) {
-            images_response_data_inner_free(listEntry->data);
+            image_free(listEntry->data);
         }
         list_freeList(images_response->data);
         images_response->data = NULL;
@@ -59,7 +59,7 @@ cJSON *images_response_convertToJSON(images_response_t *images_response) {
     listEntry_t *dataListEntry;
     if (images_response->data) {
     list_ForEach(dataListEntry, images_response->data) {
-    cJSON *itemLocal = images_response_data_inner_convertToJSON(dataListEntry->data);
+    cJSON *itemLocal = image_convertToJSON(dataListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -113,7 +113,7 @@ images_response_t *images_response_parseFromJSON(cJSON *images_responseJSON){
         if(!cJSON_IsObject(data_local_nonprimitive)){
             goto end;
         }
-        images_response_data_inner_t *dataItem = images_response_data_inner_parseFromJSON(data_local_nonprimitive);
+        image_t *dataItem = image_parseFromJSON(data_local_nonprimitive);
 
         list_addElement(dataList, dataItem);
     }
@@ -129,7 +129,7 @@ end:
     if (dataList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, dataList) {
-            images_response_data_inner_free(listEntry->data);
+            image_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(dataList);

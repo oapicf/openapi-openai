@@ -73,32 +73,33 @@ private class OASCreateCompletionRequestTest {
     private static void maintainRenamedProperties() {
         OASCreateCompletionRequest createCompletionRequest = new OASCreateCompletionRequest();
         Map<String, String> x-property-mappings = createCompletionRequest.getx-property-mappings();
-        System.assertEquals('maxTokens', x-property-mappings.get('max_tokens'));
-        System.assertEquals('topP', x-property-mappings.get('top_p'));
-        System.assertEquals('presencePenalty', x-property-mappings.get('presence_penalty'));
-        System.assertEquals('frequencyPenalty', x-property-mappings.get('frequency_penalty'));
         System.assertEquals('bestOf', x-property-mappings.get('best_of'));
+        System.assertEquals('frequencyPenalty', x-property-mappings.get('frequency_penalty'));
         System.assertEquals('logitBias', x-property-mappings.get('logit_bias'));
+        System.assertEquals('maxTokens', x-property-mappings.get('max_tokens'));
+        System.assertEquals('presencePenalty', x-property-mappings.get('presence_penalty'));
+        System.assertEquals('topP', x-property-mappings.get('top_p'));
     }
 
     @isTest
     private static void defaultValuesPopulated() {
         OASCreateCompletionRequest createCompletionRequest = new OASCreateCompletionRequest();
+        System.assertEquals(1, createCompletionRequest.bestOf);
+        System.assertEquals(false, createCompletionRequest.echo);
+        System.assertEquals(0, createCompletionRequest.frequencyPenalty);
+        System.assertEquals(new Map<String, Integer>(), createCompletionRequest.logitBias);
         System.assertEquals(16, createCompletionRequest.maxTokens);
+        System.assertEquals(1, createCompletionRequest.n);
+        System.assertEquals(0, createCompletionRequest.presencePenalty);
+        System.assertEquals(false, createCompletionRequest.stream);
         System.assertEquals(1, createCompletionRequest.temperature);
         System.assertEquals(1, createCompletionRequest.topP);
-        System.assertEquals(1, createCompletionRequest.n);
-        System.assertEquals(false, createCompletionRequest.stream);
-        System.assertEquals(false, createCompletionRequest.echo);
-        System.assertEquals(0, createCompletionRequest.presencePenalty);
-        System.assertEquals(0, createCompletionRequest.frequencyPenalty);
-        System.assertEquals(1, createCompletionRequest.bestOf);
         System.assertEquals(null, createCompletionRequest.model);
         System.assertEquals(null, createCompletionRequest.prompt);
-        System.assertEquals(null, createCompletionRequest.suffix);
         System.assertEquals(null, createCompletionRequest.logprobs);
+        System.assertEquals(null, createCompletionRequest.seed);
         System.assertEquals(null, createCompletionRequest.stop);
-        System.assertEquals(null, createCompletionRequest.logitBias);
+        System.assertEquals(null, createCompletionRequest.suffix);
         System.assertEquals(null, createCompletionRequest.user);
     }
 }

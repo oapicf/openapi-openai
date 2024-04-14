@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,10 +20,37 @@ import (
 func main() {
 	log.Printf("Server started")
 
-	OpenAIAPIService := openapi.NewOpenAIAPIService()
-	OpenAIAPIController := openapi.NewOpenAIAPIController(OpenAIAPIService)
+	AssistantsAPIService := openapi.NewAssistantsAPIService()
+	AssistantsAPIController := openapi.NewAssistantsAPIController(AssistantsAPIService)
 
-	router := openapi.NewRouter(OpenAIAPIController)
+	AudioAPIService := openapi.NewAudioAPIService()
+	AudioAPIController := openapi.NewAudioAPIController(AudioAPIService)
+
+	ChatAPIService := openapi.NewChatAPIService()
+	ChatAPIController := openapi.NewChatAPIController(ChatAPIService)
+
+	CompletionsAPIService := openapi.NewCompletionsAPIService()
+	CompletionsAPIController := openapi.NewCompletionsAPIController(CompletionsAPIService)
+
+	EmbeddingsAPIService := openapi.NewEmbeddingsAPIService()
+	EmbeddingsAPIController := openapi.NewEmbeddingsAPIController(EmbeddingsAPIService)
+
+	FilesAPIService := openapi.NewFilesAPIService()
+	FilesAPIController := openapi.NewFilesAPIController(FilesAPIService)
+
+	FineTuningAPIService := openapi.NewFineTuningAPIService()
+	FineTuningAPIController := openapi.NewFineTuningAPIController(FineTuningAPIService)
+
+	ImagesAPIService := openapi.NewImagesAPIService()
+	ImagesAPIController := openapi.NewImagesAPIController(ImagesAPIService)
+
+	ModelsAPIService := openapi.NewModelsAPIService()
+	ModelsAPIController := openapi.NewModelsAPIController(ModelsAPIService)
+
+	ModerationsAPIService := openapi.NewModerationsAPIService()
+	ModerationsAPIController := openapi.NewModerationsAPIController(ModerationsAPIService)
+
+	router := openapi.NewRouter(AssistantsAPIController, AudioAPIController, ChatAPIController, CompletionsAPIController, EmbeddingsAPIController, FilesAPIController, FineTuningAPIController, ImagesAPIController, ModelsAPIController, ModerationsAPIController)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

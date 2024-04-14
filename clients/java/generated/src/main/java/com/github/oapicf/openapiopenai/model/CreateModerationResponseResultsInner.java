@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -51,7 +51,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateModerationResponseResultsInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponseResultsInner {
   public static final String SERIALIZED_NAME_FLAGGED = "flagged";
   @SerializedName(SERIALIZED_NAME_FLAGGED)
@@ -74,7 +74,7 @@ public class CreateModerationResponseResultsInner {
   }
 
    /**
-   * Get flagged
+   * Whether any of the below categories are flagged.
    * @return flagged
   **/
   @javax.annotation.Nonnull

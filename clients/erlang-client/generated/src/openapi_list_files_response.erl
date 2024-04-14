@@ -5,13 +5,13 @@
 -export_type([openapi_list_files_response/0]).
 
 -type openapi_list_files_response() ::
-    #{ 'object' := binary(),
-       'data' := list()
+    #{ 'data' := list(),
+       'object' := binary()
      }.
 
-encode(#{ 'object' := Object,
-          'data' := Data
+encode(#{ 'data' := Data,
+          'object' := Object
         }) ->
-    #{ 'object' => Object,
-       'data' => Data
+    #{ 'data' => Data,
+       'object' => Object
      }.

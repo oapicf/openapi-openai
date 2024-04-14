@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTuningJobHyperparameters"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTuningJobHyperparameters"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FineTuningJobHyperparametersNEpochs = openapi_server.resourceTypes.FineTuningJobHyperparametersNEpochs
+}
+resourceTypes {
+
+  FineTuningJobHyperparameters {
+    title = FineTuningJobHyperparameters
+    description = FineTuningJobHyperparameters
+    derivedFrom = Root
+    properties {
+        n_epochs {
+          type = FineTuningJobHyperparametersNEpochs
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTuningJobHyperparameters {
+    title = FineTuningJobHyperparameters
+    description = FineTuningJobHyperparameters
+    implements = openapi_server.resourceTypes.FineTuningJobHyperparameters
+
+  }
+}

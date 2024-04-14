@@ -15,23 +15,22 @@
 
 typedef struct create_completion_response_choices_inner_logprobs_t create_completion_response_choices_inner_logprobs_t;
 
-#include "object.h"
 
 
 
 typedef struct create_completion_response_choices_inner_logprobs_t {
-    list_t *tokens; //primitive container
-    list_t *token_logprobs; //primitive container
-    list_t *top_logprobs; //nonprimitive container
     list_t *text_offset; //primitive container
+    list_t *token_logprobs; //primitive container
+    list_t *tokens; //primitive container
+    list_t *top_logprobs; //primitive container
 
 } create_completion_response_choices_inner_logprobs_t;
 
 create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs_create(
-    list_t *tokens,
+    list_t *text_offset,
     list_t *token_logprobs,
-    list_t *top_logprobs,
-    list_t *text_offset
+    list_t *tokens,
+    list_t *top_logprobs
 );
 
 void create_completion_response_choices_inner_logprobs_free(create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs);

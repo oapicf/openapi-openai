@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -40,10 +40,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ChatCompletionFunctions" /> class.
         /// </summary>
+        /// <param name="description">A description of what the function does, used by the model to choose when and how to call the function..</param>
         /// <param name="name">The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. (required).</param>
-        /// <param name="description">The description of what the function does..</param>
-        /// <param name="parameters">The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format..</param>
-        public ChatCompletionFunctions(string name = default(string), string description = default(string), Dictionary<string, Object> parameters = default(Dictionary<string, Object>))
+        /// <param name="parameters">The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list..</param>
+        public ChatCompletionFunctions(string description = default(string), string name = default(string), Dictionary<string, Object> parameters = default(Dictionary<string, Object>))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -56,6 +56,13 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
+        /// A description of what the function does, used by the model to choose when and how to call the function.
+        /// </summary>
+        /// <value>A description of what the function does, used by the model to choose when and how to call the function.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
+
+        /// <summary>
         /// The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
         /// </summary>
         /// <value>The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.</value>
@@ -63,16 +70,9 @@ namespace Org.OpenAPITools.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// The description of what the function does.
+        /// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
         /// </summary>
-        /// <value>The description of what the function does.</value>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
-        /// </summary>
-        /// <value>The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.</value>
+        /// <value>The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.</value>
         [DataMember(Name = "parameters", EmitDefaultValue = false)]
         public Dictionary<string, Object> Parameters { get; set; }
 
@@ -84,8 +84,8 @@ namespace Org.OpenAPITools.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ChatCompletionFunctions {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Parameters: ").Append(Parameters).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -16,27 +16,35 @@ class CreateEmbeddingRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, model: CreateEmbeddingRequestModel=None, input: CreateEmbeddingRequestInput=None, user: str=None):
+    def __init__(self, input: CreateEmbeddingRequestInput=None, model: CreateEmbeddingRequestModel=None, encoding_format: str='float', dimensions: int=None, user: str=None):
         """CreateEmbeddingRequest - a model defined in OpenAPI
 
-        :param model: The model of this CreateEmbeddingRequest.
         :param input: The input of this CreateEmbeddingRequest.
+        :param model: The model of this CreateEmbeddingRequest.
+        :param encoding_format: The encoding_format of this CreateEmbeddingRequest.
+        :param dimensions: The dimensions of this CreateEmbeddingRequest.
         :param user: The user of this CreateEmbeddingRequest.
         """
         self.openapi_types = {
-            'model': CreateEmbeddingRequestModel,
             'input': CreateEmbeddingRequestInput,
+            'model': CreateEmbeddingRequestModel,
+            'encoding_format': str,
+            'dimensions': int,
             'user': str
         }
 
         self.attribute_map = {
-            'model': 'model',
             'input': 'input',
+            'model': 'model',
+            'encoding_format': 'encoding_format',
+            'dimensions': 'dimensions',
             'user': 'user'
         }
 
-        self._model = model
         self._input = input
+        self._model = model
+        self._encoding_format = encoding_format
+        self._dimensions = dimensions
         self._user = user
 
     @classmethod
@@ -47,6 +55,29 @@ class CreateEmbeddingRequest(Model):
         :return: The CreateEmbeddingRequest of this CreateEmbeddingRequest.
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def input(self):
+        """Gets the input of this CreateEmbeddingRequest.
+
+
+        :return: The input of this CreateEmbeddingRequest.
+        :rtype: CreateEmbeddingRequestInput
+        """
+        return self._input
+
+    @input.setter
+    def input(self, input):
+        """Sets the input of this CreateEmbeddingRequest.
+
+
+        :param input: The input of this CreateEmbeddingRequest.
+        :type input: CreateEmbeddingRequestInput
+        """
+        if input is None:
+            raise ValueError("Invalid value for `input`, must not be `None`")
+
+        self._input = input
 
     @property
     def model(self):
@@ -72,27 +103,58 @@ class CreateEmbeddingRequest(Model):
         self._model = model
 
     @property
-    def input(self):
-        """Gets the input of this CreateEmbeddingRequest.
+    def encoding_format(self):
+        """Gets the encoding_format of this CreateEmbeddingRequest.
 
+        The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
 
-        :return: The input of this CreateEmbeddingRequest.
-        :rtype: CreateEmbeddingRequestInput
+        :return: The encoding_format of this CreateEmbeddingRequest.
+        :rtype: str
         """
-        return self._input
+        return self._encoding_format
 
-    @input.setter
-    def input(self, input):
-        """Sets the input of this CreateEmbeddingRequest.
+    @encoding_format.setter
+    def encoding_format(self, encoding_format):
+        """Sets the encoding_format of this CreateEmbeddingRequest.
 
+        The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
 
-        :param input: The input of this CreateEmbeddingRequest.
-        :type input: CreateEmbeddingRequestInput
+        :param encoding_format: The encoding_format of this CreateEmbeddingRequest.
+        :type encoding_format: str
         """
-        if input is None:
-            raise ValueError("Invalid value for `input`, must not be `None`")
+        allowed_values = ["float", "base64"]  # noqa: E501
+        if encoding_format not in allowed_values:
+            raise ValueError(
+                "Invalid value for `encoding_format` ({0}), must be one of {1}"
+                .format(encoding_format, allowed_values)
+            )
 
-        self._input = input
+        self._encoding_format = encoding_format
+
+    @property
+    def dimensions(self):
+        """Gets the dimensions of this CreateEmbeddingRequest.
+
+        The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+
+        :return: The dimensions of this CreateEmbeddingRequest.
+        :rtype: int
+        """
+        return self._dimensions
+
+    @dimensions.setter
+    def dimensions(self, dimensions):
+        """Sets the dimensions of this CreateEmbeddingRequest.
+
+        The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+
+        :param dimensions: The dimensions of this CreateEmbeddingRequest.
+        :type dimensions: int
+        """
+        if dimensions is not None and dimensions < 1:
+            raise ValueError("Invalid value for `dimensions`, must be a value greater than or equal to `1`")
+
+        self._dimensions = dimensions
 
     @property
     def user(self):

@@ -9,9 +9,12 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
+/**
+ * The usage information for the request.
+ **/
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-03-16T01:12:27.532392463Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@ApiModel(description = "The usage information for the request.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-04-14T13:37:33.081471369Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateEmbeddingResponseUsage   {
   @JsonProperty("prompt_tokens")
   private Integer promptTokens;
@@ -20,6 +23,7 @@ public class CreateEmbeddingResponseUsage   {
   private Integer totalTokens;
 
   /**
+   * The number of tokens used by the prompt.
    **/
   public CreateEmbeddingResponseUsage promptTokens(Integer promptTokens) {
     this.promptTokens = promptTokens;
@@ -27,7 +31,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The number of tokens used by the prompt.")
   @JsonProperty("prompt_tokens")
   public Integer getPromptTokens() {
     return promptTokens;
@@ -37,6 +41,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   /**
+   * The total number of tokens used by the request.
    **/
   public CreateEmbeddingResponseUsage totalTokens(Integer totalTokens) {
     this.totalTokens = totalTokens;
@@ -44,7 +49,7 @@ public class CreateEmbeddingResponseUsage   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The total number of tokens used by the request.")
   @JsonProperty("total_tokens")
   public Integer getTotalTokens() {
     return totalTokens;

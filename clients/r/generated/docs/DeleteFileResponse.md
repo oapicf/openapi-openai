@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **character** |  | 
-**object** | **character** |  | 
+**object** | **character** |  | [Enum: [file]] 
 **deleted** | **character** |  | 
 
 

@@ -1,0 +1,2 @@
+testCase,httpStatusCode,createImageRequest,image,prompt,mask,model,n,size,responseFormat,user,image,model,n,responseFormat,size,user
+Success,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

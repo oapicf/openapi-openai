@@ -1,0 +1,17 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Log probability information for the choice.",
+  "name": "CreateChatCompletionResponseChoicesInnerLogprobs",
+  "fields": [
+    {
+      "name": "content",
+      "type": {
+        "type": "array",
+        "items": "model.ChatCompletionTokenLogprob"
+      },
+      "doc": "A list of message content tokens with log probability information."
+    }
+  ]
+
+}

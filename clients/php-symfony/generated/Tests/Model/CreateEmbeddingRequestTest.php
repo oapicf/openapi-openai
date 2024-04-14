@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -87,6 +87,17 @@ class CreateEmbeddingRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "input"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyInput(): void
+    {
+        $this->markTestSkipped('Test for property input not implemented');
+    }
+
+    /**
      * Test attribute "model"
      *
      * @group unit
@@ -98,14 +109,25 @@ class CreateEmbeddingRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "input"
+     * Test attribute "encodingFormat"
      *
      * @group unit
      * @small
      */
-    public function testPropertyInput(): void
+    public function testPropertyEncodingFormat(): void
     {
-        $this->markTestSkipped('Test for property input not implemented');
+        $this->markTestSkipped('Test for property encodingFormat not implemented');
+    }
+
+    /**
+     * Test attribute "dimensions"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyDimensions(): void
+    {
+        $this->markTestSkipped('Test for property dimensions not implemented');
     }
 
     /**

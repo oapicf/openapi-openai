@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,18 +27,24 @@ namespace Org.OpenAPITools.Models
     public partial class CreateImageRequest : IEquatable<CreateImageRequest>
     {
         /// <summary>
-        /// A text description of the desired image(s). The maximum length is 1000 characters.
+        /// A text description of the desired image(s). The maximum length is 1000 characters for &#x60;dall-e-2&#x60; and 4000 characters for &#x60;dall-e-3&#x60;.
         /// </summary>
-        /// <value>A text description of the desired image(s). The maximum length is 1000 characters.</value>
+        /// <value>A text description of the desired image(s). The maximum length is 1000 characters for &#x60;dall-e-2&#x60; and 4000 characters for &#x60;dall-e-3&#x60;.</value>
         /// <example>A cute baby sea otter</example>
         [Required]
         [DataMember(Name="prompt", EmitDefaultValue=false)]
         public string Prompt { get; set; }
 
         /// <summary>
-        /// The number of images to generate. Must be between 1 and 10.
+        /// Gets or Sets Model
         /// </summary>
-        /// <value>The number of images to generate. Must be between 1 and 10.</value>
+        [DataMember(Name="model", EmitDefaultValue=true)]
+        public CreateImageRequestModel Model { get; set; }
+
+        /// <summary>
+        /// The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.
+        /// </summary>
+        /// <value>The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.</value>
         /// <example>1</example>
         [Range(1, 10)]
         [DataMember(Name="n", EmitDefaultValue=true)]
@@ -46,9 +52,71 @@ namespace Org.OpenAPITools.Models
 
 
         /// <summary>
-        /// The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
+        /// The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.
         /// </summary>
-        /// <value>The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.</value>
+        /// <value>The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.</value>
+        [TypeConverter(typeof(CustomEnumConverter<QualityEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum QualityEnum
+        {
+            
+            /// <summary>
+            /// Enum StandardEnum for standard
+            /// </summary>
+            [EnumMember(Value = "standard")]
+            StandardEnum = 1,
+            
+            /// <summary>
+            /// Enum HdEnum for hd
+            /// </summary>
+            [EnumMember(Value = "hd")]
+            HdEnum = 2
+        }
+
+        /// <summary>
+        /// The quality of the image that will be generated. &#x60;hd&#x60; creates images with finer details and greater consistency across the image. This param is only supported for &#x60;dall-e-3&#x60;.
+        /// </summary>
+        /// <value>The quality of the image that will be generated. &#x60;hd&#x60; creates images with finer details and greater consistency across the image. This param is only supported for &#x60;dall-e-3&#x60;.</value>
+        /// <example>standard</example>
+        [DataMember(Name="quality", EmitDefaultValue=true)]
+        public QualityEnum Quality { get; set; } = QualityEnum.StandardEnum;
+
+
+        /// <summary>
+        /// The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
+        /// </summary>
+        /// <value>The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.</value>
+        [TypeConverter(typeof(CustomEnumConverter<ResponseFormatEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum ResponseFormatEnum
+        {
+            
+            /// <summary>
+            /// Enum UrlEnum for url
+            /// </summary>
+            [EnumMember(Value = "url")]
+            UrlEnum = 1,
+            
+            /// <summary>
+            /// Enum B64JsonEnum for b64_json
+            /// </summary>
+            [EnumMember(Value = "b64_json")]
+            B64JsonEnum = 2
+        }
+
+        /// <summary>
+        /// The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
+        /// </summary>
+        /// <value>The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.</value>
+        /// <example>url</example>
+        [DataMember(Name="response_format", EmitDefaultValue=true)]
+        public ResponseFormatEnum? ResponseFormat { get; set; } = ResponseFormatEnum.UrlEnum;
+
+
+        /// <summary>
+        /// The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.
+        /// </summary>
+        /// <value>The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.</value>
         [TypeConverter(typeof(CustomEnumConverter<SizeEnum>))]
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum SizeEnum
@@ -70,47 +138,59 @@ namespace Org.OpenAPITools.Models
             /// Enum _1024x1024Enum for 1024x1024
             /// </summary>
             [EnumMember(Value = "1024x1024")]
-            _1024x1024Enum = 3
+            _1024x1024Enum = 3,
+            
+            /// <summary>
+            /// Enum _1792x1024Enum for 1792x1024
+            /// </summary>
+            [EnumMember(Value = "1792x1024")]
+            _1792x1024Enum = 4,
+            
+            /// <summary>
+            /// Enum _1024x1792Enum for 1024x1792
+            /// </summary>
+            [EnumMember(Value = "1024x1792")]
+            _1024x1792Enum = 5
         }
 
         /// <summary>
-        /// The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
+        /// The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60; for &#x60;dall-e-2&#x60;. Must be one of &#x60;1024x1024&#x60;, &#x60;1792x1024&#x60;, or &#x60;1024x1792&#x60; for &#x60;dall-e-3&#x60; models.
         /// </summary>
-        /// <value>The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.</value>
+        /// <value>The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60; for &#x60;dall-e-2&#x60;. Must be one of &#x60;1024x1024&#x60;, &#x60;1792x1024&#x60;, or &#x60;1024x1792&#x60; for &#x60;dall-e-3&#x60; models.</value>
         /// <example>1024x1024</example>
         [DataMember(Name="size", EmitDefaultValue=true)]
         public SizeEnum? Size { get; set; } = SizeEnum._1024x1024Enum;
 
 
         /// <summary>
-        /// The format in which the generated images are returned. Must be one of `url` or `b64_json`.
+        /// The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.
         /// </summary>
-        /// <value>The format in which the generated images are returned. Must be one of `url` or `b64_json`.</value>
-        [TypeConverter(typeof(CustomEnumConverter<ResponseFormatEnum>))]
+        /// <value>The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.</value>
+        [TypeConverter(typeof(CustomEnumConverter<StyleEnum>))]
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum ResponseFormatEnum
+        public enum StyleEnum
         {
             
             /// <summary>
-            /// Enum UrlEnum for url
+            /// Enum VividEnum for vivid
             /// </summary>
-            [EnumMember(Value = "url")]
-            UrlEnum = 1,
+            [EnumMember(Value = "vivid")]
+            VividEnum = 1,
             
             /// <summary>
-            /// Enum B64JsonEnum for b64_json
+            /// Enum NaturalEnum for natural
             /// </summary>
-            [EnumMember(Value = "b64_json")]
-            B64JsonEnum = 2
+            [EnumMember(Value = "natural")]
+            NaturalEnum = 2
         }
 
         /// <summary>
-        /// The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.
+        /// The style of the generated images. Must be one of &#x60;vivid&#x60; or &#x60;natural&#x60;. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for &#x60;dall-e-3&#x60;.
         /// </summary>
-        /// <value>The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;.</value>
-        /// <example>url</example>
-        [DataMember(Name="response_format", EmitDefaultValue=true)]
-        public ResponseFormatEnum? ResponseFormat { get; set; } = ResponseFormatEnum.UrlEnum;
+        /// <value>The style of the generated images. Must be one of &#x60;vivid&#x60; or &#x60;natural&#x60;. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for &#x60;dall-e-3&#x60;.</value>
+        /// <example>vivid</example>
+        [DataMember(Name="style", EmitDefaultValue=true)]
+        public StyleEnum? Style { get; set; } = StyleEnum.VividEnum;
 
         /// <summary>
         /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
@@ -129,9 +209,12 @@ namespace Org.OpenAPITools.Models
             var sb = new StringBuilder();
             sb.Append("class CreateImageRequest {\n");
             sb.Append("  Prompt: ").Append(Prompt).Append("\n");
+            sb.Append("  Model: ").Append(Model).Append("\n");
             sb.Append("  N: ").Append(N).Append("\n");
-            sb.Append("  Size: ").Append(Size).Append("\n");
+            sb.Append("  Quality: ").Append(Quality).Append("\n");
             sb.Append("  ResponseFormat: ").Append(ResponseFormat).Append("\n");
+            sb.Append("  Size: ").Append(Size).Append("\n");
+            sb.Append("  Style: ").Append(Style).Append("\n");
             sb.Append("  User: ").Append(User).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -175,9 +258,24 @@ namespace Org.OpenAPITools.Models
                     Prompt.Equals(other.Prompt)
                 ) && 
                 (
+                    Model == other.Model ||
+                    Model != null &&
+                    Model.Equals(other.Model)
+                ) && 
+                (
                     N == other.N ||
                     N != null &&
                     N.Equals(other.N)
+                ) && 
+                (
+                    Quality == other.Quality ||
+                    
+                    Quality.Equals(other.Quality)
+                ) && 
+                (
+                    ResponseFormat == other.ResponseFormat ||
+                    
+                    ResponseFormat.Equals(other.ResponseFormat)
                 ) && 
                 (
                     Size == other.Size ||
@@ -185,9 +283,9 @@ namespace Org.OpenAPITools.Models
                     Size.Equals(other.Size)
                 ) && 
                 (
-                    ResponseFormat == other.ResponseFormat ||
+                    Style == other.Style ||
                     
-                    ResponseFormat.Equals(other.ResponseFormat)
+                    Style.Equals(other.Style)
                 ) && 
                 (
                     User == other.User ||
@@ -208,12 +306,18 @@ namespace Org.OpenAPITools.Models
                 // Suitable nullity checks etc, of course :)
                     if (Prompt != null)
                     hashCode = hashCode * 59 + Prompt.GetHashCode();
+                    if (Model != null)
+                    hashCode = hashCode * 59 + Model.GetHashCode();
                     if (N != null)
                     hashCode = hashCode * 59 + N.GetHashCode();
                     
-                    hashCode = hashCode * 59 + Size.GetHashCode();
+                    hashCode = hashCode * 59 + Quality.GetHashCode();
                     
                     hashCode = hashCode * 59 + ResponseFormat.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + Size.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + Style.GetHashCode();
                     if (User != null)
                     hashCode = hashCode * 59 + User.GetHashCode();
                 return hashCode;

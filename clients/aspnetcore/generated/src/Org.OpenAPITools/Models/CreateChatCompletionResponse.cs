@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,51 +21,80 @@ using Org.OpenAPITools.Converters;
 namespace Org.OpenAPITools.Models
 { 
     /// <summary>
-    /// 
+    /// Represents a chat completion response returned by model, based on the provided input.
     /// </summary>
     [DataContract]
     public partial class CreateChatCompletionResponse : IEquatable<CreateChatCompletionResponse>
     {
         /// <summary>
-        /// Gets or Sets Id
+        /// A unique identifier for the chat completion.
         /// </summary>
+        /// <value>A unique identifier for the chat completion.</value>
         [Required]
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarObject
+        /// A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
         /// </summary>
-        [Required]
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string VarObject { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Created
-        /// </summary>
-        [Required]
-        [DataMember(Name="created", EmitDefaultValue=true)]
-        public int Created { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Model
-        /// </summary>
-        [Required]
-        [DataMember(Name="model", EmitDefaultValue=false)]
-        public string Model { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Choices
-        /// </summary>
+        /// <value>A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.</value>
         [Required]
         [DataMember(Name="choices", EmitDefaultValue=false)]
         public List<CreateChatCompletionResponseChoicesInner> Choices { get; set; }
 
         /// <summary>
+        /// The Unix timestamp (in seconds) of when the chat completion was created.
+        /// </summary>
+        /// <value>The Unix timestamp (in seconds) of when the chat completion was created.</value>
+        [Required]
+        [DataMember(Name="created", EmitDefaultValue=true)]
+        public int Created { get; set; }
+
+        /// <summary>
+        /// The model used for the chat completion.
+        /// </summary>
+        /// <value>The model used for the chat completion.</value>
+        [Required]
+        [DataMember(Name="model", EmitDefaultValue=false)]
+        public string Model { get; set; }
+
+        /// <summary>
+        /// This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
+        /// </summary>
+        /// <value>This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. </value>
+        [DataMember(Name="system_fingerprint", EmitDefaultValue=false)]
+        public string SystemFingerprint { get; set; }
+
+
+        /// <summary>
+        /// The object type, which is always `chat.completion`.
+        /// </summary>
+        /// <value>The object type, which is always `chat.completion`.</value>
+        [TypeConverter(typeof(CustomEnumConverter<ObjectEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            
+            /// <summary>
+            /// Enum ChatCompletionEnum for chat.completion
+            /// </summary>
+            [EnumMember(Value = "chat.completion")]
+            ChatCompletionEnum = 1
+        }
+
+        /// <summary>
+        /// The object type, which is always &#x60;chat.completion&#x60;.
+        /// </summary>
+        /// <value>The object type, which is always &#x60;chat.completion&#x60;.</value>
+        [Required]
+        [DataMember(Name="object", EmitDefaultValue=true)]
+        public ObjectEnum VarObject { get; set; }
+
+        /// <summary>
         /// Gets or Sets Usage
         /// </summary>
         [DataMember(Name="usage", EmitDefaultValue=false)]
-        public CreateCompletionResponseUsage Usage { get; set; }
+        public CompletionUsage Usage { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -76,10 +105,11 @@ namespace Org.OpenAPITools.Models
             var sb = new StringBuilder();
             sb.Append("class CreateChatCompletionResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
+            sb.Append("  Choices: ").Append(Choices).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Model: ").Append(Model).Append("\n");
-            sb.Append("  Choices: ").Append(Choices).Append("\n");
+            sb.Append("  SystemFingerprint: ").Append(SystemFingerprint).Append("\n");
+            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  Usage: ").Append(Usage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -123,9 +153,10 @@ namespace Org.OpenAPITools.Models
                     Id.Equals(other.Id)
                 ) && 
                 (
-                    VarObject == other.VarObject ||
-                    VarObject != null &&
-                    VarObject.Equals(other.VarObject)
+                    Choices == other.Choices ||
+                    Choices != null &&
+                    other.Choices != null &&
+                    Choices.SequenceEqual(other.Choices)
                 ) && 
                 (
                     Created == other.Created ||
@@ -138,10 +169,14 @@ namespace Org.OpenAPITools.Models
                     Model.Equals(other.Model)
                 ) && 
                 (
-                    Choices == other.Choices ||
-                    Choices != null &&
-                    other.Choices != null &&
-                    Choices.SequenceEqual(other.Choices)
+                    SystemFingerprint == other.SystemFingerprint ||
+                    SystemFingerprint != null &&
+                    SystemFingerprint.Equals(other.SystemFingerprint)
+                ) && 
+                (
+                    VarObject == other.VarObject ||
+                    
+                    VarObject.Equals(other.VarObject)
                 ) && 
                 (
                     Usage == other.Usage ||
@@ -162,14 +197,16 @@ namespace Org.OpenAPITools.Models
                 // Suitable nullity checks etc, of course :)
                     if (Id != null)
                     hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (VarObject != null)
-                    hashCode = hashCode * 59 + VarObject.GetHashCode();
+                    if (Choices != null)
+                    hashCode = hashCode * 59 + Choices.GetHashCode();
                     
                     hashCode = hashCode * 59 + Created.GetHashCode();
                     if (Model != null)
                     hashCode = hashCode * 59 + Model.GetHashCode();
-                    if (Choices != null)
-                    hashCode = hashCode * 59 + Choices.GetHashCode();
+                    if (SystemFingerprint != null)
+                    hashCode = hashCode * 59 + SystemFingerprint.GetHashCode();
+                    
+                    hashCode = hashCode * 59 + VarObject.GetHashCode();
                     if (Usage != null)
                     hashCode = hashCode * 59 + Usage.GetHashCode();
                 return hashCode;

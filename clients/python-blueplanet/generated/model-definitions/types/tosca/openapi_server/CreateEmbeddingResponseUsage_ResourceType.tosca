@@ -17,12 +17,12 @@ resourceTypes {
     properties {
         prompt_tokens {
           type =  integer
-          description = ""
+          description = "The number of tokens used by the prompt."
           optional = true
         }
         total_tokens {
           type =  integer
-          description = ""
+          description = "The total number of tokens used by the request."
           optional = true
         }
     }

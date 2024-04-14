@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,6 +16,7 @@ package org.openapitools.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.CreateEmbeddingRequestInput;
@@ -28,23 +29,84 @@ import javax.validation.Valid;
  * CreateEmbeddingRequest
  */
 @JsonPropertyOrder({
-  CreateEmbeddingRequest.JSON_PROPERTY_MODEL,
   CreateEmbeddingRequest.JSON_PROPERTY_INPUT,
+  CreateEmbeddingRequest.JSON_PROPERTY_MODEL,
+  CreateEmbeddingRequest.JSON_PROPERTY_ENCODING_FORMAT,
+  CreateEmbeddingRequest.JSON_PROPERTY_DIMENSIONS,
   CreateEmbeddingRequest.JSON_PROPERTY_USER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateEmbeddingRequest   {
-  public static final String JSON_PROPERTY_MODEL = "model";
-  @JsonProperty(JSON_PROPERTY_MODEL)
-  private CreateEmbeddingRequestModel model;
-
   public static final String JSON_PROPERTY_INPUT = "input";
   @JsonProperty(JSON_PROPERTY_INPUT)
   private CreateEmbeddingRequestInput input;
 
+  public static final String JSON_PROPERTY_MODEL = "model";
+  @JsonProperty(JSON_PROPERTY_MODEL)
+  private CreateEmbeddingRequestModel model;
+
+  /**
+   * The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
+   */
+  public enum EncodingFormatEnum {
+    FLOAT("float"),
+    
+    BASE64("base64");
+
+    private String value;
+
+    EncodingFormatEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static EncodingFormatEnum fromValue(String value) {
+      for (EncodingFormatEnum b : EncodingFormatEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ENCODING_FORMAT = "encoding_format";
+  @JsonProperty(JSON_PROPERTY_ENCODING_FORMAT)
+  private EncodingFormatEnum encodingFormat = EncodingFormatEnum.FLOAT;
+
+  public static final String JSON_PROPERTY_DIMENSIONS = "dimensions";
+  @JsonProperty(JSON_PROPERTY_DIMENSIONS)
+  private Integer dimensions;
+
   public static final String JSON_PROPERTY_USER = "user";
   @JsonProperty(JSON_PROPERTY_USER)
   private String user;
+
+  public CreateEmbeddingRequest input(CreateEmbeddingRequestInput input) {
+    this.input = input;
+    return this;
+  }
+
+  /**
+   * Get input
+   * @return input
+   **/
+  @JsonProperty(value = "input")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull @Valid 
+  public CreateEmbeddingRequestInput getInput() {
+    return input;
+  }
+
+  public void setInput(CreateEmbeddingRequestInput input) {
+    this.input = input;
+  }
 
   public CreateEmbeddingRequest model(CreateEmbeddingRequestModel model) {
     this.model = model;
@@ -66,24 +128,45 @@ public class CreateEmbeddingRequest   {
     this.model = model;
   }
 
-  public CreateEmbeddingRequest input(CreateEmbeddingRequestInput input) {
-    this.input = input;
+  public CreateEmbeddingRequest encodingFormat(EncodingFormatEnum encodingFormat) {
+    this.encodingFormat = encodingFormat;
     return this;
   }
 
   /**
-   * Get input
-   * @return input
+   * The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).
+   * @return encodingFormat
    **/
-  @JsonProperty(value = "input")
-  @ApiModelProperty(required = true, value = "")
-  @NotNull @Valid 
-  public CreateEmbeddingRequestInput getInput() {
-    return input;
+  @JsonProperty(value = "encoding_format")
+  @ApiModelProperty(example = "float", value = "The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).")
+  
+  public EncodingFormatEnum getEncodingFormat() {
+    return encodingFormat;
   }
 
-  public void setInput(CreateEmbeddingRequestInput input) {
-    this.input = input;
+  public void setEncodingFormat(EncodingFormatEnum encodingFormat) {
+    this.encodingFormat = encodingFormat;
+  }
+
+  public CreateEmbeddingRequest dimensions(Integer dimensions) {
+    this.dimensions = dimensions;
+    return this;
+  }
+
+  /**
+   * The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. 
+   * minimum: 1
+   * @return dimensions
+   **/
+  @JsonProperty(value = "dimensions")
+  @ApiModelProperty(value = "The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. ")
+   @Min(1)
+  public Integer getDimensions() {
+    return dimensions;
+  }
+
+  public void setDimensions(Integer dimensions) {
+    this.dimensions = dimensions;
   }
 
   public CreateEmbeddingRequest user(String user) {
@@ -116,14 +199,16 @@ public class CreateEmbeddingRequest   {
       return false;
     }
     CreateEmbeddingRequest createEmbeddingRequest = (CreateEmbeddingRequest) o;
-    return Objects.equals(this.model, createEmbeddingRequest.model) &&
-        Objects.equals(this.input, createEmbeddingRequest.input) &&
+    return Objects.equals(this.input, createEmbeddingRequest.input) &&
+        Objects.equals(this.model, createEmbeddingRequest.model) &&
+        Objects.equals(this.encodingFormat, createEmbeddingRequest.encodingFormat) &&
+        Objects.equals(this.dimensions, createEmbeddingRequest.dimensions) &&
         Objects.equals(this.user, createEmbeddingRequest.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, input, user);
+    return Objects.hash(input, model, encodingFormat, dimensions, user);
   }
 
   @Override
@@ -131,8 +216,10 @@ public class CreateEmbeddingRequest   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateEmbeddingRequest {\n");
     
-    sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    input: ").append(toIndentedString(input)).append("\n");
+    sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    encodingFormat: ").append(toIndentedString(encodingFormat)).append("\n");
+    sb.append("    dimensions: ").append(toIndentedString(dimensions)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("}");
     return sb.toString();

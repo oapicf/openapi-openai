@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Created** | **int32** |  | 
-**Data** | [**[]ImagesResponseDataInner**](ImagesResponseDataInner.md) |  | 
+**Data** | [**[]Image**](Image.md) |  | 
 
 ## Methods
 
 ### NewImagesResponse
 
-`func NewImagesResponse(created int32, data []ImagesResponseDataInner, ) *ImagesResponse`
+`func NewImagesResponse(created int32, data []Image, ) *ImagesResponse`
 
 NewImagesResponse instantiates a new ImagesResponse object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetCreated sets Created field to given value.
 
 ### GetData
 
-`func (o *ImagesResponse) GetData() []ImagesResponseDataInner`
+`func (o *ImagesResponse) GetData() []Image`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ImagesResponse) GetDataOk() (*[]ImagesResponseDataInner, bool)`
+`func (o *ImagesResponse) GetDataOk() (*[]Image, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ImagesResponse) SetData(v []ImagesResponseDataInner)`
+`func (o *ImagesResponse) SetData(v []Image)`
 
 SetData sets Data field to given value.
 

@@ -25,10 +25,10 @@ class CreateCompletionResponseChoicesInnerLogprobsTest : ShouldSpec() {
         // uncomment below to create an instance of CreateCompletionResponseChoicesInnerLogprobs
         //val modelInstance = CreateCompletionResponseChoicesInnerLogprobs()
 
-        // to test the property `tokens`
-        should("test tokens") {
+        // to test the property `textOffset`
+        should("test textOffset") {
             // uncomment below to test the property
-            //modelInstance.tokens shouldBe ("TODO")
+            //modelInstance.textOffset shouldBe ("TODO")
         }
 
         // to test the property `tokenLogprobs`
@@ -37,16 +37,16 @@ class CreateCompletionResponseChoicesInnerLogprobsTest : ShouldSpec() {
             //modelInstance.tokenLogprobs shouldBe ("TODO")
         }
 
+        // to test the property `tokens`
+        should("test tokens") {
+            // uncomment below to test the property
+            //modelInstance.tokens shouldBe ("TODO")
+        }
+
         // to test the property `topLogprobs`
         should("test topLogprobs") {
             // uncomment below to test the property
             //modelInstance.topLogprobs shouldBe ("TODO")
-        }
-
-        // to test the property `textOffset`
-        should("test textOffset") {
-            // uncomment below to test the property
-            //modelInstance.textOffset shouldBe ("TODO")
         }
 
     }

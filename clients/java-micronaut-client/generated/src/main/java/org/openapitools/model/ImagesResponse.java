@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.model.ImagesResponseDataInner;
+import org.openapitools.model.Image;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -33,16 +33,16 @@ import javax.annotation.Generated;
   ImagesResponse.JSON_PROPERTY_DATA
 })
 @JsonTypeName("ImagesResponse")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-03-16T01:12:32.706318857Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-14T13:37:52.123317469Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class ImagesResponse {
     public static final String JSON_PROPERTY_CREATED = "created";
     private Integer created;
 
     public static final String JSON_PROPERTY_DATA = "data";
-    private List<@Valid ImagesResponseDataInner> data = new ArrayList<>();
+    private List<@Valid Image> data = new ArrayList<>();
 
-    public ImagesResponse(Integer created, List<@Valid ImagesResponseDataInner> data) {
+    public ImagesResponse(Integer created, List<@Valid Image> data) {
         this.created = created;
         this.data = data;
     }
@@ -69,12 +69,12 @@ public class ImagesResponse {
         this.created = created;
     }
 
-    public ImagesResponse data(List<@Valid ImagesResponseDataInner> data) {
+    public ImagesResponse data(List<@Valid Image> data) {
         this.data = data;
         return this;
     }
 
-    public ImagesResponse addDataItem(ImagesResponseDataInner dataItem) {
+    public ImagesResponse addDataItem(Image dataItem) {
         this.data.add(dataItem);
         return this;
     }
@@ -86,13 +86,13 @@ public class ImagesResponse {
     @NotNull
     @JsonProperty(JSON_PROPERTY_DATA)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<@Valid ImagesResponseDataInner> getData() {
+    public List<@Valid Image> getData() {
         return data;
     }
 
     @JsonProperty(JSON_PROPERTY_DATA)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setData(List<@Valid ImagesResponseDataInner> data) {
+    public void setData(List<@Valid Image> data) {
         this.data = data;
     }
 

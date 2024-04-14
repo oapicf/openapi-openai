@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -17,32 +17,78 @@ import com.google.gson.annotations.SerializedName
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
- * 
- * @param id 
- * @param &#x60;object&#x60; 
- * @param bytes 
- * @param createdAt 
- * @param filename 
- * @param purpose 
- * @param status 
- * @param statusDetails 
+ * The `File` object represents a document that has been uploaded to OpenAI.
+ * @param id The file identifier, which can be referenced in the API endpoints.
+ * @param bytes The size of the file, in bytes.
+ * @param createdAt The Unix timestamp (in seconds) for when the file was created.
+ * @param filename The name of the file.
+ * @param &#x60;object&#x60; The object type, which is always `file`.
+ * @param purpose The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+ * @param status Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+ * @param statusDetails Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OpenAIFile (
+    /* The file identifier, which can be referenced in the API endpoints. */
     @SerializedName("id") private val _id: kotlin.String?,
-    @SerializedName("`object`") private val _`object`: kotlin.String?,
+    /* The size of the file, in bytes. */
     @SerializedName("bytes") private val _bytes: kotlin.Int?,
+    /* The Unix timestamp (in seconds) for when the file was created. */
     @SerializedName("createdAt") private val _createdAt: kotlin.Int?,
+    /* The name of the file. */
     @SerializedName("filename") private val _filename: kotlin.String?,
-    @SerializedName("purpose") private val _purpose: kotlin.String?,
-    val status: kotlin.String? = null,
-    val statusDetails: kotlin.Any? = null
+    /* The object type, which is always `file`. */
+    @SerializedName("`object`") private val _`object`: OpenAIFile.&#x60;Object&#x60;?,
+    /* The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. */
+    @SerializedName("purpose") private val _purpose: OpenAIFile.Purpose?,
+    /* Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`. */
+    @SerializedName("status") private val _status: OpenAIFile.Status?,
+    /* Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`. */
+    val statusDetails: kotlin.String? = null
 ) {
 
+    /**
+    * The object type, which is always `file`.
+    * Values: file
+    */
+    enum class &#x60;Object&#x60;(val value: kotlin.String){
+    
+        file("file");
+    
+    }
+
+    /**
+    * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+    * Values: fineMinusTune,fineMinusTuneMinusResults,assistants,assistants_output
+    */
+    enum class Purpose(val value: kotlin.String){
+    
+        fineMinusTune("fine-tune"),
+    
+        fineMinusTuneMinusResults("fine-tune-results"),
+    
+        assistants("assistants"),
+    
+        assistants_output("assistants_output");
+    
+    }
+
+    /**
+    * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+    * Values: uploaded,processed,error
+    */
+    enum class Status(val value: kotlin.String){
+    
+        uploaded("uploaded"),
+    
+        processed("processed"),
+    
+        error("error");
+    
+    }
+
         val id get() = _id ?: throw IllegalArgumentException("id is required")
-                    
-        val `object` get() = _`object` ?: throw IllegalArgumentException("`object` is required")
                     
         val bytes get() = _bytes ?: throw IllegalArgumentException("bytes is required")
                     
@@ -50,7 +96,11 @@ data class OpenAIFile (
                     
         val filename get() = _filename ?: throw IllegalArgumentException("filename is required")
                     
+        val `object` get() = _`object` ?: throw IllegalArgumentException("`object` is required")
+                    
         val purpose get() = _purpose ?: throw IllegalArgumentException("purpose is required")
+                    
+        val status get() = _status ?: throw IllegalArgumentException("status is required")
                     
 }
 

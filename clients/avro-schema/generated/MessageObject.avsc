@@ -1,0 +1,106 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Represents a message within a [thread](/docs/api-reference/threads).",
+  "name": "MessageObject",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The identifier, which can be referenced in API endpoints."
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "MessageObject_object",
+        "symbols": [
+          "thread.message"
+        ]
+      },
+      "doc": "The object type, which is always `thread.message`."
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the message was created."
+    },
+    {
+      "name": "thread_id",
+      "type": "string",
+      "doc": "The [thread](/docs/api-reference/threads) ID that this message belongs to."
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "MessageObject_status",
+        "symbols": [
+          "in_progress",
+          "incomplete",
+          "completed"
+        ]
+      },
+      "doc": "The status of the message, which can be either `in_progress`, `incomplete`, or `completed`."
+    },
+    {
+      "name": "incomplete_details",
+      "type": "model.MessageObjectIncompleteDetails",
+      "doc": ""
+    },
+    {
+      "name": "completed_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the message was completed."
+    },
+    {
+      "name": "incomplete_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the message was marked as incomplete."
+    },
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "MessageObject_role",
+        "symbols": [
+          "user",
+          "assistant"
+        ]
+      },
+      "doc": "The entity that produced the message. One of `user` or `assistant`."
+    },
+    {
+      "name": "content",
+      "type": {
+        "type": "array",
+        "items": "model.MessageObjectContentInner"
+      },
+      "doc": "The content of the message in array of text and/or images."
+    },
+    {
+      "name": "assistant_id",
+      "type": "string",
+      "doc": "If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message."
+    },
+    {
+      "name": "run_id",
+      "type": "string",
+      "doc": "The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints."
+    },
+    {
+      "name": "file_ids",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message."
+    },
+    {
+      "name": "metadata",
+      "type": "model.object",
+      "doc": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. "
+    }
+  ]
+
+}

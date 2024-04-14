@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -63,20 +63,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::string getObject() const;
-    void setObject(std::string const& value);
+    std::vector<org::openapitools::server::model::OpenAIFile> getData() const;
+    void setData(std::vector<org::openapitools::server::model::OpenAIFile> const& value);
     /// <summary>
     /// 
     /// </summary>
-    std::vector<org::openapitools::server::model::OpenAIFile> getData() const;
-    void setData(std::vector<org::openapitools::server::model::OpenAIFile> const& value);
+    std::string getObject() const;
+    void setObject(std::string const& value);
 
     friend  void to_json(nlohmann::json& j, const ListFilesResponse& o);
     friend  void from_json(const nlohmann::json& j, ListFilesResponse& o);
 protected:
-    std::string m_object;
-
     std::vector<org::openapitools::server::model::OpenAIFile> m_Data;
+
+    std::string m_object;
 
     
 };

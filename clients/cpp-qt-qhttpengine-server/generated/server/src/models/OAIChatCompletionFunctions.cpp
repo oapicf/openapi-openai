@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -34,11 +34,11 @@ OAIChatCompletionFunctions::~OAIChatCompletionFunctions() {}
 
 void OAIChatCompletionFunctions::initializeModel() {
 
-    m_name_isSet = false;
-    m_name_isValid = false;
-
     m_description_isSet = false;
     m_description_isValid = false;
+
+    m_name_isSet = false;
+    m_name_isValid = false;
 
     m_parameters_isSet = false;
     m_parameters_isValid = false;
@@ -53,11 +53,11 @@ void OAIChatCompletionFunctions::fromJson(QString jsonString) {
 
 void OAIChatCompletionFunctions::fromJsonObject(QJsonObject json) {
 
-    m_name_isValid = ::OpenAPI::fromJsonValue(name, json[QString("name")]);
-    m_name_isSet = !json[QString("name")].isNull() && m_name_isValid;
-
     m_description_isValid = ::OpenAPI::fromJsonValue(description, json[QString("description")]);
     m_description_isSet = !json[QString("description")].isNull() && m_description_isValid;
+
+    m_name_isValid = ::OpenAPI::fromJsonValue(name, json[QString("name")]);
+    m_name_isSet = !json[QString("name")].isNull() && m_name_isValid;
 
     m_parameters_isValid = ::OpenAPI::fromJsonValue(parameters, json[QString("parameters")]);
     m_parameters_isSet = !json[QString("parameters")].isNull() && m_parameters_isValid;
@@ -72,32 +72,16 @@ QString OAIChatCompletionFunctions::asJson() const {
 
 QJsonObject OAIChatCompletionFunctions::asJsonObject() const {
     QJsonObject obj;
-    if (m_name_isSet) {
-        obj.insert(QString("name"), ::OpenAPI::toJsonValue(name));
-    }
     if (m_description_isSet) {
         obj.insert(QString("description"), ::OpenAPI::toJsonValue(description));
+    }
+    if (m_name_isSet) {
+        obj.insert(QString("name"), ::OpenAPI::toJsonValue(name));
     }
     if (parameters.size() > 0) {
         obj.insert(QString("parameters"), ::OpenAPI::toJsonValue(parameters));
     }
     return obj;
-}
-
-QString OAIChatCompletionFunctions::getName() const {
-    return name;
-}
-void OAIChatCompletionFunctions::setName(const QString &name) {
-    this->name = name;
-    this->m_name_isSet = true;
-}
-
-bool OAIChatCompletionFunctions::is_name_Set() const{
-    return m_name_isSet;
-}
-
-bool OAIChatCompletionFunctions::is_name_Valid() const{
-    return m_name_isValid;
 }
 
 QString OAIChatCompletionFunctions::getDescription() const {
@@ -114,6 +98,22 @@ bool OAIChatCompletionFunctions::is_description_Set() const{
 
 bool OAIChatCompletionFunctions::is_description_Valid() const{
     return m_description_isValid;
+}
+
+QString OAIChatCompletionFunctions::getName() const {
+    return name;
+}
+void OAIChatCompletionFunctions::setName(const QString &name) {
+    this->name = name;
+    this->m_name_isSet = true;
+}
+
+bool OAIChatCompletionFunctions::is_name_Set() const{
+    return m_name_isSet;
+}
+
+bool OAIChatCompletionFunctions::is_name_Valid() const{
+    return m_name_isValid;
 }
 
 QMap<QString, OAIAnyType> OAIChatCompletionFunctions::getParameters() const {
@@ -135,12 +135,12 @@ bool OAIChatCompletionFunctions::is_parameters_Valid() const{
 bool OAIChatCompletionFunctions::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_name_isSet) {
+        if (m_description_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_description_isSet) {
+        if (m_name_isSet) {
             isObjectUpdated = true;
             break;
         }

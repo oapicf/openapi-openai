@@ -68,4 +68,21 @@ private class OASCreateEmbeddingRequestTest {
         System.assertEquals(createEmbeddingRequest1.hashCode(), createEmbeddingRequest2.hashCode());
         System.assertEquals(createEmbeddingRequest3.hashCode(), createEmbeddingRequest4.hashCode());
     }
+
+    @isTest
+    private static void maintainRenamedProperties() {
+        OASCreateEmbeddingRequest createEmbeddingRequest = new OASCreateEmbeddingRequest();
+        Map<String, String> x-property-mappings = createEmbeddingRequest.getx-property-mappings();
+        System.assertEquals('encodingFormat', x-property-mappings.get('encoding_format'));
+    }
+
+    @isTest
+    private static void defaultValuesPopulated() {
+        OASCreateEmbeddingRequest createEmbeddingRequest = new OASCreateEmbeddingRequest();
+        System.assertEquals(EncodingFormatEnum.FLOAT, createEmbeddingRequest.encodingFormat);
+        System.assertEquals(null, createEmbeddingRequest.input);
+        System.assertEquals(null, createEmbeddingRequest.model);
+        System.assertEquals(null, createEmbeddingRequest.dimensions);
+        System.assertEquals(null, createEmbeddingRequest.user);
+    }
 }

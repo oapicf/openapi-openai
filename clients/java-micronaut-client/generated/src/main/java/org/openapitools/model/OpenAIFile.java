@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,7 +14,6 @@ package org.openapitools.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -23,27 +22,24 @@ import io.micronaut.core.annotation.*;
 import javax.annotation.Generated;
 
 /**
- * OpenAIFile
+ * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
 @JsonPropertyOrder({
   OpenAIFile.JSON_PROPERTY_ID,
-  OpenAIFile.JSON_PROPERTY_OBJECT,
   OpenAIFile.JSON_PROPERTY_BYTES,
   OpenAIFile.JSON_PROPERTY_CREATED_AT,
   OpenAIFile.JSON_PROPERTY_FILENAME,
+  OpenAIFile.JSON_PROPERTY_OBJECT,
   OpenAIFile.JSON_PROPERTY_PURPOSE,
   OpenAIFile.JSON_PROPERTY_STATUS,
   OpenAIFile.JSON_PROPERTY_STATUS_DETAILS
 })
 @JsonTypeName("OpenAIFile")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-03-16T01:12:32.706318857Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-14T13:37:52.123317469Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class OpenAIFile {
     public static final String JSON_PROPERTY_ID = "id";
     private String id;
-
-    public static final String JSON_PROPERTY_OBJECT = "object";
-    private String _object;
 
     public static final String JSON_PROPERTY_BYTES = "bytes";
     private Integer bytes;
@@ -54,22 +50,127 @@ public class OpenAIFile {
     public static final String JSON_PROPERTY_FILENAME = "filename";
     private String filename;
 
-    public static final String JSON_PROPERTY_PURPOSE = "purpose";
-    private String purpose;
+    /**
+     * The object type, which is always &#x60;file&#x60;.
+     */
+    public enum ObjectEnum {
+        FILE("file");
 
+        private String value;
+
+        ObjectEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static ObjectEnum fromValue(String value) {
+            for (ObjectEnum b : ObjectEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
+    public static final String JSON_PROPERTY_OBJECT = "object";
+    private ObjectEnum _object;
+
+    /**
+     * The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
+     */
+    public enum PurposeEnum {
+        FINE_TUNE("fine-tune"),
+        FINE_TUNE_RESULTS("fine-tune-results"),
+        ASSISTANTS("assistants"),
+        ASSISTANTS_OUTPUT("assistants_output");
+
+        private String value;
+
+        PurposeEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static PurposeEnum fromValue(String value) {
+            for (PurposeEnum b : PurposeEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
+    public static final String JSON_PROPERTY_PURPOSE = "purpose";
+    private PurposeEnum purpose;
+
+    /**
+     * Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.
+     */
+    public enum StatusEnum {
+        UPLOADED("uploaded"),
+        PROCESSED("processed"),
+        ERROR("error");
+
+        private String value;
+
+        StatusEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static StatusEnum fromValue(String value) {
+            for (StatusEnum b : StatusEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
     public static final String JSON_PROPERTY_STATUS = "status";
-    private String status;
+    private StatusEnum status;
 
     public static final String JSON_PROPERTY_STATUS_DETAILS = "status_details";
-    private Object statusDetails;
+    private String statusDetails;
 
-    public OpenAIFile(String id, String _object, Integer bytes, Integer createdAt, String filename, String purpose) {
+    public OpenAIFile(String id, Integer bytes, Integer createdAt, String filename, ObjectEnum _object, PurposeEnum purpose, StatusEnum status) {
         this.id = id;
-        this._object = _object;
         this.bytes = bytes;
         this.createdAt = createdAt;
         this.filename = filename;
+        this._object = _object;
         this.purpose = purpose;
+        this.status = status;
     }
 
     public OpenAIFile id(String id) {
@@ -78,7 +179,7 @@ public class OpenAIFile {
     }
 
     /**
-     * Get id
+     * The file identifier, which can be referenced in the API endpoints.
      * @return id
      **/
     @NotNull
@@ -94,35 +195,13 @@ public class OpenAIFile {
         this.id = id;
     }
 
-    public OpenAIFile _object(String _object) {
-        this._object = _object;
-        return this;
-    }
-
-    /**
-     * Get _object
-     * @return _object
-     **/
-    @NotNull
-    @JsonProperty(JSON_PROPERTY_OBJECT)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public String getObject() {
-        return _object;
-    }
-
-    @JsonProperty(JSON_PROPERTY_OBJECT)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setObject(String _object) {
-        this._object = _object;
-    }
-
     public OpenAIFile bytes(Integer bytes) {
         this.bytes = bytes;
         return this;
     }
 
     /**
-     * Get bytes
+     * The size of the file, in bytes.
      * @return bytes
      **/
     @NotNull
@@ -144,7 +223,7 @@ public class OpenAIFile {
     }
 
     /**
-     * Get createdAt
+     * The Unix timestamp (in seconds) for when the file was created.
      * @return createdAt
      **/
     @NotNull
@@ -166,7 +245,7 @@ public class OpenAIFile {
     }
 
     /**
-     * Get filename
+     * The name of the file.
      * @return filename
      **/
     @NotNull
@@ -182,69 +261,91 @@ public class OpenAIFile {
         this.filename = filename;
     }
 
-    public OpenAIFile purpose(String purpose) {
+    public OpenAIFile _object(ObjectEnum _object) {
+        this._object = _object;
+        return this;
+    }
+
+    /**
+     * The object type, which is always &#x60;file&#x60;.
+     * @return _object
+     **/
+    @NotNull
+    @JsonProperty(JSON_PROPERTY_OBJECT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public ObjectEnum getObject() {
+        return _object;
+    }
+
+    @JsonProperty(JSON_PROPERTY_OBJECT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setObject(ObjectEnum _object) {
+        this._object = _object;
+    }
+
+    public OpenAIFile purpose(PurposeEnum purpose) {
         this.purpose = purpose;
         return this;
     }
 
     /**
-     * Get purpose
+     * The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
      * @return purpose
      **/
     @NotNull
     @JsonProperty(JSON_PROPERTY_PURPOSE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public String getPurpose() {
+    public PurposeEnum getPurpose() {
         return purpose;
     }
 
     @JsonProperty(JSON_PROPERTY_PURPOSE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setPurpose(String purpose) {
+    public void setPurpose(PurposeEnum purpose) {
         this.purpose = purpose;
     }
 
-    public OpenAIFile status(String status) {
+    public OpenAIFile status(StatusEnum status) {
         this.status = status;
         return this;
     }
 
     /**
-     * Get status
+     * Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.
      * @return status
      **/
-    @Nullable
+    @NotNull
     @JsonProperty(JSON_PROPERTY_STATUS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public String getStatus() {
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public StatusEnum getStatus() {
         return status;
     }
 
     @JsonProperty(JSON_PROPERTY_STATUS)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setStatus(String status) {
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 
-    public OpenAIFile statusDetails(Object statusDetails) {
+    public OpenAIFile statusDetails(String statusDetails) {
         this.statusDetails = statusDetails;
         return this;
     }
 
     /**
-     * Get statusDetails
+     * Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;.
      * @return statusDetails
      **/
     @Nullable
     @JsonProperty(JSON_PROPERTY_STATUS_DETAILS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public Object getStatusDetails() {
+    public String getStatusDetails() {
         return statusDetails;
     }
 
     @JsonProperty(JSON_PROPERTY_STATUS_DETAILS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setStatusDetails(Object statusDetails) {
+    public void setStatusDetails(String statusDetails) {
         this.statusDetails = statusDetails;
     }
 
@@ -258,10 +359,10 @@ public class OpenAIFile {
         }
         OpenAIFile openAIFile = (OpenAIFile) o;
         return Objects.equals(this.id, openAIFile.id) &&
-            Objects.equals(this._object, openAIFile._object) &&
             Objects.equals(this.bytes, openAIFile.bytes) &&
             Objects.equals(this.createdAt, openAIFile.createdAt) &&
             Objects.equals(this.filename, openAIFile.filename) &&
+            Objects.equals(this._object, openAIFile._object) &&
             Objects.equals(this.purpose, openAIFile.purpose) &&
             Objects.equals(this.status, openAIFile.status) &&
             Objects.equals(this.statusDetails, openAIFile.statusDetails);
@@ -269,7 +370,7 @@ public class OpenAIFile {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, _object, bytes, createdAt, filename, purpose, status, statusDetails);
+        return Objects.hash(id, bytes, createdAt, filename, _object, purpose, status, statusDetails);
     }
 
     @Override
@@ -277,10 +378,10 @@ public class OpenAIFile {
         StringBuilder sb = new StringBuilder();
         sb.append("class OpenAIFile {\n");
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
-        sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
         sb.append("    bytes: ").append(toIndentedString(bytes)).append("\n");
         sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
         sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
+        sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
         sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
         sb.append("    status: ").append(toIndentedString(status)).append("\n");
         sb.append("    statusDetails: ").append(toIndentedString(statusDetails)).append("\n");

@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -19,6 +19,12 @@ import {
     ChatCompletionResponseMessageFromJSONTyped,
     ChatCompletionResponseMessageToJSON,
 } from './ChatCompletionResponseMessage';
+import type { CreateChatCompletionResponseChoicesInnerLogprobs } from './CreateChatCompletionResponseChoicesInnerLogprobs';
+import {
+    CreateChatCompletionResponseChoicesInnerLogprobsFromJSON,
+    CreateChatCompletionResponseChoicesInnerLogprobsFromJSONTyped,
+    CreateChatCompletionResponseChoicesInnerLogprobsToJSON,
+} from './CreateChatCompletionResponseChoicesInnerLogprobs';
 
 /**
  * 
@@ -27,23 +33,33 @@ import {
  */
 export interface CreateChatCompletionResponseChoicesInner {
     /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,
+     * `length` if the maximum number of tokens specified in the request was reached,
+     * `content_filter` if content was omitted due to a flag from our content filters,
+     * `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
      * 
+     * @type {string}
+     * @memberof CreateChatCompletionResponseChoicesInner
+     */
+    finishReason: CreateChatCompletionResponseChoicesInnerFinishReasonEnum;
+    /**
+     * The index of the choice in the list of choices.
      * @type {number}
      * @memberof CreateChatCompletionResponseChoicesInner
      */
-    index?: number;
+    index: number;
     /**
      * 
      * @type {ChatCompletionResponseMessage}
      * @memberof CreateChatCompletionResponseChoicesInner
      */
-    message?: ChatCompletionResponseMessage;
+    message: ChatCompletionResponseMessage;
     /**
      * 
-     * @type {string}
+     * @type {CreateChatCompletionResponseChoicesInnerLogprobs}
      * @memberof CreateChatCompletionResponseChoicesInner
      */
-    finishReason?: CreateChatCompletionResponseChoicesInnerFinishReasonEnum;
+    logprobs: CreateChatCompletionResponseChoicesInnerLogprobs | null;
 }
 
 
@@ -53,6 +69,8 @@ export interface CreateChatCompletionResponseChoicesInner {
 export const CreateChatCompletionResponseChoicesInnerFinishReasonEnum = {
     Stop: 'stop',
     Length: 'length',
+    ToolCalls: 'tool_calls',
+    ContentFilter: 'content_filter',
     FunctionCall: 'function_call'
 } as const;
 export type CreateChatCompletionResponseChoicesInnerFinishReasonEnum = typeof CreateChatCompletionResponseChoicesInnerFinishReasonEnum[keyof typeof CreateChatCompletionResponseChoicesInnerFinishReasonEnum];
@@ -62,6 +80,10 @@ export type CreateChatCompletionResponseChoicesInnerFinishReasonEnum = typeof Cr
  * Check if a given object implements the CreateChatCompletionResponseChoicesInner interface.
  */
 export function instanceOfCreateChatCompletionResponseChoicesInner(value: object): boolean {
+    if (!('finishReason' in value)) return false;
+    if (!('index' in value)) return false;
+    if (!('message' in value)) return false;
+    if (!('logprobs' in value)) return false;
     return true;
 }
 
@@ -75,9 +97,10 @@ export function CreateChatCompletionResponseChoicesInnerFromJSONTyped(json: any,
     }
     return {
         
-        'index': json['index'] == null ? undefined : json['index'],
-        'message': json['message'] == null ? undefined : ChatCompletionResponseMessageFromJSON(json['message']),
-        'finishReason': json['finish_reason'] == null ? undefined : json['finish_reason'],
+        'finishReason': json['finish_reason'],
+        'index': json['index'],
+        'message': ChatCompletionResponseMessageFromJSON(json['message']),
+        'logprobs': CreateChatCompletionResponseChoicesInnerLogprobsFromJSON(json['logprobs']),
     };
 }
 
@@ -87,9 +110,10 @@ export function CreateChatCompletionResponseChoicesInnerToJSON(value?: CreateCha
     }
     return {
         
+        'finish_reason': value['finishReason'],
         'index': value['index'],
         'message': ChatCompletionResponseMessageToJSON(value['message']),
-        'finish_reason': value['finishReason'],
+        'logprobs': CreateChatCompletionResponseChoicesInnerLogprobsToJSON(value['logprobs']),
     };
 }
 

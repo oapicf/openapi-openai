@@ -11,9 +11,10 @@
     "label": "Details",
     "model": "properties",
     "children": [
-      {"model": "index" },
       {"model": "delta" },
+      {"model": "logprobs" },
       {"model": "finish_reason" },
+      {"model": "index" },
     ]
   }]
 }

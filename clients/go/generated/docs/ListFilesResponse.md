@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
 **Data** | [**[]OpenAIFile**](OpenAIFile.md) |  | 
+**Object** | **string** |  | 
 
 ## Methods
 
 ### NewListFilesResponse
 
-`func NewListFilesResponse(object string, data []OpenAIFile, ) *ListFilesResponse`
+`func NewListFilesResponse(data []OpenAIFile, object string, ) *ListFilesResponse`
 
 NewListFilesResponse instantiates a new ListFilesResponse object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewListFilesResponseWithDefaults instantiates a new ListFilesResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetObject
-
-`func (o *ListFilesResponse) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *ListFilesResponse) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *ListFilesResponse) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
 
 ### GetData
 
@@ -64,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *ListFilesResponse) SetData(v []OpenAIFile)`
 
 SetData sets Data field to given value.
+
+
+### GetObject
+
+`func (o *ListFilesResponse) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *ListFilesResponse) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *ListFilesResponse) SetObject(v string)`
+
+SetObject sets Object field to given value.
 
 
 

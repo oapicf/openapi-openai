@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -25,13 +25,53 @@ void OpenAPICreateCompletionRequest::WriteJson(JsonWriter& Writer) const
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("model")); WriteJsonValue(Writer, Model);
 	Writer->WriteIdentifierPrefix(TEXT("prompt")); WriteJsonValue(Writer, Prompt);
-	if (Suffix.IsSet())
+	if (BestOf.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("suffix")); WriteJsonValue(Writer, Suffix.GetValue());
+		Writer->WriteIdentifierPrefix(TEXT("best_of")); WriteJsonValue(Writer, BestOf.GetValue());
+	}
+	if (Echo.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("echo")); WriteJsonValue(Writer, Echo.GetValue());
+	}
+	if (FrequencyPenalty.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("frequency_penalty")); WriteJsonValue(Writer, FrequencyPenalty.GetValue());
+	}
+	if (LogitBias.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("logit_bias")); WriteJsonValue(Writer, LogitBias.GetValue());
+	}
+	if (Logprobs.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("logprobs")); WriteJsonValue(Writer, Logprobs.GetValue());
 	}
 	if (MaxTokens.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("max_tokens")); WriteJsonValue(Writer, MaxTokens.GetValue());
+	}
+	if (N.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("n")); WriteJsonValue(Writer, N.GetValue());
+	}
+	if (PresencePenalty.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("presence_penalty")); WriteJsonValue(Writer, PresencePenalty.GetValue());
+	}
+	if (Seed.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("seed")); WriteJsonValue(Writer, Seed.GetValue());
+	}
+	if (Stop.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("stop")); WriteJsonValue(Writer, Stop.GetValue());
+	}
+	if (Stream.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("stream")); WriteJsonValue(Writer, Stream.GetValue());
+	}
+	if (Suffix.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("suffix")); WriteJsonValue(Writer, Suffix.GetValue());
 	}
 	if (Temperature.IsSet())
 	{
@@ -40,42 +80,6 @@ void OpenAPICreateCompletionRequest::WriteJson(JsonWriter& Writer) const
 	if (TopP.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("top_p")); WriteJsonValue(Writer, TopP.GetValue());
-	}
-	if (N.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("n")); WriteJsonValue(Writer, N.GetValue());
-	}
-	if (Stream.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("stream")); WriteJsonValue(Writer, Stream.GetValue());
-	}
-	if (Logprobs.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("logprobs")); WriteJsonValue(Writer, Logprobs.GetValue());
-	}
-	if (Echo.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("echo")); WriteJsonValue(Writer, Echo.GetValue());
-	}
-	if (Stop.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("stop")); WriteJsonValue(Writer, Stop.GetValue());
-	}
-	if (PresencePenalty.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("presence_penalty")); WriteJsonValue(Writer, PresencePenalty.GetValue());
-	}
-	if (FrequencyPenalty.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("frequency_penalty")); WriteJsonValue(Writer, FrequencyPenalty.GetValue());
-	}
-	if (BestOf.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("best_of")); WriteJsonValue(Writer, BestOf.GetValue());
-	}
-	if (LogitBias.IsSet())
-	{
-		Writer->WriteIdentifierPrefix(TEXT("logit_bias")); WriteJsonValue(Writer, LogitBias.GetValue());
 	}
 	if (User.IsSet())
 	{
@@ -94,19 +98,20 @@ bool OpenAPICreateCompletionRequest::FromJson(const TSharedPtr<FJsonValue>& Json
 
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("model"), Model);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("prompt"), Prompt);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("suffix"), Suffix);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("best_of"), BestOf);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("echo"), Echo);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("frequency_penalty"), FrequencyPenalty);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("logit_bias"), LogitBias);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("logprobs"), Logprobs);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("max_tokens"), MaxTokens);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("n"), N);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("presence_penalty"), PresencePenalty);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("seed"), Seed);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("stop"), Stop);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("stream"), Stream);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("suffix"), Suffix);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("temperature"), Temperature);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("top_p"), TopP);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("n"), N);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("stream"), Stream);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("logprobs"), Logprobs);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("echo"), Echo);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("stop"), Stop);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("presence_penalty"), PresencePenalty);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("frequency_penalty"), FrequencyPenalty);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("best_of"), BestOf);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("logit_bias"), LogitBias);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("user"), User);
 
 	return ParseSuccess;

@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -33,6 +33,25 @@ namespace Org.OpenAPITools.Model
     public partial class ListFilesResponse : IValidatableObject
     {
         /// <summary>
+        /// Defines VarObject
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            /// <summary>
+            /// Enum List for value: list
+            /// </summary>
+            [EnumMember(Value = "list")]
+            List = 1
+        }
+
+
+        /// <summary>
+        /// Gets or Sets VarObject
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public ObjectEnum VarObject { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ListFilesResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -40,29 +59,18 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListFilesResponse" /> class.
         /// </summary>
-        /// <param name="varObject">varObject (required).</param>
         /// <param name="data">data (required).</param>
-        public ListFilesResponse(string varObject = default(string), List<OpenAIFile> data = default(List<OpenAIFile>))
+        /// <param name="varObject">varObject (required).</param>
+        public ListFilesResponse(List<OpenAIFile> data = default(List<OpenAIFile>), ObjectEnum varObject = default(ObjectEnum))
         {
-            // to ensure "varObject" is required (not null)
-            if (varObject == null)
-            {
-                throw new ArgumentNullException("varObject is a required property for ListFilesResponse and cannot be null");
-            }
-            this.VarObject = varObject;
             // to ensure "data" is required (not null)
             if (data == null)
             {
                 throw new ArgumentNullException("data is a required property for ListFilesResponse and cannot be null");
             }
             this.Data = data;
+            this.VarObject = varObject;
         }
-
-        /// <summary>
-        /// Gets or Sets VarObject
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string VarObject { get; set; }
 
         /// <summary>
         /// Gets or Sets Data
@@ -78,8 +86,8 @@ namespace Org.OpenAPITools.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListFilesResponse {\n");
-            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

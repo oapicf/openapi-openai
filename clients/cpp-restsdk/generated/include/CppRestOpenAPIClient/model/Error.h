@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -57,11 +57,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getType() const;
-    bool typeIsSet() const;
-    void unsetType();
+    utility::string_t getCode() const;
+    bool codeIsSet() const;
+    void unsetCode();
 
-    void setType(const utility::string_t& value);
+    void setCode(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -84,22 +84,22 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getCode() const;
-    bool codeIsSet() const;
-    void unsetCode();
+    utility::string_t getType() const;
+    bool typeIsSet() const;
+    void unsetType();
 
-    void setCode(const utility::string_t& value);
+    void setType(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_Type;
-    bool m_TypeIsSet;
+    utility::string_t m_Code;
+    bool m_CodeIsSet;
     utility::string_t m_Message;
     bool m_MessageIsSet;
     utility::string_t m_Param;
     bool m_ParamIsSet;
-    utility::string_t m_Code;
-    bool m_CodeIsSet;
+    utility::string_t m_Type;
+    bool m_TypeIsSet;
 };
 
 

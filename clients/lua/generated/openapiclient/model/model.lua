@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -19,11 +19,11 @@ local function cast_model(t)
 	return setmetatable(t, model_mt)
 end
 
-local function new_model(id, object, created, owned_by)
+local function new_model(id, created, object, owned_by)
 	return cast_model({
 		["id"] = id;
-		["object"] = object;
 		["created"] = created;
+		["object"] = object;
 		["owned_by"] = owned_by;
 	})
 end

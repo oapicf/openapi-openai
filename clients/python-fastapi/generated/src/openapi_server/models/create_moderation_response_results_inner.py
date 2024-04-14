@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List
 from openapi_server.models.create_moderation_response_results_inner_categories import CreateModerationResponseResultsInnerCategories
 from openapi_server.models.create_moderation_response_results_inner_category_scores import CreateModerationResponseResultsInnerCategoryScores
@@ -34,7 +34,7 @@ class CreateModerationResponseResultsInner(BaseModel):
     """
     CreateModerationResponseResultsInner
     """ # noqa: E501
-    flagged: StrictBool
+    flagged: StrictBool = Field(description="Whether any of the below categories are flagged.")
     categories: CreateModerationResponseResultsInnerCategories
     category_scores: CreateModerationResponseResultsInnerCategoryScores
     __properties: ClassVar[List[str]] = ["flagged", "categories", "category_scores"]

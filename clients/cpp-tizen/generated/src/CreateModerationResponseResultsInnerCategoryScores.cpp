@@ -25,7 +25,11 @@ CreateModerationResponse_results_inner_category_scores::__init()
 {
 	//hate = double(0);
 	//hatethreatening = double(0);
+	//harassment = double(0);
+	//harassmentthreatening = double(0);
 	//selfharm = double(0);
+	//selfharmintent = double(0);
+	//selfharminstructions = double(0);
 	//sexual = double(0);
 	//sexualminors = double(0);
 	//violence = double(0);
@@ -45,10 +49,30 @@ CreateModerationResponse_results_inner_category_scores::__cleanup()
 	//delete hatethreatening;
 	//hatethreatening = NULL;
 	//}
+	//if(harassment != NULL) {
+	//
+	//delete harassment;
+	//harassment = NULL;
+	//}
+	//if(harassmentthreatening != NULL) {
+	//
+	//delete harassmentthreatening;
+	//harassmentthreatening = NULL;
+	//}
 	//if(selfharm != NULL) {
 	//
 	//delete selfharm;
 	//selfharm = NULL;
+	//}
+	//if(selfharmintent != NULL) {
+	//
+	//delete selfharmintent;
+	//selfharmintent = NULL;
+	//}
+	//if(selfharminstructions != NULL) {
+	//
+	//delete selfharminstructions;
+	//selfharminstructions = NULL;
 	//}
 	//if(sexual != NULL) {
 	//
@@ -106,6 +130,34 @@ CreateModerationResponse_results_inner_category_scores::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *harassmentKey = "harassment";
+	node = json_object_get_member(pJsonObject, harassmentKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("long long")) {
+			jsonToValue(&harassment, node, "long long", "");
+		} else {
+			
+			long long* obj = static_cast<long long*> (&harassment);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *harassmentthreateningKey = "harassment/threatening";
+	node = json_object_get_member(pJsonObject, harassmentthreateningKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("long long")) {
+			jsonToValue(&harassmentthreatening, node, "long long", "");
+		} else {
+			
+			long long* obj = static_cast<long long*> (&harassmentthreatening);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
 	const gchar *selfharmKey = "self-harm";
 	node = json_object_get_member(pJsonObject, selfharmKey);
 	if (node !=NULL) {
@@ -116,6 +168,34 @@ CreateModerationResponse_results_inner_category_scores::fromJson(char* jsonStr)
 		} else {
 			
 			long long* obj = static_cast<long long*> (&selfharm);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *selfharmintentKey = "self-harm/intent";
+	node = json_object_get_member(pJsonObject, selfharmintentKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("long long")) {
+			jsonToValue(&selfharmintent, node, "long long", "");
+		} else {
+			
+			long long* obj = static_cast<long long*> (&selfharmintent);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *selfharminstructionsKey = "self-harm/instructions";
+	node = json_object_get_member(pJsonObject, selfharminstructionsKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("long long")) {
+			jsonToValue(&selfharminstructions, node, "long long", "");
+		} else {
+			
+			long long* obj = static_cast<long long*> (&selfharminstructions);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -217,6 +297,34 @@ CreateModerationResponse_results_inner_category_scores::toJson()
 	const gchar *hatethreateningKey = "hate/threatening";
 	json_object_set_member(pJsonObject, hatethreateningKey, node);
 	if (isprimitive("long long")) {
+		long long obj = getHarassment();
+		node = converttoJson(&obj, "long long", "");
+	}
+	else {
+		
+		long long obj = static_cast<long long> (getHarassment());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *harassmentKey = "harassment";
+	json_object_set_member(pJsonObject, harassmentKey, node);
+	if (isprimitive("long long")) {
+		long long obj = getHarassmentthreatening();
+		node = converttoJson(&obj, "long long", "");
+	}
+	else {
+		
+		long long obj = static_cast<long long> (getHarassmentthreatening());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *harassmentthreateningKey = "harassment/threatening";
+	json_object_set_member(pJsonObject, harassmentthreateningKey, node);
+	if (isprimitive("long long")) {
 		long long obj = getSelfharm();
 		node = converttoJson(&obj, "long long", "");
 	}
@@ -230,6 +338,34 @@ CreateModerationResponse_results_inner_category_scores::toJson()
 	}
 	const gchar *selfharmKey = "self-harm";
 	json_object_set_member(pJsonObject, selfharmKey, node);
+	if (isprimitive("long long")) {
+		long long obj = getSelfharmintent();
+		node = converttoJson(&obj, "long long", "");
+	}
+	else {
+		
+		long long obj = static_cast<long long> (getSelfharmintent());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *selfharmintentKey = "self-harm/intent";
+	json_object_set_member(pJsonObject, selfharmintentKey, node);
+	if (isprimitive("long long")) {
+		long long obj = getSelfharminstructions();
+		node = converttoJson(&obj, "long long", "");
+	}
+	else {
+		
+		long long obj = static_cast<long long> (getSelfharminstructions());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *selfharminstructionsKey = "self-harm/instructions";
+	json_object_set_member(pJsonObject, selfharminstructionsKey, node);
 	if (isprimitive("long long")) {
 		long long obj = getSexual();
 		node = converttoJson(&obj, "long long", "");
@@ -319,6 +455,30 @@ CreateModerationResponse_results_inner_category_scores::setHatethreatening(long 
 }
 
 long long
+CreateModerationResponse_results_inner_category_scores::getHarassment()
+{
+	return harassment;
+}
+
+void
+CreateModerationResponse_results_inner_category_scores::setHarassment(long long  harassment)
+{
+	this->harassment = harassment;
+}
+
+long long
+CreateModerationResponse_results_inner_category_scores::getHarassmentthreatening()
+{
+	return harassmentthreatening;
+}
+
+void
+CreateModerationResponse_results_inner_category_scores::setHarassmentthreatening(long long  harassmentthreatening)
+{
+	this->harassmentthreatening = harassmentthreatening;
+}
+
+long long
 CreateModerationResponse_results_inner_category_scores::getSelfharm()
 {
 	return selfharm;
@@ -328,6 +488,30 @@ void
 CreateModerationResponse_results_inner_category_scores::setSelfharm(long long  selfharm)
 {
 	this->selfharm = selfharm;
+}
+
+long long
+CreateModerationResponse_results_inner_category_scores::getSelfharmintent()
+{
+	return selfharmintent;
+}
+
+void
+CreateModerationResponse_results_inner_category_scores::setSelfharmintent(long long  selfharmintent)
+{
+	this->selfharmintent = selfharmintent;
+}
+
+long long
+CreateModerationResponse_results_inner_category_scores::getSelfharminstructions()
+{
+	return selfharminstructions;
+}
+
+void
+CreateModerationResponse_results_inner_category_scores::setSelfharminstructions(long long  selfharminstructions)
+{
+	this->selfharminstructions = selfharminstructions;
 }
 
 long long

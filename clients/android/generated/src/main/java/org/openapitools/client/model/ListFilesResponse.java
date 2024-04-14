@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,20 +20,13 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class ListFilesResponse {
   
-  @SerializedName("object")
-  private String _object = null;
   @SerializedName("data")
   private List<OpenAIFile> data = null;
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
+  public enum _objectEnum {
+     list, 
+  };
+  @SerializedName("object")
+  private _objectEnum _object = null;
 
   /**
    **/
@@ -43,6 +36,16 @@ public class ListFilesResponse {
   }
   public void setData(List<OpenAIFile> data) {
     this.data = data;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public _objectEnum getObject() {
+    return _object;
+  }
+  public void setObject(_objectEnum _object) {
+    this._object = _object;
   }
 
 
@@ -55,15 +58,15 @@ public class ListFilesResponse {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return (this._object == null ? listFilesResponse._object == null : this._object.equals(listFilesResponse._object)) &&
-        (this.data == null ? listFilesResponse.data == null : this.data.equals(listFilesResponse.data));
+    return (this.data == null ? listFilesResponse.data == null : this.data.equals(listFilesResponse.data)) &&
+        (this._object == null ? listFilesResponse._object == null : this._object.equals(listFilesResponse._object));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
-    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
     result = 31 * result + (this.data == null ? 0: this.data.hashCode());
+    result = 31 * result + (this._object == null ? 0: this._object.hashCode());
     return result;
   }
 
@@ -72,8 +75,8 @@ public class ListFilesResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("  _object: ").append(_object).append("\n");
     sb.append("  data: ").append(data).append("\n");
+    sb.append("  _object: ").append(_object).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

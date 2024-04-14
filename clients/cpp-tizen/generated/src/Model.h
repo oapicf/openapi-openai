@@ -1,7 +1,7 @@
 /*
  * Model.h
  *
- * 
+ * Describes an OpenAI model offering that can be used with the API.
  */
 
 #ifndef _Model_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Describes an OpenAI model offering that can be used with the API.
  *
  *  \ingroup Models
  *
@@ -45,39 +45,39 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get The model identifier, which can be referenced in the API endpoints.
 	 */
 	std::string getId();
 
-	/*! \brief Set 
+	/*! \brief Set The model identifier, which can be referenced in the API endpoints.
 	 */
 	void setId(std::string  id);
-	/*! \brief Get 
-	 */
-	std::string getObject();
-
-	/*! \brief Set 
-	 */
-	void setObject(std::string  object);
-	/*! \brief Get 
+	/*! \brief Get The Unix timestamp (in seconds) when the model was created.
 	 */
 	int getCreated();
 
-	/*! \brief Set 
+	/*! \brief Set The Unix timestamp (in seconds) when the model was created.
 	 */
 	void setCreated(int  created);
-	/*! \brief Get 
+	/*! \brief Get The object type, which is always \"model\".
+	 */
+	std::string getObject();
+
+	/*! \brief Set The object type, which is always \"model\".
+	 */
+	void setObject(std::string  object);
+	/*! \brief Get The organization that owns the model.
 	 */
 	std::string getOwnedBy();
 
-	/*! \brief Set 
+	/*! \brief Set The organization that owns the model.
 	 */
 	void setOwnedBy(std::string  owned_by);
 
 private:
 	std::string id;
-	std::string object;
 	int created;
+	std::string object;
 	std::string owned_by;
 	void __init();
 	void __cleanup();

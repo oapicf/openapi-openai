@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -28,24 +28,34 @@ import {
 export interface ListFilesResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ListFilesResponse
-     */
-    object: string;
-    /**
-     * 
      * @type {Array<OpenAIFile>}
      * @memberof ListFilesResponse
      */
     data: Array<OpenAIFile>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListFilesResponse
+     */
+    object: ListFilesResponseObjectEnum;
 }
+
+
+/**
+ * @export
+ */
+export const ListFilesResponseObjectEnum = {
+    List: 'list'
+} as const;
+export type ListFilesResponseObjectEnum = typeof ListFilesResponseObjectEnum[keyof typeof ListFilesResponseObjectEnum];
+
 
 /**
  * Check if a given object implements the ListFilesResponse interface.
  */
 export function instanceOfListFilesResponse(value: object): boolean {
-    if (!('object' in value)) return false;
     if (!('data' in value)) return false;
+    if (!('object' in value)) return false;
     return true;
 }
 
@@ -59,8 +69,8 @@ export function ListFilesResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'object': json['object'],
         'data': ((json['data'] as Array<any>).map(OpenAIFileFromJSON)),
+        'object': json['object'],
     };
 }
 
@@ -70,8 +80,8 @@ export function ListFilesResponseToJSON(value?: ListFilesResponse | null): any {
     }
     return {
         
-        'object': value['object'],
         'data': ((value['data'] as Array<any>).map(OpenAIFileToJSON)),
+        'object': value['object'],
     };
 }
 

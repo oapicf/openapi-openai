@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
-**object** | **str** |  | 
 **deleted** | **bool** |  | 
+**object** | **str** |  | 
 
 ## Example
 

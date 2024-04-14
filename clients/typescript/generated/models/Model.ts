@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,10 +12,25 @@
 
 import { HttpFile } from '../http/http';
 
+/**
+* Describes an OpenAI model offering that can be used with the API.
+*/
 export class Model {
+    /**
+    * The model identifier, which can be referenced in the API endpoints.
+    */
     'id': string;
-    'object': string;
+    /**
+    * The Unix timestamp (in seconds) when the model was created.
+    */
     'created': number;
+    /**
+    * The object type, which is always \"model\".
+    */
+    'object': ModelObjectEnum;
+    /**
+    * The organization that owns the model.
+    */
     'ownedBy': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -28,15 +43,15 @@ export class Model {
             "format": ""
         },
         {
-            "name": "object",
-            "baseName": "object",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "created",
             "baseName": "created",
             "type": "number",
+            "format": ""
+        },
+        {
+            "name": "object",
+            "baseName": "object",
+            "type": "ModelObjectEnum",
             "format": ""
         },
         {
@@ -52,5 +67,10 @@ export class Model {
 
     public constructor() {
     }
+}
+
+
+export enum ModelObjectEnum {
+    Model = 'model'
 }
 

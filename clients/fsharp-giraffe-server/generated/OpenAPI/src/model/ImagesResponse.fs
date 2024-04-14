@@ -2,7 +2,7 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
-open OpenAPI.Model.ImagesResponseDataInner
+open OpenAPI.Model.Image
 
 module ImagesResponse =
 
@@ -11,6 +11,6 @@ module ImagesResponse =
 
   type ImagesResponse = {
     Created : int;
-    Data : ImagesResponseDataInner[];
+    Data : Image[];
   }
   //#endregion

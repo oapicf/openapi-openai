@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `Model`
 --
-SELECT `id`, `object`, `created`, `owned_by` FROM `Model` WHERE 1;
+SELECT `id`, `created`, `object`, `owned_by` FROM `Model` WHERE 1;
 
 --
 -- INSERT template for table `Model`
 --
-INSERT INTO `Model`(`id`, `object`, `created`, `owned_by`) VALUES (?, ?, ?, ?);
+INSERT INTO `Model`(`id`, `created`, `object`, `owned_by`) VALUES (?, ?, ?, ?);
 
 --
 -- UPDATE template for table `Model`
 --
-UPDATE `Model` SET `id` = ?, `object` = ?, `created` = ?, `owned_by` = ? WHERE 1;
+UPDATE `Model` SET `id` = ?, `created` = ?, `object` = ?, `owned_by` = ? WHERE 1;
 
 --
 -- DELETE template for table `Model`

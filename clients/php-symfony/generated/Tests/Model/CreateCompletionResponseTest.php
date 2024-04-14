@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * CreateCompletionResponseTest Class Doc Comment
  *
  * @category    Class
- * @description CreateCompletionResponse
+ * @description Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint).
  * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
  * @link        https://github.com/openapitools/openapi-generator
@@ -98,14 +98,14 @@ class CreateCompletionResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "object"
+     * Test attribute "choices"
      *
      * @group unit
      * @small
      */
-    public function testPropertyObject(): void
+    public function testPropertyChoices(): void
     {
-        $this->markTestSkipped('Test for property object not implemented');
+        $this->markTestSkipped('Test for property choices not implemented');
     }
 
     /**
@@ -131,14 +131,25 @@ class CreateCompletionResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "choices"
+     * Test attribute "systemFingerprint"
      *
      * @group unit
      * @small
      */
-    public function testPropertyChoices(): void
+    public function testPropertySystemFingerprint(): void
     {
-        $this->markTestSkipped('Test for property choices not implemented');
+        $this->markTestSkipped('Test for property systemFingerprint not implemented');
+    }
+
+    /**
+     * Test attribute "object"
+     *
+     * @group unit
+     * @small
+     */
+    public function testPropertyObject(): void
+    {
+        $this->markTestSkipped('Test for property object not implemented');
     }
 
     /**

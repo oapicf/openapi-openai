@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,35 +13,28 @@
 package org.openapitools.client.model;
 
 import org.openapitools.client.model.ChatCompletionStreamResponseDelta;
+import org.openapitools.client.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
 @ApiModel(description = "")
 public class CreateChatCompletionStreamResponseChoicesInner {
   
-  @SerializedName("index")
-  private Integer index = null;
   @SerializedName("delta")
   private ChatCompletionStreamResponseDelta delta = null;
+  @SerializedName("logprobs")
+  private CreateChatCompletionResponseChoicesInnerLogprobs logprobs = null;
   public enum FinishReasonEnum {
-     stop,  length,  function_call, 
+     stop,  length,  tool_calls,  content_filter,  function_call, 
   };
   @SerializedName("finish_reason")
   private FinishReasonEnum finishReason = null;
+  @SerializedName("index")
+  private Integer index = null;
 
   /**
    **/
-  @ApiModelProperty(value = "")
-  public Integer getIndex() {
-    return index;
-  }
-  public void setIndex(Integer index) {
-    this.index = index;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public ChatCompletionStreamResponseDelta getDelta() {
     return delta;
   }
@@ -52,11 +45,33 @@ public class CreateChatCompletionStreamResponseChoicesInner {
   /**
    **/
   @ApiModelProperty(value = "")
+  public CreateChatCompletionResponseChoicesInnerLogprobs getLogprobs() {
+    return logprobs;
+  }
+  public void setLogprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
+  }
+
+  /**
+   * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
+   **/
+  @ApiModelProperty(required = true, value = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ")
   public FinishReasonEnum getFinishReason() {
     return finishReason;
   }
   public void setFinishReason(FinishReasonEnum finishReason) {
     this.finishReason = finishReason;
+  }
+
+  /**
+   * The index of the choice in the list of choices.
+   **/
+  @ApiModelProperty(required = true, value = "The index of the choice in the list of choices.")
+  public Integer getIndex() {
+    return index;
+  }
+  public void setIndex(Integer index) {
+    this.index = index;
   }
 
 
@@ -69,17 +84,19 @@ public class CreateChatCompletionStreamResponseChoicesInner {
       return false;
     }
     CreateChatCompletionStreamResponseChoicesInner createChatCompletionStreamResponseChoicesInner = (CreateChatCompletionStreamResponseChoicesInner) o;
-    return (this.index == null ? createChatCompletionStreamResponseChoicesInner.index == null : this.index.equals(createChatCompletionStreamResponseChoicesInner.index)) &&
-        (this.delta == null ? createChatCompletionStreamResponseChoicesInner.delta == null : this.delta.equals(createChatCompletionStreamResponseChoicesInner.delta)) &&
-        (this.finishReason == null ? createChatCompletionStreamResponseChoicesInner.finishReason == null : this.finishReason.equals(createChatCompletionStreamResponseChoicesInner.finishReason));
+    return (this.delta == null ? createChatCompletionStreamResponseChoicesInner.delta == null : this.delta.equals(createChatCompletionStreamResponseChoicesInner.delta)) &&
+        (this.logprobs == null ? createChatCompletionStreamResponseChoicesInner.logprobs == null : this.logprobs.equals(createChatCompletionStreamResponseChoicesInner.logprobs)) &&
+        (this.finishReason == null ? createChatCompletionStreamResponseChoicesInner.finishReason == null : this.finishReason.equals(createChatCompletionStreamResponseChoicesInner.finishReason)) &&
+        (this.index == null ? createChatCompletionStreamResponseChoicesInner.index == null : this.index.equals(createChatCompletionStreamResponseChoicesInner.index));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
-    result = 31 * result + (this.index == null ? 0: this.index.hashCode());
     result = 31 * result + (this.delta == null ? 0: this.delta.hashCode());
+    result = 31 * result + (this.logprobs == null ? 0: this.logprobs.hashCode());
     result = 31 * result + (this.finishReason == null ? 0: this.finishReason.hashCode());
+    result = 31 * result + (this.index == null ? 0: this.index.hashCode());
     return result;
   }
 
@@ -88,9 +105,10 @@ public class CreateChatCompletionStreamResponseChoicesInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionStreamResponseChoicesInner {\n");
     
-    sb.append("  index: ").append(index).append("\n");
     sb.append("  delta: ").append(delta).append("\n");
+    sb.append("  logprobs: ").append(logprobs).append("\n");
     sb.append("  finishReason: ").append(finishReason).append("\n");
+    sb.append("  index: ").append(index).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

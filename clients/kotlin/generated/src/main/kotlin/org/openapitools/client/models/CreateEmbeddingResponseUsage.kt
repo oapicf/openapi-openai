@@ -20,18 +20,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The usage information for the request.
  *
- * @param promptTokens 
- * @param totalTokens 
+ * @param promptTokens The number of tokens used by the prompt.
+ * @param totalTokens The total number of tokens used by the request.
  */
 
 
 data class CreateEmbeddingResponseUsage (
 
+    /* The number of tokens used by the prompt. */
     @Json(name = "prompt_tokens")
     val promptTokens: kotlin.Int,
 
+    /* The total number of tokens used by the request. */
     @Json(name = "total_tokens")
     val totalTokens: kotlin.Int
 

@@ -1,0 +1,9 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The model to use for image generation.",
+  "name": "CreateImageRequestModel",
+  "fields": [
+  ]
+
+}

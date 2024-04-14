@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -23,10 +23,10 @@ namespace model {
 
 ChatCompletionFunctions::ChatCompletionFunctions()
 {
-    m_Name = utility::conversions::to_string_t("");
-    m_NameIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
+    m_Name = utility::conversions::to_string_t("");
+    m_NameIsSet = false;
     m_ParametersIsSet = false;
 }
 
@@ -44,13 +44,13 @@ web::json::value ChatCompletionFunctions::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_NameIsSet)
-    {
-        val[utility::conversions::to_string_t(U("name"))] = ModelBase::toJson(m_Name);
-    }
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
+    }
+    if(m_NameIsSet)
+    {
+        val[utility::conversions::to_string_t(U("name"))] = ModelBase::toJson(m_Name);
     }
     if(m_ParametersIsSet)
     {
@@ -64,16 +64,6 @@ bool ChatCompletionFunctions::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("name"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("name")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setName;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setName);
-            setName(refVal_setName);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("description"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("description")));
@@ -82,6 +72,16 @@ bool ChatCompletionFunctions::fromJson(const web::json::value& val)
             utility::string_t refVal_setDescription;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
             setDescription(refVal_setDescription);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("name"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("name")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setName;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setName);
+            setName(refVal_setName);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("parameters"))))
@@ -104,13 +104,13 @@ void ChatCompletionFunctions::toMultipart(std::shared_ptr<MultipartFormData> mul
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_NameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("name")), m_Name));
-    }
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
+    }
+    if(m_NameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("name")), m_Name));
     }
     if(m_ParametersIsSet)
     {
@@ -127,17 +127,17 @@ bool ChatCompletionFunctions::fromMultiPart(std::shared_ptr<MultipartFormData> m
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("name"))))
-    {
-        utility::string_t refVal_setName;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("name"))), refVal_setName );
-        setName(refVal_setName);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
     {
         utility::string_t refVal_setDescription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("name"))))
+    {
+        utility::string_t refVal_setName;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("name"))), refVal_setName );
+        setName(refVal_setName);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("parameters"))))
     {
@@ -148,26 +148,6 @@ bool ChatCompletionFunctions::fromMultiPart(std::shared_ptr<MultipartFormData> m
     return ok;
 }
 
-utility::string_t ChatCompletionFunctions::getName() const
-{
-    return m_Name;
-}
-
-void ChatCompletionFunctions::setName(const utility::string_t& value)
-{
-    m_Name = value;
-    m_NameIsSet = true;
-}
-
-bool ChatCompletionFunctions::nameIsSet() const
-{
-    return m_NameIsSet;
-}
-
-void ChatCompletionFunctions::unsetName()
-{
-    m_NameIsSet = false;
-}
 utility::string_t ChatCompletionFunctions::getDescription() const
 {
     return m_Description;
@@ -187,6 +167,26 @@ bool ChatCompletionFunctions::descriptionIsSet() const
 void ChatCompletionFunctions::unsetDescription()
 {
     m_DescriptionIsSet = false;
+}
+utility::string_t ChatCompletionFunctions::getName() const
+{
+    return m_Name;
+}
+
+void ChatCompletionFunctions::setName(const utility::string_t& value)
+{
+    m_Name = value;
+    m_NameIsSet = true;
+}
+
+bool ChatCompletionFunctions::nameIsSet() const
+{
+    return m_NameIsSet;
+}
+
+void ChatCompletionFunctions::unsetName()
+{
+    m_NameIsSet = false;
 }
 std::map<utility::string_t, std::shared_ptr<AnyType>>& ChatCompletionFunctions::getParameters()
 {

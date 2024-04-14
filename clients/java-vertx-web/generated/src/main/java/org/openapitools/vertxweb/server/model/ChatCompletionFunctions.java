@@ -9,27 +9,18 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChatCompletionFunctions   {
   
-  private String name;
   private String description;
+  private String name;
   private Map<String, Object> parameters = new HashMap<>();
 
   public ChatCompletionFunctions () {
 
   }
 
-  public ChatCompletionFunctions (String name, String description, Map<String, Object> parameters) {
-    this.name = name;
+  public ChatCompletionFunctions (String description, String name, Map<String, Object> parameters) {
     this.description = description;
-    this.parameters = parameters;
-  }
-
-    
-  @JsonProperty("name")
-  public String getName() {
-    return name;
-  }
-  public void setName(String name) {
     this.name = name;
+    this.parameters = parameters;
   }
 
     
@@ -39,6 +30,15 @@ public class ChatCompletionFunctions   {
   }
   public void setDescription(String description) {
     this.description = description;
+  }
+
+    
+  @JsonProperty("name")
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
   }
 
     
@@ -60,14 +60,14 @@ public class ChatCompletionFunctions   {
       return false;
     }
     ChatCompletionFunctions chatCompletionFunctions = (ChatCompletionFunctions) o;
-    return Objects.equals(name, chatCompletionFunctions.name) &&
-        Objects.equals(description, chatCompletionFunctions.description) &&
+    return Objects.equals(description, chatCompletionFunctions.description) &&
+        Objects.equals(name, chatCompletionFunctions.name) &&
         Objects.equals(parameters, chatCompletionFunctions.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, parameters);
+    return Objects.hash(description, name, parameters);
   }
 
   @Override
@@ -75,8 +75,8 @@ public class ChatCompletionFunctions   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChatCompletionFunctions {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();

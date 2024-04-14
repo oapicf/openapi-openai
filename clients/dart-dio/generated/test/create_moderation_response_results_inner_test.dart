@@ -7,6 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreateModerationResponseResultsInner, () {
+    // Whether any of the below categories are flagged.
     // bool flagged
     test('to test the property `flagged`', () async {
       // TODO

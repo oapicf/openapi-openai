@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,16 +15,16 @@ package openapi
 
 type ListFilesResponse struct {
 
-	Object string `json:"object"`
-
 	Data []OpenAiFile `json:"data"`
+
+	Object string `json:"object"`
 }
 
 // AssertListFilesResponseRequired checks if the required fields are not zero-ed
 func AssertListFilesResponseRequired(obj ListFilesResponse) error {
 	elements := map[string]interface{}{
-		"object": obj.Object,
 		"data": obj.Data,
+		"object": obj.Object,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

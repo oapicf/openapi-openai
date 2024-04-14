@@ -36,11 +36,12 @@ import kotlin.collections.Map
 class ModelsApiController() {
 
     @Operation(
-        summary = "Delete a fine-tuned model. You must have the Owner role in your organization.",
+        summary = "Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.",
         operationId = "deleteModel",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = DeleteModelResponse::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = DeleteModelResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
@@ -56,7 +57,8 @@ class ModelsApiController() {
         operationId = "listModels",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ListModelsResponse::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ListModelsResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.GET],
@@ -72,7 +74,8 @@ class ModelsApiController() {
         operationId = "retrieveModel",
         description = """""",
         responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = Model::class))]) ]
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = Model::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
     )
     @RequestMapping(
         method = [RequestMethod.GET],

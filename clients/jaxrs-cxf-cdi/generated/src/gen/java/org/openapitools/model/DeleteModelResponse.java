@@ -17,9 +17,9 @@ public class DeleteModelResponse   {
   
   private String id;
 
-  private String _object;
-
   private Boolean deleted;
+
+  private String _object;
 
   /**
    **/
@@ -42,25 +42,6 @@ public class DeleteModelResponse   {
 
   /**
    **/
-  public DeleteModelResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-  
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("object")
-  @NotNull
-  public String getObject() {
-    return _object;
-  }
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-
-  /**
-   **/
   public DeleteModelResponse deleted(Boolean deleted) {
     this.deleted = deleted;
     return this;
@@ -78,6 +59,25 @@ public class DeleteModelResponse   {
   }
 
 
+  /**
+   **/
+  public DeleteModelResponse _object(String _object) {
+    this._object = _object;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("object")
+  @NotNull
+  public String getObject() {
+    return _object;
+  }
+  public void setObject(String _object) {
+    this._object = _object;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -89,13 +89,13 @@ public class DeleteModelResponse   {
     }
     DeleteModelResponse deleteModelResponse = (DeleteModelResponse) o;
     return Objects.equals(this.id, deleteModelResponse.id) &&
-        Objects.equals(this._object, deleteModelResponse._object) &&
-        Objects.equals(this.deleted, deleteModelResponse.deleted);
+        Objects.equals(this.deleted, deleteModelResponse.deleted) &&
+        Objects.equals(this._object, deleteModelResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, deleted);
+    return Objects.hash(id, deleted, _object);
   }
 
   @Override
@@ -104,8 +104,8 @@ public class DeleteModelResponse   {
     sb.append("class DeleteModelResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -24,7 +24,7 @@ export interface ModelError {
      * @type {string}
      * @memberof ModelError
      */
-    type: string;
+    code: string | null;
     /**
      * 
      * @type {string}
@@ -42,17 +42,17 @@ export interface ModelError {
      * @type {string}
      * @memberof ModelError
      */
-    code: string | null;
+    type: string;
 }
 
 /**
  * Check if a given object implements the ModelError interface.
  */
 export function instanceOfModelError(value: object): boolean {
-    if (!('type' in value)) return false;
+    if (!('code' in value)) return false;
     if (!('message' in value)) return false;
     if (!('param' in value)) return false;
-    if (!('code' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 
@@ -66,10 +66,10 @@ export function ModelErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'type': json['type'],
+        'code': json['code'],
         'message': json['message'],
         'param': json['param'],
-        'code': json['code'],
+        'type': json['type'],
     };
 }
 
@@ -79,10 +79,10 @@ export function ModelErrorToJSON(value?: ModelError | null): any {
     }
     return {
         
-        'type': value['type'],
+        'code': value['code'],
         'message': value['message'],
         'param': value['param'],
-        'code': value['code'],
+        'type': value['type'],
     };
 }
 

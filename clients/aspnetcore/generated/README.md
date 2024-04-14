@@ -1,6 +1,6 @@
 # Org.OpenAPITools - ASP.NET Core 3.1 Server
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 ## Upgrade NuGet Packages
 

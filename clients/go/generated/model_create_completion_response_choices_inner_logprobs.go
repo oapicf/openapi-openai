@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -20,10 +20,10 @@ var _ MappedNullable = &CreateCompletionResponseChoicesInnerLogprobs{}
 
 // CreateCompletionResponseChoicesInnerLogprobs struct for CreateCompletionResponseChoicesInnerLogprobs
 type CreateCompletionResponseChoicesInnerLogprobs struct {
-	Tokens []string `json:"tokens,omitempty"`
-	TokenLogprobs []float32 `json:"token_logprobs,omitempty"`
-	TopLogprobs []map[string]interface{} `json:"top_logprobs,omitempty"`
 	TextOffset []int32 `json:"text_offset,omitempty"`
+	TokenLogprobs []float32 `json:"token_logprobs,omitempty"`
+	Tokens []string `json:"tokens,omitempty"`
+	TopLogprobs []map[string]float32 `json:"top_logprobs,omitempty"`
 }
 
 // NewCreateCompletionResponseChoicesInnerLogprobs instantiates a new CreateCompletionResponseChoicesInnerLogprobs object
@@ -41,102 +41,6 @@ func NewCreateCompletionResponseChoicesInnerLogprobs() *CreateCompletionResponse
 func NewCreateCompletionResponseChoicesInnerLogprobsWithDefaults() *CreateCompletionResponseChoicesInnerLogprobs {
 	this := CreateCompletionResponseChoicesInnerLogprobs{}
 	return &this
-}
-
-// GetTokens returns the Tokens field value if set, zero value otherwise.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokens() []string {
-	if o == nil || IsNil(o.Tokens) {
-		var ret []string
-		return ret
-	}
-	return o.Tokens
-}
-
-// GetTokensOk returns a tuple with the Tokens field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokensOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tokens) {
-		return nil, false
-	}
-	return o.Tokens, true
-}
-
-// HasTokens returns a boolean if a field has been set.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTokens() bool {
-	if o != nil && !IsNil(o.Tokens) {
-		return true
-	}
-
-	return false
-}
-
-// SetTokens gets a reference to the given []string and assigns it to the Tokens field.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTokens(v []string) {
-	o.Tokens = v
-}
-
-// GetTokenLogprobs returns the TokenLogprobs field value if set, zero value otherwise.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokenLogprobs() []float32 {
-	if o == nil || IsNil(o.TokenLogprobs) {
-		var ret []float32
-		return ret
-	}
-	return o.TokenLogprobs
-}
-
-// GetTokenLogprobsOk returns a tuple with the TokenLogprobs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokenLogprobsOk() ([]float32, bool) {
-	if o == nil || IsNil(o.TokenLogprobs) {
-		return nil, false
-	}
-	return o.TokenLogprobs, true
-}
-
-// HasTokenLogprobs returns a boolean if a field has been set.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTokenLogprobs() bool {
-	if o != nil && !IsNil(o.TokenLogprobs) {
-		return true
-	}
-
-	return false
-}
-
-// SetTokenLogprobs gets a reference to the given []float32 and assigns it to the TokenLogprobs field.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTokenLogprobs(v []float32) {
-	o.TokenLogprobs = v
-}
-
-// GetTopLogprobs returns the TopLogprobs field value if set, zero value otherwise.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTopLogprobs() []map[string]interface{} {
-	if o == nil || IsNil(o.TopLogprobs) {
-		var ret []map[string]interface{}
-		return ret
-	}
-	return o.TopLogprobs
-}
-
-// GetTopLogprobsOk returns a tuple with the TopLogprobs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTopLogprobsOk() ([]map[string]interface{}, bool) {
-	if o == nil || IsNil(o.TopLogprobs) {
-		return nil, false
-	}
-	return o.TopLogprobs, true
-}
-
-// HasTopLogprobs returns a boolean if a field has been set.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTopLogprobs() bool {
-	if o != nil && !IsNil(o.TopLogprobs) {
-		return true
-	}
-
-	return false
-}
-
-// SetTopLogprobs gets a reference to the given []map[string]interface{} and assigns it to the TopLogprobs field.
-func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTopLogprobs(v []map[string]interface{}) {
-	o.TopLogprobs = v
 }
 
 // GetTextOffset returns the TextOffset field value if set, zero value otherwise.
@@ -171,6 +75,102 @@ func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTextOffset(v []int32) 
 	o.TextOffset = v
 }
 
+// GetTokenLogprobs returns the TokenLogprobs field value if set, zero value otherwise.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokenLogprobs() []float32 {
+	if o == nil || IsNil(o.TokenLogprobs) {
+		var ret []float32
+		return ret
+	}
+	return o.TokenLogprobs
+}
+
+// GetTokenLogprobsOk returns a tuple with the TokenLogprobs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokenLogprobsOk() ([]float32, bool) {
+	if o == nil || IsNil(o.TokenLogprobs) {
+		return nil, false
+	}
+	return o.TokenLogprobs, true
+}
+
+// HasTokenLogprobs returns a boolean if a field has been set.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTokenLogprobs() bool {
+	if o != nil && !IsNil(o.TokenLogprobs) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenLogprobs gets a reference to the given []float32 and assigns it to the TokenLogprobs field.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTokenLogprobs(v []float32) {
+	o.TokenLogprobs = v
+}
+
+// GetTokens returns the Tokens field value if set, zero value otherwise.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokens() []string {
+	if o == nil || IsNil(o.Tokens) {
+		var ret []string
+		return ret
+	}
+	return o.Tokens
+}
+
+// GetTokensOk returns a tuple with the Tokens field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTokensOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tokens) {
+		return nil, false
+	}
+	return o.Tokens, true
+}
+
+// HasTokens returns a boolean if a field has been set.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTokens() bool {
+	if o != nil && !IsNil(o.Tokens) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokens gets a reference to the given []string and assigns it to the Tokens field.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTokens(v []string) {
+	o.Tokens = v
+}
+
+// GetTopLogprobs returns the TopLogprobs field value if set, zero value otherwise.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTopLogprobs() []map[string]float32 {
+	if o == nil || IsNil(o.TopLogprobs) {
+		var ret []map[string]float32
+		return ret
+	}
+	return o.TopLogprobs
+}
+
+// GetTopLogprobsOk returns a tuple with the TopLogprobs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) GetTopLogprobsOk() ([]map[string]float32, bool) {
+	if o == nil || IsNil(o.TopLogprobs) {
+		return nil, false
+	}
+	return o.TopLogprobs, true
+}
+
+// HasTopLogprobs returns a boolean if a field has been set.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) HasTopLogprobs() bool {
+	if o != nil && !IsNil(o.TopLogprobs) {
+		return true
+	}
+
+	return false
+}
+
+// SetTopLogprobs gets a reference to the given []map[string]float32 and assigns it to the TopLogprobs field.
+func (o *CreateCompletionResponseChoicesInnerLogprobs) SetTopLogprobs(v []map[string]float32) {
+	o.TopLogprobs = v
+}
+
 func (o CreateCompletionResponseChoicesInnerLogprobs) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -181,17 +181,17 @@ func (o CreateCompletionResponseChoicesInnerLogprobs) MarshalJSON() ([]byte, err
 
 func (o CreateCompletionResponseChoicesInnerLogprobs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Tokens) {
-		toSerialize["tokens"] = o.Tokens
+	if !IsNil(o.TextOffset) {
+		toSerialize["text_offset"] = o.TextOffset
 	}
 	if !IsNil(o.TokenLogprobs) {
 		toSerialize["token_logprobs"] = o.TokenLogprobs
 	}
+	if !IsNil(o.Tokens) {
+		toSerialize["tokens"] = o.Tokens
+	}
 	if !IsNil(o.TopLogprobs) {
 		toSerialize["top_logprobs"] = o.TopLogprobs
-	}
-	if !IsNil(o.TextOffset) {
-		toSerialize["text_offset"] = o.TextOffset
 	}
 	return toSerialize, nil
 }

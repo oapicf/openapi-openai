@@ -1,13 +1,14 @@
 # CreateModerationResponse
 
+Represents if a given text input is potentially harmful.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**model** | **str** |  | 
-**results** | [**List[CreateModerationResponseResultsInner]**](CreateModerationResponseResultsInner.md) |  | 
+**id** | **str** | The unique identifier for the moderation request. | 
+**model** | **str** | The model used to generate the moderation results. | 
+**results** | [**List[CreateModerationResponseResultsInner]**](CreateModerationResponseResultsInner.md) | A list of moderation objects. | 
 
 ## Example
 

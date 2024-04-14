@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -60,27 +60,27 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getObject() const;
-    bool objectIsSet() const;
-    void unsetobject();
-
-    void setObject(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     std::vector<std::shared_ptr<OpenAIFile>>& getData();
     bool dataIsSet() const;
     void unsetData();
 
     void setData(const std::vector<std::shared_ptr<OpenAIFile>>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getObject() const;
+    bool objectIsSet() const;
+    void unsetobject();
+
+    void setObject(const utility::string_t& value);
+
 
 protected:
-    utility::string_t m_object;
-    bool m_objectIsSet;
     std::vector<std::shared_ptr<OpenAIFile>> m_Data;
     bool m_DataIsSet;
+    utility::string_t m_object;
+    bool m_objectIsSet;
 };
 
 

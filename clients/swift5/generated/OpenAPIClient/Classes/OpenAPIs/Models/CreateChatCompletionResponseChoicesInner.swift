@@ -15,31 +15,39 @@ public struct CreateChatCompletionResponseChoicesInner: Codable, JSONEncodable, 
     public enum FinishReason: String, Codable, CaseIterable {
         case stop = "stop"
         case length = "length"
+        case toolCalls = "tool_calls"
+        case contentFilter = "content_filter"
         case functionCall = "function_call"
     }
-    public var index: Int?
-    public var message: ChatCompletionResponseMessage?
-    public var finishReason: FinishReason?
+    /** The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.  */
+    public var finishReason: FinishReason
+    /** The index of the choice in the list of choices. */
+    public var index: Int
+    public var message: ChatCompletionResponseMessage
+    public var logprobs: CreateChatCompletionResponseChoicesInnerLogprobs?
 
-    public init(index: Int? = nil, message: ChatCompletionResponseMessage? = nil, finishReason: FinishReason? = nil) {
+    public init(finishReason: FinishReason, index: Int, message: ChatCompletionResponseMessage, logprobs: CreateChatCompletionResponseChoicesInnerLogprobs?) {
+        self.finishReason = finishReason
         self.index = index
         self.message = message
-        self.finishReason = finishReason
+        self.logprobs = logprobs
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case finishReason = "finish_reason"
         case index
         case message
-        case finishReason = "finish_reason"
+        case logprobs
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(index, forKey: .index)
-        try container.encodeIfPresent(message, forKey: .message)
-        try container.encodeIfPresent(finishReason, forKey: .finishReason)
+        try container.encode(finishReason, forKey: .finishReason)
+        try container.encode(index, forKey: .index)
+        try container.encode(message, forKey: .message)
+        try container.encode(logprobs, forKey: .logprobs)
     }
 }
 

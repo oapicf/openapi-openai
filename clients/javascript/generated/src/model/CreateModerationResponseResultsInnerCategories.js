@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,23 +16,28 @@ import ApiClient from '../ApiClient';
 /**
  * The CreateModerationResponseResultsInnerCategories model module.
  * @module model/CreateModerationResponseResultsInnerCategories
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateModerationResponseResultsInnerCategories {
     /**
      * Constructs a new <code>CreateModerationResponseResultsInnerCategories</code>.
+     * A list of the categories, and whether they are flagged or not.
      * @alias module:model/CreateModerationResponseResultsInnerCategories
-     * @param hate {Boolean} 
-     * @param hateThreatening {Boolean} 
-     * @param selfHarm {Boolean} 
-     * @param sexual {Boolean} 
-     * @param sexualMinors {Boolean} 
-     * @param violence {Boolean} 
-     * @param violenceGraphic {Boolean} 
+     * @param hate {Boolean} Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
+     * @param hateThreatening {Boolean} Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
+     * @param harassment {Boolean} Content that expresses, incites, or promotes harassing language towards any target.
+     * @param harassmentThreatening {Boolean} Harassment content that also includes violence or serious harm towards any target.
+     * @param selfHarm {Boolean} Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
+     * @param selfHarmIntent {Boolean} Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+     * @param selfHarmInstructions {Boolean} Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+     * @param sexual {Boolean} Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
+     * @param sexualMinors {Boolean} Sexual content that includes an individual who is under 18 years old.
+     * @param violence {Boolean} Content that depicts death, violence, or physical injury.
+     * @param violenceGraphic {Boolean} Content that depicts death, violence, or physical injury in graphic detail.
      */
-    constructor(hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic) { 
+    constructor(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic) { 
         
-        CreateModerationResponseResultsInnerCategories.initialize(this, hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic);
+        CreateModerationResponseResultsInnerCategories.initialize(this, hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
     }
 
     /**
@@ -40,10 +45,14 @@ class CreateModerationResponseResultsInnerCategories {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, hate, hateThreatening, selfHarm, sexual, sexualMinors, violence, violenceGraphic) { 
+    static initialize(obj, hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic) { 
         obj['hate'] = hate;
         obj['hate/threatening'] = hateThreatening;
+        obj['harassment'] = harassment;
+        obj['harassment/threatening'] = harassmentThreatening;
         obj['self-harm'] = selfHarm;
+        obj['self-harm/intent'] = selfHarmIntent;
+        obj['self-harm/instructions'] = selfHarmInstructions;
         obj['sexual'] = sexual;
         obj['sexual/minors'] = sexualMinors;
         obj['violence'] = violence;
@@ -67,8 +76,20 @@ class CreateModerationResponseResultsInnerCategories {
             if (data.hasOwnProperty('hate/threatening')) {
                 obj['hate/threatening'] = ApiClient.convertToType(data['hate/threatening'], 'Boolean');
             }
+            if (data.hasOwnProperty('harassment')) {
+                obj['harassment'] = ApiClient.convertToType(data['harassment'], 'Boolean');
+            }
+            if (data.hasOwnProperty('harassment/threatening')) {
+                obj['harassment/threatening'] = ApiClient.convertToType(data['harassment/threatening'], 'Boolean');
+            }
             if (data.hasOwnProperty('self-harm')) {
                 obj['self-harm'] = ApiClient.convertToType(data['self-harm'], 'Boolean');
+            }
+            if (data.hasOwnProperty('self-harm/intent')) {
+                obj['self-harm/intent'] = ApiClient.convertToType(data['self-harm/intent'], 'Boolean');
+            }
+            if (data.hasOwnProperty('self-harm/instructions')) {
+                obj['self-harm/instructions'] = ApiClient.convertToType(data['self-harm/instructions'], 'Boolean');
             }
             if (data.hasOwnProperty('sexual')) {
                 obj['sexual'] = ApiClient.convertToType(data['sexual'], 'Boolean');
@@ -105,39 +126,70 @@ class CreateModerationResponseResultsInnerCategories {
 
 }
 
-CreateModerationResponseResultsInnerCategories.RequiredProperties = ["hate", "hate/threatening", "self-harm", "sexual", "sexual/minors", "violence", "violence/graphic"];
+CreateModerationResponseResultsInnerCategories.RequiredProperties = ["hate", "hate/threatening", "harassment", "harassment/threatening", "self-harm", "self-harm/intent", "self-harm/instructions", "sexual", "sexual/minors", "violence", "violence/graphic"];
 
 /**
+ * Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
  * @member {Boolean} hate
  */
 CreateModerationResponseResultsInnerCategories.prototype['hate'] = undefined;
 
 /**
+ * Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
  * @member {Boolean} hate/threatening
  */
 CreateModerationResponseResultsInnerCategories.prototype['hate/threatening'] = undefined;
 
 /**
+ * Content that expresses, incites, or promotes harassing language towards any target.
+ * @member {Boolean} harassment
+ */
+CreateModerationResponseResultsInnerCategories.prototype['harassment'] = undefined;
+
+/**
+ * Harassment content that also includes violence or serious harm towards any target.
+ * @member {Boolean} harassment/threatening
+ */
+CreateModerationResponseResultsInnerCategories.prototype['harassment/threatening'] = undefined;
+
+/**
+ * Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
  * @member {Boolean} self-harm
  */
 CreateModerationResponseResultsInnerCategories.prototype['self-harm'] = undefined;
 
 /**
+ * Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+ * @member {Boolean} self-harm/intent
+ */
+CreateModerationResponseResultsInnerCategories.prototype['self-harm/intent'] = undefined;
+
+/**
+ * Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+ * @member {Boolean} self-harm/instructions
+ */
+CreateModerationResponseResultsInnerCategories.prototype['self-harm/instructions'] = undefined;
+
+/**
+ * Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
  * @member {Boolean} sexual
  */
 CreateModerationResponseResultsInnerCategories.prototype['sexual'] = undefined;
 
 /**
+ * Sexual content that includes an individual who is under 18 years old.
  * @member {Boolean} sexual/minors
  */
 CreateModerationResponseResultsInnerCategories.prototype['sexual/minors'] = undefined;
 
 /**
+ * Content that depicts death, violence, or physical injury.
  * @member {Boolean} violence
  */
 CreateModerationResponseResultsInnerCategories.prototype['violence'] = undefined;
 
 /**
+ * Content that depicts death, violence, or physical injury in graphic detail.
  * @member {Boolean} violence/graphic
  */
 CreateModerationResponseResultsInnerCategories.prototype['violence/graphic'] = undefined;

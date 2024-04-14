@@ -4,7 +4,7 @@
   <artifactId>openapi-jaxrs-client</artifactId>
   <packaging>jar</packaging>
   <name>openapi-jaxrs-client</name>
-  <description>APIs for sampling from and fine-tuning language models</description>
+  <description>The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.</description>
   <version>2.0.0</version>
 
 

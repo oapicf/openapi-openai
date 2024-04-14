@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -36,46 +36,50 @@ class TestCreateChatCompletionRequest(unittest.TestCase):
         model = CreateChatCompletionRequest()
         if include_optional:
             return CreateChatCompletionRequest(
-                model = gpt-3.5-turbo,
                 messages = [
-                    openapiopenai.models.chat_completion_request_message.ChatCompletionRequestMessage(
-                        role = 'system', 
-                        content = '', 
-                        name = '', 
-                        function_call = openapiopenai.models.chat_completion_request_message_function_call.ChatCompletionRequestMessage_function_call(
-                            name = '', 
-                            arguments = '', ), )
+                    null
                     ],
-                functions = [
-                    openapiopenai.models.chat_completion_functions.ChatCompletionFunctions(
-                        name = '', 
-                        description = '', 
-                        parameters = { }, )
-                    ],
-                function_call = None,
+                model = gpt-4-turbo,
+                frequency_penalty = -2,
+                logit_bias = {
+                    'key' : 56
+                    },
+                logprobs = True,
+                top_logprobs = 0,
+                max_tokens = 56,
+                n = 1,
+                presence_penalty = -2,
+                response_format = openapiopenai.models.create_chat_completion_request_response_format.CreateChatCompletionRequest_response_format(
+                    type = 'text', ),
+                seed = -9223372036854775808,
+                stop = None,
+                stream = True,
                 temperature = 1,
                 top_p = 1,
-                n = 1,
-                stream = True,
-                stop = None,
-                max_tokens = 56,
-                presence_penalty = -2,
-                frequency_penalty = -2,
-                logit_bias = None,
-                user = 'user-1234'
+                tools = [
+                    openapiopenai.models.chat_completion_tool.ChatCompletionTool(
+                        type = 'function', 
+                        function = openapiopenai.models.function_object.FunctionObject(
+                            description = '', 
+                            name = '', 
+                            parameters = { }, ), )
+                    ],
+                tool_choice = None,
+                user = 'user-1234',
+                function_call = None,
+                functions = [
+                    openapiopenai.models.chat_completion_functions.ChatCompletionFunctions(
+                        description = '', 
+                        name = '', 
+                        parameters = { }, )
+                    ]
             )
         else:
             return CreateChatCompletionRequest(
-                model = gpt-3.5-turbo,
                 messages = [
-                    openapiopenai.models.chat_completion_request_message.ChatCompletionRequestMessage(
-                        role = 'system', 
-                        content = '', 
-                        name = '', 
-                        function_call = openapiopenai.models.chat_completion_request_message_function_call.ChatCompletionRequestMessage_function_call(
-                            name = '', 
-                            arguments = '', ), )
+                    null
                     ],
+                model = gpt-4-turbo,
         )
         """
 

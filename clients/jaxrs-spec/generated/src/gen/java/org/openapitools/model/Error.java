@@ -15,31 +15,31 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Error")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-16T01:13:46.302927795Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-04-14T13:42:15.676976801Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Error   {
-  private @Valid String type;
+  private @Valid String code;
   private @Valid String message;
   private @Valid String param;
-  private @Valid String code;
+  private @Valid String type;
 
   /**
    **/
-  public Error type(String type) {
-    this.type = type;
+  public Error code(String code) {
+    this.code = code;
     return this;
   }
 
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("type")
+  @JsonProperty("code")
   @NotNull
-  public String getType() {
-    return type;
+  public String getCode() {
+    return code;
   }
 
-  @JsonProperty("type")
-  public void setType(String type) {
-    this.type = type;
+  @JsonProperty("code")
+  public void setCode(String code) {
+    this.code = code;
   }
 
   /**
@@ -84,22 +84,22 @@ public class Error   {
 
   /**
    **/
-  public Error code(String code) {
-    this.code = code;
+  public Error type(String type) {
+    this.type = type;
     return this;
   }
 
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("code")
+  @JsonProperty("type")
   @NotNull
-  public String getCode() {
-    return code;
+  public String getType() {
+    return type;
   }
 
-  @JsonProperty("code")
-  public void setCode(String code) {
-    this.code = code;
+  @JsonProperty("type")
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -112,15 +112,15 @@ public class Error   {
       return false;
     }
     Error error = (Error) o;
-    return Objects.equals(this.type, error.type) &&
+    return Objects.equals(this.code, error.code) &&
         Objects.equals(this.message, error.message) &&
         Objects.equals(this.param, error.param) &&
-        Objects.equals(this.code, error.code);
+        Objects.equals(this.type, error.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, message, param, code);
+    return Objects.hash(code, message, param, type);
   }
 
   @Override
@@ -128,10 +128,10 @@ public class Error   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    param: ").append(toIndentedString(param)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

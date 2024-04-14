@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -62,8 +62,8 @@ ptree ChatCompletionFunctions::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.put("name", m_Name);
 	pt.put("description", m_Description);
+	pt.put("name", m_Name);
 	// generate tree for Parameters
     if (!m_Parameters.empty()) {
         tmp_node = toPt(m_Parameters);
@@ -76,23 +76,12 @@ ptree ChatCompletionFunctions::toPropertyTree() const
 void ChatCompletionFunctions::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	m_Name = pt.get("name", "");
 	m_Description = pt.get("description", "");
+	m_Name = pt.get("name", "");
     if (pt.get_child_optional("parameters")) {
         m_Parameters = fromPt<std::map<std::string, AnyType>>(pt.get_child("parameters"));
     }
 }
-
-std::string ChatCompletionFunctions::getName() const
-{
-    return m_Name;
-}
-
-void ChatCompletionFunctions::setName(std::string value)
-{
-    m_Name = value;
-}
-
 
 std::string ChatCompletionFunctions::getDescription() const
 {
@@ -102,6 +91,17 @@ std::string ChatCompletionFunctions::getDescription() const
 void ChatCompletionFunctions::setDescription(std::string value)
 {
     m_Description = value;
+}
+
+
+std::string ChatCompletionFunctions::getName() const
+{
+    return m_Name;
+}
+
+void ChatCompletionFunctions::setName(std::string value)
+{
+    m_Name = value;
 }
 
 

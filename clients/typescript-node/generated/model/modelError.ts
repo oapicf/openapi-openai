@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,17 +13,17 @@
 import { RequestFile } from './models';
 
 export class ModelError {
-    'type': string;
+    'code': string | null;
     'message': string;
     'param': string | null;
-    'code': string | null;
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
+            "name": "code",
+            "baseName": "code",
             "type": "string"
         },
         {
@@ -37,8 +37,8 @@ export class ModelError {
             "type": "string"
         },
         {
-            "name": "code",
-            "baseName": "code",
+            "name": "type",
+            "baseName": "type",
             "type": "string"
         }    ];
 

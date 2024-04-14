@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **String** |  | 
+**code** | **String** |  | 
 **message** | **String** |  | 
 **param** | **String** |  | 
-**code** | **String** |  | 
+**type** | **String** |  | 
 
 

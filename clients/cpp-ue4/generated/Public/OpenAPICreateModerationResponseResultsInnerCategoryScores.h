@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,7 +20,7 @@ namespace OpenAPI
 /*
  * OpenAPICreateModerationResponseResultsInnerCategoryScores
  *
- * 
+ * A list of the categories along with their scores as predicted by model.
  */
 class OPENAPI_API OpenAPICreateModerationResponseResultsInnerCategoryScores : public Model
 {
@@ -29,12 +29,27 @@ public:
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 	void WriteJson(JsonWriter& Writer) const final;
 
+	/* The score for the category 'hate'. */
 	double Hate;
+	/* The score for the category 'hate/threatening'. */
 	double HateThreatening;
+	/* The score for the category 'harassment'. */
+	double Harassment;
+	/* The score for the category 'harassment/threatening'. */
+	double HarassmentThreatening;
+	/* The score for the category 'self-harm'. */
 	double SelfHarm;
+	/* The score for the category 'self-harm/intent'. */
+	double SelfHarmIntent;
+	/* The score for the category 'self-harm/instructions'. */
+	double SelfHarmInstructions;
+	/* The score for the category 'sexual'. */
 	double Sexual;
+	/* The score for the category 'sexual/minors'. */
 	double SexualMinors;
+	/* The score for the category 'violence'. */
 	double Violence;
+	/* The score for the category 'violence/graphic'. */
 	double ViolenceGraphic;
 };
 

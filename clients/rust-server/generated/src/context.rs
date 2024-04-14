@@ -104,6 +104,17 @@ impl<T, A, B, C, D, ReqBody> Service<Request<ReqBody>> for AddContext<T, A, B, C
         let context = A::default().push(XSpanIdString::get_or_generate(&request));
         let headers = request.headers();
 
+        {
+            use swagger::auth::Bearer;
+            use std::ops::Deref;
+            if let Some(bearer) = swagger::auth::from_headers::<Bearer>(headers) {
+                let auth_data = AuthData::Bearer(bearer);
+                let context = context.push(Some(auth_data));
+                let context = context.push(None::<Authorization>);
+
+                return self.inner.call((request, context))
+            }
+        }
 
         let context = context.push(None::<AuthData>);
         let context = context.push(None::<Authorization>);

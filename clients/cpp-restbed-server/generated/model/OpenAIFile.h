@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * OpenAIFile.h
  *
- * 
+ * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
 
 #ifndef OpenAIFile_H_
@@ -24,6 +24,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <array>
 #include <boost/property_tree/ptree.hpp>
 #include "helpers.h"
 
@@ -33,7 +34,7 @@ namespace server {
 namespace model {
 
 /// <summary>
-/// 
+/// The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
 /// </summary>
 class  OpenAIFile 
 {
@@ -58,62 +59,62 @@ public:
     /// OpenAIFile members
 
     /// <summary>
-    /// 
+    /// The file identifier, which can be referenced in the API endpoints.
     /// </summary>
     std::string getId() const;
     void setId(std::string value);
 
     /// <summary>
-    /// 
-    /// </summary>
-    std::string getObject() const;
-    void setObject(std::string value);
-
-    /// <summary>
-    /// 
+    /// The size of the file, in bytes.
     /// </summary>
     int32_t getBytes() const;
     void setBytes(int32_t value);
 
     /// <summary>
-    /// 
+    /// The Unix timestamp (in seconds) for when the file was created.
     /// </summary>
     int32_t getCreatedAt() const;
     void setCreatedAt(int32_t value);
 
     /// <summary>
-    /// 
+    /// The name of the file.
     /// </summary>
     std::string getFilename() const;
     void setFilename(std::string value);
 
     /// <summary>
-    /// 
+    /// The object type, which is always &#x60;file&#x60;.
+    /// </summary>
+    std::string getObject() const;
+    void setObject(std::string value);
+
+    /// <summary>
+    /// The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
     /// </summary>
     std::string getPurpose() const;
     void setPurpose(std::string value);
 
     /// <summary>
-    /// 
+    /// Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.
     /// </summary>
     std::string getStatus() const;
     void setStatus(std::string value);
 
     /// <summary>
-    /// 
+    /// Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;.
     /// </summary>
     std::string getStatusDetails() const;
     void setStatusDetails(std::string value);
 
 protected:
     std::string m_Id = "";
-    std::string m_object = "";
     int32_t m_Bytes = 0;
     int32_t m_Created_at = 0;
     std::string m_Filename = "";
+    std::string m_object = "";
     std::string m_Purpose = "";
     std::string m_Status = "";
-    std::string m_Status_details = std::string{};
+    std::string m_Status_details = "";
 };
 
 std::vector<OpenAIFile> createOpenAIFileVectorFromJsonString(const std::string& json);

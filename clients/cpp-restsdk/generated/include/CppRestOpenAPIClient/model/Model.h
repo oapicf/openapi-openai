@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 /*
  * Model.h
  *
- * 
+ * Describes an OpenAI model offering that can be used with the API.
  */
 
 #ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_Model_H_
@@ -31,7 +31,7 @@ namespace model {
 
 
 /// <summary>
-/// 
+/// Describes an OpenAI model offering that can be used with the API.
 /// </summary>
 class  Model
     : public ModelBase
@@ -55,7 +55,7 @@ public:
     /// Model members
 
     /// <summary>
-    /// 
+    /// The model identifier, which can be referenced in the API endpoints.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -64,16 +64,7 @@ public:
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getObject() const;
-    bool objectIsSet() const;
-    void unsetobject();
-
-    void setObject(const utility::string_t& value);
-
-    /// <summary>
-    /// 
+    /// The Unix timestamp (in seconds) when the model was created.
     /// </summary>
     int32_t getCreated() const;
     bool createdIsSet() const;
@@ -82,7 +73,16 @@ public:
     void setCreated(int32_t value);
 
     /// <summary>
-    /// 
+    /// The object type, which is always \&quot;model\&quot;.
+    /// </summary>
+    utility::string_t getObject() const;
+    bool objectIsSet() const;
+    void unsetobject();
+
+    void setObject(const utility::string_t& value);
+
+    /// <summary>
+    /// The organization that owns the model.
     /// </summary>
     utility::string_t getOwnedBy() const;
     bool ownedByIsSet() const;
@@ -94,10 +94,10 @@ public:
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
-    utility::string_t m_object;
-    bool m_objectIsSet;
     int32_t m_Created;
     bool m_CreatedIsSet;
+    utility::string_t m_object;
+    bool m_objectIsSet;
     utility::string_t m_Owned_by;
     bool m_Owned_byIsSet;
 };

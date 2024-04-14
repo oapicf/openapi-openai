@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +16,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ListModelsResponse  {
   
+public enum ObjectEnum {
+
+    @JsonProperty("list") LIST(String.valueOf("list"));
+
+    private String value;
+
+    ObjectEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
   @ApiModelProperty(required = true, value = "")
-  private String _object;
+  private ObjectEnum _object;
 
   @ApiModelProperty(required = true, value = "")
   @Valid
@@ -27,20 +58,20 @@ public class ListModelsResponse  {
   @JsonProperty("object")
   @NotNull
   public String getObject() {
-    return _object;
+    return _object == null ? null : _object.value();
   }
 
   /**
    * Sets the <code>_object</code> property.
    */
- public void setObject(String _object) {
+ public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 
   /**
    * Sets the <code>_object</code> property.
    */
-  public ListModelsResponse _object(String _object) {
+  public ListModelsResponse _object(ObjectEnum _object) {
     this._object = _object;
     return this;
   }

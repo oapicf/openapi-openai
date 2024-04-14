@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -28,6 +28,8 @@ inline FString ToString(const OpenAPICreateCompletionResponseChoicesInner::Finis
 		return TEXT("stop");
 	case OpenAPICreateCompletionResponseChoicesInner::FinishReasonEnum::Length:
 		return TEXT("length");
+	case OpenAPICreateCompletionResponseChoicesInner::FinishReasonEnum::ContentFilter:
+		return TEXT("content_filter");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPICreateCompletionResponseChoicesInner::FinishReasonEnum Value (%d)"), (int)Value);
@@ -43,7 +45,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPICreateCompletionRespo
 {
 	static TMap<FString, OpenAPICreateCompletionResponseChoicesInner::FinishReasonEnum> StringToEnum = { 
 		{ TEXT("stop"), OpenAPICreateCompletionResponseChoicesInner::FinishReasonEnum::Stop },
-		{ TEXT("length"), OpenAPICreateCompletionResponseChoicesInner::FinishReasonEnum::Length }, };
+		{ TEXT("length"), OpenAPICreateCompletionResponseChoicesInner::FinishReasonEnum::Length },
+		{ TEXT("content_filter"), OpenAPICreateCompletionResponseChoicesInner::FinishReasonEnum::ContentFilter }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -76,10 +79,10 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPICrea
 void OpenAPICreateCompletionResponseChoicesInner::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("text")); WriteJsonValue(Writer, Text);
+	Writer->WriteIdentifierPrefix(TEXT("finish_reason")); WriteJsonValue(Writer, FinishReason);
 	Writer->WriteIdentifierPrefix(TEXT("index")); WriteJsonValue(Writer, Index);
 	Writer->WriteIdentifierPrefix(TEXT("logprobs")); WriteJsonValue(Writer, Logprobs);
-	Writer->WriteIdentifierPrefix(TEXT("finish_reason")); WriteJsonValue(Writer, FinishReason);
+	Writer->WriteIdentifierPrefix(TEXT("text")); WriteJsonValue(Writer, Text);
 	Writer->WriteObjectEnd();
 }
 
@@ -91,10 +94,10 @@ bool OpenAPICreateCompletionResponseChoicesInner::FromJson(const TSharedPtr<FJso
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("text"), Text);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("finish_reason"), FinishReason);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("index"), Index);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("logprobs"), Logprobs);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("finish_reason"), FinishReason);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("text"), Text);
 
 	return ParseSuccess;
 }

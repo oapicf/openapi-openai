@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,11 +15,11 @@ pub struct ImagesResponse {
     #[serde(rename = "created")]
     pub created: i32,
     #[serde(rename = "data")]
-    pub data: Vec<models::ImagesResponseDataInner>,
+    pub data: Vec<models::Image>,
 }
 
 impl ImagesResponse {
-    pub fn new(created: i32, data: Vec<models::ImagesResponseDataInner>) -> ImagesResponse {
+    pub fn new(created: i32, data: Vec<models::Image>) -> ImagesResponse {
         ImagesResponse {
             created,
             data,

@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -17,26 +17,40 @@ import com.google.gson.annotations.SerializedName
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
- * 
- * @param id 
- * @param &#x60;object&#x60; 
- * @param created 
- * @param ownedBy 
+ * Describes an OpenAI model offering that can be used with the API.
+ * @param id The model identifier, which can be referenced in the API endpoints.
+ * @param created The Unix timestamp (in seconds) when the model was created.
+ * @param &#x60;object&#x60; The object type, which is always \"model\".
+ * @param ownedBy The organization that owns the model.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Model (
+    /* The model identifier, which can be referenced in the API endpoints. */
     @SerializedName("id") private val _id: kotlin.String?,
-    @SerializedName("`object`") private val _`object`: kotlin.String?,
+    /* The Unix timestamp (in seconds) when the model was created. */
     @SerializedName("created") private val _created: kotlin.Int?,
+    /* The object type, which is always \"model\". */
+    @SerializedName("`object`") private val _`object`: Model.&#x60;Object&#x60;?,
+    /* The organization that owns the model. */
     @SerializedName("ownedBy") private val _ownedBy: kotlin.String?
 ) {
 
+    /**
+    * The object type, which is always \"model\".
+    * Values: model
+    */
+    enum class &#x60;Object&#x60;(val value: kotlin.String){
+    
+        model("model");
+    
+    }
+
         val id get() = _id ?: throw IllegalArgumentException("id is required")
                     
-        val `object` get() = _`object` ?: throw IllegalArgumentException("`object` is required")
-                    
         val created get() = _created ?: throw IllegalArgumentException("created is required")
+                    
+        val `object` get() = _`object` ?: throw IllegalArgumentException("`object` is required")
                     
         val ownedBy get() = _ownedBy ?: throw IllegalArgumentException("ownedBy is required")
                     

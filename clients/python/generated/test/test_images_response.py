@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -38,18 +38,20 @@ class TestImagesResponse(unittest.TestCase):
             return ImagesResponse(
                 created = 56,
                 data = [
-                    openapiopenai.models.images_response_data_inner.ImagesResponse_data_inner(
+                    openapiopenai.models.image.Image(
+                        b64_json = '', 
                         url = '', 
-                        b64_json = '', )
+                        revised_prompt = '', )
                     ]
             )
         else:
             return ImagesResponse(
                 created = 56,
                 data = [
-                    openapiopenai.models.images_response_data_inner.ImagesResponse_data_inner(
+                    openapiopenai.models.image.Image(
+                        b64_json = '', 
                         url = '', 
-                        b64_json = '', )
+                        revised_prompt = '', )
                     ],
         )
         """

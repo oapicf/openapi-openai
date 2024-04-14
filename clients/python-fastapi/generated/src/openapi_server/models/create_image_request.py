@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -24,6 +24,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from openapi_server.models.create_image_request_model import CreateImageRequestModel
 try:
     from typing import Self
 except ImportError:
@@ -33,21 +34,24 @@ class CreateImageRequest(BaseModel):
     """
     CreateImageRequest
     """ # noqa: E501
-    prompt: StrictStr = Field(description="A text description of the desired image(s). The maximum length is 1000 characters.")
-    n: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(default=1, description="The number of images to generate. Must be between 1 and 10.")
-    size: Optional[StrictStr] = Field(default='1024x1024', description="The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.")
-    response_format: Optional[StrictStr] = Field(default='url', description="The format in which the generated images are returned. Must be one of `url` or `b64_json`.")
+    prompt: StrictStr = Field(description="A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.")
+    model: Optional[CreateImageRequestModel] = None
+    n: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(default=1, description="The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.")
+    quality: Optional[StrictStr] = Field(default='standard', description="The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.")
+    response_format: Optional[StrictStr] = Field(default='url', description="The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.")
+    size: Optional[StrictStr] = Field(default='1024x1024', description="The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.")
+    style: Optional[StrictStr] = Field(default='vivid', description="The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.")
     user: Optional[StrictStr] = Field(default=None, description="A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")
-    __properties: ClassVar[List[str]] = ["prompt", "n", "size", "response_format", "user"]
+    __properties: ClassVar[List[str]] = ["prompt", "model", "n", "quality", "response_format", "size", "style", "user"]
 
-    @field_validator('size')
-    def size_validate_enum(cls, value):
+    @field_validator('quality')
+    def quality_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('256x256', '512x512', '1024x1024'):
-            raise ValueError("must be one of enum values ('256x256', '512x512', '1024x1024')")
+        if value not in ('standard', 'hd'):
+            raise ValueError("must be one of enum values ('standard', 'hd')")
         return value
 
     @field_validator('response_format')
@@ -58,6 +62,26 @@ class CreateImageRequest(BaseModel):
 
         if value not in ('url', 'b64_json'):
             raise ValueError("must be one of enum values ('url', 'b64_json')")
+        return value
+
+    @field_validator('size')
+    def size_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('256x256', '512x512', '1024x1024', '1792x1024', '1024x1792'):
+            raise ValueError("must be one of enum values ('256x256', '512x512', '1024x1024', '1792x1024', '1024x1792')")
+        return value
+
+    @field_validator('style')
+    def style_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('vivid', 'natural'):
+            raise ValueError("must be one of enum values ('vivid', 'natural')")
         return value
 
     model_config = {
@@ -97,20 +121,33 @@ class CreateImageRequest(BaseModel):
             },
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
+        # set to None if model (nullable) is None
+        # and model_fields_set contains the field
+        if self.model is None and "model" in self.model_fields_set:
+            _dict['model'] = None
+
         # set to None if n (nullable) is None
         # and model_fields_set contains the field
         if self.n is None and "n" in self.model_fields_set:
             _dict['n'] = None
+
+        # set to None if response_format (nullable) is None
+        # and model_fields_set contains the field
+        if self.response_format is None and "response_format" in self.model_fields_set:
+            _dict['response_format'] = None
 
         # set to None if size (nullable) is None
         # and model_fields_set contains the field
         if self.size is None and "size" in self.model_fields_set:
             _dict['size'] = None
 
-        # set to None if response_format (nullable) is None
+        # set to None if style (nullable) is None
         # and model_fields_set contains the field
-        if self.response_format is None and "response_format" in self.model_fields_set:
-            _dict['response_format'] = None
+        if self.style is None and "style" in self.model_fields_set:
+            _dict['style'] = None
 
         return _dict
 
@@ -125,9 +162,12 @@ class CreateImageRequest(BaseModel):
 
         _obj = cls.model_validate({
             "prompt": obj.get("prompt"),
+            "model": CreateImageRequestModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
             "n": obj.get("n") if obj.get("n") is not None else 1,
-            "size": obj.get("size") if obj.get("size") is not None else '1024x1024',
+            "quality": obj.get("quality") if obj.get("quality") is not None else 'standard',
             "response_format": obj.get("response_format") if obj.get("response_format") is not None else 'url',
+            "size": obj.get("size") if obj.get("size") is not None else '1024x1024',
+            "style": obj.get("style") if obj.get("style") is not None else 'vivid',
             "user": obj.get("user")
         })
         return _obj

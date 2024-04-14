@@ -1,0 +1,108 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateRunRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateRunRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantObjectToolsInner = openapi_server.resourceTypes.AssistantObjectToolsInner
+  AssistantsApiResponseFormatOption = openapi_server.resourceTypes.AssistantsApiResponseFormatOption
+  AssistantsApiToolChoiceOption = openapi_server.resourceTypes.AssistantsApiToolChoiceOption
+  CreateMessageRequest = openapi_server.resourceTypes.CreateMessageRequest
+  CreateRunRequestModel = openapi_server.resourceTypes.CreateRunRequestModel
+  TruncationObject = openapi_server.resourceTypes.TruncationObject
+}
+resourceTypes {
+
+  CreateRunRequest {
+    title = CreateRunRequest
+    description = CreateRunRequest
+    derivedFrom = Root
+    properties {
+        assistant_id {
+          type =  string
+          description = "The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run."
+          optional = true
+        }
+        model {
+          type = CreateRunRequestModel
+          description = ""
+          optional = false
+        }
+        instructions {
+          type =  string
+          description = "Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis."
+          optional = false
+        }
+        additional_instructions {
+          type =  string
+          description = "Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions."
+          optional = false
+        }
+        additional_messages {
+          type = array
+          items.type = CreateMessageRequest
+          description = "Adds additional messages to the thread before creating the run."
+          optional = false
+        }
+        tools {
+          type = array
+          items.type = AssistantObjectToolsInner
+          description = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis."
+          optional = false
+        }
+        metadata {
+          type =  
+          description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. "
+          optional = false
+        }
+        temperature {
+          type =  
+          description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. "
+          optional = false
+        }
+        stream {
+          type =  boolean
+          description = "If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message. "
+          optional = false
+        }
+        max_prompt_tokens {
+          type =  integer
+          description = "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info. "
+          optional = false
+        }
+        max_completion_tokens {
+          type =  integer
+          description = "The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info. "
+          optional = false
+        }
+        truncation_strategy {
+          type = TruncationObject
+          description = ""
+          optional = false
+        }
+        tool_choice {
+          type = AssistantsApiToolChoiceOption
+          description = ""
+          optional = false
+        }
+        response_format {
+          type = AssistantsApiResponseFormatOption
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateRunRequest {
+    title = CreateRunRequest
+    description = CreateRunRequest
+    implements = openapi_server.resourceTypes.CreateRunRequest
+
+  }
+}

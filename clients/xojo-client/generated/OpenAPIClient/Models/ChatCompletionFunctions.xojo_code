@@ -3,6 +3,14 @@ Protected Class ChatCompletionFunctions
 
 	#tag Property, Flags = &h0
 		#tag Note
+			A description of what the function does, used by the model to choose when and how to call the function.
+		#tag EndNote
+		description As Xoson.O.OptionalString
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
 			The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
 		#tag EndNote
 		name As String
@@ -11,15 +19,7 @@ Protected Class ChatCompletionFunctions
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The description of what the function does.
-		#tag EndNote
-		description As Xoson.O.OptionalString
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
-		#tag Note
-			The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+			The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
 		#tag EndNote
 		parameters As Dictionary
 	#tag EndProperty
@@ -62,7 +62,7 @@ Protected Class ChatCompletionFunctions
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="name"
+			Name="description"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -70,7 +70,7 @@ Protected Class ChatCompletionFunctions
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="description"
+			Name="name"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

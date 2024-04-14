@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -19,6 +19,56 @@
 
 namespace OpenAPI
 {
+
+inline FString ToString(const OpenAPIListModelsResponse::ObjectEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPIListModelsResponse::ObjectEnum::List:
+		return TEXT("list");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIListModelsResponse::ObjectEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPIListModelsResponse::EnumToString(const OpenAPIListModelsResponse::ObjectEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPIListModelsResponse::ObjectEnum& Value)
+{
+	static TMap<FString, OpenAPIListModelsResponse::ObjectEnum> StringToEnum = { 
+		{ TEXT("list"), OpenAPIListModelsResponse::ObjectEnum::List }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPIListModelsResponse::EnumFromString(const FString& EnumAsString, OpenAPIListModelsResponse::ObjectEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPIListModelsResponse::ObjectEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIListModelsResponse::ObjectEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
 
 void OpenAPIListModelsResponse::WriteJson(JsonWriter& Writer) const
 {

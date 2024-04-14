@@ -3,32 +3,56 @@ package org.openapitools.server.api.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.server.api.model.CompletionUsage;
 import org.openapitools.server.api.model.CreateCompletionResponseChoicesInner;
-import org.openapitools.server.api.model.CreateCompletionResponseUsage;
 
+/**
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
+ **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateCompletionResponse   {
   
   private String id;
-  private String _object;
+  private List<CreateCompletionResponseChoicesInner> choices = new ArrayList<>();
   private Integer created;
   private String model;
-  private List<CreateCompletionResponseChoicesInner> choices = new ArrayList<>();
-  private CreateCompletionResponseUsage usage;
+  private String systemFingerprint;
+
+
+  public enum ObjectEnum {
+    TEXT_COMPLETION("text_completion");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private ObjectEnum _object;
+  private CompletionUsage usage;
 
   public CreateCompletionResponse () {
 
   }
 
-  public CreateCompletionResponse (String id, String _object, Integer created, String model, List<CreateCompletionResponseChoicesInner> choices, CreateCompletionResponseUsage usage) {
+  public CreateCompletionResponse (String id, List<CreateCompletionResponseChoicesInner> choices, Integer created, String model, String systemFingerprint, ObjectEnum _object, CompletionUsage usage) {
     this.id = id;
-    this._object = _object;
+    this.choices = choices;
     this.created = created;
     this.model = model;
-    this.choices = choices;
+    this.systemFingerprint = systemFingerprint;
+    this._object = _object;
     this.usage = usage;
   }
 
@@ -42,12 +66,12 @@ public class CreateCompletionResponse   {
   }
 
     
-  @JsonProperty("object")
-  public String getObject() {
-    return _object;
+  @JsonProperty("choices")
+  public List<CreateCompletionResponseChoicesInner> getChoices() {
+    return choices;
   }
-  public void setObject(String _object) {
-    this._object = _object;
+  public void setChoices(List<CreateCompletionResponseChoicesInner> choices) {
+    this.choices = choices;
   }
 
     
@@ -69,20 +93,29 @@ public class CreateCompletionResponse   {
   }
 
     
-  @JsonProperty("choices")
-  public List<CreateCompletionResponseChoicesInner> getChoices() {
-    return choices;
+  @JsonProperty("system_fingerprint")
+  public String getSystemFingerprint() {
+    return systemFingerprint;
   }
-  public void setChoices(List<CreateCompletionResponseChoicesInner> choices) {
-    this.choices = choices;
+  public void setSystemFingerprint(String systemFingerprint) {
+    this.systemFingerprint = systemFingerprint;
+  }
+
+    
+  @JsonProperty("object")
+  public ObjectEnum getObject() {
+    return _object;
+  }
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
   }
 
     
   @JsonProperty("usage")
-  public CreateCompletionResponseUsage getUsage() {
+  public CompletionUsage getUsage() {
     return usage;
   }
-  public void setUsage(CreateCompletionResponseUsage usage) {
+  public void setUsage(CompletionUsage usage) {
     this.usage = usage;
   }
 
@@ -97,16 +130,17 @@ public class CreateCompletionResponse   {
     }
     CreateCompletionResponse createCompletionResponse = (CreateCompletionResponse) o;
     return Objects.equals(id, createCompletionResponse.id) &&
-        Objects.equals(_object, createCompletionResponse._object) &&
+        Objects.equals(choices, createCompletionResponse.choices) &&
         Objects.equals(created, createCompletionResponse.created) &&
         Objects.equals(model, createCompletionResponse.model) &&
-        Objects.equals(choices, createCompletionResponse.choices) &&
+        Objects.equals(systemFingerprint, createCompletionResponse.systemFingerprint) &&
+        Objects.equals(_object, createCompletionResponse._object) &&
         Objects.equals(usage, createCompletionResponse.usage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, created, model, choices, usage);
+    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
   }
 
   @Override
@@ -115,10 +149,11 @@ public class CreateCompletionResponse   {
     sb.append("class CreateCompletionResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
-    sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
+    sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("}");
     return sb.toString();

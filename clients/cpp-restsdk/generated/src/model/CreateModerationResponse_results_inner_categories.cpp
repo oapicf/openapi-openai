@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,8 +27,16 @@ CreateModerationResponse_results_inner_categories::CreateModerationResponse_resu
     m_HateIsSet = false;
     m_Hate_threatening = false;
     m_Hate_threateningIsSet = false;
+    m_Harassment = false;
+    m_HarassmentIsSet = false;
+    m_Harassment_threatening = false;
+    m_Harassment_threateningIsSet = false;
     m_Self_harm = false;
     m_Self_harmIsSet = false;
+    m_Self_harm_intent = false;
+    m_Self_harm_intentIsSet = false;
+    m_Self_harm_instructions = false;
+    m_Self_harm_instructionsIsSet = false;
     m_Sexual = false;
     m_SexualIsSet = false;
     m_Sexual_minors = false;
@@ -61,9 +69,25 @@ web::json::value CreateModerationResponse_results_inner_categories::toJson() con
     {
         val[utility::conversions::to_string_t(U("hate/threatening"))] = ModelBase::toJson(m_Hate_threatening);
     }
+    if(m_HarassmentIsSet)
+    {
+        val[utility::conversions::to_string_t(U("harassment"))] = ModelBase::toJson(m_Harassment);
+    }
+    if(m_Harassment_threateningIsSet)
+    {
+        val[utility::conversions::to_string_t(U("harassment/threatening"))] = ModelBase::toJson(m_Harassment_threatening);
+    }
     if(m_Self_harmIsSet)
     {
         val[utility::conversions::to_string_t(U("self-harm"))] = ModelBase::toJson(m_Self_harm);
+    }
+    if(m_Self_harm_intentIsSet)
+    {
+        val[utility::conversions::to_string_t(U("self-harm/intent"))] = ModelBase::toJson(m_Self_harm_intent);
+    }
+    if(m_Self_harm_instructionsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("self-harm/instructions"))] = ModelBase::toJson(m_Self_harm_instructions);
     }
     if(m_SexualIsSet)
     {
@@ -109,6 +133,26 @@ bool CreateModerationResponse_results_inner_categories::fromJson(const web::json
             setHateThreatening(refVal_setHateThreatening);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("harassment"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("harassment")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setHarassment;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setHarassment);
+            setHarassment(refVal_setHarassment);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("harassment/threatening"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("harassment/threatening")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setHarassmentThreatening;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setHarassmentThreatening);
+            setHarassmentThreatening(refVal_setHarassmentThreatening);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("self-harm"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("self-harm")));
@@ -117,6 +161,26 @@ bool CreateModerationResponse_results_inner_categories::fromJson(const web::json
             bool refVal_setSelfHarm;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSelfHarm);
             setSelfHarm(refVal_setSelfHarm);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("self-harm/intent"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("self-harm/intent")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setSelfHarmIntent;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSelfHarmIntent);
+            setSelfHarmIntent(refVal_setSelfHarmIntent);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("self-harm/instructions"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("self-harm/instructions")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setSelfHarmInstructions;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSelfHarmInstructions);
+            setSelfHarmInstructions(refVal_setSelfHarmInstructions);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("sexual"))))
@@ -177,9 +241,25 @@ void CreateModerationResponse_results_inner_categories::toMultipart(std::shared_
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hate/threatening")), m_Hate_threatening));
     }
+    if(m_HarassmentIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("harassment")), m_Harassment));
+    }
+    if(m_Harassment_threateningIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("harassment/threatening")), m_Harassment_threatening));
+    }
     if(m_Self_harmIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("self-harm")), m_Self_harm));
+    }
+    if(m_Self_harm_intentIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("self-harm/intent")), m_Self_harm_intent));
+    }
+    if(m_Self_harm_instructionsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("self-harm/instructions")), m_Self_harm_instructions));
     }
     if(m_SexualIsSet)
     {
@@ -220,11 +300,35 @@ bool CreateModerationResponse_results_inner_categories::fromMultiPart(std::share
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hate/threatening"))), refVal_setHateThreatening );
         setHateThreatening(refVal_setHateThreatening);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("harassment"))))
+    {
+        bool refVal_setHarassment;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("harassment"))), refVal_setHarassment );
+        setHarassment(refVal_setHarassment);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("harassment/threatening"))))
+    {
+        bool refVal_setHarassmentThreatening;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("harassment/threatening"))), refVal_setHarassmentThreatening );
+        setHarassmentThreatening(refVal_setHarassmentThreatening);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("self-harm"))))
     {
         bool refVal_setSelfHarm;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("self-harm"))), refVal_setSelfHarm );
         setSelfHarm(refVal_setSelfHarm);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("self-harm/intent"))))
+    {
+        bool refVal_setSelfHarmIntent;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("self-harm/intent"))), refVal_setSelfHarmIntent );
+        setSelfHarmIntent(refVal_setSelfHarmIntent);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("self-harm/instructions"))))
+    {
+        bool refVal_setSelfHarmInstructions;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("self-harm/instructions"))), refVal_setSelfHarmInstructions );
+        setSelfHarmInstructions(refVal_setSelfHarmInstructions);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("sexual"))))
     {
@@ -293,6 +397,46 @@ void CreateModerationResponse_results_inner_categories::unsetHate_threatening()
 {
     m_Hate_threateningIsSet = false;
 }
+bool CreateModerationResponse_results_inner_categories::isHarassment() const
+{
+    return m_Harassment;
+}
+
+void CreateModerationResponse_results_inner_categories::setHarassment(bool value)
+{
+    m_Harassment = value;
+    m_HarassmentIsSet = true;
+}
+
+bool CreateModerationResponse_results_inner_categories::harassmentIsSet() const
+{
+    return m_HarassmentIsSet;
+}
+
+void CreateModerationResponse_results_inner_categories::unsetHarassment()
+{
+    m_HarassmentIsSet = false;
+}
+bool CreateModerationResponse_results_inner_categories::isHarassmentThreatening() const
+{
+    return m_Harassment_threatening;
+}
+
+void CreateModerationResponse_results_inner_categories::setHarassmentThreatening(bool value)
+{
+    m_Harassment_threatening = value;
+    m_Harassment_threateningIsSet = true;
+}
+
+bool CreateModerationResponse_results_inner_categories::harassmentThreateningIsSet() const
+{
+    return m_Harassment_threateningIsSet;
+}
+
+void CreateModerationResponse_results_inner_categories::unsetHarassment_threatening()
+{
+    m_Harassment_threateningIsSet = false;
+}
 bool CreateModerationResponse_results_inner_categories::isSelfHarm() const
 {
     return m_Self_harm;
@@ -312,6 +456,46 @@ bool CreateModerationResponse_results_inner_categories::selfHarmIsSet() const
 void CreateModerationResponse_results_inner_categories::unsetSelf_harm()
 {
     m_Self_harmIsSet = false;
+}
+bool CreateModerationResponse_results_inner_categories::isSelfHarmIntent() const
+{
+    return m_Self_harm_intent;
+}
+
+void CreateModerationResponse_results_inner_categories::setSelfHarmIntent(bool value)
+{
+    m_Self_harm_intent = value;
+    m_Self_harm_intentIsSet = true;
+}
+
+bool CreateModerationResponse_results_inner_categories::selfHarmIntentIsSet() const
+{
+    return m_Self_harm_intentIsSet;
+}
+
+void CreateModerationResponse_results_inner_categories::unsetSelf_harm_intent()
+{
+    m_Self_harm_intentIsSet = false;
+}
+bool CreateModerationResponse_results_inner_categories::isSelfHarmInstructions() const
+{
+    return m_Self_harm_instructions;
+}
+
+void CreateModerationResponse_results_inner_categories::setSelfHarmInstructions(bool value)
+{
+    m_Self_harm_instructions = value;
+    m_Self_harm_instructionsIsSet = true;
+}
+
+bool CreateModerationResponse_results_inner_categories::selfHarmInstructionsIsSet() const
+{
+    return m_Self_harm_instructionsIsSet;
+}
+
+void CreateModerationResponse_results_inner_categories::unsetSelf_harm_instructions()
+{
+    m_Self_harm_instructionsIsSet = false;
 }
 bool CreateModerationResponse_results_inner_categories::isSexual() const
 {

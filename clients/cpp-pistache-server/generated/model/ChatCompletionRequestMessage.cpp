@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -21,12 +21,12 @@ namespace org::openapitools::server::model
 
 ChatCompletionRequestMessage::ChatCompletionRequestMessage()
 {
-    m_Role = "";
     m_Content = "";
-    m_ContentIsSet = false;
+    m_Role = "";
     m_Name = "";
-    m_NameIsSet = false;
+    m_Tool_callsIsSet = false;
     m_Function_callIsSet = false;
+    m_Tool_call_id = "";
     
 }
 
@@ -49,7 +49,28 @@ bool ChatCompletionRequestMessage::validate(std::stringstream& msg, const std::s
     bool success = true;
     const std::string _pathPrefix = pathPrefix.empty() ? "ChatCompletionRequestMessage" : pathPrefix;
 
-                    
+                     
+    if (toolCallsIsSet())
+    {
+        const std::vector<org::openapitools::server::model::ChatCompletionMessageToolCall>& value = m_Tool_calls;
+        const std::string currentValuePath = _pathPrefix + ".toolCalls";
+                
+        
+        { // Recursive validation of array elements
+            const std::string oldValuePath = currentValuePath;
+            int i = 0;
+            for (const org::openapitools::server::model::ChatCompletionMessageToolCall& value : value)
+            { 
+                const std::string currentValuePath = oldValuePath + "[" + std::to_string(i) + "]";
+                        
+        success = value.validate(msg, currentValuePath + ".toolCalls") && success;
+ 
+                i++;
+            }
+        }
+
+    }
+            
     return success;
 }
 
@@ -58,17 +79,23 @@ bool ChatCompletionRequestMessage::operator==(const ChatCompletionRequestMessage
     return
     
     
+    (getContent() == rhs.getContent())
+     &&
+    
     (getRole() == rhs.getRole())
      &&
     
-    
-    ((!contentIsSet() && !rhs.contentIsSet()) || (contentIsSet() && rhs.contentIsSet() && getContent() == rhs.getContent())) &&
-    
-    
-    ((!nameIsSet() && !rhs.nameIsSet()) || (nameIsSet() && rhs.nameIsSet() && getName() == rhs.getName())) &&
+    (getName() == rhs.getName())
+     &&
     
     
-    ((!functionCallIsSet() && !rhs.functionCallIsSet()) || (functionCallIsSet() && rhs.functionCallIsSet() && getFunctionCall() == rhs.getFunctionCall()))
+    ((!toolCallsIsSet() && !rhs.toolCallsIsSet()) || (toolCallsIsSet() && rhs.toolCallsIsSet() && getToolCalls() == rhs.getToolCalls())) &&
+    
+    
+    ((!functionCallIsSet() && !rhs.functionCallIsSet()) || (functionCallIsSet() && rhs.functionCallIsSet() && getFunctionCall() == rhs.getFunctionCall())) &&
+    
+    (getToolCallId() == rhs.getToolCallId())
+    
     
     ;
 }
@@ -81,37 +108,44 @@ bool ChatCompletionRequestMessage::operator!=(const ChatCompletionRequestMessage
 void to_json(nlohmann::json& j, const ChatCompletionRequestMessage& o)
 {
     j = nlohmann::json::object();
+    j["content"] = o.m_Content;
     j["role"] = o.m_Role;
-    if(o.contentIsSet())
-        j["content"] = o.m_Content;
-    if(o.nameIsSet())
-        j["name"] = o.m_Name;
+    j["name"] = o.m_Name;
+    if(o.toolCallsIsSet() || !o.m_Tool_calls.empty())
+        j["tool_calls"] = o.m_Tool_calls;
     if(o.functionCallIsSet())
         j["function_call"] = o.m_Function_call;
+    j["tool_call_id"] = o.m_Tool_call_id;
     
 }
 
 void from_json(const nlohmann::json& j, ChatCompletionRequestMessage& o)
 {
+    j.at("content").get_to(o.m_Content);
     j.at("role").get_to(o.m_Role);
-    if(j.find("content") != j.end())
+    j.at("name").get_to(o.m_Name);
+    if(j.find("tool_calls") != j.end())
     {
-        j.at("content").get_to(o.m_Content);
-        o.m_ContentIsSet = true;
-    } 
-    if(j.find("name") != j.end())
-    {
-        j.at("name").get_to(o.m_Name);
-        o.m_NameIsSet = true;
+        j.at("tool_calls").get_to(o.m_Tool_calls);
+        o.m_Tool_callsIsSet = true;
     } 
     if(j.find("function_call") != j.end())
     {
         j.at("function_call").get_to(o.m_Function_call);
         o.m_Function_callIsSet = true;
     } 
+    j.at("tool_call_id").get_to(o.m_Tool_call_id);
     
 }
 
+std::string ChatCompletionRequestMessage::getContent() const
+{
+    return m_Content;
+}
+void ChatCompletionRequestMessage::setContent(std::string const& value)
+{
+    m_Content = value;
+}
 std::string ChatCompletionRequestMessage::getRole() const
 {
     return m_Role;
@@ -120,23 +154,6 @@ void ChatCompletionRequestMessage::setRole(std::string const& value)
 {
     m_Role = value;
 }
-std::string ChatCompletionRequestMessage::getContent() const
-{
-    return m_Content;
-}
-void ChatCompletionRequestMessage::setContent(std::string const& value)
-{
-    m_Content = value;
-    m_ContentIsSet = true;
-}
-bool ChatCompletionRequestMessage::contentIsSet() const
-{
-    return m_ContentIsSet;
-}
-void ChatCompletionRequestMessage::unsetContent()
-{
-    m_ContentIsSet = false;
-}
 std::string ChatCompletionRequestMessage::getName() const
 {
     return m_Name;
@@ -144,21 +161,29 @@ std::string ChatCompletionRequestMessage::getName() const
 void ChatCompletionRequestMessage::setName(std::string const& value)
 {
     m_Name = value;
-    m_NameIsSet = true;
 }
-bool ChatCompletionRequestMessage::nameIsSet() const
+std::vector<org::openapitools::server::model::ChatCompletionMessageToolCall> ChatCompletionRequestMessage::getToolCalls() const
 {
-    return m_NameIsSet;
+    return m_Tool_calls;
 }
-void ChatCompletionRequestMessage::unsetName()
+void ChatCompletionRequestMessage::setToolCalls(std::vector<org::openapitools::server::model::ChatCompletionMessageToolCall> const& value)
 {
-    m_NameIsSet = false;
+    m_Tool_calls = value;
+    m_Tool_callsIsSet = true;
 }
-org::openapitools::server::model::ChatCompletionRequestMessage_function_call ChatCompletionRequestMessage::getFunctionCall() const
+bool ChatCompletionRequestMessage::toolCallsIsSet() const
+{
+    return m_Tool_callsIsSet;
+}
+void ChatCompletionRequestMessage::unsetTool_calls()
+{
+    m_Tool_callsIsSet = false;
+}
+org::openapitools::server::model::ChatCompletionRequestAssistantMessage_function_call ChatCompletionRequestMessage::getFunctionCall() const
 {
     return m_Function_call;
 }
-void ChatCompletionRequestMessage::setFunctionCall(org::openapitools::server::model::ChatCompletionRequestMessage_function_call const& value)
+void ChatCompletionRequestMessage::setFunctionCall(org::openapitools::server::model::ChatCompletionRequestAssistantMessage_function_call const& value)
 {
     m_Function_call = value;
     m_Function_callIsSet = true;
@@ -170,6 +195,14 @@ bool ChatCompletionRequestMessage::functionCallIsSet() const
 void ChatCompletionRequestMessage::unsetFunction_call()
 {
     m_Function_callIsSet = false;
+}
+std::string ChatCompletionRequestMessage::getToolCallId() const
+{
+    return m_Tool_call_id;
+}
+void ChatCompletionRequestMessage::setToolCallId(std::string const& value)
+{
+    m_Tool_call_id = value;
 }
 
 

@@ -38,7 +38,16 @@ object endpoint {
   * @return A service that contains all provided endpoints of the API.
   */
   def makeService(da: DataAccessor): Service[Request, Response] = (
-          OpenAIApi.endpoints(da) 
+          AssistantsApi.endpoints(da)  :+:
+          AudioApi.endpoints(da)  :+:
+          ChatApi.endpoints(da)  :+:
+          CompletionsApi.endpoints(da)  :+:
+          EmbeddingsApi.endpoints(da)  :+:
+          FilesApi.endpoints(da)  :+:
+          FineTuningApi.endpoints(da)  :+:
+          ImagesApi.endpoints(da)  :+:
+          ModelsApi.endpoints(da)  :+:
+          ModerationsApi.endpoints(da) 
   ).handle({
       case e: CommonError => NotFound(e)
   }).toService

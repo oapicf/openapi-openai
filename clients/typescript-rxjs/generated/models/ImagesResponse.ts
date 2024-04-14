@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -12,7 +12,7 @@
  */
 
 import type {
-    ImagesResponseDataInner,
+    Image,
 } from './';
 
 /**
@@ -26,8 +26,8 @@ export interface ImagesResponse {
      */
     created: number;
     /**
-     * @type {Array<ImagesResponseDataInner>}
+     * @type {Array<Image>}
      * @memberof ImagesResponse
      */
-    data: Array<ImagesResponseDataInner>;
+    data: Array<Image>;
 }

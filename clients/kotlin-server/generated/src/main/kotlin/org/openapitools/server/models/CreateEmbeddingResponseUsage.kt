@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -13,12 +13,14 @@ package org.openapitools.server.models
 
 
 /**
- * 
- * @param promptTokens 
- * @param totalTokens 
+ * The usage information for the request.
+ * @param promptTokens The number of tokens used by the prompt.
+ * @param totalTokens The total number of tokens used by the request.
  */
 data class CreateEmbeddingResponseUsage(
+    /* The number of tokens used by the prompt. */
     val promptTokens: kotlin.Int,
+    /* The total number of tokens used by the request. */
     val totalTokens: kotlin.Int
 ) 
 

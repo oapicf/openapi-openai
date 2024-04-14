@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -50,28 +50,18 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateCompletionResponseChoicesInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-03-16T01:12:13.030985790Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-14T13:36:26.918687560Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateCompletionResponseChoicesInner {
-  public static final String SERIALIZED_NAME_TEXT = "text";
-  @SerializedName(SERIALIZED_NAME_TEXT)
-  private String text;
-
-  public static final String SERIALIZED_NAME_INDEX = "index";
-  @SerializedName(SERIALIZED_NAME_INDEX)
-  private Integer index;
-
-  public static final String SERIALIZED_NAME_LOGPROBS = "logprobs";
-  @SerializedName(SERIALIZED_NAME_LOGPROBS)
-  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
-
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
    */
   @JsonAdapter(FinishReasonEnum.Adapter.class)
   public enum FinishReasonEnum {
     STOP("stop"),
     
-    LENGTH("length");
+    LENGTH("length"),
+    
+    CONTENT_FILTER("content_filter");
 
     private String value;
 
@@ -120,25 +110,37 @@ public class CreateCompletionResponseChoicesInner {
   @SerializedName(SERIALIZED_NAME_FINISH_REASON)
   private FinishReasonEnum finishReason;
 
+  public static final String SERIALIZED_NAME_INDEX = "index";
+  @SerializedName(SERIALIZED_NAME_INDEX)
+  private Integer index;
+
+  public static final String SERIALIZED_NAME_LOGPROBS = "logprobs";
+  @SerializedName(SERIALIZED_NAME_LOGPROBS)
+  private CreateCompletionResponseChoicesInnerLogprobs logprobs;
+
+  public static final String SERIALIZED_NAME_TEXT = "text";
+  @SerializedName(SERIALIZED_NAME_TEXT)
+  private String text;
+
   public CreateCompletionResponseChoicesInner() {
   }
 
-  public CreateCompletionResponseChoicesInner text(String text) {
-    this.text = text;
+  public CreateCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
     return this;
   }
 
    /**
-   * Get text
-   * @return text
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
+   * @return finishReason
   **/
   @javax.annotation.Nonnull
-  public String getText() {
-    return text;
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
   }
 
-  public void setText(String text) {
-    this.text = text;
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
   }
 
 
@@ -180,22 +182,22 @@ public class CreateCompletionResponseChoicesInner {
   }
 
 
-  public CreateCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public CreateCompletionResponseChoicesInner text(String text) {
+    this.text = text;
     return this;
   }
 
    /**
-   * Get finishReason
-   * @return finishReason
+   * Get text
+   * @return text
   **/
   @javax.annotation.Nonnull
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  public String getText() {
+    return text;
   }
 
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -209,25 +211,25 @@ public class CreateCompletionResponseChoicesInner {
       return false;
     }
     CreateCompletionResponseChoicesInner createCompletionResponseChoicesInner = (CreateCompletionResponseChoicesInner) o;
-    return Objects.equals(this.text, createCompletionResponseChoicesInner.text) &&
+    return Objects.equals(this.finishReason, createCompletionResponseChoicesInner.finishReason) &&
         Objects.equals(this.index, createCompletionResponseChoicesInner.index) &&
         Objects.equals(this.logprobs, createCompletionResponseChoicesInner.logprobs) &&
-        Objects.equals(this.finishReason, createCompletionResponseChoicesInner.finishReason);
+        Objects.equals(this.text, createCompletionResponseChoicesInner.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, index, logprobs, finishReason);
+    return Objects.hash(finishReason, index, logprobs, text);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCompletionResponseChoicesInner {\n");
-    sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -250,17 +252,17 @@ public class CreateCompletionResponseChoicesInner {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("text");
+    openapiFields.add("finish_reason");
     openapiFields.add("index");
     openapiFields.add("logprobs");
-    openapiFields.add("finish_reason");
+    openapiFields.add("text");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("text");
+    openapiRequiredFields.add("finish_reason");
     openapiRequiredFields.add("index");
     openapiRequiredFields.add("logprobs");
-    openapiRequiredFields.add("finish_reason");
+    openapiRequiredFields.add("text");
   }
 
  /**
@@ -291,16 +293,16 @@ public class CreateCompletionResponseChoicesInner {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("text").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("text").toString()));
-      }
-      // validate the required field `logprobs`
-      CreateCompletionResponseChoicesInnerLogprobs.validateJsonElement(jsonObj.get("logprobs"));
       if (!jsonObj.get("finish_reason").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `finish_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("finish_reason").toString()));
       }
       // validate the required field `finish_reason`
       FinishReasonEnum.validateJsonElement(jsonObj.get("finish_reason"));
+      // validate the required field `logprobs`
+      CreateCompletionResponseChoicesInnerLogprobs.validateJsonElement(jsonObj.get("logprobs"));
+      if (!jsonObj.get("text").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("text").toString()));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

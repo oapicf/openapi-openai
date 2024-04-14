@@ -9,7 +9,7 @@ API.Client.Error = function() {}
  * @type {!string}
  * @export
  */
-API.Client.Error.prototype.type;
+API.Client.Error.prototype.code;
 
 /**
  * @type {!string}
@@ -27,5 +27,5 @@ API.Client.Error.prototype.param;
  * @type {!string}
  * @export
  */
-API.Client.Error.prototype.code;
+API.Client.Error.prototype.type;
 

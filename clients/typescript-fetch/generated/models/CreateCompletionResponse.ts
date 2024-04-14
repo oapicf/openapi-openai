@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,72 +13,92 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CompletionUsage } from './CompletionUsage';
+import {
+    CompletionUsageFromJSON,
+    CompletionUsageFromJSONTyped,
+    CompletionUsageToJSON,
+} from './CompletionUsage';
 import type { CreateCompletionResponseChoicesInner } from './CreateCompletionResponseChoicesInner';
 import {
     CreateCompletionResponseChoicesInnerFromJSON,
     CreateCompletionResponseChoicesInnerFromJSONTyped,
     CreateCompletionResponseChoicesInnerToJSON,
 } from './CreateCompletionResponseChoicesInner';
-import type { CreateCompletionResponseUsage } from './CreateCompletionResponseUsage';
-import {
-    CreateCompletionResponseUsageFromJSON,
-    CreateCompletionResponseUsageFromJSONTyped,
-    CreateCompletionResponseUsageToJSON,
-} from './CreateCompletionResponseUsage';
 
 /**
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint).
  * 
  * @export
  * @interface CreateCompletionResponse
  */
 export interface CreateCompletionResponse {
     /**
-     * 
+     * A unique identifier for the completion.
      * @type {string}
      * @memberof CreateCompletionResponse
      */
     id: string;
     /**
-     * 
-     * @type {string}
-     * @memberof CreateCompletionResponse
-     */
-    object: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateCompletionResponse
-     */
-    created: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCompletionResponse
-     */
-    model: string;
-    /**
-     * 
+     * The list of completion choices the model generated for the input prompt.
      * @type {Array<CreateCompletionResponseChoicesInner>}
      * @memberof CreateCompletionResponse
      */
     choices: Array<CreateCompletionResponseChoicesInner>;
     /**
-     * 
-     * @type {CreateCompletionResponseUsage}
+     * The Unix timestamp (in seconds) of when the completion was created.
+     * @type {number}
      * @memberof CreateCompletionResponse
      */
-    usage?: CreateCompletionResponseUsage;
+    created: number;
+    /**
+     * The model used for completion.
+     * @type {string}
+     * @memberof CreateCompletionResponse
+     */
+    model: string;
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.
+     * 
+     * Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
+     * 
+     * @type {string}
+     * @memberof CreateCompletionResponse
+     */
+    systemFingerprint?: string;
+    /**
+     * The object type, which is always "text_completion"
+     * @type {string}
+     * @memberof CreateCompletionResponse
+     */
+    object: CreateCompletionResponseObjectEnum;
+    /**
+     * 
+     * @type {CompletionUsage}
+     * @memberof CreateCompletionResponse
+     */
+    usage?: CompletionUsage;
 }
+
+
+/**
+ * @export
+ */
+export const CreateCompletionResponseObjectEnum = {
+    TextCompletion: 'text_completion'
+} as const;
+export type CreateCompletionResponseObjectEnum = typeof CreateCompletionResponseObjectEnum[keyof typeof CreateCompletionResponseObjectEnum];
+
 
 /**
  * Check if a given object implements the CreateCompletionResponse interface.
  */
 export function instanceOfCreateCompletionResponse(value: object): boolean {
     if (!('id' in value)) return false;
-    if (!('object' in value)) return false;
+    if (!('choices' in value)) return false;
     if (!('created' in value)) return false;
     if (!('model' in value)) return false;
-    if (!('choices' in value)) return false;
+    if (!('object' in value)) return false;
     return true;
 }
 
@@ -93,11 +113,12 @@ export function CreateCompletionResponseFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'id': json['id'],
-        'object': json['object'],
+        'choices': ((json['choices'] as Array<any>).map(CreateCompletionResponseChoicesInnerFromJSON)),
         'created': json['created'],
         'model': json['model'],
-        'choices': ((json['choices'] as Array<any>).map(CreateCompletionResponseChoicesInnerFromJSON)),
-        'usage': json['usage'] == null ? undefined : CreateCompletionResponseUsageFromJSON(json['usage']),
+        'systemFingerprint': json['system_fingerprint'] == null ? undefined : json['system_fingerprint'],
+        'object': json['object'],
+        'usage': json['usage'] == null ? undefined : CompletionUsageFromJSON(json['usage']),
     };
 }
 
@@ -108,11 +129,12 @@ export function CreateCompletionResponseToJSON(value?: CreateCompletionResponse 
     return {
         
         'id': value['id'],
-        'object': value['object'],
+        'choices': ((value['choices'] as Array<any>).map(CreateCompletionResponseChoicesInnerToJSON)),
         'created': value['created'],
         'model': value['model'],
-        'choices': ((value['choices'] as Array<any>).map(CreateCompletionResponseChoicesInnerToJSON)),
-        'usage': CreateCompletionResponseUsageToJSON(value['usage']),
+        'system_fingerprint': value['systemFingerprint'],
+        'object': value['object'],
+        'usage': CompletionUsageToJSON(value['usage']),
     };
 }
 

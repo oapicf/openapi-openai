@@ -33,9 +33,9 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Validated
-@Tag(name = "OpenAI", description = "The OpenAI REST API")
+@Tag(name = "Chat", description = "Given a list of messages comprising a conversation, the model will return a response.")
 public interface ChatApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -51,11 +51,14 @@ public interface ChatApi {
     @Operation(
         operationId = "createChatCompletion",
         summary = "Creates a model response for the given chat conversation.",
-        tags = { "OpenAI" },
+        tags = { "Chat" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = CreateChatCompletionResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -71,7 +74,7 @@ public interface ChatApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"created\" : 0, \"usage\" : { \"completion_tokens\" : 5, \"prompt_tokens\" : 1, \"total_tokens\" : 5 }, \"model\" : \"model\", \"id\" : \"id\", \"choices\" : [ { \"finish_reason\" : \"stop\", \"index\" : 6, \"message\" : { \"role\" : \"system\", \"function_call\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"content\" : \"content\" } }, { \"finish_reason\" : \"stop\", \"index\" : 6, \"message\" : { \"role\" : \"system\", \"function_call\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"content\" : \"content\" } } ], \"object\" : \"object\" }";
+                    String exampleString = "{ \"created\" : 2, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"model\" : \"model\", \"id\" : \"id\", \"choices\" : [ { \"finish_reason\" : \"stop\", \"index\" : 0, \"message\" : { \"role\" : \"assistant\", \"function_call\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ], \"content\" : \"content\" }, \"logprobs\" : { \"content\" : [ { \"top_logprobs\" : [ { \"logprob\" : 5.962133916683182, \"bytes\" : [ 5, 5 ], \"token\" : \"token\" }, { \"logprob\" : 5.962133916683182, \"bytes\" : [ 5, 5 ], \"token\" : \"token\" } ], \"logprob\" : 6.027456183070403, \"bytes\" : [ 1, 1 ], \"token\" : \"token\" }, { \"top_logprobs\" : [ { \"logprob\" : 5.962133916683182, \"bytes\" : [ 5, 5 ], \"token\" : \"token\" }, { \"logprob\" : 5.962133916683182, \"bytes\" : [ 5, 5 ], \"token\" : \"token\" } ], \"logprob\" : 6.027456183070403, \"bytes\" : [ 1, 1 ], \"token\" : \"token\" } ] } }, { \"finish_reason\" : \"stop\", \"index\" : 0, \"message\" : { \"role\" : \"assistant\", \"function_call\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ], \"content\" : \"content\" }, \"logprobs\" : { \"content\" : [ { \"top_logprobs\" : [ { \"logprob\" : 5.962133916683182, \"bytes\" : [ 5, 5 ], \"token\" : \"token\" }, { \"logprob\" : 5.962133916683182, \"bytes\" : [ 5, 5 ], \"token\" : \"token\" } ], \"logprob\" : 6.027456183070403, \"bytes\" : [ 1, 1 ], \"token\" : \"token\" }, { \"top_logprobs\" : [ { \"logprob\" : 5.962133916683182, \"bytes\" : [ 5, 5 ], \"token\" : \"token\" }, { \"logprob\" : 5.962133916683182, \"bytes\" : [ 5, 5 ], \"token\" : \"token\" } ], \"logprob\" : 6.027456183070403, \"bytes\" : [ 1, 1 ], \"token\" : \"token\" } ] } } ], \"system_fingerprint\" : \"system_fingerprint\", \"object\" : \"chat.completion\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

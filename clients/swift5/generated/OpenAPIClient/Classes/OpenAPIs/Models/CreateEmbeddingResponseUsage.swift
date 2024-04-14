@@ -10,9 +10,12 @@ import Foundation
 import AnyCodable
 #endif
 
+/** The usage information for the request. */
 public struct CreateEmbeddingResponseUsage: Codable, JSONEncodable, Hashable {
 
+    /** The number of tokens used by the prompt. */
     public var promptTokens: Int
+    /** The total number of tokens used by the request. */
     public var totalTokens: Int
 
     public init(promptTokens: Int, totalTokens: Int) {

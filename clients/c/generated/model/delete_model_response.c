@@ -7,16 +7,16 @@
 
 delete_model_response_t *delete_model_response_create(
     char *id,
-    char *object,
-    int deleted
+    int deleted,
+    char *object
     ) {
     delete_model_response_t *delete_model_response_local_var = malloc(sizeof(delete_model_response_t));
     if (!delete_model_response_local_var) {
         return NULL;
     }
     delete_model_response_local_var->id = id;
-    delete_model_response_local_var->object = object;
     delete_model_response_local_var->deleted = deleted;
+    delete_model_response_local_var->object = object;
 
     return delete_model_response_local_var;
 }
@@ -50,21 +50,21 @@ cJSON *delete_model_response_convertToJSON(delete_model_response_t *delete_model
     }
 
 
-    // delete_model_response->object
-    if (!delete_model_response->object) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "object", delete_model_response->object) == NULL) {
-    goto fail; //String
-    }
-
-
     // delete_model_response->deleted
     if (!delete_model_response->deleted) {
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "deleted", delete_model_response->deleted) == NULL) {
     goto fail; //Bool
+    }
+
+
+    // delete_model_response->object
+    if (!delete_model_response->object) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "object", delete_model_response->object) == NULL) {
+    goto fail; //String
     }
 
     return item;
@@ -91,18 +91,6 @@ delete_model_response_t *delete_model_response_parseFromJSON(cJSON *delete_model
     goto end; //String
     }
 
-    // delete_model_response->object
-    cJSON *object = cJSON_GetObjectItemCaseSensitive(delete_model_responseJSON, "object");
-    if (!object) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(object))
-    {
-    goto end; //String
-    }
-
     // delete_model_response->deleted
     cJSON *deleted = cJSON_GetObjectItemCaseSensitive(delete_model_responseJSON, "deleted");
     if (!deleted) {
@@ -115,11 +103,23 @@ delete_model_response_t *delete_model_response_parseFromJSON(cJSON *delete_model
     goto end; //Bool
     }
 
+    // delete_model_response->object
+    cJSON *object = cJSON_GetObjectItemCaseSensitive(delete_model_responseJSON, "object");
+    if (!object) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(object))
+    {
+    goto end; //String
+    }
+
 
     delete_model_response_local_var = delete_model_response_create (
         strdup(id->valuestring),
-        strdup(object->valuestring),
-        deleted->valueint
+        deleted->valueint,
+        strdup(object->valuestring)
         );
 
     return delete_model_response_local_var;

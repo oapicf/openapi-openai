@@ -12,10 +12,10 @@ module DeleteModelResponse =
   type DeleteModelResponse = {
     [<JsonProperty(PropertyName = "id")>]
     Id : string;
-    [<JsonProperty(PropertyName = "object")>]
-    Object : string;
     [<JsonProperty(PropertyName = "deleted")>]
     Deleted : bool;
+    [<JsonProperty(PropertyName = "object")>]
+    Object : string;
   }
 
   //#endregion

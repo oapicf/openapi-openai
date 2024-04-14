@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -19,6 +19,12 @@ import {
     ChatCompletionStreamResponseDeltaFromJSONTyped,
     ChatCompletionStreamResponseDeltaToJSON,
 } from './ChatCompletionStreamResponseDelta';
+import type { CreateChatCompletionResponseChoicesInnerLogprobs } from './CreateChatCompletionResponseChoicesInnerLogprobs';
+import {
+    CreateChatCompletionResponseChoicesInnerLogprobsFromJSON,
+    CreateChatCompletionResponseChoicesInnerLogprobsFromJSONTyped,
+    CreateChatCompletionResponseChoicesInnerLogprobsToJSON,
+} from './CreateChatCompletionResponseChoicesInnerLogprobs';
 
 /**
  * 
@@ -28,22 +34,32 @@ import {
 export interface CreateChatCompletionStreamResponseChoicesInner {
     /**
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionStreamResponseChoicesInner
-     */
-    index?: number;
-    /**
-     * 
      * @type {ChatCompletionStreamResponseDelta}
      * @memberof CreateChatCompletionStreamResponseChoicesInner
      */
-    delta?: ChatCompletionStreamResponseDelta;
+    delta: ChatCompletionStreamResponseDelta;
     /**
+     * 
+     * @type {CreateChatCompletionResponseChoicesInnerLogprobs}
+     * @memberof CreateChatCompletionStreamResponseChoicesInner
+     */
+    logprobs?: CreateChatCompletionResponseChoicesInnerLogprobs;
+    /**
+     * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,
+     * `length` if the maximum number of tokens specified in the request was reached,
+     * `content_filter` if content was omitted due to a flag from our content filters,
+     * `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
      * 
      * @type {string}
      * @memberof CreateChatCompletionStreamResponseChoicesInner
      */
-    finishReason?: CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum;
+    finishReason: CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum | null;
+    /**
+     * The index of the choice in the list of choices.
+     * @type {number}
+     * @memberof CreateChatCompletionStreamResponseChoicesInner
+     */
+    index: number;
 }
 
 
@@ -53,6 +69,8 @@ export interface CreateChatCompletionStreamResponseChoicesInner {
 export const CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = {
     Stop: 'stop',
     Length: 'length',
+    ToolCalls: 'tool_calls',
+    ContentFilter: 'content_filter',
     FunctionCall: 'function_call'
 } as const;
 export type CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = typeof CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum[keyof typeof CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum];
@@ -62,6 +80,9 @@ export type CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = typ
  * Check if a given object implements the CreateChatCompletionStreamResponseChoicesInner interface.
  */
 export function instanceOfCreateChatCompletionStreamResponseChoicesInner(value: object): boolean {
+    if (!('delta' in value)) return false;
+    if (!('finishReason' in value)) return false;
+    if (!('index' in value)) return false;
     return true;
 }
 
@@ -75,9 +96,10 @@ export function CreateChatCompletionStreamResponseChoicesInnerFromJSONTyped(json
     }
     return {
         
-        'index': json['index'] == null ? undefined : json['index'],
-        'delta': json['delta'] == null ? undefined : ChatCompletionStreamResponseDeltaFromJSON(json['delta']),
-        'finishReason': json['finish_reason'] == null ? undefined : json['finish_reason'],
+        'delta': ChatCompletionStreamResponseDeltaFromJSON(json['delta']),
+        'logprobs': json['logprobs'] == null ? undefined : CreateChatCompletionResponseChoicesInnerLogprobsFromJSON(json['logprobs']),
+        'finishReason': json['finish_reason'],
+        'index': json['index'],
     };
 }
 
@@ -87,9 +109,10 @@ export function CreateChatCompletionStreamResponseChoicesInnerToJSON(value?: Cre
     }
     return {
         
-        'index': value['index'],
         'delta': ChatCompletionStreamResponseDeltaToJSON(value['delta']),
+        'logprobs': CreateChatCompletionResponseChoicesInnerLogprobsToJSON(value['logprobs']),
         'finish_reason': value['finishReason'],
+        'index': value['index'],
     };
 }
 

@@ -24,8 +24,8 @@ void
 DeleteModelResponse::__init()
 {
 	//id = std::string();
-	//object = std::string();
 	//deleted = bool(false);
+	//object = std::string();
 }
 
 void
@@ -36,15 +36,15 @@ DeleteModelResponse::__cleanup()
 	//delete id;
 	//id = NULL;
 	//}
-	//if(object != NULL) {
-	//
-	//delete object;
-	//object = NULL;
-	//}
 	//if(deleted != NULL) {
 	//
 	//delete deleted;
 	//deleted = NULL;
+	//}
+	//if(object != NULL) {
+	//
+	//delete object;
+	//object = NULL;
 	//}
 	//
 }
@@ -65,17 +65,6 @@ DeleteModelResponse::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *objectKey = "object";
-	node = json_object_get_member(pJsonObject, objectKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&object, node, "std::string", "");
-		} else {
-			
-		}
-	}
 	const gchar *deletedKey = "deleted";
 	node = json_object_get_member(pJsonObject, deletedKey);
 	if (node !=NULL) {
@@ -83,6 +72,17 @@ DeleteModelResponse::fromJson(char* jsonStr)
 
 		if (isprimitive("bool")) {
 			jsonToValue(&deleted, node, "bool", "");
+		} else {
+			
+		}
+	}
+	const gchar *objectKey = "object";
+	node = json_object_get_member(pJsonObject, objectKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&object, node, "std::string", "");
 		} else {
 			
 		}
@@ -108,15 +108,6 @@ DeleteModelResponse::toJson()
 	}
 	const gchar *idKey = "id";
 	json_object_set_member(pJsonObject, idKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getObject();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *objectKey = "object";
-	json_object_set_member(pJsonObject, objectKey, node);
 	if (isprimitive("bool")) {
 		bool obj = getDeleted();
 		node = converttoJson(&obj, "bool", "");
@@ -126,6 +117,15 @@ DeleteModelResponse::toJson()
 	}
 	const gchar *deletedKey = "deleted";
 	json_object_set_member(pJsonObject, deletedKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getObject();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *objectKey = "object";
+	json_object_set_member(pJsonObject, objectKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -146,18 +146,6 @@ DeleteModelResponse::setId(std::string  id)
 	this->id = id;
 }
 
-std::string
-DeleteModelResponse::getObject()
-{
-	return object;
-}
-
-void
-DeleteModelResponse::setObject(std::string  object)
-{
-	this->object = object;
-}
-
 bool
 DeleteModelResponse::getDeleted()
 {
@@ -168,6 +156,18 @@ void
 DeleteModelResponse::setDeleted(bool  deleted)
 {
 	this->deleted = deleted;
+}
+
+std::string
+DeleteModelResponse::getObject()
+{
+	return object;
+}
+
+void
+DeleteModelResponse::setObject(std::string  object)
+{
+	this->object = object;
 }
 
 

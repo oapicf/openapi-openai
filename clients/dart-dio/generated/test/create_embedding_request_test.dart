@@ -7,13 +7,25 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreateEmbeddingRequest, () {
+    // CreateEmbeddingRequestInput input
+    test('to test the property `input`', () async {
+      // TODO
+    });
+
     // CreateEmbeddingRequestModel model
     test('to test the property `model`', () async {
       // TODO
     });
 
-    // CreateEmbeddingRequestInput input
-    test('to test the property `input`', () async {
+    // The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+    // String encodingFormat (default value: 'float')
+    test('to test the property `encodingFormat`', () async {
+      // TODO
+    });
+
+    // The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+    // int dimensions
+    test('to test the property `dimensions`', () async {
       // TODO
     });
 

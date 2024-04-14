@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,7 +13,7 @@
 package org.openapitools.client.model;
 
 import java.util.*;
-import org.openapitools.client.model.ImagesResponseDataInner;
+import org.openapitools.client.model.Image;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -23,7 +23,7 @@ public class ImagesResponse {
   @SerializedName("created")
   private Integer created = null;
   @SerializedName("data")
-  private List<ImagesResponseDataInner> data = null;
+  private List<Image> data = null;
 
   /**
    **/
@@ -38,10 +38,10 @@ public class ImagesResponse {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public List<ImagesResponseDataInner> getData() {
+  public List<Image> getData() {
     return data;
   }
-  public void setData(List<ImagesResponseDataInner> data) {
+  public void setData(List<Image> data) {
     this.data = data;
   }
 

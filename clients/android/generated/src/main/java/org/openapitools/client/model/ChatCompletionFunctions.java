@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -20,12 +20,23 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class ChatCompletionFunctions {
   
-  @SerializedName("name")
-  private String name = null;
   @SerializedName("description")
   private String description = null;
+  @SerializedName("name")
+  private String name = null;
   @SerializedName("parameters")
   private Map<String, OasAnyTypeNotMapped> parameters = null;
+
+  /**
+   * A description of what the function does, used by the model to choose when and how to call the function.
+   **/
+  @ApiModelProperty(value = "A description of what the function does, used by the model to choose when and how to call the function.")
+  public String getDescription() {
+    return description;
+  }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   /**
    * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
@@ -39,20 +50,9 @@ public class ChatCompletionFunctions {
   }
 
   /**
-   * The description of what the function does.
+   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
    **/
-  @ApiModelProperty(value = "The description of what the function does.")
-  public String getDescription() {
-    return description;
-  }
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  /**
-   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
-   **/
-  @ApiModelProperty(value = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.")
+  @ApiModelProperty(value = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.")
   public Map<String, OasAnyTypeNotMapped> getParameters() {
     return parameters;
   }
@@ -70,16 +70,16 @@ public class ChatCompletionFunctions {
       return false;
     }
     ChatCompletionFunctions chatCompletionFunctions = (ChatCompletionFunctions) o;
-    return (this.name == null ? chatCompletionFunctions.name == null : this.name.equals(chatCompletionFunctions.name)) &&
-        (this.description == null ? chatCompletionFunctions.description == null : this.description.equals(chatCompletionFunctions.description)) &&
+    return (this.description == null ? chatCompletionFunctions.description == null : this.description.equals(chatCompletionFunctions.description)) &&
+        (this.name == null ? chatCompletionFunctions.name == null : this.name.equals(chatCompletionFunctions.name)) &&
         (this.parameters == null ? chatCompletionFunctions.parameters == null : this.parameters.equals(chatCompletionFunctions.parameters));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
-    result = 31 * result + (this.name == null ? 0: this.name.hashCode());
     result = 31 * result + (this.description == null ? 0: this.description.hashCode());
+    result = 31 * result + (this.name == null ? 0: this.name.hashCode());
     result = 31 * result + (this.parameters == null ? 0: this.parameters.hashCode());
     return result;
   }
@@ -89,8 +89,8 @@ public class ChatCompletionFunctions {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChatCompletionFunctions {\n");
     
-    sb.append("  name: ").append(name).append("\n");
     sb.append("  description: ").append(description).append("\n");
+    sb.append("  name: ").append(name).append("\n");
     sb.append("  parameters: ").append(parameters).append("\n");
     sb.append("}\n");
     return sb.toString();

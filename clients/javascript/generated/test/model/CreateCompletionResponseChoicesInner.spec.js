@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -54,8 +54,8 @@
       //expect(instance).to.be.a(OpenapiOpenai.CreateCompletionResponseChoicesInner);
     });
 
-    it('should have the property text (base name: "text")', function() {
-      // uncomment below and update the code to test the property text
+    it('should have the property finishReason (base name: "finish_reason")', function() {
+      // uncomment below and update the code to test the property finishReason
       //var instance = new OpenapiOpenai.CreateCompletionResponseChoicesInner();
       //expect(instance).to.be();
     });
@@ -72,8 +72,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property finishReason (base name: "finish_reason")', function() {
-      // uncomment below and update the code to test the property finishReason
+    it('should have the property text (base name: "text")', function() {
+      // uncomment below and update the code to test the property text
       //var instance = new OpenapiOpenai.CreateCompletionResponseChoicesInner();
       //expect(instance).to.be();
     });

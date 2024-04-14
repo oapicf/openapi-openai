@@ -1,7 +1,7 @@
 --[[
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
   Contact: blah+oapicf@cliffano.com
@@ -23,15 +23,15 @@ describe("model", function()
     end)
   end)
 
-  -- unit tests for the property 'object'
-  describe("property object test", function()
+  -- unit tests for the property 'created'
+  describe("property created test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for the property 'created'
-  describe("property created test", function()
+  -- unit tests for the property 'object'
+  describe("property object test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

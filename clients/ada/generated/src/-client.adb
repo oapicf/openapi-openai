@@ -1,6 +1,6 @@
 --  ------------ EDIT NOTE ------------
 --  OpenAI API
---  APIs for sampling from and fine_tuning language models
+--  The OpenAI REST API. Please see https://platform.openai.com/docs/api_reference for more details.
 --  This file was generated with openapi-generator.  You can modify it to implement
 --  the client.  After you modify this file, you should add the following line
 --  to the .openapi-generator-ignore file:

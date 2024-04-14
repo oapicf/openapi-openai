@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -63,8 +63,15 @@ ptree ChatCompletionResponseMessage::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.put("role", m_Role);
 	pt.put("content", m_Content);
+	// generate tree for Tool_calls
+    tmp_node.clear();
+	if (!m_Tool_calls.empty()) {
+        tmp_node = toPt(m_Tool_calls);
+		pt.add_child("tool_calls", tmp_node);
+		tmp_node.clear();
+	}
+	pt.put("role", m_Role);
 	pt.add_child("function_call", m_Function_call.toPropertyTree());
 	return pt;
 }
@@ -72,31 +79,16 @@ ptree ChatCompletionResponseMessage::toPropertyTree() const
 void ChatCompletionResponseMessage::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	setRole(pt.get("role", ""));
 	m_Content = pt.get("content", "");
+	// push all items of Tool_calls into member
+	if (pt.get_child_optional("tool_calls")) {
+        m_Tool_calls = fromPt<std::vector<ChatCompletionMessageToolCall>>(pt.get_child("tool_calls"));
+	}
+	setRole(pt.get("role", ""));
 	if (pt.get_child_optional("function_call")) {
-        m_Function_call = fromPt<ChatCompletionRequestMessage_function_call>(pt.get_child("function_call"));
+        m_Function_call = fromPt<ChatCompletionRequestAssistantMessage_function_call>(pt.get_child("function_call"));
 	}
 }
-
-std::string ChatCompletionResponseMessage::getRole() const
-{
-    return m_Role;
-}
-
-void ChatCompletionResponseMessage::setRole(std::string value)
-{
-    static const std::array<std::string, 4> allowedValues = {
-        "system", "user", "assistant", "function"
-    };
-
-    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
-		m_Role = value;
-	} else {
-		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
-	}
-}
-
 
 std::string ChatCompletionResponseMessage::getContent() const
 {
@@ -109,12 +101,42 @@ void ChatCompletionResponseMessage::setContent(std::string value)
 }
 
 
-ChatCompletionRequestMessage_function_call ChatCompletionResponseMessage::getFunctionCall() const
+std::vector<ChatCompletionMessageToolCall> ChatCompletionResponseMessage::getToolCalls() const
+{
+    return m_Tool_calls;
+}
+
+void ChatCompletionResponseMessage::setToolCalls(std::vector<ChatCompletionMessageToolCall> value)
+{
+    m_Tool_calls = value;
+}
+
+
+std::string ChatCompletionResponseMessage::getRole() const
+{
+    return m_Role;
+}
+
+void ChatCompletionResponseMessage::setRole(std::string value)
+{
+    static const std::array<std::string, 1> allowedValues = {
+        "assistant"
+    };
+
+    if (std::find(allowedValues.begin(), allowedValues.end(), value) != allowedValues.end()) {
+		m_Role = value;
+	} else {
+		throw std::runtime_error("Value " + boost::lexical_cast<std::string>(value) + " not allowed");
+	}
+}
+
+
+ChatCompletionRequestAssistantMessage_function_call ChatCompletionResponseMessage::getFunctionCall() const
 {
     return m_Function_call;
 }
 
-void ChatCompletionResponseMessage::setFunctionCall(ChatCompletionRequestMessage_function_call value)
+void ChatCompletionResponseMessage::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call value)
 {
     m_Function_call = value;
 }

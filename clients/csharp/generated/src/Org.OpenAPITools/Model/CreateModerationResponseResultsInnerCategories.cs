@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// CreateModerationResponseResultsInnerCategories
+    /// A list of the categories, and whether they are flagged or not.
     /// </summary>
     [DataContract(Name = "CreateModerationResponse_results_inner_categories")]
     public partial class CreateModerationResponseResultsInnerCategories : IValidatableObject
@@ -40,18 +40,26 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateModerationResponseResultsInnerCategories" /> class.
         /// </summary>
-        /// <param name="hate">hate (required).</param>
-        /// <param name="hateThreatening">hateThreatening (required).</param>
-        /// <param name="selfHarm">selfHarm (required).</param>
-        /// <param name="sexual">sexual (required).</param>
-        /// <param name="sexualMinors">sexualMinors (required).</param>
-        /// <param name="violence">violence (required).</param>
-        /// <param name="violenceGraphic">violenceGraphic (required).</param>
-        public CreateModerationResponseResultsInnerCategories(bool hate = default(bool), bool hateThreatening = default(bool), bool selfHarm = default(bool), bool sexual = default(bool), bool sexualMinors = default(bool), bool violence = default(bool), bool violenceGraphic = default(bool))
+        /// <param name="hate">Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment. (required).</param>
+        /// <param name="hateThreatening">Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. (required).</param>
+        /// <param name="harassment">Content that expresses, incites, or promotes harassing language towards any target. (required).</param>
+        /// <param name="harassmentThreatening">Harassment content that also includes violence or serious harm towards any target. (required).</param>
+        /// <param name="selfHarm">Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. (required).</param>
+        /// <param name="selfHarmIntent">Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. (required).</param>
+        /// <param name="selfHarmInstructions">Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. (required).</param>
+        /// <param name="sexual">Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness). (required).</param>
+        /// <param name="sexualMinors">Sexual content that includes an individual who is under 18 years old. (required).</param>
+        /// <param name="violence">Content that depicts death, violence, or physical injury. (required).</param>
+        /// <param name="violenceGraphic">Content that depicts death, violence, or physical injury in graphic detail. (required).</param>
+        public CreateModerationResponseResultsInnerCategories(bool hate = default(bool), bool hateThreatening = default(bool), bool harassment = default(bool), bool harassmentThreatening = default(bool), bool selfHarm = default(bool), bool selfHarmIntent = default(bool), bool selfHarmInstructions = default(bool), bool sexual = default(bool), bool sexualMinors = default(bool), bool violence = default(bool), bool violenceGraphic = default(bool))
         {
             this.Hate = hate;
             this.HateThreatening = hateThreatening;
+            this.Harassment = harassment;
+            this.HarassmentThreatening = harassmentThreatening;
             this.SelfHarm = selfHarm;
+            this.SelfHarmIntent = selfHarmIntent;
+            this.SelfHarmInstructions = selfHarmInstructions;
             this.Sexual = sexual;
             this.SexualMinors = sexualMinors;
             this.Violence = violence;
@@ -59,44 +67,79 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// Gets or Sets Hate
+        /// Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
         /// </summary>
+        /// <value>Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.</value>
         [DataMember(Name = "hate", IsRequired = true, EmitDefaultValue = true)]
         public bool Hate { get; set; }
 
         /// <summary>
-        /// Gets or Sets HateThreatening
+        /// Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
         /// </summary>
+        /// <value>Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.</value>
         [DataMember(Name = "hate/threatening", IsRequired = true, EmitDefaultValue = true)]
         public bool HateThreatening { get; set; }
 
         /// <summary>
-        /// Gets or Sets SelfHarm
+        /// Content that expresses, incites, or promotes harassing language towards any target.
         /// </summary>
+        /// <value>Content that expresses, incites, or promotes harassing language towards any target.</value>
+        [DataMember(Name = "harassment", IsRequired = true, EmitDefaultValue = true)]
+        public bool Harassment { get; set; }
+
+        /// <summary>
+        /// Harassment content that also includes violence or serious harm towards any target.
+        /// </summary>
+        /// <value>Harassment content that also includes violence or serious harm towards any target.</value>
+        [DataMember(Name = "harassment/threatening", IsRequired = true, EmitDefaultValue = true)]
+        public bool HarassmentThreatening { get; set; }
+
+        /// <summary>
+        /// Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
+        /// </summary>
+        /// <value>Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.</value>
         [DataMember(Name = "self-harm", IsRequired = true, EmitDefaultValue = true)]
         public bool SelfHarm { get; set; }
 
         /// <summary>
-        /// Gets or Sets Sexual
+        /// Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
         /// </summary>
+        /// <value>Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.</value>
+        [DataMember(Name = "self-harm/intent", IsRequired = true, EmitDefaultValue = true)]
+        public bool SelfHarmIntent { get; set; }
+
+        /// <summary>
+        /// Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+        /// </summary>
+        /// <value>Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.</value>
+        [DataMember(Name = "self-harm/instructions", IsRequired = true, EmitDefaultValue = true)]
+        public bool SelfHarmInstructions { get; set; }
+
+        /// <summary>
+        /// Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
+        /// </summary>
+        /// <value>Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).</value>
         [DataMember(Name = "sexual", IsRequired = true, EmitDefaultValue = true)]
         public bool Sexual { get; set; }
 
         /// <summary>
-        /// Gets or Sets SexualMinors
+        /// Sexual content that includes an individual who is under 18 years old.
         /// </summary>
+        /// <value>Sexual content that includes an individual who is under 18 years old.</value>
         [DataMember(Name = "sexual/minors", IsRequired = true, EmitDefaultValue = true)]
         public bool SexualMinors { get; set; }
 
         /// <summary>
-        /// Gets or Sets Violence
+        /// Content that depicts death, violence, or physical injury.
         /// </summary>
+        /// <value>Content that depicts death, violence, or physical injury.</value>
         [DataMember(Name = "violence", IsRequired = true, EmitDefaultValue = true)]
         public bool Violence { get; set; }
 
         /// <summary>
-        /// Gets or Sets ViolenceGraphic
+        /// Content that depicts death, violence, or physical injury in graphic detail.
         /// </summary>
+        /// <value>Content that depicts death, violence, or physical injury in graphic detail.</value>
         [DataMember(Name = "violence/graphic", IsRequired = true, EmitDefaultValue = true)]
         public bool ViolenceGraphic { get; set; }
 
@@ -110,7 +153,11 @@ namespace Org.OpenAPITools.Model
             sb.Append("class CreateModerationResponseResultsInnerCategories {\n");
             sb.Append("  Hate: ").Append(Hate).Append("\n");
             sb.Append("  HateThreatening: ").Append(HateThreatening).Append("\n");
+            sb.Append("  Harassment: ").Append(Harassment).Append("\n");
+            sb.Append("  HarassmentThreatening: ").Append(HarassmentThreatening).Append("\n");
             sb.Append("  SelfHarm: ").Append(SelfHarm).Append("\n");
+            sb.Append("  SelfHarmIntent: ").Append(SelfHarmIntent).Append("\n");
+            sb.Append("  SelfHarmInstructions: ").Append(SelfHarmInstructions).Append("\n");
             sb.Append("  Sexual: ").Append(Sexual).Append("\n");
             sb.Append("  SexualMinors: ").Append(SexualMinors).Append("\n");
             sb.Append("  Violence: ").Append(Violence).Append("\n");

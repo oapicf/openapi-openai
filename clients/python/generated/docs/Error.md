@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
+**code** | **str** |  | 
 **message** | **str** |  | 
 **param** | **str** |  | 
-**code** | **str** |  | 
+**type** | **str** |  | 
 
 ## Example
 

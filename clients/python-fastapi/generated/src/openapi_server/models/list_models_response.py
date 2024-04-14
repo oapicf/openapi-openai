@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from openapi_server.models.model import Model
 try:
@@ -36,6 +36,13 @@ class ListModelsResponse(BaseModel):
     object: StrictStr
     data: List[Model]
     __properties: ClassVar[List[str]] = ["object", "data"]
+
+    @field_validator('object')
+    def object_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('list'):
+            raise ValueError("must be one of enum values ('list')")
+        return value
 
     model_config = {
         "populate_by_name": True,

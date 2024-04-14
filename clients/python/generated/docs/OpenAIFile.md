@@ -1,18 +1,19 @@
 # OpenAIFile
 
+The `File` object represents a document that has been uploaded to OpenAI.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**object** | **str** |  | 
-**bytes** | **int** |  | 
-**created_at** | **int** |  | 
-**filename** | **str** |  | 
-**purpose** | **str** |  | 
-**status** | **str** |  | [optional] 
-**status_details** | **object** |  | [optional] 
+**id** | **str** | The file identifier, which can be referenced in the API endpoints. | 
+**bytes** | **int** | The size of the file, in bytes. | 
+**created_at** | **int** | The Unix timestamp (in seconds) for when the file was created. | 
+**filename** | **str** | The name of the file. | 
+**object** | **str** | The object type, which is always &#x60;file&#x60;. | 
+**purpose** | **str** | The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;. | 
+**status** | **str** | Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;. | 
+**status_details** | **str** | Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;. | [optional] 
 
 ## Example
 

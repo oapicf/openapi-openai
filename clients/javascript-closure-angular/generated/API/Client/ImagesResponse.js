@@ -12,7 +12,7 @@ API.Client.ImagesResponse = function() {}
 API.Client.ImagesResponse.prototype.created;
 
 /**
- * @type {!Array<!API.Client.ImagesResponse_data_inner>}
+ * @type {!Array<!API.Client.Image>}
  * @export
  */
 API.Client.ImagesResponse.prototype.data;

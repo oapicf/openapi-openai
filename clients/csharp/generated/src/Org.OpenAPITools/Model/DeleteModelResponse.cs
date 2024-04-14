@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -41,9 +41,9 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="DeleteModelResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
-        /// <param name="varObject">varObject (required).</param>
         /// <param name="deleted">deleted (required).</param>
-        public DeleteModelResponse(string id = default(string), string varObject = default(string), bool deleted = default(bool))
+        /// <param name="varObject">varObject (required).</param>
+        public DeleteModelResponse(string id = default(string), bool deleted = default(bool), string varObject = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -51,13 +51,13 @@ namespace Org.OpenAPITools.Model
                 throw new ArgumentNullException("id is a required property for DeleteModelResponse and cannot be null");
             }
             this.Id = id;
+            this.Deleted = deleted;
             // to ensure "varObject" is required (not null)
             if (varObject == null)
             {
                 throw new ArgumentNullException("varObject is a required property for DeleteModelResponse and cannot be null");
             }
             this.VarObject = varObject;
-            this.Deleted = deleted;
         }
 
         /// <summary>
@@ -67,16 +67,16 @@ namespace Org.OpenAPITools.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarObject
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string VarObject { get; set; }
-
-        /// <summary>
         /// Gets or Sets Deleted
         /// </summary>
         [DataMember(Name = "deleted", IsRequired = true, EmitDefaultValue = true)]
         public bool Deleted { get; set; }
+
+        /// <summary>
+        /// Gets or Sets VarObject
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public string VarObject { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -87,8 +87,8 @@ namespace Org.OpenAPITools.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class DeleteModelResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("  Deleted: ").Append(Deleted).Append("\n");
+            sb.Append("  VarObject: ").Append(VarObject).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

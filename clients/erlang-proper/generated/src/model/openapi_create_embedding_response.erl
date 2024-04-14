@@ -9,9 +9,9 @@
 -export_type([openapi_create_embedding_response/0]).
 
 -type openapi_create_embedding_response() ::
-  [ {'object', binary() }
+  [ {'data', list(openapi_embedding:openapi_embedding()) }
   | {'model', binary() }
-  | {'data', list(openapi_create_embedding_response_data_inner:openapi_create_embedding_response_data_inner()) }
+  | {'object', binary() }
   | {'usage', openapi_create_embedding_response_usage:openapi_create_embedding_response_usage() }
   ].
 
@@ -20,9 +20,9 @@ openapi_create_embedding_response() ->
     openapi_create_embedding_response([]).
 
 openapi_create_embedding_response(Fields) ->
-  Default = [ {'object', binary() }
+  Default = [ {'data', list(openapi_embedding:openapi_embedding()) }
             , {'model', binary() }
-            , {'data', list(openapi_create_embedding_response_data_inner:openapi_create_embedding_response_data_inner()) }
+            , {'object', elements([<<"list">>]) }
             , {'usage', openapi_create_embedding_response_usage:openapi_create_embedding_response_usage() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -11,29 +11,36 @@
  */
 
 /**
- * OASModel
+ * Describes an OpenAI model offering that can be used with the API.
  */
 public class OASModel implements OAS.MappedProperties {
     /**
-     * Get id
+     * The model identifier, which can be referenced in the API endpoints.
      * @return id
      */
     public String id { get; set; }
 
     /**
-     * Get r_object
-     * @return r_object
-     */
-    public String r_object { get; set; }
-
-    /**
-     * Get created
+     * The Unix timestamp (in seconds) when the model was created.
      * @return created
      */
     public Integer created { get; set; }
 
     /**
-     * Get ownedBy
+     * The object type, which is always "model".
+     */
+    public enum RObjectEnum {
+        MODEL
+    }
+
+    /**
+     * The object type, which is always "model".
+     * @return r_object
+     */
+    public RObjectEnum r_object { get; set; }
+
+    /**
+     * The organization that owns the model.
      * @return ownedBy
      */
     public String ownedBy { get; set; }
@@ -59,8 +66,8 @@ public class OASModel implements OAS.MappedProperties {
     public static OASModel getExample() {
         OASModel model = new OASModel();
           model.id = '';
-          model.r_object = '';
           model.created = 0;
+          model.r_object = RObjectEnum.MODEL;
           model.ownedBy = '';
         return model;
     }
@@ -69,8 +76,8 @@ public class OASModel implements OAS.MappedProperties {
         if (obj instanceof OASModel) {           
             OASModel model = (OASModel) obj;
             return this.id == model.id
-                && this.r_object == model.r_object
                 && this.created == model.created
+                && this.r_object == model.r_object
                 && this.ownedBy == model.ownedBy;
         }
         return false;
@@ -79,8 +86,8 @@ public class OASModel implements OAS.MappedProperties {
     public Integer hashCode() {
         Integer hashCode = 43;
         hashCode = (17 * hashCode) + (id == null ? 0 : System.hashCode(id));
-        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
         hashCode = (17 * hashCode) + (created == null ? 0 : System.hashCode(created));
+        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
         hashCode = (17 * hashCode) + (ownedBy == null ? 0 : System.hashCode(ownedBy));
         return hashCode;
     }

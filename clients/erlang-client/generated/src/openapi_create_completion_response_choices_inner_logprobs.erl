@@ -5,19 +5,19 @@
 -export_type([openapi_create_completion_response_choices_inner_logprobs/0]).
 
 -type openapi_create_completion_response_choices_inner_logprobs() ::
-    #{ 'tokens' => list(),
+    #{ 'text_offset' => list(),
        'token_logprobs' => list(),
-       'top_logprobs' => list(),
-       'text_offset' => list()
+       'tokens' => list(),
+       'top_logprobs' => list()
      }.
 
-encode(#{ 'tokens' := Tokens,
+encode(#{ 'text_offset' := TextOffset,
           'token_logprobs' := TokenLogprobs,
-          'top_logprobs' := TopLogprobs,
-          'text_offset' := TextOffset
+          'tokens' := Tokens,
+          'top_logprobs' := TopLogprobs
         }) ->
-    #{ 'tokens' => Tokens,
+    #{ 'text_offset' => TextOffset,
        'token_logprobs' => TokenLogprobs,
-       'top_logprobs' => TopLogprobs,
-       'text_offset' => TextOffset
+       'tokens' => Tokens,
+       'top_logprobs' => TopLogprobs
      }.

@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -13,16 +13,20 @@ require "json"
 require "time"
 
 module OpenAPIClient
+  # Represents if a given text input is potentially harmful.
   class CreateModerationResponse
     include JSON::Serializable
 
     # Required properties
+    # The unique identifier for the moderation request.
     @[JSON::Field(key: "id", type: String, nillable: false, emit_null: false)]
     property id : String
 
+    # The model used to generate the moderation results.
     @[JSON::Field(key: "model", type: String, nillable: false, emit_null: false)]
     property model : String
 
+    # A list of moderation objects.
     @[JSON::Field(key: "results", type: Array(CreateModerationResponseResultsInner), nillable: false, emit_null: false)]
     property results : Array(CreateModerationResponseResultsInner)
 

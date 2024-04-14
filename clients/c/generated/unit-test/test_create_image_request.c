@@ -16,6 +16,7 @@
 #include "../model/create_image_request.h"
 create_image_request_t* instantiate_create_image_request(int include_optional);
 
+#include "test_create_image_request_model.c"
 
 
 create_image_request_t* instantiate_create_image_request(int include_optional) {
@@ -23,17 +24,23 @@ create_image_request_t* instantiate_create_image_request(int include_optional) {
   if (include_optional) {
     create_image_request = create_image_request_create(
       "A cute baby sea otter",
+      dall-e-3,
       1,
-      openai_api_create_image_request_SIZE_"1024x1024",
+      openai_api_create_image_request_QUALITY_"standard",
       openai_api_create_image_request_RESPONSEFORMAT_"url",
+      openai_api_create_image_request_SIZE_"1024x1024",
+      openai_api_create_image_request_STYLE_"vivid",
       "user-1234"
     );
   } else {
     create_image_request = create_image_request_create(
       "A cute baby sea otter",
+      dall-e-3,
       1,
-      openai_api_create_image_request_SIZE_"1024x1024",
+      openai_api_create_image_request_QUALITY_"standard",
       openai_api_create_image_request_RESPONSEFORMAT_"url",
+      openai_api_create_image_request_SIZE_"1024x1024",
+      openai_api_create_image_request_STYLE_"vivid",
       "user-1234"
     );
   }

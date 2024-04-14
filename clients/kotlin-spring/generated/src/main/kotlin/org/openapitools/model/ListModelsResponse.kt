@@ -2,6 +2,7 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.Model
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -22,12 +23,21 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ListModelsResponse(
 
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("object", required = true) val `object`: kotlin.String,
+    @get:JsonProperty("object", required = true) val `object`: ListModelsResponse.`Object`,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<Model>
 ) {
+
+    /**
+    * 
+    * Values: list
+    */
+    enum class `Object`(val value: kotlin.String) {
+
+        @JsonProperty("list") list("list")
+    }
 
 }
 

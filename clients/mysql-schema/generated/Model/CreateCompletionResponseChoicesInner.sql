@@ -7,17 +7,17 @@
 --
 -- SELECT template for table `CreateCompletionResponse_choices_inner`
 --
-SELECT `text`, `index`, `logprobs`, `finish_reason` FROM `CreateCompletionResponse_choices_inner` WHERE 1;
+SELECT `finish_reason`, `index`, `logprobs`, `text` FROM `CreateCompletionResponse_choices_inner` WHERE 1;
 
 --
 -- INSERT template for table `CreateCompletionResponse_choices_inner`
 --
-INSERT INTO `CreateCompletionResponse_choices_inner`(`text`, `index`, `logprobs`, `finish_reason`) VALUES (?, ?, ?, ?);
+INSERT INTO `CreateCompletionResponse_choices_inner`(`finish_reason`, `index`, `logprobs`, `text`) VALUES (?, ?, ?, ?);
 
 --
 -- UPDATE template for table `CreateCompletionResponse_choices_inner`
 --
-UPDATE `CreateCompletionResponse_choices_inner` SET `text` = ?, `index` = ?, `logprobs` = ?, `finish_reason` = ? WHERE 1;
+UPDATE `CreateCompletionResponse_choices_inner` SET `finish_reason` = ?, `index` = ?, `logprobs` = ?, `text` = ? WHERE 1;
 
 --
 -- DELETE template for table `CreateCompletionResponse_choices_inner`

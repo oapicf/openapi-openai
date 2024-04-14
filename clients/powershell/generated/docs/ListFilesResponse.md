@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **String** |  | 
 **VarData** | [**OpenAIFile[]**](OpenAIFile.md) |  | 
+**Object** | **String** |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ListFilesResponse = Initialize-PSOpenAPIToolsListFilesResponse  -Object null `
- -VarData null
+$ListFilesResponse = Initialize-PSOpenAPIToolsListFilesResponse  -VarData null `
+ -Object null
 ```
 
 - Convert the resource to JSON

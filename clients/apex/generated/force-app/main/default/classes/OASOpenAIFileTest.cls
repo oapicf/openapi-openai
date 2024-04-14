@@ -73,8 +73,8 @@ private class OASOpenAIFileTest {
     private static void maintainRenamedProperties() {
         OASOpenAIFile openAIFile = new OASOpenAIFile();
         Map<String, String> x-property-mappings = openAIFile.getx-property-mappings();
-        System.assertEquals('r_object', x-property-mappings.get('object'));
         System.assertEquals('createdAt', x-property-mappings.get('created_at'));
+        System.assertEquals('r_object', x-property-mappings.get('object'));
         System.assertEquals('statusDetails', x-property-mappings.get('status_details'));
     }
 }

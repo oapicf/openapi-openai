@@ -3,14 +3,14 @@ package org.openapitools.client.model
 
 
 case class ListFilesResponse (
-    _object: String,
-    _data: List[OpenAIFile]
+    _data: List[OpenAIFile],
+    _object: String
 )
 object ListFilesResponse {
-    def toStringBody(var_object: Object, var_data: Object) =
+    def toStringBody(var_data: Object, var_object: Object) =
         s"""
         | {
-        | "object":$var_object,"data":$var_data
+        | "data":$var_data,"object":$var_object
         | }
         """.stripMargin
 }

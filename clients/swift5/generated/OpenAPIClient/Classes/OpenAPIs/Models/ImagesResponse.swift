@@ -13,9 +13,9 @@ import AnyCodable
 public struct ImagesResponse: Codable, JSONEncodable, Hashable {
 
     public var created: Int
-    public var data: [ImagesResponseDataInner]
+    public var data: [Image]
 
-    public init(created: Int, data: [ImagesResponseDataInner]) {
+    public init(created: Int, data: [Image]) {
         self.created = created
         self.data = data
     }

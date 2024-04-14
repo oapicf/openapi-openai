@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -21,10 +21,10 @@ namespace org::openapitools::server::model
 
 CreateCompletionResponse_choices_inner_logprobs::CreateCompletionResponse_choices_inner_logprobs()
 {
-    m_TokensIsSet = false;
-    m_Token_logprobsIsSet = false;
-    m_Top_logprobsIsSet = false;
     m_Text_offsetIsSet = false;
+    m_Token_logprobsIsSet = false;
+    m_TokensIsSet = false;
+    m_Top_logprobsIsSet = false;
     
 }
 
@@ -48,16 +48,16 @@ bool CreateCompletionResponse_choices_inner_logprobs::validate(std::stringstream
     const std::string _pathPrefix = pathPrefix.empty() ? "CreateCompletionResponse_choices_inner_logprobs" : pathPrefix;
 
          
-    if (tokensIsSet())
+    if (textOffsetIsSet())
     {
-        const std::vector<std::string>& value = m_Tokens;
-        const std::string currentValuePath = _pathPrefix + ".tokens";
+        const std::vector<int32_t>& value = m_Text_offset;
+        const std::string currentValuePath = _pathPrefix + ".textOffset";
                 
         
         { // Recursive validation of array elements
             const std::string oldValuePath = currentValuePath;
             int i = 0;
-            for (const std::string& value : value)
+            for (const int32_t& value : value)
             { 
                 const std::string currentValuePath = oldValuePath + "[" + std::to_string(i) + "]";
                         
@@ -90,16 +90,16 @@ bool CreateCompletionResponse_choices_inner_logprobs::validate(std::stringstream
 
     }
          
-    if (topLogprobsIsSet())
+    if (tokensIsSet())
     {
-        const std::vector<org::openapitools::server::model::Object>& value = m_Top_logprobs;
-        const std::string currentValuePath = _pathPrefix + ".topLogprobs";
+        const std::vector<std::string>& value = m_Tokens;
+        const std::string currentValuePath = _pathPrefix + ".tokens";
                 
         
         { // Recursive validation of array elements
             const std::string oldValuePath = currentValuePath;
             int i = 0;
-            for (const org::openapitools::server::model::Object& value : value)
+            for (const std::string& value : value)
             { 
                 const std::string currentValuePath = oldValuePath + "[" + std::to_string(i) + "]";
                         
@@ -111,16 +111,16 @@ bool CreateCompletionResponse_choices_inner_logprobs::validate(std::stringstream
 
     }
          
-    if (textOffsetIsSet())
+    if (topLogprobsIsSet())
     {
-        const std::vector<int32_t>& value = m_Text_offset;
-        const std::string currentValuePath = _pathPrefix + ".textOffset";
+        const std::vector<std::map<std::string, double>>& value = m_Top_logprobs;
+        const std::string currentValuePath = _pathPrefix + ".topLogprobs";
                 
         
         { // Recursive validation of array elements
             const std::string oldValuePath = currentValuePath;
             int i = 0;
-            for (const int32_t& value : value)
+            for (const std::map<std::string, double>& value : value)
             { 
                 const std::string currentValuePath = oldValuePath + "[" + std::to_string(i) + "]";
                         
@@ -141,16 +141,16 @@ bool CreateCompletionResponse_choices_inner_logprobs::operator==(const CreateCom
     
     
     
-    ((!tokensIsSet() && !rhs.tokensIsSet()) || (tokensIsSet() && rhs.tokensIsSet() && getTokens() == rhs.getTokens())) &&
+    ((!textOffsetIsSet() && !rhs.textOffsetIsSet()) || (textOffsetIsSet() && rhs.textOffsetIsSet() && getTextOffset() == rhs.getTextOffset())) &&
     
     
     ((!tokenLogprobsIsSet() && !rhs.tokenLogprobsIsSet()) || (tokenLogprobsIsSet() && rhs.tokenLogprobsIsSet() && getTokenLogprobs() == rhs.getTokenLogprobs())) &&
     
     
-    ((!topLogprobsIsSet() && !rhs.topLogprobsIsSet()) || (topLogprobsIsSet() && rhs.topLogprobsIsSet() && getTopLogprobs() == rhs.getTopLogprobs())) &&
+    ((!tokensIsSet() && !rhs.tokensIsSet()) || (tokensIsSet() && rhs.tokensIsSet() && getTokens() == rhs.getTokens())) &&
     
     
-    ((!textOffsetIsSet() && !rhs.textOffsetIsSet()) || (textOffsetIsSet() && rhs.textOffsetIsSet() && getTextOffset() == rhs.getTextOffset()))
+    ((!topLogprobsIsSet() && !rhs.topLogprobsIsSet()) || (topLogprobsIsSet() && rhs.topLogprobsIsSet() && getTopLogprobs() == rhs.getTopLogprobs()))
     
     ;
 }
@@ -163,58 +163,58 @@ bool CreateCompletionResponse_choices_inner_logprobs::operator!=(const CreateCom
 void to_json(nlohmann::json& j, const CreateCompletionResponse_choices_inner_logprobs& o)
 {
     j = nlohmann::json::object();
-    if(o.tokensIsSet() || !o.m_Tokens.empty())
-        j["tokens"] = o.m_Tokens;
-    if(o.tokenLogprobsIsSet() || !o.m_Token_logprobs.empty())
-        j["token_logprobs"] = o.m_Token_logprobs;
-    if(o.topLogprobsIsSet() || !o.m_Top_logprobs.empty())
-        j["top_logprobs"] = o.m_Top_logprobs;
     if(o.textOffsetIsSet() || !o.m_Text_offset.empty())
         j["text_offset"] = o.m_Text_offset;
+    if(o.tokenLogprobsIsSet() || !o.m_Token_logprobs.empty())
+        j["token_logprobs"] = o.m_Token_logprobs;
+    if(o.tokensIsSet() || !o.m_Tokens.empty())
+        j["tokens"] = o.m_Tokens;
+    if(o.topLogprobsIsSet() || !o.m_Top_logprobs.empty())
+        j["top_logprobs"] = o.m_Top_logprobs;
     
 }
 
 void from_json(const nlohmann::json& j, CreateCompletionResponse_choices_inner_logprobs& o)
 {
-    if(j.find("tokens") != j.end())
+    if(j.find("text_offset") != j.end())
     {
-        j.at("tokens").get_to(o.m_Tokens);
-        o.m_TokensIsSet = true;
+        j.at("text_offset").get_to(o.m_Text_offset);
+        o.m_Text_offsetIsSet = true;
     } 
     if(j.find("token_logprobs") != j.end())
     {
         j.at("token_logprobs").get_to(o.m_Token_logprobs);
         o.m_Token_logprobsIsSet = true;
     } 
+    if(j.find("tokens") != j.end())
+    {
+        j.at("tokens").get_to(o.m_Tokens);
+        o.m_TokensIsSet = true;
+    } 
     if(j.find("top_logprobs") != j.end())
     {
         j.at("top_logprobs").get_to(o.m_Top_logprobs);
         o.m_Top_logprobsIsSet = true;
     } 
-    if(j.find("text_offset") != j.end())
-    {
-        j.at("text_offset").get_to(o.m_Text_offset);
-        o.m_Text_offsetIsSet = true;
-    } 
     
 }
 
-std::vector<std::string> CreateCompletionResponse_choices_inner_logprobs::getTokens() const
+std::vector<int32_t> CreateCompletionResponse_choices_inner_logprobs::getTextOffset() const
 {
-    return m_Tokens;
+    return m_Text_offset;
 }
-void CreateCompletionResponse_choices_inner_logprobs::setTokens(std::vector<std::string> const& value)
+void CreateCompletionResponse_choices_inner_logprobs::setTextOffset(std::vector<int32_t> const value)
 {
-    m_Tokens = value;
-    m_TokensIsSet = true;
+    m_Text_offset = value;
+    m_Text_offsetIsSet = true;
 }
-bool CreateCompletionResponse_choices_inner_logprobs::tokensIsSet() const
+bool CreateCompletionResponse_choices_inner_logprobs::textOffsetIsSet() const
 {
-    return m_TokensIsSet;
+    return m_Text_offsetIsSet;
 }
-void CreateCompletionResponse_choices_inner_logprobs::unsetTokens()
+void CreateCompletionResponse_choices_inner_logprobs::unsetText_offset()
 {
-    m_TokensIsSet = false;
+    m_Text_offsetIsSet = false;
 }
 std::vector<double> CreateCompletionResponse_choices_inner_logprobs::getTokenLogprobs() const
 {
@@ -233,11 +233,28 @@ void CreateCompletionResponse_choices_inner_logprobs::unsetToken_logprobs()
 {
     m_Token_logprobsIsSet = false;
 }
-std::vector<org::openapitools::server::model::Object> CreateCompletionResponse_choices_inner_logprobs::getTopLogprobs() const
+std::vector<std::string> CreateCompletionResponse_choices_inner_logprobs::getTokens() const
+{
+    return m_Tokens;
+}
+void CreateCompletionResponse_choices_inner_logprobs::setTokens(std::vector<std::string> const& value)
+{
+    m_Tokens = value;
+    m_TokensIsSet = true;
+}
+bool CreateCompletionResponse_choices_inner_logprobs::tokensIsSet() const
+{
+    return m_TokensIsSet;
+}
+void CreateCompletionResponse_choices_inner_logprobs::unsetTokens()
+{
+    m_TokensIsSet = false;
+}
+std::vector<std::map<std::string, double>> CreateCompletionResponse_choices_inner_logprobs::getTopLogprobs() const
 {
     return m_Top_logprobs;
 }
-void CreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(std::vector<org::openapitools::server::model::Object> const& value)
+void CreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(std::vector<std::map<std::string, double>> const& value)
 {
     m_Top_logprobs = value;
     m_Top_logprobsIsSet = true;
@@ -249,23 +266,6 @@ bool CreateCompletionResponse_choices_inner_logprobs::topLogprobsIsSet() const
 void CreateCompletionResponse_choices_inner_logprobs::unsetTop_logprobs()
 {
     m_Top_logprobsIsSet = false;
-}
-std::vector<int32_t> CreateCompletionResponse_choices_inner_logprobs::getTextOffset() const
-{
-    return m_Text_offset;
-}
-void CreateCompletionResponse_choices_inner_logprobs::setTextOffset(std::vector<int32_t> const value)
-{
-    m_Text_offset = value;
-    m_Text_offsetIsSet = true;
-}
-bool CreateCompletionResponse_choices_inner_logprobs::textOffsetIsSet() const
-{
-    return m_Text_offsetIsSet;
-}
-void CreateCompletionResponse_choices_inner_logprobs::unsetText_offset()
-{
-    m_Text_offsetIsSet = false;
 }
 
 

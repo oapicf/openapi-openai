@@ -2,16 +2,43 @@ import { DynamicModule, Module, Global, Provider } from '@nestjs/common';
 import { HttpModule, HttpService } from '@nestjs/axios';
 import { AsyncConfiguration, Configuration, ConfigurationFactory } from './configuration';
 
-import { OpenAIService } from './api/openAI.service';
+import { AssistantsService } from './api/assistants.service';
+import { AudioService } from './api/audio.service';
+import { ChatService } from './api/chat.service';
+import { CompletionsService } from './api/completions.service';
+import { EmbeddingsService } from './api/embeddings.service';
+import { FilesService } from './api/files.service';
+import { FineTuningService } from './api/fineTuning.service';
+import { ImagesService } from './api/images.service';
+import { ModelsService } from './api/models.service';
+import { ModerationsService } from './api/moderations.service';
 
 @Global()
 @Module({
   imports:      [ HttpModule ],
   exports:      [
-    OpenAIService
+    AssistantsService,
+    AudioService,
+    ChatService,
+    CompletionsService,
+    EmbeddingsService,
+    FilesService,
+    FineTuningService,
+    ImagesService,
+    ModelsService,
+    ModerationsService
   ],
   providers: [
-    OpenAIService
+    AssistantsService,
+    AudioService,
+    ChatService,
+    CompletionsService,
+    EmbeddingsService,
+    FilesService,
+    FineTuningService,
+    ImagesService,
+    ModelsService,
+    ModerationsService
   ]
 })
 export class ApiModule {

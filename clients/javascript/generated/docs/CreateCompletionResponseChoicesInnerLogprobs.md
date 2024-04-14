@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tokens** | **[String]** |  | [optional] 
-**tokenLogprobs** | **[Number]** |  | [optional] 
-**topLogprobs** | **[Object]** |  | [optional] 
 **textOffset** | **[Number]** |  | [optional] 
+**tokenLogprobs** | **[Number]** |  | [optional] 
+**tokens** | **[String]** |  | [optional] 
+**topLogprobs** | **[{String: Number}]** |  | [optional] 
 
 

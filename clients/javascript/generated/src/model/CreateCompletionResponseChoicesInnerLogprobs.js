@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The CreateCompletionResponseChoicesInnerLogprobs model module.
  * @module model/CreateCompletionResponseChoicesInnerLogprobs
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateCompletionResponseChoicesInnerLogprobs {
     /**
@@ -47,17 +47,17 @@ class CreateCompletionResponseChoicesInnerLogprobs {
         if (data) {
             obj = obj || new CreateCompletionResponseChoicesInnerLogprobs();
 
-            if (data.hasOwnProperty('tokens')) {
-                obj['tokens'] = ApiClient.convertToType(data['tokens'], ['String']);
+            if (data.hasOwnProperty('text_offset')) {
+                obj['text_offset'] = ApiClient.convertToType(data['text_offset'], ['Number']);
             }
             if (data.hasOwnProperty('token_logprobs')) {
                 obj['token_logprobs'] = ApiClient.convertToType(data['token_logprobs'], ['Number']);
             }
-            if (data.hasOwnProperty('top_logprobs')) {
-                obj['top_logprobs'] = ApiClient.convertToType(data['top_logprobs'], [Object]);
+            if (data.hasOwnProperty('tokens')) {
+                obj['tokens'] = ApiClient.convertToType(data['tokens'], ['String']);
             }
-            if (data.hasOwnProperty('text_offset')) {
-                obj['text_offset'] = ApiClient.convertToType(data['text_offset'], ['Number']);
+            if (data.hasOwnProperty('top_logprobs')) {
+                obj['top_logprobs'] = ApiClient.convertToType(data['top_logprobs'], [{'String': 'Number'}]);
             }
         }
         return obj;
@@ -70,20 +70,20 @@ class CreateCompletionResponseChoicesInnerLogprobs {
      */
     static validateJSON(data) {
         // ensure the json data is an array
-        if (!Array.isArray(data['tokens'])) {
-            throw new Error("Expected the field `tokens` to be an array in the JSON data but got " + data['tokens']);
+        if (!Array.isArray(data['text_offset'])) {
+            throw new Error("Expected the field `text_offset` to be an array in the JSON data but got " + data['text_offset']);
         }
         // ensure the json data is an array
         if (!Array.isArray(data['token_logprobs'])) {
             throw new Error("Expected the field `token_logprobs` to be an array in the JSON data but got " + data['token_logprobs']);
         }
         // ensure the json data is an array
-        if (!Array.isArray(data['top_logprobs'])) {
-            throw new Error("Expected the field `top_logprobs` to be an array in the JSON data but got " + data['top_logprobs']);
+        if (!Array.isArray(data['tokens'])) {
+            throw new Error("Expected the field `tokens` to be an array in the JSON data but got " + data['tokens']);
         }
         // ensure the json data is an array
-        if (!Array.isArray(data['text_offset'])) {
-            throw new Error("Expected the field `text_offset` to be an array in the JSON data but got " + data['text_offset']);
+        if (!Array.isArray(data['top_logprobs'])) {
+            throw new Error("Expected the field `top_logprobs` to be an array in the JSON data but got " + data['top_logprobs']);
         }
 
         return true;
@@ -95,9 +95,9 @@ class CreateCompletionResponseChoicesInnerLogprobs {
 
 
 /**
- * @member {Array.<String>} tokens
+ * @member {Array.<Number>} text_offset
  */
-CreateCompletionResponseChoicesInnerLogprobs.prototype['tokens'] = undefined;
+CreateCompletionResponseChoicesInnerLogprobs.prototype['text_offset'] = undefined;
 
 /**
  * @member {Array.<Number>} token_logprobs
@@ -105,14 +105,14 @@ CreateCompletionResponseChoicesInnerLogprobs.prototype['tokens'] = undefined;
 CreateCompletionResponseChoicesInnerLogprobs.prototype['token_logprobs'] = undefined;
 
 /**
- * @member {Array.<Object>} top_logprobs
+ * @member {Array.<String>} tokens
  */
-CreateCompletionResponseChoicesInnerLogprobs.prototype['top_logprobs'] = undefined;
+CreateCompletionResponseChoicesInnerLogprobs.prototype['tokens'] = undefined;
 
 /**
- * @member {Array.<Number>} text_offset
+ * @member {Array.<Object.<String, Number>>} top_logprobs
  */
-CreateCompletionResponseChoicesInnerLogprobs.prototype['text_offset'] = undefined;
+CreateCompletionResponseChoicesInnerLogprobs.prototype['top_logprobs'] = undefined;
 
 
 

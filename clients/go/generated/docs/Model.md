@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Object** | **string** |  | 
-**Created** | **int32** |  | 
-**OwnedBy** | **string** |  | 
+**Id** | **string** | The model identifier, which can be referenced in the API endpoints. | 
+**Created** | **int32** | The Unix timestamp (in seconds) when the model was created. | 
+**Object** | **string** | The object type, which is always \&quot;model\&quot;. | 
+**OwnedBy** | **string** | The organization that owns the model. | 
 
 ## Methods
 
 ### NewModel
 
-`func NewModel(id string, object string, created int32, ownedBy string, ) *Model`
+`func NewModel(id string, created int32, object string, ownedBy string, ) *Model`
 
 NewModel instantiates a new Model object
 This constructor will assign default values to properties that have it defined,
@@ -48,26 +48,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetObject
-
-`func (o *Model) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *Model) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *Model) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
-
 ### GetCreated
 
 `func (o *Model) GetCreated() int32`
@@ -86,6 +66,26 @@ and a boolean to check if the value has been set.
 `func (o *Model) SetCreated(v int32)`
 
 SetCreated sets Created field to given value.
+
+
+### GetObject
+
+`func (o *Model) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *Model) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *Model) SetObject(v string)`
+
+SetObject sets Object field to given value.
 
 
 ### GetOwnedBy

@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -18,28 +18,31 @@ import .*
 
 
 /**
- * 
- * @param id 
- * @param object 
- * @param created 
- * @param model 
- * @param choices 
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+ * @param id A unique identifier for the chat completion. Each chunk has the same ID.
+ * @param choices A list of chat completion choices. Can be more than one if `n` is greater than 1.
+ * @param created The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+ * @param model The model to generate the completion.
+ * @param object The object type, which is always `chat.completion.chunk`.
+ * @param systemFingerprint This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  */
 object CreateChatCompletionStreamResponses : BaseTable<CreateChatCompletionStreamResponse>("CreateChatCompletionStreamResponse") {
-    val id = text("id")
-    val object = text("object")
-    val created = int("created")
-    val model = text("model")
+    val id = text("id") /* A unique identifier for the chat completion. Each chunk has the same ID. */
+    val created = int("created") /* The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. */
+    val model = text("model") /* The model to generate the completion. */
+    val object = text("object").transform({ CreateChatCompletionStreamResponse.Object.valueOf(it) }, { it.value }) /* The object type, which is always `chat.completion.chunk`. */
+    val systemFingerprint = text("system_fingerprint") /* null */ /* This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
 
     /**
      * Create an entity of type CreateChatCompletionStreamResponse from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = CreateChatCompletionStreamResponse(
-        id = row[id] ?: "" /* kotlin.String */,
-        object = row[object] ?: "" /* kotlin.String */,
-        created = row[created] ?: 0 /* kotlin.Int */,
-        model = row[model] ?: "" /* kotlin.String */,
-        choices = emptyList() /* kotlin.Array<CreateChatCompletionStreamResponseChoicesInner> */
+        id = row[id] ?: "" /* kotlin.String */ /* A unique identifier for the chat completion. Each chunk has the same ID. */,
+        choices = emptyList() /* kotlin.Array<CreateChatCompletionStreamResponseChoicesInner> */ /* A list of chat completion choices. Can be more than one if `n` is greater than 1. */,
+        created = row[created] ?: 0 /* kotlin.Int */ /* The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. */,
+        model = row[model] ?: "" /* kotlin.String */ /* The model to generate the completion. */,
+        object = row[object] ?: CreateChatCompletionStreamResponse.Object.valueOf("") /* kotlin.String */ /* The object type, which is always `chat.completion.chunk`. */,
+        systemFingerprint = row[systemFingerprint]  /* kotlin.String? */ /* This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
     )
 
     /**
@@ -58,9 +61,10 @@ object CreateChatCompletionStreamResponses : BaseTable<CreateChatCompletionStrea
     fun AssignmentsBuilder.assignFrom(entity: CreateChatCompletionStreamResponse) {
         this.apply {
             set(CreateChatCompletionStreamResponses.id, entity.id)
-            set(CreateChatCompletionStreamResponses.object, entity.object)
             set(CreateChatCompletionStreamResponses.created, entity.created)
             set(CreateChatCompletionStreamResponses.model, entity.model)
+            set(CreateChatCompletionStreamResponses.object, entity.object)
+            set(CreateChatCompletionStreamResponses.systemFingerprint, entity.systemFingerprint)
         }
     }
 

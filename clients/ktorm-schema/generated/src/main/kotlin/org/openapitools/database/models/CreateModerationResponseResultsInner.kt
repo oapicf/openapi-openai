@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -19,12 +19,12 @@ import .*
 
 /**
  * 
- * @param flagged 
+ * @param flagged Whether any of the below categories are flagged.
  * @param categories 
  * @param categoryScores 
  */
 object CreateModerationResponseResultsInners : BaseTable<CreateModerationResponseResultsInner>("CreateModerationResponse_results_inner") {
-    val flagged = boolean("flagged")
+    val flagged = boolean("flagged") /* Whether any of the below categories are flagged. */
     val categories = long("categories")
     val categoryScores = long("category_scores")
 
@@ -32,7 +32,7 @@ object CreateModerationResponseResultsInners : BaseTable<CreateModerationRespons
      * Create an entity of type CreateModerationResponseResultsInner from the model
      */
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean) = CreateModerationResponseResultsInner(
-        flagged = row[flagged] ?: false /* kotlin.Boolean */,
+        flagged = row[flagged] ?: false /* kotlin.Boolean */ /* Whether any of the below categories are flagged. */,
         categories = CreateModerationResponseResultsInnerCategoriess.createEntity(row, withReferences) /* CreateModerationResponseResultsInnerCategories */,
         categoryScores = CreateModerationResponseResultsInnerCategoryScoress.createEntity(row, withReferences) /* CreateModerationResponseResultsInnerCategoryScores */
     )

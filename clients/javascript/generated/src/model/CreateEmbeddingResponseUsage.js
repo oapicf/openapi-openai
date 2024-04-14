@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -16,14 +16,15 @@ import ApiClient from '../ApiClient';
 /**
  * The CreateEmbeddingResponseUsage model module.
  * @module model/CreateEmbeddingResponseUsage
- * @version 0.9.0-pre.0
+ * @version 1.0.1-pre.0
  */
 class CreateEmbeddingResponseUsage {
     /**
      * Constructs a new <code>CreateEmbeddingResponseUsage</code>.
+     * The usage information for the request.
      * @alias module:model/CreateEmbeddingResponseUsage
-     * @param promptTokens {Number} 
-     * @param totalTokens {Number} 
+     * @param promptTokens {Number} The number of tokens used by the prompt.
+     * @param totalTokens {Number} The total number of tokens used by the request.
      */
     constructor(promptTokens, totalTokens) { 
         
@@ -83,11 +84,13 @@ class CreateEmbeddingResponseUsage {
 CreateEmbeddingResponseUsage.RequiredProperties = ["prompt_tokens", "total_tokens"];
 
 /**
+ * The number of tokens used by the prompt.
  * @member {Number} prompt_tokens
  */
 CreateEmbeddingResponseUsage.prototype['prompt_tokens'] = undefined;
 
 /**
+ * The total number of tokens used by the request.
  * @member {Number} total_tokens
  */
 CreateEmbeddingResponseUsage.prototype['total_tokens'] = undefined;

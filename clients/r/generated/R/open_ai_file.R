@@ -1,20 +1,20 @@
 #' Create a new OpenAIFile
 #'
 #' @description
-#' OpenAIFile Class
+#' The `File` object represents a document that has been uploaded to OpenAI.
 #'
 #' @docType class
 #' @title OpenAIFile
 #' @description OpenAIFile Class
 #' @format An \code{R6Class} generator object
-#' @field id  character
-#' @field object  character
-#' @field bytes  integer
-#' @field created_at  integer
-#' @field filename  character
-#' @field purpose  character
-#' @field status  character [optional]
-#' @field status_details  object [optional]
+#' @field id The file identifier, which can be referenced in the API endpoints. character
+#' @field bytes The size of the file, in bytes. integer
+#' @field created_at The Unix timestamp (in seconds) for when the file was created. integer
+#' @field filename The name of the file. character
+#' @field object The object type, which is always `file`. character
+#' @field purpose The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. character
+#' @field status Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`. character
+#' @field status_details Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`. character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -22,10 +22,10 @@ OpenAIFile <- R6::R6Class(
   "OpenAIFile",
   public = list(
     `id` = NULL,
-    `object` = NULL,
     `bytes` = NULL,
     `created_at` = NULL,
     `filename` = NULL,
+    `object` = NULL,
     `purpose` = NULL,
     `status` = NULL,
     `status_details` = NULL,
@@ -34,28 +34,22 @@ OpenAIFile <- R6::R6Class(
     #' @description
     #' Initialize a new OpenAIFile class.
     #'
-    #' @param id id
-    #' @param object object
-    #' @param bytes bytes
-    #' @param created_at created_at
-    #' @param filename filename
-    #' @param purpose purpose
-    #' @param status status
-    #' @param status_details status_details
+    #' @param id The file identifier, which can be referenced in the API endpoints.
+    #' @param bytes The size of the file, in bytes.
+    #' @param created_at The Unix timestamp (in seconds) for when the file was created.
+    #' @param filename The name of the file.
+    #' @param object The object type, which is always `file`.
+    #' @param purpose The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+    #' @param status Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+    #' @param status_details Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`id`, `object`, `bytes`, `created_at`, `filename`, `purpose`, `status` = NULL, `status_details` = NULL, ...) {
+    initialize = function(`id`, `bytes`, `created_at`, `filename`, `object`, `purpose`, `status`, `status_details` = NULL, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
         }
         self$`id` <- `id`
-      }
-      if (!missing(`object`)) {
-        if (!(is.character(`object`) && length(`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
-        }
-        self$`object` <- `object`
       }
       if (!missing(`bytes`)) {
         if (!(is.numeric(`bytes`) && length(`bytes`) == 1)) {
@@ -75,19 +69,37 @@ OpenAIFile <- R6::R6Class(
         }
         self$`filename` <- `filename`
       }
+      if (!missing(`object`)) {
+        if (!(`object` %in% c("file"))) {
+          stop(paste("Error! \"", `object`, "\" cannot be assigned to `object`. Must be \"file\".", sep = ""))
+        }
+        if (!(is.character(`object`) && length(`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
+        }
+        self$`object` <- `object`
+      }
       if (!missing(`purpose`)) {
+        if (!(`purpose` %in% c("fine-tune", "fine-tune-results", "assistants", "assistants_output"))) {
+          stop(paste("Error! \"", `purpose`, "\" cannot be assigned to `purpose`. Must be \"fine-tune\", \"fine-tune-results\", \"assistants\", \"assistants_output\".", sep = ""))
+        }
         if (!(is.character(`purpose`) && length(`purpose`) == 1)) {
           stop(paste("Error! Invalid data for `purpose`. Must be a string:", `purpose`))
         }
         self$`purpose` <- `purpose`
       }
-      if (!is.null(`status`)) {
+      if (!missing(`status`)) {
+        if (!(`status` %in% c("uploaded", "processed", "error"))) {
+          stop(paste("Error! \"", `status`, "\" cannot be assigned to `status`. Must be \"uploaded\", \"processed\", \"error\".", sep = ""))
+        }
         if (!(is.character(`status`) && length(`status`) == 1)) {
           stop(paste("Error! Invalid data for `status`. Must be a string:", `status`))
         }
         self$`status` <- `status`
       }
       if (!is.null(`status_details`)) {
+        if (!(is.character(`status_details`) && length(`status_details`) == 1)) {
+          stop(paste("Error! Invalid data for `status_details`. Must be a string:", `status_details`))
+        }
         self$`status_details` <- `status_details`
       }
     },
@@ -104,10 +116,6 @@ OpenAIFile <- R6::R6Class(
         OpenAIFileObject[["id"]] <-
           self$`id`
       }
-      if (!is.null(self$`object`)) {
-        OpenAIFileObject[["object"]] <-
-          self$`object`
-      }
       if (!is.null(self$`bytes`)) {
         OpenAIFileObject[["bytes"]] <-
           self$`bytes`
@@ -119,6 +127,10 @@ OpenAIFile <- R6::R6Class(
       if (!is.null(self$`filename`)) {
         OpenAIFileObject[["filename"]] <-
           self$`filename`
+      }
+      if (!is.null(self$`object`)) {
+        OpenAIFileObject[["object"]] <-
+          self$`object`
       }
       if (!is.null(self$`purpose`)) {
         OpenAIFileObject[["purpose"]] <-
@@ -147,9 +159,6 @@ OpenAIFile <- R6::R6Class(
       if (!is.null(this_object$`id`)) {
         self$`id` <- this_object$`id`
       }
-      if (!is.null(this_object$`object`)) {
-        self$`object` <- this_object$`object`
-      }
       if (!is.null(this_object$`bytes`)) {
         self$`bytes` <- this_object$`bytes`
       }
@@ -159,10 +168,22 @@ OpenAIFile <- R6::R6Class(
       if (!is.null(this_object$`filename`)) {
         self$`filename` <- this_object$`filename`
       }
+      if (!is.null(this_object$`object`)) {
+        if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("file"))) {
+          stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"file\".", sep = ""))
+        }
+        self$`object` <- this_object$`object`
+      }
       if (!is.null(this_object$`purpose`)) {
+        if (!is.null(this_object$`purpose`) && !(this_object$`purpose` %in% c("fine-tune", "fine-tune-results", "assistants", "assistants_output"))) {
+          stop(paste("Error! \"", this_object$`purpose`, "\" cannot be assigned to `purpose`. Must be \"fine-tune\", \"fine-tune-results\", \"assistants\", \"assistants_output\".", sep = ""))
+        }
         self$`purpose` <- this_object$`purpose`
       }
       if (!is.null(this_object$`status`)) {
+        if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("uploaded", "processed", "error"))) {
+          stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"uploaded\", \"processed\", \"error\".", sep = ""))
+        }
         self$`status` <- this_object$`status`
       }
       if (!is.null(this_object$`status_details`)) {
@@ -187,14 +208,6 @@ OpenAIFile <- R6::R6Class(
           self$`id`
           )
         },
-        if (!is.null(self$`object`)) {
-          sprintf(
-          '"object":
-            "%s"
-                    ',
-          self$`object`
-          )
-        },
         if (!is.null(self$`bytes`)) {
           sprintf(
           '"bytes":
@@ -217,6 +230,14 @@ OpenAIFile <- R6::R6Class(
             "%s"
                     ',
           self$`filename`
+          )
+        },
+        if (!is.null(self$`object`)) {
+          sprintf(
+          '"object":
+            "%s"
+                    ',
+          self$`object`
           )
         },
         if (!is.null(self$`purpose`)) {
@@ -258,11 +279,20 @@ OpenAIFile <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`id` <- this_object$`id`
-      self$`object` <- this_object$`object`
       self$`bytes` <- this_object$`bytes`
       self$`created_at` <- this_object$`created_at`
       self$`filename` <- this_object$`filename`
+      if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("file"))) {
+        stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"file\".", sep = ""))
+      }
+      self$`object` <- this_object$`object`
+      if (!is.null(this_object$`purpose`) && !(this_object$`purpose` %in% c("fine-tune", "fine-tune-results", "assistants", "assistants_output"))) {
+        stop(paste("Error! \"", this_object$`purpose`, "\" cannot be assigned to `purpose`. Must be \"fine-tune\", \"fine-tune-results\", \"assistants\", \"assistants_output\".", sep = ""))
+      }
       self$`purpose` <- this_object$`purpose`
+      if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("uploaded", "processed", "error"))) {
+        stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"uploaded\", \"processed\", \"error\".", sep = ""))
+      }
       self$`status` <- this_object$`status`
       self$`status_details` <- this_object$`status_details`
       self
@@ -283,14 +313,6 @@ OpenAIFile <- R6::R6Class(
         }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for OpenAIFile: the required field `id` is missing."))
-      }
-      # check the required field `object`
-      if (!is.null(input_json$`object`)) {
-        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
-        }
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for OpenAIFile: the required field `object` is missing."))
       }
       # check the required field `bytes`
       if (!is.null(input_json$`bytes`)) {
@@ -316,6 +338,14 @@ OpenAIFile <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for OpenAIFile: the required field `filename` is missing."))
       }
+      # check the required field `object`
+      if (!is.null(input_json$`object`)) {
+        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for OpenAIFile: the required field `object` is missing."))
+      }
       # check the required field `purpose`
       if (!is.null(input_json$`purpose`)) {
         if (!(is.character(input_json$`purpose`) && length(input_json$`purpose`) == 1)) {
@@ -323,6 +353,14 @@ OpenAIFile <- R6::R6Class(
         }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for OpenAIFile: the required field `purpose` is missing."))
+      }
+      # check the required field `status`
+      if (!is.null(input_json$`status`)) {
+        if (!(is.character(input_json$`status`) && length(input_json$`status`) == 1)) {
+          stop(paste("Error! Invalid data for `status`. Must be a string:", input_json$`status`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for OpenAIFile: the required field `status` is missing."))
       }
     },
     #' To string (JSON format)
@@ -348,11 +386,6 @@ OpenAIFile <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
-        return(FALSE)
-      }
-
       # check if the required `bytes` is null
       if (is.null(self$`bytes`)) {
         return(FALSE)
@@ -368,8 +401,18 @@ OpenAIFile <- R6::R6Class(
         return(FALSE)
       }
 
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
+        return(FALSE)
+      }
+
       # check if the required `purpose` is null
       if (is.null(self$`purpose`)) {
+        return(FALSE)
+      }
+
+      # check if the required `status` is null
+      if (is.null(self$`status`)) {
         return(FALSE)
       }
 
@@ -389,11 +432,6 @@ OpenAIFile <- R6::R6Class(
         invalid_fields["id"] <- "Non-nullable required field `id` cannot be null."
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
-        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
-      }
-
       # check if the required `bytes` is null
       if (is.null(self$`bytes`)) {
         invalid_fields["bytes"] <- "Non-nullable required field `bytes` cannot be null."
@@ -409,9 +447,19 @@ OpenAIFile <- R6::R6Class(
         invalid_fields["filename"] <- "Non-nullable required field `filename` cannot be null."
       }
 
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
+        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
+      }
+
       # check if the required `purpose` is null
       if (is.null(self$`purpose`)) {
         invalid_fields["purpose"] <- "Non-nullable required field `purpose` cannot be null."
+      }
+
+      # check if the required `status` is null
+      if (is.null(self$`status`)) {
+        invalid_fields["status"] <- "Non-nullable required field `status` cannot be null."
       }
 
       invalid_fields

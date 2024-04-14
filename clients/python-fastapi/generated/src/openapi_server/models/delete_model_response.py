@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -33,9 +33,9 @@ class DeleteModelResponse(BaseModel):
     DeleteModelResponse
     """ # noqa: E501
     id: StrictStr
-    object: StrictStr
     deleted: StrictBool
-    __properties: ClassVar[List[str]] = ["id", "object", "deleted"]
+    object: StrictStr
+    __properties: ClassVar[List[str]] = ["id", "deleted", "object"]
 
     model_config = {
         "populate_by_name": True,
@@ -87,8 +87,8 @@ class DeleteModelResponse(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "object": obj.get("object"),
-            "deleted": obj.get("deleted")
+            "deleted": obj.get("deleted"),
+            "object": obj.get("object")
         })
         return _obj
 

@@ -22,6 +22,14 @@ public class CreateEmbeddingRequestTest {
     }
 
     /**
+     * Test the property 'input'
+     */
+    @Test
+    public void inputTest() {
+        // TODO: test input
+    }
+
+    /**
      * Test the property 'model'
      */
     @Test
@@ -30,11 +38,19 @@ public class CreateEmbeddingRequestTest {
     }
 
     /**
-     * Test the property 'input'
+     * Test the property 'encodingFormat'
      */
     @Test
-    public void inputTest() {
-        // TODO: test input
+    public void encodingFormatTest() {
+        // TODO: test encodingFormat
+    }
+
+    /**
+     * Test the property 'dimensions'
+     */
+    @Test
+    public void dimensionsTest() {
+        // TODO: test dimensions
     }
 
     /**

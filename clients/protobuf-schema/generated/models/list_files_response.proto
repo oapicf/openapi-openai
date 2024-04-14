@@ -1,7 +1,7 @@
 /*
   OpenAI API
 
-  APIs for sampling from and fine-tuning language models
+  The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
   The version of the OpenAPI document: 2.0.0
 
@@ -18,8 +18,12 @@ import public "models/open_ai_file.proto";
 
 message ListFilesResponse {
 
-  string object = 486497474;
-
   repeated OpenAIFile data = 3076010;
+
+  enum ObjectEnum {
+    ObjectEnum_LIST = 0;
+  }
+
+  ObjectEnum object = 486497474;
 
 }

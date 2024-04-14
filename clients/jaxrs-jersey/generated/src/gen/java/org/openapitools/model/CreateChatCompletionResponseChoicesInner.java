@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.ChatCompletionResponseMessage;
+import org.openapitools.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -29,27 +30,24 @@ import javax.validation.Valid;
  * CreateChatCompletionResponseChoicesInner
  */
 @JsonPropertyOrder({
+  CreateChatCompletionResponseChoicesInner.JSON_PROPERTY_FINISH_REASON,
   CreateChatCompletionResponseChoicesInner.JSON_PROPERTY_INDEX,
   CreateChatCompletionResponseChoicesInner.JSON_PROPERTY_MESSAGE,
-  CreateChatCompletionResponseChoicesInner.JSON_PROPERTY_FINISH_REASON
+  CreateChatCompletionResponseChoicesInner.JSON_PROPERTY_LOGPROBS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateChatCompletionResponseChoicesInner   {
-  public static final String JSON_PROPERTY_INDEX = "index";
-  @JsonProperty(JSON_PROPERTY_INDEX)
-  private Integer index;
-
-  public static final String JSON_PROPERTY_MESSAGE = "message";
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
-  private ChatCompletionResponseMessage message;
-
   /**
-   * Gets or Sets finishReason
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
    */
   public enum FinishReasonEnum {
     STOP("stop"),
     
     LENGTH("length"),
+    
+    TOOL_CALLS("tool_calls"),
+    
+    CONTENT_FILTER("content_filter"),
     
     FUNCTION_CALL("function_call");
 
@@ -80,18 +78,50 @@ public class CreateChatCompletionResponseChoicesInner   {
   @JsonProperty(JSON_PROPERTY_FINISH_REASON)
   private FinishReasonEnum finishReason;
 
+  public static final String JSON_PROPERTY_INDEX = "index";
+  @JsonProperty(JSON_PROPERTY_INDEX)
+  private Integer index;
+
+  public static final String JSON_PROPERTY_MESSAGE = "message";
+  @JsonProperty(JSON_PROPERTY_MESSAGE)
+  private ChatCompletionResponseMessage message;
+
+  public static final String JSON_PROPERTY_LOGPROBS = "logprobs";
+  @JsonProperty(JSON_PROPERTY_LOGPROBS)
+  private CreateChatCompletionResponseChoicesInnerLogprobs logprobs;
+
+  public CreateChatCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
+    return this;
+  }
+
+  /**
+   * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, &#x60;tool_calls&#x60; if the model called a tool, or &#x60;function_call&#x60; (deprecated) if the model called a function. 
+   * @return finishReason
+   **/
+  @JsonProperty(value = "finish_reason")
+  @ApiModelProperty(required = true, value = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ")
+  @NotNull 
+  public FinishReasonEnum getFinishReason() {
+    return finishReason;
+  }
+
+  public void setFinishReason(FinishReasonEnum finishReason) {
+    this.finishReason = finishReason;
+  }
+
   public CreateChatCompletionResponseChoicesInner index(Integer index) {
     this.index = index;
     return this;
   }
 
   /**
-   * Get index
+   * The index of the choice in the list of choices.
    * @return index
    **/
   @JsonProperty(value = "index")
-  @ApiModelProperty(value = "")
-  
+  @ApiModelProperty(required = true, value = "The index of the choice in the list of choices.")
+  @NotNull 
   public Integer getIndex() {
     return index;
   }
@@ -110,8 +140,8 @@ public class CreateChatCompletionResponseChoicesInner   {
    * @return message
    **/
   @JsonProperty(value = "message")
-  @ApiModelProperty(value = "")
-  @Valid 
+  @ApiModelProperty(required = true, value = "")
+  @NotNull @Valid 
   public ChatCompletionResponseMessage getMessage() {
     return message;
   }
@@ -120,24 +150,24 @@ public class CreateChatCompletionResponseChoicesInner   {
     this.message = message;
   }
 
-  public CreateChatCompletionResponseChoicesInner finishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public CreateChatCompletionResponseChoicesInner logprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
     return this;
   }
 
   /**
-   * Get finishReason
-   * @return finishReason
+   * Get logprobs
+   * @return logprobs
    **/
-  @JsonProperty(value = "finish_reason")
-  @ApiModelProperty(value = "")
-  
-  public FinishReasonEnum getFinishReason() {
-    return finishReason;
+  @JsonProperty(value = "logprobs")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull @Valid 
+  public CreateChatCompletionResponseChoicesInnerLogprobs getLogprobs() {
+    return logprobs;
   }
 
-  public void setFinishReason(FinishReasonEnum finishReason) {
-    this.finishReason = finishReason;
+  public void setLogprobs(CreateChatCompletionResponseChoicesInnerLogprobs logprobs) {
+    this.logprobs = logprobs;
   }
 
 
@@ -150,14 +180,15 @@ public class CreateChatCompletionResponseChoicesInner   {
       return false;
     }
     CreateChatCompletionResponseChoicesInner createChatCompletionResponseChoicesInner = (CreateChatCompletionResponseChoicesInner) o;
-    return Objects.equals(this.index, createChatCompletionResponseChoicesInner.index) &&
+    return Objects.equals(this.finishReason, createChatCompletionResponseChoicesInner.finishReason) &&
+        Objects.equals(this.index, createChatCompletionResponseChoicesInner.index) &&
         Objects.equals(this.message, createChatCompletionResponseChoicesInner.message) &&
-        Objects.equals(this.finishReason, createChatCompletionResponseChoicesInner.finishReason);
+        Objects.equals(this.logprobs, createChatCompletionResponseChoicesInner.logprobs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, message, finishReason);
+    return Objects.hash(finishReason, index, message, logprobs);
   }
 
   @Override
@@ -165,9 +196,10 @@ public class CreateChatCompletionResponseChoicesInner   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionResponseChoicesInner {\n");
     
+    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
+    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

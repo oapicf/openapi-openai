@@ -18,18 +18,18 @@ resourceTypes {
     properties {
         id {
           type =  string
-          description = ""
+          description = "The unique identifier for the moderation request."
           optional = true
         }
         model {
           type =  string
-          description = ""
+          description = "The model used to generate the moderation results."
           optional = true
         }
         results {
           type = array
           items.type = CreateModerationResponseResultsInner
-          description = ""
+          description = "A list of moderation objects."
           optional = true
         }
     }

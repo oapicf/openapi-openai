@@ -12,25 +12,28 @@ import AnyCodable
 
 public struct ListFilesResponse: Codable, JSONEncodable, Hashable {
 
-    public var object: String
+    public enum Object: String, Codable, CaseIterable {
+        case list = "list"
+    }
     public var data: [OpenAIFile]
+    public var object: Object
 
-    public init(object: String, data: [OpenAIFile]) {
-        self.object = object
+    public init(data: [OpenAIFile], object: Object) {
         self.data = data
+        self.object = object
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case object
         case data
+        case object
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(object, forKey: .object)
         try container.encode(data, forKey: .data)
+        try container.encode(object, forKey: .object)
     }
 }
 

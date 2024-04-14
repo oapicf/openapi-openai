@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -14,15 +14,15 @@ package org.openapitools.server.models
 
 /**
  * 
- * @param tokens 
- * @param tokenLogprobs 
- * @param topLogprobs 
  * @param textOffset 
+ * @param tokenLogprobs 
+ * @param tokens 
+ * @param topLogprobs 
  */
 data class CreateCompletionResponseChoicesInnerLogprobs(
-    val tokens: kotlin.collections.List<kotlin.String>? = null,
+    val textOffset: kotlin.collections.List<kotlin.Int>? = null,
     val tokenLogprobs: kotlin.collections.List<java.math.BigDecimal>? = null,
-    val topLogprobs: kotlin.collections.List<kotlin.Any>? = null,
-    val textOffset: kotlin.collections.List<kotlin.Int>? = null
+    val tokens: kotlin.collections.List<kotlin.String>? = null,
+    val topLogprobs: kotlin.collections.List<kotlin.collections.Map<kotlin.String, java.math.BigDecimal>>? = null
 ) 
 

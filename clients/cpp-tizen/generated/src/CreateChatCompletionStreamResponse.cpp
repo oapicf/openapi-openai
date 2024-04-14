@@ -24,10 +24,11 @@ void
 CreateChatCompletionStreamResponse::__init()
 {
 	//id = std::string();
-	//object = std::string();
+	//new std::list()std::list> choices;
 	//created = int(0);
 	//model = std::string();
-	//new std::list()std::list> choices;
+	//system_fingerprint = std::string();
+	//object = std::string();
 }
 
 void
@@ -38,10 +39,10 @@ CreateChatCompletionStreamResponse::__cleanup()
 	//delete id;
 	//id = NULL;
 	//}
-	//if(object != NULL) {
-	//
-	//delete object;
-	//object = NULL;
+	//if(choices != NULL) {
+	//choices.RemoveAll(true);
+	//delete choices;
+	//choices = NULL;
 	//}
 	//if(created != NULL) {
 	//
@@ -53,10 +54,15 @@ CreateChatCompletionStreamResponse::__cleanup()
 	//delete model;
 	//model = NULL;
 	//}
-	//if(choices != NULL) {
-	//choices.RemoveAll(true);
-	//delete choices;
-	//choices = NULL;
+	//if(system_fingerprint != NULL) {
+	//
+	//delete system_fingerprint;
+	//system_fingerprint = NULL;
+	//}
+	//if(object != NULL) {
+	//
+	//delete object;
+	//object = NULL;
 	//}
 	//
 }
@@ -73,39 +79,6 @@ CreateChatCompletionStreamResponse::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&id, node, "std::string", "");
-		} else {
-			
-		}
-	}
-	const gchar *objectKey = "object";
-	node = json_object_get_member(pJsonObject, objectKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&object, node, "std::string", "");
-		} else {
-			
-		}
-	}
-	const gchar *createdKey = "created";
-	node = json_object_get_member(pJsonObject, createdKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("int")) {
-			jsonToValue(&created, node, "int", "");
-		} else {
-			
-		}
-	}
-	const gchar *modelKey = "model";
-	node = json_object_get_member(pJsonObject, modelKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&model, node, "std::string", "");
 		} else {
 			
 		}
@@ -134,6 +107,50 @@ CreateChatCompletionStreamResponse::fromJson(char* jsonStr)
 		}
 		
 	}
+	const gchar *createdKey = "created";
+	node = json_object_get_member(pJsonObject, createdKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("int")) {
+			jsonToValue(&created, node, "int", "");
+		} else {
+			
+		}
+	}
+	const gchar *modelKey = "model";
+	node = json_object_get_member(pJsonObject, modelKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&model, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *system_fingerprintKey = "system_fingerprint";
+	node = json_object_get_member(pJsonObject, system_fingerprintKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&system_fingerprint, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *objectKey = "object";
+	node = json_object_get_member(pJsonObject, objectKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&object, node, "std::string", "");
+		} else {
+			
+		}
+	}
 }
 
 CreateChatCompletionStreamResponse::CreateChatCompletionStreamResponse(char* json)
@@ -155,33 +172,6 @@ CreateChatCompletionStreamResponse::toJson()
 	}
 	const gchar *idKey = "id";
 	json_object_set_member(pJsonObject, idKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getObject();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *objectKey = "object";
-	json_object_set_member(pJsonObject, objectKey, node);
-	if (isprimitive("int")) {
-		int obj = getCreated();
-		node = converttoJson(&obj, "int", "");
-	}
-	else {
-		
-	}
-	const gchar *createdKey = "created";
-	json_object_set_member(pJsonObject, createdKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getModel();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *modelKey = "model";
-	json_object_set_member(pJsonObject, modelKey, node);
 	if (isprimitive("CreateChatCompletionStreamResponse_choices_inner")) {
 		list<CreateChatCompletionStreamResponse_choices_inner> new_list = static_cast<list <CreateChatCompletionStreamResponse_choices_inner> > (getChoices());
 		node = converttoJson(&new_list, "CreateChatCompletionStreamResponse_choices_inner", "array");
@@ -207,6 +197,42 @@ CreateChatCompletionStreamResponse::toJson()
 	
 	const gchar *choicesKey = "choices";
 	json_object_set_member(pJsonObject, choicesKey, node);
+	if (isprimitive("int")) {
+		int obj = getCreated();
+		node = converttoJson(&obj, "int", "");
+	}
+	else {
+		
+	}
+	const gchar *createdKey = "created";
+	json_object_set_member(pJsonObject, createdKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getModel();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *modelKey = "model";
+	json_object_set_member(pJsonObject, modelKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getSystemFingerprint();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *system_fingerprintKey = "system_fingerprint";
+	json_object_set_member(pJsonObject, system_fingerprintKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getObject();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *objectKey = "object";
+	json_object_set_member(pJsonObject, objectKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -227,16 +253,16 @@ CreateChatCompletionStreamResponse::setId(std::string  id)
 	this->id = id;
 }
 
-std::string
-CreateChatCompletionStreamResponse::getObject()
+std::list<CreateChatCompletionStreamResponse_choices_inner>
+CreateChatCompletionStreamResponse::getChoices()
 {
-	return object;
+	return choices;
 }
 
 void
-CreateChatCompletionStreamResponse::setObject(std::string  object)
+CreateChatCompletionStreamResponse::setChoices(std::list <CreateChatCompletionStreamResponse_choices_inner> choices)
 {
-	this->object = object;
+	this->choices = choices;
 }
 
 int
@@ -263,16 +289,28 @@ CreateChatCompletionStreamResponse::setModel(std::string  model)
 	this->model = model;
 }
 
-std::list<CreateChatCompletionStreamResponse_choices_inner>
-CreateChatCompletionStreamResponse::getChoices()
+std::string
+CreateChatCompletionStreamResponse::getSystemFingerprint()
 {
-	return choices;
+	return system_fingerprint;
 }
 
 void
-CreateChatCompletionStreamResponse::setChoices(std::list <CreateChatCompletionStreamResponse_choices_inner> choices)
+CreateChatCompletionStreamResponse::setSystemFingerprint(std::string  system_fingerprint)
 {
-	this->choices = choices;
+	this->system_fingerprint = system_fingerprint;
+}
+
+std::string
+CreateChatCompletionStreamResponse::getObject()
+{
+	return object;
+}
+
+void
+CreateChatCompletionStreamResponse::setObject(std::string  object)
+{
+	this->object = object;
 }
 
 

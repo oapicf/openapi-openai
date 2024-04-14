@@ -3,7 +3,7 @@
 
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -14,12 +14,12 @@
 */
 
 
+#import "OAICompletionUsage.h"
 #import "OAICreateChatCompletionResponseChoicesInner.h"
-#import "OAICreateCompletionResponseUsage.h"
+@protocol OAICompletionUsage;
+@class OAICompletionUsage;
 @protocol OAICreateChatCompletionResponseChoicesInner;
 @class OAICreateChatCompletionResponseChoicesInner;
-@protocol OAICreateCompletionResponseUsage;
-@class OAICreateCompletionResponseUsage;
 
 
 
@@ -28,17 +28,25 @@
 
 @interface OAICreateChatCompletionResponse : OAIObject
 
-
+/* A unique identifier for the chat completion. 
+ */
 @property(nonatomic) NSString* _id;
-
+/* A list of chat completion choices. Can be more than one if `n` is greater than 1. 
+ */
+@property(nonatomic) NSArray<OAICreateChatCompletionResponseChoicesInner>* choices;
+/* The Unix timestamp (in seconds) of when the chat completion was created. 
+ */
+@property(nonatomic) NSNumber* created;
+/* The model used for the chat completion. 
+ */
+@property(nonatomic) NSString* model;
+/* This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  [optional]
+ */
+@property(nonatomic) NSString* systemFingerprint;
+/* The object type, which is always `chat.completion`. 
+ */
 @property(nonatomic) NSString* object;
 
-@property(nonatomic) NSNumber* created;
-
-@property(nonatomic) NSString* model;
-
-@property(nonatomic) NSArray<OAICreateChatCompletionResponseChoicesInner>* choices;
-
-@property(nonatomic) OAICreateCompletionResponseUsage* usage;
+@property(nonatomic) OAICompletionUsage* usage;
 
 @end

@@ -10,11 +10,11 @@ import scala.collection.immutable.Seq
 
 /**
  * 
- * @param _object 
  * @param data 
+ * @param _object 
  */
-case class ListFilesResponse(_object: String,
-                data: Seq[OpenAIFile]
+case class ListFilesResponse(data: Seq[OpenAIFile],
+                _object: String
                 )
 
 object ListFilesResponse {

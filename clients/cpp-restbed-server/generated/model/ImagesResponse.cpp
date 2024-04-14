@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -79,7 +79,7 @@ void ImagesResponse::fromPropertyTree(ptree const &pt)
 	m_Created = pt.get("created", 0);
 	// push all items of Data into member
 	if (pt.get_child_optional("data")) {
-        m_Data = fromPt<std::vector<ImagesResponse_data_inner>>(pt.get_child("data"));
+        m_Data = fromPt<std::vector<Image>>(pt.get_child("data"));
 	}
 }
 
@@ -94,12 +94,12 @@ void ImagesResponse::setCreated(int32_t value)
 }
 
 
-std::vector<ImagesResponse_data_inner> ImagesResponse::getData() const
+std::vector<Image> ImagesResponse::getData() const
 {
     return m_Data;
 }
 
-void ImagesResponse::setData(std::vector<ImagesResponse_data_inner> value)
+void ImagesResponse::setData(std::vector<Image> value)
 {
     m_Data = value;
 }

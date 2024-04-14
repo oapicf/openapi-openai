@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -15,16 +15,23 @@
  */
 public class OASListFilesResponse implements OAS.MappedProperties {
     /**
-     * Get r_object
-     * @return r_object
-     */
-    public String r_object { get; set; }
-
-    /**
      * Get data
      * @return data
      */
     public List<OASOpenAIFile> data { get; set; }
+
+    /**
+     * Gets or Sets r_object
+     */
+    public enum RObjectEnum {
+        LIST
+    }
+
+    /**
+     * Get r_object
+     * @return r_object
+     */
+    public RObjectEnum r_object { get; set; }
 
     private static final Map<String, String> propertyMappings = new Map<String, String>{
         'object' => 'r_object'
@@ -40,24 +47,24 @@ public class OASListFilesResponse implements OAS.MappedProperties {
 
     public static OASListFilesResponse getExample() {
         OASListFilesResponse listFilesResponse = new OASListFilesResponse();
-          listFilesResponse.r_object = '';
           listFilesResponse.data = new List<OASOpenAIFile>{OASOpenAIFile.getExample()};
+          listFilesResponse.r_object = RObjectEnum.LIST;
         return listFilesResponse;
     }
 
     public Boolean equals(Object obj) {
         if (obj instanceof OASListFilesResponse) {           
             OASListFilesResponse listFilesResponse = (OASListFilesResponse) obj;
-            return this.r_object == listFilesResponse.r_object
-                && this.data == listFilesResponse.data;
+            return this.data == listFilesResponse.data
+                && this.r_object == listFilesResponse.r_object;
         }
         return false;
     }
 
     public Integer hashCode() {
         Integer hashCode = 43;
-        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
         hashCode = (17 * hashCode) + (data == null ? 0 : System.hashCode(data));
+        hashCode = (17 * hashCode) + (r_object == null ? 0 : System.hashCode(r_object));
         return hashCode;
     }
 }

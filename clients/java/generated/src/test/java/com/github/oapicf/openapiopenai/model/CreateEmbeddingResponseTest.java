@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,8 +13,8 @@
 
 package com.github.oapicf.openapiopenai.model;
 
-import com.github.oapicf.openapiopenai.model.CreateEmbeddingResponseDataInner;
 import com.github.oapicf.openapiopenai.model.CreateEmbeddingResponseUsage;
+import com.github.oapicf.openapiopenai.model.Embedding;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,11 +42,11 @@ public class CreateEmbeddingResponseTest {
     }
 
     /**
-     * Test the property '_object'
+     * Test the property 'data'
      */
     @Test
-    public void _objectTest() {
-        // TODO: test _object
+    public void dataTest() {
+        // TODO: test data
     }
 
     /**
@@ -58,11 +58,11 @@ public class CreateEmbeddingResponseTest {
     }
 
     /**
-     * Test the property 'data'
+     * Test the property '_object'
      */
     @Test
-    public void dataTest() {
-        // TODO: test data
+    public void _objectTest() {
+        // TODO: test _object
     }
 
     /**

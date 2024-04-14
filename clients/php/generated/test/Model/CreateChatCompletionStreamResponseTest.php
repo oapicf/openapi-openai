@@ -13,7 +13,7 @@
 /**
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  * CreateChatCompletionStreamResponseTest Class Doc Comment
  *
  * @category    Class
- * @description CreateChatCompletionStreamResponse
+ * @description Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -90,9 +90,9 @@ class CreateChatCompletionStreamResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "object"
+     * Test attribute "choices"
      */
-    public function testPropertyObject()
+    public function testPropertyChoices()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -117,9 +117,18 @@ class CreateChatCompletionStreamResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "choices"
+     * Test attribute "system_fingerprint"
      */
-    public function testPropertyChoices()
+    public function testPropertySystemFingerprint()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "object"
+     */
+    public function testPropertyObject()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

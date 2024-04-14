@@ -1,7 +1,7 @@
 /*
  * OpenAI API
  *
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * API version: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,34 +13,46 @@ package openapi
 
 
 
+// OpenAiFile - The `File` object represents a document that has been uploaded to OpenAI.
 type OpenAiFile struct {
 
+	// The file identifier, which can be referenced in the API endpoints.
 	Id string `json:"id"`
 
-	Object string `json:"object"`
-
+	// The size of the file, in bytes.
 	Bytes int32 `json:"bytes"`
 
+	// The Unix timestamp (in seconds) for when the file was created.
 	CreatedAt int32 `json:"created_at"`
 
+	// The name of the file.
 	Filename string `json:"filename"`
 
+	// The object type, which is always `file`.
+	Object string `json:"object"`
+
+	// The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
 	Purpose string `json:"purpose"`
 
-	Status string `json:"status,omitempty"`
+	// Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+	// Deprecated
+	Status string `json:"status"`
 
-	StatusDetails *map[string]interface{} `json:"status_details,omitempty"`
+	// Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
+	// Deprecated
+	StatusDetails string `json:"status_details,omitempty"`
 }
 
 // AssertOpenAiFileRequired checks if the required fields are not zero-ed
 func AssertOpenAiFileRequired(obj OpenAiFile) error {
 	elements := map[string]interface{}{
 		"id": obj.Id,
-		"object": obj.Object,
 		"bytes": obj.Bytes,
 		"created_at": obj.CreatedAt,
 		"filename": obj.Filename,
+		"object": obj.Object,
 		"purpose": obj.Purpose,
+		"status": obj.Status,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

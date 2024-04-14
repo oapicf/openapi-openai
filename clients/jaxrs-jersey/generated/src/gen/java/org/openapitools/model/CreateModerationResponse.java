@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -27,14 +27,15 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * CreateModerationResponse
+ * Represents if a given text input is potentially harmful.
  */
+@ApiModel(description = "Represents if a given text input is potentially harmful.")
 @JsonPropertyOrder({
   CreateModerationResponse.JSON_PROPERTY_ID,
   CreateModerationResponse.JSON_PROPERTY_MODEL,
   CreateModerationResponse.JSON_PROPERTY_RESULTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-16T01:13:32.134709667Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-04-14T13:41:38.036864137Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CreateModerationResponse   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
@@ -54,11 +55,11 @@ public class CreateModerationResponse   {
   }
 
   /**
-   * Get id
+   * The unique identifier for the moderation request.
    * @return id
    **/
   @JsonProperty(value = "id")
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier for the moderation request.")
   @NotNull 
   public String getId() {
     return id;
@@ -74,11 +75,11 @@ public class CreateModerationResponse   {
   }
 
   /**
-   * Get model
+   * The model used to generate the moderation results.
    * @return model
    **/
   @JsonProperty(value = "model")
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The model used to generate the moderation results.")
   @NotNull 
   public String getModel() {
     return model;
@@ -102,11 +103,11 @@ public class CreateModerationResponse   {
   }
 
   /**
-   * Get results
+   * A list of moderation objects.
    * @return results
    **/
   @JsonProperty(value = "results")
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A list of moderation objects.")
   @NotNull @Valid 
   public List<@Valid CreateModerationResponseResultsInner> getResults() {
     return results;

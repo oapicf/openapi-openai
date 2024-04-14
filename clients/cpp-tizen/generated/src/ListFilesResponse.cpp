@@ -23,22 +23,22 @@ ListFilesResponse::~ListFilesResponse()
 void
 ListFilesResponse::__init()
 {
-	//object = std::string();
 	//new std::list()std::list> data;
+	//object = std::string();
 }
 
 void
 ListFilesResponse::__cleanup()
 {
-	//if(object != NULL) {
-	//
-	//delete object;
-	//object = NULL;
-	//}
 	//if(data != NULL) {
 	//data.RemoveAll(true);
 	//delete data;
 	//data = NULL;
+	//}
+	//if(object != NULL) {
+	//
+	//delete object;
+	//object = NULL;
 	//}
 	//
 }
@@ -48,17 +48,6 @@ ListFilesResponse::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
-	const gchar *objectKey = "object";
-	node = json_object_get_member(pJsonObject, objectKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&object, node, "std::string", "");
-		} else {
-			
-		}
-	}
 	const gchar *dataKey = "data";
 	node = json_object_get_member(pJsonObject, dataKey);
 	if (node !=NULL) {
@@ -83,6 +72,17 @@ ListFilesResponse::fromJson(char* jsonStr)
 		}
 		
 	}
+	const gchar *objectKey = "object";
+	node = json_object_get_member(pJsonObject, objectKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&object, node, "std::string", "");
+		} else {
+			
+		}
+	}
 }
 
 ListFilesResponse::ListFilesResponse(char* json)
@@ -95,15 +95,6 @@ ListFilesResponse::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
-	if (isprimitive("std::string")) {
-		std::string obj = getObject();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *objectKey = "object";
-	json_object_set_member(pJsonObject, objectKey, node);
 	if (isprimitive("OpenAIFile")) {
 		list<OpenAIFile> new_list = static_cast<list <OpenAIFile> > (getData());
 		node = converttoJson(&new_list, "OpenAIFile", "array");
@@ -129,24 +120,21 @@ ListFilesResponse::toJson()
 	
 	const gchar *dataKey = "data";
 	json_object_set_member(pJsonObject, dataKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getObject();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *objectKey = "object";
+	json_object_set_member(pJsonObject, objectKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
 	char * ret = json_to_string(node, false);
 	json_node_free(node);
 	return ret;
-}
-
-std::string
-ListFilesResponse::getObject()
-{
-	return object;
-}
-
-void
-ListFilesResponse::setObject(std::string  object)
-{
-	this->object = object;
 }
 
 std::list<OpenAIFile>
@@ -159,6 +147,18 @@ void
 ListFilesResponse::setData(std::list <OpenAIFile> data)
 {
 	this->data = data;
+}
+
+std::string
+ListFilesResponse::getObject()
+{
+	return object;
+}
+
+void
+ListFilesResponse::setObject(std::string  object)
+{
+	this->object = object;
 }
 
 

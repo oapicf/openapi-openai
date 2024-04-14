@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -11,7 +11,7 @@
 */
 package org.openapitools.server.api.model
 
-import org.openapitools.server.api.model.ImagesResponseDataInner
+import org.openapitools.server.api.model.Image
 
         
 import com.google.gson.annotations.SerializedName
@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class ImagesResponse (
     @SerializedName("created") private val _created: kotlin.Int?,
-    @SerializedName("`data`") private val _`data`: kotlin.Array<ImagesResponseDataInner>?
+    @SerializedName("`data`") private val _`data`: kotlin.Array<Image>?
 ) {
 
         val created get() = _created ?: throw IllegalArgumentException("created is required")

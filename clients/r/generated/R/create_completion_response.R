@@ -1,18 +1,19 @@
 #' Create a new CreateCompletionResponse
 #'
 #' @description
-#' CreateCompletionResponse Class
+#' Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
 #'
 #' @docType class
 #' @title CreateCompletionResponse
 #' @description CreateCompletionResponse Class
 #' @format An \code{R6Class} generator object
-#' @field id  character
-#' @field object  character
-#' @field created  integer
-#' @field model  character
-#' @field choices  list(\link{CreateCompletionResponseChoicesInner})
-#' @field usage  \link{CreateCompletionResponseUsage} [optional]
+#' @field id A unique identifier for the completion. character
+#' @field choices The list of completion choices the model generated for the input prompt. list(\link{CreateCompletionResponseChoicesInner})
+#' @field created The Unix timestamp (in seconds) of when the completion was created. integer
+#' @field model The model used for completion. character
+#' @field system_fingerprint This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. character [optional]
+#' @field object The object type, which is always \"text_completion\" character
+#' @field usage  \link{CompletionUsage} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -20,36 +21,37 @@ CreateCompletionResponse <- R6::R6Class(
   "CreateCompletionResponse",
   public = list(
     `id` = NULL,
-    `object` = NULL,
+    `choices` = NULL,
     `created` = NULL,
     `model` = NULL,
-    `choices` = NULL,
+    `system_fingerprint` = NULL,
+    `object` = NULL,
     `usage` = NULL,
     #' Initialize a new CreateCompletionResponse class.
     #'
     #' @description
     #' Initialize a new CreateCompletionResponse class.
     #'
-    #' @param id id
-    #' @param object object
-    #' @param created created
-    #' @param model model
-    #' @param choices choices
+    #' @param id A unique identifier for the completion.
+    #' @param choices The list of completion choices the model generated for the input prompt.
+    #' @param created The Unix timestamp (in seconds) of when the completion was created.
+    #' @param model The model used for completion.
+    #' @param object The object type, which is always \"text_completion\"
+    #' @param system_fingerprint This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
     #' @param usage usage
     #' @param ... Other optional arguments.
     #' @export
-    initialize = function(`id`, `object`, `created`, `model`, `choices`, `usage` = NULL, ...) {
+    initialize = function(`id`, `choices`, `created`, `model`, `object`, `system_fingerprint` = NULL, `usage` = NULL, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
         }
         self$`id` <- `id`
       }
-      if (!missing(`object`)) {
-        if (!(is.character(`object`) && length(`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
-        }
-        self$`object` <- `object`
+      if (!missing(`choices`)) {
+        stopifnot(is.vector(`choices`), length(`choices`) != 0)
+        sapply(`choices`, function(x) stopifnot(R6::is.R6(x)))
+        self$`choices` <- `choices`
       }
       if (!missing(`created`)) {
         if (!(is.numeric(`created`) && length(`created`) == 1)) {
@@ -63,10 +65,20 @@ CreateCompletionResponse <- R6::R6Class(
         }
         self$`model` <- `model`
       }
-      if (!missing(`choices`)) {
-        stopifnot(is.vector(`choices`), length(`choices`) != 0)
-        sapply(`choices`, function(x) stopifnot(R6::is.R6(x)))
-        self$`choices` <- `choices`
+      if (!missing(`object`)) {
+        if (!(`object` %in% c("text_completion"))) {
+          stop(paste("Error! \"", `object`, "\" cannot be assigned to `object`. Must be \"text_completion\".", sep = ""))
+        }
+        if (!(is.character(`object`) && length(`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
+        }
+        self$`object` <- `object`
+      }
+      if (!is.null(`system_fingerprint`)) {
+        if (!(is.character(`system_fingerprint`) && length(`system_fingerprint`) == 1)) {
+          stop(paste("Error! Invalid data for `system_fingerprint`. Must be a string:", `system_fingerprint`))
+        }
+        self$`system_fingerprint` <- `system_fingerprint`
       }
       if (!is.null(`usage`)) {
         stopifnot(R6::is.R6(`usage`))
@@ -86,9 +98,9 @@ CreateCompletionResponse <- R6::R6Class(
         CreateCompletionResponseObject[["id"]] <-
           self$`id`
       }
-      if (!is.null(self$`object`)) {
-        CreateCompletionResponseObject[["object"]] <-
-          self$`object`
+      if (!is.null(self$`choices`)) {
+        CreateCompletionResponseObject[["choices"]] <-
+          lapply(self$`choices`, function(x) x$toJSON())
       }
       if (!is.null(self$`created`)) {
         CreateCompletionResponseObject[["created"]] <-
@@ -98,9 +110,13 @@ CreateCompletionResponse <- R6::R6Class(
         CreateCompletionResponseObject[["model"]] <-
           self$`model`
       }
-      if (!is.null(self$`choices`)) {
-        CreateCompletionResponseObject[["choices"]] <-
-          lapply(self$`choices`, function(x) x$toJSON())
+      if (!is.null(self$`system_fingerprint`)) {
+        CreateCompletionResponseObject[["system_fingerprint"]] <-
+          self$`system_fingerprint`
+      }
+      if (!is.null(self$`object`)) {
+        CreateCompletionResponseObject[["object"]] <-
+          self$`object`
       }
       if (!is.null(self$`usage`)) {
         CreateCompletionResponseObject[["usage"]] <-
@@ -121,8 +137,8 @@ CreateCompletionResponse <- R6::R6Class(
       if (!is.null(this_object$`id`)) {
         self$`id` <- this_object$`id`
       }
-      if (!is.null(this_object$`object`)) {
-        self$`object` <- this_object$`object`
+      if (!is.null(this_object$`choices`)) {
+        self$`choices` <- ApiClient$new()$deserializeObj(this_object$`choices`, "array[CreateCompletionResponseChoicesInner]", loadNamespace("openapi"))
       }
       if (!is.null(this_object$`created`)) {
         self$`created` <- this_object$`created`
@@ -130,11 +146,17 @@ CreateCompletionResponse <- R6::R6Class(
       if (!is.null(this_object$`model`)) {
         self$`model` <- this_object$`model`
       }
-      if (!is.null(this_object$`choices`)) {
-        self$`choices` <- ApiClient$new()$deserializeObj(this_object$`choices`, "array[CreateCompletionResponseChoicesInner]", loadNamespace("openapi"))
+      if (!is.null(this_object$`system_fingerprint`)) {
+        self$`system_fingerprint` <- this_object$`system_fingerprint`
+      }
+      if (!is.null(this_object$`object`)) {
+        if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("text_completion"))) {
+          stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"text_completion\".", sep = ""))
+        }
+        self$`object` <- this_object$`object`
       }
       if (!is.null(this_object$`usage`)) {
-        `usage_object` <- CreateCompletionResponseUsage$new()
+        `usage_object` <- CompletionUsage$new()
         `usage_object`$fromJSON(jsonlite::toJSON(this_object$`usage`, auto_unbox = TRUE, digits = NA))
         self$`usage` <- `usage_object`
       }
@@ -157,12 +179,12 @@ CreateCompletionResponse <- R6::R6Class(
           self$`id`
           )
         },
-        if (!is.null(self$`object`)) {
+        if (!is.null(self$`choices`)) {
           sprintf(
-          '"object":
-            "%s"
-                    ',
-          self$`object`
+          '"choices":
+          [%s]
+',
+          paste(sapply(self$`choices`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
           )
         },
         if (!is.null(self$`created`)) {
@@ -181,12 +203,20 @@ CreateCompletionResponse <- R6::R6Class(
           self$`model`
           )
         },
-        if (!is.null(self$`choices`)) {
+        if (!is.null(self$`system_fingerprint`)) {
           sprintf(
-          '"choices":
-          [%s]
-',
-          paste(sapply(self$`choices`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
+          '"system_fingerprint":
+            "%s"
+                    ',
+          self$`system_fingerprint`
+          )
+        },
+        if (!is.null(self$`object`)) {
+          sprintf(
+          '"object":
+            "%s"
+                    ',
+          self$`object`
           )
         },
         if (!is.null(self$`usage`)) {
@@ -212,11 +242,15 @@ CreateCompletionResponse <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`id` <- this_object$`id`
-      self$`object` <- this_object$`object`
+      self$`choices` <- ApiClient$new()$deserializeObj(this_object$`choices`, "array[CreateCompletionResponseChoicesInner]", loadNamespace("openapi"))
       self$`created` <- this_object$`created`
       self$`model` <- this_object$`model`
-      self$`choices` <- ApiClient$new()$deserializeObj(this_object$`choices`, "array[CreateCompletionResponseChoicesInner]", loadNamespace("openapi"))
-      self$`usage` <- CreateCompletionResponseUsage$new()$fromJSON(jsonlite::toJSON(this_object$`usage`, auto_unbox = TRUE, digits = NA))
+      self$`system_fingerprint` <- this_object$`system_fingerprint`
+      if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("text_completion"))) {
+        stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"text_completion\".", sep = ""))
+      }
+      self$`object` <- this_object$`object`
+      self$`usage` <- CompletionUsage$new()$fromJSON(jsonlite::toJSON(this_object$`usage`, auto_unbox = TRUE, digits = NA))
       self
     },
     #' Validate JSON input with respect to CreateCompletionResponse
@@ -236,13 +270,12 @@ CreateCompletionResponse <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponse: the required field `id` is missing."))
       }
-      # check the required field `object`
-      if (!is.null(input_json$`object`)) {
-        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
-        }
+      # check the required field `choices`
+      if (!is.null(input_json$`choices`)) {
+        stopifnot(is.vector(input_json$`choices`), length(input_json$`choices`) != 0)
+        tmp <- sapply(input_json$`choices`, function(x) stopifnot(R6::is.R6(x)))
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponse: the required field `object` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponse: the required field `choices` is missing."))
       }
       # check the required field `created`
       if (!is.null(input_json$`created`)) {
@@ -260,12 +293,13 @@ CreateCompletionResponse <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponse: the required field `model` is missing."))
       }
-      # check the required field `choices`
-      if (!is.null(input_json$`choices`)) {
-        stopifnot(is.vector(input_json$`choices`), length(input_json$`choices`) != 0)
-        tmp <- sapply(input_json$`choices`, function(x) stopifnot(R6::is.R6(x)))
+      # check the required field `object`
+      if (!is.null(input_json$`object`)) {
+        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
+        }
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponse: the required field `choices` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for CreateCompletionResponse: the required field `object` is missing."))
       }
     },
     #' To string (JSON format)
@@ -291,8 +325,8 @@ CreateCompletionResponse <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
+      # check if the required `choices` is null
+      if (is.null(self$`choices`)) {
         return(FALSE)
       }
 
@@ -306,8 +340,8 @@ CreateCompletionResponse <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `choices` is null
-      if (is.null(self$`choices`)) {
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
         return(FALSE)
       }
 
@@ -327,9 +361,9 @@ CreateCompletionResponse <- R6::R6Class(
         invalid_fields["id"] <- "Non-nullable required field `id` cannot be null."
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
-        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
+      # check if the required `choices` is null
+      if (is.null(self$`choices`)) {
+        invalid_fields["choices"] <- "Non-nullable required field `choices` cannot be null."
       }
 
       # check if the required `created` is null
@@ -342,9 +376,9 @@ CreateCompletionResponse <- R6::R6Class(
         invalid_fields["model"] <- "Non-nullable required field `model` cannot be null."
       }
 
-      # check if the required `choices` is null
-      if (is.null(self$`choices`)) {
-        invalid_fields["choices"] <- "Non-nullable required field `choices` cannot be null."
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
+        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
       }
 
       invalid_fields

@@ -9,7 +9,7 @@
 
 
 #include <string>
-#include "ImagesResponse_data_inner.h"
+#include "Image.h"
 #include <list>
 #include "Object.h"
 
@@ -56,15 +56,15 @@ public:
 	void setCreated(int  created);
 	/*! \brief Get 
 	 */
-	std::list<ImagesResponse_data_inner> getData();
+	std::list<Image> getData();
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <ImagesResponse_data_inner> data);
+	void setData(std::list <Image> data);
 
 private:
 	int created;
-	std::list <ImagesResponse_data_inner>data;
+	std::list <Image>data;
 	void __init();
 	void __cleanup();
 

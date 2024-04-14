@@ -1,7 +1,7 @@
 /*
  * create_moderation_response.h
  *
- * 
+ * Represents if a given text input is potentially harmful.
  */
 
 #ifndef _create_moderation_response_H_

@@ -46,13 +46,13 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
 	 */
-	std::string getText();
+	std::string getFinishReason();
 
-	/*! \brief Set 
+	/*! \brief Set The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
 	 */
-	void setText(std::string  text);
+	void setFinishReason(std::string  finish_reason);
 	/*! \brief Get 
 	 */
 	int getIndex();
@@ -69,17 +69,17 @@ public:
 	void setLogprobs(CreateCompletionResponse_choices_inner_logprobs  logprobs);
 	/*! \brief Get 
 	 */
-	std::string getFinishReason();
+	std::string getText();
 
 	/*! \brief Set 
 	 */
-	void setFinishReason(std::string  finish_reason);
+	void setText(std::string  text);
 
 private:
-	std::string text;
+	std::string finish_reason;
 	int index;
 	CreateCompletionResponse_choices_inner_logprobs logprobs;
-	std::string finish_reason;
+	std::string text;
 	void __init();
 	void __cleanup();
 

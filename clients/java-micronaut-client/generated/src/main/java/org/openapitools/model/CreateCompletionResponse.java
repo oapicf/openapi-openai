@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -17,8 +17,8 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateCompletionResponseChoicesInner;
-import org.openapitools.model.CreateCompletionResponseUsage;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -27,25 +27,26 @@ import io.micronaut.core.annotation.*;
 import javax.annotation.Generated;
 
 /**
- * CreateCompletionResponse
+ * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
  */
 @JsonPropertyOrder({
   CreateCompletionResponse.JSON_PROPERTY_ID,
-  CreateCompletionResponse.JSON_PROPERTY_OBJECT,
+  CreateCompletionResponse.JSON_PROPERTY_CHOICES,
   CreateCompletionResponse.JSON_PROPERTY_CREATED,
   CreateCompletionResponse.JSON_PROPERTY_MODEL,
-  CreateCompletionResponse.JSON_PROPERTY_CHOICES,
+  CreateCompletionResponse.JSON_PROPERTY_SYSTEM_FINGERPRINT,
+  CreateCompletionResponse.JSON_PROPERTY_OBJECT,
   CreateCompletionResponse.JSON_PROPERTY_USAGE
 })
 @JsonTypeName("CreateCompletionResponse")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-03-16T01:12:32.706318857Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-14T13:37:52.123317469Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Introspected
 public class CreateCompletionResponse {
     public static final String JSON_PROPERTY_ID = "id";
     private String id;
 
-    public static final String JSON_PROPERTY_OBJECT = "object";
-    private String _object;
+    public static final String JSON_PROPERTY_CHOICES = "choices";
+    private List<@Valid CreateCompletionResponseChoicesInner> choices = new ArrayList<>();
 
     public static final String JSON_PROPERTY_CREATED = "created";
     private Integer created;
@@ -53,18 +54,53 @@ public class CreateCompletionResponse {
     public static final String JSON_PROPERTY_MODEL = "model";
     private String model;
 
-    public static final String JSON_PROPERTY_CHOICES = "choices";
-    private List<@Valid CreateCompletionResponseChoicesInner> choices = new ArrayList<>();
+    public static final String JSON_PROPERTY_SYSTEM_FINGERPRINT = "system_fingerprint";
+    private String systemFingerprint;
+
+    /**
+     * The object type, which is always \&quot;text_completion\&quot;
+     */
+    public enum ObjectEnum {
+        TEXT_COMPLETION("text_completion");
+
+        private String value;
+
+        ObjectEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static ObjectEnum fromValue(String value) {
+            for (ObjectEnum b : ObjectEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
+    public static final String JSON_PROPERTY_OBJECT = "object";
+    private ObjectEnum _object;
 
     public static final String JSON_PROPERTY_USAGE = "usage";
-    private CreateCompletionResponseUsage usage;
+    private CompletionUsage usage;
 
-    public CreateCompletionResponse(String id, String _object, Integer created, String model, List<@Valid CreateCompletionResponseChoicesInner> choices) {
+    public CreateCompletionResponse(String id, List<@Valid CreateCompletionResponseChoicesInner> choices, Integer created, String model, ObjectEnum _object) {
         this.id = id;
-        this._object = _object;
+        this.choices = choices;
         this.created = created;
         this.model = model;
-        this.choices = choices;
+        this._object = _object;
     }
 
     public CreateCompletionResponse id(String id) {
@@ -73,7 +109,7 @@ public class CreateCompletionResponse {
     }
 
     /**
-     * Get id
+     * A unique identifier for the completion.
      * @return id
      **/
     @NotNull
@@ -89,26 +125,31 @@ public class CreateCompletionResponse {
         this.id = id;
     }
 
-    public CreateCompletionResponse _object(String _object) {
-        this._object = _object;
+    public CreateCompletionResponse choices(List<@Valid CreateCompletionResponseChoicesInner> choices) {
+        this.choices = choices;
+        return this;
+    }
+
+    public CreateCompletionResponse addChoicesItem(CreateCompletionResponseChoicesInner choicesItem) {
+        this.choices.add(choicesItem);
         return this;
     }
 
     /**
-     * Get _object
-     * @return _object
+     * The list of completion choices the model generated for the input prompt.
+     * @return choices
      **/
     @NotNull
-    @JsonProperty(JSON_PROPERTY_OBJECT)
+    @JsonProperty(JSON_PROPERTY_CHOICES)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public String getObject() {
-        return _object;
+    public List<@Valid CreateCompletionResponseChoicesInner> getChoices() {
+        return choices;
     }
 
-    @JsonProperty(JSON_PROPERTY_OBJECT)
+    @JsonProperty(JSON_PROPERTY_CHOICES)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setObject(String _object) {
-        this._object = _object;
+    public void setChoices(List<@Valid CreateCompletionResponseChoicesInner> choices) {
+        this.choices = choices;
     }
 
     public CreateCompletionResponse created(Integer created) {
@@ -117,7 +158,7 @@ public class CreateCompletionResponse {
     }
 
     /**
-     * Get created
+     * The Unix timestamp (in seconds) of when the completion was created.
      * @return created
      **/
     @NotNull
@@ -139,7 +180,7 @@ public class CreateCompletionResponse {
     }
 
     /**
-     * Get model
+     * The model used for completion.
      * @return model
      **/
     @NotNull
@@ -155,34 +196,51 @@ public class CreateCompletionResponse {
         this.model = model;
     }
 
-    public CreateCompletionResponse choices(List<@Valid CreateCompletionResponseChoicesInner> choices) {
-        this.choices = choices;
-        return this;
-    }
-
-    public CreateCompletionResponse addChoicesItem(CreateCompletionResponseChoicesInner choicesItem) {
-        this.choices.add(choicesItem);
+    public CreateCompletionResponse systemFingerprint(String systemFingerprint) {
+        this.systemFingerprint = systemFingerprint;
         return this;
     }
 
     /**
-     * Get choices
-     * @return choices
+     * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
+     * @return systemFingerprint
+     **/
+    @Nullable
+    @JsonProperty(JSON_PROPERTY_SYSTEM_FINGERPRINT)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getSystemFingerprint() {
+        return systemFingerprint;
+    }
+
+    @JsonProperty(JSON_PROPERTY_SYSTEM_FINGERPRINT)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setSystemFingerprint(String systemFingerprint) {
+        this.systemFingerprint = systemFingerprint;
+    }
+
+    public CreateCompletionResponse _object(ObjectEnum _object) {
+        this._object = _object;
+        return this;
+    }
+
+    /**
+     * The object type, which is always \&quot;text_completion\&quot;
+     * @return _object
      **/
     @NotNull
-    @JsonProperty(JSON_PROPERTY_CHOICES)
+    @JsonProperty(JSON_PROPERTY_OBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<@Valid CreateCompletionResponseChoicesInner> getChoices() {
-        return choices;
+    public ObjectEnum getObject() {
+        return _object;
     }
 
-    @JsonProperty(JSON_PROPERTY_CHOICES)
+    @JsonProperty(JSON_PROPERTY_OBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setChoices(List<@Valid CreateCompletionResponseChoicesInner> choices) {
-        this.choices = choices;
+    public void setObject(ObjectEnum _object) {
+        this._object = _object;
     }
 
-    public CreateCompletionResponse usage(CreateCompletionResponseUsage usage) {
+    public CreateCompletionResponse usage(CompletionUsage usage) {
         this.usage = usage;
         return this;
     }
@@ -195,13 +253,13 @@ public class CreateCompletionResponse {
     @Nullable
     @JsonProperty(JSON_PROPERTY_USAGE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public CreateCompletionResponseUsage getUsage() {
+    public CompletionUsage getUsage() {
         return usage;
     }
 
     @JsonProperty(JSON_PROPERTY_USAGE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setUsage(CreateCompletionResponseUsage usage) {
+    public void setUsage(CompletionUsage usage) {
         this.usage = usage;
     }
 
@@ -215,16 +273,17 @@ public class CreateCompletionResponse {
         }
         CreateCompletionResponse createCompletionResponse = (CreateCompletionResponse) o;
         return Objects.equals(this.id, createCompletionResponse.id) &&
-            Objects.equals(this._object, createCompletionResponse._object) &&
+            Objects.equals(this.choices, createCompletionResponse.choices) &&
             Objects.equals(this.created, createCompletionResponse.created) &&
             Objects.equals(this.model, createCompletionResponse.model) &&
-            Objects.equals(this.choices, createCompletionResponse.choices) &&
+            Objects.equals(this.systemFingerprint, createCompletionResponse.systemFingerprint) &&
+            Objects.equals(this._object, createCompletionResponse._object) &&
             Objects.equals(this.usage, createCompletionResponse.usage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, _object, created, model, choices, usage);
+        return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
     }
 
     @Override
@@ -232,10 +291,11 @@ public class CreateCompletionResponse {
         StringBuilder sb = new StringBuilder();
         sb.append("class CreateCompletionResponse {\n");
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
-        sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+        sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
         sb.append("    created: ").append(toIndentedString(created)).append("\n");
         sb.append("    model: ").append(toIndentedString(model)).append("\n");
-        sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
+        sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
+        sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
         sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
         sb.append("}");
         return sb.toString();

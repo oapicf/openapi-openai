@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -62,30 +62,30 @@ ptree Error::toPropertyTree() const
 {
 	ptree pt;
 	ptree tmp_node;
-	pt.put("type", m_Type);
+	pt.put("code", m_Code);
 	pt.put("message", m_Message);
 	pt.put("param", m_Param);
-	pt.put("code", m_Code);
+	pt.put("type", m_Type);
 	return pt;
 }
 
 void Error::fromPropertyTree(ptree const &pt)
 {
 	ptree tmp_node;
-	m_Type = pt.get("type", "");
+	m_Code = pt.get("code", "");
 	m_Message = pt.get("message", "");
 	m_Param = pt.get("param", "");
-	m_Code = pt.get("code", "");
+	m_Type = pt.get("type", "");
 }
 
-std::string Error::getType() const
+std::string Error::getCode() const
 {
-    return m_Type;
+    return m_Code;
 }
 
-void Error::setType(std::string value)
+void Error::setCode(std::string value)
 {
-    m_Type = value;
+    m_Code = value;
 }
 
 
@@ -111,14 +111,14 @@ void Error::setParam(std::string value)
 }
 
 
-std::string Error::getCode() const
+std::string Error::getType() const
 {
-    return m_Code;
+    return m_Type;
 }
 
-void Error::setCode(std::string value)
+void Error::setType(std::string value)
 {
-    m_Code = value;
+    m_Type = value;
 }
 
 

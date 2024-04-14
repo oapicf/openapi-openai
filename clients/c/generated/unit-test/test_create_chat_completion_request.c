@@ -17,45 +17,60 @@
 create_chat_completion_request_t* instantiate_create_chat_completion_request(int include_optional);
 
 #include "test_create_chat_completion_request_model.c"
-#include "test_create_chat_completion_request_function_call.c"
+#include "test_create_chat_completion_request_response_format.c"
 #include "test_create_chat_completion_request_stop.c"
+#include "test_chat_completion_tool_choice_option.c"
+#include "test_create_chat_completion_request_function_call.c"
 
 
 create_chat_completion_request_t* instantiate_create_chat_completion_request(int include_optional) {
   create_chat_completion_request_t* create_chat_completion_request = NULL;
   if (include_optional) {
     create_chat_completion_request = create_chat_completion_request_create(
-      gpt-3.5-turbo,
       list_createList(),
+      gpt-4-turbo,
+      -2,
       list_createList(),
-      null,
       1,
-      1,
-      1,
-      1,
-      null,
-      56,
-      -2,
-      -2,
       0,
-      "user-1234"
+      56,
+      1,
+      -2,
+       // false, not to have infinite recursion
+      instantiate_create_chat_completion_request_response_format(0),
+      -9223372036854775808,
+      null,
+      1,
+      1,
+      1,
+      list_createList(),
+      null,
+      "user-1234",
+      null,
+      list_createList()
     );
   } else {
     create_chat_completion_request = create_chat_completion_request_create(
-      gpt-3.5-turbo,
       list_createList(),
+      gpt-4-turbo,
+      -2,
       list_createList(),
-      null,
       1,
-      1,
-      1,
-      1,
-      null,
-      56,
-      -2,
-      -2,
       0,
-      "user-1234"
+      56,
+      1,
+      -2,
+      NULL,
+      -9223372036854775808,
+      null,
+      1,
+      1,
+      1,
+      list_createList(),
+      null,
+      "user-1234",
+      null,
+      list_createList()
     );
   }
 

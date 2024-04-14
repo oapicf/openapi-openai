@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -13,72 +13,91 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CompletionUsage } from './CompletionUsage';
+import {
+    CompletionUsageFromJSON,
+    CompletionUsageFromJSONTyped,
+    CompletionUsageToJSON,
+} from './CompletionUsage';
 import type { CreateChatCompletionResponseChoicesInner } from './CreateChatCompletionResponseChoicesInner';
 import {
     CreateChatCompletionResponseChoicesInnerFromJSON,
     CreateChatCompletionResponseChoicesInnerFromJSONTyped,
     CreateChatCompletionResponseChoicesInnerToJSON,
 } from './CreateChatCompletionResponseChoicesInner';
-import type { CreateCompletionResponseUsage } from './CreateCompletionResponseUsage';
-import {
-    CreateCompletionResponseUsageFromJSON,
-    CreateCompletionResponseUsageFromJSONTyped,
-    CreateCompletionResponseUsageToJSON,
-} from './CreateCompletionResponseUsage';
 
 /**
- * 
+ * Represents a chat completion response returned by model, based on the provided input.
  * @export
  * @interface CreateChatCompletionResponse
  */
 export interface CreateChatCompletionResponse {
     /**
-     * 
+     * A unique identifier for the chat completion.
      * @type {string}
      * @memberof CreateChatCompletionResponse
      */
     id: string;
     /**
-     * 
-     * @type {string}
-     * @memberof CreateChatCompletionResponse
-     */
-    object: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateChatCompletionResponse
-     */
-    created: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateChatCompletionResponse
-     */
-    model: string;
-    /**
-     * 
+     * A list of chat completion choices. Can be more than one if `n` is greater than 1.
      * @type {Array<CreateChatCompletionResponseChoicesInner>}
      * @memberof CreateChatCompletionResponse
      */
     choices: Array<CreateChatCompletionResponseChoicesInner>;
     /**
-     * 
-     * @type {CreateCompletionResponseUsage}
+     * The Unix timestamp (in seconds) of when the chat completion was created.
+     * @type {number}
      * @memberof CreateChatCompletionResponse
      */
-    usage?: CreateCompletionResponseUsage;
+    created: number;
+    /**
+     * The model used for the chat completion.
+     * @type {string}
+     * @memberof CreateChatCompletionResponse
+     */
+    model: string;
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.
+     * 
+     * Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
+     * 
+     * @type {string}
+     * @memberof CreateChatCompletionResponse
+     */
+    systemFingerprint?: string;
+    /**
+     * The object type, which is always `chat.completion`.
+     * @type {string}
+     * @memberof CreateChatCompletionResponse
+     */
+    object: CreateChatCompletionResponseObjectEnum;
+    /**
+     * 
+     * @type {CompletionUsage}
+     * @memberof CreateChatCompletionResponse
+     */
+    usage?: CompletionUsage;
 }
+
+
+/**
+ * @export
+ */
+export const CreateChatCompletionResponseObjectEnum = {
+    ChatCompletion: 'chat.completion'
+} as const;
+export type CreateChatCompletionResponseObjectEnum = typeof CreateChatCompletionResponseObjectEnum[keyof typeof CreateChatCompletionResponseObjectEnum];
+
 
 /**
  * Check if a given object implements the CreateChatCompletionResponse interface.
  */
 export function instanceOfCreateChatCompletionResponse(value: object): boolean {
     if (!('id' in value)) return false;
-    if (!('object' in value)) return false;
+    if (!('choices' in value)) return false;
     if (!('created' in value)) return false;
     if (!('model' in value)) return false;
-    if (!('choices' in value)) return false;
+    if (!('object' in value)) return false;
     return true;
 }
 
@@ -93,11 +112,12 @@ export function CreateChatCompletionResponseFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'id': json['id'],
-        'object': json['object'],
+        'choices': ((json['choices'] as Array<any>).map(CreateChatCompletionResponseChoicesInnerFromJSON)),
         'created': json['created'],
         'model': json['model'],
-        'choices': ((json['choices'] as Array<any>).map(CreateChatCompletionResponseChoicesInnerFromJSON)),
-        'usage': json['usage'] == null ? undefined : CreateCompletionResponseUsageFromJSON(json['usage']),
+        'systemFingerprint': json['system_fingerprint'] == null ? undefined : json['system_fingerprint'],
+        'object': json['object'],
+        'usage': json['usage'] == null ? undefined : CompletionUsageFromJSON(json['usage']),
     };
 }
 
@@ -108,11 +128,12 @@ export function CreateChatCompletionResponseToJSON(value?: CreateChatCompletionR
     return {
         
         'id': value['id'],
-        'object': value['object'],
+        'choices': ((value['choices'] as Array<any>).map(CreateChatCompletionResponseChoicesInnerToJSON)),
         'created': value['created'],
         'model': value['model'],
-        'choices': ((value['choices'] as Array<any>).map(CreateChatCompletionResponseChoicesInnerToJSON)),
-        'usage': CreateCompletionResponseUsageToJSON(value['usage']),
+        'system_fingerprint': value['systemFingerprint'],
+        'object': value['object'],
+        'usage': CompletionUsageToJSON(value['usage']),
     };
 }
 

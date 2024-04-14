@@ -1,6 +1,6 @@
 # #OpenAI API
 #
-##APIs for sampling from and fine-tuning language models
+##The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 #
 #The version of the OpenAPI document: 2.0.0
 #Contact: blah+oapicf@cliffano.com
@@ -22,11 +22,11 @@ module OpenAPIClient
     property name : String
 
     # Optional properties
-    # The description of what the function does.
+    # A description of what the function does, used by the model to choose when and how to call the function.
     @[JSON::Field(key: "description", type: String?, nillable: true, emit_null: false)]
     property description : String?
 
-    # The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+    # The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
     @[JSON::Field(key: "parameters", type: Hash(String, Object)?, nillable: true, emit_null: false)]
     property parameters : Hash(String, Object)?
 
@@ -53,8 +53,8 @@ module OpenAPIClient
     def ==(o)
       return true if self.same?(o)
       self.class == o.class &&
-          name == o.name &&
           description == o.description &&
+          name == o.name &&
           parameters == o.parameters
     end
 
@@ -67,7 +67,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, description, parameters].hash
+      [description, name, parameters].hash
     end
 
     # Builds the object from hash

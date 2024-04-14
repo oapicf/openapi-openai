@@ -11,7 +11,13 @@
     },
     {
       "name": "object",
-      "type": "string",
+      "type": {
+        "type": "enum",
+        "name": "DeleteFileResponse_object",
+        "symbols": [
+          "file"
+        ]
+      },
       "doc": ""
     },
     {

@@ -12,13 +12,13 @@ void main() {
       // TODO
     });
 
-    // String object
-    test('to test the property `object`', () async {
+    // bool deleted
+    test('to test the property `deleted`', () async {
       // TODO
     });
 
-    // bool deleted
-    test('to test the property `deleted`', () async {
+    // String object
+    test('to test the property `object`', () async {
       // TODO
     });
 

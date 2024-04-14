@@ -31,10 +31,21 @@ import com.squareup.moshi.JsonClass
 data class ListModelsResponse (
 
     @Json(name = "object")
-    val `object`: kotlin.String,
+    val `object`: ListModelsResponse.`Object`,
 
     @Json(name = "data")
     val `data`: kotlin.collections.List<Model>
 
-)
+) {
+
+    /**
+     * 
+     *
+     * Values: list
+     */
+    @JsonClass(generateAdapter = false)
+    enum class `Object`(val value: kotlin.String) {
+        @Json(name = "list") list("list");
+    }
+}
 

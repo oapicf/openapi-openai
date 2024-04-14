@@ -1,7 +1,7 @@
 note
  description:"[
 		OpenAI API
- 		APIs for sampling from and fine-tuning language models
+ 		The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
   		The version of the OpenAPI document: 2.0.0
  	    Contact: blah+oapicf@cliffano.com
 
@@ -20,16 +20,18 @@ class CREATE_COMPLETION_RESPONSE
 feature --Access
 
     id: detachable STRING_32
-      
-    object: detachable STRING_32
-      
-    created: INTEGER_32
-      
-    model: detachable STRING_32
-      
+      -- A unique identifier for the completion.
     choices: detachable LIST [CREATE_COMPLETION_RESPONSE_CHOICES_INNER]
-      
-    usage: detachable CREATE_COMPLETION_RESPONSE_USAGE
+      -- The list of completion choices the model generated for the input prompt.
+    created: INTEGER_32
+      -- The Unix timestamp (in seconds) of when the completion was created.
+    model: detachable STRING_32
+      -- The model used for completion.
+    system_fingerprint: detachable STRING_32
+      -- This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+    object: detachable STRING_32
+      -- The object type, which is always \"text_completion\"
+    usage: detachable COMPLETION_USAGE
       
 
 feature -- Change Element
@@ -42,12 +44,12 @@ feature -- Change Element
         id_set: id = a_name
       end
 
-    set_object (a_name: like object)
-        -- Set 'object' with 'a_name'.
+    set_choices (a_name: like choices)
+        -- Set 'choices' with 'a_name'.
       do
-        object := a_name
+        choices := a_name
       ensure
-        object_set: object = a_name
+        choices_set: choices = a_name
       end
 
     set_created (a_name: like created)
@@ -66,12 +68,20 @@ feature -- Change Element
         model_set: model = a_name
       end
 
-    set_choices (a_name: like choices)
-        -- Set 'choices' with 'a_name'.
+    set_system_fingerprint (a_name: like system_fingerprint)
+        -- Set 'system_fingerprint' with 'a_name'.
       do
-        choices := a_name
+        system_fingerprint := a_name
       ensure
-        choices_set: choices = a_name
+        system_fingerprint_set: system_fingerprint = a_name
+      end
+
+    set_object (a_name: like object)
+        -- Set 'object' with 'a_name'.
+      do
+        object := a_name
+      ensure
+        object_set: object = a_name
       end
 
     set_usage (a_name: like usage)
@@ -95,10 +105,12 @@ feature -- Change Element
           Result.append (l_id.out)
           Result.append ("%N")
         end
-        if attached object as l_object then
-          Result.append ("%Nobject:")
-          Result.append (l_object.out)
-          Result.append ("%N")
+        if attached choices as l_choices then
+          across l_choices as ic loop
+            Result.append ("%N choices:")
+            Result.append (ic.item.out)
+            Result.append ("%N")
+          end
         end
         if attached created as l_created then
           Result.append ("%Ncreated:")
@@ -110,12 +122,15 @@ feature -- Change Element
           Result.append (l_model.out)
           Result.append ("%N")
         end
-        if attached choices as l_choices then
-          across l_choices as ic loop
-            Result.append ("%N choices:")
-            Result.append (ic.item.out)
-            Result.append ("%N")
-          end
+        if attached system_fingerprint as l_system_fingerprint then
+          Result.append ("%Nsystem_fingerprint:")
+          Result.append (l_system_fingerprint.out)
+          Result.append ("%N")
+        end
+        if attached object as l_object then
+          Result.append ("%Nobject:")
+          Result.append (l_object.out)
+          Result.append ("%N")
         end
         if attached usage as l_usage then
           Result.append ("%Nusage:")

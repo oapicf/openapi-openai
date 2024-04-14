@@ -9,7 +9,7 @@ class DeleteModelResponse {
     
     String id
     
-    String _object
-    
     Boolean deleted
+    
+    String _object
 }

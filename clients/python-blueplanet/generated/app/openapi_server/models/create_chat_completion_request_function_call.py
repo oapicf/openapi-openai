@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
-from app.openapi_server.models.create_chat_completion_request_function_call_one_of import CreateChatCompletionRequestFunctionCallOneOf  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_function_call_option import ChatCompletionFunctionCallOption  # noqa: F401,E501
 from openapi_server import util
 
 

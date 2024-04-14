@@ -1,6 +1,6 @@
 /**
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -37,11 +37,11 @@ void OAIDeleteModelResponse::initializeModel() {
     m_id_isSet = false;
     m_id_isValid = false;
 
-    m_object_isSet = false;
-    m_object_isValid = false;
-
     m_deleted_isSet = false;
     m_deleted_isValid = false;
+
+    m_object_isSet = false;
+    m_object_isValid = false;
 }
 
 void OAIDeleteModelResponse::fromJson(QString jsonString) {
@@ -56,11 +56,11 @@ void OAIDeleteModelResponse::fromJsonObject(QJsonObject json) {
     m_id_isValid = ::OpenAPI::fromJsonValue(id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
-    m_object_isValid = ::OpenAPI::fromJsonValue(object, json[QString("object")]);
-    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
-
     m_deleted_isValid = ::OpenAPI::fromJsonValue(deleted, json[QString("deleted")]);
     m_deleted_isSet = !json[QString("deleted")].isNull() && m_deleted_isValid;
+
+    m_object_isValid = ::OpenAPI::fromJsonValue(object, json[QString("object")]);
+    m_object_isSet = !json[QString("object")].isNull() && m_object_isValid;
 }
 
 QString OAIDeleteModelResponse::asJson() const {
@@ -75,11 +75,11 @@ QJsonObject OAIDeleteModelResponse::asJsonObject() const {
     if (m_id_isSet) {
         obj.insert(QString("id"), ::OpenAPI::toJsonValue(id));
     }
-    if (m_object_isSet) {
-        obj.insert(QString("object"), ::OpenAPI::toJsonValue(object));
-    }
     if (m_deleted_isSet) {
         obj.insert(QString("deleted"), ::OpenAPI::toJsonValue(deleted));
+    }
+    if (m_object_isSet) {
+        obj.insert(QString("object"), ::OpenAPI::toJsonValue(object));
     }
     return obj;
 }
@@ -100,22 +100,6 @@ bool OAIDeleteModelResponse::is_id_Valid() const{
     return m_id_isValid;
 }
 
-QString OAIDeleteModelResponse::getObject() const {
-    return object;
-}
-void OAIDeleteModelResponse::setObject(const QString &object) {
-    this->object = object;
-    this->m_object_isSet = true;
-}
-
-bool OAIDeleteModelResponse::is_object_Set() const{
-    return m_object_isSet;
-}
-
-bool OAIDeleteModelResponse::is_object_Valid() const{
-    return m_object_isValid;
-}
-
 bool OAIDeleteModelResponse::isDeleted() const {
     return deleted;
 }
@@ -132,6 +116,22 @@ bool OAIDeleteModelResponse::is_deleted_Valid() const{
     return m_deleted_isValid;
 }
 
+QString OAIDeleteModelResponse::getObject() const {
+    return object;
+}
+void OAIDeleteModelResponse::setObject(const QString &object) {
+    this->object = object;
+    this->m_object_isSet = true;
+}
+
+bool OAIDeleteModelResponse::is_object_Set() const{
+    return m_object_isSet;
+}
+
+bool OAIDeleteModelResponse::is_object_Valid() const{
+    return m_object_isValid;
+}
+
 bool OAIDeleteModelResponse::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -140,12 +140,12 @@ bool OAIDeleteModelResponse::isSet() const {
             break;
         }
 
-        if (m_object_isSet) {
+        if (m_deleted_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_deleted_isSet) {
+        if (m_object_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -155,7 +155,7 @@ bool OAIDeleteModelResponse::isSet() const {
 
 bool OAIDeleteModelResponse::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_object_isValid && m_deleted_isValid && true;
+    return m_id_isValid && m_deleted_isValid && m_object_isValid && true;
 }
 
 } // namespace OpenAPI

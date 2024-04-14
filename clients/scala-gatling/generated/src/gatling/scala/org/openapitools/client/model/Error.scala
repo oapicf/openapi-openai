@@ -3,16 +3,16 @@ package org.openapitools.client.model
 
 
 case class Error (
-    _type: String,
+    _code: String,
     _message: String,
     _param: String,
-    _code: String
+    _type: String
 )
 object Error {
-    def toStringBody(var_type: Object, var_message: Object, var_param: Object, var_code: Object) =
+    def toStringBody(var_code: Object, var_message: Object, var_param: Object, var_type: Object) =
         s"""
         | {
-        | "type":$var_type,"message":$var_message,"param":$var_param,"code":$var_code
+        | "code":$var_code,"message":$var_message,"param":$var_param,"type":$var_type
         | }
         """.stripMargin
 }

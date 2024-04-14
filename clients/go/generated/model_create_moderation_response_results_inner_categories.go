@@ -1,7 +1,7 @@
 /*
 OpenAI API
 
-APIs for sampling from and fine-tuning language models
+The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 API version: 2.0.0
 Contact: blah+oapicf@cliffano.com
@@ -20,14 +20,29 @@ import (
 // checks if the CreateModerationResponseResultsInnerCategories type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateModerationResponseResultsInnerCategories{}
 
-// CreateModerationResponseResultsInnerCategories struct for CreateModerationResponseResultsInnerCategories
+// CreateModerationResponseResultsInnerCategories A list of the categories, and whether they are flagged or not.
 type CreateModerationResponseResultsInnerCategories struct {
+	// Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
 	Hate bool `json:"hate"`
+	// Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
 	HateThreatening bool `json:"hate/threatening"`
+	// Content that expresses, incites, or promotes harassing language towards any target.
+	Harassment bool `json:"harassment"`
+	// Harassment content that also includes violence or serious harm towards any target.
+	HarassmentThreatening bool `json:"harassment/threatening"`
+	// Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
 	SelfHarm bool `json:"self-harm"`
+	// Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+	SelfHarmIntent bool `json:"self-harm/intent"`
+	// Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+	SelfHarmInstructions bool `json:"self-harm/instructions"`
+	// Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
 	Sexual bool `json:"sexual"`
+	// Sexual content that includes an individual who is under 18 years old.
 	SexualMinors bool `json:"sexual/minors"`
+	// Content that depicts death, violence, or physical injury.
 	Violence bool `json:"violence"`
+	// Content that depicts death, violence, or physical injury in graphic detail.
 	ViolenceGraphic bool `json:"violence/graphic"`
 }
 
@@ -37,11 +52,15 @@ type _CreateModerationResponseResultsInnerCategories CreateModerationResponseRes
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateModerationResponseResultsInnerCategories(hate bool, hateThreatening bool, selfHarm bool, sexual bool, sexualMinors bool, violence bool, violenceGraphic bool) *CreateModerationResponseResultsInnerCategories {
+func NewCreateModerationResponseResultsInnerCategories(hate bool, hateThreatening bool, harassment bool, harassmentThreatening bool, selfHarm bool, selfHarmIntent bool, selfHarmInstructions bool, sexual bool, sexualMinors bool, violence bool, violenceGraphic bool) *CreateModerationResponseResultsInnerCategories {
 	this := CreateModerationResponseResultsInnerCategories{}
 	this.Hate = hate
 	this.HateThreatening = hateThreatening
+	this.Harassment = harassment
+	this.HarassmentThreatening = harassmentThreatening
 	this.SelfHarm = selfHarm
+	this.SelfHarmIntent = selfHarmIntent
+	this.SelfHarmInstructions = selfHarmInstructions
 	this.Sexual = sexual
 	this.SexualMinors = sexualMinors
 	this.Violence = violence
@@ -105,6 +124,54 @@ func (o *CreateModerationResponseResultsInnerCategories) SetHateThreatening(v bo
 	o.HateThreatening = v
 }
 
+// GetHarassment returns the Harassment field value
+func (o *CreateModerationResponseResultsInnerCategories) GetHarassment() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Harassment
+}
+
+// GetHarassmentOk returns a tuple with the Harassment field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategories) GetHarassmentOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Harassment, true
+}
+
+// SetHarassment sets field value
+func (o *CreateModerationResponseResultsInnerCategories) SetHarassment(v bool) {
+	o.Harassment = v
+}
+
+// GetHarassmentThreatening returns the HarassmentThreatening field value
+func (o *CreateModerationResponseResultsInnerCategories) GetHarassmentThreatening() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HarassmentThreatening
+}
+
+// GetHarassmentThreateningOk returns a tuple with the HarassmentThreatening field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategories) GetHarassmentThreateningOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HarassmentThreatening, true
+}
+
+// SetHarassmentThreatening sets field value
+func (o *CreateModerationResponseResultsInnerCategories) SetHarassmentThreatening(v bool) {
+	o.HarassmentThreatening = v
+}
+
 // GetSelfHarm returns the SelfHarm field value
 func (o *CreateModerationResponseResultsInnerCategories) GetSelfHarm() bool {
 	if o == nil {
@@ -127,6 +194,54 @@ func (o *CreateModerationResponseResultsInnerCategories) GetSelfHarmOk() (*bool,
 // SetSelfHarm sets field value
 func (o *CreateModerationResponseResultsInnerCategories) SetSelfHarm(v bool) {
 	o.SelfHarm = v
+}
+
+// GetSelfHarmIntent returns the SelfHarmIntent field value
+func (o *CreateModerationResponseResultsInnerCategories) GetSelfHarmIntent() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SelfHarmIntent
+}
+
+// GetSelfHarmIntentOk returns a tuple with the SelfHarmIntent field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategories) GetSelfHarmIntentOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SelfHarmIntent, true
+}
+
+// SetSelfHarmIntent sets field value
+func (o *CreateModerationResponseResultsInnerCategories) SetSelfHarmIntent(v bool) {
+	o.SelfHarmIntent = v
+}
+
+// GetSelfHarmInstructions returns the SelfHarmInstructions field value
+func (o *CreateModerationResponseResultsInnerCategories) GetSelfHarmInstructions() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SelfHarmInstructions
+}
+
+// GetSelfHarmInstructionsOk returns a tuple with the SelfHarmInstructions field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategories) GetSelfHarmInstructionsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SelfHarmInstructions, true
+}
+
+// SetSelfHarmInstructions sets field value
+func (o *CreateModerationResponseResultsInnerCategories) SetSelfHarmInstructions(v bool) {
+	o.SelfHarmInstructions = v
 }
 
 // GetSexual returns the Sexual field value
@@ -237,7 +352,11 @@ func (o CreateModerationResponseResultsInnerCategories) ToMap() (map[string]inte
 	toSerialize := map[string]interface{}{}
 	toSerialize["hate"] = o.Hate
 	toSerialize["hate/threatening"] = o.HateThreatening
+	toSerialize["harassment"] = o.Harassment
+	toSerialize["harassment/threatening"] = o.HarassmentThreatening
 	toSerialize["self-harm"] = o.SelfHarm
+	toSerialize["self-harm/intent"] = o.SelfHarmIntent
+	toSerialize["self-harm/instructions"] = o.SelfHarmInstructions
 	toSerialize["sexual"] = o.Sexual
 	toSerialize["sexual/minors"] = o.SexualMinors
 	toSerialize["violence"] = o.Violence
@@ -252,7 +371,11 @@ func (o *CreateModerationResponseResultsInnerCategories) UnmarshalJSON(data []by
 	requiredProperties := []string{
 		"hate",
 		"hate/threatening",
+		"harassment",
+		"harassment/threatening",
 		"self-harm",
+		"self-harm/intent",
+		"self-harm/instructions",
 		"sexual",
 		"sexual/minors",
 		"violence",

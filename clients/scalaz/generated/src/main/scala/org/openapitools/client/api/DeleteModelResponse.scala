@@ -13,8 +13,8 @@ import DeleteModelResponse._
 
 case class DeleteModelResponse (
   id: String,
-`object`: String,
-deleted: Boolean)
+deleted: Boolean,
+`object`: String)
 
 object DeleteModelResponse {
   import DateTimeCodecs._

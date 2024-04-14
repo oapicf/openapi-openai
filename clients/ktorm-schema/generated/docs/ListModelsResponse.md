@@ -5,7 +5,7 @@
 ## Properties
 Name | Mapping | SQL Type | Default | Type | Description | Notes
 ---- | ------- | -------- | ------- | ---- | ----------- | -----
-**object** | object | text NOT NULL |  | **kotlin.String** |  | 
+**object** | object | text NOT NULL |  | [**object**](#Object) |  | 
 **data** | `One-To-Many` | `----` | `----`  | [**kotlin.Array&lt;Model&gt;**](Model.md) |  | 
 
 

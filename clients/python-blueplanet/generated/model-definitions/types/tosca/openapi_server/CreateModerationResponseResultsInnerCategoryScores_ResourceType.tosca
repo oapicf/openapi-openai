@@ -17,37 +17,57 @@ resourceTypes {
     properties {
         hate {
           type =  
-          description = ""
+          description = "The score for the category &#39;hate&#39;."
           optional = true
         }
         hate_threatening {
           type =  
-          description = ""
+          description = "The score for the category &#39;hate/threatening&#39;."
+          optional = true
+        }
+        harassment {
+          type =  
+          description = "The score for the category &#39;harassment&#39;."
+          optional = true
+        }
+        harassment_threatening {
+          type =  
+          description = "The score for the category &#39;harassment/threatening&#39;."
           optional = true
         }
         self_harm {
           type =  
-          description = ""
+          description = "The score for the category &#39;self-harm&#39;."
+          optional = true
+        }
+        self_harm_intent {
+          type =  
+          description = "The score for the category &#39;self-harm/intent&#39;."
+          optional = true
+        }
+        self_harm_instructions {
+          type =  
+          description = "The score for the category &#39;self-harm/instructions&#39;."
           optional = true
         }
         sexual {
           type =  
-          description = ""
+          description = "The score for the category &#39;sexual&#39;."
           optional = true
         }
         sexual_minors {
           type =  
-          description = ""
+          description = "The score for the category &#39;sexual/minors&#39;."
           optional = true
         }
         violence {
           type =  
-          description = ""
+          description = "The score for the category &#39;violence&#39;."
           optional = true
         }
         violence_graphic {
           type =  
-          description = ""
+          description = "The score for the category &#39;violence/graphic&#39;."
           optional = true
         }
     }

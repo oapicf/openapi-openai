@@ -14,31 +14,31 @@ class Model(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, object: str=None, created: int=None, owned_by: str=None):
+    def __init__(self, id: str=None, created: int=None, object: str=None, owned_by: str=None):
         """Model - a model defined in OpenAPI
 
         :param id: The id of this Model.
-        :param object: The object of this Model.
         :param created: The created of this Model.
+        :param object: The object of this Model.
         :param owned_by: The owned_by of this Model.
         """
         self.openapi_types = {
             'id': str,
-            'object': str,
             'created': int,
+            'object': str,
             'owned_by': str
         }
 
         self.attribute_map = {
             'id': 'id',
-            'object': 'object',
             'created': 'created',
+            'object': 'object',
             'owned_by': 'owned_by'
         }
 
         self._id = id
-        self._object = object
         self._created = created
+        self._object = object
         self._owned_by = owned_by
 
     @classmethod
@@ -54,6 +54,7 @@ class Model(Model):
     def id(self):
         """Gets the id of this Model.
 
+        The model identifier, which can be referenced in the API endpoints.
 
         :return: The id of this Model.
         :rtype: str
@@ -64,6 +65,7 @@ class Model(Model):
     def id(self, id):
         """Sets the id of this Model.
 
+        The model identifier, which can be referenced in the API endpoints.
 
         :param id: The id of this Model.
         :type id: str
@@ -74,32 +76,10 @@ class Model(Model):
         self._id = id
 
     @property
-    def object(self):
-        """Gets the object of this Model.
-
-
-        :return: The object of this Model.
-        :rtype: str
-        """
-        return self._object
-
-    @object.setter
-    def object(self, object):
-        """Sets the object of this Model.
-
-
-        :param object: The object of this Model.
-        :type object: str
-        """
-        if object is None:
-            raise ValueError("Invalid value for `object`, must not be `None`")
-
-        self._object = object
-
-    @property
     def created(self):
         """Gets the created of this Model.
 
+        The Unix timestamp (in seconds) when the model was created.
 
         :return: The created of this Model.
         :rtype: int
@@ -110,6 +90,7 @@ class Model(Model):
     def created(self, created):
         """Sets the created of this Model.
 
+        The Unix timestamp (in seconds) when the model was created.
 
         :param created: The created of this Model.
         :type created: int
@@ -120,9 +101,39 @@ class Model(Model):
         self._created = created
 
     @property
+    def object(self):
+        """Gets the object of this Model.
+
+        The object type, which is always \"model\".
+
+        :return: The object of this Model.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object):
+        """Sets the object of this Model.
+
+        The object type, which is always \"model\".
+
+        :param object: The object of this Model.
+        :type object: str
+        """
+        allowed_values = ["model"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
+
+        self._object = object
+
+    @property
     def owned_by(self):
         """Gets the owned_by of this Model.
 
+        The organization that owns the model.
 
         :return: The owned_by of this Model.
         :rtype: str
@@ -133,6 +144,7 @@ class Model(Model):
     def owned_by(self, owned_by):
         """Sets the owned_by of this Model.
 
+        The organization that owns the model.
 
         :param owned_by: The owned_by of this Model.
         :type owned_by: str

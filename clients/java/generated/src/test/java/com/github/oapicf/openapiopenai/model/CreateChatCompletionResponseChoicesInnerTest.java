@@ -1,6 +1,6 @@
 /*
  * OpenAI API
- * APIs for sampling from and fine-tuning language models
+ * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: blah+oapicf@cliffano.com
@@ -14,6 +14,7 @@
 package com.github.oapicf.openapiopenai.model;
 
 import com.github.oapicf.openapiopenai.model.ChatCompletionResponseMessage;
+import com.github.oapicf.openapiopenai.model.CreateChatCompletionResponseChoicesInnerLogprobs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -39,6 +40,14 @@ public class CreateChatCompletionResponseChoicesInnerTest {
     }
 
     /**
+     * Test the property 'finishReason'
+     */
+    @Test
+    public void finishReasonTest() {
+        // TODO: test finishReason
+    }
+
+    /**
      * Test the property 'index'
      */
     @Test
@@ -55,11 +64,11 @@ public class CreateChatCompletionResponseChoicesInnerTest {
     }
 
     /**
-     * Test the property 'finishReason'
+     * Test the property 'logprobs'
      */
     @Test
-    public void finishReasonTest() {
-        // TODO: test finishReason
+    public void logprobsTest() {
+        // TODO: test logprobs
     }
 
 }

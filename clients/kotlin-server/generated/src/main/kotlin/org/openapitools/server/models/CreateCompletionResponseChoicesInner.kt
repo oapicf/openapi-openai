@@ -1,6 +1,6 @@
 /**
 * OpenAI API
-* APIs for sampling from and fine-tuning language models
+* The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 *
 * The version of the OpenAPI document: 2.0.0
 * Contact: blah+oapicf@cliffano.com
@@ -15,25 +15,27 @@ import org.openapitools.server.models.CreateCompletionResponseChoicesInnerLogpro
 
 /**
  * 
- * @param text 
+ * @param finishReason The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
  * @param index 
  * @param logprobs 
- * @param finishReason 
+ * @param text 
  */
 data class CreateCompletionResponseChoicesInner(
-    val text: kotlin.String,
+    /* The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.  */
+    val finishReason: CreateCompletionResponseChoicesInner.FinishReason,
     val index: kotlin.Int,
     val logprobs: CreateCompletionResponseChoicesInnerLogprobs,
-    val finishReason: CreateCompletionResponseChoicesInner.FinishReason
+    val text: kotlin.String
 ) 
 {
     /**
-    * 
-    * Values: stop,length
+    * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
+    * Values: stop,length,content_filter
     */
     enum class FinishReason(val value: kotlin.String){
         stop("stop"),
-        length("length");
+        length("length"),
+        content_filter("content_filter");
     }
 }
 

@@ -5,6 +5,7 @@
  */
 package org.openapitools.api;
 
+import org.openapitools.model.CreateImageEditRequestModel;
 import org.openapitools.model.CreateImageRequest;
 import org.openapitools.model.ImagesResponse;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
@@ -33,9 +34,9 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-16T01:17:43.141820780Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-14T13:54:16.789070334Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Validated
-@Tag(name = "OpenAI", description = "The OpenAI REST API")
+@Tag(name = "Images", description = "Given a prompt and/or an input image, the model will generate a new image.")
 public interface ImagesApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -51,11 +52,14 @@ public interface ImagesApi {
     @Operation(
         operationId = "createImage",
         summary = "Creates an image given a prompt.",
-        tags = { "OpenAI" },
+        tags = { "Images" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ImagesResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -71,7 +75,7 @@ public interface ImagesApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"data\" : [ { \"b64_json\" : \"b64_json\", \"url\" : \"url\" }, { \"b64_json\" : \"b64_json\", \"url\" : \"url\" } ], \"created\" : 0 }";
+                    String exampleString = "{ \"data\" : [ { \"revised_prompt\" : \"revised_prompt\", \"b64_json\" : \"b64_json\", \"url\" : \"url\" }, { \"revised_prompt\" : \"revised_prompt\", \"b64_json\" : \"b64_json\", \"url\" : \"url\" } ], \"created\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -88,20 +92,24 @@ public interface ImagesApi {
      * @param image The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. (required)
      * @param prompt A text description of the desired image(s). The maximum length is 1000 characters. (required)
      * @param mask An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;. (optional)
+     * @param model  (optional, default to dall-e-2)
      * @param n The number of images to generate. Must be between 1 and 10. (optional, default to 1)
      * @param size The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. (optional, default to 1024x1024)
-     * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. (optional, default to url)
+     * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. (optional, default to url)
      * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "createImageEdit",
         summary = "Creates an edited or extended image given an original image and a prompt.",
-        tags = { "OpenAI" },
+        tags = { "Images" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ImagesResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -115,15 +123,16 @@ public interface ImagesApi {
         @Parameter(name = "image", description = "The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.", required = true) @RequestPart(value = "image", required = true) MultipartFile image,
         @Parameter(name = "prompt", description = "A text description of the desired image(s). The maximum length is 1000 characters.", required = true) @Valid @RequestParam(value = "prompt", required = true) String prompt,
         @Parameter(name = "mask", description = "An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`.") @RequestPart(value = "mask", required = false) MultipartFile mask,
+        @Parameter(name = "model", description = "") @Valid @RequestPart(value = "model", required = false) CreateImageEditRequestModel model,
         @Parameter(name = "n", description = "The number of images to generate. Must be between 1 and 10.") @Valid @RequestParam(value = "n", required = false) Integer n,
         @Parameter(name = "size", description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.") @Valid @RequestParam(value = "size", required = false) String size,
-        @Parameter(name = "response_format", description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`.") @Valid @RequestParam(value = "response_format", required = false) String responseFormat,
+        @Parameter(name = "response_format", description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.") @Valid @RequestParam(value = "response_format", required = false) String responseFormat,
         @Parameter(name = "user", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @Valid @RequestParam(value = "user", required = false) String user
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"data\" : [ { \"b64_json\" : \"b64_json\", \"url\" : \"url\" }, { \"b64_json\" : \"b64_json\", \"url\" : \"url\" } ], \"created\" : 0 }";
+                    String exampleString = "{ \"data\" : [ { \"revised_prompt\" : \"revised_prompt\", \"b64_json\" : \"b64_json\", \"url\" : \"url\" }, { \"revised_prompt\" : \"revised_prompt\", \"b64_json\" : \"b64_json\", \"url\" : \"url\" } ], \"created\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -138,20 +147,24 @@ public interface ImagesApi {
      * POST /images/variations : Creates a variation of a given image.
      *
      * @param image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. (required)
-     * @param n The number of images to generate. Must be between 1 and 10. (optional, default to 1)
+     * @param model  (optional, default to dall-e-2)
+     * @param n The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. (optional, default to 1)
+     * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. (optional, default to url)
      * @param size The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. (optional, default to 1024x1024)
-     * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. (optional, default to url)
      * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "createImageVariation",
         summary = "Creates a variation of a given image.",
-        tags = { "OpenAI" },
+        tags = { "Images" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ImagesResponse.class))
             })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
         }
     )
     @RequestMapping(
@@ -163,15 +176,16 @@ public interface ImagesApi {
     
     default ResponseEntity<ImagesResponse> createImageVariation(
         @Parameter(name = "image", description = "The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.", required = true) @RequestPart(value = "image", required = true) MultipartFile image,
-        @Parameter(name = "n", description = "The number of images to generate. Must be between 1 and 10.") @Valid @RequestParam(value = "n", required = false) Integer n,
+        @Parameter(name = "model", description = "") @Valid @RequestPart(value = "model", required = false) CreateImageEditRequestModel model,
+        @Parameter(name = "n", description = "The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.") @Valid @RequestParam(value = "n", required = false) Integer n,
+        @Parameter(name = "response_format", description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.") @Valid @RequestParam(value = "response_format", required = false) String responseFormat,
         @Parameter(name = "size", description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.") @Valid @RequestParam(value = "size", required = false) String size,
-        @Parameter(name = "response_format", description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`.") @Valid @RequestParam(value = "response_format", required = false) String responseFormat,
         @Parameter(name = "user", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @Valid @RequestParam(value = "user", required = false) String user
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"data\" : [ { \"b64_json\" : \"b64_json\", \"url\" : \"url\" }, { \"b64_json\" : \"b64_json\", \"url\" : \"url\" } ], \"created\" : 0 }";
+                    String exampleString = "{ \"data\" : [ { \"revised_prompt\" : \"revised_prompt\", \"b64_json\" : \"b64_json\", \"url\" : \"url\" }, { \"revised_prompt\" : \"revised_prompt\", \"b64_json\" : \"b64_json\", \"url\" : \"url\" } ], \"created\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

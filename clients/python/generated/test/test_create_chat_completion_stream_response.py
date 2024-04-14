@@ -3,7 +3,7 @@
 """
     OpenAI API
 
-    APIs for sampling from and fine-tuning language models
+    The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
     The version of the OpenAPI document: 2.0.0
     Contact: blah+oapicf@cliffano.com
@@ -37,38 +37,91 @@ class TestCreateChatCompletionStreamResponse(unittest.TestCase):
         if include_optional:
             return CreateChatCompletionStreamResponse(
                 id = '',
-                object = '',
-                created = 56,
-                model = '',
                 choices = [
                     openapiopenai.models.create_chat_completion_stream_response_choices_inner.CreateChatCompletionStreamResponse_choices_inner(
-                        index = 56, 
                         delta = openapiopenai.models.chat_completion_stream_response_delta.ChatCompletionStreamResponseDelta(
-                            role = 'system', 
                             content = '', 
-                            function_call = openapiopenai.models.chat_completion_request_message_function_call.ChatCompletionRequestMessage_function_call(
-                                name = '', 
-                                arguments = '', ), ), 
-                        finish_reason = 'stop', )
-                    ]
+                            function_call = openapiopenai.models.chat_completion_stream_response_delta_function_call.ChatCompletionStreamResponseDelta_function_call(
+                                arguments = '', 
+                                name = '', ), 
+                            tool_calls = [
+                                openapiopenai.models.chat_completion_message_tool_call_chunk.ChatCompletionMessageToolCallChunk(
+                                    index = 56, 
+                                    id = '', 
+                                    type = 'function', 
+                                    function = openapiopenai.models.chat_completion_message_tool_call_chunk_function.ChatCompletionMessageToolCallChunk_function(
+                                        name = '', 
+                                        arguments = '', ), )
+                                ], 
+                            role = 'system', ), 
+                        logprobs = openapiopenai.models.create_chat_completion_response_choices_inner_logprobs.CreateChatCompletionResponse_choices_inner_logprobs(
+                            content = [
+                                openapiopenai.models.chat_completion_token_logprob.ChatCompletionTokenLogprob(
+                                    token = '', 
+                                    logprob = 1.337, 
+                                    bytes = [
+                                        56
+                                        ], 
+                                    top_logprobs = [
+                                        openapiopenai.models.chat_completion_token_logprob_top_logprobs_inner.ChatCompletionTokenLogprob_top_logprobs_inner(
+                                            token = '', 
+                                            logprob = 1.337, 
+                                            bytes = [
+                                                56
+                                                ], )
+                                        ], )
+                                ], ), 
+                        finish_reason = 'stop', 
+                        index = 56, )
+                    ],
+                created = 56,
+                model = '',
+                system_fingerprint = '',
+                object = 'chat.completion.chunk'
             )
         else:
             return CreateChatCompletionStreamResponse(
                 id = '',
-                object = '',
-                created = 56,
-                model = '',
                 choices = [
                     openapiopenai.models.create_chat_completion_stream_response_choices_inner.CreateChatCompletionStreamResponse_choices_inner(
-                        index = 56, 
                         delta = openapiopenai.models.chat_completion_stream_response_delta.ChatCompletionStreamResponseDelta(
-                            role = 'system', 
                             content = '', 
-                            function_call = openapiopenai.models.chat_completion_request_message_function_call.ChatCompletionRequestMessage_function_call(
-                                name = '', 
-                                arguments = '', ), ), 
-                        finish_reason = 'stop', )
+                            function_call = openapiopenai.models.chat_completion_stream_response_delta_function_call.ChatCompletionStreamResponseDelta_function_call(
+                                arguments = '', 
+                                name = '', ), 
+                            tool_calls = [
+                                openapiopenai.models.chat_completion_message_tool_call_chunk.ChatCompletionMessageToolCallChunk(
+                                    index = 56, 
+                                    id = '', 
+                                    type = 'function', 
+                                    function = openapiopenai.models.chat_completion_message_tool_call_chunk_function.ChatCompletionMessageToolCallChunk_function(
+                                        name = '', 
+                                        arguments = '', ), )
+                                ], 
+                            role = 'system', ), 
+                        logprobs = openapiopenai.models.create_chat_completion_response_choices_inner_logprobs.CreateChatCompletionResponse_choices_inner_logprobs(
+                            content = [
+                                openapiopenai.models.chat_completion_token_logprob.ChatCompletionTokenLogprob(
+                                    token = '', 
+                                    logprob = 1.337, 
+                                    bytes = [
+                                        56
+                                        ], 
+                                    top_logprobs = [
+                                        openapiopenai.models.chat_completion_token_logprob_top_logprobs_inner.ChatCompletionTokenLogprob_top_logprobs_inner(
+                                            token = '', 
+                                            logprob = 1.337, 
+                                            bytes = [
+                                                56
+                                                ], )
+                                        ], )
+                                ], ), 
+                        finish_reason = 'stop', 
+                        index = 56, )
                     ],
+                created = 56,
+                model = '',
+                object = 'chat.completion.chunk',
         )
         """
 

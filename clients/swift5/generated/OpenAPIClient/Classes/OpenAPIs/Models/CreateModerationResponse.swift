@@ -10,10 +10,14 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Represents if a given text input is potentially harmful. */
 public struct CreateModerationResponse: Codable, JSONEncodable, Hashable {
 
+    /** The unique identifier for the moderation request. */
     public var id: String
+    /** The model used to generate the moderation results. */
     public var model: String
+    /** A list of moderation objects. */
     public var results: [CreateModerationResponseResultsInner]
 
     public init(id: String, model: String, results: [CreateModerationResponseResultsInner]) {

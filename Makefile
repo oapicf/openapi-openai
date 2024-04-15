@@ -179,10 +179,11 @@ build-ruby:
 
 ################################################################
 # API clients testing targets for primary languages
+# The removal of test/model/*Model.spec.js is a temporary workaround to address issue #2
 
 test-javascript: build-javascript
 	cd clients/javascript/generated/ && \
-	  rm test/model/*Model.spec.js && \ # Temporary workaround to address issue #2
+	  rm -f test/model/*Model.spec.js && \
 	  npm run test
 	mocha --timeout 5000 test/javascript/
 

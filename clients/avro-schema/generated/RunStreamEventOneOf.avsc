@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Occurs when a new [run](/docs/api-reference/runs/object) is created.",
+  "name": "RunStreamEventOneOf",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "RunStreamEventOneOf_event",
+        "symbols": [
+          "thread_run_created"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.RunObject",
+      "doc": ""
+    }
+  ]
+
+}

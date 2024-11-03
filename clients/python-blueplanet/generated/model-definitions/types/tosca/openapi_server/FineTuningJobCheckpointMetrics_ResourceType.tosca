@@ -1,0 +1,65 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTuningJobCheckpointMetrics"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTuningJobCheckpointMetrics"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  FineTuningJobCheckpointMetrics {
+    title = FineTuningJobCheckpointMetrics
+    description = FineTuningJobCheckpointMetrics
+    derivedFrom = Root
+    properties {
+        step {
+          type =  
+          description = ""
+          optional = false
+        }
+        train_loss {
+          type =  
+          description = ""
+          optional = false
+        }
+        train_mean_token_accuracy {
+          type =  
+          description = ""
+          optional = false
+        }
+        valid_loss {
+          type =  
+          description = ""
+          optional = false
+        }
+        valid_mean_token_accuracy {
+          type =  
+          description = ""
+          optional = false
+        }
+        full_valid_loss {
+          type =  
+          description = ""
+          optional = false
+        }
+        full_valid_mean_token_accuracy {
+          type =  
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTuningJobCheckpointMetrics {
+    title = FineTuningJobCheckpointMetrics
+    description = FineTuningJobCheckpointMetrics
+    implements = openapi_server.resourceTypes.FineTuningJobCheckpointMetrics
+
+  }
+}

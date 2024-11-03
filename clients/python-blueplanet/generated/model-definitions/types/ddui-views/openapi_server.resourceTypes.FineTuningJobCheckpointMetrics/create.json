@@ -1,0 +1,23 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "step" },
+      {"model": "train_loss" },
+      {"model": "train_mean_token_accuracy" },
+      {"model": "valid_loss" },
+      {"model": "valid_mean_token_accuracy" },
+      {"model": "full_valid_loss" },
+      {"model": "full_valid_mean_token_accuracy" },
+    ]
+  }]
+}

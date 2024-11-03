@@ -1,0 +1,2 @@
+testCase,httpStatusCode,createSpeechRequest,file,model,language,prompt,responseFormat,temperature,timestampGranularitiesLeft_Square_BracketRight_Square_Bracket,file,model,prompt,responseFormat,temperature
+Success,200,0,0,0,0,0,0,0,0,0,0,0,0,0

@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDetailsToolCallsCodeObjectCodeInterpreter"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDetailsToolCallsCodeObjectCodeInterpreter"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner = openapi_server.resourceTypes.RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+}
+resourceTypes {
+
+  RunStepDetailsToolCallsCodeObjectCodeInterpreter {
+    title = RunStepDetailsToolCallsCodeObjectCodeInterpreter
+    description = RunStepDetailsToolCallsCodeObjectCodeInterpreter
+    derivedFrom = Root
+    properties {
+        input {
+          type =  string
+          description = "The input to the Code Interpreter tool call."
+          optional = true
+        }
+        outputs {
+          type = array
+          items.type = RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+          description = "The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (&#x60;logs&#x60;) or images (&#x60;image&#x60;). Each of these are represented by a different object type."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDetailsToolCallsCodeObjectCodeInterpreter {
+    title = RunStepDetailsToolCallsCodeObjectCodeInterpreter
+    description = RunStepDetailsToolCallsCodeObjectCodeInterpreter
+    implements = openapi_server.resourceTypes.RunStepDetailsToolCallsCodeObjectCodeInterpreter
+
+  }
+}

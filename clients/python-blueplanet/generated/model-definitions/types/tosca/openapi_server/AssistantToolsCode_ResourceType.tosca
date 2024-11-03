@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AssistantToolsCode"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AssistantToolsCode"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AssistantToolsCode {
+    title = AssistantToolsCode
+    description = AssistantToolsCode
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of tool being defined: &#x60;code_interpreter&#x60;"
+          enum = ["code_interpreter"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AssistantToolsCode {
+    title = AssistantToolsCode
+    description = AssistantToolsCode
+    implements = openapi_server.resourceTypes.AssistantToolsCode
+
+  }
+}

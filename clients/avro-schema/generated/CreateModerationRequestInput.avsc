@@ -1,0 +1,9 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The input text to classify",
+  "name": "CreateModerationRequestInput",
+  "fields": [
+  ]
+
+}

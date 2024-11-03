@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.",
+  "name": "RunStepStreamEventOneOf5",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "RunStepStreamEventOneOf5_event",
+        "symbols": [
+          "thread_run_step_cancelled"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.RunStepObject",
+      "doc": ""
+    }
+  ]
+
+}

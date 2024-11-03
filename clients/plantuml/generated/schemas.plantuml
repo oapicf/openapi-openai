@@ -1,0 +1,1706 @@
+@startuml
+
+title OpenAI API Schemas Diagram
+
+entity AssistantFileObject {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * assistant_id: String
+}
+
+entity AssistantObject {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * name: String
+    * description: String
+    * model: String
+    * instructions: String
+    * tools: List<AssistantObjectToolsInner>
+    * file_ids: List<String>
+    * metadata: Object
+}
+
+entity AssistantObjectToolsInner {
+    * type: String
+    * function: FunctionObject
+}
+
+entity AssistantStreamEvent {
+    * event: String
+    * data: String
+}
+
+entity AssistantToolsCode {
+    * type: String
+}
+
+entity AssistantToolsFunction {
+    * type: String
+    * function: FunctionObject
+}
+
+entity AssistantToolsRetrieval {
+    * type: String
+}
+
+entity AssistantsApiNamedToolChoice {
+    * type: String
+    function: ChatCompletionNamedToolChoiceFunction
+}
+
+entity AssistantsApiResponseFormat {
+    type: String
+}
+
+entity AssistantsApiResponseFormatOption {
+    type: String
+}
+
+entity AssistantsApiToolChoiceOption {
+    * type: String
+    function: ChatCompletionNamedToolChoiceFunction
+}
+
+entity ChatCompletionFunctionCallOption {
+    * name: String
+}
+
+entity ChatCompletionFunctions {
+    description: String
+    * name: String
+    parameters: Map
+}
+
+entity ChatCompletionMessageToolCall {
+    * id: String
+    * type: String
+    * function: ChatCompletionMessageToolCallFunction
+}
+
+entity ChatCompletionMessageToolCallChunk {
+    * index: Integer
+    id: String
+    type: String
+    function: ChatCompletionMessageToolCallChunkFunction
+}
+
+entity ChatCompletionMessageToolCallChunkFunction {
+    name: String
+    arguments: String
+}
+
+entity ChatCompletionMessageToolCallFunction {
+    * name: String
+    * arguments: String
+}
+
+entity ChatCompletionNamedToolChoice {
+    * type: String
+    * function: ChatCompletionNamedToolChoiceFunction
+}
+
+entity ChatCompletionNamedToolChoiceFunction {
+    * name: String
+}
+
+entity ChatCompletionRequestAssistantMessage {
+    content: String
+    * role: String
+    name: String
+    tool_calls: List<ChatCompletionMessageToolCall>
+    function_call: ChatCompletionRequestAssistantMessageFunctionCall
+}
+
+entity ChatCompletionRequestAssistantMessageFunctionCall {
+    * arguments: String
+    * name: String
+}
+
+entity ChatCompletionRequestFunctionMessage {
+    * role: String
+    * content: String
+    * name: String
+}
+
+entity ChatCompletionRequestMessage {
+    * content: String
+    * role: String
+    * name: String
+    tool_calls: List<ChatCompletionMessageToolCall>
+    function_call: ChatCompletionRequestAssistantMessageFunctionCall
+    * tool_call_id: String
+}
+
+entity ChatCompletionRequestMessageContentPart {
+    * type: String
+    * text: String
+    * image_url: ChatCompletionRequestMessageContentPartImageImageUrl
+}
+
+entity ChatCompletionRequestMessageContentPartImage {
+    * type: String
+    * image_url: ChatCompletionRequestMessageContentPartImageImageUrl
+}
+
+entity ChatCompletionRequestMessageContentPartImageImageUrl {
+    * url: URI
+    detail: String
+}
+
+entity ChatCompletionRequestMessageContentPartText {
+    * type: String
+    * text: String
+}
+
+entity ChatCompletionRequestSystemMessage {
+    * content: String
+    * role: String
+    name: String
+}
+
+entity ChatCompletionRequestToolMessage {
+    * role: String
+    * content: String
+    * tool_call_id: String
+}
+
+entity ChatCompletionRequestUserMessage {
+    * content: ChatCompletionRequestUserMessageContent
+    * role: String
+    name: String
+}
+
+entity ChatCompletionRequestUserMessageContent {
+}
+
+entity ChatCompletionResponseMessage {
+    * content: String
+    tool_calls: List<ChatCompletionMessageToolCall>
+    * role: String
+    function_call: ChatCompletionRequestAssistantMessageFunctionCall
+}
+
+entity ChatCompletionRole {
+}
+
+entity ChatCompletionStreamResponseDelta {
+    content: String
+    function_call: ChatCompletionStreamResponseDeltaFunctionCall
+    tool_calls: List<ChatCompletionMessageToolCallChunk>
+    role: String
+}
+
+entity ChatCompletionStreamResponseDeltaFunctionCall {
+    arguments: String
+    name: String
+}
+
+entity ChatCompletionTokenLogprob {
+    * token: String
+    * logprob: BigDecimal
+    * bytes: List<Integer>
+    * top_logprobs: List<ChatCompletionTokenLogprobTopLogprobsInner>
+}
+
+entity ChatCompletionTokenLogprobTopLogprobsInner {
+    * token: String
+    * logprob: BigDecimal
+    * bytes: List<Integer>
+}
+
+entity ChatCompletionTool {
+    * type: String
+    * function: FunctionObject
+}
+
+entity ChatCompletionToolChoiceOption {
+    * type: String
+    * function: ChatCompletionNamedToolChoiceFunction
+}
+
+entity CompletionUsage {
+    * completion_tokens: Integer
+    * prompt_tokens: Integer
+    * total_tokens: Integer
+}
+
+entity CreateAssistantFileRequest {
+    * file_id: String
+}
+
+entity CreateAssistantRequest {
+    * model: CreateAssistantRequestModel
+    name: String
+    description: String
+    instructions: String
+    tools: List<AssistantObjectToolsInner>
+    file_ids: List<String>
+    metadata: Object
+}
+
+entity CreateAssistantRequestModel {
+}
+
+entity CreateChatCompletionFunctionResponse {
+    * id: String
+    * choices: List<CreateChatCompletionFunctionResponseChoicesInner>
+    * created: Integer
+    * model: String
+    system_fingerprint: String
+    * object: String
+    usage: CompletionUsage
+}
+
+entity CreateChatCompletionFunctionResponseChoicesInner {
+    * finish_reason: String
+    * index: Integer
+    * message: ChatCompletionResponseMessage
+}
+
+entity CreateChatCompletionRequest {
+    * messages: List<ChatCompletionRequestMessage>
+    * model: CreateChatCompletionRequestModel
+    frequency_penalty: BigDecimal
+    logit_bias: Map
+    logprobs: Boolean
+    top_logprobs: Integer
+    max_tokens: Integer
+    n: Integer
+    presence_penalty: BigDecimal
+    response_format: CreateChatCompletionRequestResponseFormat
+    seed: Integer
+    stop: CreateChatCompletionRequestStop
+    stream: Boolean
+    temperature: BigDecimal
+    top_p: BigDecimal
+    tools: List<ChatCompletionTool>
+    tool_choice: ChatCompletionToolChoiceOption
+    user: String
+    function_call: CreateChatCompletionRequestFunctionCall
+    functions: List<ChatCompletionFunctions>
+}
+
+entity CreateChatCompletionRequestFunctionCall {
+    * name: String
+}
+
+entity CreateChatCompletionRequestModel {
+}
+
+entity CreateChatCompletionRequestResponseFormat {
+    type: String
+}
+
+entity CreateChatCompletionRequestStop {
+}
+
+entity CreateChatCompletionResponse {
+    * id: String
+    * choices: List<CreateChatCompletionResponseChoicesInner>
+    * created: Integer
+    * model: String
+    system_fingerprint: String
+    * object: String
+    usage: CompletionUsage
+}
+
+entity CreateChatCompletionResponseChoicesInner {
+    * finish_reason: String
+    * index: Integer
+    * message: ChatCompletionResponseMessage
+    * logprobs: CreateChatCompletionResponseChoicesInnerLogprobs
+}
+
+entity CreateChatCompletionResponseChoicesInnerLogprobs {
+    * content: List<ChatCompletionTokenLogprob>
+}
+
+entity CreateChatCompletionStreamResponse {
+    * id: String
+    * choices: List<CreateChatCompletionStreamResponseChoicesInner>
+    * created: Integer
+    * model: String
+    system_fingerprint: String
+    * object: String
+}
+
+entity CreateChatCompletionStreamResponseChoicesInner {
+    * delta: ChatCompletionStreamResponseDelta
+    logprobs: CreateChatCompletionResponseChoicesInnerLogprobs
+    * finish_reason: String
+    * index: Integer
+}
+
+entity CreateCompletionRequest {
+    * model: CreateCompletionRequestModel
+    * prompt: CreateCompletionRequestPrompt
+    best_of: Integer
+    echo: Boolean
+    frequency_penalty: BigDecimal
+    logit_bias: Map
+    logprobs: Integer
+    max_tokens: Integer
+    n: Integer
+    presence_penalty: BigDecimal
+    seed: Integer
+    stop: CreateCompletionRequestStop
+    stream: Boolean
+    suffix: String
+    temperature: BigDecimal
+    top_p: BigDecimal
+    user: String
+}
+
+entity CreateCompletionRequestModel {
+}
+
+entity CreateCompletionRequestPrompt {
+}
+
+entity CreateCompletionRequestStop {
+}
+
+entity CreateCompletionResponse {
+    * id: String
+    * choices: List<CreateCompletionResponseChoicesInner>
+    * created: Integer
+    * model: String
+    system_fingerprint: String
+    * object: String
+    usage: CompletionUsage
+}
+
+entity CreateCompletionResponseChoicesInner {
+    * finish_reason: String
+    * index: Integer
+    * logprobs: CreateCompletionResponseChoicesInnerLogprobs
+    * text: String
+}
+
+entity CreateCompletionResponseChoicesInnerLogprobs {
+    text_offset: List<Integer>
+    token_logprobs: List<BigDecimal>
+    tokens: List<String>
+    top_logprobs: List<Map>
+}
+
+entity CreateEmbeddingRequest {
+    * input: CreateEmbeddingRequestInput
+    * model: CreateEmbeddingRequestModel
+    encoding_format: String
+    dimensions: Integer
+    user: String
+}
+
+entity CreateEmbeddingRequestInput {
+}
+
+entity CreateEmbeddingRequestModel {
+}
+
+entity CreateEmbeddingResponse {
+    * data: List<Embedding>
+    * model: String
+    * object: String
+    * usage: CreateEmbeddingResponseUsage
+}
+
+entity CreateEmbeddingResponseUsage {
+    * prompt_tokens: Integer
+    * total_tokens: Integer
+}
+
+entity CreateFineTuningJobRequest {
+    * model: CreateFineTuningJobRequestModel
+    * training_file: String
+    hyperparameters: CreateFineTuningJobRequestHyperparameters
+    suffix: String
+    validation_file: String
+    integrations: List<CreateFineTuningJobRequestIntegrationsInner>
+    seed: Integer
+}
+
+entity CreateFineTuningJobRequestHyperparameters {
+    batch_size: CreateFineTuningJobRequestHyperparametersBatchSize
+    learning_rate_multiplier: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+    n_epochs: CreateFineTuningJobRequestHyperparametersNEpochs
+}
+
+entity CreateFineTuningJobRequestHyperparametersBatchSize {
+}
+
+entity CreateFineTuningJobRequestHyperparametersLearningRateMultiplier {
+}
+
+entity CreateFineTuningJobRequestHyperparametersNEpochs {
+}
+
+entity CreateFineTuningJobRequestIntegrationsInner {
+    * type: CreateFineTuningJobRequestIntegrationsInnerType
+    * wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
+}
+
+entity CreateFineTuningJobRequestIntegrationsInnerType {
+}
+
+entity CreateFineTuningJobRequestIntegrationsInnerWandb {
+    * project: String
+    name: String
+    entity: String
+    tags: List<String>
+}
+
+entity CreateFineTuningJobRequestModel {
+}
+
+entity CreateImageEditRequestModel {
+}
+
+entity CreateImageRequest {
+    * prompt: String
+    model: CreateImageRequestModel
+    n: Integer
+    quality: String
+    response_format: String
+    size: String
+    style: String
+    user: String
+}
+
+entity CreateImageRequestModel {
+}
+
+entity CreateMessageRequest {
+    * role: String
+    * content: String
+    file_ids: List<String>
+    metadata: Object
+}
+
+entity CreateModerationRequest {
+    * input: CreateModerationRequestInput
+    model: CreateModerationRequestModel
+}
+
+entity CreateModerationRequestInput {
+}
+
+entity CreateModerationRequestModel {
+}
+
+entity CreateModerationResponse {
+    * id: String
+    * model: String
+    * results: List<CreateModerationResponseResultsInner>
+}
+
+entity CreateModerationResponseResultsInner {
+    * flagged: Boolean
+    * categories: CreateModerationResponseResultsInnerCategories
+    * category_scores: CreateModerationResponseResultsInnerCategoryScores
+}
+
+entity CreateModerationResponseResultsInnerCategories {
+    * hate: Boolean
+    * hate/threatening: Boolean
+    * harassment: Boolean
+    * harassment/threatening: Boolean
+    * self-harm: Boolean
+    * self-harm/intent: Boolean
+    * self-harm/instructions: Boolean
+    * sexual: Boolean
+    * sexual/minors: Boolean
+    * violence: Boolean
+    * violence/graphic: Boolean
+}
+
+entity CreateModerationResponseResultsInnerCategoryScores {
+    * hate: BigDecimal
+    * hate/threatening: BigDecimal
+    * harassment: BigDecimal
+    * harassment/threatening: BigDecimal
+    * self-harm: BigDecimal
+    * self-harm/intent: BigDecimal
+    * self-harm/instructions: BigDecimal
+    * sexual: BigDecimal
+    * sexual/minors: BigDecimal
+    * violence: BigDecimal
+    * violence/graphic: BigDecimal
+}
+
+entity CreateRunRequest {
+    * assistant_id: String
+    model: CreateRunRequestModel
+    instructions: String
+    additional_instructions: String
+    additional_messages: List<CreateMessageRequest>
+    tools: List<AssistantObjectToolsInner>
+    metadata: Object
+    temperature: BigDecimal
+    stream: Boolean
+    max_prompt_tokens: Integer
+    max_completion_tokens: Integer
+    truncation_strategy: TruncationObject
+    tool_choice: AssistantsApiToolChoiceOption
+    response_format: AssistantsApiResponseFormatOption
+}
+
+entity CreateRunRequestModel {
+}
+
+entity CreateSpeechRequest {
+    * model: CreateSpeechRequestModel
+    * input: String
+    * voice: String
+    response_format: String
+    speed: BigDecimal
+}
+
+entity CreateSpeechRequestModel {
+}
+
+entity CreateThreadAndRunRequest {
+    * assistant_id: String
+    thread: CreateThreadRequest
+    model: CreateRunRequestModel
+    instructions: String
+    tools: List<CreateThreadAndRunRequestToolsInner>
+    metadata: Object
+    temperature: BigDecimal
+    stream: Boolean
+    max_prompt_tokens: Integer
+    max_completion_tokens: Integer
+    truncation_strategy: TruncationObject
+    tool_choice: AssistantsApiToolChoiceOption
+    response_format: AssistantsApiResponseFormatOption
+}
+
+entity CreateThreadAndRunRequestToolsInner {
+    * type: String
+    * function: FunctionObject
+}
+
+entity CreateThreadRequest {
+    messages: List<CreateMessageRequest>
+    metadata: Object
+}
+
+entity CreateTranscription200Response {
+    * text: String
+    * language: String
+    * duration: String
+    words: List<TranscriptionWord>
+    segments: List<TranscriptionSegment>
+}
+
+entity CreateTranscriptionRequestModel {
+}
+
+entity CreateTranscriptionResponseJson {
+    * text: String
+}
+
+entity CreateTranscriptionResponseVerboseJson {
+    * language: String
+    * duration: String
+    * text: String
+    words: List<TranscriptionWord>
+    segments: List<TranscriptionSegment>
+}
+
+entity CreateTranslation200Response {
+    * text: String
+    * language: String
+    * duration: String
+    segments: List<TranscriptionSegment>
+}
+
+entity CreateTranslationResponseJson {
+    * text: String
+}
+
+entity CreateTranslationResponseVerboseJson {
+    * language: String
+    * duration: String
+    * text: String
+    segments: List<TranscriptionSegment>
+}
+
+entity DeleteAssistantFileResponse {
+    * id: String
+    * deleted: Boolean
+    * object: String
+}
+
+entity DeleteAssistantResponse {
+    * id: String
+    * deleted: Boolean
+    * object: String
+}
+
+entity DeleteFileResponse {
+    * id: String
+    * object: String
+    * deleted: Boolean
+}
+
+entity DeleteMessageResponse {
+    * id: String
+    * deleted: Boolean
+    * object: String
+}
+
+entity DeleteModelResponse {
+    * id: String
+    * deleted: Boolean
+    * object: String
+}
+
+entity DeleteThreadResponse {
+    * id: String
+    * deleted: Boolean
+    * object: String
+}
+
+entity DoneEvent {
+    * event: String
+    * data: String
+}
+
+entity Embedding {
+    * index: Integer
+    * embedding: List<BigDecimal>
+    * object: String
+}
+
+entity Error {
+    * code: String
+    * message: String
+    * param: String
+    * type: String
+}
+
+entity ErrorEvent {
+    * event: String
+    * data: Error
+}
+
+entity ErrorResponse {
+    * error: Error
+}
+
+entity FineTuningIntegration {
+    * type: String
+    * wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
+}
+
+entity FineTuningJob {
+    * id: String
+    * created_at: Integer
+    * error: FineTuningJobError
+    * fine_tuned_model: String
+    * finished_at: Integer
+    * hyperparameters: FineTuningJobHyperparameters
+    * model: String
+    * object: String
+    * organization_id: String
+    * result_files: List<String>
+    * status: String
+    * trained_tokens: Integer
+    * training_file: String
+    * validation_file: String
+    integrations: List<FineTuningJobIntegrationsInner>
+    * seed: Integer
+}
+
+entity FineTuningJobCheckpoint {
+    * id: String
+    * created_at: Integer
+    * fine_tuned_model_checkpoint: String
+    * step_number: Integer
+    * metrics: FineTuningJobCheckpointMetrics
+    * fine_tuning_job_id: String
+    * object: String
+}
+
+entity FineTuningJobCheckpointMetrics {
+    step: BigDecimal
+    train_loss: BigDecimal
+    train_mean_token_accuracy: BigDecimal
+    valid_loss: BigDecimal
+    valid_mean_token_accuracy: BigDecimal
+    full_valid_loss: BigDecimal
+    full_valid_mean_token_accuracy: BigDecimal
+}
+
+entity FineTuningJobError {
+    * code: String
+    * message: String
+    * param: String
+}
+
+entity FineTuningJobEvent {
+    * id: String
+    * created_at: Integer
+    * level: String
+    * message: String
+    * object: String
+}
+
+entity FineTuningJobHyperparameters {
+    * n_epochs: FineTuningJobHyperparametersNEpochs
+}
+
+entity FineTuningJobHyperparametersNEpochs {
+}
+
+entity FineTuningJobIntegrationsInner {
+    * type: String
+    * wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
+}
+
+entity FunctionObject {
+    description: String
+    * name: String
+    parameters: Map
+}
+
+entity Image {
+    b64_json: String
+    url: String
+    revised_prompt: String
+}
+
+entity ImagesResponse {
+    * created: Integer
+    * data: List<Image>
+}
+
+entity ListAssistantFilesResponse {
+    * object: String
+    * data: List<AssistantFileObject>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ListAssistantsResponse {
+    * object: String
+    * data: List<AssistantObject>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ListFilesResponse {
+    * data: List<OpenAIFile>
+    * object: String
+}
+
+entity ListFineTuningJobCheckpointsResponse {
+    * data: List<FineTuningJobCheckpoint>
+    * object: String
+    first_id: String
+    last_id: String
+    * has_more: Boolean
+}
+
+entity ListFineTuningJobEventsResponse {
+    * data: List<FineTuningJobEvent>
+    * object: String
+}
+
+entity ListMessageFilesResponse {
+    * object: String
+    * data: List<MessageFileObject>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ListMessagesResponse {
+    * object: String
+    * data: List<MessageObject>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ListModelsResponse {
+    * object: String
+    * data: List<Model>
+}
+
+entity ListPaginatedFineTuningJobsResponse {
+    * data: List<FineTuningJob>
+    * has_more: Boolean
+    * object: String
+}
+
+entity ListRunStepsResponse {
+    * object: String
+    * data: List<RunStepObject>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ListRunsResponse {
+    * object: String
+    * data: List<RunObject>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ListThreadsResponse {
+    * object: String
+    * data: List<ThreadObject>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity MessageContentImageFileObject {
+    * type: String
+    * image_file: MessageContentImageFileObjectImageFile
+}
+
+entity MessageContentImageFileObjectImageFile {
+    * file_id: String
+}
+
+entity MessageContentTextAnnotationsFileCitationObject {
+    * type: String
+    * text: String
+    * file_citation: MessageContentTextAnnotationsFileCitationObjectFileCitation
+    * start_index: Integer
+    * end_index: Integer
+}
+
+entity MessageContentTextAnnotationsFileCitationObjectFileCitation {
+    * file_id: String
+    * quote: String
+}
+
+entity MessageContentTextAnnotationsFilePathObject {
+    * type: String
+    * text: String
+    * file_path: MessageContentTextAnnotationsFilePathObjectFilePath
+    * start_index: Integer
+    * end_index: Integer
+}
+
+entity MessageContentTextAnnotationsFilePathObjectFilePath {
+    * file_id: String
+}
+
+entity MessageContentTextObject {
+    * type: String
+    * text: MessageContentTextObjectText
+}
+
+entity MessageContentTextObjectText {
+    * value: String
+    * annotations: List<MessageContentTextObjectTextAnnotationsInner>
+}
+
+entity MessageContentTextObjectTextAnnotationsInner {
+    * type: String
+    * text: String
+    * file_citation: MessageContentTextAnnotationsFileCitationObjectFileCitation
+    * start_index: Integer
+    * end_index: Integer
+    * file_path: MessageContentTextAnnotationsFilePathObjectFilePath
+}
+
+entity MessageDeltaContentImageFileObject {
+    * index: Integer
+    * type: String
+    image_file: MessageDeltaContentImageFileObjectImageFile
+}
+
+entity MessageDeltaContentImageFileObjectImageFile {
+    file_id: String
+}
+
+entity MessageDeltaContentTextAnnotationsFileCitationObject {
+    * index: Integer
+    * type: String
+    text: String
+    file_citation: MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+    start_index: Integer
+    end_index: Integer
+}
+
+entity MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation {
+    file_id: String
+    quote: String
+}
+
+entity MessageDeltaContentTextAnnotationsFilePathObject {
+    * index: Integer
+    * type: String
+    text: String
+    file_path: MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+    start_index: Integer
+    end_index: Integer
+}
+
+entity MessageDeltaContentTextAnnotationsFilePathObjectFilePath {
+    file_id: String
+}
+
+entity MessageDeltaContentTextObject {
+    * index: Integer
+    * type: String
+    text: MessageDeltaContentTextObjectText
+}
+
+entity MessageDeltaContentTextObjectText {
+    value: String
+    annotations: List<MessageDeltaContentTextObjectTextAnnotationsInner>
+}
+
+entity MessageDeltaContentTextObjectTextAnnotationsInner {
+    * index: Integer
+    * type: String
+    text: String
+    file_citation: MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
+    start_index: Integer
+    end_index: Integer
+    file_path: MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+}
+
+entity MessageDeltaObject {
+    * id: String
+    * object: String
+    * delta: MessageDeltaObjectDelta
+}
+
+entity MessageDeltaObjectDelta {
+    role: String
+    content: List<MessageDeltaObjectDeltaContentInner>
+    file_ids: List<String>
+}
+
+entity MessageDeltaObjectDeltaContentInner {
+    * index: Integer
+    * type: String
+    image_file: MessageDeltaContentImageFileObjectImageFile
+    text: MessageDeltaContentTextObjectText
+}
+
+entity MessageFileObject {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * message_id: String
+}
+
+entity MessageObject {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * thread_id: String
+    * status: String
+    * incomplete_details: MessageObjectIncompleteDetails
+    * completed_at: Integer
+    * incomplete_at: Integer
+    * role: String
+    * content: List<MessageObjectContentInner>
+    * assistant_id: String
+    * run_id: String
+    * file_ids: List<String>
+    * metadata: Object
+}
+
+entity MessageObjectContentInner {
+    * type: String
+    * image_file: MessageContentImageFileObjectImageFile
+    * text: MessageContentTextObjectText
+}
+
+entity MessageObjectIncompleteDetails {
+    * reason: String
+}
+
+entity MessageStreamEvent {
+    * event: String
+    * data: MessageObject
+}
+
+entity MessageStreamEventOneOf {
+    * event: String
+    * data: MessageObject
+}
+
+entity MessageStreamEventOneOf1 {
+    * event: String
+    * data: MessageObject
+}
+
+entity MessageStreamEventOneOf2 {
+    * event: String
+    * data: MessageDeltaObject
+}
+
+entity MessageStreamEventOneOf3 {
+    * event: String
+    * data: MessageObject
+}
+
+entity MessageStreamEventOneOf4 {
+    * event: String
+    * data: MessageObject
+}
+
+entity Model {
+    * id: String
+    * created: Integer
+    * object: String
+    * owned_by: String
+}
+
+entity ModifyAssistantRequest {
+    model: String
+    name: String
+    description: String
+    instructions: String
+    tools: List<AssistantObjectToolsInner>
+    file_ids: List<String>
+    metadata: Object
+}
+
+entity ModifyMessageRequest {
+    metadata: Object
+}
+
+entity ModifyRunRequest {
+    metadata: Object
+}
+
+entity ModifyThreadRequest {
+    metadata: Object
+}
+
+entity OpenAIFile {
+    * id: String
+    * bytes: Integer
+    * created_at: Integer
+    * filename: String
+    * object: String
+    * purpose: String
+    * status: String
+    status_details: String
+}
+
+entity RunCompletionUsage {
+    * completion_tokens: Integer
+    * prompt_tokens: Integer
+    * total_tokens: Integer
+}
+
+entity RunObject {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * thread_id: String
+    * assistant_id: String
+    * status: String
+    * required_action: RunObjectRequiredAction
+    * last_error: RunObjectLastError
+    * expires_at: Integer
+    * started_at: Integer
+    * cancelled_at: Integer
+    * failed_at: Integer
+    * completed_at: Integer
+    * incomplete_details: RunObjectIncompleteDetails
+    * model: String
+    * instructions: String
+    * tools: List<AssistantObjectToolsInner>
+    * file_ids: List<String>
+    * metadata: Object
+    * usage: RunCompletionUsage
+    temperature: BigDecimal
+    * max_prompt_tokens: Integer
+    * max_completion_tokens: Integer
+    * truncation_strategy: TruncationObject
+    * tool_choice: AssistantsApiToolChoiceOption
+    * response_format: AssistantsApiResponseFormatOption
+}
+
+entity RunObjectIncompleteDetails {
+    reason: String
+}
+
+entity RunObjectLastError {
+    * code: String
+    * message: String
+}
+
+entity RunObjectRequiredAction {
+    * type: String
+    * submit_tool_outputs: RunObjectRequiredActionSubmitToolOutputs
+}
+
+entity RunObjectRequiredActionSubmitToolOutputs {
+    * tool_calls: List<RunToolCallObject>
+}
+
+entity RunStepCompletionUsage {
+    * completion_tokens: Integer
+    * prompt_tokens: Integer
+    * total_tokens: Integer
+}
+
+entity RunStepDeltaObject {
+    * id: String
+    * object: String
+    * delta: RunStepDeltaObjectDelta
+}
+
+entity RunStepDeltaObjectDelta {
+    step_details: RunStepDeltaObjectDeltaStepDetails
+}
+
+entity RunStepDeltaObjectDeltaStepDetails {
+    * type: String
+    message_creation: RunStepDeltaStepDetailsMessageCreationObjectMessageCreation
+    tool_calls: List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>
+}
+
+entity RunStepDeltaStepDetailsMessageCreationObject {
+    * type: String
+    message_creation: RunStepDeltaStepDetailsMessageCreationObjectMessageCreation
+}
+
+entity RunStepDeltaStepDetailsMessageCreationObjectMessageCreation {
+    message_id: String
+}
+
+entity RunStepDeltaStepDetailsToolCallsCodeObject {
+    * index: Integer
+    id: String
+    * type: String
+    code_interpreter: RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+}
+
+entity RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter {
+    input: String
+    outputs: List<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>
+}
+
+entity RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
+    * index: Integer
+    * type: String
+    logs: String
+    image: RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage
+}
+
+entity RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
+    * index: Integer
+    * type: String
+    image: RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage
+}
+
+entity RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage {
+    file_id: String
+}
+
+entity RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
+    * index: Integer
+    * type: String
+    logs: String
+}
+
+entity RunStepDeltaStepDetailsToolCallsFunctionObject {
+    * index: Integer
+    id: String
+    * type: String
+    function: RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+}
+
+entity RunStepDeltaStepDetailsToolCallsFunctionObjectFunction {
+    name: String
+    arguments: String
+    output: String
+}
+
+entity RunStepDeltaStepDetailsToolCallsObject {
+    * type: String
+    tool_calls: List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>
+}
+
+entity RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
+    * index: Integer
+    id: String
+    * type: String
+    code_interpreter: RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+    retrieval: Object
+    function: RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+}
+
+entity RunStepDeltaStepDetailsToolCallsRetrievalObject {
+    * index: Integer
+    id: String
+    * type: String
+    retrieval: Object
+}
+
+entity RunStepDetailsMessageCreationObject {
+    * type: String
+    * message_creation: RunStepDetailsMessageCreationObjectMessageCreation
+}
+
+entity RunStepDetailsMessageCreationObjectMessageCreation {
+    * message_id: String
+}
+
+entity RunStepDetailsToolCallsCodeObject {
+    * id: String
+    * type: String
+    * code_interpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter
+}
+
+entity RunStepDetailsToolCallsCodeObjectCodeInterpreter {
+    * input: String
+    * outputs: List<RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>
+}
+
+entity RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
+    * type: String
+    * logs: String
+    * image: RunStepDetailsToolCallsCodeOutputImageObjectImage
+}
+
+entity RunStepDetailsToolCallsCodeOutputImageObject {
+    * type: String
+    * image: RunStepDetailsToolCallsCodeOutputImageObjectImage
+}
+
+entity RunStepDetailsToolCallsCodeOutputImageObjectImage {
+    * file_id: String
+}
+
+entity RunStepDetailsToolCallsCodeOutputLogsObject {
+    * type: String
+    * logs: String
+}
+
+entity RunStepDetailsToolCallsFunctionObject {
+    * id: String
+    * type: String
+    * function: RunStepDetailsToolCallsFunctionObjectFunction
+}
+
+entity RunStepDetailsToolCallsFunctionObjectFunction {
+    * name: String
+    * arguments: String
+    * output: String
+}
+
+entity RunStepDetailsToolCallsObject {
+    * type: String
+    * tool_calls: List<RunStepDetailsToolCallsObjectToolCallsInner>
+}
+
+entity RunStepDetailsToolCallsObjectToolCallsInner {
+    * id: String
+    * type: String
+    * code_interpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter
+    * retrieval: Object
+    * function: RunStepDetailsToolCallsFunctionObjectFunction
+}
+
+entity RunStepDetailsToolCallsRetrievalObject {
+    * id: String
+    * type: String
+    * retrieval: Object
+}
+
+entity RunStepObject {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * assistant_id: String
+    * thread_id: String
+    * run_id: String
+    * type: String
+    * status: String
+    * step_details: RunStepObjectStepDetails
+    * last_error: RunStepObjectLastError
+    * expired_at: Integer
+    * cancelled_at: Integer
+    * failed_at: Integer
+    * completed_at: Integer
+    * metadata: Object
+    * usage: RunStepCompletionUsage
+}
+
+entity RunStepObjectLastError {
+    * code: String
+    * message: String
+}
+
+entity RunStepObjectStepDetails {
+    * type: String
+    * message_creation: RunStepDetailsMessageCreationObjectMessageCreation
+    * tool_calls: List<RunStepDetailsToolCallsObjectToolCallsInner>
+}
+
+entity RunStepStreamEvent {
+    * event: String
+    * data: RunStepObject
+}
+
+entity RunStepStreamEventOneOf {
+    * event: String
+    * data: RunStepObject
+}
+
+entity RunStepStreamEventOneOf1 {
+    * event: String
+    * data: RunStepObject
+}
+
+entity RunStepStreamEventOneOf2 {
+    * event: String
+    * data: RunStepDeltaObject
+}
+
+entity RunStepStreamEventOneOf3 {
+    * event: String
+    * data: RunStepObject
+}
+
+entity RunStepStreamEventOneOf4 {
+    * event: String
+    * data: RunStepObject
+}
+
+entity RunStepStreamEventOneOf5 {
+    * event: String
+    * data: RunStepObject
+}
+
+entity RunStepStreamEventOneOf6 {
+    * event: String
+    * data: RunStepObject
+}
+
+entity RunStreamEvent {
+    * event: String
+    * data: RunObject
+}
+
+entity RunStreamEventOneOf {
+    * event: String
+    * data: RunObject
+}
+
+entity RunStreamEventOneOf1 {
+    * event: String
+    * data: RunObject
+}
+
+entity RunStreamEventOneOf2 {
+    * event: String
+    * data: RunObject
+}
+
+entity RunStreamEventOneOf3 {
+    * event: String
+    * data: RunObject
+}
+
+entity RunStreamEventOneOf4 {
+    * event: String
+    * data: RunObject
+}
+
+entity RunStreamEventOneOf5 {
+    * event: String
+    * data: RunObject
+}
+
+entity RunStreamEventOneOf6 {
+    * event: String
+    * data: RunObject
+}
+
+entity RunStreamEventOneOf7 {
+    * event: String
+    * data: RunObject
+}
+
+entity RunStreamEventOneOf8 {
+    * event: String
+    * data: RunObject
+}
+
+entity RunToolCallObject {
+    * id: String
+    * type: String
+    * function: RunToolCallObjectFunction
+}
+
+entity RunToolCallObjectFunction {
+    * name: String
+    * arguments: String
+}
+
+entity SubmitToolOutputsRunRequest {
+    * tool_outputs: List<SubmitToolOutputsRunRequestToolOutputsInner>
+    stream: Boolean
+}
+
+entity SubmitToolOutputsRunRequestToolOutputsInner {
+    tool_call_id: String
+    output: String
+}
+
+entity ThreadObject {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * metadata: Object
+}
+
+entity ThreadStreamEvent {
+    * event: String
+    * data: ThreadObject
+}
+
+entity ThreadStreamEventOneOf {
+    * event: String
+    * data: ThreadObject
+}
+
+entity TranscriptionSegment {
+    * id: Integer
+    * seek: Integer
+    * start: Float
+    * end: Float
+    * text: String
+    * tokens: List<Integer>
+    * temperature: Float
+    * avg_logprob: Float
+    * compression_ratio: Float
+    * no_speech_prob: Float
+}
+
+entity TranscriptionWord {
+    * word: String
+    * start: Float
+    * end: Float
+}
+
+entity TruncationObject {
+    type: String
+    last_messages: Integer
+}
+
+
+RunStepDetailsToolCallsObjectToolCallsInner -- RunStepDetailsToolCallsCodeObjectCodeInterpreter : code_interpreter
+RunStepDetailsToolCallsObjectToolCallsInner -- RunStepDetailsToolCallsFunctionObjectFunction : function
+FineTuningJobCheckpoint -- FineTuningJobCheckpointMetrics : metrics
+MessageDeltaContentTextObjectText -- "0..*" MessageDeltaContentTextObjectTextAnnotationsInner : annotations
+ListRunsResponse -- "0..*" RunObject : data
+RunStepDetailsToolCallsFunctionObject -- RunStepDetailsToolCallsFunctionObjectFunction : function
+CreateRunRequest -- CreateRunRequestModel : model
+CreateRunRequest -- "0..*" CreateMessageRequest : additional_messages
+CreateRunRequest -- "0..*" AssistantObjectToolsInner : tools
+CreateRunRequest -- TruncationObject : truncation_strategy
+CreateRunRequest -- AssistantsApiToolChoiceOption : tool_choice
+CreateRunRequest -- AssistantsApiResponseFormatOption : response_format
+ListFineTuningJobCheckpointsResponse -- "0..*" FineTuningJobCheckpoint : data
+ChatCompletionToolChoiceOption -- ChatCompletionNamedToolChoiceFunction : function
+RunObjectRequiredAction -- RunObjectRequiredActionSubmitToolOutputs : submit_tool_outputs
+CreateEmbeddingRequest -- CreateEmbeddingRequestInput : input
+CreateEmbeddingRequest -- CreateEmbeddingRequestModel : model
+ThreadStreamEventOneOf -- ThreadObject : data
+CreateModerationRequest -- CreateModerationRequestInput : input
+CreateModerationRequest -- CreateModerationRequestModel : model
+CreateSpeechRequest -- CreateSpeechRequestModel : model
+ListAssistantFilesResponse -- "0..*" AssistantFileObject : data
+CreateChatCompletionStreamResponseChoicesInner -- ChatCompletionStreamResponseDelta : delta
+CreateChatCompletionStreamResponseChoicesInner -- CreateChatCompletionResponseChoicesInnerLogprobs : logprobs
+RunStreamEventOneOf -- RunObject : data
+MessageContentTextObject -- MessageContentTextObjectText : text
+MessageStreamEvent -- MessageObject : data
+RunStepDeltaObjectDelta -- RunStepDeltaObjectDeltaStepDetails : step_details
+RunStepStreamEventOneOf -- RunStepObject : data
+CreateChatCompletionRequest -- "0..*" ChatCompletionRequestMessage : messages
+CreateChatCompletionRequest -- CreateChatCompletionRequestModel : model
+CreateChatCompletionRequest -- CreateChatCompletionRequestResponseFormat : response_format
+CreateChatCompletionRequest -- CreateChatCompletionRequestStop : stop
+CreateChatCompletionRequest -- "0..*" ChatCompletionTool : tools
+CreateChatCompletionRequest -- ChatCompletionToolChoiceOption : tool_choice
+CreateChatCompletionRequest -- CreateChatCompletionRequestFunctionCall : function_call
+CreateChatCompletionRequest -- "0..*" ChatCompletionFunctions : functions
+MessageDeltaObjectDelta -- "0..*" MessageDeltaObjectDeltaContentInner : content
+RunStepDeltaStepDetailsToolCallsCodeOutputImageObject -- RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage : image
+RunToolCallObject -- RunToolCallObjectFunction : function
+RunStepDetailsToolCallsObject -- "0..*" RunStepDetailsToolCallsObjectToolCallsInner : tool_calls
+CreateCompletionRequest -- CreateCompletionRequestModel : model
+CreateCompletionRequest -- CreateCompletionRequestPrompt : prompt
+CreateCompletionRequest -- CreateCompletionRequestStop : stop
+AssistantToolsFunction -- FunctionObject : function
+CreateCompletionResponse -- "0..*" CreateCompletionResponseChoicesInner : choices
+CreateCompletionResponse -- CompletionUsage : usage
+CreateModerationResponseResultsInner -- CreateModerationResponseResultsInnerCategories : categories
+CreateModerationResponseResultsInner -- CreateModerationResponseResultsInnerCategoryScores : category_scores
+ListThreadsResponse -- "0..*" ThreadObject : data
+ErrorResponse -- Error : error
+ListMessagesResponse -- "0..*" MessageObject : data
+FineTuningJobHyperparameters -- FineTuningJobHyperparametersNEpochs : n_epochs
+ListAssistantsResponse -- "0..*" AssistantObject : data
+CreateChatCompletionFunctionResponseChoicesInner -- ChatCompletionResponseMessage : message
+CreateTranslation200Response -- "0..*" TranscriptionSegment : segments
+CreateImageRequest -- CreateImageRequestModel : model
+CreateChatCompletionResponseChoicesInner -- ChatCompletionResponseMessage : message
+CreateChatCompletionResponseChoicesInner -- CreateChatCompletionResponseChoicesInnerLogprobs : logprobs
+RunStepDeltaObjectDeltaStepDetails -- RunStepDeltaStepDetailsMessageCreationObjectMessageCreation : message_creation
+RunStepDeltaObjectDeltaStepDetails -- "0..*" RunStepDeltaStepDetailsToolCallsObjectToolCallsInner : tool_calls
+AssistantObjectToolsInner -- FunctionObject : function
+RunObjectRequiredActionSubmitToolOutputs -- "0..*" RunToolCallObject : tool_calls
+MessageObjectContentInner -- MessageContentImageFileObjectImageFile : image_file
+MessageObjectContentInner -- MessageContentTextObjectText : text
+RunStepStreamEventOneOf1 -- RunStepObject : data
+RunStepStreamEventOneOf3 -- RunStepObject : data
+CreateTranscription200Response -- "0..*" TranscriptionWord : words
+CreateTranscription200Response -- "0..*" TranscriptionSegment : segments
+RunStepStreamEventOneOf2 -- RunStepDeltaObject : data
+RunStepStreamEventOneOf5 -- RunStepObject : data
+RunStepStreamEventOneOf4 -- RunStepObject : data
+RunStepStreamEventOneOf6 -- RunStepObject : data
+CreateEmbeddingResponse -- "0..*" Embedding : data
+CreateEmbeddingResponse -- CreateEmbeddingResponseUsage : usage
+MessageDeltaContentTextObjectTextAnnotationsInner -- MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation : file_citation
+MessageDeltaContentTextObjectTextAnnotationsInner -- MessageDeltaContentTextAnnotationsFilePathObjectFilePath : file_path
+CreateChatCompletionFunctionResponse -- "0..*" CreateChatCompletionFunctionResponseChoicesInner : choices
+CreateChatCompletionFunctionResponse -- CompletionUsage : usage
+RunObject -- RunObjectRequiredAction : required_action
+RunObject -- RunObjectLastError : last_error
+RunObject -- RunObjectIncompleteDetails : incomplete_details
+RunObject -- "0..*" AssistantObjectToolsInner : tools
+RunObject -- RunCompletionUsage : usage
+RunObject -- TruncationObject : truncation_strategy
+RunObject -- AssistantsApiToolChoiceOption : tool_choice
+RunObject -- AssistantsApiResponseFormatOption : response_format
+ChatCompletionRequestUserMessage -- ChatCompletionRequestUserMessageContent : content
+MessageDeltaObject -- MessageDeltaObjectDelta : delta
+RunStepDeltaStepDetailsMessageCreationObject -- RunStepDeltaStepDetailsMessageCreationObjectMessageCreation : message_creation
+ChatCompletionTool -- FunctionObject : function
+AssistantsApiToolChoiceOption -- ChatCompletionNamedToolChoiceFunction : function
+RunStepStreamEvent -- RunStepObject : data
+ChatCompletionStreamResponseDelta -- ChatCompletionStreamResponseDeltaFunctionCall : function_call
+ChatCompletionStreamResponseDelta -- "0..*" ChatCompletionMessageToolCallChunk : tool_calls
+RunStepDetailsToolCallsCodeOutputImageObject -- RunStepDetailsToolCallsCodeOutputImageObjectImage : image
+ChatCompletionMessageToolCallChunk -- ChatCompletionMessageToolCallChunkFunction : function
+RunStreamEventOneOf7 -- RunObject : data
+RunStreamEventOneOf6 -- RunObject : data
+RunStreamEventOneOf8 -- RunObject : data
+RunStreamEventOneOf3 -- RunObject : data
+RunStreamEventOneOf2 -- RunObject : data
+RunStreamEventOneOf5 -- RunObject : data
+RunStreamEventOneOf4 -- RunObject : data
+RunStepDeltaStepDetailsToolCallsFunctionObject -- RunStepDeltaStepDetailsToolCallsFunctionObjectFunction : function
+RunStreamEventOneOf1 -- RunObject : data
+ChatCompletionRequestMessageContentPart -- ChatCompletionRequestMessageContentPartImageImageUrl : image_url
+CreateFineTuningJobRequestIntegrationsInner -- CreateFineTuningJobRequestIntegrationsInnerType : type
+CreateFineTuningJobRequestIntegrationsInner -- CreateFineTuningJobRequestIntegrationsInnerWandb : wandb
+MessageContentImageFileObject -- MessageContentImageFileObjectImageFile : image_file
+AssistantObject -- "0..*" AssistantObjectToolsInner : tools
+MessageDeltaContentTextAnnotationsFilePathObject -- MessageDeltaContentTextAnnotationsFilePathObjectFilePath : file_path
+MessageContentTextAnnotationsFilePathObject -- MessageContentTextAnnotationsFilePathObjectFilePath : file_path
+CreateThreadAndRunRequest -- CreateThreadRequest : thread
+CreateThreadAndRunRequest -- CreateRunRequestModel : model
+CreateThreadAndRunRequest -- "0..*" CreateThreadAndRunRequestToolsInner : tools
+CreateThreadAndRunRequest -- TruncationObject : truncation_strategy
+CreateThreadAndRunRequest -- AssistantsApiToolChoiceOption : tool_choice
+CreateThreadAndRunRequest -- AssistantsApiResponseFormatOption : response_format
+ListRunStepsResponse -- "0..*" RunStepObject : data
+MessageObject -- MessageObjectIncompleteDetails : incomplete_details
+MessageObject -- "0..*" MessageObjectContentInner : content
+CreateFineTuningJobRequest -- CreateFineTuningJobRequestModel : model
+CreateFineTuningJobRequest -- CreateFineTuningJobRequestHyperparameters : hyperparameters
+CreateFineTuningJobRequest -- "0..*" CreateFineTuningJobRequestIntegrationsInner : integrations
+MessageDeltaObjectDeltaContentInner -- MessageDeltaContentImageFileObjectImageFile : image_file
+MessageDeltaObjectDeltaContentInner -- MessageDeltaContentTextObjectText : text
+ChatCompletionTokenLogprob -- "0..*" ChatCompletionTokenLogprobTopLogprobsInner : top_logprobs
+ChatCompletionRequestMessage -- "0..*" ChatCompletionMessageToolCall : tool_calls
+ChatCompletionRequestMessage -- ChatCompletionRequestAssistantMessageFunctionCall : function_call
+RunStepDeltaStepDetailsToolCallsObject -- "0..*" RunStepDeltaStepDetailsToolCallsObjectToolCallsInner : tool_calls
+CreateThreadAndRunRequestToolsInner -- FunctionObject : function
+RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner -- RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage : image
+CreateFineTuningJobRequestHyperparameters -- CreateFineTuningJobRequestHyperparametersBatchSize : batch_size
+CreateFineTuningJobRequestHyperparameters -- CreateFineTuningJobRequestHyperparametersLearningRateMultiplier : learning_rate_multiplier
+CreateFineTuningJobRequestHyperparameters -- CreateFineTuningJobRequestHyperparametersNEpochs : n_epochs
+CreateTranscriptionResponseVerboseJson -- "0..*" TranscriptionWord : words
+CreateTranscriptionResponseVerboseJson -- "0..*" TranscriptionSegment : segments
+ChatCompletionRequestMessageContentPartImage -- ChatCompletionRequestMessageContentPartImageImageUrl : image_url
+MessageDeltaContentTextObject -- MessageDeltaContentTextObjectText : text
+AssistantsApiNamedToolChoice -- ChatCompletionNamedToolChoiceFunction : function
+RunStepDetailsToolCallsCodeObjectCodeInterpreter -- "0..*" RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner : outputs
+CreateThreadRequest -- "0..*" CreateMessageRequest : messages
+CreateChatCompletionResponseChoicesInnerLogprobs -- "0..*" ChatCompletionTokenLogprob : content
+ThreadStreamEvent -- ThreadObject : data
+ImagesResponse -- "0..*" Image : data
+RunStepObjectStepDetails -- RunStepDetailsMessageCreationObjectMessageCreation : message_creation
+RunStepObjectStepDetails -- "0..*" RunStepDetailsToolCallsObjectToolCallsInner : tool_calls
+CreateChatCompletionStreamResponse -- "0..*" CreateChatCompletionStreamResponseChoicesInner : choices
+RunStepDeltaStepDetailsToolCallsObjectToolCallsInner -- RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter : code_interpreter
+RunStepDeltaStepDetailsToolCallsObjectToolCallsInner -- RunStepDeltaStepDetailsToolCallsFunctionObjectFunction : function
+ChatCompletionMessageToolCall -- ChatCompletionMessageToolCallFunction : function
+MessageDeltaContentTextAnnotationsFileCitationObject -- MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation : file_citation
+ListModelsResponse -- "0..*" Model : data
+ErrorEvent -- Error : data
+ListFilesResponse -- "0..*" OpenAIFile : data
+MessageContentTextAnnotationsFileCitationObject -- MessageContentTextAnnotationsFileCitationObjectFileCitation : file_citation
+ListPaginatedFineTuningJobsResponse -- "0..*" FineTuningJob : data
+ModifyAssistantRequest -- "0..*" AssistantObjectToolsInner : tools
+ChatCompletionRequestAssistantMessage -- "0..*" ChatCompletionMessageToolCall : tool_calls
+ChatCompletionRequestAssistantMessage -- ChatCompletionRequestAssistantMessageFunctionCall : function_call
+RunStepDeltaObject -- RunStepDeltaObjectDelta : delta
+RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter -- "0..*" RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner : outputs
+FineTuningJobIntegrationsInner -- CreateFineTuningJobRequestIntegrationsInnerWandb : wandb
+RunStepDetailsToolCallsCodeObject -- RunStepDetailsToolCallsCodeObjectCodeInterpreter : code_interpreter
+CreateModerationResponse -- "0..*" CreateModerationResponseResultsInner : results
+FineTuningIntegration -- CreateFineTuningJobRequestIntegrationsInnerWandb : wandb
+SubmitToolOutputsRunRequest -- "0..*" SubmitToolOutputsRunRequestToolOutputsInner : tool_outputs
+ListMessageFilesResponse -- "0..*" MessageFileObject : data
+FineTuningJob -- FineTuningJobError : error
+FineTuningJob -- FineTuningJobHyperparameters : hyperparameters
+FineTuningJob -- "0..*" FineTuningJobIntegrationsInner : integrations
+CreateTranslationResponseVerboseJson -- "0..*" TranscriptionSegment : segments
+MessageContentTextObjectText -- "0..*" MessageContentTextObjectTextAnnotationsInner : annotations
+RunStreamEvent -- RunObject : data
+ListFineTuningJobEventsResponse -- "0..*" FineTuningJobEvent : data
+RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner -- RunStepDetailsToolCallsCodeOutputImageObjectImage : image
+RunStepObject -- RunStepObjectStepDetails : step_details
+RunStepObject -- RunStepObjectLastError : last_error
+RunStepObject -- RunStepCompletionUsage : usage
+ChatCompletionNamedToolChoice -- ChatCompletionNamedToolChoiceFunction : function
+MessageDeltaContentImageFileObject -- MessageDeltaContentImageFileObjectImageFile : image_file
+RunStepDeltaStepDetailsToolCallsCodeObject -- RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter : code_interpreter
+CreateCompletionResponseChoicesInner -- CreateCompletionResponseChoicesInnerLogprobs : logprobs
+MessageContentTextObjectTextAnnotationsInner -- MessageContentTextAnnotationsFileCitationObjectFileCitation : file_citation
+MessageContentTextObjectTextAnnotationsInner -- MessageContentTextAnnotationsFilePathObjectFilePath : file_path
+MessageStreamEventOneOf -- MessageObject : data
+CreateAssistantRequest -- CreateAssistantRequestModel : model
+CreateAssistantRequest -- "0..*" AssistantObjectToolsInner : tools
+MessageStreamEventOneOf2 -- MessageDeltaObject : data
+MessageStreamEventOneOf3 -- MessageObject : data
+MessageStreamEventOneOf4 -- MessageObject : data
+CreateChatCompletionResponse -- "0..*" CreateChatCompletionResponseChoicesInner : choices
+CreateChatCompletionResponse -- CompletionUsage : usage
+MessageStreamEventOneOf1 -- MessageObject : data
+ChatCompletionResponseMessage -- "0..*" ChatCompletionMessageToolCall : tool_calls
+ChatCompletionResponseMessage -- ChatCompletionRequestAssistantMessageFunctionCall : function_call
+RunStepDetailsMessageCreationObject -- RunStepDetailsMessageCreationObjectMessageCreation : message_creation
+
+@enduml

@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateTranslationResponseVerboseJson",
+  "fields": [
+    {
+      "name": "language",
+      "type": "string",
+      "doc": "The language of the output translation (always `english`)."
+    },
+    {
+      "name": "duration",
+      "type": "string",
+      "doc": "The duration of the input audio."
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "doc": "The translated text."
+    },
+    {
+      "name": "segments",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.TranscriptionSegment"
+      }],
+      "doc": "Segments of the translated text and their corresponding details.",
+      "default": null
+    }
+  ]
+
+}

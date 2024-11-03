@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RunStepDetailsToolCallsRetrievalObject",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The ID of the tool call object."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RunStepDetailsToolCallsRetrievalObject_type",
+        "symbols": [
+          "retrieval"
+        ]
+      },
+      "doc": "The type of tool call. This is always going to be `retrieval` for this type of tool call."
+    },
+    {
+      "name": "retrieval",
+      "type": "model.object",
+      "doc": "For now, this is always going to be an empty object."
+    }
+  ]
+
+}

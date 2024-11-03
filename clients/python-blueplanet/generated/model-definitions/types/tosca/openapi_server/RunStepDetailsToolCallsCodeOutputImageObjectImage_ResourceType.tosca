@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDetailsToolCallsCodeOutputImageObjectImage"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDetailsToolCallsCodeOutputImageObjectImage"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RunStepDetailsToolCallsCodeOutputImageObjectImage {
+    title = RunStepDetailsToolCallsCodeOutputImageObjectImage
+    description = RunStepDetailsToolCallsCodeOutputImageObjectImage
+    derivedFrom = Root
+    properties {
+        file_id {
+          type =  string
+          description = "The [file](/docs/api-reference/files) ID of the image."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDetailsToolCallsCodeOutputImageObjectImage {
+    title = RunStepDetailsToolCallsCodeOutputImageObjectImage
+    description = RunStepDetailsToolCallsCodeOutputImageObjectImage
+    implements = openapi_server.resourceTypes.RunStepDetailsToolCallsCodeOutputImageObjectImage
+
+  }
+}

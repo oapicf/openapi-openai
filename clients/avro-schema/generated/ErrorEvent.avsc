@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Occurs when an [error](/docs/guides/error-codes/api-errors) occurs. This can happen due to an internal server error or a timeout.",
+  "name": "ErrorEvent",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "ErrorEvent_event",
+        "symbols": [
+          "error"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.Error",
+      "doc": ""
+    }
+  ]
+
+}

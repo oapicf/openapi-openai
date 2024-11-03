@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ListThreadsResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ListThreadsResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ThreadObject = openapi_server.resourceTypes.ThreadObject
+}
+resourceTypes {
+
+  ListThreadsResponse {
+    title = ListThreadsResponse
+    description = ListThreadsResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
+        data {
+          type = array
+          items.type = ThreadObject
+          description = ""
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ListThreadsResponse {
+    title = ListThreadsResponse
+    description = ListThreadsResponse
+    implements = openapi_server.resourceTypes.ListThreadsResponse
+
+  }
+}

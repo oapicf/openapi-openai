@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunObjectRequiredAction"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunObjectRequiredAction"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunObjectRequiredActionSubmitToolOutputs = openapi_server.resourceTypes.RunObjectRequiredActionSubmitToolOutputs
+}
+resourceTypes {
+
+  RunObjectRequiredAction {
+    title = RunObjectRequiredAction
+    description = RunObjectRequiredAction
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "For now, this is always &#x60;submit_tool_outputs&#x60;."
+          enum = ["submit_tool_outputs"]
+          optional = true
+        }
+        submit_tool_outputs {
+          type = RunObjectRequiredActionSubmitToolOutputs
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunObjectRequiredAction {
+    title = RunObjectRequiredAction
+    description = RunObjectRequiredAction
+    implements = openapi_server.resourceTypes.RunObjectRequiredAction
+
+  }
+}

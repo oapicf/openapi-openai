@@ -1,0 +1,93 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+# Routes for Assistants API
+
+POST /v1/assistants                                            api.AssistantsApiController.createAssistant()
+POST /v1/threads                                               api.AssistantsApiController.createThread()
+POST /v1/threads/runs                                          api.AssistantsApiController.createThreadAndRun()
+GET /v1/assistants                                             api.AssistantsApiController.listAssistants()
+POST /v1/threads/:threadId/runs/:runId/cancel                  api.AssistantsApiController.cancelRun(threadId: String, runId: String)
+POST /v1/assistants/:assistantId/files                         api.AssistantsApiController.createAssistantFile(assistantId: String)
+POST /v1/threads/:threadId/messages                            api.AssistantsApiController.createMessage(threadId: String)
+POST /v1/threads/:threadId/runs                                api.AssistantsApiController.createRun(threadId: String)
+DELETE /v1/assistants/:assistantId                             api.AssistantsApiController.deleteAssistant(assistantId: String)
+DELETE /v1/assistants/:assistantId/files/:fileId               api.AssistantsApiController.deleteAssistantFile(assistantId: String, fileId: String)
+DELETE /v1/threads/:threadId                                   api.AssistantsApiController.deleteThread(threadId: String)
+GET /v1/assistants/:assistantId                                api.AssistantsApiController.getAssistant(assistantId: String)
+GET /v1/assistants/:assistantId/files/:fileId                  api.AssistantsApiController.getAssistantFile(assistantId: String, fileId: String)
+GET /v1/threads/:threadId/messages/:messageId                  api.AssistantsApiController.getMessage(threadId: String, messageId: String)
+GET /v1/threads/:threadId/messages/:messageId/files/:fileId    api.AssistantsApiController.getMessageFile(threadId: String, messageId: String, fileId: String)
+GET /v1/threads/:threadId/runs/:runId                          api.AssistantsApiController.getRun(threadId: String, runId: String)
+GET /v1/threads/:threadId/runs/:runId/steps/:stepId            api.AssistantsApiController.getRunStep(threadId: String, runId: String, stepId: String)
+GET /v1/threads/:threadId                                      api.AssistantsApiController.getThread(threadId: String)
+GET /v1/assistants/:assistantId/files                          api.AssistantsApiController.listAssistantFiles(assistantId: String)
+GET /v1/threads/:threadId/messages/:messageId/files            api.AssistantsApiController.listMessageFiles(threadId: String, messageId: String)
+GET /v1/threads/:threadId/messages                             api.AssistantsApiController.listMessages(threadId: String)
+GET /v1/threads/:threadId/runs/:runId/steps                    api.AssistantsApiController.listRunSteps(threadId: String, runId: String)
+GET /v1/threads/:threadId/runs                                 api.AssistantsApiController.listRuns(threadId: String)
+POST /v1/assistants/:assistantId                               api.AssistantsApiController.modifyAssistant(assistantId: String)
+POST /v1/threads/:threadId/messages/:messageId                 api.AssistantsApiController.modifyMessage(threadId: String, messageId: String)
+POST /v1/threads/:threadId/runs/:runId                         api.AssistantsApiController.modifyRun(threadId: String, runId: String)
+POST /v1/threads/:threadId                                     api.AssistantsApiController.modifyThread(threadId: String)
+POST /v1/threads/:threadId/runs/:runId/submit_tool_outputs     api.AssistantsApiController.submitToolOuputsToRun(threadId: String, runId: String)
+
+# Routes for Audio API
+
+POST /v1/audio/speech                                          api.AudioApiController.createSpeech()
+POST /v1/audio/transcriptions                                  api.AudioApiController.createTranscription()
+POST /v1/audio/translations                                    api.AudioApiController.createTranslation()
+
+# Routes for Chat API
+
+POST /v1/chat/completions                                      api.ChatApiController.createChatCompletion()
+
+# Routes for Completions API
+
+POST /v1/completions                                           api.CompletionsApiController.createCompletion()
+
+# Routes for Embeddings API
+
+POST /v1/embeddings                                            api.EmbeddingsApiController.createEmbedding()
+
+# Routes for Files API
+
+POST /v1/files                                                 api.FilesApiController.createFile()
+GET /v1/files                                                  api.FilesApiController.listFiles()
+DELETE /v1/files/:fileId                                       api.FilesApiController.deleteFile(fileId: String)
+GET /v1/files/:fileId/content                                  api.FilesApiController.downloadFile(fileId: String)
+GET /v1/files/:fileId                                          api.FilesApiController.retrieveFile(fileId: String)
+
+# Routes for FineTuning API
+
+POST /v1/fine_tuning/jobs                                      api.FineTuningApiController.createFineTuningJob()
+GET /v1/fine_tuning/jobs                                       api.FineTuningApiController.listPaginatedFineTuningJobs()
+POST /v1/fine_tuning/jobs/:fineTuningJobId/cancel              api.FineTuningApiController.cancelFineTuningJob(fineTuningJobId: String)
+GET /v1/fine_tuning/jobs/:fineTuningJobId/events               api.FineTuningApiController.listFineTuningEvents(fineTuningJobId: String)
+GET /v1/fine_tuning/jobs/:fineTuningJobId/checkpoints          api.FineTuningApiController.listFineTuningJobCheckpoints(fineTuningJobId: String)
+GET /v1/fine_tuning/jobs/:fineTuningJobId                      api.FineTuningApiController.retrieveFineTuningJob(fineTuningJobId: String)
+
+# Routes for Images API
+
+POST /v1/images/generations                                    api.ImagesApiController.createImage()
+POST /v1/images/edits                                          api.ImagesApiController.createImageEdit()
+POST /v1/images/variations                                     api.ImagesApiController.createImageVariation()
+
+# Routes for Models API
+
+GET /v1/models                                                 api.ModelsApiController.listModels()
+DELETE /v1/models/:model                                       api.ModelsApiController.deleteModel(model: String)
+GET /v1/models/:model                                          api.ModelsApiController.retrieveModel(model: String)
+
+# Routes for Moderations API
+
+POST /v1/moderations                                           api.ModerationsApiController.createModeration()
+
+# Map static resources from the /public folder to the /assets URL path
+GET /assets/*file           controllers.Assets.at(file)
+GET /versionedAssets/*file  controllers.Assets.versioned(file)
+
+# Swagger UI
+GET /api                    api.ApiDocController.api

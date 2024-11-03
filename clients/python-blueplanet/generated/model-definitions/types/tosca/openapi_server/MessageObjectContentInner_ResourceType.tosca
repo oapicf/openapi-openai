@@ -1,0 +1,50 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageObjectContentInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageObjectContentInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  MessageContentImageFileObject = openapi_server.resourceTypes.MessageContentImageFileObject
+  MessageContentImageFileObjectImageFile = openapi_server.resourceTypes.MessageContentImageFileObjectImageFile
+  MessageContentTextObject = openapi_server.resourceTypes.MessageContentTextObject
+  MessageContentTextObjectText = openapi_server.resourceTypes.MessageContentTextObjectText
+}
+resourceTypes {
+
+  MessageObjectContentInner {
+    title = MessageObjectContentInner
+    description = MessageObjectContentInner
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;image_file&#x60;."
+          enum = ["image_file", "text"]
+          optional = true
+        }
+        image_file {
+          type = MessageContentImageFileObjectImageFile
+          description = ""
+          optional = true
+        }
+        text {
+          type = MessageContentTextObjectText
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageObjectContentInner {
+    title = MessageObjectContentInner
+    description = MessageObjectContentInner
+    implements = openapi_server.resourceTypes.MessageObjectContentInner
+
+  }
+}

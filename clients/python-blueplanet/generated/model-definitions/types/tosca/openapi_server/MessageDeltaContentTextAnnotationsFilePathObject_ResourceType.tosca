@@ -1,0 +1,62 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageDeltaContentTextAnnotationsFilePathObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageDeltaContentTextAnnotationsFilePathObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  MessageDeltaContentTextAnnotationsFilePathObjectFilePath = openapi_server.resourceTypes.MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+}
+resourceTypes {
+
+  MessageDeltaContentTextAnnotationsFilePathObject {
+    title = MessageDeltaContentTextAnnotationsFilePathObject
+    description = MessageDeltaContentTextAnnotationsFilePathObject
+    derivedFrom = Root
+    properties {
+        index {
+          type =  integer
+          description = "The index of the annotation in the text content part."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "Always &#x60;file_path&#x60;."
+          enum = ["file_path"]
+          optional = true
+        }
+        text {
+          type =  string
+          description = "The text in the message content that needs to be replaced."
+          optional = false
+        }
+        file_path {
+          type = MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+          description = ""
+          optional = false
+        }
+        start_index {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        end_index {
+          type =  integer
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageDeltaContentTextAnnotationsFilePathObject {
+    title = MessageDeltaContentTextAnnotationsFilePathObject
+    description = MessageDeltaContentTextAnnotationsFilePathObject
+    implements = openapi_server.resourceTypes.MessageDeltaContentTextAnnotationsFilePathObject
+
+  }
+}

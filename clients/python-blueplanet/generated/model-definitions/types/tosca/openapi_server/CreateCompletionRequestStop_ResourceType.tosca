@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateCompletionRequestStop"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateCompletionRequestStop"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateCompletionRequestStop {
+    title = CreateCompletionRequestStop
+    description = CreateCompletionRequestStop
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateCompletionRequestStop {
+    title = CreateCompletionRequestStop
+    description = CreateCompletionRequestStop
+    implements = openapi_server.resourceTypes.CreateCompletionRequestStop
+
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateModerationResponseResultsInner",
+  "fields": [
+    {
+      "name": "flagged",
+      "type": "boolean",
+      "doc": "Whether any of the below categories are flagged."
+    },
+    {
+      "name": "categories",
+      "type": "model.CreateModerationResponseResultsInnerCategories",
+      "doc": ""
+    },
+    {
+      "name": "category_scores",
+      "type": "model.CreateModerationResponseResultsInnerCategoryScores",
+      "doc": ""
+    }
+  ]
+
+}

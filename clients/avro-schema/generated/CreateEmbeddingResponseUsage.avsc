@@ -1,0 +1,19 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The usage information for the request.",
+  "name": "CreateEmbeddingResponseUsage",
+  "fields": [
+    {
+      "name": "prompt_tokens",
+      "type": "int",
+      "doc": "The number of tokens used by the prompt."
+    },
+    {
+      "name": "total_tokens",
+      "type": "int",
+      "doc": "The total number of tokens used by the request."
+    }
+  ]
+
+}

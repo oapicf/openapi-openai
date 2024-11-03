@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionRequestUserMessage"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionRequestUserMessage"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionRequestUserMessageContent = openapi_server.resourceTypes.ChatCompletionRequestUserMessageContent
+}
+resourceTypes {
+
+  ChatCompletionRequestUserMessage {
+    title = ChatCompletionRequestUserMessage
+    description = ChatCompletionRequestUserMessage
+    derivedFrom = Root
+    properties {
+        content {
+          type = ChatCompletionRequestUserMessageContent
+          description = ""
+          optional = true
+        }
+        role {
+          type =  string
+          description = "The role of the messages author, in this case &#x60;user&#x60;."
+          enum = ["user"]
+          optional = true
+        }
+        name {
+          type =  string
+          description = "An optional name for the participant. Provides the model information to differentiate between participants of the same role."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionRequestUserMessage {
+    title = ChatCompletionRequestUserMessage
+    description = ChatCompletionRequestUserMessage
+    implements = openapi_server.resourceTypes.ChatCompletionRequestUserMessage
+
+  }
+}

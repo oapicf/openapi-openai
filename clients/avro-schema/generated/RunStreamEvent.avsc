@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RunStreamEvent",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "RunStreamEvent_event",
+        "symbols": [
+          "thread_run_expired"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.RunObject",
+      "doc": ""
+    }
+  ]
+
+}

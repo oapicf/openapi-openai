@@ -1,0 +1,28 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ListFineTuningJobEventsResponse",
+  "fields": [
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.FineTuningJobEvent"
+      },
+      "doc": ""
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ListFineTuningJobEventsResponse_object",
+        "symbols": [
+          "list"
+        ]
+      },
+      "doc": ""
+    }
+  ]
+
+}

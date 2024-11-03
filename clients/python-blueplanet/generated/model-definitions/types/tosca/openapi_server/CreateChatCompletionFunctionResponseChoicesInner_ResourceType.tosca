@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateChatCompletionFunctionResponseChoicesInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateChatCompletionFunctionResponseChoicesInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionResponseMessage = openapi_server.resourceTypes.ChatCompletionResponseMessage
+}
+resourceTypes {
+
+  CreateChatCompletionFunctionResponseChoicesInner {
+    title = CreateChatCompletionFunctionResponseChoicesInner
+    description = CreateChatCompletionFunctionResponseChoicesInner
+    derivedFrom = Root
+    properties {
+        finish_reason {
+          type =  string
+          description = "The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters, or &#x60;function_call&#x60; if the model called a function. "
+          enum = ["stop", "length", "function_call", "content_filter"]
+          optional = true
+        }
+        index {
+          type =  integer
+          description = "The index of the choice in the list of choices."
+          optional = true
+        }
+        message {
+          type = ChatCompletionResponseMessage
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateChatCompletionFunctionResponseChoicesInner {
+    title = CreateChatCompletionFunctionResponseChoicesInner
+    description = CreateChatCompletionFunctionResponseChoicesInner
+    implements = openapi_server.resourceTypes.CreateChatCompletionFunctionResponseChoicesInner
+
+  }
+}

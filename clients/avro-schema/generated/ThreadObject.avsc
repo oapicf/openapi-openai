@@ -1,0 +1,35 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Represents a thread that contains [messages](/docs/api-reference/messages).",
+  "name": "ThreadObject",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The identifier, which can be referenced in API endpoints."
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ThreadObject_object",
+        "symbols": [
+          "thread"
+        ]
+      },
+      "doc": "The object type, which is always `thread`."
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the thread was created."
+    },
+    {
+      "name": "metadata",
+      "type": "model.object",
+      "doc": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. "
+    }
+  ]
+
+}

@@ -1,0 +1,22 @@
+package org.openapitools.client.api
+
+import argonaut._
+import argonaut.EncodeJson._
+import argonaut.DecodeJson._
+
+import org.http4s.{EntityDecoder, EntityEncoder}
+import org.http4s.argonaut._
+import org.joda.time.DateTime
+
+
+import CreateFineTuningJobRequestHyperparametersBatchSize._
+
+case class CreateFineTuningJobRequestHyperparametersBatchSize (
+  
+object CreateFineTuningJobRequestHyperparametersBatchSize {
+  import DateTimeCodecs._
+
+  implicit val CreateFineTuningJobRequestHyperparametersBatchSizeCodecJson: CodecJson[CreateFineTuningJobRequestHyperparametersBatchSize] = CodecJson.derive[CreateFineTuningJobRequestHyperparametersBatchSize]
+  implicit val CreateFineTuningJobRequestHyperparametersBatchSizeDecoder: EntityDecoder[CreateFineTuningJobRequestHyperparametersBatchSize] = jsonOf[CreateFineTuningJobRequestHyperparametersBatchSize]
+  implicit val CreateFineTuningJobRequestHyperparametersBatchSizeEncoder: EntityEncoder[CreateFineTuningJobRequestHyperparametersBatchSize] = jsonEncoderOf[CreateFineTuningJobRequestHyperparametersBatchSize]
+}

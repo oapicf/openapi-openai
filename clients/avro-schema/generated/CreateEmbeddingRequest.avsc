@@ -1,0 +1,44 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateEmbeddingRequest",
+  "fields": [
+    {
+      "name": "input",
+      "type": "model.CreateEmbeddingRequestInput",
+      "doc": ""
+    },
+    {
+      "name": "model",
+      "type": "model.CreateEmbeddingRequestModel",
+      "doc": ""
+    },
+    {
+      "name": "encoding_format",
+      "type": ["null", {
+        "type": "enum",
+        "name": "CreateEmbeddingRequest_encodingUnderscoreformat",
+        "symbols": [
+          "float",
+          "base64"
+        ]
+      }],
+      "doc": "The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).",
+      "default": null
+    },
+    {
+      "name": "dimensions",
+      "type": ["null", "int"],
+      "doc": "The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. ",
+      "default": null
+    },
+    {
+      "name": "user",
+      "type": ["null", "string"],
+      "doc": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ",
+      "default": null
+    }
+  ]
+
+}

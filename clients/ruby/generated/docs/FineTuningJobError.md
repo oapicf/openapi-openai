@@ -1,0 +1,22 @@
+# OpenApiOpenAIClient::FineTuningJobError
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **code** | **String** | A machine-readable error code. |  |
+| **message** | **String** | A human-readable error message. |  |
+| **param** | **String** | The parameter that was invalid, usually &#x60;training_file&#x60; or &#x60;validation_file&#x60;. This field will be null if the failure was not parameter-specific. |  |
+
+## Example
+
+```ruby
+require 'openapi_openai'
+
+instance = OpenApiOpenAIClient::FineTuningJobError.new(
+  code: null,
+  message: null,
+  param: null
+)
+```
+

@@ -1,0 +1,14 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RunStepDetailsToolCallsCodeOutputImageObjectImage",
+  "fields": [
+    {
+      "name": "file_id",
+      "type": "string",
+      "doc": "The [file](/docs/api-reference/files) ID of the image."
+    }
+  ]
+
+}

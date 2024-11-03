@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server SubmitToolOutputsRunRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a SubmitToolOutputsRunRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  SubmitToolOutputsRunRequestToolOutputsInner = openapi_server.resourceTypes.SubmitToolOutputsRunRequestToolOutputsInner
+}
+resourceTypes {
+
+  SubmitToolOutputsRunRequest {
+    title = SubmitToolOutputsRunRequest
+    description = SubmitToolOutputsRunRequest
+    derivedFrom = Root
+    properties {
+        tool_outputs {
+          type = array
+          items.type = SubmitToolOutputsRunRequestToolOutputsInner
+          description = "A list of tools for which the outputs are being submitted."
+          optional = true
+        }
+        stream {
+          type =  boolean
+          description = "If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  SubmitToolOutputsRunRequest {
+    title = SubmitToolOutputsRunRequest
+    description = SubmitToolOutputsRunRequest
+    implements = openapi_server.resourceTypes.SubmitToolOutputsRunRequest
+
+  }
+}

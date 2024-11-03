@@ -1,0 +1,54 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionStreamResponseDelta"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionStreamResponseDelta"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionMessageToolCallChunk = openapi_server.resourceTypes.ChatCompletionMessageToolCallChunk
+  ChatCompletionStreamResponseDeltaFunctionCall = openapi_server.resourceTypes.ChatCompletionStreamResponseDeltaFunctionCall
+}
+resourceTypes {
+
+  ChatCompletionStreamResponseDelta {
+    title = ChatCompletionStreamResponseDelta
+    description = ChatCompletionStreamResponseDelta
+    derivedFrom = Root
+    properties {
+        content {
+          type =  string
+          description = "The contents of the chunk message."
+          optional = false
+        }
+        function_call {
+          type = ChatCompletionStreamResponseDeltaFunctionCall
+          description = ""
+          optional = false
+        }
+        tool_calls {
+          type = array
+          items.type = ChatCompletionMessageToolCallChunk
+          description = ""
+          optional = false
+        }
+        role {
+          type =  string
+          description = "The role of the author of this message."
+          enum = ["system", "user", "assistant", "tool"]
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionStreamResponseDelta {
+    title = ChatCompletionStreamResponseDelta
+    description = ChatCompletionStreamResponseDelta
+    implements = openapi_server.resourceTypes.ChatCompletionStreamResponseDelta
+
+  }
+}

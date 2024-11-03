@@ -1,0 +1,42 @@
+-- By default this file is used by `parseRoutesFile` in Foundation.hs
+-- Syntax for this file here: https://www.yesodweb.com/book/routing-and-handlers
+
+-- /static StaticR Static appStatic
+
+/chat/completions ChatCompletionsR POST
+/completions CompletionsR POST
+/images/generations ImagesGenerationsR POST
+/images/edits ImagesEditsR POST
+/images/variations ImagesVariationsR POST
+/embeddings EmbeddingsR POST
+/audio/speech AudioSpeechR POST
+/audio/transcriptions AudioTranscriptionsR POST
+/audio/translations AudioTranslationsR POST
+/files FilesR GET POST
+/files/#Text FilesByTextR GET DELETE
+/files/#Text/content FilesByTextContentR GET
+/fine_tuning/jobs FineTuningJobsR GET POST
+/fine_tuning/jobs/#Text FineTuningJobsByTextR GET
+/fine_tuning/jobs/#Text/events FineTuningJobsByTextEventsR GET
+/fine_tuning/jobs/#Text/cancel FineTuningJobsByTextCancelR POST
+/fine_tuning/jobs/#Text/checkpoints FineTuningJobsByTextCheckpointsR GET
+/models ModelsR GET
+/models/#Text ModelsByTextR GET DELETE
+/moderations ModerationsR POST
+/assistants AssistantsR GET POST
+/assistants/#Text AssistantsByTextR GET POST DELETE
+/threads ThreadsR POST
+/threads/#Text ThreadsByTextR GET POST DELETE
+/threads/#Text/messages ThreadsByTextMessagesR GET POST
+/threads/#Text/messages/#Text ThreadsByTextMessagesByTextR GET POST
+!/threads/runs ThreadsRunsR POST
+/threads/#Text/runs ThreadsByTextRunsR GET POST
+/threads/#Text/runs/#Text ThreadsByTextRunsByTextR GET POST
+/threads/#Text/runs/#Text/submit_tool_outputs ThreadsByTextRunsByTextSubmitToolOutputsR POST
+/threads/#Text/runs/#Text/cancel ThreadsByTextRunsByTextCancelR POST
+/threads/#Text/runs/#Text/steps ThreadsByTextRunsByTextStepsR GET
+/threads/#Text/runs/#Text/steps/#Text ThreadsByTextRunsByTextStepsByTextR GET
+/assistants/#Text/files AssistantsByTextFilesR GET POST
+/assistants/#Text/files/#Text AssistantsByTextFilesByTextR GET DELETE
+/threads/#Text/messages/#Text/files ThreadsByTextMessagesByTextFilesR GET
+/threads/#Text/messages/#Text/files/#Text ThreadsByTextMessagesByTextFilesByTextR GET

@@ -1,0 +1,50 @@
+/*
+ * create_chat_completion_function_response_choices_inner.h
+ *
+ * 
+ */
+
+#ifndef _create_chat_completion_function_response_choices_inner_H_
+#define _create_chat_completion_function_response_choices_inner_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct create_chat_completion_function_response_choices_inner_t create_chat_completion_function_response_choices_inner_t;
+
+#include "chat_completion_response_message.h"
+
+// Enum FINISHREASON for create_chat_completion_function_response_choices_inner
+
+typedef enum  { openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_NULL = 0, openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_stop, openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_length, openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_function_call, openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_content_filter } openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_e;
+
+char* create_chat_completion_function_response_choices_inner_finish_reason_ToString(openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_e finish_reason);
+
+openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_e create_chat_completion_function_response_choices_inner_finish_reason_FromString(char* finish_reason);
+
+
+
+typedef struct create_chat_completion_function_response_choices_inner_t {
+    openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_e finish_reason; //enum
+    int index; //numeric
+    struct chat_completion_response_message_t *message; //model
+
+} create_chat_completion_function_response_choices_inner_t;
+
+create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner_create(
+    openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_e finish_reason,
+    int index,
+    chat_completion_response_message_t *message
+);
+
+void create_chat_completion_function_response_choices_inner_free(create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner);
+
+create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner_parseFromJSON(cJSON *create_chat_completion_function_response_choices_innerJSON);
+
+cJSON *create_chat_completion_function_response_choices_inner_convertToJSON(create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner);
+
+#endif /* _create_chat_completion_function_response_choices_inner_H_ */
+

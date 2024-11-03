@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageContentImageFileObjectImageFile"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageContentImageFileObjectImageFile"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MessageContentImageFileObjectImageFile {
+    title = MessageContentImageFileObjectImageFile
+    description = MessageContentImageFileObjectImageFile
+    derivedFrom = Root
+    properties {
+        file_id {
+          type =  string
+          description = "The [File](/docs/api-reference/files) ID of the image in the message content."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageContentImageFileObjectImageFile {
+    title = MessageContentImageFileObjectImageFile
+    description = MessageContentImageFileObjectImageFile
+    implements = openapi_server.resourceTypes.MessageContentImageFileObjectImageFile
+
+  }
+}

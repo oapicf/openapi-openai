@@ -1,0 +1,58 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ListFineTuningJobCheckpointsResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ListFineTuningJobCheckpointsResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FineTuningJobCheckpoint = openapi_server.resourceTypes.FineTuningJobCheckpoint
+}
+resourceTypes {
+
+  ListFineTuningJobCheckpointsResponse {
+    title = ListFineTuningJobCheckpointsResponse
+    description = ListFineTuningJobCheckpointsResponse
+    derivedFrom = Root
+    properties {
+        data {
+          type = array
+          items.type = FineTuningJobCheckpoint
+          description = ""
+          optional = true
+        }
+        object {
+          type =  string
+          description = ""
+          enum = ["list"]
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ListFineTuningJobCheckpointsResponse {
+    title = ListFineTuningJobCheckpointsResponse
+    description = ListFineTuningJobCheckpointsResponse
+    implements = openapi_server.resourceTypes.ListFineTuningJobCheckpointsResponse
+
+  }
+}

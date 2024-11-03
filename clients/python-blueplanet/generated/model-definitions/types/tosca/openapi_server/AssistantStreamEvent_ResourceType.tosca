@@ -1,0 +1,48 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AssistantStreamEvent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AssistantStreamEvent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  DoneEvent = openapi_server.resourceTypes.DoneEvent
+  ErrorEvent = openapi_server.resourceTypes.ErrorEvent
+  MessageStreamEvent = openapi_server.resourceTypes.MessageStreamEvent
+  RunStepStreamEvent = openapi_server.resourceTypes.RunStepStreamEvent
+  RunStreamEvent = openapi_server.resourceTypes.RunStreamEvent
+  ThreadStreamEvent = openapi_server.resourceTypes.ThreadStreamEvent
+}
+resourceTypes {
+
+  AssistantStreamEvent {
+    title = AssistantStreamEvent
+    description = AssistantStreamEvent
+    derivedFrom = Root
+    properties {
+        event {
+          type =  string
+          description = ""
+          enum = ["done"]
+          optional = true
+        }
+        data {
+          type =  string
+          description = ""
+          enum = ["[DONE]"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AssistantStreamEvent {
+    title = AssistantStreamEvent
+    description = AssistantStreamEvent
+    implements = openapi_server.resourceTypes.AssistantStreamEvent
+
+  }
+}

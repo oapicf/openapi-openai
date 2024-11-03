@@ -1,0 +1,11 @@
+# thread_stream_event_one_of_t
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**event** | **openai_api_thread_stream_event_one_of_EVENT_e** |  | 
+**data** | [**thread_object_t**](thread_object.md) \* |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

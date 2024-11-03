@@ -1,0 +1,54 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateCompletionResponseChoicesInnerLogprobs"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateCompletionResponseChoicesInnerLogprobs"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateCompletionResponseChoicesInnerLogprobs {
+    title = CreateCompletionResponseChoicesInnerLogprobs
+    description = CreateCompletionResponseChoicesInnerLogprobs
+    derivedFrom = Root
+    properties {
+        text_offset {
+          type = array
+          items.type =  integer
+          description = ""
+          optional = false
+        }
+        token_logprobs {
+          type = array
+          items.type =  
+          description = ""
+          optional = false
+        }
+        tokens {
+          type = array
+          items.type =  string
+          description = ""
+          optional = false
+        }
+        top_logprobs {
+          type = array
+          items.type =  
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateCompletionResponseChoicesInnerLogprobs {
+    title = CreateCompletionResponseChoicesInnerLogprobs
+    description = CreateCompletionResponseChoicesInnerLogprobs
+    implements = openapi_server.resourceTypes.CreateCompletionResponseChoicesInnerLogprobs
+
+  }
+}

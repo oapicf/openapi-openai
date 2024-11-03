@@ -1,0 +1,42 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "id" },
+      {"model": "object" },
+      {"model": "created_at" },
+      {"model": "thread_id" },
+      {"model": "assistant_id" },
+      {"model": "status" },
+      {"model": "required_action" },
+      {"model": "last_error" },
+      {"model": "expires_at" },
+      {"model": "started_at" },
+      {"model": "cancelled_at" },
+      {"model": "failed_at" },
+      {"model": "completed_at" },
+      {"model": "incomplete_details" },
+      {"model": "model" },
+      {"model": "instructions" },
+      {"model": "tools" },
+      {"model": "file_ids" },
+      {"model": "metadata" },
+      {"model": "usage" },
+      {"model": "temperature" },
+      {"model": "max_prompt_tokens" },
+      {"model": "max_completion_tokens" },
+      {"model": "truncation_strategy" },
+      {"model": "tool_choice" },
+      {"model": "response_format" },
+    ]
+  }]
+}

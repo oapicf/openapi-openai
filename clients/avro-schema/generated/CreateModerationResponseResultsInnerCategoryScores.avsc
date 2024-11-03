@@ -1,0 +1,64 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "A list of the categories along with their scores as predicted by model.",
+  "name": "CreateModerationResponseResultsInnerCategoryScores",
+  "fields": [
+    {
+      "name": "hate",
+      "type": "double",
+      "doc": "The score for the category 'hate'."
+    },
+    {
+      "name": "hate/threatening",
+      "type": "double",
+      "doc": "The score for the category 'hate/threatening'."
+    },
+    {
+      "name": "harassment",
+      "type": "double",
+      "doc": "The score for the category 'harassment'."
+    },
+    {
+      "name": "harassment/threatening",
+      "type": "double",
+      "doc": "The score for the category 'harassment/threatening'."
+    },
+    {
+      "name": "self-harm",
+      "type": "double",
+      "doc": "The score for the category 'self-harm'."
+    },
+    {
+      "name": "self-harm/intent",
+      "type": "double",
+      "doc": "The score for the category 'self-harm/intent'."
+    },
+    {
+      "name": "self-harm/instructions",
+      "type": "double",
+      "doc": "The score for the category 'self-harm/instructions'."
+    },
+    {
+      "name": "sexual",
+      "type": "double",
+      "doc": "The score for the category 'sexual'."
+    },
+    {
+      "name": "sexual/minors",
+      "type": "double",
+      "doc": "The score for the category 'sexual/minors'."
+    },
+    {
+      "name": "violence",
+      "type": "double",
+      "doc": "The score for the category 'violence'."
+    },
+    {
+      "name": "violence/graphic",
+      "type": "double",
+      "doc": "The score for the category 'violence/graphic'."
+    }
+  ]
+
+}

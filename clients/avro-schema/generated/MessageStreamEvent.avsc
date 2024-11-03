@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "MessageStreamEvent",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "MessageStreamEvent_event",
+        "symbols": [
+          "thread_message_incomplete"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.MessageObject",
+      "doc": ""
+    }
+  ]
+
+}

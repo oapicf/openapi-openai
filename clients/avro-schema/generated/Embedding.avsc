@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Represents an embedding vector returned by embedding endpoint. ",
+  "name": "Embedding",
+  "fields": [
+    {
+      "name": "index",
+      "type": "int",
+      "doc": "The index of the embedding in the list of embeddings."
+    },
+    {
+      "name": "embedding",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "doc": "The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). "
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "Embedding_object",
+        "symbols": [
+          "embedding"
+        ]
+      },
+      "doc": "The object type, which is always \"embedding\"."
+    }
+  ]
+
+}

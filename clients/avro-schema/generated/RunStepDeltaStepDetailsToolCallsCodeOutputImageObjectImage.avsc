@@ -1,0 +1,15 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage",
+  "fields": [
+    {
+      "name": "file_id",
+      "type": ["null", "string"],
+      "doc": "The [file](/docs/api-reference/files) ID of the image.",
+      "default": null
+    }
+  ]
+
+}

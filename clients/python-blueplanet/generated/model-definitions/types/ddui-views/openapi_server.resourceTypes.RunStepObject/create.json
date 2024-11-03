@@ -1,0 +1,32 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "id" },
+      {"model": "object" },
+      {"model": "created_at" },
+      {"model": "assistant_id" },
+      {"model": "thread_id" },
+      {"model": "run_id" },
+      {"model": "type" },
+      {"model": "status" },
+      {"model": "step_details" },
+      {"model": "last_error" },
+      {"model": "expired_at" },
+      {"model": "cancelled_at" },
+      {"model": "failed_at" },
+      {"model": "completed_at" },
+      {"model": "metadata" },
+      {"model": "usage" },
+    ]
+  }]
+}

@@ -1,0 +1,14 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "MessageContentImageFileObjectImageFile",
+  "fields": [
+    {
+      "name": "file_id",
+      "type": "string",
+      "doc": "The [File](/docs/api-reference/files) ID of the image in the message content."
+    }
+  ]
+
+}

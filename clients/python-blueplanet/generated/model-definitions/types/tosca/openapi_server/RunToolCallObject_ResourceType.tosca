@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunToolCallObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunToolCallObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunToolCallObjectFunction = openapi_server.resourceTypes.RunToolCallObjectFunction
+}
+resourceTypes {
+
+  RunToolCallObject {
+    title = RunToolCallObject
+    description = RunToolCallObject
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The ID of the tool call. This ID must be referenced when you submit the tool outputs in using the [Submit tool outputs to run](/docs/api-reference/runs/submitToolOutputs) endpoint."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The type of tool call the output is required for. For now, this is always &#x60;function&#x60;."
+          enum = ["function"]
+          optional = true
+        }
+        function {
+          type = RunToolCallObjectFunction
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunToolCallObject {
+    title = RunToolCallObject
+    description = RunToolCallObject
+    implements = openapi_server.resourceTypes.RunToolCallObject
+
+  }
+}

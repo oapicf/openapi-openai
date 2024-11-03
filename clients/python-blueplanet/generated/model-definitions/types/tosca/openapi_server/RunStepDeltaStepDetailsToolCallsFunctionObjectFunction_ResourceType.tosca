@@ -1,0 +1,45 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDeltaStepDetailsToolCallsFunctionObjectFunction"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDeltaStepDetailsToolCallsFunctionObjectFunction"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RunStepDeltaStepDetailsToolCallsFunctionObjectFunction {
+    title = RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+    description = RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+    derivedFrom = Root
+    properties {
+        name {
+          type =  string
+          description = "The name of the function."
+          optional = false
+        }
+        arguments {
+          type =  string
+          description = "The arguments passed to the function."
+          optional = false
+        }
+        output {
+          type =  string
+          description = "The output of the function. This will be &#x60;null&#x60; if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDeltaStepDetailsToolCallsFunctionObjectFunction {
+    title = RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+    description = RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+    implements = openapi_server.resourceTypes.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
+
+  }
+}

@@ -1,9 +1,0 @@
-
-
-# ChatCompletionRole
-
-## Enum
-
-
-
-

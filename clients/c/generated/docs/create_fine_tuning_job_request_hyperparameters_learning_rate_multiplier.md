@@ -1,9 +1,0 @@
-# create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t
-
-## Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,9 +1,0 @@
-{
-  "namespace": "model",
-  "type": "record",
-  "doc": "The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. ",
-  "name": "CreateFineTuningJobRequestIntegrationsInnerType",
-  "fields": [
-  ]
-
-}

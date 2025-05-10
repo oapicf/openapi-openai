@@ -7,4 +7,6 @@ contact:
   email: blah+oapicf@cliffano.com
 base_dir:
   github_actions: /home/runner/work/openapi-openai/openapi-openai
-  local: /Users/cliffano/dev/workspace-studio/openapi-openai
+  local: /Users/cliffano/dev/workspace-oapicf/openapi-openai
+  custom: >-
+    /home/runner/work/generator-openapi-generator/generator-openapi-generator/stage/swaggy-c/

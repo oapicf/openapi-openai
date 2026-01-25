@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Changed
-- Upgrade Swaggy C to 4.10.0
-- Upgrade OpenAPI Generator to 7.12.0
+- Switch spec to app.stainless.com
+- Upgrade Swaggy C to 5.1.0
+- Upgrade OpenAPI Generator to 7.18.0
 
 ## 1.1.0 - 2024-04-15
 ### Changed

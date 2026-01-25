@@ -22,6 +22,7 @@ Version matrix
 
 | OpenAPI OpenAI Version | OpenAI OpenAPI Spec Version | OpenAPI Version | OpenAPI Generator Version |
 |------------------------|-----------------------------|-----------------|---------------------------|
+| 2.0.0 | app.stainless.com-20260125 | 3.1.0 | 7.18.0 |
 | 1.1.0 | 6d5c7a0e038beebaa24c9371ecf6ef060eafeb5a | 3.0.0 | 7.4.0 |
 | 1.0.0 | 2.0.0 | 3.0.0 | 7.4.0 |
 

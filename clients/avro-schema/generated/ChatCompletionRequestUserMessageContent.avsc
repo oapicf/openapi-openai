@@ -1,9 +1,0 @@
-{
-  "namespace": "model",
-  "type": "record",
-  "doc": "The contents of the user message. ",
-  "name": "ChatCompletionRequestUserMessageContent",
-  "fields": [
-  ]
-
-}

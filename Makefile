@@ -209,12 +209,15 @@ build-ruby:
 # Test target is a convenience target to run tests for all primary generators
 test: test-javascript test-python test-ruby
 
+# Disabled Javascript unit tests (npm run test)
+# due to anyOf models not being fully implemented by OpenAPI Generator
+# https://github.com/OpenAPITools/openapi-generator/issues/10010
 test-javascript: build-javascript
 	npm install -g mocha
 	npm install validator
 	cd clients/javascript/generated/ && \
-	  npm install --dev && \
-	  npm run test
+	  npm install --dev # && \
+	  # npm run test
 	cd test/javascript/ && \
 	  npm link ../../clients/javascript/generated/ && \
 	  mocha --timeout 5000 .

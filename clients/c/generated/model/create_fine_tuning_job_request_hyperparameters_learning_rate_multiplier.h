@@ -1,0 +1,36 @@
+/*
+ * create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier.h
+ *
+ * Scaling factor for the learning rate. A smaller learning rate may be useful to avoid overfitting. 
+ */
+
+#ifndef _create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_H_
+#define _create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t;
+
+
+
+
+typedef struct create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t {
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t;
+
+__attribute__((deprecated)) create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_create(
+);
+
+void create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_free(create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier);
+
+create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_parseFromJSON(cJSON *create_fine_tuning_job_request_hyperparameters_learning_rate_multiplierJSON);
+
+cJSON *create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_convertToJSON(create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier);
+
+#endif /* _create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_H_ */
+

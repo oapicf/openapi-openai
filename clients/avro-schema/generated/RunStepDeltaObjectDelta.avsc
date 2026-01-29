@@ -1,0 +1,15 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The delta containing the fields that have changed on the run step.",
+  "name": "RunStepDeltaObjectDelta",
+  "fields": [
+    {
+      "name": "step_details",
+      "type": ["null", "model.RunStepDeltaObjectDeltaStepDetails"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

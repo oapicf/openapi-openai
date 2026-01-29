@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateFineTuningJobRequestIntegrationsInner",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "CreateFineTuningJobRequestIntegrationsInner_type",
+        "symbols": [
+          "wandb"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "wandb",
+      "type": "model.CreateFineTuningJobRequestIntegrationsInnerWandb",
+      "doc": ""
+    }
+  ]
+
+}

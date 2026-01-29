@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
+    title = RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+    description = RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+    derivedFrom = Root
+    properties {
+        index {
+          type =  integer
+          description = "The index of the output in the outputs array."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "Always &#x60;logs&#x60;."
+          enum = ["logs"]
+          optional = true
+        }
+        logs {
+          type =  string
+          description = "The text output from the Code Interpreter tool call."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
+    title = RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+    description = RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+    implements = openapi_server.resourceTypes.RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+
+  }
+}

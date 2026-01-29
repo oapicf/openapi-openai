@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RunStepDetailsToolCallsCodeOutputImageObject",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RunStepDetailsToolCallsCodeOutputImageObject_type",
+        "symbols": [
+          "image"
+        ]
+      },
+      "doc": "Always `image`."
+    },
+    {
+      "name": "image",
+      "type": "model.RunStepDetailsToolCallsCodeOutputImageObjectImage",
+      "doc": ""
+    }
+  ]
+
+}

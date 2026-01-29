@@ -1,0 +1,60 @@
+#ifndef message_content_text_annotations_file_citation_object_file_citation_TEST
+#define message_content_text_annotations_file_citation_object_file_citation_TEST
+
+// the following is to include only the main from the first c file
+#ifndef TEST_MAIN
+#define TEST_MAIN
+#define message_content_text_annotations_file_citation_object_file_citation_MAIN
+#endif // TEST_MAIN
+
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include "../external/cJSON.h"
+
+#include "../model/message_content_text_annotations_file_citation_object_file_citation.h"
+message_content_text_annotations_file_citation_object_file_citation_t* instantiate_message_content_text_annotations_file_citation_object_file_citation(int include_optional);
+
+
+
+message_content_text_annotations_file_citation_object_file_citation_t* instantiate_message_content_text_annotations_file_citation_object_file_citation(int include_optional) {
+  message_content_text_annotations_file_citation_object_file_citation_t* message_content_text_annotations_file_citation_object_file_citation = NULL;
+  if (include_optional) {
+    message_content_text_annotations_file_citation_object_file_citation = message_content_text_annotations_file_citation_object_file_citation_create(
+      "0",
+      "0"
+    );
+  } else {
+    message_content_text_annotations_file_citation_object_file_citation = message_content_text_annotations_file_citation_object_file_citation_create(
+      "0",
+      "0"
+    );
+  }
+
+  return message_content_text_annotations_file_citation_object_file_citation;
+}
+
+
+#ifdef message_content_text_annotations_file_citation_object_file_citation_MAIN
+
+void test_message_content_text_annotations_file_citation_object_file_citation(int include_optional) {
+    message_content_text_annotations_file_citation_object_file_citation_t* message_content_text_annotations_file_citation_object_file_citation_1 = instantiate_message_content_text_annotations_file_citation_object_file_citation(include_optional);
+
+	cJSON* jsonmessage_content_text_annotations_file_citation_object_file_citation_1 = message_content_text_annotations_file_citation_object_file_citation_convertToJSON(message_content_text_annotations_file_citation_object_file_citation_1);
+	printf("message_content_text_annotations_file_citation_object_file_citation :\n%s\n", cJSON_Print(jsonmessage_content_text_annotations_file_citation_object_file_citation_1));
+	message_content_text_annotations_file_citation_object_file_citation_t* message_content_text_annotations_file_citation_object_file_citation_2 = message_content_text_annotations_file_citation_object_file_citation_parseFromJSON(jsonmessage_content_text_annotations_file_citation_object_file_citation_1);
+	cJSON* jsonmessage_content_text_annotations_file_citation_object_file_citation_2 = message_content_text_annotations_file_citation_object_file_citation_convertToJSON(message_content_text_annotations_file_citation_object_file_citation_2);
+	printf("repeating message_content_text_annotations_file_citation_object_file_citation:\n%s\n", cJSON_Print(jsonmessage_content_text_annotations_file_citation_object_file_citation_2));
+}
+
+int main() {
+  test_message_content_text_annotations_file_citation_object_file_citation(1);
+  test_message_content_text_annotations_file_citation_object_file_citation(0);
+
+  printf("Hello world \n");
+  return 0;
+}
+
+#endif // message_content_text_annotations_file_citation_object_file_citation_MAIN
+#endif // message_content_text_annotations_file_citation_object_file_citation_TEST

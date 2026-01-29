@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Occurs when a [run step](/docs/api-reference/runs/step-object) is completed.",
+  "name": "RunStepStreamEventOneOf3",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "RunStepStreamEventOneOf3_event",
+        "symbols": [
+          "thread_run_step_completed"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.RunStepObject",
+      "doc": ""
+    }
+  ]
+
+}

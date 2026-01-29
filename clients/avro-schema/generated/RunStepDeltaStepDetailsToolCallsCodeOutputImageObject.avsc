@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RunStepDeltaStepDetailsToolCallsCodeOutputImageObject",
+  "fields": [
+    {
+      "name": "index",
+      "type": "int",
+      "doc": "The index of the output in the outputs array."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_type",
+        "symbols": [
+          "image"
+        ]
+      },
+      "doc": "Always `image`."
+    },
+    {
+      "name": "image",
+      "type": ["null", "model.RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

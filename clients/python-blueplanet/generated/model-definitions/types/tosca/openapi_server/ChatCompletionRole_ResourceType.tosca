@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionRole"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionRole"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ChatCompletionRole {
+    title = ChatCompletionRole
+    description = ChatCompletionRole
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionRole {
+    title = ChatCompletionRole
+    description = ChatCompletionRole
+    implements = openapi_server.resourceTypes.ChatCompletionRole
+
+  }
+}

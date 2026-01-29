@@ -1,0 +1,29 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Details of the tool call.",
+  "name": "RunStepDeltaStepDetailsToolCallsObject",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RunStepDeltaStepDetailsToolCallsObject_type",
+        "symbols": [
+          "tool_calls"
+        ]
+      },
+      "doc": "Always `tool_calls`."
+    },
+    {
+      "name": "tool_calls",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner"
+      }],
+      "doc": "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. ",
+      "default": null
+    }
+  ]
+
+}

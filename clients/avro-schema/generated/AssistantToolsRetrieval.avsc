@@ -1,0 +1,20 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "AssistantToolsRetrieval",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "AssistantToolsRetrieval_type",
+        "symbols": [
+          "retrieval"
+        ]
+      },
+      "doc": "The type of tool being defined: `retrieval`"
+    }
+  ]
+
+}

@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Details of the message creation by the run step.",
+  "name": "RunStepDetailsMessageCreationObject",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RunStepDetailsMessageCreationObject_type",
+        "symbols": [
+          "message_creation"
+        ]
+      },
+      "doc": "Always `message_creation`."
+    },
+    {
+      "name": "message_creation",
+      "type": "model.RunStepDetailsMessageCreationObjectMessageCreation",
+      "doc": ""
+    }
+  ]
+
+}

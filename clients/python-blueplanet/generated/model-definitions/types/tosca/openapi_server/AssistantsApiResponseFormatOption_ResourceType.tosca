@@ -1,0 +1,37 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AssistantsApiResponseFormatOption"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AssistantsApiResponseFormatOption"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantsApiResponseFormat = openapi_server.resourceTypes.AssistantsApiResponseFormat
+}
+resourceTypes {
+
+  AssistantsApiResponseFormatOption {
+    title = AssistantsApiResponseFormatOption
+    description = AssistantsApiResponseFormatOption
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Must be one of &#x60;text&#x60; or &#x60;json_object&#x60;."
+          enum = ["text", "json_object"]
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AssistantsApiResponseFormatOption {
+    title = AssistantsApiResponseFormatOption
+    description = AssistantsApiResponseFormatOption
+    implements = openapi_server.resourceTypes.AssistantsApiResponseFormatOption
+
+  }
+}

@@ -1,0 +1,21 @@
+{ application, openapi
+, [ {description, "The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details."}
+  , {vsn, "0.1.0"}
+  , {registered, []}
+  , { applications
+    , [ kernel
+      , stdlib
+      , ssl
+      , jsx
+      ]
+    }
+  , { env
+    , [ {host, "http://api.openai.com"}
+      , {basic_auth, {"admin", "admin"}}
+      ]
+    }
+  , {modules, []}
+  , {maintainers, []}
+  , {licenses, ["MIT"]}
+  , {links, ["https://github.com/oapicf/openapi-openai"]}
+]}.

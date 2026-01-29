@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateTranslationResponseJson"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateTranslationResponseJson"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateTranslationResponseJson {
+    title = CreateTranslationResponseJson
+    description = CreateTranslationResponseJson
+    derivedFrom = Root
+    properties {
+        text {
+          type =  string
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateTranslationResponseJson {
+    title = CreateTranslationResponseJson
+    description = CreateTranslationResponseJson
+    implements = openapi_server.resourceTypes.CreateTranslationResponseJson
+
+  }
+}

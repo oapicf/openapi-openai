@@ -1,0 +1,247 @@
+#' Create a new TranscriptionWord
+#'
+#' @description
+#' TranscriptionWord Class
+#'
+#' @docType class
+#' @title TranscriptionWord
+#' @description TranscriptionWord Class
+#' @format An \code{R6Class} generator object
+#' @field word The text content of the word. character
+#' @field start Start time of the word in seconds. numeric
+#' @field end End time of the word in seconds. numeric
+#' @importFrom R6 R6Class
+#' @importFrom jsonlite fromJSON toJSON
+#' @export
+TranscriptionWord <- R6::R6Class(
+  "TranscriptionWord",
+  public = list(
+    `word` = NULL,
+    `start` = NULL,
+    `end` = NULL,
+
+    #' @description
+    #' Initialize a new TranscriptionWord class.
+    #'
+    #' @param word The text content of the word.
+    #' @param start Start time of the word in seconds.
+    #' @param end End time of the word in seconds.
+    #' @param ... Other optional arguments.
+    initialize = function(`word`, `start`, `end`, ...) {
+      if (!missing(`word`)) {
+        if (!(is.character(`word`) && length(`word`) == 1)) {
+          stop(paste("Error! Invalid data for `word`. Must be a string:", `word`))
+        }
+        self$`word` <- `word`
+      }
+      if (!missing(`start`)) {
+        if (!(is.numeric(`start`) && length(`start`) == 1)) {
+          stop(paste("Error! Invalid data for `start`. Must be a number:", `start`))
+        }
+        self$`start` <- `start`
+      }
+      if (!missing(`end`)) {
+        if (!(is.numeric(`end`) && length(`end`) == 1)) {
+          stop(paste("Error! Invalid data for `end`. Must be a number:", `end`))
+        }
+        self$`end` <- `end`
+      }
+    },
+
+    #' @description
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
+    toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return TranscriptionWord as a base R list.
+    #' @examples
+    #' # convert array of TranscriptionWord (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert TranscriptionWord to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
+      TranscriptionWordObject <- list()
+      if (!is.null(self$`word`)) {
+        TranscriptionWordObject[["word"]] <-
+          self$`word`
+      }
+      if (!is.null(self$`start`)) {
+        TranscriptionWordObject[["start"]] <-
+          self$`start`
+      }
+      if (!is.null(self$`end`)) {
+        TranscriptionWordObject[["end"]] <-
+          self$`end`
+      }
+      return(TranscriptionWordObject)
+    },
+
+    #' @description
+    #' Deserialize JSON string into an instance of TranscriptionWord
+    #'
+    #' @param input_json the JSON input
+    #' @return the instance of TranscriptionWord
+    fromJSON = function(input_json) {
+      this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`word`)) {
+        self$`word` <- this_object$`word`
+      }
+      if (!is.null(this_object$`start`)) {
+        self$`start` <- this_object$`start`
+      }
+      if (!is.null(this_object$`end`)) {
+        self$`end` <- this_object$`end`
+      }
+      self
+    },
+
+    #' @description
+    #' To JSON String
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
+    #' @return TranscriptionWord in JSON format
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
+    },
+
+    #' @description
+    #' Deserialize JSON string into an instance of TranscriptionWord
+    #'
+    #' @param input_json the JSON input
+    #' @return the instance of TranscriptionWord
+    fromJSONString = function(input_json) {
+      this_object <- jsonlite::fromJSON(input_json)
+      self$`word` <- this_object$`word`
+      self$`start` <- this_object$`start`
+      self$`end` <- this_object$`end`
+      self
+    },
+
+    #' @description
+    #' Validate JSON input with respect to TranscriptionWord and throw an exception if invalid
+    #'
+    #' @param input the JSON input
+    validateJSON = function(input) {
+      input_json <- jsonlite::fromJSON(input)
+      # check the required field `word`
+      if (!is.null(input_json$`word`)) {
+        if (!(is.character(input_json$`word`) && length(input_json$`word`) == 1)) {
+          stop(paste("Error! Invalid data for `word`. Must be a string:", input_json$`word`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for TranscriptionWord: the required field `word` is missing."))
+      }
+      # check the required field `start`
+      if (!is.null(input_json$`start`)) {
+        if (!(is.numeric(input_json$`start`) && length(input_json$`start`) == 1)) {
+          stop(paste("Error! Invalid data for `start`. Must be a number:", input_json$`start`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for TranscriptionWord: the required field `start` is missing."))
+      }
+      # check the required field `end`
+      if (!is.null(input_json$`end`)) {
+        if (!(is.numeric(input_json$`end`) && length(input_json$`end`) == 1)) {
+          stop(paste("Error! Invalid data for `end`. Must be a number:", input_json$`end`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for TranscriptionWord: the required field `end` is missing."))
+      }
+    },
+
+    #' @description
+    #' To string (JSON format)
+    #'
+    #' @return String representation of TranscriptionWord
+    toString = function() {
+      self$toJSONString()
+    },
+
+    #' @description
+    #' Return true if the values in all fields are valid.
+    #'
+    #' @return true if the values in all fields are valid.
+    isValid = function() {
+      # check if the required `word` is null
+      if (is.null(self$`word`)) {
+        return(FALSE)
+      }
+
+      # check if the required `start` is null
+      if (is.null(self$`start`)) {
+        return(FALSE)
+      }
+
+      # check if the required `end` is null
+      if (is.null(self$`end`)) {
+        return(FALSE)
+      }
+
+      TRUE
+    },
+
+    #' @description
+    #' Return a list of invalid fields (if any).
+    #'
+    #' @return A list of invalid fields (if any).
+    getInvalidFields = function() {
+      invalid_fields <- list()
+      # check if the required `word` is null
+      if (is.null(self$`word`)) {
+        invalid_fields["word"] <- "Non-nullable required field `word` cannot be null."
+      }
+
+      # check if the required `start` is null
+      if (is.null(self$`start`)) {
+        invalid_fields["start"] <- "Non-nullable required field `start` cannot be null."
+      }
+
+      # check if the required `end` is null
+      if (is.null(self$`end`)) {
+        invalid_fields["end"] <- "Non-nullable required field `end` cannot be null."
+      }
+
+      invalid_fields
+    },
+
+    #' @description
+    #' Print the object
+    print = function() {
+      print(jsonlite::prettify(self$toJSONString()))
+      invisible(self)
+    }
+  ),
+  # Lock the class to prevent modifications to the method or field
+  lock_class = TRUE
+)
+## Uncomment below to unlock the class to allow modifications of the method or field
+# TranscriptionWord$unlock()
+#
+## Below is an example to define the print function
+# TranscriptionWord$set("public", "print", function(...) {
+#   print(jsonlite::prettify(self$toJSONString()))
+#   invisible(self)
+# })
+## Uncomment below to lock the class to prevent modifications to the method or field
+# TranscriptionWord$lock()
+

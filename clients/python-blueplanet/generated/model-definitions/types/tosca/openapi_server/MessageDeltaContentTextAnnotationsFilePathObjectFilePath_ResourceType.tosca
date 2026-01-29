@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageDeltaContentTextAnnotationsFilePathObjectFilePath"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageDeltaContentTextAnnotationsFilePathObjectFilePath"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MessageDeltaContentTextAnnotationsFilePathObjectFilePath {
+    title = MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+    description = MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+    derivedFrom = Root
+    properties {
+        file_id {
+          type =  string
+          description = "The ID of the file that was generated."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageDeltaContentTextAnnotationsFilePathObjectFilePath {
+    title = MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+    description = MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+    implements = openapi_server.resourceTypes.MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+
+  }
+}

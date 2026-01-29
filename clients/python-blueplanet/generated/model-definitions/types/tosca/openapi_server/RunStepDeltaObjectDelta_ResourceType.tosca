@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDeltaObjectDelta"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDeltaObjectDelta"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunStepDeltaObjectDeltaStepDetails = openapi_server.resourceTypes.RunStepDeltaObjectDeltaStepDetails
+}
+resourceTypes {
+
+  RunStepDeltaObjectDelta {
+    title = RunStepDeltaObjectDelta
+    description = RunStepDeltaObjectDelta
+    derivedFrom = Root
+    properties {
+        step_details {
+          type = RunStepDeltaObjectDeltaStepDetails
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDeltaObjectDelta {
+    title = RunStepDeltaObjectDelta
+    description = RunStepDeltaObjectDelta
+    implements = openapi_server.resourceTypes.RunStepDeltaObjectDelta
+
+  }
+}

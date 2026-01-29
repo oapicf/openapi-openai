@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionRequestMessageContentPartImageImageUrl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionRequestMessageContentPartImageImageUrl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ChatCompletionRequestMessageContentPartImageImageUrl {
+    title = ChatCompletionRequestMessageContentPartImageImageUrl
+    description = ChatCompletionRequestMessageContentPartImageImageUrl
+    derivedFrom = Root
+    properties {
+        url {
+          type =  string
+          description = "Either a URL of the image or the base64 encoded image data."
+          optional = true
+        }
+        detail {
+          type =  string
+          description = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding)."
+          enum = ["auto", "low", "high"]
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionRequestMessageContentPartImageImageUrl {
+    title = ChatCompletionRequestMessageContentPartImageImageUrl
+    description = ChatCompletionRequestMessageContentPartImageImageUrl
+    implements = openapi_server.resourceTypes.ChatCompletionRequestMessageContentPartImageImageUrl
+
+  }
+}

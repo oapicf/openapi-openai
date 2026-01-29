@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepStreamEventOneOf6"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepStreamEventOneOf6"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunStepObject = openapi_server.resourceTypes.RunStepObject
+}
+resourceTypes {
+
+  RunStepStreamEventOneOf6 {
+    title = RunStepStreamEventOneOf6
+    description = RunStepStreamEventOneOf6
+    derivedFrom = Root
+    properties {
+        event {
+          type =  string
+          description = ""
+          enum = ["thread.run.step.expired"]
+          optional = true
+        }
+        data {
+          type = RunStepObject
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepStreamEventOneOf6 {
+    title = RunStepStreamEventOneOf6
+    description = RunStepStreamEventOneOf6
+    implements = openapi_server.resourceTypes.RunStepStreamEventOneOf6
+
+  }
+}

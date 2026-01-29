@@ -1,0 +1,33 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "model" },
+      {"model": "prompt" },
+      {"model": "best_of" },
+      {"model": "echo" },
+      {"model": "frequency_penalty" },
+      {"model": "logit_bias" },
+      {"model": "logprobs" },
+      {"model": "max_tokens" },
+      {"model": "n" },
+      {"model": "presence_penalty" },
+      {"model": "seed" },
+      {"model": "stop" },
+      {"model": "stream" },
+      {"model": "suffix" },
+      {"model": "temperature" },
+      {"model": "top_p" },
+      {"model": "user" },
+    ]
+  }]
+}

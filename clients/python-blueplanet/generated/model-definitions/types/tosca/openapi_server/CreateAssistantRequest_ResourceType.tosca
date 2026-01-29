@@ -1,0 +1,69 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateAssistantRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateAssistantRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantObjectToolsInner = openapi_server.resourceTypes.AssistantObjectToolsInner
+  CreateAssistantRequestModel = openapi_server.resourceTypes.CreateAssistantRequestModel
+}
+resourceTypes {
+
+  CreateAssistantRequest {
+    title = CreateAssistantRequest
+    description = CreateAssistantRequest
+    derivedFrom = Root
+    properties {
+        model {
+          type = CreateAssistantRequestModel
+          description = ""
+          optional = true
+        }
+        name {
+          type =  string
+          description = "The name of the assistant. The maximum length is 256 characters. "
+          optional = false
+        }
+        description {
+          type =  string
+          description = "The description of the assistant. The maximum length is 512 characters. "
+          optional = false
+        }
+        instructions {
+          type =  string
+          description = "The system instructions that the assistant uses. The maximum length is 256,000 characters. "
+          optional = false
+        }
+        tools {
+          type = array
+          items.type = AssistantObjectToolsInner
+          description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;retrieval&#x60;, or &#x60;function&#x60;. "
+          optional = false
+        }
+        file_ids {
+          type = array
+          items.type =  string
+          description = "A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. "
+          optional = false
+        }
+        metadata {
+          type =  
+          description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateAssistantRequest {
+    title = CreateAssistantRequest
+    description = CreateAssistantRequest
+    implements = openapi_server.resourceTypes.CreateAssistantRequest
+
+  }
+}

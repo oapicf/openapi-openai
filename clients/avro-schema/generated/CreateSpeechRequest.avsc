@@ -1,0 +1,58 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateSpeechRequest",
+  "fields": [
+    {
+      "name": "model",
+      "type": "model.CreateSpeechRequestModel",
+      "doc": ""
+    },
+    {
+      "name": "input",
+      "type": "string",
+      "doc": "The text to generate audio for. The maximum length is 4096 characters."
+    },
+    {
+      "name": "voice",
+      "type": {
+        "type": "enum",
+        "name": "CreateSpeechRequest_voice",
+        "symbols": [
+          "alloy",
+          "echo",
+          "fable",
+          "onyx",
+          "nova",
+          "shimmer"
+        ]
+      },
+      "doc": "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options)."
+    },
+    {
+      "name": "response_format",
+      "type": [{
+        "type": "enum",
+        "name": "CreateSpeechRequest_responseUnderscoreformat",
+        "symbols": [
+          "mp3",
+          "opus",
+          "aac",
+          "flac",
+          "wav",
+          "pcm"
+        ]
+      }, "null"],
+      "doc": "The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.",
+      "default": ResponseUnderscoreformatEnum.MP3
+    },
+    {
+      "name": "speed",
+      "type": ["double", "null"],
+      "doc": "The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.",
+      "default": 1.0
+    }
+  ]
+
+}

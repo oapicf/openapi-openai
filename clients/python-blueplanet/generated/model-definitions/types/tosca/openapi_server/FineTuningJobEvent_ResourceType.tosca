@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTuningJobEvent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTuningJobEvent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  FineTuningJobEvent {
+    title = FineTuningJobEvent
+    description = FineTuningJobEvent
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        level {
+          type =  string
+          description = ""
+          enum = ["info", "warn", "error"]
+          optional = true
+        }
+        message {
+          type =  string
+          description = ""
+          optional = true
+        }
+        object {
+          type =  string
+          description = ""
+          enum = ["fine_tuning.job.event"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTuningJobEvent {
+    title = FineTuningJobEvent
+    description = FineTuningJobEvent
+    implements = openapi_server.resourceTypes.FineTuningJobEvent
+
+  }
+}

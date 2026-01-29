@@ -1,0 +1,24 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "prompt" },
+      {"model": "model" },
+      {"model": "n" },
+      {"model": "quality" },
+      {"model": "response_format" },
+      {"model": "size" },
+      {"model": "style" },
+      {"model": "user" },
+    ]
+  }]
+}

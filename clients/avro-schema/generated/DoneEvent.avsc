@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Occurs when a stream ends.",
+  "name": "DoneEvent",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "DoneEvent_event",
+        "symbols": [
+          "done"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "enum",
+        "name": "DoneEvent_data",
+        "symbols": [
+          "_DONE_"
+        ]
+      },
+      "doc": ""
+    }
+  ]
+
+}

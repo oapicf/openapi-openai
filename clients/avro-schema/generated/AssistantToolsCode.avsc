@@ -1,0 +1,20 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "AssistantToolsCode",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "AssistantToolsCode_type",
+        "symbols": [
+          "code_interpreter"
+        ]
+      },
+      "doc": "The type of tool being defined: `code_interpreter`"
+    }
+  ]
+
+}

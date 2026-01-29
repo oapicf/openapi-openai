@@ -1,0 +1,24 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The definition of the function that was called.",
+  "name": "RunStepDetailsToolCallsFunctionObjectFunction",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "doc": "The name of the function."
+    },
+    {
+      "name": "arguments",
+      "type": "string",
+      "doc": "The arguments passed to the function."
+    },
+    {
+      "name": "output",
+      "type": "string",
+      "doc": "The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet."
+    }
+  ]
+
+}

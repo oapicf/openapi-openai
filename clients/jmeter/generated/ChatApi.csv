@@ -1,0 +1,2 @@
+testCase,httpStatusCode,createChatCompletionRequest
+Success,200,0

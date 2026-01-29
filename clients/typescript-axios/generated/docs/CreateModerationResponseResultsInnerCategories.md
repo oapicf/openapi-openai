@@ -1,0 +1,41 @@
+# CreateModerationResponseResultsInnerCategories
+
+A list of the categories, and whether they are flagged or not.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**hate** | **boolean** | Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment. | [default to undefined]
+**hate_threatening** | **boolean** | Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. | [default to undefined]
+**harassment** | **boolean** | Content that expresses, incites, or promotes harassing language towards any target. | [default to undefined]
+**harassment_threatening** | **boolean** | Harassment content that also includes violence or serious harm towards any target. | [default to undefined]
+**self_harm** | **boolean** | Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. | [default to undefined]
+**self_harm_intent** | **boolean** | Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. | [default to undefined]
+**self_harm_instructions** | **boolean** | Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. | [default to undefined]
+**sexual** | **boolean** | Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness). | [default to undefined]
+**sexual_minors** | **boolean** | Sexual content that includes an individual who is under 18 years old. | [default to undefined]
+**violence** | **boolean** | Content that depicts death, violence, or physical injury. | [default to undefined]
+**violence_graphic** | **boolean** | Content that depicts death, violence, or physical injury in graphic detail. | [default to undefined]
+
+## Example
+
+```typescript
+import { CreateModerationResponseResultsInnerCategories } from './api';
+
+const instance: CreateModerationResponseResultsInnerCategories = {
+    hate,
+    hate_threatening,
+    harassment,
+    harassment_threatening,
+    self_harm,
+    self_harm_intent,
+    self_harm_instructions,
+    sexual,
+    sexual_minors,
+    violence,
+    violence_graphic,
+};
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,0 +1,24 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Usage statistics for the completion request.",
+  "name": "CompletionUsage",
+  "fields": [
+    {
+      "name": "completion_tokens",
+      "type": "int",
+      "doc": "Number of tokens in the generated completion."
+    },
+    {
+      "name": "prompt_tokens",
+      "type": "int",
+      "doc": "Number of tokens in the prompt."
+    },
+    {
+      "name": "total_tokens",
+      "type": "int",
+      "doc": "Total number of tokens used in the request (prompt + completion)."
+    }
+  ]
+
+}

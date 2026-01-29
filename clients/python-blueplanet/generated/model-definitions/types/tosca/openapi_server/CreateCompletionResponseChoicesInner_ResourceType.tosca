@@ -1,0 +1,52 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateCompletionResponseChoicesInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateCompletionResponseChoicesInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CreateCompletionResponseChoicesInnerLogprobs = openapi_server.resourceTypes.CreateCompletionResponseChoicesInnerLogprobs
+}
+resourceTypes {
+
+  CreateCompletionResponseChoicesInner {
+    title = CreateCompletionResponseChoicesInner
+    description = CreateCompletionResponseChoicesInner
+    derivedFrom = Root
+    properties {
+        finish_reason {
+          type =  string
+          description = "The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. "
+          enum = ["stop", "length", "content_filter"]
+          optional = true
+        }
+        index {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        logprobs {
+          type = CreateCompletionResponseChoicesInnerLogprobs
+          description = ""
+          optional = true
+        }
+        text {
+          type =  string
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateCompletionResponseChoicesInner {
+    title = CreateCompletionResponseChoicesInner
+    description = CreateCompletionResponseChoicesInner
+    implements = openapi_server.resourceTypes.CreateCompletionResponseChoicesInner
+
+  }
+}

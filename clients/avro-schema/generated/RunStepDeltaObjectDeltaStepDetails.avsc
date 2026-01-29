@@ -1,0 +1,36 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The details of the run step.",
+  "name": "RunStepDeltaObjectDeltaStepDetails",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RunStepDeltaObjectDeltaStepDetails_type",
+        "symbols": [
+          "message_creation",
+          "tool_calls"
+        ]
+      },
+      "doc": "Always `message_creation`."
+    },
+    {
+      "name": "message_creation",
+      "type": ["null", "model.RunStepDeltaStepDetailsMessageCreationObjectMessageCreation"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "tool_calls",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner"
+      }],
+      "doc": "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. ",
+      "default": null
+    }
+  ]
+
+}

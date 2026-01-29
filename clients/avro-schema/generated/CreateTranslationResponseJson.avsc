@@ -1,0 +1,14 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateTranslationResponseJson",
+  "fields": [
+    {
+      "name": "text",
+      "type": "string",
+      "doc": ""
+    }
+  ]
+
+}

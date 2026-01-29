@@ -1,0 +1,14 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.",
+  "name": "FineTuningJobHyperparameters",
+  "fields": [
+    {
+      "name": "n_epochs",
+      "type": "model.FineTuningJobHyperparametersNEpochs",
+      "doc": ""
+    }
+  ]
+
+}

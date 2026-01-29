@@ -1,0 +1,28 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like `{\"type\": \"TOOL_TYPE\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. ",
+  "name": "AssistantsApiToolChoiceOption",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "AssistantsApiToolChoiceOption_type",
+        "symbols": [
+          "function",
+          "code_interpreter",
+          "retrieval"
+        ]
+      },
+      "doc": "The type of the tool. If type is `function`, the function name must be set"
+    },
+    {
+      "name": "function",
+      "type": ["null", "model.ChatCompletionNamedToolChoiceFunction"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

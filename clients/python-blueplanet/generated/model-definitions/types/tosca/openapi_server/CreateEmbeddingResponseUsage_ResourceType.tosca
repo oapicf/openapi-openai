@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateEmbeddingResponseUsage"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateEmbeddingResponseUsage"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateEmbeddingResponseUsage {
+    title = CreateEmbeddingResponseUsage
+    description = CreateEmbeddingResponseUsage
+    derivedFrom = Root
+    properties {
+        prompt_tokens {
+          type =  integer
+          description = "The number of tokens used by the prompt."
+          optional = true
+        }
+        total_tokens {
+          type =  integer
+          description = "The total number of tokens used by the request."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateEmbeddingResponseUsage {
+    title = CreateEmbeddingResponseUsage
+    description = CreateEmbeddingResponseUsage
+    implements = openapi_server.resourceTypes.CreateEmbeddingResponseUsage
+
+  }
+}

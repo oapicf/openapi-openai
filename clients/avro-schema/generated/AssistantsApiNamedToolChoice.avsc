@@ -1,0 +1,28 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Specifies a tool the model should use. Use to force the model to call a specific tool.",
+  "name": "AssistantsApiNamedToolChoice",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "AssistantsApiNamedToolChoice_type",
+        "symbols": [
+          "function",
+          "code_interpreter",
+          "retrieval"
+        ]
+      },
+      "doc": "The type of the tool. If type is `function`, the function name must be set"
+    },
+    {
+      "name": "function",
+      "type": ["null", "model.ChatCompletionNamedToolChoiceFunction"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

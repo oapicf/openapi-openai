@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateImageEditRequestModel"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateImageEditRequestModel"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateImageEditRequestModel {
+    title = CreateImageEditRequestModel
+    description = CreateImageEditRequestModel
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateImageEditRequestModel {
+    title = CreateImageEditRequestModel
+    description = CreateImageEditRequestModel
+    implements = openapi_server.resourceTypes.CreateImageEditRequestModel
+
+  }
+}

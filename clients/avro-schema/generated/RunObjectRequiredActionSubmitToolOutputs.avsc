@@ -1,0 +1,17 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Details on the tool outputs needed for this run to continue.",
+  "name": "RunObjectRequiredActionSubmitToolOutputs",
+  "fields": [
+    {
+      "name": "tool_calls",
+      "type": {
+        "type": "array",
+        "items": "model.RunToolCallObject"
+      },
+      "doc": "A list of the relevant tool calls."
+    }
+  ]
+
+}

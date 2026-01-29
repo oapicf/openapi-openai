@@ -1,0 +1,44 @@
+
+# RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+
+
+## Properties
+
+Name | Type
+------------ | -------------
+`index` | number
+`id` | string
+`type` | string
+`codeInterpreter` | [RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter](RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.md)
+`retrieval` | object
+`_function` | [RunStepDeltaStepDetailsToolCallsFunctionObjectFunction](RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.md)
+
+## Example
+
+```typescript
+import type { RunStepDeltaStepDetailsToolCallsObjectToolCallsInner } from ''
+
+// TODO: Update the object below with actual values
+const example = {
+  "index": null,
+  "id": null,
+  "type": null,
+  "codeInterpreter": null,
+  "retrieval": null,
+  "_function": null,
+} satisfies RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+
+console.log(example)
+
+// Convert the instance to a JSON string
+const exampleJSON: string = JSON.stringify(example)
+console.log(exampleJSON)
+
+// Parse the JSON string back to an object
+const exampleParsed = JSON.parse(exampleJSON) as RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+console.log(exampleParsed)
+```
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+

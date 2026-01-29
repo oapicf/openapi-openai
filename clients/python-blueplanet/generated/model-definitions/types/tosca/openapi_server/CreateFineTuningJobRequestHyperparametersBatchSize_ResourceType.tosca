@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateFineTuningJobRequestHyperparametersBatchSize"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateFineTuningJobRequestHyperparametersBatchSize"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateFineTuningJobRequestHyperparametersBatchSize {
+    title = CreateFineTuningJobRequestHyperparametersBatchSize
+    description = CreateFineTuningJobRequestHyperparametersBatchSize
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateFineTuningJobRequestHyperparametersBatchSize {
+    title = CreateFineTuningJobRequestHyperparametersBatchSize
+    description = CreateFineTuningJobRequestHyperparametersBatchSize
+    implements = openapi_server.resourceTypes.CreateFineTuningJobRequestHyperparametersBatchSize
+
+  }
+}

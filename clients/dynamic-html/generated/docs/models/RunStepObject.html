@@ -1,0 +1,102 @@
+
+<h2>RunStepObject</h2>
+<ul class="parameter">
+  <li class="param-required-true">id : String
+    <br/>The identifier of the run step, which can be referenced in API endpoints.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">object : String
+    <br/>The object type, which is always &#x60;thread.run.step&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>thread.run.step</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">createdUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the run step was created.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">assistantUnderscoreid : String
+    <br/>The ID of the [assistant](/docs/api-reference/assistants) associated with the run step.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">threadUnderscoreid : String
+    <br/>The ID of the [thread](/docs/api-reference/threads) that was run.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">runUnderscoreid : String
+    <br/>The ID of the [run](/docs/api-reference/runs) that this run step is a part of.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">type : String
+    <br/>The type of run step, which can be either &#x60;message_creation&#x60; or &#x60;tool_calls&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>message_creation</dd>
+            <dd>tool_calls</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">status : String
+    <br/>The status of the run step, which can be either &#x60;in_progress&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, or &#x60;expired&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>in_progress</dd>
+            <dd>cancelled</dd>
+            <dd>failed</dd>
+            <dd>completed</dd>
+            <dd>expired</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">stepUnderscoredetails : RunStepObject_step_details
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">lastUnderscoreerror : RunStepObject_last_error
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">expiredUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the run step expired. A step is considered expired if the parent run is expired.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">cancelledUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the run step was cancelled.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">failedUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the run step failed.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">completedUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the run step completed.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">metadata : Object
+    <br/>Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">usage : RunStepCompletionUsage
+    <br/>
+  </li>
+</ul>

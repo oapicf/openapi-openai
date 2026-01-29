@@ -1,0 +1,27 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateThreadAndRunRequestToolsInner",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "CreateThreadAndRunRequestToolsInner_type",
+        "symbols": [
+          "code_interpreter",
+          "retrieval",
+          "function"
+        ]
+      },
+      "doc": "The type of tool being defined: `code_interpreter`"
+    },
+    {
+      "name": "function",
+      "type": "model.FunctionObject",
+      "doc": ""
+    }
+  ]
+
+}

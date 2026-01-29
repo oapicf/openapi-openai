@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ListPaginatedFineTuningJobsResponse",
+  "fields": [
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.FineTuningJob"
+      },
+      "doc": ""
+    },
+    {
+      "name": "has_more",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ListPaginatedFineTuningJobsResponse_object",
+        "symbols": [
+          "list"
+        ]
+      },
+      "doc": ""
+    }
+  ]
+
+}

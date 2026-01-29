@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageFileObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageFileObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MessageFileObject {
+    title = MessageFileObject
+    description = MessageFileObject
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The identifier, which can be referenced in API endpoints."
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;thread.message.file&#x60;."
+          enum = ["thread.message.file"]
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the message file was created."
+          optional = true
+        }
+        message_id {
+          type =  string
+          description = "The ID of the [message](/docs/api-reference/messages) that the [File](/docs/api-reference/files) is attached to."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageFileObject {
+    title = MessageFileObject
+    description = MessageFileObject
+    implements = openapi_server.resourceTypes.MessageFileObject
+
+  }
+}

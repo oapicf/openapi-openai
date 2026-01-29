@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateModerationResponseResultsInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateModerationResponseResultsInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CreateModerationResponseResultsInnerCategories = openapi_server.resourceTypes.CreateModerationResponseResultsInnerCategories
+  CreateModerationResponseResultsInnerCategoryScores = openapi_server.resourceTypes.CreateModerationResponseResultsInnerCategoryScores
+}
+resourceTypes {
+
+  CreateModerationResponseResultsInner {
+    title = CreateModerationResponseResultsInner
+    description = CreateModerationResponseResultsInner
+    derivedFrom = Root
+    properties {
+        flagged {
+          type =  boolean
+          description = "Whether any of the below categories are flagged."
+          optional = true
+        }
+        categories {
+          type = CreateModerationResponseResultsInnerCategories
+          description = ""
+          optional = true
+        }
+        category_scores {
+          type = CreateModerationResponseResultsInnerCategoryScores
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateModerationResponseResultsInner {
+    title = CreateModerationResponseResultsInner
+    description = CreateModerationResponseResultsInner
+    implements = openapi_server.resourceTypes.CreateModerationResponseResultsInner
+
+  }
+}

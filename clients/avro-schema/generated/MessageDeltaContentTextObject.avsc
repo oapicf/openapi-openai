@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The text content that is part of a message.",
+  "name": "MessageDeltaContentTextObject",
+  "fields": [
+    {
+      "name": "index",
+      "type": "int",
+      "doc": "The index of the content part in the message."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "MessageDeltaContentTextObject_type",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "Always `text`."
+    },
+    {
+      "name": "text",
+      "type": ["null", "model.MessageDeltaContentTextObjectText"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

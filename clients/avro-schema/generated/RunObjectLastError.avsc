@@ -1,0 +1,27 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The last error associated with this run. Will be `null` if there are no errors.",
+  "name": "RunObjectLastError",
+  "fields": [
+    {
+      "name": "code",
+      "type": {
+        "type": "enum",
+        "name": "RunObjectLastError_code",
+        "symbols": [
+          "server_error",
+          "rate_limit_exceeded",
+          "invalid_prompt"
+        ]
+      },
+      "doc": "One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`."
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "doc": "A human-readable description of the error."
+    }
+  ]
+
+}

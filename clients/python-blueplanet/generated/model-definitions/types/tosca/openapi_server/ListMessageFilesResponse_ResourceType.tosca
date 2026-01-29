@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ListMessageFilesResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ListMessageFilesResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  MessageFileObject = openapi_server.resourceTypes.MessageFileObject
+}
+resourceTypes {
+
+  ListMessageFilesResponse {
+    title = ListMessageFilesResponse
+    description = ListMessageFilesResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
+        data {
+          type = array
+          items.type = MessageFileObject
+          description = ""
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ListMessageFilesResponse {
+    title = ListMessageFilesResponse
+    description = ListMessageFilesResponse
+    implements = openapi_server.resourceTypes.ListMessageFilesResponse
+
+  }
+}

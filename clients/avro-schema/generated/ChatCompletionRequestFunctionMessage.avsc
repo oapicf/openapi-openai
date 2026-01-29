@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ChatCompletionRequestFunctionMessage",
+  "fields": [
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "ChatCompletionRequestFunctionMessage_role",
+        "symbols": [
+          "function"
+        ]
+      },
+      "doc": "The role of the messages author, in this case `function`."
+    },
+    {
+      "name": "content",
+      "type": "string",
+      "doc": "The contents of the function message."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "doc": "The name of the function to call."
+    }
+  ]
+
+}

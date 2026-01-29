@@ -1,0 +1,37 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateChatCompletionResponseChoicesInnerLogprobs"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateChatCompletionResponseChoicesInnerLogprobs"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionTokenLogprob = openapi_server.resourceTypes.ChatCompletionTokenLogprob
+}
+resourceTypes {
+
+  CreateChatCompletionResponseChoicesInnerLogprobs {
+    title = CreateChatCompletionResponseChoicesInnerLogprobs
+    description = CreateChatCompletionResponseChoicesInnerLogprobs
+    derivedFrom = Root
+    properties {
+        content {
+          type = array
+          items.type = ChatCompletionTokenLogprob
+          description = "A list of message content tokens with log probability information."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateChatCompletionResponseChoicesInnerLogprobs {
+    title = CreateChatCompletionResponseChoicesInnerLogprobs
+    description = CreateChatCompletionResponseChoicesInnerLogprobs
+    implements = openapi_server.resourceTypes.CreateChatCompletionResponseChoicesInnerLogprobs
+
+  }
+}

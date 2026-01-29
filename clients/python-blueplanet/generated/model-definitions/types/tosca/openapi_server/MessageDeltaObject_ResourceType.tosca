@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageDeltaObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageDeltaObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  MessageDeltaObjectDelta = openapi_server.resourceTypes.MessageDeltaObjectDelta
+}
+resourceTypes {
+
+  MessageDeltaObject {
+    title = MessageDeltaObject
+    description = MessageDeltaObject
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The identifier of the message, which can be referenced in API endpoints."
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;thread.message.delta&#x60;."
+          enum = ["thread.message.delta"]
+          optional = true
+        }
+        delta {
+          type = MessageDeltaObjectDelta
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageDeltaObject {
+    title = MessageDeltaObject
+    description = MessageDeltaObject
+    implements = openapi_server.resourceTypes.MessageDeltaObject
+
+  }
+}

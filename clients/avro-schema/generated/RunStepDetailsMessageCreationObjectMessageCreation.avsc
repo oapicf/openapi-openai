@@ -1,0 +1,14 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RunStepDetailsMessageCreationObjectMessageCreation",
+  "fields": [
+    {
+      "name": "message_id",
+      "type": "string",
+      "doc": "The ID of the message that was created by this run step."
+    }
+  ]
+
+}

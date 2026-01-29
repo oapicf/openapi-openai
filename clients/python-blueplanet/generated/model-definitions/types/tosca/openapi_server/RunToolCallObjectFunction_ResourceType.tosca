@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunToolCallObjectFunction"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunToolCallObjectFunction"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RunToolCallObjectFunction {
+    title = RunToolCallObjectFunction
+    description = RunToolCallObjectFunction
+    derivedFrom = Root
+    properties {
+        name {
+          type =  string
+          description = "The name of the function."
+          optional = true
+        }
+        arguments {
+          type =  string
+          description = "The arguments that the model expects you to pass to the function."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunToolCallObjectFunction {
+    title = RunToolCallObjectFunction
+    description = RunToolCallObjectFunction
+    implements = openapi_server.resourceTypes.RunToolCallObjectFunction
+
+  }
+}

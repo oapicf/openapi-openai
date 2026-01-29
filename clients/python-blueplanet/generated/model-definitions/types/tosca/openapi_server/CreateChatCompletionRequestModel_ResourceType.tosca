@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateChatCompletionRequestModel"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateChatCompletionRequestModel"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateChatCompletionRequestModel {
+    title = CreateChatCompletionRequestModel
+    description = CreateChatCompletionRequestModel
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateChatCompletionRequestModel {
+    title = CreateChatCompletionRequestModel
+    description = CreateChatCompletionRequestModel
+    implements = openapi_server.resourceTypes.CreateChatCompletionRequestModel
+
+  }
+}

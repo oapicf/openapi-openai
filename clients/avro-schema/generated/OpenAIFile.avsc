@@ -1,0 +1,73 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The `File` object represents a document that has been uploaded to OpenAI.",
+  "name": "OpenAIFile",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The file identifier, which can be referenced in the API endpoints."
+    },
+    {
+      "name": "bytes",
+      "type": "int",
+      "doc": "The size of the file, in bytes."
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the file was created."
+    },
+    {
+      "name": "filename",
+      "type": "string",
+      "doc": "The name of the file."
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "OpenAIFile_object",
+        "symbols": [
+          "file"
+        ]
+      },
+      "doc": "The object type, which is always `file`."
+    },
+    {
+      "name": "purpose",
+      "type": {
+        "type": "enum",
+        "name": "OpenAIFile_purpose",
+        "symbols": [
+          "fine_tune",
+          "fine_tune_results",
+          "assistants",
+          "assistants_output"
+        ]
+      },
+      "doc": "The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`."
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "OpenAIFile_status",
+        "symbols": [
+          "uploaded",
+          "processed",
+          "error"
+        ]
+      },
+      "doc": "Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`."
+    },
+    {
+      "name": "status_details",
+      "type": ["null", "string"],
+      "doc": "Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.",
+      "default": null
+    }
+  ]
+
+}

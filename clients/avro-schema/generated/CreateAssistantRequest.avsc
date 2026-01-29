@@ -1,0 +1,56 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateAssistantRequest",
+  "fields": [
+    {
+      "name": "model",
+      "type": "model.CreateAssistantRequestModel",
+      "doc": ""
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "The name of the assistant. The maximum length is 256 characters. ",
+      "default": null
+    },
+    {
+      "name": "description",
+      "type": ["null", "string"],
+      "doc": "The description of the assistant. The maximum length is 512 characters. ",
+      "default": null
+    },
+    {
+      "name": "instructions",
+      "type": ["null", "string"],
+      "doc": "The system instructions that the assistant uses. The maximum length is 256,000 characters. ",
+      "default": null
+    },
+    {
+      "name": "tools",
+      "type": [{
+        "type": "array",
+        "items": "model.AssistantObjectToolsInner"
+      }, "null"],
+      "doc": "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. ",
+      "default": []
+    },
+    {
+      "name": "file_ids",
+      "type": [{
+        "type": "array",
+        "items": "string"
+      }, "null"],
+      "doc": "A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. ",
+      "default": []
+    },
+    {
+      "name": "metadata",
+      "type": ["null", "model.object"],
+      "doc": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ",
+      "default": null
+    }
+  ]
+
+}

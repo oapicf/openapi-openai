@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Occurs when a [run](/docs/api-reference/runs/object) moves to a `queued` status.",
+  "name": "RunStreamEventOneOf1",
+  "fields": [
+    {
+      "name": "event",
+      "type": {
+        "type": "enum",
+        "name": "RunStreamEventOneOf1_event",
+        "symbols": [
+          "thread_run_queued"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": "model.RunObject",
+      "doc": ""
+    }
+  ]
+
+}

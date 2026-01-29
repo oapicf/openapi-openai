@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ListRunStepsResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ListRunStepsResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunStepObject = openapi_server.resourceTypes.RunStepObject
+}
+resourceTypes {
+
+  ListRunStepsResponse {
+    title = ListRunStepsResponse
+    description = ListRunStepsResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
+        data {
+          type = array
+          items.type = RunStepObject
+          description = ""
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ListRunStepsResponse {
+    title = ListRunStepsResponse
+    description = ListRunStepsResponse
+    implements = openapi_server.resourceTypes.ListRunStepsResponse
+
+  }
+}

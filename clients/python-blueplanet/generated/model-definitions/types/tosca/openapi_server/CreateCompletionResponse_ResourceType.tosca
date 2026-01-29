@@ -1,0 +1,69 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateCompletionResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateCompletionResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CompletionUsage = openapi_server.resourceTypes.CompletionUsage
+  CreateCompletionResponseChoicesInner = openapi_server.resourceTypes.CreateCompletionResponseChoicesInner
+}
+resourceTypes {
+
+  CreateCompletionResponse {
+    title = CreateCompletionResponse
+    description = CreateCompletionResponse
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "A unique identifier for the completion."
+          optional = true
+        }
+        choices {
+          type = array
+          items.type = CreateCompletionResponseChoicesInner
+          description = "The list of completion choices the model generated for the input prompt."
+          optional = true
+        }
+        created {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of when the completion was created."
+          optional = true
+        }
+        model {
+          type =  string
+          description = "The model used for completion."
+          optional = true
+        }
+        system_fingerprint {
+          type =  string
+          description = "This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. "
+          optional = false
+        }
+        object {
+          type =  string
+          description = "The object type, which is always \&quot;text_completion\&quot;"
+          enum = ["text_completion"]
+          optional = true
+        }
+        usage {
+          type = CompletionUsage
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateCompletionResponse {
+    title = CreateCompletionResponse
+    description = CreateCompletionResponse
+    implements = openapi_server.resourceTypes.CreateCompletionResponse
+
+  }
+}

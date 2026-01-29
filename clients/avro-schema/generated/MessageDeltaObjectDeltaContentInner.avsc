@@ -1,0 +1,38 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "MessageDeltaObjectDeltaContentInner",
+  "fields": [
+    {
+      "name": "index",
+      "type": "int",
+      "doc": "The index of the content part in the message."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "MessageDeltaObjectDeltaContentInner_type",
+        "symbols": [
+          "image_file",
+          "text"
+        ]
+      },
+      "doc": "Always `image_file`."
+    },
+    {
+      "name": "image_file",
+      "type": ["null", "model.MessageDeltaContentImageFileObjectImageFile"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "text",
+      "type": ["null", "model.MessageDeltaContentTextObjectText"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

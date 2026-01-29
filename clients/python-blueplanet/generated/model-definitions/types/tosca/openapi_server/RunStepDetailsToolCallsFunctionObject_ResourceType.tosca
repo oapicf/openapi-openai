@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDetailsToolCallsFunctionObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDetailsToolCallsFunctionObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunStepDetailsToolCallsFunctionObjectFunction = openapi_server.resourceTypes.RunStepDetailsToolCallsFunctionObjectFunction
+}
+resourceTypes {
+
+  RunStepDetailsToolCallsFunctionObject {
+    title = RunStepDetailsToolCallsFunctionObject
+    description = RunStepDetailsToolCallsFunctionObject
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The ID of the tool call object."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The type of tool call. This is always going to be &#x60;function&#x60; for this type of tool call."
+          enum = ["function"]
+          optional = true
+        }
+        function {
+          type = RunStepDetailsToolCallsFunctionObjectFunction
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDetailsToolCallsFunctionObject {
+    title = RunStepDetailsToolCallsFunctionObject
+    description = RunStepDetailsToolCallsFunctionObject
+    implements = openapi_server.resourceTypes.RunStepDetailsToolCallsFunctionObject
+
+  }
+}

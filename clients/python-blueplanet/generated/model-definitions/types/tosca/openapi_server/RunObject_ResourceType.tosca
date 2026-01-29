@@ -1,0 +1,172 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantObjectToolsInner = openapi_server.resourceTypes.AssistantObjectToolsInner
+  AssistantsApiResponseFormatOption = openapi_server.resourceTypes.AssistantsApiResponseFormatOption
+  AssistantsApiToolChoiceOption = openapi_server.resourceTypes.AssistantsApiToolChoiceOption
+  RunCompletionUsage = openapi_server.resourceTypes.RunCompletionUsage
+  RunObjectIncompleteDetails = openapi_server.resourceTypes.RunObjectIncompleteDetails
+  RunObjectLastError = openapi_server.resourceTypes.RunObjectLastError
+  RunObjectRequiredAction = openapi_server.resourceTypes.RunObjectRequiredAction
+  TruncationObject = openapi_server.resourceTypes.TruncationObject
+}
+resourceTypes {
+
+  RunObject {
+    title = RunObject
+    description = RunObject
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The identifier, which can be referenced in API endpoints."
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;thread.run&#x60;."
+          enum = ["thread.run"]
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the run was created."
+          optional = true
+        }
+        thread_id {
+          type =  string
+          description = "The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run."
+          optional = true
+        }
+        assistant_id {
+          type =  string
+          description = "The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run."
+          optional = true
+        }
+        status {
+          type =  string
+          description = "The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, or &#x60;expired&#x60;."
+          enum = ["queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "expired"]
+          optional = true
+        }
+        required_action {
+          type = RunObjectRequiredAction
+          description = ""
+          optional = true
+        }
+        last_error {
+          type = RunObjectLastError
+          description = ""
+          optional = true
+        }
+        expires_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the run will expire."
+          optional = true
+        }
+        started_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the run was started."
+          optional = true
+        }
+        cancelled_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the run was cancelled."
+          optional = true
+        }
+        failed_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the run failed."
+          optional = true
+        }
+        completed_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the run was completed."
+          optional = true
+        }
+        incomplete_details {
+          type = RunObjectIncompleteDetails
+          description = ""
+          optional = true
+        }
+        model {
+          type =  string
+          description = "The model that the [assistant](/docs/api-reference/assistants) used for this run."
+          optional = true
+        }
+        instructions {
+          type =  string
+          description = "The instructions that the [assistant](/docs/api-reference/assistants) used for this run."
+          optional = true
+        }
+        tools {
+          type = array
+          items.type = AssistantObjectToolsInner
+          description = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run."
+          optional = true
+        }
+        file_ids {
+          type = array
+          items.type =  string
+          description = "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run."
+          optional = true
+        }
+        metadata {
+          type =  
+          description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. "
+          optional = true
+        }
+        usage {
+          type = RunCompletionUsage
+          description = ""
+          optional = true
+        }
+        temperature {
+          type =  
+          description = "The sampling temperature used for this run. If not set, defaults to 1."
+          optional = false
+        }
+        max_prompt_tokens {
+          type =  integer
+          description = "The maximum number of prompt tokens specified to have been used over the course of the run. "
+          optional = true
+        }
+        max_completion_tokens {
+          type =  integer
+          description = "The maximum number of completion tokens specified to have been used over the course of the run. "
+          optional = true
+        }
+        truncation_strategy {
+          type = TruncationObject
+          description = ""
+          optional = true
+        }
+        tool_choice {
+          type = AssistantsApiToolChoiceOption
+          description = ""
+          optional = true
+        }
+        response_format {
+          type = AssistantsApiResponseFormatOption
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunObject {
+    title = RunObject
+    description = RunObject
+    implements = openapi_server.resourceTypes.RunObject
+
+  }
+}

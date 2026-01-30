@@ -31,7 +31,7 @@ class RealtimeResponseCreateParamsConversation(BaseModel):
     # data type: str
     oneof_schema_1_validator: Optional[StrictStr] = None
     # data type: str
-    oneof_schema_2_validator: Optional[StrictStr] = auto
+    oneof_schema_2_validator: Optional[StrictStr] = "auto"
     actual_instance: Optional[Union[str]] = None
     one_of_schemas: Set[str] = { "str" }
 

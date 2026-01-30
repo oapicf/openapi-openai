@@ -185,7 +185,12 @@ build-javascript:
 	cd test/javascript/ && \
 	  npm link ../../clients/javascript/generated/
 
-build-python:
+build-python: x-build-python
+
+# Fix OpenAPI Generator bug where 'auto' default value is not quoted as a string
+# https://github.com/oapicf/openapi-openai/issues/3
+x-build-python:
+	sed -i 's/StrictStr\] = auto$$/StrictStr] = "auto"/g' clients/python/generated/openapiopenai/models/realtime_response_create_params_conversation.py || true
 	cd clients/python/generated/ && \
 	  python3 -m venv .venv && \
 	  $(call python_venv,pip install twine wheel pytest setuptools) && \

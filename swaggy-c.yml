@@ -1,7 +1,7 @@
 ---
 spec_uri: >-
   https://raw.githubusercontent.com/openai/openai-openapi/d2eaa350b5b619ad6355384279a9beb9d423d88b/openapi.yaml
-version: 1.2.0
+version: 1.2.1-pre.0
 contact:
   name: Cliffano Subagio
   url: https://github.com/oapicf/openapi-openai
